@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use '@styles/mixins';
+
+// Containers
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+
+  @include mixins.breakpoint-up(lg) {
+    padding: 0 1.5rem;
+    max-width: 1140px;
+  }
+
+  @include mixins.breakpoint-up(xl) {
+    padding: 0 2rem;
+    max-width: 1320px;
+  }
+}
+
+.container-page {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+  @include mixins.breakpoint-up(md) {
+    width: clamp(45ch, 100%, 85ch);
+  }
+  @include mixins.breakpoint-up(lg) {
+    padding: 0 1.5rem;
+  }
+
+  @include mixins.breakpoint-up(xl) {
+    padding: 0 2rem;
+  }
+}
+
+.col-span-1 {
+  grid-column: span 1;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.col-span-3 {
+  grid-column: span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4;
+}

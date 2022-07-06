@@ -1,0 +1,76 @@
+@use '@styles/mixins';
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-high);
+  width: 100%;
+  background-color: var(--color-bg-primary);
+
+  &.headerTransparent {
+    background-color: transparent;
+  }
+
+  &.navContainerOpen {
+    position: fixed;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    position: relative;
+  }
+}
+
+.headerContainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.navigation {
+  padding: 1rem 0;
+
+  &.navigationTransparent {
+    padding: 2.5rem 1rem 1rem;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.toolbar {
+  position: relative;
+  z-index: var(--z-ultra);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px;
+  width: 100%;
+}
+
+.toolbarIcons {
+  display: flex;
+  align-items: center;
+  margin-right: -0.75rem;
+
+  button {
+    margin-left: 0.5rem;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    order: 2;
+    .hamburger {
+      display: none;
+    }
+  }
+}
+
+.logo {
+  cursor: pointer;
+  width: 5rem;
+  height: auto;
+  @include mixins.breakpoint-up(lg) {
+    width: 8rem;
+  }
+}

@@ -1,0 +1,138 @@
+@use '@styles/mixins';
+
+.buttonBase {
+  align-items: center;
+  background: var(--color-btn-bg);
+  border-radius: var(--border-radius);
+  border: 0.125rem solid var(--color-btn-border);
+  color: var(--color-btn-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  padding: 0.75em 1.25em;
+  @include mixins.transition(background, border, color);
+
+  svg {
+    height: 1.1em;
+    width: 1.1em;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1em;
+    height: 1.1em;
+  }
+}
+
+// Different variants
+$variants: default, primary, secondary, success, danger, warning, info,
+  'transparent', minimal, minimal-bright, minimal-dark;
+@each $variant in $variants {
+  .button-#{$variant} {
+    border: 0.125rem solid var(--color-btn-#{$variant}-border);
+    background: var(--color-btn-#{$variant}-bg);
+    color: var(--color-btn-#{$variant}-text);
+    @include mixins.transition(background, border, color);
+
+    &:hover,
+    &.outlined:hover {
+      border: 0.125rem solid var(--color-btn-#{$variant}-hover-border);
+      background: var(--color-btn-#{$variant}-hover-bg);
+      color: var(--color-btn-#{$variant}-hover-text);
+    }
+    &:focus,
+    &.outlined:focus {
+      border: 0.125rem solid var(--color-btn-#{$variant}-focus-border);
+      background: var(--color-btn-#{$variant}-focus-bg);
+      color: var(--color-btn-#{$variant}-focus-text);
+      outline: var(--color-btn-#{$variant}-focus-border);
+    }
+    &:active,
+    &.outlined:active {
+      border: 0.125rem solid var(--color-btn-#{$variant}-active-border);
+      background: var(--color-btn-#{$variant}-active-bg);
+      color: var(--color-btn-#{$variant}-active-text);
+    }
+
+    &.loading {
+      border: 0.125rem solid var(--color-btn-#{$variant}-active-border);
+      background: var(--color-btn-#{$variant}-active-bg);
+      color: var(--color-btn-#{$variant}-active-text);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    &.outlined {
+      border: 0.125rem solid var(--color-btn-#{$variant}-outlined-border);
+      background: transparent;
+      color: var(--color-btn-#{$variant}-outlined-text);
+      @include mixins.transition(background, border, color);
+    }
+
+    &.disabled {
+      cursor: default;
+      border: 0.125rem solid var(--color-btn-#{$variant}-disabled-border);
+      background: var(--color-btn-#{$variant}-disabled-bg);
+      color: var(--color-btn-#{$variant}-disabled-text);
+
+      &.outlined {
+        border: 0.125rem
+          solid
+          var(--color-btn-#{$variant}-outlined-disabled-border);
+        background: transparent;
+        color: var(--color-btn-#{$variant}-outlined-disabled-text);
+      }
+    }
+  }
+}
+
+// Different Sizes
+.button-xs {
+  font-size: 0.75rem;
+}
+
+.button-sm {
+  font-size: 0.875rem;
+}
+
+.button-md {
+  font-size: 1rem;
+}
+
+.button-lg {
+  font-size: 1.125rem;
+}
+
+.button-xl {
+  font-size: 1.25rem;
+}
+
+.button-circular {
+  border-radius: 50%;
+}
+
+.button-rounded {
+  border-radius: var(--border-radius-lg);
+}
+
+.button-circular,
+.button-squared {
+  padding: 0.75em;
+}
+
+.button-icon-left {
+  margin-right: 1.25em;
+}
+
+.button-icon-right {
+  margin-left: 1.25em;
+}
+
+.stretched {
+  width: 100%;
+}

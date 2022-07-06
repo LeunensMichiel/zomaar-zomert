@@ -1,0 +1,22 @@
+.fieldSetLabel {
+  composes: inputLabel from '../../ui/Input/Input.module.scss';
+}
+
+.fieldSetContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
+  justify-items: start;
+}
+
+.fieldAlert {
+  composes: fieldAlert from '../../ui/Input/Input.module.scss';
+}
+
+.fieldAlertIcon {
+  composes: fieldAlertIcon from '../../ui/Input/Input.module.scss';
+}
+
+.fieldAlertText {
+  composes: fieldAlertText from '../../ui/Input/Input.module.scss';
+}

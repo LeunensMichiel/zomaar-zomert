@@ -1,0 +1,72 @@
+@use '@styles/mixins';
+
+.navItemContainer {
+  border-radius: var(--border-radius);
+  border: none;
+  color: var(--color-text-primary);
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  outline: none;
+
+  @include mixins.breakpoint-up(lg) {
+    font-size: 1rem;
+  }
+}
+
+.linkContainer {
+  &:hover,
+  &:focus {
+    color: var(--color-link-primary);
+    background: var(--color-bg-secondary);
+  }
+}
+
+.subMenuContainer {
+}
+
+.subMenuOpen {
+  background: var(--color-bg-secondary);
+  * {
+    background: var(--color-bg-secondary);
+    border: none;
+    color: inherit;
+  }
+}
+
+.subMenuButton {
+  border: none;
+  color: inherit;
+  font-weight: inherit;
+  background: inherit;
+  min-height: unset;
+  line-height: inherit;
+  border-radius: var(--border-radius) !important;
+  transition: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    background: inherit;
+    color: var(--color-link-primary);
+  }
+}
+
+.subMenuList {
+  color: inherit;
+  border-radius: var(--border-radius);
+  top: calc(100% + 0.5rem) !important;
+  padding: 1rem;
+
+  @include mixins.breakpoint-up(lg) {
+    padding: 1rem 1rem 0rem 1rem;
+  }
+}
+
+.activeLink {
+  color: var(--color-link-primary);
+  background: var(--color-bg-secondary);
+}

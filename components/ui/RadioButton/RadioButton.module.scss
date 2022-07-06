@@ -1,0 +1,72 @@
+@use '@styles/mixins';
+
+.radioButton {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.75rem;
+  align-items: center;
+  color: var(--color-label-primary-text);
+}
+
+.radioButtonInput {
+  display: grid;
+  grid-template-areas: 'switch';
+  align-items: center;
+
+  input {
+    opacity: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    cursor: pointer;
+    &:focus + .radioButtonControl {
+      box-shadow: var(--box-shadow-sm);
+    }
+    & + .radioButtonControl:before {
+      content: '';
+      width: 0.75rem;
+      height: 0.75rem;
+      box-shadow: inset 1rem 1rem currentColor;
+      border-radius: 50%;
+      transform: scale(0);
+      @include mixins.transition(box-shadow, transform);
+    }
+
+    &:checked + .radioButtonControl:before {
+      transform: scale(1);
+      box-shadow: inset 1rem 1rem var(--color-input-radiobutton-checked);
+    }
+    &:checked + .radioButtonControl {
+      border: 0.125rem solid var(--color-input-radiobutton-checked);
+    }
+    &:disabled + .radioButtonControl {
+      border: 0.125rem solid var(--color-input-disabled-border);
+      color: var(--color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  > * {
+    grid-area: switch;
+  }
+}
+
+.radioButtonControl {
+  display: inline-grid;
+  justify-items: center;
+  align-items: center;
+  border: 0.125rem solid var(--color-input-border);
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  @include mixins.transition(border-color);
+}
+
+.radioButtonLabel {
+  font-size: var(--font-size-small);
+  user-select: none;
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 1;
+}

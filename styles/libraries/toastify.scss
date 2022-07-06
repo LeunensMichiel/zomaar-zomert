@@ -1,0 +1,57 @@
+@import '~react-toastify/dist/ReactToastify.min.css';
+//https://fkhadra.github.io/react-toastify/how-to-style
+:root {
+  --toastify-color-light: var(--color-bg-primary);
+  --toastify-color-dark: var(--color-bg-inversed);
+  --toastify-color-info: var(--color-icon-info);
+  --toastify-color-success: var(--color-icon-success);
+  --toastify-color-warning: var(--color-icon-warning);
+  --toastify-color-error: var(--color-icon-danger);
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+
+  --toastify-icon-color-info: var(--toastify-color-info);
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-icon-color-error: var(--toastify-color-error);
+
+  --toastify-toast-width: 20rem;
+  --toastify-toast-background: var(--color-bg-primary);
+  --toastify-toast-min-height: 4rem;
+  --toastify-toast-max-height: 50rem;
+  --toastify-z-index: var(--z-extreme);
+
+  --toastify-text-color-light: var(--color-text-primary);
+  --toastify-text-color-dark: var(--color-text-inversed);
+
+  //Used only for colored theme
+  --toastify-text-color-info: var(--color-white);
+  --toastify-text-color-success: var(--color-white);
+  --toastify-text-color-error: var(--color-white);
+  --toastify-text-color-warning: var(--color-black);
+
+  --toastify-spinner-color: var(--color-gray-500);
+  --toastify-spinner-color-empty-area: var(--color-gray-300);
+
+  --toastify-color-progress-light: var(--color-bg-brand);
+  --toastify-color-progress-dark: var(--color-bg-brand);
+  --toastify-color-progress-info: var(--toastify-color-info);
+  --toastify-color-progress-success: var(--toastify-color-success);
+  --toastify-color-progress-warning: var(--toastify-color-warning);
+  --toastify-color-progress-error: var(--toastify-color-error);
+}
+
+.Toastify__progress-bar {
+  height: 0.375rem;
+}
+
+.Toastify__toast-container {
+  padding: 0;
+}
+
+.Toastify__toast {
+  font-size: var(--font-size-small);
+  box-shadow: var(--box-shadow-lg);
+  > svg {
+    width: 1.125rem;
+  }
+}

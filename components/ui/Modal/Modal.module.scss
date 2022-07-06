@@ -1,0 +1,66 @@
+@use '@styles/mixins';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+  background-color: var(--color-bg-backdrop);
+  z-index: var(--z-high);
+}
+
+.modal {
+  margin: 0 1rem;
+  padding: 1rem 1.5rem 1.5rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  background-color: var(--color-bg-primary);
+  box-shadow: var(--box-shadow-lg);
+
+  &:focus {
+    outline: none;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    margin: 0;
+    padding: 1.5rem 2rem 2rem;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modalTitle {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+}
+
+.modalBody {
+  @include mixins.breakpoint-up(lg) {
+    padding: 1rem;
+  }
+  @include mixins.breakpoint-up(xxl) {
+    padding: 1.5rem;
+  }
+}
+
+.modalCloseButton {
+  margin-left: 0.5rem;
+  margin-top: -1rem;
+  margin-right: -1.5rem;
+
+  &.noTitle {
+    margin-left: auto;
+  }
+}
