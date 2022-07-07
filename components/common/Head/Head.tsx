@@ -22,7 +22,7 @@ const Head: VFC = () => {
           site_name: 'Zomaar Zomert',
           images: [
             {
-              url: '/card.jpg',
+              url: '/assets/card.jpg',
               width: 1200,
               height: 630,
               alt: 'Zomaar Zomert',

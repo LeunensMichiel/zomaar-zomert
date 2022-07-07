@@ -2,21 +2,44 @@
 @use '@styles/mixins';
 
 // Containers
+// Containers
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 
-  @include mixins.breakpoint-up(lg) {
-    padding: 0 1.5rem;
-    max-width: 1140px;
+  @include mixins.breakpoint-up(xl) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1320px;
+  }
+}
+
+.py-container {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  &--sm {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  @include mixins.breakpoint-up(md) {
+    padding-top: 9.5rem;
+    padding-bottom: 9.5rem;
   }
 
   @include mixins.breakpoint-up(xl) {
-    padding: 0 2rem;
-    max-width: 1320px;
+    padding-top: 9.625rem;
+    padding-bottom: 9.625rem;
+
+    &--sm {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
   }
 }
 
@@ -25,16 +48,16 @@
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
   @include mixins.breakpoint-up(md) {
     width: clamp(45ch, 100%, 85ch);
   }
-  @include mixins.breakpoint-up(lg) {
-    padding: 0 1.5rem;
-  }
 
   @include mixins.breakpoint-up(xl) {
-    padding: 0 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 

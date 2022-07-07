@@ -2,9 +2,12 @@
 
 .mainContainer {
   min-height: 75%;
-  padding-top: 5.5rem;
-
+  padding-top: 4.5rem;
   @include mixins.breakpoint-up(lg) {
-    padding-top: 0rem;
+    padding-top: 5.5rem;
   }
+}
+
+.has-transparent-navbar {
+  padding-top: 0rem;
 }

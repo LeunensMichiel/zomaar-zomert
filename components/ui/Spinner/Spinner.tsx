@@ -16,7 +16,6 @@ const Spinner: VFC<SpinnerProps> = ({ size }) => (
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
-    strokeLinecap="round"
     strokeLinejoin="round"
     className={cn(styles.spinner, { [styles[`spinner--${size}`]]: !!size })}
   >

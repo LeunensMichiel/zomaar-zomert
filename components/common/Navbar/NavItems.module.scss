@@ -2,21 +2,19 @@
 
 .navMenuContainer {
   position: fixed;
-  top: 5.5rem;
-  left: -100%;
+  top: 0rem;
+  left: 0;
   bottom: 0;
   width: 100%;
-  z-index: var(--z-ultra);
+  z-index: 5;
   padding-bottom: 1rem;
   overflow-y: auto;
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-brand);
+  clip-path: circle(0 at calc(100% - 2rem) 2rem);
+  transition: clip-path 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 
   &.navContainerOpen {
-    left: 0;
-  }
-
-  &.navigationTransparent {
-    top: 7rem;
+    clip-path: circle(200% at 0 0);
   }
 
   @include mixins.breakpoint-up(lg) {
@@ -33,7 +31,9 @@
 .navMenuList {
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
+  padding-top: 7.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: 100%;
   max-width: 1024px;
   margin-left: auto;
@@ -41,7 +41,7 @@
   position: relative;
 
   & > * {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
   & > a,
   & > div > [class~='parentSubMenuButton'] {
@@ -49,6 +49,7 @@
   }
 
   @include mixins.breakpoint-up(lg) {
+    padding-top: 0;
     flex-direction: row;
     padding: 0;
     align-items: stretch;

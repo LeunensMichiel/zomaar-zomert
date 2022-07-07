@@ -6,7 +6,7 @@
   color: var(--color-text-primary);
   display: inline-flex;
   align-items: center;
-  font-size: 1.125rem;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1;
   outline: none;
@@ -19,8 +19,8 @@
 .linkContainer {
   &:hover,
   &:focus {
-    color: var(--color-link-primary);
-    background: var(--color-bg-secondary);
+    color: var(--color-pink-4);
+    background: var(--color-red-2);
   }
 }
 
@@ -67,6 +67,5 @@
 }
 
 .activeLink {
-  color: var(--color-link-primary);
-  background: var(--color-bg-secondary);
+  color: var(--color-pink-4);
 }

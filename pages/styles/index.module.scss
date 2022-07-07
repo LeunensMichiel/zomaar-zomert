@@ -1,6 +1,78 @@
-.intro {
-  margin-top: 5rem;
-  padding: 0 1rem;
-  display: grid;
-  place-content: center;
+@use '@styles/mixins';
+
+.landing {
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+
+  video {
+    object-fit: cover;
+    object-position: 50% 50%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(24, 7, 2, 0.5);
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.25) 0.5px,
+        transparent 0.5px
+      ),
+      radial-gradient(rgba(255, 255, 255, 0.25) 0.5px, transparent 0.5px);
+    background-size: 4px 4px;
+    background-position: 0 0, 8px 8px;
+  }
+
+  @include mixins.breakpoint-up(xs) {
+    padding-top: 10vh;
+  }
+}
+
+.landing__inner {
+  color: var(--color-white);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
+  padding-bottom: 4rem;
+
+  @include mixins.breakpoint-up(md) {
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+  }
+  @include mixins.breakpoint-up(lg) {
+    padding-top: 8vh;
+    padding-left: calc(5rem + 2rem);
+    padding-right: calc(5rem + 2rem);
+  }
+}
+
+.tear {
+  margin-top: -150px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  object-position: 50% 90%;
+}
+
+.countdown {
+  // margin-top: -50px;
 }

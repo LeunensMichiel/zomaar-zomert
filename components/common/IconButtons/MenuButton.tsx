@@ -1,4 +1,4 @@
-import { Hamburger } from '@components/icons';
+import { Cross, Hamburger } from '@components/icons';
 import { Button } from '@components/ui';
 import { ButtonProps } from '@components/ui/Button/Button';
 import { MouseEventHandler, VFC } from 'react';
@@ -6,6 +6,7 @@ import { MouseEventHandler, VFC } from 'react';
 type MenuButtonProps = {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  navBarOpen?: boolean;
 } & Pick<
   ButtonProps<'button'>,
   | 'size'
@@ -22,12 +23,13 @@ const MenuButton: VFC<MenuButtonProps> = ({
   size = 'md',
   variant = 'minimal',
   squared = true,
+  navBarOpen,
   ...props
 }) => (
   <Button
     aria-haspopup="true"
     aria-label="Navigation menu button"
-    iconLeft={<Hamburger />}
+    iconLeft={navBarOpen ? <Cross /> : <Hamburger />}
     onClick={onClick}
     type="button"
     variant={variant}

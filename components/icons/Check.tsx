@@ -7,7 +7,6 @@ const Check = ({ ...props }) => (
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
-    strokeLinecap="round"
     strokeLinejoin="round"
     {...props}
   >

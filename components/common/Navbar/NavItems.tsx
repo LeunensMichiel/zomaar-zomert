@@ -23,12 +23,10 @@ const NavItems: VFC<NavItemsProps> = ({
     })}
   >
     <div className={cn(styles.navMenuList)}>
-      <NavItem label="Components" link={{ href: '/components' }} />
-      <NavItem label="Links">
-        <NavItem label="🆘 404" link={{ href: '/404' }} />
-        <NavItem label="🛑 500" link={{ href: '/500' }} />
-        <NavItem label="💬 Blog" link={{ href: '/blog' }} />
-      </NavItem>
+      <NavItem label="Home" link={{ href: '/' }} />
+      <NavItem label="Line-Up" link={{ href: '/line-up' }} />
+      <NavItem label="Info" link={{ href: '/info' }} />
+      <NavItem label="Contact" link={{ href: '/contact' }} />
     </div>
   </motion.div>
 );
