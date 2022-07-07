@@ -7,3 +7,4 @@ export { default as Chevron } from './Chevron';
 export { default as Cross } from './Cross';
 export { default as Hamburger } from './Hamburger';
 export { default as Info } from './Info';
+export { Triangle } from './Triangle';

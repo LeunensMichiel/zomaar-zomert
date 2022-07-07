@@ -1,4 +1,6 @@
 import { Layout } from '@components/common';
+import { Triangle } from '@components/icons';
+import { Logo } from '@components/ui';
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';
 
@@ -20,7 +22,14 @@ const Home = () => {
         <video playsInline autoPlay muted poster="/assets/card.jpg" loop>
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <div className={cn(styles.landing__inner, 'container')}></div>
+        <div className={cn(styles.landing__inner, 'container')}>
+          <Logo variant="full" />
+          <span className={styles.date}>
+            <span>29</span>
+            <Triangle />
+            <span>31 JULY 2022</span>
+          </span>
+        </div>
       </section>
       <img
         className={styles.tear}
