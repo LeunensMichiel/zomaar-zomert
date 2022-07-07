@@ -1,38 +1,22 @@
 import { Layout } from '@components/common';
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';
-import useTranslation from 'next-translate/useTranslation';
 
 import styles from './styles/index.module.scss';
 
 const Home = () => {
-  const { t } = useTranslation('home');
-
   return (
     <>
       <NextSeo
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={'Home'}
+        description="Zomaar Zomert is een festival in het hartje van Itterbeek, aan de Sint-Anna-kerk. Heel het laatste weekend van Juli kan u genieten van frisse drankjes, tal van optredens + randactiviteiten en een buitengewoon zomers weekend. ☀🚀"
         openGraph={{
-          title: t('seo.title'),
-          description: t('seo.description'),
+          title: 'Home',
+          description:
+            'Zomaar Zomert is een festival in het hartje van Itterbeek, aan de Sint-Anna-kerk. Heel het laatste weekend van Juli kan u genieten van frisse drankjes, tal van optredens + randactiviteiten en een buitengewoon zomers weekend. ☀🚀',
         }}
       />
-      <div className={cn(styles.intro, 'container')}>
-        <h1 className={styles.title}>
-          {t('welcome')}{' '}
-          <a
-            href="https://nextjs.org"
-            rel="nofollow noopener noreferrer"
-            target="_blank"
-          >
-            Next.js!
-          </a>
-        </h1>
-        <p className={styles.description}>
-          {t('intro')} <code className={styles.code}>Michiel Leunens</code>
-        </p>
-      </div>
+      <div className={cn(styles.intro, 'container')}></div>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import { Cross } from '@components/icons';
 import { ThemeProvider } from 'next-themes';
 import { FC, useMemo, useReducer } from 'react';
-import { ToastContainer } from 'react-toastify';
 
 import { INITIAL_UI_STATE, ModalViews, UIContext, UIState } from './UIContext';
 
@@ -75,24 +74,12 @@ const UIProvider: FC = (props) => {
 export const ManagedUIProvider: FC = ({ children }) => (
   <UIProvider>
     <ThemeProvider
-      enableSystem
+      enableSystem={false}
       enableColorScheme
       disableTransitionOnChange={true}
       defaultTheme="system"
-      themes={['light', 'dark']}
+      themes={['light']}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        closeButton={Cross}
-      />
       {children}
     </ThemeProvider>
   </UIProvider>

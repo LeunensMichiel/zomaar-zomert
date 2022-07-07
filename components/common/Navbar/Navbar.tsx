@@ -9,7 +9,7 @@ import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useRef, useState } from 'react';
 
-import { MenuButton, ThemeButton } from '../IconButtons';
+import { MenuButton } from '../IconButtons';
 import styles from './Navbar.module.scss';
 import NavItems from './NavItems';
 
@@ -68,7 +68,6 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
               navDrawerOpen={navDrawerOpen}
             />
             <div className={cn(styles.toolbarIcons)}>
-              <ThemeButton />
               <MenuButton
                 className={cn(styles.hamburger)}
                 onClick={() =>

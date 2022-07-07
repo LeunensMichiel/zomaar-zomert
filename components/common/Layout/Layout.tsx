@@ -1,5 +1,4 @@
-import { CookieBanner, Footer, Navbar } from '@components/common';
-import { LanguageModalView } from '@components/common/LanguagePicker';
+import { Footer, Navbar } from '@components/common';
 import { Modal } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import cn from 'classnames';
@@ -20,9 +19,8 @@ const Layout: FC<Props> = ({ children }: Props) => {
       <Footer />
 
       <Modal open={displayModal} onClose={closeModal} title={modalTitle}>
-        {modalView === 'LANGUAGE_VIEW' && <LanguageModalView />}
+        {/* {modalView === 'LANGUAGE_VIEW' && <LanguageModalView />} */}
       </Modal>
-      <CookieBanner />
     </>
   );
 };

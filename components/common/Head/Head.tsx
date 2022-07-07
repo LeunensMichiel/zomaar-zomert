@@ -1,49 +1,33 @@
-import i18nConfig from 'i18n.json';
 import NextHead from 'next/head';
-import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
-import useTranslation from 'next-translate/useTranslation';
 import { VFC } from 'react';
 
 const Head: VFC = () => {
-  const { t, lang } = useTranslation('common');
-  const router = useRouter();
-  const { locales, defaultLocale } = i18nConfig;
   const url = process.env.SITE_URL;
 
   return (
     <>
       <DefaultSeo
-        title={t('seo.title')}
-        titleTemplate={t('seo.titleTemplate')}
-        defaultTitle={t('seo.defaultTitle')}
-        description={t('seo.description')}
-        languageAlternates={locales
-          .filter((hrefLang) => hrefLang !== defaultLocale)
-          .map((hrefLang) => ({
-            hrefLang,
-            href: `${url}/${hrefLang}${router.pathname}`,
-          }))}
+        title="Zomaar Zomert 2022"
+        titleTemplate="%s | Zomaar Zomert"
+        defaultTitle="Zomaar Zomert 2022"
+        description="Zomaar Zomert is a free festival in the heart of Itterbeek, at the Sint-Anna church. The whole last weekend of July you can enjoy fresh drinks, numerous performances & activities. You're sure to have an extraordinary summer weekend. ☀🚀"
         openGraph={{
-          title: t('seo.og.title'),
-          description: t('seo.og.description'),
+          title: 'Zomaar Zomert 2022',
+          description:
+            "Zomaar Zomert is a free festival in the heart of Itterbeek, at the Sint-Anna church. The whole last weekend of July you can enjoy fresh drinks, numerous performances & activities. You're sure to have an extraordinary summer weekend. ☀🚀",
           type: 'website',
           url,
-          locale: lang,
-          site_name: 'My Website',
+          locale: 'en',
+          site_name: 'Zomaar Zomert',
           images: [
             {
               url: '/card.jpg',
               width: 1200,
               height: 630,
-              alt: t('seo.og.imgAlt'),
+              alt: 'Zomaar Zomert',
             },
           ],
-        }}
-        twitter={{
-          handle: '@michielleunens',
-          site: '@michielleunens',
-          cardType: 'summary_large_image',
         }}
       />
       <NextHead>
