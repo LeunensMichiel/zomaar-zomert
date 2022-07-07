@@ -71,9 +71,6 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
               <MenuButton
                 className={cn(styles.hamburger)}
                 navBarOpen={navDrawerOpen}
-                {...((isTransparent || navDrawerOpen) && {
-                  variant: 'minimal-bright',
-                })}
                 onClick={() =>
                   setNavDrawerOpen((prevNavDrawerOpen) => !prevNavDrawerOpen)
                 }

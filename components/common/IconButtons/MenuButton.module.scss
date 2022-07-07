@@ -1,0 +1,11 @@
+.root {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-white);
+  svg {
+    width: 3rem;
+    height: auto;
+  }
+}
