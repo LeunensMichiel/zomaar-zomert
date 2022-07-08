@@ -47,27 +47,29 @@
 .toolbarIcons {
   display: flex;
   align-items: center;
-  margin-right: -0.75rem;
+  margin-right: -0.5rem;
   position: relative;
   z-index: 100;
 
   button {
-    margin-left: 0.5rem;
     padding: 0.125rem;
   }
 
-  @include mixins.breakpoint-up(lg) {
-    order: 2;
-    .hamburger {
-      display: none;
-    }
-  }
+  // @include mixins.breakpoint-up(lg) {
+  //   order: 2;
+  //   .hamburger {
+  //     display: none;
+  //   }
+  // }
 }
 
 .logo {
   cursor: pointer;
   width: auto;
   height: 2.5rem;
+  @include mixins.breakpoint-up(md) {
+    height: 3.5rem;
+  }
   @include mixins.breakpoint-up(lg) {
     height: 4rem;
   }

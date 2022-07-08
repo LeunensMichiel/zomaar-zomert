@@ -5,7 +5,7 @@
 // Containers
 .container {
   width: 100%;
-  max-width: 1140px;
+  max-width: 1640px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
@@ -14,7 +14,6 @@
   @include mixins.breakpoint-up(xl) {
     padding-left: 2rem;
     padding-right: 2rem;
-    max-width: 1320px;
   }
 }
 

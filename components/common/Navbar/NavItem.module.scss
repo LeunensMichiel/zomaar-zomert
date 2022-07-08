@@ -12,20 +12,16 @@
   line-height: 1;
   outline: none;
 
-  @include mixins.breakpoint-up(lg) {
-    font-size: 1rem;
+  @include mixins.breakpoint-up(md) {
+    font-size: 5rem;
   }
 }
 
 .linkContainer {
   &:hover,
   &:focus {
-    color: var(--color-pink-4);
-    background: var(--color-red-2);
+    color: var(--color-yellow-2);
   }
-}
-
-.subMenuContainer {
 }
 
 .subMenuOpen {

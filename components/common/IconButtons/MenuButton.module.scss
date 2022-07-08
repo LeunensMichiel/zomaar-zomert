@@ -1,3 +1,5 @@
+@use 'styles/mixins';
+
 .root {
   outline: none;
   border: none;
@@ -7,5 +9,12 @@
   svg {
     width: 2.5rem;
     height: auto;
+  }
+
+  @include mixins.breakpoint-up(md) {
+    svg {
+      width: 3.5rem;
+      height: auto;
+    }
   }
 }

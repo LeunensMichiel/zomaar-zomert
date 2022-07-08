@@ -39,8 +39,8 @@
     background-position: 0 0, 8px 8px;
   }
 
-  @include mixins.breakpoint-up(xs) {
-    padding-top: 10vh;
+  @include mixins.breakpoint-up(lg) {
+    height: 85vh;
   }
 }
 
@@ -51,7 +51,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 7vh;
+
+  @include mixins.breakpoint-up(xs) {
+    margin-bottom: 4vh;
+  }
+  @include mixins.breakpoint-up(lg) {
+    margin-bottom: 7vh;
+  }
 }
 
 .logo {
@@ -65,11 +71,20 @@
   margin-top: 2rem;
   font-family: var(--font-family-alt);
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.5rem;
 
   svg {
+    margin-top: 4px;
     color: var(--color-yellow-3);
+  }
+
+  @include mixins.breakpoint-up(md) {
+    margin-top: 3rem;
+    svg {
+      width: 3rem;
+      height: auto;
+    }
   }
 }
 
@@ -78,17 +93,25 @@
   position: relative;
   z-index: 10;
   width: 100%;
-  height: 150px;
-  object-fit: contain;
+  height: 10vw;
+  object-fit: cover;
   object-position: 50% 90%;
 }
 
 .countdown {
-  padding-top: 1.5rem;
+  padding-top: 0;
+
+  // @include mixins.breakpoint-up(md) {
+  //   padding-top: 3rem;
+  // }
 }
 
 .artists {
   margin-top: 5rem;
   display: grid;
   gap: 1.5rem;
+
+  @include mixins.breakpoint-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

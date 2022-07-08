@@ -72,11 +72,22 @@
   --transition-timing: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-duration: 500ms;
 
-  @include mixins.breakpoint-up(lg) {
+  @include mixins.breakpoint-up(md) {
+    --font-size-title: 6rem;
+    --font-size-subtitle: 2.25rem;
+    --font-size-jumbo: 4rem;
     --font-size: 105%;
     --type-scale-ratio: 1.25;
   }
+
+  @include mixins.breakpoint-up(lg) {
+    --font-size-title: 4rem;
+    --font-size-subtitle: 1.5rem;
+  }
+
   @include mixins.breakpoint-up(xxl) {
+    --font-size-title: 6rem;
+    --font-size-subtitle: 2.25rem;
     --font-size: 110%;
     --type-scale-ratio: 1.333;
   }
