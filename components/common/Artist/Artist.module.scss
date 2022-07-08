@@ -1,0 +1,68 @@
+.artist {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.artist__inner {
+  position: absolute;
+  z-index: 10;
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  font-family: var(--font-family-alt);
+  font-weight: 700;
+}
+
+.artist__line {
+  position: absolute;
+  z-index: 100;
+}
+
+.artist__inner__title {
+  color: var(--color-white);
+  font-size: var(--font-size-title);
+  text-transform: uppercase;
+}
+
+.artist__inner__subtitle {
+  color: var(--color-white);
+  font-size: var(--font-size-subtitle);
+}
+
+.artist__image {
+  position: relative;
+
+  &::before {
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--color-black-fade-20);
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.125) 0.5px,
+        transparent 0.5px
+      ),
+      radial-gradient(rgba(255, 255, 255, 0.125) 0.5px, transparent 0.5px);
+    background-size: 4px 4px;
+    background-position: 0 0, 8px 8px;
+  }
+}

@@ -51,6 +51,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 7vh;
 }
 
 .logo {
@@ -61,7 +62,7 @@
 .date {
   font-size: var(--font-size-jumbo);
   font-weight: 700;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   font-family: var(--font-family-alt);
   display: inline-flex;
   align-items: baseline;
@@ -83,4 +84,11 @@
 }
 
 .countdown {
+  padding-top: 1.5rem;
+}
+
+.artists {
+  margin-top: 5rem;
+  display: grid;
+  gap: 1.5rem;
 }

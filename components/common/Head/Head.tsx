@@ -66,27 +66,6 @@ const Head: VFC = () => {
         <meta name="msapplication-TileColor" content="#603cba" />
         <meta name="msapplication-config" content="/meta/browserconfig.xml" />
         <meta name="theme-color" content="#1a1a1a" />
-        <link
-          rel="preload"
-          href="/fonts/oswald-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/open-sans-600.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/oswald-700.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </NextHead>
     </>
   );
