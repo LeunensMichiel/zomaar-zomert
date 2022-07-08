@@ -1,4 +1,4 @@
-import { Layout } from '@components/common';
+import { Countdown, Layout } from '@components/common';
 import { Triangle } from '@components/icons';
 import { Logo } from '@components/ui';
 import cn from 'classnames';
@@ -23,7 +23,7 @@ const Home = () => {
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
         <div className={cn(styles.landing__inner, 'container')}>
-          <Logo variant="full" />
+          <Logo variant="full" className={styles.logo} />
           <span className={styles.date}>
             <span>29</span>
             <Triangle />
@@ -36,7 +36,9 @@ const Home = () => {
         src="/assets/tear.svg"
         alt="paper tear element"
       />
-      <section className={styles.countdown}></section>
+      <section className={cn(styles.countdown, 'container py-container')}>
+        <Countdown />
+      </section>
     </>
   );
 };

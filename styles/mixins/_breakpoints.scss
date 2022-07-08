@@ -3,7 +3,8 @@
 @use 'sass:map';
 
 $grid-breakpoints: (
-  xs: 0,
+  xxs: 0,
+  xs: 340px,
   sm: 640px,
   md: 768px,
   lg: 1024px,
@@ -21,7 +22,11 @@ $grid-breakpoints-desktop-first: (
 
 // Mobile first (preferable)
 @mixin breakpoint-up($size) {
-  @if $size == sm {
+  @if $size == xs {
+    @media (min-width: map.get($grid-breakpoints, xs)) {
+      @content;
+    }
+  } @else if $size == sm {
     @media (min-width: map.get($grid-breakpoints, sm)) {
       @content;
     }
