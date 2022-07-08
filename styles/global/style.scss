@@ -86,7 +86,7 @@
   }
 
   @include mixins.breakpoint-up(xxl) {
-    --font-size-title: 6rem;
+    --font-size-title: 5.75rem;
     --font-size-subtitle: 2.25rem;
     --font-size: 110%;
     --type-scale-ratio: 1.333;

@@ -99,11 +99,7 @@
 }
 
 .countdown {
-  padding-top: 0;
-
-  // @include mixins.breakpoint-up(md) {
-  //   padding-top: 3rem;
-  // }
+  padding-top: 1.5rem;
 }
 
 .artists {
@@ -113,5 +109,6 @@
 
   @include mixins.breakpoint-up(lg) {
     grid-template-columns: repeat(3, 1fr);
+    margin-top: 9rem;
   }
 }

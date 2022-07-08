@@ -31,7 +31,9 @@ const Home = () => {
         alt="paper tear element"
       />
       <section className={cn('container py-container', styles.countdown)}>
-        <Countdown />
+        <div>
+          <Countdown />
+        </div>
         <div className={styles.artists}>
           <Link href="/line-up?day=friday" passHref>
             <Artist
@@ -59,6 +61,7 @@ const Home = () => {
           </Link>
         </div>
       </section>
+      <section></section>
     </>
   );
 };

@@ -69,6 +69,7 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
         initial="initial"
         whileHover="hover"
         whileFocus="tap"
+        whileTap="tap"
         tabIndex={0}
         variants={containerMotion}
         {...props}

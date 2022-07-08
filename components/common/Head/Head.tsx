@@ -33,39 +33,35 @@ const Head: VFC = () => {
       <NextHead>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
-          rel="manifest"
-          href="/meta/site.webmanifest"
-          key="site-manifest"
-        />
-        <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/meta/apple-touch-icon.png"
+          href="/meta/apple-touch-icon.png?v=1"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/meta/favicon-32x32.png"
+          href="/meta/favicon-32x32.png?v=1"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/meta/favicon-16x16.png"
+          href="/meta/favicon-16x16.png?v=1"
         />
-        <link rel="manifest" href="/meta/site.webmanifest" />
+        <link rel="manifest" href="/meta/site.webmanifest?v=1" />
         <link
           rel="mask-icon"
-          href="/meta/safari-pinned-tab.svg"
-          color="#a989f7"
+          href="/meta/safari-pinned-tab.svg?v=1"
+          color="#de350b"
         />
-        <link rel="shortcut icon" href="/meta/favicon.ico" />
-        <meta name="apple-mobile-web-app-title" content="Next.js Template" />
-        <meta name="application-name" content="Next.js Template" />
-        <meta name="msapplication-TileColor" content="#603cba" />
-        <meta name="msapplication-config" content="/meta/browserconfig.xml" />
-        <meta name="theme-color" content="#1a1a1a" />
+        <link rel="shortcut icon" href="/meta/favicon.ico?v=1" />
+        <meta name="msapplication-TileColor" content="#de350b" />
+        <meta
+          name="msapplication-config"
+          content="/meta/browserconfig.xml?v=1"
+        />
+        <meta name="theme-color" content="#de350b" />
       </NextHead>
     </>
   );

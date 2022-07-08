@@ -16,6 +16,10 @@
   &.navContainerOpen {
     clip-path: circle(200% at 0 0);
   }
+
+  @include mixins.breakpoint-up(lg) {
+    clip-path: circle(0 at calc(100% - 9.25rem) 3.75rem);
+  }
 }
 
 .navMenuList {
