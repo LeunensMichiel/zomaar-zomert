@@ -7,13 +7,21 @@ import styles from './styles/404.module.scss';
 
 const Custom404 = () => {
   return (
-    <div className={cn('container', styles.custom404)}>
+    <div className={cn('container', styles.custom404, 'py-container')}>
       <h4>
-        <span className={cn(styles.errCode)}>404</span> | Festival not found
+        <span className={styles.colorized}>404</span> — Festival not found
       </h4>
-      <Button as="a" href="/" iconLeft="🏠" iconRight={<Chevron />} size="sm">
-        Return to homepage
-      </Button>
+      <div className={styles.grid}>
+        <div className={styles.info}>
+          <p>
+            This page is still in construction. Please return tomorrow as the
+            site is almost finished.
+          </p>
+          <Button variant="primary" as="a" href="/" iconRight={<Chevron />}>
+            Return to homepage
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

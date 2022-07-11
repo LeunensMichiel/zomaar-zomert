@@ -1,18 +1,32 @@
 .custom404 {
-  margin-top: 7.5rem;
   text-align: center;
   height: 100%;
 
   h4 {
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 1.5rem;
-  }
-
-  p {
-    font-size: var(--font-size-title);
+    text-transform: uppercase;
+    font-family: var(--font-family-alt);
   }
 }
 
-.errCode {
-  font-weight: 700;
+.colorized {
+  color: var(--color-orange-2);
+}
+
+.grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 420px);
+  justify-content: center;
+}
+
+.info {
+  display: grid;
+  gap: 1.5rem;
+
+  p {
+    font-family: var(--font-family-base);
+    color: var(--color-gray-5);
+  }
 }

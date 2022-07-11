@@ -5,10 +5,14 @@
   border: none;
   cursor: pointer;
   background: transparent;
-  color: var(--color-white);
+  color: var(--color-black);
   svg {
     width: 2.5rem;
     height: auto;
+  }
+
+  &.navBarTransparent {
+    color: var(--color-white);
   }
 
   @include mixins.breakpoint-up(md) {

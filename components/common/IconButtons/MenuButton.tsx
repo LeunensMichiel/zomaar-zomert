@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { MouseEventHandler, VFC } from 'react';
 
@@ -7,18 +8,22 @@ type MenuButtonProps = {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   navBarOpen?: boolean;
+  navBarTransparent?: boolean;
 };
 
 const MenuButton: VFC<MenuButtonProps> = ({
   onClick,
   className,
   navBarOpen,
+  navBarTransparent,
 }) => (
   <motion.button
     initial={false}
     animate={navBarOpen ? 'open' : 'closed'}
     onClick={onClick}
-    className={styles.root}
+    className={cn(styles.root, {
+      [styles.navBarTransparent]: navBarTransparent,
+    })}
   >
     <svg width="24" height="24" viewBox="0 0 24 24" className={className}>
       <motion.path

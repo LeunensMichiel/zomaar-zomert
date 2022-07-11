@@ -70,6 +70,7 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
             <div className={cn(styles.toolbarIcons)}>
               <MenuButton
                 className={cn(styles.hamburger)}
+                navBarTransparent={isTransparent ? true : navDrawerOpen}
                 navBarOpen={navDrawerOpen}
                 onClick={() =>
                   setNavDrawerOpen((prevNavDrawerOpen) => !prevNavDrawerOpen)
