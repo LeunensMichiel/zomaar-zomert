@@ -17,11 +17,6 @@ interface ButtonCustomProps<C extends React.ElementType> {
   variant?:
     | 'default'
     | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
     | 'minimal'
     | 'minimal-bright'
     | 'minimal-dark'

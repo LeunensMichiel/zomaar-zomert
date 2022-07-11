@@ -39,7 +39,7 @@ const Footer: VFC = () => {
           <motion.a
             href="https://facebook.com/zomaarzomert"
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
             className={styles.social__item}
             initial="initial"
             whileHover="hover"
@@ -51,7 +51,7 @@ const Footer: VFC = () => {
           <motion.a
             href="https://www.instagram.com/zomaarzomert/"
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
             className={styles.social__item}
             initial="initial"
             whileHover="hover"
@@ -63,7 +63,7 @@ const Footer: VFC = () => {
           <motion.a
             href="https://www.youtube.com/watch?v=G2s9r_BohUE"
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
             className={styles.social__item}
             initial="initial"
             whileHover="hover"

@@ -1,6 +1,7 @@
 import { Artist, Countdown, Layout } from '@components/common';
 import { Triangle } from '@components/icons';
-import { Logo } from '@components/ui';
+import ChevronRight from '@components/icons/Chevron';
+import { Button, Logo } from '@components/ui';
 import cn from 'classnames';
 import Link from 'next/link';
 
@@ -60,8 +61,48 @@ const Home = () => {
             />
           </Link>
         </div>
+        <div className={styles.buttons}>
+          <Button
+            as="a"
+            href="https://forms.gle/pPBDp316unZQNzHv6"
+            target="_blank"
+            rel="noreferrer noopener"
+            size="xl"
+            variant="primary"
+            iconRight={<ChevronRight />}
+          >
+            Sign up — Petanque
+          </Button>
+          <Button
+            as="a"
+            href="https://forms.gle/gsZmucuve7tHacQd8"
+            target="_blank"
+            rel="noreferrer noopener"
+            size="xl"
+            variant="primary"
+            iconRight={<ChevronRight />}
+          >
+            Sign up — Paella
+          </Button>
+        </div>
       </section>
-      <section></section>
+      <section className={cn(styles.aftermovie__root)}>
+        <div className={cn('container py-container')}>
+          <div className={cn(styles.aftermovie__container)}>
+            <div className={styles.aftermovie}>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube-nocookie.com/embed/G2s9r_BohUE"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
