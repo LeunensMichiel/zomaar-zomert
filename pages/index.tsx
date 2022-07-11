@@ -4,6 +4,7 @@ import ChevronRight from '@components/icons/Chevron';
 import { Button, Logo } from '@components/ui';
 import cn from 'classnames';
 import Link from 'next/link';
+import ReactPlayer from 'react-player';
 
 import photo3 from '../public/assets/artists/quiz.jpg';
 import photo1 from '../public/assets/artists/twallie.jpg';
@@ -90,15 +91,11 @@ const Home = () => {
         <div className={cn('container py-container')}>
           <div className={cn(styles.aftermovie__container)}>
             <div className={styles.aftermovie}>
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube-nocookie.com/embed/G2s9r_BohUE"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              <ReactPlayer
+                width={'100%'}
+                height={'100%'}
+                url="https://www.youtube.com/embed/G2s9r_BohUE"
+              />
             </div>
           </div>
         </div>

@@ -133,18 +133,18 @@
 }
 
 .aftermovie__container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
   position: relative;
   height: 0;
-  width: 100%;
-  overflow: hidden;
-  padding-bottom: 56.5%;
+  display: block;
 }
 
 .aftermovie {
-  display: block;
-  position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
+  top: 0;
   height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }

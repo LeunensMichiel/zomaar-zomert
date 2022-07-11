@@ -14,7 +14,7 @@ type Props = {
 const transparentRoutes = ['/'];
 
 const Layout: FC<Props> = ({ children }: Props) => {
-  const { displayModal, closeModal, modalView, modalTitle } = useUI();
+  const { displayModal, closeModal, modalTitle } = useUI();
   const router = useRouter();
 
   const isTransparentRoute = transparentRoutes.includes(router?.pathname);

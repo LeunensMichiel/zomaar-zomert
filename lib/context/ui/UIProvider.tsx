@@ -1,4 +1,3 @@
-import { Cross } from '@components/icons';
 import { ThemeProvider } from 'next-themes';
 import { FC, useMemo, useReducer } from 'react';
 
