@@ -1,4 +1,5 @@
 export { Artist } from './Artist/Artist';
+export { Carousel } from './Carousel';
 export { Countdown } from './Countdown/Countdown';
 export { default as Footer } from './Footer';
 export { default as Form } from './Form';

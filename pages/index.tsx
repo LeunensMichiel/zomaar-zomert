@@ -1,4 +1,4 @@
-import { Artist, Countdown, Layout } from '@components/common';
+import { Artist, Carousel, Countdown, Layout } from '@components/common';
 import { Triangle } from '@components/icons';
 import ChevronRight from '@components/icons/Chevron';
 import { Button, Logo } from '@components/ui';
@@ -9,7 +9,70 @@ import ReactPlayer from 'react-player';
 import photo3 from '../public/assets/artists/quiz.jpg';
 import photo1 from '../public/assets/artists/twallie.jpg';
 import photo2 from '../public/assets/artists/uncle_phil.jpg';
+import slide1 from '../public/assets/slides/slide-1.jpg';
+import slide2 from '../public/assets/slides/slide-2.jpg';
+import slide3 from '../public/assets/slides/slide-3.jpg';
+import slide4 from '../public/assets/slides/slide-4.jpg';
+import slide5 from '../public/assets/slides/slide-5.jpg';
+import slide6 from '../public/assets/slides/slide-6.jpg';
+import slide7 from '../public/assets/slides/slide-7.jpg';
+import slide8 from '../public/assets/slides/slide-8.jpg';
+import slide9 from '../public/assets/slides/slide-9.jpg';
+import slide10 from '../public/assets/slides/slide-10.jpg';
+import slide11 from '../public/assets/slides/slide-11.jpg';
+import slide12 from '../public/assets/slides/slide-12.jpg';
 import styles from './styles/index.module.scss';
+
+const slides = [
+  {
+    alt: 'Our zz banner in the field',
+    url: slide1,
+  },
+  {
+    alt: 'a beer',
+    url: slide2,
+  },
+  {
+    alt: 'a game of petanque',
+    url: slide3,
+  },
+  {
+    alt: 'A crowd going crazy',
+    url: slide4,
+  },
+  {
+    alt: 'zomaar zomert by night',
+    url: slide5,
+  },
+  {
+    alt: 'A crowd going crazy 2',
+    url: slide6,
+  },
+  {
+    alt: 'our logo cut out in cardboard',
+    url: slide7,
+  },
+  {
+    alt: 'the organizers',
+    url: slide8,
+  },
+  {
+    alt: 'hot dogs on the field',
+    url: slide9,
+  },
+  {
+    alt: 'a wide shot of our tent',
+    url: slide10,
+  },
+  {
+    alt: 'An artist performing at ZZ',
+    url: slide11,
+  },
+  {
+    alt: 'A summers day view',
+    url: slide12,
+  },
+];
 
 const Home = () => {
   return (
@@ -99,6 +162,10 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </section>
+      <section className="py-container">
+        <Carousel duration={100000} slides={slides.splice(0, 6)} />
+        <Carousel duration={150000} reverse slides={slides.splice(-6)} />
       </section>
     </>
   );

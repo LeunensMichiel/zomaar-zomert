@@ -1,0 +1,35 @@
+@use '@styles/mixins';
+
+.root {
+  overflow: hidden;
+  position: relative;
+  &::before {
+    bottom: 0;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    background-image: radial-gradient(
+        rgba(161, 161, 161, 0.5) 1px,
+        transparent 0.5px
+      ),
+      radial-gradient(rgba(255, 255, 255, 0.125) 1px, transparent 0.5px);
+    background-size: 4px 4px;
+    background-position: 0 0, 8px 8px;
+  }
+}
+
+.slide {
+  height: 40vh;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
+
+  @include mixins.breakpoint-up(md) {
+    // height: 20rem;
+  }
+}

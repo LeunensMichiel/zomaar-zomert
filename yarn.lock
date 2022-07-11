@@ -2798,6 +2798,11 @@ react-hook-form@^7.33.1:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.33.1.tgz#8c4410e3420788d3b804d62cc4c142915c2e46d0"
   integrity sha512-ydTfTxEJdvgjCZBj5DDXRc58oTEfnFupEwwTAQ9FSKzykEJkX+3CiAkGtAMiZG7IPWHuzgT6AOBfogiKhUvKgg==
 
+react-infinite-ticker@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-infinite-ticker/-/react-infinite-ticker-2.1.1.tgz#0e088fa5efe399fe2fec74a66efb98b60463fa55"
+  integrity sha512-oNwoyC2F/IOTlxzfFqUvr8vmJMpQuGzdudfAHp15VLVzFh5Ld6a96gmS33myjl7DmC+I5OzIQ9U1gap0HAUadw==
+
 react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
