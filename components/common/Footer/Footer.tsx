@@ -1,10 +1,138 @@
+import { Facebook, Instagram, Youtube } from '@components/icons';
+import cn from 'classnames';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { VFC } from 'react';
 
 import styles from './Footer.module.scss';
 
+const variants = {
+  initial: {
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      type: 'spring',
+    },
+  },
+  tap: {
+    scale: 0.9,
+    transition: {
+      duration: 0.3,
+      type: 'spring',
+    },
+  },
+  hover: {
+    scale: 1.1,
+    color: 'var(--color-pink-2)',
+    transition: {
+      duration: 0.3,
+      type: 'spring',
+    },
+  },
+};
+
 const Footer: VFC = () => {
-  return <footer className={styles.footer}></footer>;
+  return (
+    <>
+      <div className={styles.socials}>
+        <div className={styles.social__items}>
+          <motion.a
+            href="https://facebook.com/zomaarzomert"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.social__item}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            variants={variants}
+          >
+            <Facebook />
+          </motion.a>
+          <motion.a
+            href="https://www.instagram.com/zomaarzomert/"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.social__item}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            variants={variants}
+          >
+            <Instagram />
+          </motion.a>
+          <motion.a
+            href="https://www.youtube.com/watch?v=G2s9r_BohUE"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.social__item}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            variants={variants}
+          >
+            <Youtube />
+          </motion.a>
+        </div>
+        <img
+          src="/assets/tear-2.svg"
+          alt="paper tear"
+          className={cn(styles.tear, styles['tear--2'])}
+        />
+        <img
+          src="/assets/tear-3.svg"
+          alt="paper tear"
+          className={cn(styles.tear, styles['tear--3'])}
+        />
+      </div>
+      <footer className={cn(styles.footer, 'py-container--sm')}>
+        <div className={cn(styles.footer__nav, 'container')}>
+          <div className={styles.footer__block}>
+            <span className={styles.footer__block__title}>Line-Up</span>
+            <Link href="/line-up?day=friday" passHref>
+              <a className={styles.footer__block__link}>Friday</a>
+            </Link>
+            <Link href="/line-up?day=saturday" passHref>
+              <a className={styles.footer__block__link}>Saturday</a>
+            </Link>
+            <Link href="/line-up?day=sunday" passHref>
+              <a className={styles.footer__block__link}>Sunday</a>
+            </Link>
+          </div>
+          <div className={styles.footer__block}>
+            <span className={styles.footer__block__title}>
+              Want to know more?
+            </span>
+            <Link href="/history" passHref>
+              <a className={styles.footer__block__link}>History</a>
+            </Link>
+            <Link href="/partners" passHref>
+              <a className={styles.footer__block__link}>Our partners</a>
+            </Link>
+            <Link href="/terms-and-conditions" passHref>
+              <a className={styles.footer__block__link}>Terms and conditions</a>
+            </Link>
+          </div>
+          <div className={styles.footer__block}>
+            <span className={styles.footer__block__title}>Contact</span>
+            <Link href="activities" passHref>
+              <a className={styles.footer__block__link}>
+                Sign up for activities
+              </a>
+            </Link>
+            <Link href="contact" passHref>
+              <a className={styles.footer__block__link}>Contact us</a>
+            </Link>
+          </div>
+        </div>
+        <div className={cn('container')}>
+          <span className={cn(styles.copy)}>
+            ©{new Date().getFullYear()} Zomaar Zomert - Design by Floris -
+            Development by Michiel Leunens
+          </span>
+        </div>
+      </footer>
+    </>
+  );
 };
 
 export default Footer;
