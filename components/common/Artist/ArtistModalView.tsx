@@ -132,71 +132,71 @@ const data = {
     day: 'Friday 29 July',
     subtitle: '20:00-23:00',
   },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
-  avalonn: {
-    text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
-    day: 'Friday 29 July',
-    subtitle: '20:00-23:00',
-  },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
+  // avalonn: {
+  //   text: 'Ullamco voluptate excepteur proident est esse ipsum anim.\n\nLaboris non consequat sit cupidatat nostrud eiusmod exercitation reprehenderit amet dolor reprehenderit dolor mollit. Consequat nostrud commodo ipsum in nostrud duis anim eiusmod. Enim eu irure mollit eiusmod aliqua quis elit consectetur sit mollit sunt et. Cupidatat ex magna non culpa sunt sunt non velit aute magna. Aute voluptate esse ad laborum proident excepteur dolor minim. Tempor cillum dolore aliqua do eiusmod ipsum culpa deserunt ipsum.',
+  //   day: 'Friday 29 July',
+  //   subtitle: '20:00-23:00',
+  // },
 };
 
 type Props = {
