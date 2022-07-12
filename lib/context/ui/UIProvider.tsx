@@ -14,6 +14,8 @@ type Action =
       type: 'SET_MODAL_VIEW';
       view: ModalViews;
       title?: string;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data?: Record<string, any>;
     };
 
 const uiReducer = (state: UIState, action: Action): UIState => {
@@ -30,6 +32,7 @@ const uiReducer = (state: UIState, action: Action): UIState => {
         modalView: 'NO_VIEW',
         displayModal: false,
         modalTitle: '',
+        data: undefined,
       };
     }
     case 'SET_MODAL_VIEW': {
@@ -38,6 +41,7 @@ const uiReducer = (state: UIState, action: Action): UIState => {
         modalView: action.view,
         displayModal: false,
         modalTitle: action.title,
+        data: action?.data,
       };
     }
     default: {
@@ -54,8 +58,12 @@ const UIProvider: FC = (props) => {
   const openModal = () => dispatch({ type: 'OPEN_MODAL' });
   const closeModal = () => dispatch({ type: 'CLOSE_MODAL' });
 
-  const setModalView = (view: ModalViews, title?: string) =>
-    dispatch({ type: 'SET_MODAL_VIEW', view, title });
+  const setModalView = (
+    view: ModalViews,
+    title?: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data?: Record<string, any>
+  ) => dispatch({ type: 'SET_MODAL_VIEW', view, title, data });
 
   const value = useMemo(
     () => ({

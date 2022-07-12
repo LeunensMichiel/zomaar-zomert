@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-
+  background: var(--color-blue-2);
+  cursor: pointer;
   &::before,
   &::after {
     box-sizing: inherit;
@@ -13,10 +14,17 @@
     width: 100%;
     height: 100%;
   }
+
+  &.static {
+    cursor: auto;
+  }
 }
 
 .artist__inner {
+  padding: 2rem;
   position: absolute;
+  left: 0;
+  right: 0;
   z-index: 10;
   display: grid;
   gap: 1rem;
@@ -37,7 +45,9 @@
 .artist__inner__title {
   color: var(--color-white);
   font-size: var(--font-size-title);
+  font-size: clamp(var(--font-size-subtitle), 50vw, var(--font-size-title));
   text-transform: uppercase;
+  line-height: var(--line-height-header);
 }
 
 .artist__inner__subtitle {
@@ -46,8 +56,6 @@
 }
 
 .artist__image {
-  position: relative;
-
   &::before {
     bottom: 0;
     content: '';

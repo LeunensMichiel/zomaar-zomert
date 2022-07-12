@@ -12,7 +12,7 @@
 // default theme values
 :root {
   // Typography
-  --type-scale-ratio: 1.125;
+  --type-scale-ratio: 1.25;
 
   --font-size: 100%;
   --font-size-x-small: 0.75rem;
@@ -77,16 +77,15 @@
     --font-size-subtitle: 2.25rem;
     --font-size-jumbo: 4rem;
     --font-size: 105%;
-    --type-scale-ratio: 1.25;
   }
 
   @include mixins.breakpoint-up(lg) {
-    --font-size-title: 4rem;
+    --font-size-title: 3.5rem;
     --font-size-subtitle: 1.5rem;
   }
 
   @include mixins.breakpoint-up(xxl) {
-    --font-size-title: 5.75rem;
+    --font-size-title: 5.5rem;
     --font-size-subtitle: 2.25rem;
     --font-size: 110%;
     --type-scale-ratio: 1.333;

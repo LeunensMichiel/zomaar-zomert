@@ -1,4 +1,6 @@
 import { ImageWithAspectRatio } from '@components/ui';
+import { useUI } from '@lib/hooks';
+import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { StaticImageData } from 'next/future/image';
 import { forwardRef } from 'react';
@@ -10,6 +12,7 @@ type Props = {
   title: string;
   subtitle: string;
   alt: string;
+  opensModal?: boolean;
 };
 
 const containerMotion = {
@@ -61,17 +64,36 @@ const pathMotion = {
 };
 
 export const Artist = forwardRef<HTMLAnchorElement, Props>(
-  ({ alt, src, subtitle, title, ...props }, ref) => {
+  ({ alt, src, subtitle, title, opensModal = false, ...props }, ref) => {
+    const isStatic = title === 'Activities';
+    const { openModal, setModalView } = useUI();
+
+    const handleArtistModalClick = () => {
+      setModalView('ARTIST_VIEW', undefined, {
+        src,
+        title,
+      });
+      openModal();
+    };
+
     return (
       <motion.a
-        className={styles.artist}
+        className={cn(styles.artist, {
+          [styles.static]: isStatic,
+        })}
         ref={ref}
-        initial="initial"
-        whileHover="hover"
-        whileFocus="tap"
-        whileTap="tap"
         tabIndex={0}
-        variants={containerMotion}
+        {...(!isStatic && {
+          initial: 'initial',
+          whileHover: 'hover',
+          whileFocus: 'tap',
+          whileTap: 'tap',
+          variants: containerMotion,
+        })}
+        {...(opensModal &&
+          !isStatic && {
+            onClick: handleArtistModalClick,
+          })}
         {...props}
       >
         <motion.svg
@@ -82,7 +104,7 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
             width="100%"
             height="100%"
             fill="transparent"
-            strokeWidth="4"
+            strokeWidth={isStatic ? '0' : '4'}
             stroke="var(--color-white)"
             variants={pathMotion}
           />
@@ -97,6 +119,7 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
           aspectRatio="1/1"
           alt={alt}
           src={src}
+          quality={10}
         />
       </motion.a>
     );

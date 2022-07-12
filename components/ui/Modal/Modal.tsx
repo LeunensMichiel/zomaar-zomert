@@ -103,17 +103,11 @@ const Modal: FC<ModalProps> = ({
                 className
               )}
             >
-              <header className={cn(styles.modalHeader)}>
-                {title && (
-                  <span className={cn(styles.modalTitle)}>{title}</span>
-                )}
-                <CloseButton
-                  className={cn(styles.modalCloseButton, {
-                    [styles.noTitle]: !title,
-                  })}
-                  onClick={() => onClose()}
-                />
-              </header>
+              <CloseButton
+                className={cn(styles.modalCloseButton)}
+                onClick={() => onClose()}
+                size="lg"
+              />
               <FocusLock className={cn(styles.modalBody)}>{children}</FocusLock>
             </motion.div>
           </motion.div>

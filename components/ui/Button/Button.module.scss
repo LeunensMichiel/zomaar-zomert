@@ -16,6 +16,7 @@
   font-weight: 700;
   text-transform: uppercase;
   text-align: left;
+  position: relative;
   @include mixins.transition(background, border, color);
 
   svg {
@@ -98,7 +99,22 @@ $variants: default, primary, 'transparent', minimal, minimal-bright,
 }
 
 .button-sm {
-  font-size: 0.875rem;
+  font-size: 1rem;
+  padding: 0.75em 1em;
+  justify-content: center;
+  border: none !important;
+
+  @include mixins.breakpoint-up(md) {
+    font-size: 1.375rem;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    font-size: 2rem;
+  }
+
+  @include mixins.breakpoint-up(xxl) {
+    font-size: 2.75rem;
+  }
 }
 
 .button-md {
@@ -107,6 +123,10 @@ $variants: default, primary, 'transparent', minimal, minimal-bright,
 
 .button-lg {
   font-size: 1.125rem;
+  svg {
+    height: 1.5em;
+    width: 1.5em;
+  }
 }
 
 .button-xl {
@@ -125,7 +145,11 @@ $variants: default, primary, 'transparent', minimal, minimal-bright,
   }
 
   @include mixins.breakpoint-up(lg) {
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+
+  @include mixins.breakpoint-up(xxl) {
+    font-size: 2.75rem;
   }
 }
 

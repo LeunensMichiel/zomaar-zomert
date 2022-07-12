@@ -1,0 +1,133 @@
+@use 'styles/mixins';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-white);
+
+  @include mixins.breakpoint-up(lg) {
+    flex-direction: unset;
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+  }
+}
+
+.image__container {
+  position: relative;
+  display: flex;
+  height: 66vw;
+  overflow: hidden;
+
+  &::before {
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: var(--color-black-fade-20);
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.125) 0.5px,
+        transparent 0.5px
+      ),
+      radial-gradient(rgba(255, 255, 255, 0.125) 0.5px, transparent 0.5px);
+    background-size: 4px 4px;
+    background-position: 0 0, 8px 8px;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    height: 100%;
+  }
+}
+
+.image {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.tear {
+  position: absolute;
+  object-fit: cover;
+  left: 0;
+  z-index: 3;
+  bottom: -2px;
+
+  @include mixins.breakpoint-up(lg) {
+    top: 0;
+    bottom: 0;
+    right: -2px;
+    left: unset;
+  }
+}
+
+.body {
+  padding: 2rem 1.5rem;
+
+  @include mixins.breakpoint-up(md) {
+    padding: 1rem 1.5rem 5rem 1.5rem;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    padding: 3rem 2rem 3rem 2rem;
+  }
+}
+
+.title {
+  font-size: var(--font-size-title);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--color-blue-2);
+}
+
+.day {
+  display: inline-block;
+  font-size: var(--font-size-subtitle);
+  font-family: var(--font-family-alt);
+  font-weight: 400;
+  line-height: var(--line-height-small);
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: var(--font-size-small);
+  font-family: var(--font-family-alt);
+  font-weight: 700;
+  line-height: 1.1;
+  background: var(--color-black);
+  color: var(--color-pink-2);
+  padding: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+
+  @include mixins.breakpoint-up(md) {
+    font-size: 1.25rem;
+  }
+}
+
+.text {
+  font-weight: 600;
+  font-family: var(--font-family-body);
+  white-space: pre-line;
+  display: inline-block;
+
+  @include mixins.breakpoint-up(md) {
+    font-size: 1.25rem;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    font-size: 1rem;
+  }
+}

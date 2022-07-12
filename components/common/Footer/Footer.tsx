@@ -88,13 +88,37 @@ const Footer: VFC = () => {
         <div className={cn(styles.footer__nav, 'container')}>
           <div className={styles.footer__block}>
             <span className={styles.footer__block__title}>Line-Up</span>
-            <Link href="/line-up?day=friday" passHref>
+            <Link
+              href={{
+                pathname: '/line-up',
+                query: {
+                  day: 'friday',
+                },
+              }}
+              passHref
+            >
               <a className={styles.footer__block__link}>Friday</a>
             </Link>
-            <Link href="/line-up?day=saturday" passHref>
+            <Link
+              href={{
+                pathname: '/line-up',
+                query: {
+                  day: 'saturday',
+                },
+              }}
+              passHref
+            >
               <a className={styles.footer__block__link}>Saturday</a>
             </Link>
-            <Link href="/line-up?day=sunday" passHref>
+            <Link
+              href={{
+                pathname: '/line-up',
+                query: {
+                  day: 'sunday',
+                },
+              }}
+              passHref
+            >
               <a className={styles.footer__block__link}>Sunday</a>
             </Link>
           </div>

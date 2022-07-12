@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, ReactNode } from 'react';
 
+import { ArtistModalView } from '../Artist/ArtistModalView';
 import styles from './Layout.module.scss';
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
 const transparentRoutes = ['/'];
 
 const Layout: FC<Props> = ({ children }: Props) => {
-  const { displayModal, closeModal, modalTitle } = useUI();
+  const { displayModal, closeModal, modalTitle, modalView, data } = useUI();
   const router = useRouter();
 
   const isTransparentRoute = transparentRoutes.includes(router?.pathname);
@@ -32,7 +33,9 @@ const Layout: FC<Props> = ({ children }: Props) => {
       <Footer />
 
       <Modal open={displayModal} onClose={closeModal} title={modalTitle}>
-        {/* {modalView === 'LANGUAGE_VIEW' && <LanguageModalView />} */}
+        {modalView === 'ARTIST_VIEW' && (
+          <ArtistModalView src={data?.src} title={data?.title} />
+        )}
       </Modal>
     </>
   );

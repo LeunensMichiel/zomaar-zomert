@@ -1,0 +1,54 @@
+@use '@styles/mixins';
+
+.root {
+  display: grid;
+  gap: 3.5rem;
+  text-align: center;
+  font-weight: 700;
+
+  @include mixins.breakpoint-up(md) {
+    gap: 5rem;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.date {
+  font-size: var(--font-size-subtitle);
+  font-family: var(--font-family-alt);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  button {
+    &:hover,
+    &:focus {
+      color: var(--color-pink-2);
+    }
+  }
+}
+
+.underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-orange-2);
+  z-index: 3;
+}
+
+.artists {
+  display: grid;
+  gap: 1.5rem;
+
+  @include mixins.breakpoint-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

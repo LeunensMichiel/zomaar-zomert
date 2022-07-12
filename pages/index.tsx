@@ -6,8 +6,8 @@ import cn from 'classnames';
 import Link from 'next/link';
 import ReactPlayer from 'react-player';
 
+import photo1 from '../public/assets/artists/avalonn.jpg';
 import photo3 from '../public/assets/artists/quiz.jpg';
-import photo1 from '../public/assets/artists/twallie.jpg';
 import photo2 from '../public/assets/artists/uncle_phil.jpg';
 import slide1 from '../public/assets/slides/slide-1.jpg';
 import slide2 from '../public/assets/slides/slide-2.jpg';
@@ -21,6 +21,8 @@ import slide9 from '../public/assets/slides/slide-9.jpg';
 import slide10 from '../public/assets/slides/slide-10.jpg';
 import slide11 from '../public/assets/slides/slide-11.jpg';
 import slide12 from '../public/assets/slides/slide-12.jpg';
+import slide13 from '../public/assets/slides/slide-13.jpg';
+import slide14 from '../public/assets/slides/slide-14.jpg';
 import styles from './styles/index.module.scss';
 
 const slides = [
@@ -65,12 +67,20 @@ const slides = [
     url: slide10,
   },
   {
-    alt: 'An artist performing at ZZ',
+    alt: 'A summers day view',
     url: slide11,
   },
   {
-    alt: 'A summers day view',
+    alt: 'An artist performing at ZZ',
     url: slide12,
+  },
+  {
+    alt: 'A summers day view',
+    url: slide13,
+  },
+  {
+    alt: 'Bikers on our zomaarbike event',
+    url: slide14,
   },
 ];
 
@@ -78,7 +88,14 @@ const Home = () => {
   return (
     <>
       <section className={cn(styles.landing)}>
-        <video playsInline autoPlay muted poster="/assets/card.jpg" loop>
+        <video
+          playsInline
+          autoPlay
+          muted
+          poster="/assets/card.jpg"
+          loop
+          preload="auto"
+        >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
         <div className={cn(styles.landing__inner, 'container')}>
@@ -100,7 +117,15 @@ const Home = () => {
           <Countdown />
         </div>
         <div className={styles.artists}>
-          <Link href="/line-up?day=friday" passHref>
+          <Link
+            href={{
+              pathname: '/line-up',
+              query: {
+                day: 'friday',
+              },
+            }}
+            passHref
+          >
             <Artist
               alt="Photograph of DJ Twallie"
               src={photo1}
@@ -108,7 +133,15 @@ const Home = () => {
               title="Friday"
             />
           </Link>
-          <Link href="/line-up?day=saturday" passHref>
+          <Link
+            href={{
+              pathname: '/line-up',
+              query: {
+                day: 'saturday',
+              },
+            }}
+            passHref
+          >
             <Artist
               alt="Photograph of the cover band Uncle Phil"
               src={photo2}
@@ -116,7 +149,15 @@ const Home = () => {
               title="Saturday"
             />
           </Link>
-          <Link href="/line-up?day=sunday" passHref>
+          <Link
+            href={{
+              pathname: '/line-up',
+              query: {
+                day: 'sunday',
+              },
+            }}
+            passHref
+          >
             <Artist
               alt="Photograph of the Zomaar Zomert terrain at night"
               src={photo3}
@@ -155,6 +196,7 @@ const Home = () => {
           <div className={cn(styles.aftermovie__container)}>
             <div className={styles.aftermovie}>
               <ReactPlayer
+                stopOnUnmount
                 width={'100%'}
                 height={'100%'}
                 url="https://www.youtube.com/embed/G2s9r_BohUE"

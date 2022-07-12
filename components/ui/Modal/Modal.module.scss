@@ -17,50 +17,31 @@
 }
 
 .modal {
-  margin: 0 1rem;
-  padding: 1rem 1.5rem 1.5rem;
+  margin: 0 1.5rem;
+  max-height: calc(100% - 6rem);
   border-radius: var(--border-radius);
   position: relative;
   background-color: var(--color-bg-primary);
   box-shadow: var(--box-shadow-lg);
+  overflow-y: scroll;
 
   &:focus {
     outline: none;
   }
 
   @include mixins.breakpoint-up(lg) {
-    margin: 0;
-    padding: 1.5rem 2rem 2rem;
-  }
-}
-
-.modalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.modalTitle {
-  font-size: var(--font-size-title);
-  font-weight: 700;
-}
-
-.modalBody {
-  @include mixins.breakpoint-up(lg) {
-    padding: 1rem;
-  }
-  @include mixins.breakpoint-up(xxl) {
-    padding: 1.5rem;
+    // margin: 0;
   }
 }
 
 .modalCloseButton {
-  margin-left: 0.5rem;
-  margin-top: -1rem;
-  margin-right: -1.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  color: var(--color-white);
 
-  &.noTitle {
-    margin-left: auto;
+  @include mixins.breakpoint-up(lg) {
+    color: var(--color-black);
   }
 }
