@@ -1,10 +1,10 @@
-import { ImageWithAspectRatio } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import { Artist as ArtistType } from '@lib/models';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
 
+import { TexturedImage } from '..';
 import styles from './Artist.module.scss';
 
 type Props = {
@@ -123,15 +123,7 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
               : artist.hour}
           </span>
         </div>
-        <ImageWithAspectRatio
-          wrapperClassName={styles.artist__image}
-          aspectRatio="1/1"
-          width={1080}
-          height={1080}
-          alt={artist.name}
-          src={artist.imgSrc}
-          quality={10}
-        />
+        <TexturedImage alt={artist.name} src={artist.imgSrc} />
       </motion.a>
     );
   }

@@ -101,7 +101,7 @@ const LineUpPage = () => {
                   exit={{ x: -10, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <h1 className={styles.title}>
+                  <h1 className={cn(styles.title, 'header')}>
                     {formattedDate.toLocaleString('default', {
                       weekday: 'long',
                     })}

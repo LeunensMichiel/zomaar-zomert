@@ -2,7 +2,6 @@
 
 .root {
   display: grid;
-  // background-color: var(--color-yellow-3);
   gap: 2rem;
   align-items: start;
 
@@ -15,5 +14,6 @@
 
   @include mixins.breakpoint-up(md) {
     height: 100%;
+    order: -1;
   }
 }

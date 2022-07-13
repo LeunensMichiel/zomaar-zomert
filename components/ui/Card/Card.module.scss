@@ -1,0 +1,18 @@
+.root {
+  background: var(--color-white);
+  padding: 2rem 1.5rem;
+}
+
+.title {
+  display: inline-block;
+  font-size: var(--font-size-subtitle);
+  font-family: var(--font-family-alt);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--color-blue-0);
+}
+
+.body {
+  color: var(--color-blue-0);
+}

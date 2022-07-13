@@ -27,9 +27,8 @@ const CustomMap: FC<CustomMapProps> = ({
       style={{ width: '100%', height }}
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/michielleunens/cl5jje415002315pc5hysl0do"
+      cooperativeGestures
       // Disable this if maps aren't reloading
-      scrollZoom={false}
-      interactive={false}
       reuseMaps
     >
       <Marker latitude={latitude} longitude={longitude} anchor="bottom">

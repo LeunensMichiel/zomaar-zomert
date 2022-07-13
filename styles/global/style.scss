@@ -8,6 +8,7 @@
 @use '@styles/mixins';
 // Themes
 @use '@styles/themes';
+@use '@styles/libraries/masonry.scss';
 
 // default theme values
 :root {
@@ -172,8 +173,9 @@ sup,
 sub,
 i,
 b {
-  font-family: var(--font-family-alt);
+  font-family: var(--font-family-body);
   line-height: var(--line-height-paragraph);
+  white-space: pre-line;
 }
 
 h1 {
@@ -198,6 +200,21 @@ h5 {
 
 h6 {
   font-size: var(--font-size-title);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @include mixins.breakpoint-up(md) {
+    margin-bottom: 5rem;
+  }
+
+  @include mixins.breakpoint-up(xl) {
+    margin-bottom: 9rem;
+  }
 }
 
 small {
@@ -248,6 +265,7 @@ em {
 
 strong {
   font-weight: 700;
+  color: var(--color-text-brand);
 }
 
 blockquote {

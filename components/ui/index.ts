@@ -1,4 +1,5 @@
 export { default as Button } from './Button';
+export { Card } from './Card/Card';
 export { default as Checkbox } from './Checkbox';
 export { default as Dropdown } from './Dropdown';
 export { default as ImageWithAspectRatio } from './ImageWithAspectRatio';
