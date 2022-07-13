@@ -1,8 +1,12 @@
 .custom404 {
   text-align: center;
   height: 100%;
+  background-image: url('/assets/single_z.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 5% 50%;
 
-  h4 {
+  h1 {
     font-weight: 700;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -17,16 +21,19 @@
 .grid {
   margin-top: 4rem;
   display: grid;
-  grid-template-columns: minmax(0, 420px);
+  grid-template-columns: minmax(0, 960px);
   justify-content: center;
+  justify-items: center;
 }
 
 .info {
   display: grid;
-  gap: 1.5rem;
-
+  gap: 2rem;
+  justify-content: center;
+  justify-items: center;
   p {
     font-family: var(--font-family-base);
-    color: var(--color-gray-5);
+    color: var(--color-blue-0);
+    font-size: var(--font-size-subtitle);
   }
 }
