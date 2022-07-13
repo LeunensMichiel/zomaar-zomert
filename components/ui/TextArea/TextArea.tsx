@@ -17,6 +17,7 @@ type TextAreaProps = {
   label: string;
   error?: FieldError;
   colSpan?: 1 | 2 | 3 | 4;
+  wrapperClassName?: string;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const TextArea: FC<TextAreaProps> = forwardRef<
@@ -34,11 +35,16 @@ const TextArea: FC<TextAreaProps> = forwardRef<
       iconRight,
       colSpan = 1,
       withFeedback = true,
+      wrapperClassName,
       ...rest
     },
     ref
   ) => (
-    <div className={cn({ [`col-span-${colSpan}`]: colSpan })}>
+    <div
+      className={cn(wrapperClassName, styles.root, {
+        [`col-span-${colSpan}`]: colSpan,
+      })}
+    >
       <label htmlFor={name} className={cn(styles.textAreaLabel)}>
         {label}
       </label>

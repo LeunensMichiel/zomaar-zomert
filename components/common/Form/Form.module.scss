@@ -4,8 +4,13 @@
   display: grid;
   align-items: start;
   grid-gap: 1rem;
+}
 
+.form__button {
   @include mixins.breakpoint-up(md) {
-    grid-template-columns: 1fr 1fr;
+    justify-self: start;
   }
+}
+
+.message-received {
 }

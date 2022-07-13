@@ -1,3 +1,19 @@
+@use '@styles/mixins';
+
+.root {
+  display: grid;
+  // background-color: var(--color-yellow-3);
+  gap: 2rem;
+  align-items: start;
+
+  @include mixins.breakpoint-up(md) {
+    grid-template-columns: 3fr 2fr;
+  }
+}
 .map__container {
-  height: 50rem;
+  height: 100vw;
+
+  @include mixins.breakpoint-up(md) {
+    height: 100%;
+  }
 }

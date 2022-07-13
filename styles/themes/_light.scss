@@ -4,7 +4,8 @@
   --color-text-secondary: var(--color-gray-8);
   --color-text-tertiary: var(--color-gray-6);
   --color-text-disabled: var(--color-gray-3);
-  --color-text-placeholder: var(--color-gray-4);
+  --color-text-placeholder: var(--color-orange-3);
+  --color-text-placeholder-focus: var(--color-blue-3);
   --color-text-inversed: var(--color-white);
   --color-text-brand: var(--color-orange-2);
   // Links
@@ -12,18 +13,7 @@
   --color-link-hover: var(--color-purple-400);
   --color-link-focus: var(--color-purple-400);
   --color-link-active: var(--color-purple-600);
-  // Icons
-  --color-icon-primary: var(--color-black);
-  --color-icon-secondary: var(--color-gray-8);
-  --color-icon-tertiary: var(--color-gray-6);
-  --color-icon-disabled: var(--color-gray-3);
-  --color-icon-placeholder: var(--color-gray-4);
-  --color-icon-danger: var(--color-red-500);
-  --color-icon-success: var(--color-green-500);
-  --color-icon-warning: var(--color-yellow-500);
-  --color-icon-info: var(--color-blue-500);
-  --color-icon-inversed: var(--color-white);
-  --color-icon-brand: var(--color-orange-2);
+
   // Backgrounds
   --color-bg-primary: var(--color-pink-4);
   --color-bg-secondary: var(--color-gray-1);
@@ -39,9 +29,9 @@
   --color-border-primary: var(--color-gray-1);
   --color-border-secondary: var(--color-gray-2);
   --color-border-tertiary: var(--color-gray-3);
-  --color-border-success: var(--color-green-500);
-  --color-border-danger: var(--color-red-500);
-  --color-border-warning: var(--color-yellow-500);
+  --color-border-success: var(--color-pink-2);
+  --color-border-danger: var(--color-red-2);
+  --color-border-warning: var(--color-yellow-2);
   --color-border-info: var(--color-blue-500);
   --color-border-inversed: var(--color-gray-7);
   --color-border-brand: var(--color-orange-2);
@@ -145,43 +135,43 @@
   --color-btn-minimal-dark-disabled-border: transparent;
 
   // Form Elements
-  --color-label-primary-text: var(--color-gray-6);
-  --color-label-primary-icon: var(--color-gray-6);
-  --color-label-brand-text: var(--color-purple-500);
-  --color-label-brand-icon: var(--color-purple-500);
+  --color-label-primary-text: var(--color-orange-2);
+  --color-label-primary-focus-text: var(--color-blue-2);
+  --color-label-brand-text: var(--color-orange-2);
+  --color-label-brand-icon: var(--color-orange-2);
   --color-label-info-text: var(--color-blue-500);
   --color-label-info-icon: var(--color-blue-500);
-  --color-label-success-text: var(--color-green-500);
-  --color-label-success-icon: var(--color-green-500);
-  --color-label-warning-text: var(--color-yellow-500);
-  --color-label-warning-icon: var(--color-yellow-500);
-  --color-label-danger-text: var(--color-red-500);
-  --color-label-danger-icon: var(--color-red-500);
+  --color-label-success-text: var(--color-pink-2);
+  --color-label-success-icon: var(--color-pink-2);
+  --color-label-warning-text: var(--color-yellow-2);
+  --color-label-warning-icon: var(--color-yellow-2);
+  --color-label-danger-text: var(--color-red-2);
+  --color-label-danger-icon: var(--color-red-2);
 
   --color-input-bg: var(--color-white);
   --color-input-border: var(--color-gray-2);
   --color-input-hover-bg: var(--color-white);
   --color-input-hover-border: var(--color-gray-4);
   --color-input-focus-bg: var(--color-white);
-  --color-input-focus-border: var(--color-purple-500);
+  --color-input-focus-border: var(--color-orange-2);
   --color-input-disabled-bg: var(--color-gray-1);
   --color-input-disabled-border: var(--color-gray-1);
   --color-input-success-bg: var(--color-white);
-  --color-input-success-border: var(--color-green-500);
+  --color-input-success-border: var(--color-pink-2);
   --color-input-warning-bg: var(--color-white);
-  --color-input-warning-border: var(--color-yellow-500);
+  --color-input-warning-border: var(--color-yellow-2);
   --color-input-error-bg: var(--color-white);
-  --color-input-error-border: var(--color-red-500);
+  --color-input-error-border: var(--color-red-2);
 
-  --color-input-radiobutton-checked: var(--color-purple-500);
+  --color-input-radiobutton-checked: var(--color-orange-2);
 
-  --color-input-checkbox-bg: var(--color-purple-500);
+  --color-input-checkbox-bg: var(--color-orange-2);
   --color-input-checkbox-check: var(--color-white);
   --color-input-checkbox-label: var(--color-white);
 
   --color-input-select-menu-bg: var(--color-white);
   --color-input-select-item-hover-bg: var(--color-gray-2);
-  --color-input-select-item-selected-bg: var(--color-purple-500);
+  --color-input-select-item-selected-bg: var(--color-orange-2);
   --color-input-select-item-selected-text: var(--color-white);
   --color-input-select-item-focus-bg: var(--color-gray-0);
 }

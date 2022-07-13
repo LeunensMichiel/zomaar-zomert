@@ -1,5 +1,13 @@
 @use '@styles/mixins';
 
+.root {
+  &:focus-within {
+    .inputLabel {
+      color: var(--color-label-primary-focus-text);
+    }
+  }
+}
+
 .inputContainer {
   position: relative;
   display: flex;
@@ -9,14 +17,14 @@
 .inputField {
   width: 100%;
   min-height: 2.25rem;
-  padding: 0.5rem 0.75rem;
+  padding: 1rem 0.75rem;
   font-size: var(--font-size-small);
   font: inherit;
   line-height: 1;
   border-radius: var(--border-radius);
   background: var(--color-input-bg);
   color: var(--color-text-secondary);
-  border: 0.125rem solid var(--color-input-border);
+  border: none;
   @include mixins.transition(border-color);
 
   &::placeholder {
@@ -24,33 +32,29 @@
   }
   &:hover {
     background: var(--color-input-hover-bg);
-    border: 0.125rem solid var(--color-input-hover-border);
   }
   &:focus {
     background: var(--color-input-focus-bg);
-    border: 0.125rem solid var(--color-input-focus-border);
     outline: none;
-    box-shadow: var(--box-shadow-sm);
+    &::placeholder {
+      color: var(--color-text-placeholder-focus);
+    }
   }
   &:disabled {
     background: var(--color-input-disabled-bg);
-    border: 0.125rem solid var(--color-input-disabled-border);
     color: var(--color-text-disabled);
   }
 
   &:-webkit-autofill {
-    border: 0.125rem solid var(--color-input-border);
+    // border: 0.125rem solid var(--color-input-border);
     -webkit-text-fill-color: var(--color-text-secondary);
     -webkit-box-shadow: inset 0 0 0px 100px var(--color-input-bg);
-    @include mixins.transition(border);
 
     &:hover {
       background: var(--color-input-hover-bg);
-      border: 0.125rem solid var(--color-input-hover-border);
     }
     &:focus {
       background: var(--color-input-focus-bg);
-      border: 0.125rem solid var(--color-input-focus-border);
       outline: none;
     }
   }
@@ -64,17 +68,18 @@
   }
 
   &.has-error {
-    border: 0.125rem solid var(--color-input-error-border);
   }
 }
 
 .inputLabel {
   display: block;
-  margin-bottom: 0.5rem;
-  font-size: var(--font-size-small);
-  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: var(--font-size-subtitle);
+  font-family: var(--font-family-alt);
+  font-weight: 700;
   color: var(--color-label-primary-text);
   letter-spacing: 0.02rem;
+  @include mixins.transition(color);
 }
 
 .inputIconContainer {

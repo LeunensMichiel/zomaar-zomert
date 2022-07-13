@@ -52,7 +52,7 @@ const customStyles: StylesConfig = {
   dropdownIndicator: (base, { isFocused, isDisabled }) => ({
     ...base,
     color: isDisabled
-      ? 'var(--color-icon-disabled)'
+      ? 'var(--color-text-disabled)'
       : isFocused
       ? 'var(--color-label-primary-icon)'
       : 'var(--color-label-primary-icon)',
