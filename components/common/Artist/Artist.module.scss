@@ -1,3 +1,5 @@
+@use '@styles/mixins';
+
 .artist {
   position: relative;
   display: flex;
@@ -44,10 +46,17 @@
 
 .artist__inner__title {
   color: var(--color-white);
-  font-size: var(--font-size-title);
-  font-size: clamp(var(--font-size-subtitle), 50vw, var(--font-size-title));
+  font-size: 3.5rem;
   text-transform: uppercase;
   line-height: var(--line-height-header);
+
+  @include mixins.breakpoint-up(md) {
+    font-size: 3.5rem;
+  }
+
+  @include mixins.breakpoint-up(xl) {
+    font-size: 5rem;
+  }
 }
 
 .artist__inner__subtitle {

@@ -48,6 +48,10 @@
   display: grid;
   gap: 1.5rem;
 
+  @include mixins.breakpoint-up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   @include mixins.breakpoint-up(lg) {
     grid-template-columns: repeat(3, 1fr);
   }

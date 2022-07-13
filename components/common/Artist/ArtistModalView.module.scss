@@ -18,7 +18,7 @@
 .image__container {
   position: relative;
   display: flex;
-  height: 66vw;
+  height: 70vw;
   overflow: hidden;
 
   &::before {
@@ -60,6 +60,7 @@
 .tear {
   position: absolute;
   object-fit: cover;
+  width: 110%;
   left: 0;
   z-index: 3;
   bottom: -2px;
@@ -69,11 +70,12 @@
     bottom: 0;
     right: -2px;
     left: unset;
+    width: unset;
   }
 }
 
 .body {
-  padding: 2rem 1.5rem;
+  padding: 0.5rem 1.5rem 2rem 1.5rem;
 
   @include mixins.breakpoint-up(md) {
     padding: 1rem 1.5rem 5rem 1.5rem;

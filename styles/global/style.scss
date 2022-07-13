@@ -73,7 +73,7 @@
   --transition-duration: 500ms;
 
   @include mixins.breakpoint-up(md) {
-    --font-size-title: 6rem;
+    --font-size-title: 5.5rem;
     --font-size-subtitle: 2.25rem;
     --font-size-jumbo: 4rem;
     --font-size: 105%;
