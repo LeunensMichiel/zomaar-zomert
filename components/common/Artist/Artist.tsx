@@ -1,17 +1,15 @@
 import { ImageWithAspectRatio } from '@components/ui';
 import { useUI } from '@lib/hooks';
+import { Artist as ArtistType } from '@lib/models';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
-import { StaticImageData } from 'next/future/image';
 import { forwardRef } from 'react';
 
 import styles from './Artist.module.scss';
 
 type Props = {
-  src: StaticImageData;
-  title: string;
-  subtitle: string;
-  alt: string;
+  artist: ArtistType;
+  isDateCard?: boolean;
   opensModal?: boolean;
 };
 
@@ -64,14 +62,12 @@ const pathMotion = {
 };
 
 export const Artist = forwardRef<HTMLAnchorElement, Props>(
-  ({ alt, src, subtitle, title, opensModal = false, ...props }, ref) => {
-    const isStatic = title === 'Activities';
+  ({ artist, opensModal = false, isDateCard = false, ...props }, ref) => {
     const { openModal, setModalView } = useUI();
 
     const handleArtistModalClick = () => {
       setModalView('ARTIST_VIEW', undefined, {
-        src,
-        title,
+        artist,
       });
       openModal();
     };
@@ -79,11 +75,11 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
     return (
       <motion.a
         className={cn(styles.artist, {
-          [styles.static]: isStatic,
+          [styles.static]: artist.isFiller,
         })}
         ref={ref}
         tabIndex={0}
-        {...(!isStatic && {
+        {...(!artist.isFiller && {
           initial: 'initial',
           whileHover: 'hover',
           whileFocus: 'tap',
@@ -91,7 +87,7 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
           variants: containerMotion,
         })}
         {...(opensModal &&
-          !isStatic && {
+          !artist.isFiller && {
             onClick: handleArtistModalClick,
           })}
         {...props}
@@ -104,21 +100,36 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
             width="100%"
             height="100%"
             fill="transparent"
-            strokeWidth={isStatic ? '0' : '4'}
+            strokeWidth={artist.isFiller ? '0' : '4'}
             stroke="var(--color-white)"
             variants={pathMotion}
           />
         </motion.svg>
         <div className={styles.artist__inner}>
-          <span className={styles.artist__inner__title}>{title}</span>
-          <span className={styles.artist__inner__subtitle}>{subtitle}</span>
+          <span className={styles.artist__inner__title}>
+            {isDateCard
+              ? new Date(artist.date).toLocaleString('default', {
+                  weekday: 'long',
+                })
+              : artist.name}
+          </span>
+          <span className={styles.artist__inner__subtitle}>
+            {isDateCard
+              ? new Date(artist.date).toLocaleString('default', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })
+              : artist.hour}
+          </span>
         </div>
-
         <ImageWithAspectRatio
           wrapperClassName={styles.artist__image}
           aspectRatio="1/1"
-          alt={alt}
-          src={src}
+          width={1080}
+          height={1080}
+          alt={artist.name}
+          src={artist.imgSrc}
           quality={10}
         />
       </motion.a>

@@ -92,7 +92,7 @@ const Footer: VFC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  day: 'friday',
+                  date: '2022-07-29',
                 },
               }}
               passHref
@@ -103,7 +103,7 @@ const Footer: VFC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  day: 'saturday',
+                  date: '2022-07-30',
                 },
               }}
               passHref
@@ -114,7 +114,7 @@ const Footer: VFC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  day: 'sunday',
+                  date: '2022-07-31',
                 },
               }}
               passHref

@@ -6,9 +6,6 @@ import cn from 'classnames';
 import Link from 'next/link';
 import ReactPlayer from 'react-player';
 
-import photo1 from '../public/assets/artists/avalonn.jpg';
-import photo3 from '../public/assets/artists/quiz.jpg';
-import photo2 from '../public/assets/artists/uncle_phil.jpg';
 import slide1 from '../public/assets/slides/slide-1.jpg';
 import slide2 from '../public/assets/slides/slide-2.jpg';
 import slide3 from '../public/assets/slides/slide-3.jpg';
@@ -121,48 +118,66 @@ const Home = () => {
             href={{
               pathname: '/line-up',
               query: {
-                day: 'friday',
+                date: '2022-07-29',
               },
             }}
             passHref
           >
             <Artist
-              alt="Photograph of DJ Twallie"
-              src={photo1}
-              subtitle="29 July 2022"
-              title="Friday"
+              isDateCard
+              artist={{
+                id: 3,
+                name: 'Avalonn',
+                date: '2022-07-29',
+                isFiller: false,
+                hour: '00:00 - 04:00',
+                description: '',
+                imgSrc: '/assets/artists/avalonn.jpg',
+              }}
             />
           </Link>
           <Link
             href={{
               pathname: '/line-up',
               query: {
-                day: 'saturday',
+                date: '2022-07-30',
               },
             }}
             passHref
           >
             <Artist
-              alt="Photograph of the cover band Uncle Phil"
-              src={photo2}
-              subtitle="30 July 2022"
-              title="Saturday"
+              isDateCard
+              artist={{
+                id: 9,
+                name: 'Uncle Phil',
+                date: '2022-07-30',
+                isFiller: false,
+                hour: '22:00 - 23:30',
+                description: '',
+                imgSrc: '/assets/artists/uncle_phil.jpg',
+              }}
             />
           </Link>
           <Link
             href={{
               pathname: '/line-up',
               query: {
-                day: 'sunday',
+                date: '2022-07-31',
               },
             }}
             passHref
           >
             <Artist
-              alt="Photograph of the Zomaar Zomert terrain at night"
-              src={photo3}
-              subtitle="31 July 2022"
-              title="Sunday"
+              isDateCard
+              artist={{
+                id: 19,
+                name: 'Zomaar Quiz',
+                date: '2022-07-31',
+                isFiller: false,
+                hour: '19:30 - 22:00',
+                description: '',
+                imgSrc: '/assets/artists/quiz.jpg',
+              }}
             />
           </Link>
         </div>

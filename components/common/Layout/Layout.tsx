@@ -34,7 +34,7 @@ const Layout: FC<Props> = ({ children }: Props) => {
 
       <Modal open={displayModal} onClose={closeModal} title={modalTitle}>
         {modalView === 'ARTIST_VIEW' && (
-          <ArtistModalView src={data?.src} title={data?.title} />
+          <ArtistModalView artist={data?.artist} />
         )}
       </Modal>
     </>

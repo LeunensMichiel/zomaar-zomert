@@ -4,7 +4,7 @@ import { CSSProperties, VFC } from 'react';
 
 import styles from './ImageWithAspectRatio.module.scss';
 
-type Props = Omit<ImageProps, 'width' | 'height'> & {
+type Props = ImageProps & {
   aspectRatio: string;
   wrapperClassName?: string;
   alt: string;

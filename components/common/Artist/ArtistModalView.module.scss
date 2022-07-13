@@ -98,7 +98,7 @@
   display: inline-block;
   font-size: var(--font-size-subtitle);
   font-family: var(--font-family-alt);
-  font-weight: 400;
+  font-weight: 700;
   line-height: var(--line-height-small);
 }
 
@@ -123,7 +123,6 @@
   font-weight: 600;
   font-family: var(--font-family-body);
   white-space: pre-line;
-  display: inline-block;
 
   @include mixins.breakpoint-up(md) {
     font-size: 1.25rem;

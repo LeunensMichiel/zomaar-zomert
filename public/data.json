@@ -1,0 +1,191 @@
+[
+  {
+    "id": 1,
+    "name": "For The Record",
+    "date": "2022-07-29",
+    "hour": "21:30 - 22:30",
+    "isFiller": false,
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/for_the_record.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Kaaprisun",
+    "date": "2022-07-29",
+    "isFiller": false,
+    "hour": "22:30 - 00:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/kaaprisun.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Avalonn",
+    "date": "2022-07-29",
+    "isFiller": false,
+    "hour": "00:00 - 04:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/avalonn.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Activities",
+    "date": "2022-07-29",
+    "isFiller": true,
+    "hour": "🌞🌞🌞",
+    "description": "This is a description",
+    "imgSrc": "/assets/tear-4.svg"
+  },
+  {
+    "id": 5,
+    "name": "Zomaar Bike",
+    "date": "2022-07-29",
+    "isFiller": false,
+    "hour": "16:00 - 22:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/bike.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Zomaar Café",
+    "date": "2022-07-29",
+    "isFiller": false,
+    "hour": "All Day",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/terras.jpg"
+  },
+  {
+    "id": 7,
+    "name": "De Romeo's",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "20:00 - 21:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/romeos.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Wim Soutaer",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "21:00 - 22:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/wim_soutaer.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Uncle Phil",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "22:00 - 23:30",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/uncle_phil.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Dimitri Wouters",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "23:30 - 01:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/dimitri_wouters.jpg"
+  },
+  {
+    "id": 11,
+    "name": "DJ Creator",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "01:00 - 02:30",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/creator.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Twallie",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "02:30 - 04:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/twallie.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Activities",
+    "date": "2022-07-30",
+    "isFiller": true,
+    "hour": "🌞🌞🌞",
+    "description": "This is a description",
+    "imgSrc": "/assets/tear-4.svg"
+  },
+  {
+    "id": 14,
+    "name": "Petanque",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "12:30 - 17:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/petanque.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Zomaar Café",
+    "date": "2022-07-30",
+    "isFiller": false,
+    "hour": "All Day",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/terras.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Zomaar Run",
+    "date": "2022-07-31",
+    "isFiller": false,
+    "hour": "10:00 - 11:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/run.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Mr. Creezy",
+    "date": "2022-07-31",
+    "isFiller": false,
+    "hour": "13:00 - 16:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/mr_creezy.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Paella",
+    "date": "2022-07-31",
+    "isFiller": false,
+    "hour": "12:00 - 15:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/paella.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Zomaar Quiz",
+    "date": "2022-07-31",
+    "isFiller": false,
+    "hour": "19:30 - 22:00",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/quiz.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Kids Park",
+    "date": "2022-07-31",
+    "isFiller": false,
+    "hour": "All Day",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/kinderanimatie.jpg"
+  },
+  {
+    "id": 21,
+    "name": "Zomaar Café",
+    "date": "2022-07-31",
+    "isFiller": false,
+    "hour": "All Day",
+    "description": "This is a description",
+    "imgSrc": "/assets/artists/terras.jpg"
+  }
+]
