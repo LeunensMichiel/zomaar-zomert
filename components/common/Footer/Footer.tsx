@@ -148,6 +148,38 @@ const Footer: VFC = () => {
             </Link>
           </div>
         </div>
+        <div className={cn(styles.partners, 'container')}>
+          <img src="/assets/sponsors/pepsi-max-white.svg" alt="pepsi-max" />
+          <img
+            src="/assets/sponsors/nationale-loterij-white.svg"
+            alt="nationale-loterij"
+          />
+          <img
+            className={styles.scale_down}
+            src="/assets/sponsors/dilbeek-white.svg"
+            alt="dilbeek"
+          />
+          <img src="/assets/sponsors/belfius-white.svg" alt="belfius" />
+          <img src="/assets/sponsors/megavolt-white.svg" alt="megavolt" />
+          <img src="/assets/sponsors/bamboe-white.svg" alt="bamboe-frit" />
+          <img src="/assets/sponsors/callebaut-white.svg" alt="callebaut" />
+          <img src="/assets/sponsors/eagleair-white.svg" alt="eagle eair" />
+          <img src="/assets/sponsors/edr-white.svg" alt="edr" />
+          <img src="/assets/sponsors/elpers-white.svg" alt="elpers" />
+          <img
+            src="/assets/sponsors/itterplastiek-white.svg"
+            alt="itterplastiek"
+          />
+          <img
+            src="/assets/sponsors/explosion-white.svg"
+            alt="discobar explosion"
+          />
+          <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
+          <img
+            src="/assets/sponsors/vlaams-brabant-white.svg"
+            alt="vlaams-brabant"
+          />
+        </div>
         <div className={cn('container')}>
           <span className={cn(styles.copy)}>
             ©{new Date().getFullYear()} Zomaar Zomert - Design by Floris -
