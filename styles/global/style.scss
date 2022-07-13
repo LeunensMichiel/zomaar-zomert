@@ -237,6 +237,12 @@ a {
   }
 }
 
+p {
+  @include mixins.breakpoint-up(lg) {
+    font-size: 125%;
+  }
+}
+
 button {
   padding: 0.25rem 0.5rem;
 }

@@ -1,0 +1,30 @@
+@use '@styles/mixins';
+
+.root {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 3rem auto;
+  }
+
+  @include mixins.breakpoint-down(lg) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.image {
+}

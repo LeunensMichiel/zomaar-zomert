@@ -62,7 +62,6 @@ const InfoPage = () => {
               street.
             </p>
           </Card>
-          <TexturedImage src="/assets/slides/slide-2.jpg" alt="Beer in hand" />
           <Card title="Public transportation">
             <p>
               The easiest way to get to the festival is by bus{' '}
@@ -97,10 +96,17 @@ const InfoPage = () => {
               behind.
             </p>
           </Card>
+          <TexturedImage src="/assets/slides/slide-2.jpg" alt="Beer in hand" />
           <Card title="Tickets">
             <p>
               The festival is free! The only thing we ask in return is for you
               to have a good time 🚀
+            </p>
+          </Card>
+          <Card title="Fair">
+            <p>
+              The festival takes place together with the anual fair. Two birds
+              with one stone!
             </p>
           </Card>
           <Card title="Food & drink vouchers">
