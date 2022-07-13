@@ -96,10 +96,18 @@ $variants: default, primary, 'transparent', minimal, minimal-bright,
 // Different Sizes
 .button-xs {
   font-size: 0.75rem;
+
+  @include mixins.breakpoint-up(md) {
+    font-size: 0.875rem;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    font-size: 1rem;
+  }
 }
 
 .button-sm {
-  font-size: 1rem;
+  font-size: 1em;
   padding: 0.75em 1em;
   justify-content: center;
   border: none !important;
