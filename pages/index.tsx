@@ -103,12 +103,12 @@ const Home = () => {
             <span>31 JULY 2022</span>
           </span>
         </div>
+        <img
+          className={styles.tear}
+          src="/assets/tear.svg"
+          alt="paper tear element"
+        />
       </section>
-      <img
-        className={styles.tear}
-        src="/assets/tear.svg"
-        alt="paper tear element"
-      />
       <section className={cn('container py-container', styles.countdown)}>
         <div>
           <Countdown />

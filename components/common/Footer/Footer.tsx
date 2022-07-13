@@ -138,12 +138,12 @@ const Footer: VFC = () => {
           </div>
           <div className={styles.footer__block}>
             <span className={styles.footer__block__title}>Contact</span>
-            <Link href="activities" passHref>
+            <Link href="/info" passHref>
               <a className={styles.footer__block__link}>
                 Sign up for activities
               </a>
             </Link>
-            <Link href="contact" passHref>
+            <Link href="/contact" passHref>
               <a className={styles.footer__block__link}>Contact us</a>
             </Link>
           </div>
