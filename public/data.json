@@ -130,7 +130,7 @@
     "name": "Zomaar Café",
     "date": "2022-07-30",
     "isFiller": false,
-    "hour": "From 16:00",
+    "hour": "From 12:00",
     "description": "Come, drink, eat and enjoy our Zomaar terrace that is open all weekend long! ☀️🍹",
     "imgSrc": "/assets/artists/terras.jpg"
   },
@@ -184,7 +184,7 @@
     "name": "Zomaar Café",
     "date": "2022-07-31",
     "isFiller": false,
-    "hour": "From 16:00",
+    "hour": "From 12:00",
     "description": "Come, drink, eat and enjoy our Zomaar terrace that is open all weekend long! ☀️🍹",
     "imgSrc": "/assets/artists/terras.jpg"
   }
