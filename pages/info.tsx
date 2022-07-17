@@ -125,7 +125,7 @@ const InfoPage = () => {
           <Card title="Activities">
             <p>
               Each year, we organize tons of activities, like ZomaarBike,
-              ZomaarRun, kids animation, a qiz and petanque game. On Sunday you
+              ZomaarRun, kids animation, a quiz and petanque game. On Sunday you
               will also find a paella stand.
               <br />
               <br />

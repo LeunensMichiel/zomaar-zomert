@@ -171,6 +171,7 @@ const Footer: VFC = () => {
             src="/assets/sponsors/itterplastiek-white.svg"
             alt="itterplastiek"
           />
+          <img src="/assets/sponsors/cameleon-white.svg" alt="cameleon" />
           <img
             src="/assets/sponsors/explosion-white.svg"
             alt="discobar explosion"
