@@ -154,18 +154,27 @@ const Footer: VFC = () => {
             src="/assets/sponsors/nationale-loterij-white.svg"
             alt="nationale-loterij"
           />
-          <img src="/assets/sponsors/belfius-white.svg" alt="belfius" />
           <img src="/assets/sponsors/crokaert-white.svg" alt="crokaert" />
           <img src="/assets/sponsors/megavolt-white.svg" alt="megavolt" />
-          <img src="/assets/sponsors/callebaut-white.svg" alt="callebaut" />
-          <img src="/assets/sponsors/bamboe-white.svg" alt="bamboe-frit" />
           <img src="/assets/sponsors/eagleair-white.svg" alt="eagle eair" />
+          <img src="/assets/sponsors/callebaut-white.svg" alt="callebaut" />
+          <img src="/assets/sponsors/belfius-white.svg" alt="belfius" />
+          <img src="/assets/sponsors/bamboe-white.svg" alt="bamboe-frit" />
           <img
             className={styles.scale_down}
             src="/assets/sponsors/dilbeek-white.svg"
             alt="dilbeek"
           />
           <img src="/assets/sponsors/edr-white.svg" alt="edr" />
+          <img
+            className={styles.scale_up}
+            src="/assets/sponsors/moens-white.svg"
+            alt="moens"
+          />
+          <img
+            src="/assets/sponsors/timmermans-text-white.svg"
+            alt="timmermans"
+          />
           <img src="/assets/sponsors/elpers-white.svg" alt="elpers" />
           <img
             src="/assets/sponsors/itterplastiek-white.svg"
