@@ -154,11 +154,11 @@
   },
   {
     "id": 18,
-    "name": "Paella",
+    "name": "Ludo's Paella",
     "date": "2022-07-31",
     "isFiller": false,
-    "hour": "12:00 - 15:00",
-    "description": "Sunday afternoon we serve the speciality of the house! Enjoy this Spanish speciality on our sunny terrace which is open all day. \n\nWe try to work in two shifts. You can sign-up for a plate of delicious Paella on our forms. Link is on the homepage!",
+    "hour": "12:30 - 15:00",
+    "description": "Sunday afternoon we serve the speciality of the house! Enjoy this Spanish speciality on our sunny terrace which is open all day. \n\nYou can sign-up for a plate of delicious Paella on our forms. Link is on the homepage!",
     "imgSrc": "/assets/artists/paella.jpg"
   },
   {
@@ -167,7 +167,7 @@
     "date": "2022-07-31",
     "isFiller": false,
     "hour": "19:30 - 22:00",
-    "description": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent!",
+    "description": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team.",
     "imgSrc": "/assets/artists/quiz.jpg"
   },
   {
