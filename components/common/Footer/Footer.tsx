@@ -132,6 +132,9 @@ const Footer: VFC = () => {
             {/* <Link href="/partners" passHref>
               <a className={styles.footer__block__link}>Our partners</a>
             </Link> */}
+            <Link href="/menu" passHref>
+              <a className={styles.footer__block__link}>Menu</a>
+            </Link>
             <Link href="/terms-and-conditions" passHref>
               <a className={styles.footer__block__link}>Terms and conditions</a>
             </Link>
