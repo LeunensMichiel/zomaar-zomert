@@ -23,7 +23,7 @@ export const Carousel: VFC<CarouselProps> = ({
             key={slide.alt}
             className={styles.slide}
             alt={slide.alt}
-            quality={80}
+            quality={60}
             placeholder="blur"
           />
         ))}

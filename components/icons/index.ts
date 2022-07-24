@@ -8,5 +8,6 @@ export { default as Cross } from './Cross';
 export { default as Facebook } from './Facebook';
 export { default as Info } from './Info';
 export { default as Instagram } from './Instagram';
+export { default as Ticket } from './Ticket';
 export { Triangle } from './Triangle';
 export { default as Youtube } from './Youtube';
