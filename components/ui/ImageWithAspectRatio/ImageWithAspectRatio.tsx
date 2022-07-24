@@ -28,7 +28,7 @@ const ImageWithAspectRatio: VFC<Props> = ({
       className={cn(styles.imgContainer, wrapperClassName)}
       style={containerStyle}
     >
-      <Image src={src} alt={alt} quality={80} {...rest} />
+      <Image src={src} alt={alt} quality={90} {...rest} />
     </div>
   );
 };
