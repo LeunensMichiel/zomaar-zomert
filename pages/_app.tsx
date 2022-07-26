@@ -4,7 +4,6 @@ import { Head } from '@components/common';
 import { ManagedUIProvider } from '@lib/context/ui';
 import { AppProps } from 'next/app';
 import { ReactNode, useEffect } from 'react';
-import { CookiesProvider } from 'react-cookie';
 
 import { useSmoothHashScroll } from '../lib/hooks';
 
@@ -26,14 +25,14 @@ function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <CookiesProvider>
+    <>
       <Head />
       <ManagedUIProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </ManagedUIProvider>
-    </CookiesProvider>
+    </>
   );
 }
 

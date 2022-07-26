@@ -8,7 +8,6 @@ export { default as Logo } from './Logo';
 export { default as MapboxMap } from './Map';
 export { default as Modal } from './Modal';
 export { default as RadioButton } from './RadioButton';
-export { default as Select } from './Select';
 export { default as Spinner } from './Spinner';
 export { default as Switch } from './Switch';
 export { default as TextArea } from './TextArea';
