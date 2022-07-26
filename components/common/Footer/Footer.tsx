@@ -192,6 +192,7 @@ const Footer: VFC = () => {
             alt="discobar explosion"
           />
           <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
+          <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
           <img
             src="/assets/sponsors/vlaams-brabant-white.svg"
             alt="vlaams-brabant"
