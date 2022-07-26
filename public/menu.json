@@ -55,7 +55,22 @@
     "category": "Drinks",
     "subCategory": "soft drinks"
   },
-
+  {
+    "name": "Lipton Ice Tea",
+    "description": "Sparkling iced tea.",
+    "price": 2,
+    "img": "/assets/menu/ice-tea.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Red Bull",
+    "description": "When a coffee doesn't cut it",
+    "price": 2,
+    "img": "/assets/menu/red-bull.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
   {
     "name": "Stella Artois",
     "description": "A classic. Stella Artois on tap.",
@@ -73,7 +88,7 @@
     "subCategory": "beers"
   },
   {
-    "name": "Hoegarden",
+    "name": "Hoegaarden",
     "description": "Refreshing white beer with a lemon aftertaste. On tap.",
     "price": 2,
     "img": "/assets/menu/hoegaarden.jpg",
@@ -113,7 +128,7 @@
     "subCategory": "beers"
   },
   {
-    "name": "Oude Gueuze - Timmermans",
+    "name": "Oude Geuze - Timmermans",
     "description": "A speciallity from the Pajot. Sour, bottled.",
     "price": 5,
     "img": "/assets/menu/oude-geuze.jpg",
@@ -209,6 +224,38 @@
     "subCategory": "cocktails & strong alcohol"
   },
   {
+    "name": "Virgin Mojito",
+    "description": "Punch made out of mojito ingredients.",
+    "price": 4,
+    "img": "/assets/menu/mojito-mocktail.jpg",
+    "category": "Drinks",
+    "subCategory": "mocktails"
+  },
+  {
+    "name": "Spiced Apple",
+    "description": "An apple & ginger punch combo.",
+    "price": 4,
+    "img": "/assets/menu/spicy-apple-mocktail.jpg",
+    "category": "Drinks",
+    "subCategory": "mocktails"
+  },
+  {
+    "name": "Sausage on bun",
+    "description": "Way better than your average hot-dog.",
+    "price": 4,
+    "img": "/assets/menu/pensen.jpg",
+    "category": "Food",
+    "subCategory": "meals"
+  },
+  {
+    "name": "Bordje Breughel",
+    "description": "A mix of local cheese and meat specialities, to share.",
+    "price": 12,
+    "img": "/assets/menu/breughel-bordje.jpg",
+    "category": "Food",
+    "subCategory": "meals"
+  },
+  {
     "name": "Lays Chips",
     "description": "Choose between Paprika, Salt & Pickels flavour.",
     "price": 1,
@@ -231,21 +278,5 @@
     "img": "/assets/menu/raketijsje.jpg",
     "category": "Food",
     "subCategory": "snacks"
-  },
-  {
-    "name": "Bratwurst",
-    "description": "Way better than your average hot-dog.",
-    "price": 4,
-    "img": "/assets/menu/pensen.jpg",
-    "category": "Food",
-    "subCategory": "food"
-  },
-  {
-    "name": "Bordje Breughel",
-    "description": "A mix of local cheese and meat specialities, to share.",
-    "price": 12,
-    "img": "/assets/menu/breughel-bordje.jpg",
-    "category": "Food",
-    "subCategory": "food"
   }
 ]
