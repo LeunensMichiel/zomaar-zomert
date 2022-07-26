@@ -179,6 +179,7 @@ const Footer: VFC = () => {
             alt="timmermans"
           />
           <img src="/assets/sponsors/elpers-white.svg" alt="elpers" />
+          <img src="/assets/sponsors/wynant-white.svg" alt="wynant" />
           <img src="/assets/sponsors/lammens-white.svg" alt="lammens" />
           <img
             src="/assets/sponsors/itterplastiek-white.svg"
