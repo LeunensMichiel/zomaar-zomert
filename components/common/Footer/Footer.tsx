@@ -193,6 +193,12 @@ const Footer: VFC = () => {
           />
           <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
           <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
+          <img src="/assets/sponsors/limbourg-white.svg" alt="limbourg" />
+          <img
+            className={styles.scale_down}
+            src="/assets/sponsors/carrosserie-jans-white.svg"
+            alt="carrosserie-jans"
+          />
           <img
             src="/assets/sponsors/vlaams-brabant-white.svg"
             alt="vlaams-brabant"
