@@ -240,7 +240,7 @@
     "subCategory": "mocktails"
   },
   {
-    "name": "Sausage on bun",
+    "name": "Sausage",
     "description": "Way better than your average hot-dog.",
     "price": 4,
     "img": "/assets/menu/pensen.jpg",
@@ -257,7 +257,7 @@
   },
   {
     "name": "Lays Chips",
-    "description": "Choose between Paprika, Salt & Pickels flavour.",
+    "description": "Paprika, Ketchup, Salt & Pickels flavour.",
     "price": 1,
     "img": "/assets/menu/lays.jpg",
     "category": "Food",
