@@ -1,0 +1,282 @@
+[
+  {
+    "name": "Still Water",
+    "description": "If you don't like bubbles",
+    "price": 1,
+    "img": "/assets/menu/still-water.jpg",
+    "category": "Drinks",
+    "subCategory": "water"
+  },
+  {
+    "name": "Sparkling Water",
+    "description": "If you like bubbles.",
+    "price": 2,
+    "img": "/assets/menu/sparkling-water.jpg",
+    "category": "Drinks",
+    "subCategory": "water"
+  },
+  {
+    "name": "Pepsi",
+    "description": "Our soft drinks are brought to you by PepsiCo.",
+    "price": 2,
+    "img": "/assets/menu/pepsi.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Pepsi Max",
+    "description": "A zero-sugar Pepsi.",
+    "price": 2,
+    "img": "/assets/menu/pepsi-max.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Mirinda",
+    "description": "Sparkling lemonade.",
+    "price": 2,
+    "img": "/assets/menu/mirinda.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Looza Apple",
+    "description": "Apple juice.",
+    "price": 2,
+    "img": "/assets/menu/looza-apple.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Looza Orange",
+    "description": "Orange juice.",
+    "price": 2,
+    "img": "/assets/menu/looza-orange.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Lipton Ice Tea",
+    "description": "Sparkling iced tea.",
+    "price": 2,
+    "img": "/assets/menu/ice-tea.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Red Bull",
+    "description": "When a coffee doesn't cut it",
+    "price": 2,
+    "img": "/assets/menu/red-bull.jpg",
+    "category": "Drinks",
+    "subCategory": "soft drinks"
+  },
+  {
+    "name": "Stella Artois",
+    "description": "A classic. Stella Artois on tap.",
+    "price": 2,
+    "img": "/assets/menu/stella.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Kriek",
+    "description": "Kriek from Timmermans brewery. Sweet, on tap.",
+    "price": 2,
+    "img": "/assets/menu/kriek.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Hoegaarden",
+    "description": "Refreshing white beer with a lemon aftertaste. On tap.",
+    "price": 2,
+    "img": "/assets/menu/hoegaarden.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Bolleke",
+    "description": "Amber beer from brewery De Koninck in Antwerp. On tap.",
+    "price": 2,
+    "img": "/assets/menu/bolleke.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Chouffe",
+    "description": "Blonde beer with a sweet & hoppy aftertaste. On tap.",
+    "price": 3,
+    "img": "/assets/menu/chouffe.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Leffe",
+    "description": "A classic, blonde abbey beer on tap.",
+    "price": 3,
+    "img": "/assets/menu/leffe.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Duvel",
+    "description": "A heavy, blonde beer served from the bottle.",
+    "price": 3,
+    "img": "/assets/menu/duvel.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Oude Geuze - Timmermans",
+    "description": "A speciallity from the Pajot. Sour, bottled.",
+    "price": 5,
+    "img": "/assets/menu/oude-geuze.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Oude Kriek - Timmermans",
+    "description": "A speciallity from the Pajot. Sweet, sour, bottled.",
+    "price": 5,
+    "img": "/assets/menu/oude-kriek.jpg",
+    "category": "Drinks",
+    "subCategory": "beers"
+  },
+  {
+    "name": "Red wine",
+    "description": "A glass of Merlot wine.",
+    "price": 3,
+    "img": "/assets/menu/red-wine.jpg",
+    "category": "Drinks",
+    "subCategory": "wines"
+  },
+  {
+    "name": "White wine",
+    "description": "A glass of Blanc wine.",
+    "price": 3,
+    "img": "/assets/menu/white-wine.jpg",
+    "category": "Drinks",
+    "subCategory": "wines"
+  },
+  {
+    "name": "Cava",
+    "description": "Bubbles + wine = ❤️",
+    "price": 3,
+    "img": "/assets/menu/cava.jpg",
+    "category": "Drinks",
+    "subCategory": "wines"
+  },
+  {
+    "name": "Sangria",
+    "description": "Red wine mixed with fruits. ¡Me gusta!",
+    "price": 4,
+    "img": "/assets/menu/sangria.jpg",
+    "category": "Drinks",
+    "subCategory": "wines"
+  },
+  {
+    "name": "Jug of Sangria",
+    "description": "1 liter of fun.",
+    "price": 10,
+    "img": "/assets/menu/sangria-jug.jpg",
+    "category": "Drinks",
+    "subCategory": "wines"
+  },
+  {
+    "name": "Ricard",
+    "description": "For the pastis lovers.",
+    "price": 3,
+    "img": "/assets/menu/pastis.jpg",
+    "category": "Drinks",
+    "subCategory": "cocktails & strong alcohol"
+  },
+  {
+    "name": "Aperol Spritz",
+    "description": "The classic, Italian summer aperitif.",
+    "price": 6,
+    "img": "/assets/menu/aperol.jpg",
+    "category": "Drinks",
+    "subCategory": "cocktails & strong alcohol"
+  },
+  {
+    "name": "Cuba Libre",
+    "description": "A Baco a day keeps the doctor away.",
+    "price": 6,
+    "img": "/assets/menu/baco.jpg",
+    "category": "Drinks",
+    "subCategory": "cocktails & strong alcohol"
+  },
+  {
+    "name": "Gin Tonic",
+    "description": "It's no rocket science. Gin + Tonic is the ultimate combo.",
+    "price": 6,
+    "img": "/assets/menu/gin-tonic.jpg",
+    "category": "Drinks",
+    "subCategory": "cocktails & strong alcohol"
+  },
+  {
+    "name": "Vodka Red Bull",
+    "description": "When two extremes meet.",
+    "price": 6,
+    "img": "/assets/menu/vodka-redbull.jpg",
+    "category": "Drinks",
+    "subCategory": "cocktails & strong alcohol"
+  },
+  {
+    "name": "Virgin Mojito",
+    "description": "Punch made out of mojito ingredients.",
+    "price": 4,
+    "img": "/assets/menu/mojito-mocktail.jpg",
+    "category": "Drinks",
+    "subCategory": "mocktails"
+  },
+  {
+    "name": "Spiced Apple",
+    "description": "An apple & ginger punch combo.",
+    "price": 4,
+    "img": "/assets/menu/spicy-apple-mocktail.jpg",
+    "category": "Drinks",
+    "subCategory": "mocktails"
+  },
+  {
+    "name": "Sausage",
+    "description": "Way better than your average hot-dog.",
+    "price": 4,
+    "img": "/assets/menu/pensen.jpg",
+    "category": "Food",
+    "subCategory": "meals"
+  },
+  {
+    "name": "Plate of Bruegel",
+    "description": "A mix of local cheese and meat specialities, to share.",
+    "price": 12,
+    "img": "/assets/menu/breughel-bordje.jpg",
+    "category": "Food",
+    "subCategory": "meals"
+  },
+  {
+    "name": "Lays Chips",
+    "description": "Paprika, Ketchup, Salt & Pickels flavour.",
+    "price": 1,
+    "img": "/assets/menu/lays.jpg",
+    "category": "Food",
+    "subCategory": "snacks"
+  },
+  {
+    "name": "Cornetto",
+    "description": "I scream, you scream, we all scream for ice cream!",
+    "price": 1,
+    "img": "/assets/menu/cornetto.jpg",
+    "category": "Food",
+    "subCategory": "snacks"
+  },
+  {
+    "name": "Rocket",
+    "description": "Frozen ice pop with 3 flavours.",
+    "price": 1,
+    "img": "/assets/menu/raketijsje.jpg",
+    "category": "Food",
+    "subCategory": "snacks"
+  }
+]

@@ -39,9 +39,8 @@ const InfoPage = () => {
               Itterbeek.
               <br />
               <br />
-              Our tent is located east of the well-known Sint-Anna church which
-              can be found in Pieter Bruegel&apos;s paintings and opposite of
-              the restaurant De Noa.
+              Our tent is located east of the well-known Sint-Anna church and
+              opposite of the restaurant De Noa.
             </p>
           </Card>
           <div className={styles.map__container}>

@@ -63,20 +63,11 @@
     "imgSrc": "/assets/artists/romeos.jpg"
   },
   {
-    "id": 8,
-    "name": "Wim Soutaer",
-    "date": "2022-07-30",
-    "isFiller": false,
-    "hour": "21:00 - 22:00",
-    "description": "We genieten van het leveeeeeeeen, aaaa-le-maal! \n\nA favourite at Zomaar Zomert. Wim Soutaer and Charles Van Domburg bring an act that will blow the roof off the tent. \n\nOne thing is certain. Partying is guaranteed when these gentlemen perform.",
-    "imgSrc": "/assets/artists/wim_soutaer.jpg"
-  },
-  {
     "id": 9,
     "name": "Uncle Phil",
     "date": "2022-07-30",
     "isFiller": false,
-    "hour": "22:00 - 23:30",
+    "hour": "21:30 - 23:00",
     "description": "In less than 4 years, Uncle Phil has become a fixture in the cover band scene. With their energetic mix of classic dance tracks alternated with modern top 40 hits, sing-alongs, the right dose of ripping guitars and a bit of humour, this band managed to stand out in an already saturated market. \n\nCome and see them at Zomaar Zomert 2022!",
     "imgSrc": "/assets/artists/uncle_phil.jpg"
   },
@@ -154,11 +145,11 @@
   },
   {
     "id": 18,
-    "name": "Paella",
+    "name": "Ludo's Paella",
     "date": "2022-07-31",
     "isFiller": false,
-    "hour": "12:00 - 15:00",
-    "description": "Sunday afternoon we serve the speciality of the house! Enjoy this Spanish speciality on our sunny terrace which is open all day. \n\nWe try to work in two shifts. You can sign-up for a plate of delicious Paella on our forms. Link is on the homepage!",
+    "hour": "12:30 - 15:00",
+    "description": "Sunday afternoon we serve the speciality of the house! Enjoy this Spanish speciality on our sunny terrace which is open all day. \n\nYou can sign-up for a plate of delicious Paella on our forms. Link is on the homepage!",
     "imgSrc": "/assets/artists/paella.jpg"
   },
   {
@@ -167,7 +158,7 @@
     "date": "2022-07-31",
     "isFiller": false,
     "hour": "19:30 - 22:00",
-    "description": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent!",
+    "description": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team.",
     "imgSrc": "/assets/artists/quiz.jpg"
   },
   {
