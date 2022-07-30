@@ -30,7 +30,7 @@ export const ArtistModalView: VFC<Props> = ({ artist }) => {
       </div>
       <div className={styles.body}>
         <span className={styles.day}>
-          {new Date(artist.date).toLocaleString('default', {
+          {new Date(artist.date).toLocaleString('en-GB', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',

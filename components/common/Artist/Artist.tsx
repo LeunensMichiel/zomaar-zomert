@@ -108,14 +108,14 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
         <div className={styles.artist__inner}>
           <span className={styles.artist__inner__title}>
             {isDateCard
-              ? new Date(artist.date).toLocaleString('default', {
+              ? new Date(artist.date).toLocaleString('en-GB', {
                   weekday: 'long',
                 })
               : artist.name}
           </span>
           <span className={styles.artist__inner__subtitle}>
             {isDateCard
-              ? new Date(artist.date).toLocaleString('default', {
+              ? new Date(artist.date).toLocaleString('en-GB', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',

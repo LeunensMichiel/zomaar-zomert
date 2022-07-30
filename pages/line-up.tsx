@@ -102,12 +102,12 @@ const LineUpPage = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <h1 className={cn(styles.title, 'header')}>
-                    {formattedDate.toLocaleString('default', {
+                    {formattedDate.toLocaleString('en-GB', {
                       weekday: 'long',
                     })}
                   </h1>
                   <span className={styles.date}>
-                    {formattedDate.toLocaleString('default', {
+                    {formattedDate.toLocaleString('en-GB', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
@@ -124,7 +124,7 @@ const LineUpPage = () => {
                   variant="minimal"
                   onClick={() => handleDaySelect(day)}
                 >
-                  {new Date(day).toLocaleString('default', {
+                  {new Date(day).toLocaleString('en-GB', {
                     weekday: 'long',
                   })}
                   {day === currentDate ? (
