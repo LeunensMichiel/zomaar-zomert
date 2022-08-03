@@ -98,9 +98,9 @@ const Home = () => {
         <div className={cn(styles.landing__inner, 'container')}>
           <Logo variant="full" className={styles.logo} />
           <span className={styles.date}>
-            <span>29</span>
+            <span>25</span>
             <Triangle />
-            <span>31 JULY 2022</span>
+            <span>27 JULY 2022</span>
           </span>
         </div>
         <img
