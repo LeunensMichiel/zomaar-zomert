@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './Countdown.module.scss';
 
-const countDownDate = new Date('Jul 29, 2022 16:00:00').getTime();
+const countDownDate = new Date('Jul 25, 2022 16:00:00').getTime();
 
 const getReturnValues = (countDown: number) => {
   // calculate time left
@@ -52,7 +52,7 @@ export const Countdown = () => {
           <span className={styles.timer__item__number}>00</span>
           <span className={styles.timer__item__unit}>sec</span>
         </span>
-        <span className={styles['expired-notice']}>Festival has started!</span>
+        <span className={styles['expired-notice']}>See you next year!</span>
       </div>
     );
   } else {
