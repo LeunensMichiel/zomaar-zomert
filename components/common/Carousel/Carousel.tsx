@@ -1,28 +1,31 @@
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { FC } from 'react';
-import { TickerProps } from 'react-infinite-ticker/dist/TickerProps';
+import Marquee from 'react-fast-marquee';
 
+// import { TickerProps } from 'react-infinite-ticker/dist/TickerProps';
 import styles from './Carousel.module.scss';
 
-const HorizontalTicker = dynamic(
-  () => import('react-infinite-ticker').then((mod) => mod.HorizontalTicker),
-  {
-    ssr: false,
-  }
-);
+// const HorizontalTicker = dynamic(
+//   () => import('react-infinite-ticker').then((mod) => mod.HorizontalTicker),
+//   {
+//     ssr: false,
+//   }
+// );
 
 type CarouselProps = {
   slides: Array<{ url: string; alt?: string }>;
-} & TickerProps;
+  speed: number;
+  direction: 'left' | 'right';
+};
 
 export const Carousel: FC<CarouselProps> = ({
   slides,
-  duration = 25000,
-  ...props
+  speed = 25000,
+  direction,
 }) => {
   return (
     <div className={styles.root}>
-      <HorizontalTicker duration={duration} {...props}>
+      <Marquee direction={direction} speed={speed}>
         {slides?.map((slide) => (
           <img
             src={slide.url}
@@ -31,7 +34,7 @@ export const Carousel: FC<CarouselProps> = ({
             alt={slide.alt}
           />
         ))}
-      </HorizontalTicker>
+      </Marquee>
     </div>
   );
 };

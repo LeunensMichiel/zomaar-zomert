@@ -74,8 +74,8 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
 
     return (
       <motion.a
-        className={cn(styles.artist, {
-          [styles.static]: opensModal,
+        className={cn(styles.image__card, {
+          [styles.static]: !opensModal,
         })}
         ref={ref}
         tabIndex={0}
@@ -93,7 +93,7 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
       >
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
-          className={styles.artist__line}
+          className={styles.image__card__line}
         >
           <motion.rect
             width="100%"
@@ -104,9 +104,9 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
             variants={pathMotion}
           />
         </motion.svg>
-        <div className={styles.artist__inner}>
-          <span className={styles.artist__inner__title}>{data.title}</span>
-          <span className={styles.artist__inner__subtitle}>
+        <div className={styles.image__card__inner}>
+          <span className={styles.image__card__inner__title}>{data.title}</span>
+          <span className={styles.image__card__inner__subtitle}>
             {data.subtitle}
           </span>
         </div>

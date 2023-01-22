@@ -1,6 +1,6 @@
 @use '@styles/mixins';
 
-.artist {
+.image__card {
   position: relative;
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
   }
 }
 
-.artist__inner {
+.image__card__inner {
   padding: 2rem;
   position: absolute;
   left: 0;
@@ -37,14 +37,14 @@
   font-weight: 700;
 }
 
-.artist__line {
+.image__card__line {
   position: absolute;
   z-index: 100;
   width: 90%;
   height: 90%;
 }
 
-.artist__inner__title {
+.image__card__inner__title {
   color: var(--color-white);
   font-size: 3.5rem;
   text-transform: uppercase;
@@ -59,7 +59,7 @@
   }
 }
 
-.artist__inner__subtitle {
+.image__card__inner__subtitle {
   color: var(--color-white);
   font-size: var(--font-size-subtitle);
 }

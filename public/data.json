@@ -4,7 +4,7 @@
     "name": "TBA",
     "date": "2023-07-28",
     "hour": "to be announced",
-    "isFiller": true,
+    "isFiller": false,
     "description": "TBA placeholder",
     "imgSrc": "/assets/artists/tba.jpg"
   },

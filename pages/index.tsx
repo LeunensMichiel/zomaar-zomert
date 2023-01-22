@@ -1,6 +1,5 @@
 import { Carousel, ImageCard, Layout } from '@components/common';
 import { Triangle } from '@components/icons';
-// import ChevronRight from '@components/icons/Chevron';
 import { Logo } from '@components/ui';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
@@ -227,8 +226,8 @@ const Home = () => {
         </div>
       </section>
       <section className="py-container">
-        <Carousel duration={100000} slides={slides.splice(0, 6)} />
-        <Carousel duration={150000} reverse slides={slides.splice(-6)} />
+        <Carousel speed={20} direction="left" slides={slides.splice(0, 6)} />
+        <Carousel speed={10} direction="right" slides={slides.splice(-6)} />
       </section>
     </>
   );

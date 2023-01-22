@@ -1,6 +1,5 @@
 import { CloseButton } from '@components/common';
 import { useClickOutside } from '@lib/hooks';
-import { Portal } from '@reach/portal';
 import {
   BodyScrollOptions,
   clearAllBodyScrollLocks,
@@ -9,6 +8,7 @@ import {
 } from 'body-scroll-lock';
 import cn from 'classnames';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import {
   FC,
   MutableRefObject,
@@ -20,6 +20,13 @@ import {
 import FocusLock from 'react-focus-lock';
 
 import styles from './Modal.module.scss';
+
+const PortalRoot = dynamic(
+  () => import('@radix-ui/react-portal').then((mod) => mod.Root),
+  {
+    ssr: false,
+  }
+);
 
 type ModalProps = {
   className?: string;
@@ -75,7 +82,7 @@ const Modal: FC<ModalProps> = ({
   }, [open, handleKey]);
 
   return (
-    <Portal>
+    <PortalRoot>
       <AnimatePresence onExitComplete={clearBodyScroll}>
         {open && (
           <motion.div
@@ -121,7 +128,7 @@ const Modal: FC<ModalProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </Portal>
+    </PortalRoot>
   );
 };
 
