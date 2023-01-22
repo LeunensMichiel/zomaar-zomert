@@ -1,5 +1,86 @@
 [
   {
+    "id": -3,
+    "name": "TBA",
+    "date": "2023-07-28",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -2,
+    "name": "TBA",
+    "date": "2023-07-28",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -1,
+    "name": "TBA",
+    "date": "2023-07-28",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -3,
+    "name": "TBA",
+    "date": "2023-07-29",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -2,
+    "name": "TBA",
+    "date": "2023-07-29",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -1,
+    "name": "TBA",
+    "date": "2023-07-29",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -3,
+    "name": "TBA",
+    "date": "2023-07-30",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -2,
+    "name": "TBA",
+    "date": "2023-07-30",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": -1,
+    "name": "TBA",
+    "date": "2023-07-30",
+    "hour": "to be announced",
+    "isFiller": true,
+    "description": "TBA placeholder",
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
     "id": 1,
     "name": "For The Record",
     "date": "2022-07-29",

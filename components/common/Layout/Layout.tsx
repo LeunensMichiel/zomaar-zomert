@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, ReactNode } from 'react';
 
-import { ArtistModalView } from '../Artist/ArtistModalView';
+import { ImageCardModalView } from '../ImageCard/ImageCardModalView';
 import styles from './Layout.module.scss';
 
 type Props = {
@@ -34,7 +34,7 @@ const Layout: FC<Props> = ({ children }: Props) => {
 
       <Modal open={displayModal} onClose={closeModal} title={modalTitle}>
         {modalView === 'ARTIST_VIEW' && (
-          <ArtistModalView artist={data?.artist} />
+          <ImageCardModalView data={data?.artist} />
         )}
       </Modal>
     </>

@@ -1,4 +1,4 @@
-import { Artist, Carousel, Layout } from '@components/common';
+import { Carousel, ImageCard, Layout } from '@components/common';
 import { Triangle } from '@components/icons';
 // import ChevronRight from '@components/icons/Chevron';
 import { Logo } from '@components/ui';
@@ -120,15 +120,17 @@ const Home = () => {
             passHref
             legacyBehavior
           >
-            <Artist
-              isDateCard
-              artist={{
-                id: 1,
-                name: 'Friday',
-                date: '2023-07-28',
-                isFiller: false,
-                hour: '16:00 - 04:00',
-                description: '',
+            <ImageCard
+              playAnimation
+              data={{
+                subtitle: new Date('2023-07-28').toLocaleString('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }),
+                title: new Date('2023-07-28').toLocaleString('en-GB', {
+                  weekday: 'long',
+                }),
                 imgSrc: '/assets/days/friday.jpg',
               }}
             />
@@ -143,15 +145,17 @@ const Home = () => {
             passHref
             legacyBehavior
           >
-            <Artist
-              isDateCard
-              artist={{
-                id: 2,
-                name: 'Saturday',
-                date: '2023-07-29',
-                isFiller: false,
-                hour: '12:00 - 04:00',
-                description: '',
+            <ImageCard
+              playAnimation
+              data={{
+                title: new Date('2023-07-29').toLocaleString('en-GB', {
+                  weekday: 'long',
+                }),
+                subtitle: new Date('2023-07-29').toLocaleString('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }),
                 imgSrc: '/assets/days/saturday.jpg',
               }}
             />
@@ -166,15 +170,17 @@ const Home = () => {
             passHref
             legacyBehavior
           >
-            <Artist
-              isDateCard
-              artist={{
-                id: 3,
-                name: 'Sunday',
-                date: '2023-07-30',
-                isFiller: false,
-                hour: '11:00 - 23:00',
-                description: '',
+            <ImageCard
+              playAnimation
+              data={{
+                title: new Date('2023-07-30').toLocaleString('en-GB', {
+                  weekday: 'long',
+                }),
+                subtitle: new Date('2023-07-30').toLocaleString('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }),
                 imgSrc: '/assets/days/sunday.jpg',
               }}
             />

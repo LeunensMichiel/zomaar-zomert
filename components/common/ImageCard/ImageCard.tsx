@@ -1,15 +1,15 @@
 import { useUI } from '@lib/hooks';
-import { Artist as ArtistType } from '@lib/models';
+import { IImageCard } from '@lib/models';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
 
 import { TexturedImage } from '..';
-import styles from './Artist.module.scss';
+import styles from './ImageCard.module.scss';
 
 type Props = {
-  artist: ArtistType;
-  isDateCard?: boolean;
+  data: IImageCard;
+  playAnimation?: boolean;
   opensModal?: boolean;
 };
 
@@ -61,13 +61,13 @@ const pathMotion = {
   },
 };
 
-export const Artist = forwardRef<HTMLAnchorElement, Props>(
-  ({ artist, opensModal = false, isDateCard = false, ...props }, ref) => {
+export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
+  ({ data, opensModal = false, playAnimation, ...props }, ref) => {
     const { openModal, setModalView } = useUI();
 
     const handleArtistModalClick = () => {
       setModalView('ARTIST_VIEW', undefined, {
-        artist,
+        data,
       });
       openModal();
     };
@@ -75,21 +75,20 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
     return (
       <motion.a
         className={cn(styles.artist, {
-          [styles.static]: artist.isFiller,
+          [styles.static]: opensModal,
         })}
         ref={ref}
         tabIndex={0}
-        {...(!artist.isFiller && {
+        {...((opensModal || playAnimation) && {
           initial: 'initial',
           whileHover: 'hover',
           whileFocus: 'tap',
           whileTap: 'tap',
           variants: containerMotion,
         })}
-        {...(opensModal &&
-          !artist.isFiller && {
-            onClick: handleArtistModalClick,
-          })}
+        {...(opensModal && {
+          onClick: handleArtistModalClick,
+        })}
         {...props}
       >
         <motion.svg
@@ -100,33 +99,21 @@ export const Artist = forwardRef<HTMLAnchorElement, Props>(
             width="100%"
             height="100%"
             fill="transparent"
-            strokeWidth={artist.isFiller ? '0' : '4'}
+            strokeWidth={opensModal ? '0' : '4'}
             stroke="var(--color-white)"
             variants={pathMotion}
           />
         </motion.svg>
         <div className={styles.artist__inner}>
-          <span className={styles.artist__inner__title}>
-            {isDateCard
-              ? new Date(artist.date).toLocaleString('en-GB', {
-                  weekday: 'long',
-                })
-              : artist.name}
-          </span>
+          <span className={styles.artist__inner__title}>{data.title}</span>
           <span className={styles.artist__inner__subtitle}>
-            {isDateCard
-              ? new Date(artist.date).toLocaleString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })
-              : artist.hour}
+            {data.subtitle}
           </span>
         </div>
-        <TexturedImage alt={artist.name} src={artist.imgSrc} />
+        <TexturedImage alt={data.title} src={data.imgSrc} />
       </motion.a>
     );
   }
 );
 
-Artist.displayName = 'Artist';
+ImageCard.displayName = 'Artist';

@@ -1,4 +1,4 @@
-import { Artist, Layout } from '@components/common';
+import { ImageCard, Layout } from '@components/common';
 import { Button, Spinner } from '@components/ui';
 import { ZZ_DATES } from '@lib/models';
 import cn from 'classnames';
@@ -147,7 +147,16 @@ const LineUpPage = () => {
               >
                 {filteredArtists.map((artist) => (
                   <motion.div variants={itemVariants} key={artist.id}>
-                    <Artist artist={artist} opensModal />
+                    <ImageCard
+                      data={{
+                        imgSrc: artist.imgSrc,
+                        title: artist.name,
+                        subtitle: artist.hour,
+                        date: artist.date,
+                        description: artist.description,
+                      }}
+                      opensModal={!artist.isFiller}
+                    />
                   </motion.div>
                 ))}
               </motion.div>
