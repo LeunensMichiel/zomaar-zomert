@@ -25,7 +25,7 @@ export const Carousel: FC<CarouselProps> = ({
 }) => {
   return (
     <div className={styles.root}>
-      <Marquee direction={direction} speed={speed}>
+      <Marquee direction={direction} speed={speed} gradient={false}>
         {slides?.map((slide) => (
           <img
             src={slide.url}
