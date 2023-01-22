@@ -1,6 +1,5 @@
 import { Layout } from '@components/common';
 import cn from 'classnames';
-import Image from 'next/future/image';
 import { NextSeo } from 'next-seo';
 
 import styles from './styles/about.module.scss';
@@ -31,10 +30,8 @@ const HistoryPage = () => {
           organisation around our project in 2012. This way, the existence and
           sustainability of the project was assured.
         </p>
-        <Image
+        <img
           src="/assets/slides/slide-9.jpg"
-          width={1080}
-          height={1080}
           alt="The Zomaar Zomert Crew"
           className={styles.image}
         />
