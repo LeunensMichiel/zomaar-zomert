@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { motion } from 'framer-motion';
-import { VFC } from 'react';
+import { FC } from 'react';
 
 import NavItem from './NavItem';
 import styles from './NavItems.module.scss';
@@ -10,7 +10,7 @@ type NavItemsProps = {
   isTransparent?: boolean;
 };
 
-const NavItems: VFC<NavItemsProps> = ({
+const NavItems: FC<NavItemsProps> = ({
   navDrawerOpen = false,
   isTransparent = false,
 }) => (

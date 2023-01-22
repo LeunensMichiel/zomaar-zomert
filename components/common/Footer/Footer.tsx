@@ -92,123 +92,136 @@ const Footer: VFC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2022-07-29',
+                  date: '2023-07-28',
                 },
               }}
               passHref
+              className={styles.footer__block__link}
             >
-              <a className={styles.footer__block__link}>Friday</a>
+              Friday
             </Link>
             <Link
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2022-07-30',
+                  date: '2023-07-29',
                 },
               }}
               passHref
+              className={styles.footer__block__link}
             >
-              <a className={styles.footer__block__link}>Saturday</a>
+              Saturday
             </Link>
             <Link
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2022-07-31',
+                  date: '2023-07-30',
                 },
               }}
               passHref
+              className={styles.footer__block__link}
             >
-              <a className={styles.footer__block__link}>Sunday</a>
+              Sunday
             </Link>
           </div>
           <div className={styles.footer__block}>
             <span className={styles.footer__block__title}>
               Want to know more?
             </span>
-            <Link href="/history" passHref>
-              <a className={styles.footer__block__link}>History</a>
+            <Link
+              href="/history"
+              passHref
+              className={styles.footer__block__link}
+            >
+              History
             </Link>
             {/* <Link href="/partners" passHref>
-              <a className={styles.footer__block__link}>Our partners</a>
-            </Link> */}
-            <Link href="/menu" passHref>
-              <a className={styles.footer__block__link}>Menu</a>
+            <a className={styles.footer__block__link}>Our partners</a>
+          </Link> */}
+            <Link href="/menu" passHref className={styles.footer__block__link}>
+              Menu
             </Link>
-            <Link href="/terms-and-conditions" passHref>
-              <a className={styles.footer__block__link}>Terms and conditions</a>
+            <Link
+              href="/terms-and-conditions"
+              passHref
+              className={styles.footer__block__link}
+            >
+              Terms and conditions
             </Link>
           </div>
           <div className={styles.footer__block}>
             <span className={styles.footer__block__title}>Contact</span>
-            <Link href="/info" passHref>
-              <a className={styles.footer__block__link}>
-                Sign up for activities
-              </a>
+            <Link href="/info" passHref className={styles.footer__block__link}>
+              Sign up for activities
             </Link>
-            <Link href="/contact" passHref>
-              <a className={styles.footer__block__link}>Contact us</a>
+            <Link
+              href="/contact"
+              passHref
+              className={styles.footer__block__link}
+            >
+              Contact us
             </Link>
           </div>
         </div>
-        <div className={cn(styles.partners, 'container')}>
-          <img src="/assets/sponsors/pepsi-max-white.svg" alt="pepsi-max" />
-          <img
-            src="/assets/sponsors/nationale-loterij-white.svg"
-            alt="nationale-loterij"
-          />
-          <img src="/assets/sponsors/crokaert-white.svg" alt="crokaert" />
-          <img src="/assets/sponsors/megavolt-white.svg" alt="megavolt" />
-          <img src="/assets/sponsors/eagleair-white.svg" alt="eagle eair" />
-          <img src="/assets/sponsors/callebaut-white.svg" alt="callebaut" />
-          <img src="/assets/sponsors/belfius-white.svg" alt="belfius" />
-          <img src="/assets/sponsors/bamboe-white.svg" alt="bamboe-frit" />
-          <img
-            className={styles.scale_down}
-            src="/assets/sponsors/dilbeek-white.svg"
-            alt="dilbeek"
-          />
-          <img src="/assets/sponsors/edr-white.svg" alt="edr" />
-          <img
-            className={styles.scale_up}
-            src="/assets/sponsors/moens-white.svg"
-            alt="moens"
-          />
-          <img
-            src="/assets/sponsors/timmermans-text-white.svg"
-            alt="timmermans"
-          />
-          <img src="/assets/sponsors/elpers-white.svg" alt="elpers" />
-          <img src="/assets/sponsors/wynant-white.svg" alt="wynant" />
-          <img src="/assets/sponsors/lammens-white.svg" alt="lammens" />
-          <img
-            src="/assets/sponsors/itterplastiek-white.svg"
-            alt="itterplastiek"
-          />
-          <img src="/assets/sponsors/cameleon-white.svg" alt="cameleon" />
-          <img src="/assets/sponsors/optiek-trap-white.svg" alt="optiek-trap" />
-          <img
-            src="/assets/sponsors/explosion-white.svg"
-            alt="discobar explosion"
-          />
-          <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
-          <img src="/assets/sponsors/erkermann-white.svg" alt="ekkermann" />
-          <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
-          <img src="/assets/sponsors/limbourg-white.svg" alt="limbourg" />
-          <img
-            className={styles.scale_down}
-            src="/assets/sponsors/carrosserie-jans-white.svg"
-            alt="carrosserie-jans"
-          />
-          <img
-            src="/assets/sponsors/vlaams-brabant-white.svg"
-            alt="vlaams-brabant"
-          />
-        </div>
+        {/* <div className={cn(styles.partners, 'container')}>
+        <img src="/assets/sponsors/pepsi-max-white.svg" alt="pepsi-max" />
+        <img
+          src="/assets/sponsors/nationale-loterij-white.svg"
+          alt="nationale-loterij"
+        />
+        <img src="/assets/sponsors/crokaert-white.svg" alt="crokaert" />
+        <img src="/assets/sponsors/megavolt-white.svg" alt="megavolt" />
+        <img src="/assets/sponsors/eagleair-white.svg" alt="eagle eair" />
+        <img src="/assets/sponsors/callebaut-white.svg" alt="callebaut" />
+        <img src="/assets/sponsors/belfius-white.svg" alt="belfius" />
+        <img src="/assets/sponsors/bamboe-white.svg" alt="bamboe-frit" />
+        <img
+          className={styles.scale_down}
+          src="/assets/sponsors/dilbeek-white.svg"
+          alt="dilbeek"
+        />
+        <img src="/assets/sponsors/edr-white.svg" alt="edr" />
+        <img
+          className={styles.scale_up}
+          src="/assets/sponsors/moens-white.svg"
+          alt="moens"
+        />
+        <img
+          src="/assets/sponsors/timmermans-text-white.svg"
+          alt="timmermans"
+        />
+        <img src="/assets/sponsors/elpers-white.svg" alt="elpers" />
+        <img src="/assets/sponsors/wynant-white.svg" alt="wynant" />
+        <img src="/assets/sponsors/lammens-white.svg" alt="lammens" />
+        <img
+          src="/assets/sponsors/itterplastiek-white.svg"
+          alt="itterplastiek"
+        />
+        <img src="/assets/sponsors/cameleon-white.svg" alt="cameleon" />
+        <img src="/assets/sponsors/optiek-trap-white.svg" alt="optiek-trap" />
+        <img
+          src="/assets/sponsors/explosion-white.svg"
+          alt="discobar explosion"
+        />
+        <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
+        <img src="/assets/sponsors/erkermann-white.svg" alt="ekkermann" />
+        <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
+        <img src="/assets/sponsors/limbourg-white.svg" alt="limbourg" />
+        <img
+          className={styles.scale_down}
+          src="/assets/sponsors/carrosserie-jans-white.svg"
+          alt="carrosserie-jans"
+        />
+        <img
+          src="/assets/sponsors/vlaams-brabant-white.svg"
+          alt="vlaams-brabant"
+        />
+      </div> */}
         <div className={cn('container')}>
           <span className={cn(styles.copy)}>
-            ©{new Date().getFullYear()} Zomaar Zomert - Design by Floris -
-            Development by Michiel Leunens
+            ©{new Date().getFullYear()} Zomaar Zomert - Branding by FVB Design -
+            Development & design by Michiel Leunens
           </span>
         </div>
       </footer>

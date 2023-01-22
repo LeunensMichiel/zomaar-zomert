@@ -1,89 +1,83 @@
-import { Artist, Carousel, Countdown, Layout } from '@components/common';
+import { Artist, Carousel, Layout } from '@components/common';
 import { Triangle } from '@components/icons';
-import ChevronRight from '@components/icons/Chevron';
-import { Button, Logo } from '@components/ui';
+// import ChevronRight from '@components/icons/Chevron';
+import { Logo } from '@components/ui';
 import cn from 'classnames';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import ReactPlayer from 'react-player';
+import { NextSeo } from 'next-seo';
 
-import slide1 from '../public/assets/slides/slide-1.jpg';
-import slide2 from '../public/assets/slides/slide-2.jpg';
-import slide3 from '../public/assets/slides/slide-3.jpg';
-import slide4 from '../public/assets/slides/slide-4.jpg';
-import slide5 from '../public/assets/slides/slide-5.jpg';
-import slide6 from '../public/assets/slides/slide-6.jpg';
-import slide7 from '../public/assets/slides/slide-7.jpg';
-import slide8 from '../public/assets/slides/slide-8.jpg';
-import slide9 from '../public/assets/slides/slide-9.jpg';
-import slide10 from '../public/assets/slides/slide-10.jpg';
-import slide11 from '../public/assets/slides/slide-11.jpg';
-import slide12 from '../public/assets/slides/slide-12.jpg';
-import slide13 from '../public/assets/slides/slide-13.jpg';
-import slide14 from '../public/assets/slides/slide-14.jpg';
 import styles from './styles/index.module.scss';
+
+const Countdown = dynamic(
+  () =>
+    import('../components/common/Countdown/Countdown').then(
+      (mod) => mod.Countdown
+    ),
+  {
+    ssr: false,
+  }
+);
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 const slides = [
   {
     alt: 'Our zz banner in the field',
-    url: slide1,
+    url: '/assets/slides/slide-1.jpg',
   },
   {
-    alt: 'a beer',
-    url: slide2,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-2.jpg',
   },
   {
-    alt: 'a game of petanque',
-    url: slide3,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-3.jpg',
   },
   {
-    alt: 'A crowd going crazy',
-    url: slide4,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-4.jpg',
   },
   {
-    alt: 'zomaar zomert by night',
-    url: slide5,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-5.jpg',
   },
   {
-    alt: 'A crowd going crazy 2',
-    url: slide6,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-6.jpg',
   },
   {
-    alt: 'our logo cut out in cardboard',
-    url: slide7,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-7.jpg',
   },
   {
-    alt: 'the organizers',
-    url: slide8,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-8.jpg',
   },
   {
-    alt: 'hot dogs on the field',
-    url: slide9,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-9.jpg',
   },
   {
-    alt: 'a wide shot of our tent',
-    url: slide10,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-10.jpg',
   },
   {
-    alt: 'A summers day view',
-    url: slide11,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-11.jpg',
   },
   {
-    alt: 'An artist performing at ZZ',
-    url: slide12,
-  },
-  {
-    alt: 'A summers day view',
-    url: slide13,
-  },
-  {
-    alt: 'Bikers on our zomaarbike event',
-    url: slide14,
+    alt: 'Our zz banner in the field',
+    url: '/assets/slides/slide-12.jpg',
   },
 ];
 
 const Home = () => {
   return (
     <>
+      <NextSeo
+        title={`Zomaar Zomert • ${new Date().getFullYear()}`}
+        titleTemplate="%s"
+      />
       <section className={cn(styles.landing)}>
         <video
           playsInline
@@ -98,9 +92,11 @@ const Home = () => {
         <div className={cn(styles.landing__inner, 'container')}>
           <Logo variant="full" className={styles.logo} />
           <span className={styles.date}>
-            <span>25</span>
+            <span>28</span>
             <Triangle />
-            <span>27 JULY 2022</span>
+            <span>29</span>
+            <Triangle />
+            <span>30 JULY 2023</span>
           </span>
         </div>
         <img
@@ -118,70 +114,73 @@ const Home = () => {
             href={{
               pathname: '/line-up',
               query: {
-                date: '2022-07-29',
+                date: '2023-07-28',
               },
             }}
             passHref
+            legacyBehavior
+          >
+            <Artist
+              isDateCard
+              artist={{
+                id: 1,
+                name: 'Friday',
+                date: '2023-07-28',
+                isFiller: false,
+                hour: '16:00 - 04:00',
+                description: '',
+                imgSrc: '/assets/days/friday.jpg',
+              }}
+            />
+          </Link>
+          <Link
+            href={{
+              pathname: '/line-up',
+              query: {
+                date: '2023-07-29',
+              },
+            }}
+            passHref
+            legacyBehavior
+          >
+            <Artist
+              isDateCard
+              artist={{
+                id: 2,
+                name: 'Saturday',
+                date: '2023-07-29',
+                isFiller: false,
+                hour: '12:00 - 04:00',
+                description: '',
+                imgSrc: '/assets/days/saturday.jpg',
+              }}
+            />
+          </Link>
+          <Link
+            href={{
+              pathname: '/line-up',
+              query: {
+                date: '2023-07-30',
+              },
+            }}
+            passHref
+            legacyBehavior
           >
             <Artist
               isDateCard
               artist={{
                 id: 3,
-                name: 'Avalonn',
-                date: '2022-07-29',
+                name: 'Sunday',
+                date: '2023-07-30',
                 isFiller: false,
-                hour: '00:00 - 04:00',
+                hour: '11:00 - 23:00',
                 description: '',
-                imgSrc: '/assets/artists/avalonn.jpg',
-              }}
-            />
-          </Link>
-          <Link
-            href={{
-              pathname: '/line-up',
-              query: {
-                date: '2022-07-30',
-              },
-            }}
-            passHref
-          >
-            <Artist
-              isDateCard
-              artist={{
-                id: 9,
-                name: 'Uncle Phil',
-                date: '2022-07-30',
-                isFiller: false,
-                hour: '22:00 - 23:30',
-                description: '',
-                imgSrc: '/assets/artists/uncle_phil.jpg',
-              }}
-            />
-          </Link>
-          <Link
-            href={{
-              pathname: '/line-up',
-              query: {
-                date: '2022-07-31',
-              },
-            }}
-            passHref
-          >
-            <Artist
-              isDateCard
-              artist={{
-                id: 19,
-                name: 'Zomaar Quiz',
-                date: '2022-07-31',
-                isFiller: false,
-                hour: '19:30 - 22:00',
-                description: '',
-                imgSrc: '/assets/artists/quiz.jpg',
+                imgSrc: '/assets/days/sunday.jpg',
               }}
             />
           </Link>
         </div>
-        <div className={styles.buttons}>
+        {/* <div className={styles.buttons}>
           <Button
             as="a"
             href="https://forms.gle/pPBDp316unZQNzHv6"
@@ -204,7 +203,7 @@ const Home = () => {
           >
             Sign up — Paella
           </Button>
-        </div>
+        </div> */}
       </section>
       <section className={cn(styles.aftermovie__root)}>
         <div className={cn('container py-container')}>
@@ -213,6 +212,7 @@ const Home = () => {
               <ReactPlayer
                 stopOnUnmount
                 width={'100%'}
+                controls
                 height={'100%'}
                 url="https://www.youtube.com/embed/G2s9r_BohUE"
               />

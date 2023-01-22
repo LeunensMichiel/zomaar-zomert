@@ -1,4 +1,4 @@
-export const ZZ_DATES = ['2022-07-29', '2022-07-30', '2022-07-31'];
+export const ZZ_DATES = ['2023-07-28', '2023-07-29', '2023-07-30'];
 
 export type Artist = {
   id: number;

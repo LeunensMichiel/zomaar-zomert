@@ -1,15 +1,21 @@
-import Image, { StaticImageData } from 'next/future/image';
-import { VFC } from 'react';
-import { HorizontalTicker } from 'react-infinite-ticker';
+import dynamic from 'next/dynamic';
+import { FC } from 'react';
 import { TickerProps } from 'react-infinite-ticker/dist/TickerProps';
 
 import styles from './Carousel.module.scss';
 
+const HorizontalTicker = dynamic(
+  () => import('react-infinite-ticker').then((mod) => mod.HorizontalTicker),
+  {
+    ssr: false,
+  }
+);
+
 type CarouselProps = {
-  slides: Array<{ url: string | StaticImageData; alt?: string }>;
+  slides: Array<{ url: string; alt?: string }>;
 } & TickerProps;
 
-export const Carousel: VFC<CarouselProps> = ({
+export const Carousel: FC<CarouselProps> = ({
   slides,
   duration = 25000,
   ...props
@@ -18,13 +24,11 @@ export const Carousel: VFC<CarouselProps> = ({
     <div className={styles.root}>
       <HorizontalTicker duration={duration} {...props}>
         {slides?.map((slide) => (
-          <Image
+          <img
             src={slide.url}
-            key={slide.alt}
+            key={slide.url}
             className={styles.slide}
             alt={slide.alt}
-            quality={60}
-            placeholder="blur"
           />
         ))}
       </HorizontalTicker>

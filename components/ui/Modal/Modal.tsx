@@ -1,6 +1,6 @@
 import { CloseButton } from '@components/common';
 import { useClickOutside } from '@lib/hooks';
-import Portal from '@reach/portal';
+import { Portal } from '@reach/portal';
 import {
   BodyScrollOptions,
   clearAllBodyScrollLocks,
@@ -9,7 +9,14 @@ import {
 } from 'body-scroll-lock';
 import cn from 'classnames';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { FC, MutableRefObject, useCallback, useEffect, useRef } from 'react';
+import {
+  FC,
+  MutableRefObject,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 import FocusLock from 'react-focus-lock';
 
 import styles from './Modal.module.scss';
@@ -20,6 +27,7 @@ type ModalProps = {
   title?: string;
   container?: 'container' | 'page';
   onClose(): void;
+  children?: ReactNode;
 };
 
 const BODY_SCROLL_OPTIONS: BodyScrollOptions = {

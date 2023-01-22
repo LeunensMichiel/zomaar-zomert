@@ -18,7 +18,7 @@ const Custom404 = () => {
             Looks like you entered a page that does not exist. Please contact us
             if this should not be the case.
           </p>
-          <Link passHref href="/">
+          <Link passHref href="/" legacyBehavior>
             <Button variant="primary" as="a" iconRight={<Chevron />}>
               Return to homepage
             </Button>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './Countdown.module.scss';
 
-const countDownDate = new Date('Jul 25, 2023 16:00:00').getTime();
+const countDownDate = new Date('Jul 28, 2023 16:00:00').getTime();
 
 const getReturnValues = (countDown: number) => {
   // calculate time left

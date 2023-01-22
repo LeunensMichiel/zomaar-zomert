@@ -67,7 +67,7 @@
 }
 
 .date {
-  font-size: var(--font-size-jumbo);
+  font-size: var(--font-size-subtitle);
   font-weight: 700;
   margin-top: 2rem;
   font-family: var(--font-family-alt);
@@ -80,11 +80,25 @@
     color: var(--color-yellow-3);
   }
 
+  span:nth-of-type(2),
+  svg:nth-of-type(2) {
+    display: none;
+  }
+
+  @include mixins.breakpoint-up(xs) {
+    font-size: var(--font-size-jumbo);
+  }
+
   @include mixins.breakpoint-up(md) {
     margin-top: 3rem;
     svg {
       width: 3rem;
       height: auto;
+    }
+
+    span:nth-of-type(2),
+    svg:nth-of-type(2) {
+      display: inline;
     }
   }
 }

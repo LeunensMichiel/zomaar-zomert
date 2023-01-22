@@ -1,10 +1,9 @@
 import cn from 'classnames';
-import Image, { ImageProps } from 'next/future/image';
-import { CSSProperties, VFC } from 'react';
+import { CSSProperties, ImgHTMLAttributes, VFC } from 'react';
 
 import styles from './ImageWithAspectRatio.module.scss';
 
-type Props = ImageProps & {
+type Props = ImgHTMLAttributes<HTMLImageElement> & {
   aspectRatio: string;
   wrapperClassName?: string;
   alt: string;
@@ -28,7 +27,7 @@ const ImageWithAspectRatio: VFC<Props> = ({
       className={cn(styles.imgContainer, wrapperClassName)}
       style={containerStyle}
     >
-      <Image src={src} alt={alt} quality={90} {...rest} />
+      <img src={src} alt={alt} {...rest} />
     </div>
   );
 };

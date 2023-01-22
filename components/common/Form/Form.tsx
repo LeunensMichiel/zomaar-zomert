@@ -5,6 +5,7 @@ import {
   ComponentPropsWithRef,
   FC,
   forwardRef,
+  ReactNode,
   useCallback,
   useState,
 } from 'react';
@@ -36,6 +37,7 @@ function encode(formName: string, values: FormValues) {
 
 type FormProps = {
   wrapperClassName?: string;
+  children?: ReactNode;
 };
 
 const Form: FC<ComponentPropsWithRef<'form'> & FormProps> = forwardRef<

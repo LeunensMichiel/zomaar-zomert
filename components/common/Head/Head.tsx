@@ -8,12 +8,12 @@ const Head: VFC = () => {
   return (
     <>
       <DefaultSeo
-        title="Zomaar Zomert 2022"
+        title={`Zomaar Zomert ${new Date().getFullYear()}`}
+        defaultTitle={`Zomaar Zomert ${new Date().getFullYear()}`}
         titleTemplate="%s | Zomaar Zomert"
-        defaultTitle="Zomaar Zomert 2022"
         description="Zomaar Zomert is a free festival in the heart of Itterbeek, at the Sint-Anna church. The whole last weekend of July you can enjoy fresh drinks, numerous performances & activities. You're sure to have an extraordinary summer weekend. ☀🚀"
         openGraph={{
-          title: 'Zomaar Zomert 2022',
+          title: `Zomaar Zomert ${new Date().getFullYear()}`,
           description:
             "Zomaar Zomert is a free festival in the heart of Itterbeek, at the Sint-Anna church. The whole last weekend of July you can enjoy fresh drinks, numerous performances & activities. You're sure to have an extraordinary summer weekend. ☀🚀",
           type: 'website',

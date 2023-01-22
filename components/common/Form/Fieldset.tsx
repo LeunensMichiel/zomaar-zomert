@@ -1,6 +1,6 @@
 import { Alert } from '@components/icons';
 import cn from 'classnames';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { FieldError } from 'react-hook-form';
 
 import styles from './Fieldset.module.scss';
@@ -10,6 +10,7 @@ type FieldSetProps = {
   label: string;
   error?: FieldError;
   colSpan?: 1 | 2 | 3 | 4;
+  children?: ReactNode;
 };
 
 const FieldSet: FC<FieldSetProps> = ({

@@ -30,9 +30,13 @@
 }
 
 .timer__item__number {
-  font-size: var(--font-size-title);
+  font-size: var(--font-size-subtitle);
   display: inline-block;
   min-width: 2ch;
+
+  @include mixins.breakpoint-up(xs) {
+    font-size: var(--font-size-title);
+  }
 }
 
 .timer__item__unit {

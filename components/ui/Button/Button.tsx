@@ -1,11 +1,6 @@
 import { Spinner } from '@components/ui';
 import cn from 'classnames';
-import {
-  ComponentPropsWithoutRef,
-  ComponentPropsWithRef,
-  ElementType,
-  ReactNode,
-} from 'react';
+import { ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
 import styles from './Button.module.scss';
 
@@ -28,8 +23,8 @@ interface ButtonCustomProps<C extends React.ElementType> {
   loading?: boolean;
   disabled?: boolean;
   stretched?: boolean;
-  iconLeft?: ComponentPropsWithoutRef<'svg'> | string;
-  iconRight?: ComponentPropsWithoutRef<'svg'> | string;
+  iconLeft?: ReactNode | string;
+  iconRight?: ReactNode | string;
 }
 
 export type ButtonProps<C extends ElementType> = ButtonCustomProps<C> &

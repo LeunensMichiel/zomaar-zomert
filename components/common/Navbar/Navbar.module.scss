@@ -7,7 +7,6 @@
   z-index: var(--z-high);
   width: 100%;
   background-color: var(--color-bg-primary);
-  color: var(--color-text-brand);
   @include mixins.transition(background-color, color);
 
   &.headerTransparent {

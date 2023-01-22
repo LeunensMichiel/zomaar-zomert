@@ -1,5 +1,4 @@
 import { Artist } from '@lib/models';
-import Image from 'next/future/image';
 import { VFC } from 'react';
 
 import styles from './ArtistModalView.module.scss';
@@ -12,14 +11,7 @@ export const ArtistModalView: VFC<Props> = ({ artist }) => {
   return (
     <div className={styles.root}>
       <div className={styles.image__container}>
-        <Image
-          width={1080}
-          height={1080}
-          quality={20}
-          className={styles.image}
-          src={artist.imgSrc}
-          alt={artist.name}
-        />
+        <img className={styles.image} src={artist.imgSrc} alt={artist.name} />
         <picture>
           <source
             srcSet="/assets/tear-5-vertical.svg"

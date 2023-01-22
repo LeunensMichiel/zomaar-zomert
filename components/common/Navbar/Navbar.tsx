@@ -7,7 +7,7 @@ import {
 } from 'body-scroll-lock';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 
 import { MenuButton } from '../IconButtons';
 import styles from './Navbar.module.scss';
@@ -19,6 +19,7 @@ const BODY_SCROLL_OPTIONS: BodyScrollOptions = {
 
 type NavbarProps = {
   isTransparent?: boolean;
+  children?: ReactNode;
 };
 
 const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {

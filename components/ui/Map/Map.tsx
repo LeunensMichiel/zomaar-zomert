@@ -1,6 +1,6 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import Map, { Marker } from 'react-map-gl';
 
 type CustomMapProps = {
@@ -8,6 +8,7 @@ type CustomMapProps = {
   longitude?: number;
   zoom?: number;
   height?: number | string;
+  children?: ReactNode;
 };
 
 const CustomMap: FC<CustomMapProps> = ({

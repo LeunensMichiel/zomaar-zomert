@@ -12,7 +12,7 @@ const Logo = forwardRef<SVGSVGElement, LogoProps>(
   ({ onClick, className, variant = 'icon', ...props }, ref) => {
     if (variant === 'icon') {
       return (
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <svg
             version="1.1"
             id="Layer_2"
@@ -51,7 +51,7 @@ const Logo = forwardRef<SVGSVGElement, LogoProps>(
       );
     }
     return (
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <svg
           version="1.1"
           id="Layer_2"

@@ -55,7 +55,7 @@ const LineUpPage = () => {
 
   useEffect(() => {
     if (!isReady) return;
-    setCurrentDate((query?.date as string) ?? '2022-07-29');
+    setCurrentDate((query?.date as string) ?? '2023-07-28');
   }, [isReady, query?.date]);
 
   const handleDaySelect = useCallback(
@@ -80,11 +80,11 @@ const LineUpPage = () => {
     <>
       <NextSeo
         title="Line-Up"
-        description="Zomaar Zomert takes place during the last weekend of July. From Friday to Sunday, we provide numerous artists and fringe activities to make it a memorable summer day. This year, Dimitri Wouters, De Romeo's, Avalonn, Creator and Uncle Phil, among others, will be present."
+        description="Zomaar Zomert takes place during the last weekend of July. From Friday to Sunday, we provide numerous artists and fringe activities to make it a memorable summer day."
         openGraph={{
           title: 'Line-Up',
           description:
-            "Zomaar Zomert takes place during the last weekend of July. From Friday to Sunday, we provide numerous artists and fringe activities to make it a memorable summer day. This year, Dimitri Wouters, De Romeo's, Avalonn, Creator and Uncle Phil, among others, will be present.",
+            'Zomaar Zomert takes place during the last weekend of July. From Friday to Sunday, we provide numerous artists and fringe activities to make it a memorable summer day.',
         }}
       />
       <section className={cn(styles.root, 'container py-container--sm')}>
@@ -93,7 +93,7 @@ const LineUpPage = () => {
         ) : (
           <>
             <header>
-              <AnimatePresence exitBeforeEnter>
+              <AnimatePresence mode="wait">
                 <motion.div
                   key={currentDate ?? 'empty'}
                   initial={{ x: 10, opacity: 0 }}
@@ -136,7 +136,7 @@ const LineUpPage = () => {
                 </Button>
               ))}
             </div>
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={currentDate ?? 'empty'}
                 variants={containerVariants}

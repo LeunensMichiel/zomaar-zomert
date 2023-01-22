@@ -1,6 +1,6 @@
 import { Layout, TexturedImage } from '@components/common';
-import ChevronRight from '@components/icons/Chevron';
-import { Button, Card } from '@components/ui';
+// import ChevronRight from '@components/icons/Chevron';
+import { Card } from '@components/ui';
 import Map from '@components/ui/Map';
 import { NextSeo } from 'next-seo';
 import React from 'react';
@@ -135,33 +135,34 @@ const InfoPage = () => {
               <strong>Registration</strong> for the petanque game or the paella
               stand is <strong>required.</strong> You can sign up here:
               <br />
-              <div className={styles.buttons}>
-                <Button
-                  as="a"
-                  href="https://forms.gle/pPBDp316unZQNzHv6"
-                  target="_blank"
-                  size="xs"
-                  rel="noreferrer noopener"
-                  variant="primary"
-                  outlined
-                  iconRight={<ChevronRight />}
-                >
-                  Sign up — Petanque
-                </Button>
-                <Button
-                  as="a"
-                  href="https://forms.gle/gsZmucuve7tHacQd8"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  variant="primary"
-                  outlined
-                  size="xs"
-                  iconRight={<ChevronRight />}
-                >
-                  Sign up — Paella
-                </Button>
-              </div>
             </p>
+            <div className={styles.buttons}>
+              (Registration to be announced at a later date)
+              {/* <Button
+                as="a"
+                href="https://forms.gle/pPBDp316unZQNzHv6"
+                target="_blank"
+                size="xs"
+                rel="noreferrer noopener"
+                variant="primary"
+                outlined
+                iconRight={<ChevronRight />}
+              >
+                Sign up — Petanque
+              </Button>
+              <Button
+                as="a"
+                href="https://forms.gle/gsZmucuve7tHacQd8"
+                target="_blank"
+                rel="noreferrer noopener"
+                variant="primary"
+                outlined
+                size="xs"
+                iconRight={<ChevronRight />}
+              >
+                Sign up — Paella
+              </Button> */}
+            </div>
           </Card>
           <TexturedImage src="/assets/slides/slide-10.jpg" alt="A sausage" />
         </Masonry>
