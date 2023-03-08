@@ -14,10 +14,10 @@ export const ImageCardModalView: FC<Props> = ({ data }) => {
         <img className={styles.image} src={data.imgSrc} alt={data.title} />
         <picture>
           <source
-            srcSet="/assets/tear-5-vertical.svg"
+            srcSet="/assets/tear-7-vertical.svg"
             media="(min-width: 1024px)"
           />
-          <img src="/assets/tear-5.svg" alt="" className={styles.tear} />
+          <img src="/assets/tear-7.svg" alt="" className={styles.tear} />
         </picture>
       </div>
       <div className={styles.body}>

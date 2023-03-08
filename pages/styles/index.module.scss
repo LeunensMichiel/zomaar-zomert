@@ -103,28 +103,37 @@
   }
 }
 
-.tear {
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  z-index: 10;
-  width: 120%;
-  object-fit: cover;
-  object-position: 50% 90%;
+.countdown {
+  z-index: 11;
+  position: relative;
+  margin-top: 1rem;
+
+  @include mixins.breakpoint-up(xl) {
+    margin-top: 0;
+  }
 }
 
-.countdown {
-  padding-top: 1.5rem;
+.below__countdown {
+  position: relative;
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+
+  @include mixins.breakpoint-up(md) {
+    padding-bottom: 9.5rem;
+    margin-top: 5rem;
+  }
+
+  @include mixins.breakpoint-up(xl) {
+    padding-bottom: 9.625rem;
+  }
 }
 
 .artists {
-  margin-top: 5rem;
   display: grid;
   gap: 1.5rem;
 
   @include mixins.breakpoint-up(lg) {
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 9rem;
   }
 }
 
@@ -145,6 +154,7 @@
 .aftermovie__root {
   background-color: var(--color-orange-2);
   width: 100%;
+  padding-top: 2.5rem !important;
 }
 
 .aftermovie__container {
@@ -162,4 +172,9 @@
   width: 100%;
   position: absolute;
   z-index: 1;
+}
+
+.photo-row {
+  position: relative;
+  margin-bottom: 2rem;
 }

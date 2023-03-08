@@ -59,7 +59,7 @@
 .tear {
   position: absolute;
   object-fit: cover;
-  width: 110%;
+  width: 100%;
   left: 0;
   z-index: 3;
   bottom: -2px;
@@ -69,7 +69,7 @@
     bottom: 0;
     right: -2px;
     left: unset;
-    width: unset;
+    width: 144px;
   }
 }
 

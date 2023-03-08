@@ -99,93 +99,94 @@ const Home = () => {
           </span>
         </div>
         <img
-          className={styles.tear}
-          src="/assets/tear.svg"
+          className={cn('tear', 'tear--bottom')}
+          src="/assets/tear-1.svg"
           alt="paper tear element"
         />
       </section>
-      <section className={cn('container py-container', styles.countdown)}>
-        <div>
-          <Countdown />
-        </div>
-        <div className={styles.artists}>
-          <Link
-            href={{
-              pathname: '/line-up',
-              query: {
-                date: '2023-07-28',
-              },
-            }}
-            passHref
-            legacyBehavior
-          >
-            <ImageCard
-              playAnimation
-              data={{
-                subtitle: new Date('2023-07-28').toLocaleString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                }),
-                title: new Date('2023-07-28').toLocaleString('en-GB', {
-                  weekday: 'long',
-                }),
-                imgSrc: '/assets/days/friday.jpg',
+      <section className={cn(styles.countdown, 'container')}>
+        <Countdown />
+      </section>
+      <section className={cn(styles.below__countdown)}>
+        <div className="container">
+          <div className={styles.artists}>
+            <Link
+              href={{
+                pathname: '/line-up',
+                query: {
+                  date: '2023-07-28',
+                },
               }}
-            />
-          </Link>
-          <Link
-            href={{
-              pathname: '/line-up',
-              query: {
-                date: '2023-07-29',
-              },
-            }}
-            passHref
-            legacyBehavior
-          >
-            <ImageCard
-              playAnimation
-              data={{
-                title: new Date('2023-07-29').toLocaleString('en-GB', {
-                  weekday: 'long',
-                }),
-                subtitle: new Date('2023-07-29').toLocaleString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                }),
-                imgSrc: '/assets/days/saturday.jpg',
+              passHref
+              legacyBehavior
+            >
+              <ImageCard
+                playAnimation
+                data={{
+                  subtitle: new Date('2023-07-28').toLocaleString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }),
+                  title: new Date('2023-07-28').toLocaleString('en-GB', {
+                    weekday: 'long',
+                  }),
+                  imgSrc: '/assets/days/friday.jpg',
+                }}
+              />
+            </Link>
+            <Link
+              href={{
+                pathname: '/line-up',
+                query: {
+                  date: '2023-07-29',
+                },
               }}
-            />
-          </Link>
-          <Link
-            href={{
-              pathname: '/line-up',
-              query: {
-                date: '2023-07-30',
-              },
-            }}
-            passHref
-            legacyBehavior
-          >
-            <ImageCard
-              playAnimation
-              data={{
-                title: new Date('2023-07-30').toLocaleString('en-GB', {
-                  weekday: 'long',
-                }),
-                subtitle: new Date('2023-07-30').toLocaleString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                }),
-                imgSrc: '/assets/days/sunday.jpg',
+              passHref
+              legacyBehavior
+            >
+              <ImageCard
+                playAnimation
+                data={{
+                  title: new Date('2023-07-29').toLocaleString('en-GB', {
+                    weekday: 'long',
+                  }),
+                  subtitle: new Date('2023-07-29').toLocaleString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }),
+                  imgSrc: '/assets/days/saturday.jpg',
+                }}
+              />
+            </Link>
+            <Link
+              href={{
+                pathname: '/line-up',
+                query: {
+                  date: '2023-07-30',
+                },
               }}
-            />
-          </Link>
-        </div>
-        {/* <div className={styles.buttons}>
+              passHref
+              legacyBehavior
+            >
+              <ImageCard
+                playAnimation
+                data={{
+                  title: new Date('2023-07-30').toLocaleString('en-GB', {
+                    weekday: 'long',
+                  }),
+                  subtitle: new Date('2023-07-30').toLocaleString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }),
+                  imgSrc: '/assets/days/sunday.jpg',
+                }}
+              />
+            </Link>
+          </div>
+          {/* <div className={styles.buttons}>
           <Button
             as="a"
             href="https://forms.gle/pPBDp316unZQNzHv6"
@@ -209,9 +210,15 @@ const Home = () => {
             Sign up — Paella
           </Button>
         </div> */}
+        </div>
+        <img
+          className={cn('tear', 'tear--bottom')}
+          src="/assets/tear-2.svg"
+          alt="paper tear element"
+        />
       </section>
-      <section className={cn(styles.aftermovie__root)}>
-        <div className={cn('container py-container')}>
+      <section className={cn('py-container--sm', styles.aftermovie__root)}>
+        <div className={cn('container')}>
           <div className={cn(styles.aftermovie__container)}>
             <div className={styles.aftermovie}>
               <ReactPlayer
@@ -225,9 +232,19 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="py-container">
+      <section className={cn(styles['photo-row'])}>
+        <img
+          className={cn('tear', 'tear--top')}
+          src="/assets/tear-3.svg"
+          alt="paper tear element"
+        />
         <Carousel speed={20} direction="left" slides={slides.splice(0, 6)} />
         <Carousel speed={10} direction="right" slides={slides.splice(-6)} />
+        <img
+          className={cn('tear', 'tear--bottom')}
+          src="/assets/tear-4.svg"
+          alt="paper tear element"
+        />
       </section>
     </>
   );

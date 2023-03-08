@@ -345,3 +345,19 @@ sup {
 sub {
   vertical-align: sub;
 }
+
+.tear {
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  object-fit: cover;
+
+  &--bottom {
+    bottom: -4px;
+  }
+
+  &--top {
+    top: -4px;
+  }
+}

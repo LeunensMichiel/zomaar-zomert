@@ -2,7 +2,7 @@ import { Facebook, Instagram, Youtube } from '@components/icons';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { VFC } from 'react';
+import { FC } from 'react';
 
 import styles from './Footer.module.scss';
 
@@ -31,7 +31,7 @@ const variants = {
   },
 };
 
-const Footer: VFC = () => {
+const Footer: FC = () => {
   return (
     <>
       <div className={styles.socials}>
@@ -74,14 +74,14 @@ const Footer: VFC = () => {
           </motion.a>
         </div>
         <img
-          src="/assets/tear-2.svg"
+          src="/assets/tear-5.svg"
           alt="paper tear"
-          className={cn(styles.tear, styles['tear--2'])}
+          className={cn('tear', 'tear--top')}
         />
         <img
-          src="/assets/tear-3.svg"
+          src="/assets/tear-6.svg"
           alt="paper tear"
-          className={cn(styles.tear, styles['tear--3'])}
+          className={cn('tear', 'tear--bottom')}
         />
       </div>
       <footer className={cn(styles.footer, 'py-container--sm')}>
