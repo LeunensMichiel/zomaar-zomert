@@ -10,15 +10,11 @@
   padding-bottom: 1rem;
   overflow-y: auto;
   background-color: var(--color-bg-brand);
-  clip-path: circle(0 at calc(100% - 2rem) 2rem);
+  clip-path: circle(0 at -20% 50%);
   transition: clip-path 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 
   &.navContainerOpen {
-    clip-path: circle(200% at 0 0);
-  }
-
-  @include mixins.breakpoint-up(xxl) {
-    clip-path: circle(0 at calc(100% - 10vw) 3.75rem);
+    clip-path: circle(150% at 50% 50%);
   }
 }
 
