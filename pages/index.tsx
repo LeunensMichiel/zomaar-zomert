@@ -108,7 +108,7 @@ const Home = () => {
         <Countdown />
       </section>
       <section className={cn(styles.below__countdown)}>
-        <div className="container">
+        <div className="container py-container--sm">
           <div className={styles.artists}>
             <Link
               href={{
@@ -238,8 +238,8 @@ const Home = () => {
           src="/assets/tear-3.svg"
           alt="paper tear element"
         />
-        <Carousel speed={20} direction="left" slides={slides.splice(0, 6)} />
-        <Carousel speed={10} direction="right" slides={slides.splice(-6)} />
+        <Carousel speed={15} direction="left" slides={slides.splice(0, 6)} />
+        <Carousel speed={5} direction="right" slides={slides.splice(-6)} />
         <img
           className={cn('tear', 'tear--bottom')}
           src="/assets/tear-4.svg"

@@ -36,53 +36,55 @@ const Footer: FC = () => {
     <>
       <div className={styles.socials}>
         <div className={styles.social__items}>
-          <motion.a
-            href="https://facebook.com/zomaarzomert"
-            target="_blank"
-            rel="noreferrer noopener"
-            className={styles.social__item}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            variants={variants}
-          >
-            <Facebook />
-          </motion.a>
-          <motion.a
-            href="https://www.instagram.com/zomaarzomert/"
-            target="_blank"
-            rel="noreferrer noopener"
-            className={styles.social__item}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            variants={variants}
-          >
-            <Instagram />
-          </motion.a>
-          <motion.a
-            href="https://www.youtube.com/watch?v=G2s9r_BohUE"
-            target="_blank"
-            rel="noreferrer noopener"
-            className={styles.social__item}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            variants={variants}
-          >
-            <Youtube />
-          </motion.a>
+          <div className={styles.social__items__inner}>
+            <motion.a
+              href="https://facebook.com/zomaarzomert"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={styles.social__item}
+              initial="initial"
+              whileHover="hover"
+              whileTap="tap"
+              variants={variants}
+            >
+              <Facebook />
+            </motion.a>
+            <motion.a
+              href="https://www.instagram.com/zomaarzomert/"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={styles.social__item}
+              initial="initial"
+              whileHover="hover"
+              whileTap="tap"
+              variants={variants}
+            >
+              <Instagram />
+            </motion.a>
+            <motion.a
+              href="https://www.youtube.com/watch?v=G2s9r_BohUE"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={styles.social__item}
+              initial="initial"
+              whileHover="hover"
+              whileTap="tap"
+              variants={variants}
+            >
+              <Youtube />
+            </motion.a>
+          </div>
+          <img
+            src="/assets/tear-5.svg"
+            alt="paper tear"
+            className={cn('tear', 'tear--top')}
+          />
+          <img
+            src="/assets/tear-6.svg"
+            alt="paper tear"
+            className={cn('tear', 'tear--bottom')}
+          />
         </div>
-        <img
-          src="/assets/tear-5.svg"
-          alt="paper tear"
-          className={cn('tear', 'tear--top')}
-        />
-        <img
-          src="/assets/tear-6.svg"
-          alt="paper tear"
-          className={cn('tear', 'tear--bottom')}
-        />
       </div>
       <footer className={cn(styles.footer, 'py-container--sm')}>
         <div className={cn(styles.footer__nav, 'container')}>

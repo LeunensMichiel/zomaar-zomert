@@ -71,16 +71,11 @@
   min-height: 16vw;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   background-image: url('/assets/footer.jpg');
   background-position: center;
   background-size: cover;
   z-index: 1;
+  position: relative;
 
   &::before {
     bottom: 0;
@@ -94,12 +89,12 @@
     z-index: -1;
     background-color: var(--color-black-fade-50);
     background-image: radial-gradient(
-        rgba(255, 255, 255, 0.5) 1px,
-        rgba(0, 0, 0, 0.25) 0.25px
+        rgba(255, 255, 255, 0.2) 1px,
+        rgba(0, 0, 0, 0.15) 1px
       ),
-      radial-gradient(rgba(255, 255, 255, 0.25) 1px, rgba(0, 0, 0, 0.1) 0.5px);
+      radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
     background-size: 4px 4px;
-    background-position: 0 0, 8px 8px;
+    background-position: 0 0, 2px 2px;
   }
 
   @include mixins.breakpoint-up(xl) {
@@ -108,8 +103,18 @@
   }
 }
 
+.social__items__inner {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .social__item {
   color: white;
+  z-index: 11;
 
   &:hover,
   &:focus {
