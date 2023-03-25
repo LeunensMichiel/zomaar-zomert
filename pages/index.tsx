@@ -1,4 +1,4 @@
-import { Carousel, ImageCard, Layout } from '@components/common';
+import { ImageCard, Layout, Marquee } from '@components/common';
 import { Triangle } from '@components/icons';
 import { Logo } from '@components/ui';
 import cn from 'classnames';
@@ -19,58 +19,58 @@ const Countdown = dynamic(
 );
 const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
-const slides = [
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-1.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-2.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-3.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-4.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-5.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-6.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-7.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-8.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-9.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-10.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-11.jpg',
-  },
-  {
-    alt: 'Our zz banner in the field',
-    url: '/assets/slides/slide-12.jpg',
-  },
-];
-
 const Home = () => {
+  const slides = [
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-1.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-2.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-3.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-4.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-5.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-6.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-7.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-8.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-9.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-10.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-11.jpg',
+    },
+    {
+      alt: 'Our zz banner in the field',
+      url: '/assets/slides/slide-12.jpg',
+    },
+  ];
+
   return (
     <>
       <NextSeo
@@ -238,8 +238,8 @@ const Home = () => {
           src="/assets/tear-3.svg"
           alt="paper tear element"
         />
-        <Carousel speed={15} direction="left" slides={slides.splice(0, 6)} />
-        <Carousel speed={5} direction="right" slides={slides.splice(-6)} />
+        <Marquee speed={20} direction="left" slides={slides.splice(0, 6)} />
+        <Marquee speed={10} direction="right" slides={slides.splice(-6)} />
         <img
           className={cn('tear', 'tear--bottom')}
           src="/assets/tear-4.svg"

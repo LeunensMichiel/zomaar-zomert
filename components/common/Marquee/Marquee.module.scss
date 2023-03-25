@@ -24,8 +24,12 @@
 }
 
 .slide {
-  height: 40vh;
+  height: 25vh;
   width: auto;
   object-fit: cover;
   object-position: center;
+
+  @include mixins.breakpoint-up(md) {
+    height: 40vh;
+  }
 }

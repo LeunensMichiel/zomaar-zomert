@@ -1,4 +1,3 @@
-export { Carousel } from './Carousel';
 export { Countdown } from './Countdown/Countdown';
 export { default as Footer } from './Footer';
 export { default as Form } from './Form';
@@ -7,5 +6,6 @@ export { default as Head } from './Head';
 export * from './IconButtons';
 export { ImageCard } from './ImageCard/ImageCard';
 export { default as Layout } from './Layout';
+export { Marquee } from './Marquee';
 export { default as Navbar } from './Navbar';
 export { TexturedImage } from './TexturedImage/TexturedImage';
