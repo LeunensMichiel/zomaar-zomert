@@ -22,54 +22,66 @@ const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 const Home = () => {
   const slides = [
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-1.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-1.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-2.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-2.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-3.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-3.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-4.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-4.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-5.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-5.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-6.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-6.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-7.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-7.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-8.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-8.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-9.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-9.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-10.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-10.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-11.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-11.webp',
     },
     {
-      alt: 'Our zz banner in the field',
-      url: '/assets/slides/slide-12.jpg',
+      alt: 'carousel image',
+      url: '/assets/slides/slide-12.webp',
+    },
+    {
+      alt: 'carousel image',
+      url: '/assets/slides/slide-13.webp',
+    },
+    {
+      alt: 'carousel image',
+      url: '/assets/slides/slide-14.webp',
     },
   ];
+  const shuffledSlides = slides
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
   return (
     <>
@@ -238,8 +250,16 @@ const Home = () => {
           src="/assets/tear-3.svg"
           alt="paper tear element"
         />
-        <Marquee speed={20} direction="left" slides={slides.splice(0, 6)} />
-        <Marquee speed={10} direction="right" slides={slides.splice(-6)} />
+        <Marquee
+          speed={20}
+          direction="left"
+          slides={shuffledSlides.splice(0, 6)}
+        />
+        <Marquee
+          speed={10}
+          direction="right"
+          slides={shuffledSlides.splice(-6)}
+        />
         <img
           className={cn('tear', 'tear--bottom')}
           src="/assets/tear-4.svg"

@@ -95,7 +95,7 @@ const InfoPage = () => {
               behind.
             </p>
           </Card>
-          <TexturedImage src="/assets/slides/slide-2.jpg" alt="Beer in hand" />
+          <TexturedImage src="/assets/random/terras.jpg" alt="Terras" />
           <Card title="Tickets">
             <p>
               The festival is free! The only thing we ask in return is for you
@@ -120,7 +120,7 @@ const InfoPage = () => {
               nearest ATM is in Itterbeek centre.
             </p>
           </Card>
-          <TexturedImage src="/assets/slides/slide-1.jpg" alt="" />
+          <TexturedImage src="/assets/random/petanque.jpg" alt="" />
           <Card title="Activities">
             <p>
               Each year, we organize tons of activities, like ZomaarBike,
@@ -164,7 +164,7 @@ const InfoPage = () => {
               </Button> */}
             </div>
           </Card>
-          <TexturedImage src="/assets/slides/slide-10.jpg" alt="A sausage" />
+          <TexturedImage src="/assets/random/food.jpg" alt="A sausage" />
         </Masonry>
       </section>
     </>

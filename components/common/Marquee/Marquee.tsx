@@ -31,6 +31,7 @@ export const Marquee: FC<MarqueeProps> = ({
             key={slide.url}
             className={styles.slide}
             alt={slide.alt}
+            loading="lazy"
           />
         ))}
       </FastMarquee>
