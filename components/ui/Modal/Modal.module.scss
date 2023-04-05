@@ -28,10 +28,6 @@
   &:focus {
     outline: none;
   }
-
-  @include mixins.breakpoint-up(lg) {
-    // margin: 0;
-  }
 }
 
 .modalCloseButton {
@@ -39,9 +35,4 @@
   right: 0;
   top: 0;
   z-index: 10;
-  color: var(--color-white);
-
-  @include mixins.breakpoint-up(lg) {
-    color: var(--color-black);
-  }
 }

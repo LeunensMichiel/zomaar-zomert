@@ -20,7 +20,7 @@ const FieldSet: FC<FieldSetProps> = ({
   children,
   error,
 }) => (
-  <fieldset className={cn({ [`col-span-${colSpan}`]: colSpan })}>
+  <fieldset className={cn({ [`col-span-${colSpan}`]: colSpan }, styles.root)}>
     <legend className={cn(styles.fieldSetLabel)}>{label}</legend>
     <div className={cn(styles.fieldSetContainer)}>{children}</div>
     {withFeedback && (

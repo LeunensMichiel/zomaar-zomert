@@ -1,5 +1,6 @@
 {
   "allowEmptyStrings": "false",
+  "defaultNS": "common",
   "locales": ["nl", "fr", "en"],
   "defaultLocale": "nl",
   "pages": {

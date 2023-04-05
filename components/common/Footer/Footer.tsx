@@ -35,7 +35,7 @@ const variants = {
 };
 
 const Footer: FC = () => {
-  const { t, lang } = useTranslation('home');
+  const { t, lang } = useTranslation();
   return (
     <>
       <div className={styles.socials}>
@@ -144,31 +144,31 @@ const Footer: FC = () => {
               {t('footer.info.title')}
             </span>
             <Link href="/news" passHref className={styles.footer__block__link}>
-              {t('footer.info.news')}
+              {t('links.news')}
             </Link>
             <Link
               href="/history"
               passHref
               className={styles.footer__block__link}
             >
-              {t('footer.info.history')}
+              {t('links.history')}
             </Link>
             <Link
               href="/partners"
               passHref
               className={styles.footer__block__link}
             >
-              {t('footer.info.partners')}
+              {t('links.partners')}
             </Link>
             <Link href="/menu" passHref className={styles.footer__block__link}>
-              {t('footer.info.menu')}
+              {t('links.menu')}
             </Link>
             <Link
               href="/terms-and-conditions"
               passHref
               className={styles.footer__block__link}
             >
-              {t('footer.info.legal')}
+              {t('links.legal')}
             </Link>
           </div>
           <div className={styles.footer__block}>
@@ -247,7 +247,7 @@ const Footer: FC = () => {
             ©{new Date().getFullYear()}{' '}
             <Trans
               i18nKey="footer.copy"
-              ns="home"
+              ns="common"
               components={[
                 <a
                   key="michiel leunens"

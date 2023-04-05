@@ -19,17 +19,19 @@ export const LanguageSelectionModal = () => {
     }
   };
   return (
-    <Fieldset label={t('i18n.select')}>
-      {locales?.map((lng) => (
-        <RadioButton
-          label={LangCode[lng]}
-          onChange={handleLangChange}
-          value={lng}
-          key={lng}
-          name="language"
-          tabIndex={0}
-        />
-      ))}
-    </Fieldset>
+    <div style={{ padding: '2rem' }}>
+      <Fieldset label={t('i18n.select')} withFeedback={false}>
+        {locales?.map((lng) => (
+          <RadioButton
+            label={LangCode[lng]}
+            onChange={handleLangChange}
+            value={lng}
+            key={lng}
+            name="language"
+            tabIndex={0}
+          />
+        ))}
+      </Fieldset>
+    </div>
   );
 };
