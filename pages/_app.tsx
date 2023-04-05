@@ -2,6 +2,7 @@ import '@styles/global/style.scss';
 
 import { Head } from '@components/common';
 import { ManagedUIProvider } from '@lib/context/ui';
+import { usePersistLocaleCookie } from '@lib/hooks/usePersistLocale';
 import { AppProps } from 'next/app';
 import { ReactNode, useEffect } from 'react';
 
@@ -18,6 +19,9 @@ function App({ Component, pageProps }: AppProps) {
 
   //https://github.com/vercel/next.js/issues/5136
   useSmoothHashScroll();
+
+  // Persist user-defined language
+  usePersistLocaleCookie();
 
   // Chrome-transition-bug
   useEffect(() => {

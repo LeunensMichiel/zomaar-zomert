@@ -2,28 +2,31 @@ import { Facebook, Instagram, Youtube } from '@components/icons';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Trans from 'next-translate/Trans';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
+import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 import styles from './Footer.module.scss';
 
 const variants = {
   initial: {
-    scale: 1,
+    y: 0,
     transition: {
       duration: 0.3,
       type: 'spring',
     },
   },
   tap: {
-    scale: 0.9,
+    y: 4,
     transition: {
       duration: 0.3,
       type: 'spring',
     },
   },
   hover: {
-    scale: 1.1,
-    color: 'var(--color-pink-2)',
+    y: -2,
+    color: 'var(--color-yellow-2)',
     transition: {
       duration: 0.3,
       type: 'spring',
@@ -32,6 +35,7 @@ const variants = {
 };
 
 const Footer: FC = () => {
+  const { t, lang } = useTranslation('home');
   return (
     <>
       <div className={styles.socials}>
@@ -89,7 +93,9 @@ const Footer: FC = () => {
       <footer className={cn(styles.footer, 'py-container--sm')}>
         <div className={cn(styles.footer__nav, 'container')}>
           <div className={styles.footer__block}>
-            <span className={styles.footer__block__title}>Line-Up</span>
+            <span className={styles.footer__block__title}>
+              {t('footer.line-up.title')}
+            </span>
             <Link
               href={{
                 pathname: '/line-up',
@@ -100,7 +106,9 @@ const Footer: FC = () => {
               passHref
               className={styles.footer__block__link}
             >
-              Friday
+              {new Date('2023-07-28').toLocaleString(lang, {
+                weekday: 'long',
+              })}
             </Link>
             <Link
               href={{
@@ -112,7 +120,9 @@ const Footer: FC = () => {
               passHref
               className={styles.footer__block__link}
             >
-              Saturday
+              {new Date('2023-07-29').toLocaleString(lang, {
+                weekday: 'long',
+              })}
             </Link>
             <Link
               href={{
@@ -124,45 +134,56 @@ const Footer: FC = () => {
               passHref
               className={styles.footer__block__link}
             >
-              Sunday
+              {new Date('2023-07-30').toLocaleString(lang, {
+                weekday: 'long',
+              })}
             </Link>
           </div>
           <div className={styles.footer__block}>
             <span className={styles.footer__block__title}>
-              Want to know more?
+              {t('footer.info.title')}
             </span>
+            <Link href="/news" passHref className={styles.footer__block__link}>
+              {t('footer.info.news')}
+            </Link>
             <Link
               href="/history"
               passHref
               className={styles.footer__block__link}
             >
-              History
+              {t('footer.info.history')}
             </Link>
-            {/* <Link href="/partners" passHref>
-            <a className={styles.footer__block__link}>Our partners</a>
-          </Link> */}
+            <Link
+              href="/partners"
+              passHref
+              className={styles.footer__block__link}
+            >
+              {t('footer.info.partners')}
+            </Link>
             <Link href="/menu" passHref className={styles.footer__block__link}>
-              Menu
+              {t('footer.info.menu')}
             </Link>
             <Link
               href="/terms-and-conditions"
               passHref
               className={styles.footer__block__link}
             >
-              Terms and conditions
+              {t('footer.info.legal')}
             </Link>
           </div>
           <div className={styles.footer__block}>
-            <span className={styles.footer__block__title}>Contact</span>
+            <span className={styles.footer__block__title}>
+              {t('footer.contact.title')}
+            </span>
             <Link href="/info" passHref className={styles.footer__block__link}>
-              Sign up for activities
+              {t('footer.contact.activities')}
             </Link>
             <Link
               href="/contact"
               passHref
               className={styles.footer__block__link}
             >
-              Contact us
+              {t('footer.contact.contact')}
             </Link>
           </div>
         </div>
@@ -220,10 +241,22 @@ const Footer: FC = () => {
           alt="vlaams-brabant"
         />
       </div> */}
-        <div className={cn('container')}>
+        <div className={cn('container', styles.footer__bottom)}>
+          <LanguagePicker />
           <span className={cn(styles.copy)}>
-            ©{new Date().getFullYear()} Zomaar Zomert - Branding by FVB Design -
-            Development & design by Michiel Leunens
+            ©{new Date().getFullYear()}{' '}
+            <Trans
+              i18nKey="footer.copy"
+              ns="home"
+              components={[
+                <a
+                  key="michiel leunens"
+                  href="https://leunesmedia.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                />,
+              ]}
+            />
           </span>
         </div>
       </footer>

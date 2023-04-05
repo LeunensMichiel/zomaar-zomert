@@ -1,0 +1,27 @@
+{
+  "month": "JULI",
+  "days": "dag.",
+  "hours": "u.",
+  "minutes": "min.",
+  "seconds": "sec.",
+  "festivalHasStarted": "Het festival is gestart!",
+  "footer": {
+    "line-up": {
+      "title": "line-up"
+    },
+    "info": {
+      "title": "Meer weten?",
+      "history": "Historiek",
+      "news": "Nieuws",
+      "menu": "Menu",
+      "partners": "Onze partners",
+      "legal": "Algemene voorwaarden"
+    },
+    "contact": {
+      "title": "Contact",
+      "activities": "Inschrijven randactiviteiten",
+      "contact": "Contacteer ons"
+    },
+    "copy": "Zomaar Zomert - Huisstijl @ FVB Design - Webdesign @ <0>Michiel Leunens</0>"
+  }
+}

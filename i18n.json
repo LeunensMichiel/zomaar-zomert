@@ -1,0 +1,14 @@
+{
+  "allowEmptyStrings": "false",
+  "locales": ["nl", "fr", "en"],
+  "defaultLocale": "nl",
+  "pages": {
+    "*": ["common"],
+    "/": ["home"],
+    "/contact": ["contact"],
+    "/history": ["history"],
+    "/info": ["info"],
+    "/line-up": ["line-up"],
+    "/menu": ["menu"]
+  }
+}

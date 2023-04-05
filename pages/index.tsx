@@ -5,6 +5,7 @@ import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import useTranslation from 'next-translate/useTranslation';
 
 import styles from './styles/index.module.scss';
 
@@ -20,6 +21,7 @@ const Countdown = dynamic(
 const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 const Home = () => {
+  const { t, lang } = useTranslation('home');
   const slides = [
     {
       alt: 'carousel image',
@@ -107,7 +109,7 @@ const Home = () => {
             <Triangle />
             <span>29</span>
             <Triangle />
-            <span>30 JULY 2023</span>
+            <span>30 {t('month')} 2023</span>
           </span>
         </div>
         <img
@@ -135,12 +137,12 @@ const Home = () => {
               <ImageCard
                 playAnimation
                 data={{
-                  subtitle: new Date('2023-07-28').toLocaleString('en-GB', {
+                  subtitle: new Date('2023-07-28').toLocaleString(lang, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
                   }),
-                  title: new Date('2023-07-28').toLocaleString('en-GB', {
+                  title: new Date('2023-07-28').toLocaleString(lang, {
                     weekday: 'long',
                   }),
                   imgSrc: '/assets/days/friday.jpg',
@@ -160,10 +162,10 @@ const Home = () => {
               <ImageCard
                 playAnimation
                 data={{
-                  title: new Date('2023-07-29').toLocaleString('en-GB', {
+                  title: new Date('2023-07-29').toLocaleString(lang, {
                     weekday: 'long',
                   }),
-                  subtitle: new Date('2023-07-29').toLocaleString('en-GB', {
+                  subtitle: new Date('2023-07-29').toLocaleString(lang, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -185,10 +187,10 @@ const Home = () => {
               <ImageCard
                 playAnimation
                 data={{
-                  title: new Date('2023-07-30').toLocaleString('en-GB', {
+                  title: new Date('2023-07-30').toLocaleString(lang, {
                     weekday: 'long',
                   }),
-                  subtitle: new Date('2023-07-30').toLocaleString('en-GB', {
+                  subtitle: new Date('2023-07-30').toLocaleString(lang, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',

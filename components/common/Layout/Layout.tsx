@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { FC, ReactNode } from 'react';
 
 import { ImageCardModalView } from '../ImageCard/ImageCardModalView';
+import { LanguageSelectionModal } from '../LanguagePicker/LanguageSelectionModal';
 import styles from './Layout.module.scss';
 
 type Props = {
@@ -36,6 +37,7 @@ const Layout: FC<Props> = ({ children }: Props) => {
         {modalView === 'ARTIST_VIEW' && (
           <ImageCardModalView data={data?.data} />
         )}
+        {modalView === 'LANGUAGE_VIEW' && <LanguageSelectionModal />}
       </Modal>
     </>
   );

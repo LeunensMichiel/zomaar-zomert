@@ -27,7 +27,7 @@ export const INITIAL_UI_STATE: UIState = {
   setModalView: () => {},
 };
 
-export type ModalViews = 'NO_VIEW' | 'ARTIST_VIEW';
+export type ModalViews = 'NO_VIEW' | 'ARTIST_VIEW' | 'LANGUAGE_VIEW';
 
 export const UIContext = createContext<UIState>(INITIAL_UI_STATE);
 
