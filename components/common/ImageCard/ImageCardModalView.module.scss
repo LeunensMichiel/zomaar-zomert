@@ -32,12 +32,12 @@
     width: 100%;
     z-index: 2;
     background-image: radial-gradient(
-        rgba(255, 255, 255, 0.25) 0.5px,
-        transparent 0.5px
+        rgba(255, 255, 255, 0.2) 1px,
+        rgba(0, 0, 0, 0.15) 1px
       ),
-      radial-gradient(rgba(255, 255, 255, 0.25) 0.5px, transparent 0.5px);
+      radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
     background-size: 4px 4px;
-    background-position: 0 0, 8px 8px;
+    background-position: 0 0, 2px 2px;
   }
 
   @include mixins.breakpoint-up(lg) {

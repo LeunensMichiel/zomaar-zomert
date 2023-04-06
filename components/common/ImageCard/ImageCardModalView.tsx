@@ -1,4 +1,5 @@
 import { IImageCard } from '@lib/models';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 import styles from './ImageCardModalView.module.scss';
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export const ImageCardModalView: FC<Props> = ({ data }) => {
+  const { lang } = useTranslation();
   return (
     <div className={styles.root}>
       <div className={styles.image__container}>
@@ -23,7 +25,7 @@ export const ImageCardModalView: FC<Props> = ({ data }) => {
       <div className={styles.body}>
         <span className={styles.day}>
           {data.date &&
-            new Date(data.date).toLocaleString('en-GB', {
+            new Date(data.date).toLocaleString(lang, {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

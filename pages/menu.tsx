@@ -75,7 +75,7 @@ const MenuPage = () => {
           ))}
         </div>
         <div className={styles.menu}>
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence mode="wait">
             {Object.keys(menuBySubCategory).map((subCategory) => (
               <motion.div
                 key={subCategory}

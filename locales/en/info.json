@@ -1,0 +1,48 @@
+{
+  "SEO": {
+    "title": "Info",
+    "description": "Praktische info betreffende FAQ, toegankelijkheid, parking, partners en wegaanduiding. Vind hier info op al jouw vragen.",
+    "openGraph": {
+      "title": "Info",
+      "description": "Praktische info betreffende FAQ, toegankelijkheid, parking, partners en wegaanduiding. Vind hier info op al jouw vragen."
+    }
+  },
+  "title": "Informatie",
+  "faq": {
+    "1": {
+      "title": "How, when & where",
+      "content": "Zomaar zomert is located in the heart of Sint-Anna-Pede in Itterbeek.<0/><0/>Our tent is located east of the well-known Sint-Anna church and opposite of the restaurant De Noa."
+    },
+    "2": {
+      "title": "Where to park",
+      "content": "The entire centre of Sint-Anna-Pede will be closed off. The easiest way to park is at either end of the Rollestraat or Herdebeekstraat and walk around 5 to 10 minutes to the festival. Other valid options are the Lossebaan, Plankenstraat and the Oude Geraardsbergsebaan.<0/><0/>There's no paid parking so you'll have to park in the street."
+    },
+    "3": {
+      "title": "Public transportation",
+      "content": "The easiest way to get to the festival is by bus <0>118</0>. It's a small walking distance to the Rollestraat from there.<1/><1/>Other options are bus <0>141/142</0> if you come from the south (Vlezenbeek, Herdebeekstraat), and <0>117/810/127/128</0> if you come from the north (Ninoofsesteenweg).<1/> <1/>If you come by train, the easiest way to get here is by taking bus 117 or 810, but 127/128 are valid options as well.<1/><1/><0>Watch out, there are no night busses.</0>"
+    },
+    "4": {
+      "title": "Ecology",
+      "content": "Like every festival, we try to improve our carbon footprint every year for a greener planet.<0/><0/>Drinks are only served in reusable cups or corresponding beer glasses. We also try to minimize our water usage and want to encourage everyone to come by bike, public transport, on foot or by carpooling. At the end of the festival, all waste is recycled and the meadow is cleaned accordingly so no plastic is left behind."
+    },
+    "5": {
+      "title": "Tickets",
+      "content": "The festival is free! The only thing we ask in return is for you to have a good time 🚀"
+    },
+    "6": {
+      "title": "Fair",
+      "content": "The festival takes place together with the anual fair. Two birds with one stone!"
+    },
+    "7": {
+      "title": "Food & drink vouchers",
+      "content": "You can buy vouchers on-site at our voucher stand. We accept all kinds of payment; <0>Payconic</0>, <0>Bancontact</0> and cash.<1/><1/>For security reasons, we strongly recommend to only use Payconic or Bancontact and leave your cash at home. If you have to, the nearest ATM is in Itterbeek centre."
+    },
+    "8": {
+      "title": "Activities",
+      "content": "Each year, we organize tons of activities, like ZomaarBike, ZomaarRun, kids animation, a quiz and petanque game. On Sunday you will also find a paella stand.<0/><0/>All of our activities are free except for the paella, ZomaarBike (€4/€6) and ZomaarRun (€4).<0/><0/><1>Registration</1> for the petanque game or the paella stand is <1>required.</1> You can sign up here: <0/>",
+      "tba": "(Registration to be announced at a later date)",
+      "petanque": "Sign up — Petanque",
+      "paella": "Sign up — Paella"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import useTranslation from 'next-translate/useTranslation';
 import { useCallback, useEffect, useState } from 'react';
 
 import data from '../public/data.json';
@@ -45,6 +46,7 @@ const itemVariants = {
 };
 
 const LineUpPage = () => {
+  const { t, lang } = useTranslation('line-up');
   const { query, replace, pathname, isReady } = useRouter();
   const [currentDate, setCurrentDate] = useState('');
 
@@ -79,12 +81,11 @@ const LineUpPage = () => {
   return (
     <>
       <NextSeo
-        title="Line-Up"
-        description="Zomaar Zomert takes place during the last weekend of July. From Friday to Sunday, we provide numerous artists and fringe activities to make it a memorable summer day."
+        title={t('SEO.title')}
+        description={t('SEO.description')}
         openGraph={{
-          title: 'Line-Up',
-          description:
-            'Zomaar Zomert takes place during the last weekend of July. From Friday to Sunday, we provide numerous artists and fringe activities to make it a memorable summer day.',
+          title: t('SEO.openGraph.title'),
+          description: t('SEO.openGraph.description'),
         }}
       />
       <section className={cn(styles.root, 'container py-container--sm')}>
@@ -102,12 +103,12 @@ const LineUpPage = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <h1 className={cn(styles.title, 'header')}>
-                    {formattedDate.toLocaleString('en-GB', {
+                    {formattedDate.toLocaleString(lang, {
                       weekday: 'long',
                     })}
                   </h1>
                   <span className={styles.date}>
-                    {formattedDate.toLocaleString('en-GB', {
+                    {formattedDate.toLocaleString(lang, {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
@@ -124,7 +125,7 @@ const LineUpPage = () => {
                   variant="minimal"
                   onClick={() => handleDaySelect(day)}
                 >
-                  {new Date(day).toLocaleString('en-GB', {
+                  {new Date(day).toLocaleString(lang, {
                     weekday: 'long',
                   })}
                   {day === currentDate ? (
