@@ -5,6 +5,7 @@ import { groupBy } from '@lib/utils/groupBy';
 import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
+import useTranslation from 'next-translate/useTranslation';
 import { useMemo, useState } from 'react';
 
 import menu from '../public/menu.json';
@@ -40,6 +41,7 @@ enum MenuType {
 }
 
 const MenuPage = () => {
+  const { t } = useTranslation('menu');
   const [menuType, setCurrentMenuType] = useState<MenuType>(MenuType.DRINKS);
 
   const filteredMenu = useMemo(
@@ -56,7 +58,7 @@ const MenuPage = () => {
     <>
       <NextSeo title="Menu" noindex />
       <section className={cn(styles.root, 'container py-container--sm')}>
-        <h1 className={'header'}>Menu</h1>
+        <h1 className={'header'}>{t('title')}</h1>
         <div className={styles.tabs}>
           {Object.keys(MenuType).map((type) => (
             <Button
@@ -67,7 +69,7 @@ const MenuPage = () => {
                 setCurrentMenuType(MenuType[type as keyof typeof MenuType])
               }
             >
-              {MenuType[type as keyof typeof MenuType]}
+              {t(MenuType[type as keyof typeof MenuType])}
               {MenuType[type as keyof typeof MenuType] === menuType ? (
                 <motion.div className={styles.underline} layoutId="underline" />
               ) : null}
