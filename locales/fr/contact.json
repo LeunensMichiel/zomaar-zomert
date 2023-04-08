@@ -1,39 +1,39 @@
 {
   "SEO": {
     "title": "Contact",
-    "description": "Contacteer de Zomaar Zomert crew. We zijn ook bereikbaar via onze sociale kanalen zoals Instagram en Facebook.",
+    "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook.",
     "openGraph": {
       "title": "Contact",
-      "description": "Contacteer de Zomaar Zomert crew. We zijn ook bereikbaar via onze sociale kanalen zoals Instagram en Facebook."
+      "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook."
     }
   },
-  "title": "Contacteer ons",
+  "title": "Contactez nous",
   "form": {
     "name": {
-      "label": "Naam*",
-      "placeholder": "Vul je naam in",
-      "error": "Gelieve je volledige naam in te vullen."
+      "label": "Nom*",
+      "placeholder": "Louis Quatorze",
+      "error": "Veuillez entrer votre nom complet."
     },
     "email": {
       "label": "Email*",
-      "placeholder": "Zodat we je kunnen contacteren",
-      "error": "Gelieve je email-adres in te vullen."
+      "placeholder": "louis.xiv@gmail.com",
+      "error": "Veuillez entrer votre email complet."
     },
     "phone": {
-      "label": "Telefoon",
+      "label": "Téléphone",
       "placeholder": "+32 4XX XX XX XX"
     },
     "subject": {
-      "label": "Onderwerp*",
-      "placeholder": "Onderwerp van je bericht",
-      "error": "Gelieve een onderwerp in te vullen."
+      "label": "Sujet*",
+      "placeholder": "Question concernant...",
+      "error": "Veuillez entrer un sujet complet."
     },
     "message": {
-      "label": "Bericht*",
-      "placeholder": "Wat wil je ons vertellen?",
-      "error": "Gelieve een bericht in te vullen."
+      "label": "Message*",
+      "placeholder": "Que voulez-vous nous dire ?",
+      "error": "Veuillez entrer votre message."
     },
-    "button": "Bericht versturen",
-    "success": "Bericht verstuurd! We nemen zo snel mogelijk contact met je op."
+    "button": "Envoyer",
+    "success": "Message envoyé ! Nous vous contacterons dès que possible."
   }
 }
