@@ -1,13 +1,13 @@
 {
   "SEO": {
     "title": "Info",
-    "description": "Practical info regarding accessibility, parking, partners, directions, and other frequently asked questions.",
+    "description": "Praktische info betreffende FAQ, toegankelijkheid, parking, partners en wegaanduiding. Vind hier info op al jouw vragen.",
     "openGraph": {
       "title": "Info",
-      "description": "Practical info regarding accessibility, parking, partners, directions, and other frequently asked questions."
+      "description": "Praktische info betreffende FAQ, toegankelijkheid, parking, partners en wegaanduiding. Vind hier info op al jouw vragen."
     }
   },
-  "title": "Practical information",
+  "title": "Informatie",
   "faq": {
     "1": {
       "title": "How, when & where",
@@ -39,7 +39,7 @@
     },
     "8": {
       "title": "Activities",
-      "content": "Each year, we organize tons of activities, like ZomaarBike, ZomaarRun, kids animation, a quiz and petanque game. On Sunday you will also find a paella stand.<0/><0/>All of our activities are free except for the paella, ZomaarBike (€4/€6) and ZomaarRun (€4).<0/><0/><1>Registration</1> for the petanque game or the paella stand is <1>required.</1> You can register here: <0/>",
+      "content": "Each year, we organize tons of activities, like ZomaarBike, ZomaarRun, kids animation, a quiz and petanque game. On Sunday you will also find a paella stand.<0/><0/>All of our activities are free except for the paella, ZomaarBike (€4/€6) and ZomaarRun (€4).<0/><0/><1>Registration</1> for the petanque game or the paella stand is <1>required.</1> You can sign up here: <0/>",
       "tba": "(Registration to be announced at a later date)",
       "petanque": "Sign up — Petanque",
       "paella": "Sign up — Paella"

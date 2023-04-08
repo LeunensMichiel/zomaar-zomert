@@ -11,13 +11,13 @@
   "form": {
     "name": {
       "label": "Naam*",
-      "placeholder": "Jan Janssens",
-      "error": "Gelieve uw volledige naam in te vullen."
+      "placeholder": "Vul je naam in",
+      "error": "Gelieve je volledige naam in te vullen."
     },
     "email": {
       "label": "Email*",
-      "placeholder": "jan.janssens@gmail.com",
-      "error": "Gelieve uw email-adres in te vullen."
+      "placeholder": "Zodat we je kunnen contacteren",
+      "error": "Gelieve je email-adres in te vullen."
     },
     "phone": {
       "label": "Telefoon",
@@ -25,7 +25,7 @@
     },
     "subject": {
       "label": "Onderwerp*",
-      "placeholder": "Vraag betreffende...",
+      "placeholder": "Onderwerp van je bericht",
       "error": "Gelieve een onderwerp in te vullen."
     },
     "message": {

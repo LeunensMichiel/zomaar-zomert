@@ -1,0 +1,39 @@
+{
+  "SEO": {
+    "title": "Contact",
+    "description": "Contact the Zomaar Zomert crew. We can also be reached through our social channels such as Instagram and Facebook.",
+    "openGraph": {
+      "title": "Contact",
+      "description": "Contact the Zomaar Zomert crew. We can also be reached through our social channels such as Instagram and Facebook."
+    }
+  },
+  "title": "Contact us",
+  "form": {
+    "name": {
+      "label": "Name*",
+      "placeholder": "John Doe",
+      "error": "Please provide your full name."
+    },
+    "email": {
+      "label": "E-mail*",
+      "placeholder": "john.doe@gmail.com",
+      "error": "Please provide your e-mail."
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "+32 4XX XX XX XX"
+    },
+    "subject": {
+      "label": "Subject*",
+      "placeholder": "Question regarding....",
+      "error": "Please provide a subject."
+    },
+    "message": {
+      "label": "Message*",
+      "placeholder": "How can we be of service?",
+      "error": "Please provide a message."
+    },
+    "button": "Send message",
+    "success": "Message sent! We'll be in touch as soon as possible!"
+  }
+}
