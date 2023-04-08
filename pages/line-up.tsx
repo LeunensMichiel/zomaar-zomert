@@ -1,14 +1,16 @@
 import { ImageCard, Layout } from '@components/common';
 import { Button, Spinner } from '@components/ui';
-import { ZZ_DATES } from '@lib/models';
+import { APIArtist, Artist, languages, ZZ_DATES } from '@lib/models';
 import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
+import fsPromises from 'fs/promises';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
+import path from 'path';
 import { useCallback, useEffect, useState } from 'react';
 
-import data from '../public/data.json';
 import styles from './styles/line-up.module.scss';
 
 const containerVariants = {
@@ -45,12 +47,14 @@ const itemVariants = {
   },
 };
 
-const LineUpPage = () => {
+const LineUpPage = ({
+  artists,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t, lang } = useTranslation('line-up');
   const { query, replace, pathname, isReady } = useRouter();
   const [currentDate, setCurrentDate] = useState('');
 
-  const filteredArtists = data?.filter(
+  const filteredArtists = artists?.filter(
     (artist) => artist?.date === currentDate
   );
   const formattedDate = new Date(currentDate);
@@ -172,3 +176,23 @@ const LineUpPage = () => {
 export default LineUpPage;
 
 LineUpPage.Layout = Layout;
+
+export const getStaticProps: GetStaticProps<{ artists: Artist[] }> = async ({
+  locale,
+}) => {
+  const filePath = path.join(process.cwd(), 'public/data.json');
+  const jsonData = await fsPromises.readFile(filePath, 'utf-8');
+  const apiArtists: APIArtist[] = JSON.parse(jsonData);
+
+  const artists: Artist[] = apiArtists.map(
+    ({ name, description, ...artist }) => ({
+      ...artist,
+      name: name[locale as languages],
+      description: description[locale as languages],
+    })
+  );
+
+  return {
+    props: { artists },
+  };
+};

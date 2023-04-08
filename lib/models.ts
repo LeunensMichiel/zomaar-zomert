@@ -7,3 +7,27 @@ export type IImageCard = {
   description?: string;
   date?: string;
 };
+
+export type languages = 'nl' | 'fr' | 'en';
+
+type TranslationString = Record<languages, string>;
+
+export type APIArtist = {
+  id: number;
+  name: TranslationString;
+  date: string;
+  hour: string;
+  isFiller: boolean;
+  description: TranslationString;
+  imgSrc: string;
+};
+
+export type Artist = {
+  id: number;
+  name: string;
+  date: string;
+  hour: string;
+  isFiller: boolean;
+  description: string;
+  imgSrc: string;
+};
