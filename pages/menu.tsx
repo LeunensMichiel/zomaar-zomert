@@ -1,14 +1,17 @@
 import { Layout } from '@components/common';
 import { Ticket } from '@components/icons';
 import { Button, ImageWithAspectRatio } from '@components/ui';
+import { APIMenuItem, languages, MenuItem, MenuType } from '@lib/models';
 import { groupBy } from '@lib/utils/groupBy';
 import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
+import fsPromises from 'fs/promises';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
+import path from 'path';
 import { useMemo, useState } from 'react';
 
-import menu from '../public/menu.json';
 import styles from './styles/menu.module.scss';
 
 const itemVariants = {
@@ -35,18 +38,13 @@ const itemVariants = {
   },
 };
 
-enum MenuType {
-  DRINKS = 'Drinks',
-  FOOD = 'Food',
-}
-
-const MenuPage = () => {
+const MenuPage = ({ menu }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation('menu');
   const [menuType, setCurrentMenuType] = useState<MenuType>(MenuType.DRINKS);
 
   const filteredMenu = useMemo(
     () => menu.filter((menuItem) => menuItem.category === menuType),
-    [menuType]
+    [menu, menuType]
   );
 
   const menuBySubCategory = useMemo(
@@ -127,3 +125,24 @@ const MenuPage = () => {
 export default MenuPage;
 
 MenuPage.Layout = Layout;
+
+export const getStaticProps: GetStaticProps<{ menu: MenuItem[] }> = async ({
+  locale,
+}) => {
+  const filePath = path.join(process.cwd(), 'public/menu.json');
+  const jsonData = await fsPromises.readFile(filePath, 'utf-8');
+  const apiMenu: APIMenuItem[] = JSON.parse(jsonData);
+
+  const menu: MenuItem[] = apiMenu.map(
+    ({ name, description, subCategory, ...menuitem }) => ({
+      ...menuitem,
+      name: name[locale as languages],
+      description: description[locale as languages],
+      subCategory: subCategory[locale as languages],
+    })
+  );
+
+  return {
+    props: { menu },
+  };
+};

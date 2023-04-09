@@ -31,3 +31,26 @@ export type Artist = {
   description: string;
   imgSrc: string;
 };
+
+export enum MenuType {
+  DRINKS = 'Drinks',
+  FOOD = 'Food',
+}
+
+export type APIMenuItem = {
+  name: TranslationString;
+  description: TranslationString;
+  price: number;
+  img: string;
+  category: MenuType;
+  subCategory: TranslationString;
+};
+
+export type MenuItem = {
+  name: string;
+  description: string;
+  price: number;
+  img: string;
+  category: MenuType;
+  subCategory: string;
+};
