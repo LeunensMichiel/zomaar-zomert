@@ -1,4 +1,4 @@
-// import { Globe } from '@components/icons';
+import { Globe } from '@components/icons';
 import { Button } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import useTranslation from 'next-translate/useTranslation';
@@ -27,7 +27,7 @@ export const LanguagePicker: FC<LanguagePickerProps> = ({ size = 'xs' }) => {
   return (
     <Button
       type="button"
-      //   iconLeft={<Globe />}
+      iconLeft={<Globe />}
       onClick={handleLanguageBtnClick}
       variant="transparent"
       size={size}
