@@ -74,9 +74,7 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
 
     return (
       <motion.a
-        className={cn(styles.image__card, {
-          [styles.static]: !opensModal,
-        })}
+        className={cn(styles.image__card)}
         ref={ref}
         tabIndex={0}
         {...((opensModal || playAnimation) && {

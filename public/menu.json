@@ -1,230 +1,706 @@
 [
   {
-    "name": "Still Water",
-    "description": "If you don't like bubbles",
+    "name": {
+      "en": "Still water",
+      "fr": "Eau plate",
+      "nl": "Water plat"
+    },
+    "description": {
+      "en": "If you don't like bubbles.",
+      "fr": "Si vous n'aimez pas les bulles.",
+      "nl": "Als je niet van bubbels houdt."
+    },
     "price": 1,
     "img": "/assets/menu/still-water.jpg",
     "category": "Drinks",
-    "subCategory": "water & coffee"
+    "subCategory": {
+      "en": "water & coffee",
+      "fr": "eau & café",
+      "nl": "water & koffie"
+    }
   },
   {
-    "name": "Sparkling Water",
-    "description": "If you like bubbles.",
+    "name": {
+      "en": "Sparklinkg water",
+      "fr": "Eau pétillante",
+      "nl": "Water bruisend"
+    },
+    "description": {
+      "en": "If you like bubbles.",
+      "fr": "Si vous aimez les bulles.",
+      "nl": "Als je van bubbels houdt."
+    },
     "price": 2,
     "img": "/assets/menu/sparkling-water.jpg",
     "category": "Drinks",
-    "subCategory": "water & coffee"
+    "subCategory": {
+      "en": "water & coffee",
+      "fr": "eau & café",
+      "nl": "water & koffie"
+    }
   },
   {
-    "name": "Coffee",
-    "description": "No deca",
+    "name": {
+      "en": "Coffee",
+      "fr": "Café",
+      "nl": "Koffie"
+    },
+    "description": {
+      "en": "No deca available.",
+      "fr": "Pas de café déca disponible.",
+      "nl": "Geen deca beschikbaar."
+    },
     "price": 2,
     "img": "/assets/menu/coffee.jpg",
     "category": "Drinks",
-    "subCategory": "water & coffee"
+    "subCategory": {
+      "en": "water & coffee",
+      "fr": "eau & café",
+      "nl": "water & koffie"
+    }
   },
   {
-    "name": "Pepsi",
-    "description": "Our soft drinks are brought to you by PepsiCo.",
+    "name": {
+      "en": "Pepsi",
+      "fr": "Pepsi",
+      "nl": "Pepsi"
+    },
+    "description": {
+      "en": "Our soft drinks are brought to you by PepsiCo.",
+      "fr": "Nos boissons non alcoolisées vous sont proposées par PepsiCo.",
+      "nl": "Onze frisdranken zijn gebracht door PepsiCo."
+    },
     "price": 2,
     "img": "/assets/menu/pepsi.jpg",
     "category": "Drinks",
-    "subCategory": "soft drinks"
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
   },
   {
-    "name": "Pepsi Max",
-    "description": "A zero-sugar Pepsi.",
+    "name": {
+      "en": "Pepsi Max",
+      "fr": "Pepsi Max",
+      "nl": "Pepsi Max"
+    },
+    "description": {
+      "en": "A zero-sugar Pepsi.",
+      "fr": "Un Pepsi sans sucre.",
+      "nl": "Een Pepsi zonder suiker"
+    },
     "price": 2,
     "img": "/assets/menu/pepsi-max.jpg",
     "category": "Drinks",
-    "subCategory": "soft drinks"
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
   },
   {
-    "name": "Looza Orange",
-    "description": "Orange juice.",
+    "name": {
+      "en": "Mirinda",
+      "fr": "Mirinda",
+      "nl": "Mirinda"
+    },
+    "description": {
+      "en": "Sparkling lemonade.",
+      "fr": "Limonade pétillante.",
+      "nl": "Sprankelende limonade."
+    },
+    "price": 2,
+    "img": "/assets/menu/mirinda.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
+  },
+  {
+    "name": {
+      "en": "Looza Apple",
+      "fr": "Looza Pomme",
+      "nl": "Looza Appel"
+    },
+    "description": {
+      "en": "Apple juice.",
+      "fr": "Jus de pomme.",
+      "nl": "Appelsap."
+    },
+    "price": 2,
+    "img": "/assets/menu/looza-apple.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
+  },
+  {
+    "name": {
+      "en": "Looza Orange",
+      "fr": "Looza Orange",
+      "nl": "Looza Sinaasappel"
+    },
+    "description": {
+      "en": "Orange juice.",
+      "fr": "Jus d'orange.",
+      "nl": "Sinaasappelsap."
+    },
     "price": 2,
     "img": "/assets/menu/looza-orange.jpg",
     "category": "Drinks",
-    "subCategory": "soft drinks"
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
   },
   {
-    "name": "Stella Artois",
-    "description": "A classic. Stella Artois on tap.",
+    "name": {
+      "en": "Lipton Ice Tea",
+      "fr": "Lipton Ice Tea",
+      "nl": "Lipton Ice Tea"
+    },
+    "description": {
+      "en": "Sparkling iced tea.",
+      "fr": "Thé glacé pétillant.",
+      "nl": "Sprankelende ijsthee "
+    },
+    "price": 2,
+    "img": "/assets/menu/ice-tea.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
+  },
+  {
+    "name": {
+      "en": "Red Bull",
+      "fr": "Red Bull",
+      "nl": "Red Bull"
+    },
+    "description": {
+      "en": "When a coffee doesn't cut it.",
+      "fr": "Quand un café ne suffit pas",
+      "nl": "Voor wanneer die jat caffe niet sterk genoeg is."
+    },
+    "price": 2,
+    "img": "/assets/menu/red-bull.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "soft drinks",
+      "fr": "boissons non alcoolisées",
+      "nl": "frisdranken"
+    }
+  },
+  {
+    "name": {
+      "en": "Stella Artois",
+      "fr": "Stella Artois",
+      "nl": "Stella Artois"
+    },
+    "description": {
+      "en": "A classic. Stella Artois on tap.",
+      "fr": "Un classique. Stella Artois en fût.",
+      "nl": "Ne klassieker. Ne Stella van't vat."
+    },
     "price": 2,
     "img": "/assets/menu/stella.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Kriek",
-    "description": "Kriek from Timmermans brewery. Sweet, on tap.",
+    "name": {
+      "en": "Kriek",
+      "fr": "Kriek",
+      "nl": "Kriek"
+    },
+    "description": {
+      "en": "Kriek from Timmermans brewery. Sweet, on tap.",
+      "fr": "Kriek de la brasserie Timmermans. Sucrée, en fût.",
+      "nl": "Kriek van brouwerij Timmermans. Zoet, van't vat."
+    },
     "price": 2,
     "img": "/assets/menu/kriek.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Hoegaarden",
-    "description": "Refreshing white beer with a lemon aftertaste. On tap.",
+    "name": {
+      "en": "Hoegaarden",
+      "fr": "Hoegaarden",
+      "nl": "Hoegaarden"
+    },
+    "description": {
+      "en": "Refreshing white beer with a lemon aftertaste. On tap.",
+      "fr": "Bière blanche rafraîchissante avec un arrière-goût de citron. En fût.",
+      "nl": "Een witteke van't vat. Wit bier met toetsen van citroen."
+    },
     "price": 2,
     "img": "/assets/menu/hoegaarden.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Bolleke",
-    "description": "Amber beer from brewery De Koninck in Antwerp. On tap.",
+    "name": {
+      "en": "Bolleke",
+      "fr": "Bolleke",
+      "nl": "Bolleke"
+    },
+    "description": {
+      "en": "Amber beer from brewery De Koninck in Antwerp. On tap.",
+      "fr": "Bière ambrée de la brasserie De Koninck à Anvers. En fût.",
+      "nl": "Een amber bier van brouwerij De Koninck in Antwerpen. Van't vat."
+    },
     "price": 2,
     "img": "/assets/menu/bolleke.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Chouffe",
-    "description": "Blonde beer with a sweet & hoppy aftertaste. On tap.",
+    "name": {
+      "en": "La Chouffe",
+      "fr": "La Chouffe",
+      "nl": "La Chouffe"
+    },
+    "description": {
+      "en": "Blonde beer with a sweet & hoppy aftertaste. On tap.",
+      "fr": "Bière blonde avec un arrière-goût sucré et houblonné. En fût.",
+      "nl": "Blond bier met een zoete & hopperige toets. Van't vat."
+    },
     "price": 3,
     "img": "/assets/menu/chouffe.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
+
   {
-    "name": "Leffe",
-    "description": "A classic, blonde abbey beer on tap.",
-    "price": 3,
-    "img": "/assets/menu/leffe.jpg",
-    "category": "Drinks",
-    "subCategory": "beers"
-  },
-  {
-    "name": "Duvel",
-    "description": "A heavy, blonde beer served from the bottle.",
+    "name": {
+      "en": "Duvel",
+      "fr": "Duvel",
+      "nl": "Duvel"
+    },
+    "description": {
+      "en": "A heavy, blonde beer served from the bottle.",
+      "fr": "Une bière blonde et lourde servie en bouteille.",
+      "nl": "Een zwaar blond bierke van't fleske."
+    },
     "price": 3,
     "img": "/assets/menu/duvel.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Oude Geuze - Timmermans",
-    "description": "A speciallity from the Pajot. Sour, bottled.",
+    "name": {
+      "en": "Oude Geuze - Timmermans",
+      "fr": "Geuze vieille - Timmermans",
+      "nl": "Oude Geuze - Timmermans"
+    },
+    "description": {
+      "en": "A speciallity from the Pajot. Sour, bottled.",
+      "fr": "Une spécialité du Pajot. Aigre, en bouteille.",
+      "nl": "Dé specialiteit van het Pajottenland. Zuur, uit 't fleske."
+    },
     "price": 5,
     "img": "/assets/menu/oude-geuze.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Oude Kriek - Timmermans",
-    "description": "A speciallity from the Pajot. Sweet, sour, bottled.",
+    "name": {
+      "en": "Oude Kriek - Timmermans",
+      "fr": "Kriek vieille - Timmermans",
+      "nl": "Oude Kriek - Timmermans"
+    },
+    "description": {
+      "en": "A speciallity from the Pajot. Sweet and sour, bottled.",
+      "fr": "Une spécialité du Pajot. Sucré-salé, en bouteille.",
+      "nl": "Dé specialiteit van het Pajottenland. Zoet maar zuur, uit 't fleske."
+    },
     "price": 5,
     "img": "/assets/menu/oude-kriek.jpg",
     "category": "Drinks",
-    "subCategory": "beers"
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
   },
   {
-    "name": "Red wine",
-    "description": "A glass of Merlot wine.",
+    "name": {
+      "en": "Red wine",
+      "fr": "Vin rouge",
+      "nl": "Rode wijn"
+    },
+    "description": {
+      "en": "A glass of Merlot wine.",
+      "fr": "Un verre de vin Merlot.",
+      "nl": "Een glas rode Merlot"
+    },
     "price": 3,
     "img": "/assets/menu/red-wine.jpg",
     "category": "Drinks",
-    "subCategory": "wines"
+    "subCategory": {
+      "en": "wines",
+      "fr": "vins",
+      "nl": "wijnen"
+    }
+  },
+  {
+    "name": {
+      "en": "White wine",
+      "fr": "Vin blanc",
+      "nl": "Witte wijn"
+    },
+    "description": {
+      "en": "A glass of white wine.",
+      "fr": "Un verre de vin blanc.",
+      "nl": "Een glas witte wijn."
+    },
+    "price": 3,
+    "img": "/assets/menu/white-wine.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "wines",
+      "fr": "vins",
+      "nl": "wijnen"
+    }
   },
 
   {
-    "name": "Cava",
-    "description": "Bubbles + wine = ❤️",
+    "name": {
+      "en": "Cava",
+      "fr": "Cava",
+      "nl": "Cava"
+    },
+    "description": {
+      "en": "Bubbles + wine = ❤️",
+      "fr": "Bulles + vin = ❤️",
+      "nl": "Bubbels + wijn = ❤️"
+    },
     "price": 3,
     "img": "/assets/menu/cava.jpg",
     "category": "Drinks",
-    "subCategory": "wines"
+    "subCategory": {
+      "en": "wines",
+      "fr": "vins",
+      "nl": "wijnen"
+    }
   },
   {
-    "name": "Sangria",
-    "description": "Red wine mixed with fruits. ¡Me gusta!",
+    "name": {
+      "en": "Sangria",
+      "fr": "Sangria",
+      "nl": "Sangria"
+    },
+    "description": {
+      "en": "Red wine mixed with pieces of fruit.",
+      "fr": "Vin rouge mélangé avec des fruits.",
+      "nl": "Rode wijn gemengd met stukjes fruit."
+    },
     "price": 4,
     "img": "/assets/menu/sangria.jpg",
     "category": "Drinks",
-    "subCategory": "wines"
+    "subCategory": {
+      "en": "wines",
+      "fr": "vins",
+      "nl": "wijnen"
+    }
   },
   {
-    "name": "Jug of Sangria",
-    "description": "1 liter of fun.",
+    "name": {
+      "en": "Jug of Sangria",
+      "fr": "Pichet de Sangria",
+      "nl": "Kannetje Sangria"
+    },
+    "description": {
+      "en": "1 liter of fun.",
+      "fr": "1 litre de plaisir.",
+      "nl": "1 liter plezier!"
+    },
     "price": 10,
     "img": "/assets/menu/sangria-jug.jpg",
     "category": "Drinks",
-    "subCategory": "wines"
+    "subCategory": {
+      "en": "wines",
+      "fr": "vins",
+      "nl": "wijnen"
+    }
   },
   {
-    "name": "Ricard",
-    "description": "For the pastis lovers.",
+    "name": {
+      "en": "Ricard",
+      "fr": "Ricard",
+      "nl": "Ricard"
+    },
+    "description": {
+      "en": "For the pastis lovers.",
+      "fr": "Pour les passionnés de pastis.",
+      "nl": "Voor de liefhebbers van pastis."
+    },
     "price": 3,
     "img": "/assets/menu/pastis.jpg",
     "category": "Drinks",
-    "subCategory": "cocktails & strong alcohol"
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
   },
   {
-    "name": "Aperol Spritz",
-    "description": "The classic, Italian summer aperitif.",
+    "name": {
+      "en": "Aperol Spritz",
+      "fr": "Aperol Spritz",
+      "nl": "Aperol Spritz"
+    },
+    "description": {
+      "en": "A Baco a day keeps the doctor away.",
+      "fr": "L'apéritif d'été italien classique.",
+      "nl": "Het beste Italiaanse zomerdrankje"
+    },
     "price": 6,
     "img": "/assets/menu/aperol.jpg",
     "category": "Drinks",
-    "subCategory": "cocktails & strong alcohol"
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
   },
   {
-    "name": "Cuba Libre",
-    "description": "A Baco a day keeps the doctor away.",
+    "name": {
+      "en": "Cuba Libre",
+      "fr": "Cuba Libre",
+      "nl": "Cuba Libre"
+    },
+    "description": {
+      "en": "A Baco a day keeps the doctor away.",
+      "fr": "A Baco a day keeps the doctor away.",
+      "nl": "A Baco a day keeps the doctor away."
+    },
     "price": 6,
     "img": "/assets/menu/baco.jpg",
     "category": "Drinks",
-    "subCategory": "cocktails & strong alcohol"
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
   },
   {
-    "name": "Gin Tonic",
-    "description": "It's no rocket science. Gin + Tonic is the ultimate combo.",
+    "name": {
+      "en": "Gin Tonic",
+      "fr": "Gin Tonic",
+      "nl": "Gin Tonic"
+    },
+    "description": {
+      "en": "It's no rocket science. Gin + Tonic is the ultimate combo.",
+      "fr": "Ce n'est pas sorcier. Le Gin + Tonic est la combinaison ultime.",
+      "nl": "Het is niet moeilijk. Gin + Tonic is de ultieme combo."
+    },
     "price": 6,
     "img": "/assets/menu/gin-tonic.jpg",
     "category": "Drinks",
-    "subCategory": "cocktails & strong alcohol"
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
   },
-
   {
-    "name": "Virgin Mojito",
-    "description": "Punch made out of mojito ingredients.",
+    "name": {
+      "en": "Vodka Red Bull",
+      "fr": "Vodka Red Bull",
+      "nl": "Vodka Red Bull"
+    },
+    "description": {
+      "en": "When two extremes meet.",
+      "fr": "Quand deux extrêmes se rencontrent.",
+      "nl": "Hartaanval gemengd met hoofdpijn. (Maar wel lekker)."
+    },
+    "price": 6,
+    "img": "/assets/menu/vodka-redbull.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
+  },
+  {
+    "name": {
+      "en": "Virgin Mojito",
+      "fr": "Virgin Mojito",
+      "nl": "Virgin Mojito"
+    },
+    "description": {
+      "en": "Punch made out of mojito ingredients.",
+      "fr": "Punch à base d'ingrédients de mojito.",
+      "nl": "Verfrissende mocktail als variatie op Mojito."
+    },
     "price": 4,
     "img": "/assets/menu/mojito-mocktail.jpg",
     "category": "Drinks",
-    "subCategory": "mocktails"
+    "subCategory": {
+      "en": "mocktails",
+      "fr": "mocktails",
+      "nl": "mocktails"
+    }
   },
   {
-    "name": "Spiced Apple",
-    "description": "An apple & ginger punch combo.",
+    "name": {
+      "en": "Spiced Apple",
+      "fr": "Spiced Apple",
+      "nl": "Spiced Apple"
+    },
+    "description": {
+      "en": "An apple & ginger punch combo.",
+      "fr": "Une combinaison de jus de pomme et de gingembre.",
+      "nl": "Een mengeling van appelsap en gember."
+    },
     "price": 4,
     "img": "/assets/menu/spicy-apple-mocktail.jpg",
     "category": "Drinks",
-    "subCategory": "mocktails"
+    "subCategory": {
+      "en": "mocktails",
+      "fr": "mocktails",
+      "nl": "mocktails"
+    }
   },
 
   {
-    "name": "Charcuterie mix",
-    "description": "A mix of local cheese and meat specialities, to share.",
+    "name": {
+      "en": "Saucage",
+      "fr": "Saucisse",
+      "nl": "Pensen"
+    },
+    "description": {
+      "en": "Way better than your average hot-dog.",
+      "fr": "Bien meilleur qu'un hot-dog ordinaire.",
+      "nl": "Véél beter dan de gemiddelde hot-dog."
+    },
+    "price": 4,
+    "img": "/assets/menu/pensen.jpg",
+    "category": "Food",
+    "subCategory": {
+      "en": "meals",
+      "fr": "charcuterie",
+      "nl": "hapjes"
+    }
+  },
+
+  {
+    "name": {
+      "en": "Charcuterie mix",
+      "fr": "Mix de Charcuterie",
+      "nl": "Bruegelbordje"
+    },
+    "description": {
+      "en": "A mix of local cheese and meat specialities, to share.",
+      "fr": "Un mélange de spécialités locales à base de fromage et de viande, à partager.",
+      "nl": "Een mix van lokale kaas-en vleesspecialiteiten. Om te delen."
+    },
     "price": 12,
     "img": "/assets/menu/breughel-bordje.jpg",
     "category": "Food",
-    "subCategory": "meals"
+    "subCategory": {
+      "en": "meals",
+      "fr": "charcuterie",
+      "nl": "hapjes"
+    }
   },
   {
-    "name": "Lays Chips",
-    "description": "Paprika & salt flavour.",
+    "name": {
+      "en": "Lays Chips",
+      "fr": "Lays Chips",
+      "nl": "Lays Chips"
+    },
+    "description": {
+      "en": "Paprika, Ketchup, Salt & Pickels flavour.",
+      "fr": "Paprika, Ketchup, Sel et Pickels.",
+      "nl": "Paprika, Ketchup, Zout & Pickels-smaak"
+    },
     "price": 1,
     "img": "/assets/menu/lays.jpg",
     "category": "Food",
-    "subCategory": "snacks"
+    "subCategory": {
+      "en": "snacks",
+      "fr": "collations",
+      "nl": "versnaperingen"
+    }
   },
-
   {
-    "name": "Rocket",
-    "description": "Frozen ice pop with 3 flavours.",
+    "name": {
+      "en": "Cornetto",
+      "fr": "Cornetto",
+      "nl": "Cornetto"
+    },
+    "description": {
+      "en": "I scream, you scream, we all scream for ice cream!",
+      "fr": "I scream, you scream, we all scream for ice cream!",
+      "nl": "I scream, you scream, we all scream for ice cream!"
+    },
+    "price": 1,
+    "img": "/assets/menu/cornetto.jpg",
+    "category": "Food",
+    "subCategory": {
+      "en": "snacks",
+      "fr": "collations",
+      "nl": "versnaperingen"
+    }
+  },
+  {
+    "name": {
+      "en": "Popsicle",
+      "fr": "Popsicle",
+      "nl": "Raketijsje"
+    },
+    "description": {
+      "en": "Frozen popsicle with 3 flavours. IN THE SHAPE OF A ROCKET!!",
+      "fr": "Sucette glacée à 3 goûts. EN FORME DE FUSÉE !!",
+      "nl": "Een waterijsje met 3 smaken IN DE VORM VAN EEN RAKET!!"
+    },
     "price": 1,
     "img": "/assets/menu/raketijsje.jpg",
     "category": "Food",
-    "subCategory": "snacks"
+    "subCategory": {
+      "en": "snacks",
+      "fr": "collations",
+      "nl": "versnaperingen"
+    }
   }
 ]

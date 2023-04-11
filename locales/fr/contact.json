@@ -1,0 +1,39 @@
+{
+  "SEO": {
+    "title": "Contact",
+    "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook.",
+    "openGraph": {
+      "title": "Contact",
+      "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook."
+    }
+  },
+  "title": "Contactez nous",
+  "form": {
+    "name": {
+      "label": "Nom*",
+      "placeholder": "Louis Quatorze",
+      "error": "Veuillez entrer votre nom complet."
+    },
+    "email": {
+      "label": "Email*",
+      "placeholder": "louis.xiv@gmail.com",
+      "error": "Veuillez entrer votre email complet."
+    },
+    "phone": {
+      "label": "Téléphone",
+      "placeholder": "+32 4XX XX XX XX"
+    },
+    "subject": {
+      "label": "Sujet*",
+      "placeholder": "Question concernant...",
+      "error": "Veuillez entrer un sujet complet."
+    },
+    "message": {
+      "label": "Message*",
+      "placeholder": "Que voulez-vous nous dire ?",
+      "error": "Veuillez entrer votre message."
+    },
+    "button": "Envoyer",
+    "success": "Message envoyé ! Nous vous contacterons dès que possible."
+  }
+}

@@ -3,7 +3,7 @@
 .footer {
   width: 100%;
   margin-top: auto;
-  background-color: var(--color-red-2);
+  background-color: var(--color-black);
   color: var(--color-white);
 }
 
@@ -19,12 +19,17 @@
   display: grid;
   justify-items: center;
   align-content: start;
+
+  @include mixins.breakpoint-up(lg) {
+    justify-items: start;
+  }
 }
 
 .footer__block__title {
   font-family: var(--font-family-alt);
   font-weight: 700;
   font-size: var(--font-size-subtitle);
+  color: var(--color-pink-3);
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 
@@ -43,19 +48,7 @@
   color: var(--color-white);
   font-weight: 600;
   text-decoration: underline;
-}
-
-.copy {
-  margin-top: 3rem;
-  text-align: center;
-  width: 100%;
-  display: inline-block;
-  font-size: var(--font-size-x-small);
-  line-height: var(--line-height-small);
-
-  @include mixins.breakpoint-up(lg) {
-    margin-top: 5rem;
-  }
+  text-transform: uppercase;
 }
 
 .socials {
@@ -71,15 +64,11 @@
   min-height: 16vw;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   background-image: url('/assets/footer.jpg');
+  background-position: center;
   background-size: cover;
   z-index: 1;
+  position: relative;
 
   &::before {
     bottom: 0;
@@ -93,12 +82,12 @@
     z-index: -1;
     background-color: var(--color-black-fade-50);
     background-image: radial-gradient(
-        rgba(255, 47, 0, 0.25) 1px,
-        transparent 0.5px
+        rgba(255, 255, 255, 0.2) 1px,
+        rgba(0, 0, 0, 0.15) 1px
       ),
-      radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 0.5px);
+      radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
     background-size: 4px 4px;
-    background-position: 0 0, 8px 8px;
+    background-position: 0 0, 2px 2px;
   }
 
   @include mixins.breakpoint-up(xl) {
@@ -107,8 +96,18 @@
   }
 }
 
+.social__items__inner {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0.125rem;
+}
+
 .social__item {
   color: white;
+  z-index: 11;
 
   &:hover,
   &:focus {
@@ -121,17 +120,30 @@
   }
 }
 
-.tear {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  width: 120%;
-  &--2 {
-    bottom: -2px;
+.footer__bottom {
+  display: grid;
+  gap: 1.5rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  margin-top: 3rem;
+  @include mixins.breakpoint-up(lg) {
+    margin-top: 5rem;
   }
+}
 
-  &--3 {
-    top: -2px;
+.copy {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  font-size: var(--font-size-x-small);
+  line-height: var(--line-height-small);
+
+  a {
+    font-weight: inherit;
+    color: var(--color-text-inverted);
+
+    text-decoration: underline;
   }
 }
 

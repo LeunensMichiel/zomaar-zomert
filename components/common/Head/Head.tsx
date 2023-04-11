@@ -1,8 +1,8 @@
 import NextHead from 'next/head';
 import { DefaultSeo } from 'next-seo';
-import { VFC } from 'react';
+import { FC } from 'react';
 
-const Head: VFC = () => {
+const Head: FC = () => {
   const url = process.env.SITE_URL;
 
   return (

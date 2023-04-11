@@ -1,6 +1,7 @@
 import ChevronRight from '@components/icons/Chevron';
 import { Button, Input, TextArea } from '@components/ui';
 import cn from 'classnames';
+import useTranslation from 'next-translate/useTranslation';
 import {
   ComponentPropsWithRef,
   FC,
@@ -44,6 +45,7 @@ const Form: FC<ComponentPropsWithRef<'form'> & FormProps> = forwardRef<
   HTMLFormElement,
   FormProps
 >(({ children, wrapperClassName, ...rest }, ref) => {
+  const { t } = useTranslation('contact');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formName = 'contactformulier';
@@ -90,42 +92,42 @@ const Form: FC<ComponentPropsWithRef<'form'> & FormProps> = forwardRef<
         <input name="bot-field" />
       </label>
       <Input
-        label="Name*"
+        label={t('form.name.label')}
         type="text"
-        placeholder="Enter your name"
+        placeholder={t('form.name.placeholder')}
         error={errors?.naam}
-        {...register('naam', { required: 'Please fill out your full name.' })}
+        {...register('naam', { required: t('form.name.error') })}
       />
       <Input
-        label="Email*"
+        label={t('form.email.label')}
         type="email"
-        placeholder="So we can contact you"
+        placeholder={t('form.email.placeholder')}
         error={errors?.email}
         {...register('email', {
-          required: 'Please fill out your email address.',
+          required: t('form.email.error'),
         })}
       />
       <Input
-        label="Phone"
+        label={t('form.phone.label')}
         type="tel"
         placeholder="+32 4XX XX XX XX"
         {...register('telefoon')}
       />
       <Input
-        label="Subject*"
+        label={t('form.subject.label')}
         type="text"
         error={errors?.onderwerp}
-        placeholder="Subject of your message/email"
+        placeholder={t('form.subject.placeholder')}
         {...register('onderwerp', {
-          required: 'Please tell us why you want to contact us.',
+          required: t('form.subject.error'),
         })}
       />
       <TextArea
-        label="Message*"
-        placeholder="Let's get in touch!"
+        label={t('form.message.label')}
+        placeholder={t('form.message.placeholder')}
         error={errors?.bericht}
         {...register('bericht', {
-          required: 'An email should not be empty.',
+          required: t('form.message.error'),
         })}
       />
       <Button
@@ -136,10 +138,10 @@ const Form: FC<ComponentPropsWithRef<'form'> & FormProps> = forwardRef<
         iconRight={<ChevronRight />}
         loading={isSubmitting}
       >
-        Send Message
+        {t('form.button')}
       </Button>
       <p className={styles['message-received']}>
-        {isSubmitted && `Message sent! We'll get in touch as soon as possible.`}
+        {isSubmitted && t('form.success')}
       </p>
       {children}
     </form>

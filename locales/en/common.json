@@ -1,0 +1,30 @@
+{
+  "links": {
+    "home": "Home",
+    "line-up": "Line-Up",
+    "contact": "Contact",
+    "info": "Info",
+    "history": "History",
+    "news": "News",
+    "menu": "Menu",
+    "partners": "Our partners",
+    "legal": "Terms & Conditions"
+  },
+  "footer": {
+    "line-up": {
+      "title": "Line-Up"
+    },
+    "info": {
+      "title": "Want to know more?"
+    },
+    "contact": {
+      "title": "Contact",
+      "activities": "Register for activities",
+      "contact": "Contact us"
+    },
+    "copy": "Zomaar Zomert - Branding @ FVB Design - Webdesign @ <0>Michiel Leunens</0>"
+  },
+  "i18n": {
+    "select": "Select preferred language"
+  }
+}

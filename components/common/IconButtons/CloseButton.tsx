@@ -1,10 +1,11 @@
 import { Cross } from '@components/icons';
 import { Button } from '@components/ui';
 import { ButtonProps } from '@components/ui/Button/Button';
-import { MouseEventHandler, VFC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 type CloseButtonProps = {
   className?: string;
+  overide?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 } & Pick<
   ButtonProps<'button'>,
@@ -17,7 +18,7 @@ type CloseButtonProps = {
   | 'squared'
 >;
 
-const CloseButton: VFC<CloseButtonProps> = ({
+const CloseButton: FC<CloseButtonProps> = ({
   onClick,
   size = 'md',
   variant = 'minimal',

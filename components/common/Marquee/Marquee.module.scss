@@ -12,24 +12,24 @@
     position: absolute;
     right: 0;
     top: 0;
-    z-index: 100;
+    z-index: 5;
     background-image: radial-gradient(
-        rgba(161, 161, 161, 0.5) 1px,
-        transparent 0.5px
+        rgba(255, 255, 255, 0.2) 1px,
+        rgba(0, 0, 0, 0.15) 1px
       ),
-      radial-gradient(rgba(255, 255, 255, 0.125) 1px, transparent 0.5px);
+      radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
     background-size: 4px 4px;
-    background-position: 0 0, 8px 8px;
+    background-position: 0 0, 2px 2px;
   }
 }
 
 .slide {
-  height: 40vh;
+  height: 25vh;
   width: auto;
   object-fit: cover;
   object-position: center;
 
   @include mixins.breakpoint-up(md) {
-    // height: 20rem;
+    height: 40vh;
   }
 }

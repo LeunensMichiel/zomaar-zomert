@@ -1,0 +1,30 @@
+{
+  "links": {
+    "home": "Home",
+    "line-up": "Line-Up",
+    "contact": "Contact",
+    "info": "Info",
+    "history": "Historie",
+    "news": "Nieuws",
+    "menu": "Menu",
+    "partners": "Onze partners",
+    "legal": "Algemene voorwaarden"
+  },
+  "footer": {
+    "line-up": {
+      "title": "Line-Up"
+    },
+    "info": {
+      "title": "Meer weten?"
+    },
+    "contact": {
+      "title": "Contact",
+      "activities": "Inschrijven randactiviteiten",
+      "contact": "Contacteer ons"
+    },
+    "copy": "Zomaar Zomert - Huisstijl @ FVB Design - Webdesign @ <0>Michiel Leunens</0>"
+  },
+  "i18n": {
+    "select": "Taalvoorkeur selecteren"
+  }
+}
