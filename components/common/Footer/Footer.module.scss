@@ -183,25 +183,39 @@
 
 .scale_down {
   width: auto;
-  height: 1.5rem;
+  height: 1.25rem;
 
   @include mixins.breakpoint-up(md) {
     width: auto;
-    height: 2rem;
+    height: 1.75rem;
   }
   @include mixins.breakpoint-up(lg) {
     width: auto;
-    height: 2.25rem;
+    height: 1.75rem;
   }
 }
 
 .scale_up {
   width: auto;
+  height: 3rem;
+
+  @include mixins.breakpoint-up(md) {
+    width: auto;
+    height: 3.5rem;
+  }
+  @include mixins.breakpoint-up(lg) {
+    width: auto;
+    height: 5rem;
+  }
+}
+
+.scale_up__xl {
+  width: auto;
   height: 4rem;
 
   @include mixins.breakpoint-up(md) {
     width: auto;
-    height: 4.5rem;
+    height: 5rem;
   }
   @include mixins.breakpoint-up(lg) {
     width: auto;
