@@ -23,7 +23,7 @@ export type APIArtist = {
 };
 
 export type Artist = {
-  id: number;
+  id: number | string;
   name: string;
   date: string;
   hour: string;

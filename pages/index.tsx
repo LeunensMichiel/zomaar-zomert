@@ -170,7 +170,7 @@ const Home = () => {
                     month: 'long',
                     day: 'numeric',
                   }),
-                  imgSrc: '/assets/days/saturday.jpg',
+                  imgSrc: '/assets/artists/2fabiola-site.jpg',
                 }}
               />
             </Link>

@@ -17,6 +17,23 @@
     "imgSrc": "/assets/artists/tba.jpg"
   },
   {
+    "id": "2fabiola",
+    "name": {
+      "nl": "2 Fabiola",
+      "fr": "2 Fabiola",
+      "en": "2 Fabiola"
+    },
+    "date": "2023-07-29",
+    "hour": "21:00 - 22:00",
+    "isFiller": false,
+    "description": {
+      "nl": "2 Fabiola is een eurodance-project dat in 1991 werd opgericht door Pat Krimson (Patrick Claesen) en Olivier Adams. Met hits als Lift U Up en She's After My Piano is ambiance verzekerd!",
+      "fr": "2 Fabiola est un projet eurodance fondé en 1991 par Pat Krimson (Patrick Claesen) et Olivier Adams. Avec des tubes comme Lift U Up et She's After My Piano, la fête est garantie !",
+      "en": "2 Fabiola is a eurodance project founded in 1991 by Pat Krimson (Patrick Claesen) and Olivier Adams. With hits like Lift U Up and She's After My Piano, partying is guaranteed!"
+    },
+    "imgSrc": "/assets/artists/2fabiola-site.jpg"
+  },
+  {
     "id": 1,
     "name": {
       "nl": "TBA",
