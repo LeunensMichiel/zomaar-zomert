@@ -1,5 +1,138 @@
 [
   {
+    "id": "Kaaprisun",
+    "name": {
+      "nl": "Kaaprisun",
+      "fr": "Kaaprisun",
+      "en": "Kaaprisun"
+    },
+    "date": "2023-07-28",
+    "hour": "22:30 - 03:00",
+    "hiddenUntil": "2023-06-11T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Door een verrassende mix van alle genres te brengen, weet hij altijd iedereen aan het feesten te krijgen. In zijn geboortedorp Lennik en omliggende steden heeft hij op elke affiche gestaan. \n\nDames en heren, Kaaprisun zal een lust voor het oog zijn.",
+      "fr": "En apportant un mélange surprenant de tous les genres, il sait toujours comment faire faire la fête à tout le monde. Dans son village natal de Lennik et dans les villes environnantes, il a été à l'affiche de tous les spectacles. \n\nMesdames et messieurs, Kaaprisun fera sensation.",
+      "en": "By bringing a surprising mix of all genres, he always knows how to get everyone partying. In his home village of Lennik and surrounding towns, he has been on every bill. \n\nLadies and gentlemen, Kaaprisun will be a sight to behold."
+    },
+    "imgSrc": "/assets/artists/kaaprisun.jpg"
+  },
+  {
+    "id": "White",
+    "name": {
+      "nl": "DJ White",
+      "fr": "DJ White",
+      "en": "DJ White"
+    },
+    "date": "2023-07-28",
+    "hour": "22:30 - 03:00",
+    "hiddenUntil": "2023-06-11T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Square Café in Lennik en DJ White: het zijn 2 begrippen die men altijd in één adem uitspreekt. \n\nVan Lennik en Halle tot Ternat, DJ White zorgt gegarandeerd voor een epische avond.",
+      "fr": "Square Café à Lennik et DJ White : deux termes que les gens prononcent toujours dans le même souffle. \n\nDe Lennik à Ternat en passant par Halle, DJ White vous garantit une soirée épique.",
+      "en": "Square Café in Lennik and DJ White: they are 2 terms that people always say in one go. \n\nFrom Lennik and Halle to Ternat, DJ White is guaranteed to ensure an epic evening."
+    },
+    "imgSrc": "/assets/artists/white.jpg"
+  },
+  {
+    "id": "Twallie",
+    "name": {
+      "nl": "Twallie",
+      "fr": "Twallie",
+      "en": "Twallie"
+    },
+    "date": "2023-07-28",
+    "hour": "03:00 - 04:00",
+    "hiddenUntil": "2023-06-11T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Het is onmogelijk voor een jongere uit het Pajottenland om de woorden 'dikken boit' uit te spreken zonder TWALLIE te noemen. Gepensioneerd maar nog niet uit het hart, Twallie komt eventjes terug naar de Zomaar Zomert tent. \n\nMet zijn opzwepende beats kun jij, noch TWALLIE zelf, je benen stil houden.",
+      "fr": "Impossible pour un jeune du Pajot de prononcer les mots 'sale boit' sans parler de TWALLIE. Retraité, mais pas encore à bout de souffle, Twallie revient pour un temps sous la tente Just Summer. \n\nAvec ses rythmes entraînants, ni vous, ni TWALLIE ne pourrez garder vos jambes immobiles.",
+      "en": "It is impossible for a young person from the Pajot to pronounce the words 'dikken boit' without mentioning TWALLIE. Retired but not yet out of heart, Twallie returns to the Zomaar Zomert tent for a while. \n\nWith his rousing beats, neither you, nor TWALLIE himself, will be able to keep your legs still."
+    },
+    "imgSrc": "/assets/artists/twallie.jpg"
+  },
+  {
+    "id": "For The Record",
+    "name": {
+      "nl": "For The Record",
+      "fr": "For The Record",
+      "en": "For The Record"
+    },
+    "date": "2023-07-28",
+    "hour": "21:00 - 22:30",
+    "hiddenUntil": "2023-06-11T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "For the Record brengt graag mensen samen die van vinyl en cd's houden... dat is zoooo jaren 90! Dat kan niet slecht zijn, toch? \n\nGeniet van old school hip hop met een vleugje scratch.",
+      "fr": "For the Record aime réunir les amateurs de vinyles et de CD... c'est tellement années 90 ! Ça ne peut pas être mauvais, n'est-ce pas ? \n\nProfitez du hip hop de la vieille école avec un goût de scratch.",
+      "en": "For the Record likes to bring people together who love vinyl and CDs... that's soooo 90s! That can't be bad, right? \n\nEnjoy old school hip hop with a taste of scratch."
+    },
+    "imgSrc": "/assets/artists/ftr.jpg"
+  },
+  {
+    "id": "03030",
+    "name": {
+      "nl": "Activiteiten",
+      "fr": "Activités",
+      "en": "Activities"
+    },
+    "date": "2023-07-28",
+    "hiddenUntil": "2023-06-15T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": true,
+    "hour": "🌞🌞🌞",
+    "description": {
+      "nl": "",
+      "fr": "",
+      "en": ""
+    },
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": "ZomaarBike",
+    "name": {
+      "nl": "Zomaar Bike",
+      "fr": "Zomaar Bike",
+      "en": "Zomaar Bike"
+    },
+    "date": "2023-07-28",
+    "hour": "16:00 - 22:00",
+    "hiddenUntil": "2023-06-15T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Geen Zomaar Zomert zonder de jaarlijkse mountainbiketocht! 🚴 De gebruikelijke ingrediënten: adembenemende uitzichten op het Pajottenland en op de stad Brussel (bij nacht), pittige heuvels, snelle afdalingen, technische stukken, single tracks, boswegen.... \n\nWe hopen je daar te zien!",
+      "fr": "Pas de Zomaar Zomert sans la randonnée annuelle en VTT ! 🚴 \n\nLes ingrédients habituels : des vues à couper le souffle sur le Pajottenland et sur la ville de Bruxelles (de nuit), des collines difficiles, des descentes rapides, des parties techniques, des single tracks, des routes forestières... \n\nNous espérons vous y voir !",
+      "en": "No Zomaar Zomert without the annual mountain bike tour! 🚴 \n\nThe usual ingredients: breathtaking views on the Pajottenland and on the city of Brussels (by night), tough hills, fast descents, technical parts, single tracks, forest roads... \n\n We hope to see you there!"
+    },
+    "imgSrc": "/assets/artists/zomaarbike.jpg"
+  },
+  {
+    "id": "10001",
+    "name": {
+      "nl": "Zomaar Terras",
+      "fr": "Zomaar Terrasse",
+      "en": "Zomaar Cafe"
+    },
+    "date": "2023-07-28",
+    "isFiller": false,
+    "hour": "16:00",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "description": {
+      "nl": "Kom, drink, eet en geniet van ons Zomaar terras dat het hele weekend open is! ☀️🍹",
+      "fr": "Venez boire, manger et profiter de notre terrasse Zomaar qui est ouverte tout le week-end ! ☀️🍹",
+      "en": "Come, drink, eat and enjoy our Zomaar terrace that is open all weekend long! ☀️🍹"
+    },
+    "imgSrc": "/assets/artists/terras.jpg"
+  },
+  {
     "id": 0,
     "name": {
       "nl": "TBA",
@@ -8,6 +141,8 @@
     },
     "date": "2023-07-28",
     "hour": "to be announced",
+    "hiddenUntil": "2023-01-31T18:00:00.000Z",
+    "hiddenFrom": "2023-06-15T18:00:00.000Z",
     "isFiller": false,
     "description": {
       "nl": "Deze artiest zal binnenkort worden aangekondigd! Houd onze socials in de gaten of bezoek zomaarzomert.be in de nabije toekomst.",
@@ -25,13 +160,148 @@
     },
     "date": "2023-07-29",
     "hour": "21:00 - 22:00",
+    "hiddenUntil": "2023-05-28T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
     "isFiller": false,
     "description": {
       "nl": "2 Fabiola is een eurodance-project dat in 1991 werd opgericht door Pat Krimson (Patrick Claesen) en Olivier Adams. Met hits als Lift U Up en She's After My Piano is ambiance verzekerd!",
       "fr": "2 Fabiola est un projet eurodance fondé en 1991 par Pat Krimson (Patrick Claesen) et Olivier Adams. Avec des tubes comme Lift U Up et She's After My Piano, la fête est garantie !",
       "en": "2 Fabiola is a eurodance project founded in 1991 by Pat Krimson (Patrick Claesen) and Olivier Adams. With hits like Lift U Up and She's After My Piano, partying is guaranteed!"
     },
-    "imgSrc": "/assets/artists/2fabiola-site.jpg"
+    "imgSrc": "/assets/artists/2fabiola.jpg"
+  },
+  {
+    "id": "Pat Krimson",
+    "name": {
+      "nl": "Pat Krimson",
+      "fr": "Pat Krimson",
+      "en": "Pat Krimson"
+    },
+    "date": "2023-07-29",
+    "hour": "22:00 - 23:00",
+    "hiddenUntil": "2023-05-31T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Pat Krimson aka Patrick Claesen Patje is een pionier op gebied van Dance in Belgie... Met zijn label Dance Opera , Club Atmoz en projecten 2Fabiola & Nunca heeft hij heel wat teweeg gebracht in Dansend Vlaanderen. Sinds zijn come-back uit Ibiza scoorde Pat een de zomerHIT van 2014 met `She's after my Piano`. Wekelijks staat Pat achter de draaitafels vooral in Belgie en Nedeland. Pat Krimson is een Legende en zijn populariteit is nooit groter geweest! `For the Bigga & Bolda`.",
+      "fr": "Pat Krimson alias Patrick Claesen Patje est un pionnier de la danse en Belgique... Avec son label Dance Opera , Club Atmoz et ses projets 2Fabiola & Nunca, il a fait sensation dans la Flandre de la danse. Depuis son retour d'Ibiza, Pat a marqué le tube de l'été 2014 avec `She's after my Piano`. Chaque semaine, Pat est derrière les platines, principalement en Belgique et aux Pays-Bas. Pat Krimson est une légende et sa popularité n'a jamais été aussi grande ! Pour les Bigga & Bolda`.",
+      "en": "Pat Krimson aka Patrick Claesen Patje is a pioneer in the field of Dance in Belgium... With his label Dance Opera , Club Atmoz and projects 2Fabiola & Nunca, he has caused quite a stir in Dancing Flanders. Since his come-back from Ibiza, Pat scored a the summer hit of 2014 with `She's after my Piano`. Weekly, Pat is behind the turntables mainly in Belgium and the Netherlands. Pat Krimson is a Legend and his popularity has never been greater! `For the Bigga & Bolda`."
+    },
+    "imgSrc": "/assets/artists/krimson.jpg"
+  },
+  {
+    "id": "Wim Soutaer",
+    "name": {
+      "nl": "Wim Soutaer",
+      "fr": "Wim Soutaer",
+      "en": "Wim Soutaer"
+    },
+    "date": "2023-07-29",
+    "hour": "20:00 - 21:00",
+    "hiddenUntil": "2023-06-03T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Sinds zijn derde plaats bij Idool 2003 heeft Wim Soutaer een schitterend parcours afgelegd. Met ‘Allemaal’ begon het allemaal... Na een paar jaar solo verbroedert Wim in 2012 met Charles Van Domburg en Vincent Goeminnen... En zo zijn The Soulbrothers geboren! \n\nMaar Wim blijft nummers schrijven en na enkele jaren afwezigheid, komt in 2017 weer een solosingle uit met de titel ‘Nummer 1’. Een boost voor zijn solocarrière en Wim Soutaer is weer vertrokken! Exact vijftien jaar na zijn monsterhit ‘Allemaal’ brengt Wim in 2018 zijn 4e studioalbum ‘Verbonden’ uit. Met zijn aanstekelijke lach en zijn passie voor muziek staat Wim sterker dan ooit in zijn schoenen en op het podium!",
+      "fr": "Depuis sa troisième place à Idool 2003, Wim Soutaer a connu un parcours brillant. Tout a commencé avec 'Allemaal'... Après quelques années en solo, Wim a fraternisé avec Charles Van Domburg et Vincent Goeminnen en 2012.... Et c'est ainsi que sont nés les Soulbrothers ! \n\nWim continue d'écrire des chansons et après quelques années d'absence, un autre single solo intitulé 'Nummer 1' sort en 2017. Un coup de pouce pour sa carrière solo et Wim Soutaer repart ! Exactement 15 ans après son succès monstre 'Allemaal', Wim sort son 4e album studio 'Verbonden' en 2018. Avec son sourire contagieux et sa passion pour la musique, Wim est plus fort que jamais dans ses chaussures et sur scène !",
+      "en": "Since his third place at Idool 2003, Wim Soutaer has had a brilliant run. It all started with 'Allemaal'... After a few years solo, Wim fraternised with Charles Van Domburg and Vincent Goeminnen in 2012.... And that's how The Soulbrothers were born! \n\nWim continues to write songs and after a few years of absence, another solo single titled 'Nummer 1' is released in 2017. A boost for his solo career and Wim Soutaer is off again! Exactly 15 years after his monster hit 'Allemaal', Wim releases his 4th studio album 'Verbonden' in 2018. With his infectious smile and his passion for music, Wim is stronger than ever in his shoes and on stage!"
+    },
+    "imgSrc": "/assets/artists/wim.jpg"
+  },
+  {
+    "id": "Creator",
+    "name": {
+      "nl": "DJ Creator",
+      "fr": "DJ Creator",
+      "en": "DJ Creator"
+    },
+    "date": "2023-07-29",
+    "hour": "23:00 - 01:30",
+    "hiddenUntil": "2023-06-06T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Jean Sauveur (@dj.creator onder de vrienden) brengt zaterdag 29 juli zijn gitarist mee. Avicii met een gitaarsolo? Geen probleem! Doe je dansschoenen aan en drink genoeg want met Creator en Modde is non-stop springen verzekerd!",
+      "fr": "Jean Sauveur (@dj.creator among friends) vient avec son guitariste le samedi 29 juillet. Avicii avec un solo de guitare ? Pas de problème ! Mettez vos chaussures de danse et buvez beaucoup car avec Creator et Modde, le saut non-stop est garanti !",
+      "en": "Jean Sauveur (@dj.creator among friends) will bring his guitarist on Saturday, July 29. Avicii with a guitar solo? No problem! Put on your dancing shoes and drink plenty because with Creator and Modde, non-stop jumping is guaranteed!"
+    },
+    "imgSrc": "/assets/artists/jean.jpg"
+  },
+  {
+    "id": "Barak Feture",
+    "name": {
+      "nl": "Barak Fêture",
+      "fr": "Barak Fêture",
+      "en": "Barak Fêture"
+    },
+    "date": "2023-07-29",
+    "hour": "01:30 - 04:00",
+    "hiddenUntil": "2023-06-09T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "description": {
+      "nl": "Deze jongeman is verantwoordelijk voor de tent af te breken op zaterdag 29 juli! 🎪❌ \n\nHij staat op quasi elke fuif van het Pajottenland geboekt, dus konden we hem er maar beter bij hebben deze editie! Dames en heren: Barak Fêture!",
+      "fr": "Ce jeune homme est chargé de démonter la tente le samedi 29 juillet ! 🎪❌ \n\nIl est engagé dans presque toutes les fêtes du Pajottenland, alors autant qu'il soit là pour cette édition ! Mesdames et Messieurs : Barak Fêture !",
+      "en": "This young man is responsible for tearing down the tent on Saturday 29 July! 🎪❌ \n\nHe is booked at almost every party in the Pajottenland, so we had better have him there this edition! Ladies and gentlemen: Barak Fêture!"
+    },
+    "imgSrc": "/assets/artists/barak.jpg"
+  },
+  {
+    "id": 13,
+    "name": {
+      "nl": "Activiteiten",
+      "fr": "Activités",
+      "en": "Activities"
+    },
+    "date": "2023-07-29",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": true,
+    "hour": "🌞🌞🌞",
+    "description": {
+      "nl": "",
+      "fr": "",
+      "en": ""
+    },
+    "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": "petanque",
+    "name": {
+      "nl": "Petanque",
+      "fr": "Petanque",
+      "en": "Petanque"
+    },
+    "date": "2023-07-29",
+    "isFiller": false,
+    "hour": "12:30 - 17:00",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "description": {
+      "nl": "Ook dit jaar organiseren we weer een petanquetoernooi op zaterdag 29 juli. Wees er snel bij want de plaatsen zijn beperkt! U kunt zich inschrijven door op de link op de homepage te klikken.",
+      "fr": "Cette année encore, nous organisons un tournoi de pétanque le samedi 29 juillet. Faites vite car les places sont limitées ! Vous pouvez vous inscrire en cliquant sur le lien de la page d'accueil.",
+      "en": "This year we are once again organising a petanque tournament on Saturday 29 July. Be quick because places are limited! You can subscribe by clicking on the link on the homepage."
+    },
+    "imgSrc": "/assets/artists/petanque.jpg"
+  },
+  {
+    "id": "1003",
+    "name": {
+      "nl": "Zomaar Terras",
+      "fr": "Zomaar Terrasse",
+      "en": "Zomaar Cafe"
+    },
+    "date": "2023-07-29",
+    "isFiller": false,
+    "hour": "12:00",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "description": {
+      "nl": "Kom, drink, eet en geniet van ons Zomaar terras dat het hele weekend open is! ☀️🍹",
+      "fr": "Venez boire, manger et profiter de notre terrasse Zomaar qui est ouverte tout le week-end ! ☀️🍹",
+      "en": "Come, drink, eat and enjoy our Zomaar terrace that is open all weekend long! ☀️🍹"
+    },
+    "imgSrc": "/assets/artists/terras.jpg"
   },
   {
     "id": 1,
@@ -42,6 +312,8 @@
     },
     "date": "2023-07-29",
     "hour": "to be announced",
+    "hiddenUntil": "2023-01-31T18:00:00.000Z",
+    "hiddenFrom": "2023-06-27T18:00:00.000Z",
     "isFiller": false,
     "description": {
       "nl": "Deze artiest zal binnenkort worden aangekondigd! Houd onze socials in de gaten of bezoek zomaarzomert.be in de nabije toekomst.",
@@ -49,6 +321,101 @@
       "en": "This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future."
     },
     "imgSrc": "/assets/artists/tba.jpg"
+  },
+  {
+    "id": 16,
+    "name": {
+      "nl": "Zomaar Run",
+      "fr": "Zomaar Run",
+      "en": "Zomaar Run"
+    },
+    "date": "2023-07-30",
+    "hiddenUntil": "2023-06-22T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "isFiller": false,
+    "hour": "10:00 - 11:00",
+    "description": {
+      "nl": "Ook dit jaar organiseren we weer de Zomaar Run, een concept dat in het verleden duidelijk zijn reputatie heeft verdiend. \n\nHet parcours van 5, 10 of 15 km vloeit door de mooiste weggetjes van Itterbeek en omgeving. \n\nBevoorrading is inbegrepen!",
+      "fr": "Cette année, nous organisons à nouveau le Zomaar Run, un concept qui a déjà fait ses preuves par le passé. \n\nLe parcours de 5, 10 ou 15 km traverse les plus belles routes d'Itterbeek et de ses environs. \n\nLe ravitaillement est inclus !",
+      "en": "This year we are once again organising the ZomaarRun, a concept that has earned its reputation in the past. \n\nThe 5, 8 or 11 km course will lead you through the nicest little roads of Itterbeek and its surroundings. \n\nSupply will be provided!"
+    },
+    "imgSrc": "/assets/artists/run.jpg"
+  },
+  {
+    "id": 17,
+    "name": {
+      "nl": "Voor de kids",
+      "fr": "Pour les enfants",
+      "en": "For the kids"
+    },
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "date": "2023-07-30",
+    "isFiller": false,
+    "hour": "All Day",
+    "description": {
+      "nl": "Op zondag organiseren we leuke activiteiten voor de jongsten onder ons. Springkasteel, volleybalveld, gekke clown... \n\nPerfect om even uit te rusten terwijl de kinderen hun overtollige energie kwijt geraken!",
+      "fr": "Le dimanche, nous organisons des activités amusantes pour les plus jeunes d'entre nous. Château gonflable, terrain de volley-ball, clown... \n\nParfait pour faire une pause pendant que les enfants dépensent leur trop-plein d'énergie !",
+      "en": "On Sundays we organise fun activities for the youngest among us. Bouncy castle, volleyball court, crazy clown. \n\nPerfect for taking a break while the kiddos work off their excess energy!"
+    },
+    "imgSrc": "/assets/artists/kid.jpg"
+  },
+  {
+    "id": 18,
+    "name": {
+      "nl": "Ludo's Paella",
+      "fr": "Ludo's Paella",
+      "en": "Ludo's Paella"
+    },
+    "date": "2023-07-30",
+    "isFiller": false,
+    "hour": "12:30 - 15:00",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "description": {
+      "nl": "Zondagmiddag serveren wij de specialiteit van het huis! Geniet van deze Spaanse specialiteit aan ons zonnig terrasje dat de hele dag geopend is. \n\nRegistreren voor een bord heerlijke Paella kan op onze website. Link staat op de homepage!",
+      "fr": "Le dimanche après-midi, nous servons la spécialité de la maison ! Savourez cette spécialité espagnole sur notre terrasse ensoleillée, ouverte toute la journée. \n\nVous pouvez vous inscrire pour un plat de Paella délicieux sur nos formulaires. Le lien se trouve sur la page d'accueil !",
+      "en": "Sunday afternoon we serve the speciality of the house! Enjoy this Spanish speciality on our sunny terrace which is open all day. \n\nYou can sign-up for a plate of delicious Paella on our forms. Link is on the homepage!"
+    },
+    "imgSrc": "/assets/artists/paella.jpg"
+  },
+  {
+    "id": 19,
+    "name": {
+      "nl": "Zomaar Quiz",
+      "fr": "Zomaar Quiz",
+      "en": "Zomaar Quiz"
+    },
+    "date": "2023-07-30",
+    "isFiller": false,
+    "hour": "19:30 - 23:00",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "description": {
+      "nl": "We verwelkomen alle brainiacs, know-it-alls, grammatica verbeteraars en bourgondiërs (lees: bierdrinkers) op onze Zomaarquiz! We verwachten iedereen om 19:30 in onze feesttent. \n\nInschrijven is niet nodig. Maximaal 6 personen in één team.",
+      "fr": "Nous souhaitons la bienvenue à tous les cerveaux, les connaisseurs, les experts en grammaire et les Bourguignons (c'est-à-dire les buveurs de bière) à notre Zomaarquiz ! 🙌 \n\nNous accueillons tout le monde à 19h30 dans notre tente du festival. \n\nAucune inscription n'est nécessaire. Maximum 6 personnes par équipe.",
+      "en": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team."
+    },
+    "imgSrc": "/assets/artists/quiz.jpg"
+  },
+  {
+    "id": "1000",
+    "name": {
+      "nl": "Zomaar Terras",
+      "fr": "Zomaar Terrasse",
+      "en": "Zomaar Cafe"
+    },
+    "date": "2023-07-30",
+    "isFiller": false,
+    "hour": "11:00",
+    "hiddenUntil": "2023-06-27T18:00:00.000Z",
+    "hiddenFrom": "2023-09-30T18:00:00.000Z",
+    "description": {
+      "nl": "Kom, drink, eet en geniet van ons Zomaar terras dat het hele weekend open is! ☀️🍹",
+      "fr": "Venez boire, manger et profiter de notre terrasse Zomaar qui est ouverte tout le week-end ! ☀️🍹",
+      "en": "Come, drink, eat and enjoy our Zomaar terrace that is open all weekend long! ☀️🍹"
+    },
+    "imgSrc": "/assets/artists/terras.jpg"
   },
   {
     "id": 2,
@@ -59,6 +426,8 @@
     },
     "date": "2023-07-30",
     "hour": "to be announced",
+    "hiddenUntil": "2023-01-31T18:00:00.000Z",
+    "hiddenFrom": "2023-06-27T18:00:00.000Z",
     "isFiller": false,
     "description": {
       "nl": "Deze artiest zal binnenkort worden aangekondigd! Houd onze socials in de gaten of bezoek zomaarzomert.be in de nabije toekomst.",

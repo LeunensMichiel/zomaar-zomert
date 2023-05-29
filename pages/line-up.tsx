@@ -55,7 +55,10 @@ const LineUpPage = ({
   const [currentDate, setCurrentDate] = useState('');
 
   const filteredArtists = artists?.filter(
-    (artist) => artist?.date === currentDate
+    (artist) =>
+      artist?.date === currentDate &&
+      new Date() >= new Date(artist.hiddenUntil) &&
+      new Date() <= new Date(artist.hiddenFrom)
   );
   const formattedDate = new Date(currentDate);
 

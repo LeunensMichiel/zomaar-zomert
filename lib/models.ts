@@ -13,13 +13,15 @@ export type languages = 'nl' | 'fr' | 'en';
 type TranslationString = Record<languages, string>;
 
 export type APIArtist = {
-  id: number;
+  id: number | string;
   name: TranslationString;
   date: string;
   hour: string;
   isFiller: boolean;
   description: TranslationString;
   imgSrc: string;
+  hiddenUntil: string;
+  hiddenFrom: string;
 };
 
 export type Artist = {
@@ -30,6 +32,8 @@ export type Artist = {
   isFiller: boolean;
   description: string;
   imgSrc: string;
+  hiddenUntil: string;
+  hiddenFrom: string;
 };
 
 export enum MenuType {
