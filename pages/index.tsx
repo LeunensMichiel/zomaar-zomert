@@ -100,6 +100,7 @@ const Home = () => {
           loop
           preload="auto"
         >
+          <source src="/assets/landing.webm" type="video/webm" />
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
         <div className={cn(styles.landing__inner, 'container')}>
