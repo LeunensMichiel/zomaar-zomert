@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-key */
 import { Layout, TexturedImage } from '@components/common';
+import ChevronRight from '@components/icons/Chevron';
 // import ChevronRight from '@components/icons/Chevron';
-import { Card } from '@components/ui';
+import { Button, Card } from '@components/ui';
 import Map from '@components/ui/Map';
 import { NextSeo } from 'next-seo';
 import Trans from 'next-translate/Trans';
@@ -19,6 +20,7 @@ const breakpointColumns = {
 
 const InfoPage = () => {
   const { t } = useTranslation('info');
+  const signupDisabled = new Date() < new Date('2023-06-20');
   return (
     <>
       <NextSeo
@@ -92,13 +94,15 @@ const InfoPage = () => {
               />
             </p>
             <div className={styles.buttons}>
-              {t('faq.8.tba')}
-              {/* <Button
+              <Button
                 as="a"
-                href="https://forms.gle/pPBDp316unZQNzHv6"
-                target="_blank"
+                {...(!signupDisabled && {
+                  href: 'https://forms.gle/HEQ42wb9x1mLS93f6',
+                  target: '_blank',
+                  rel: 'noreferrer noopener',
+                })}
                 size="xs"
-                rel="noreferrer noopener"
+                disabled={signupDisabled}
                 variant="primary"
                 outlined
                 iconRight={<ChevronRight />}
@@ -107,16 +111,19 @@ const InfoPage = () => {
               </Button>
               <Button
                 as="a"
-                href="https://forms.gle/gsZmucuve7tHacQd8"
-                target="_blank"
-                rel="noreferrer noopener"
+                {...(!signupDisabled && {
+                  href: 'https://forms.gle/2Qi4wamhSU3fygW5A',
+                  target: '_blank',
+                  rel: 'noreferrer noopener',
+                })}
+                disabled={signupDisabled}
                 variant="primary"
                 outlined
                 size="xs"
                 iconRight={<ChevronRight />}
               >
                 {t('faq.8.paella')}
-              </Button> */}
+              </Button>
             </div>
           </Card>
           <TexturedImage src="/assets/random/food.jpg" alt="A sausage" />

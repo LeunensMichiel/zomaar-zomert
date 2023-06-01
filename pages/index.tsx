@@ -2,7 +2,8 @@ import { ImageCard, Layout, Marquee } from '@components/common';
 import { CONSENT } from '@components/common/CookieBanner/CookieBanner';
 import { getLocalStorage } from '@components/common/CookieBanner/storagehelper';
 import { Triangle } from '@components/icons';
-import { Logo } from '@components/ui';
+import ChevronRight from '@components/icons/Chevron';
+import { Button, Logo } from '@components/ui';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -91,6 +92,8 @@ const Home = () => {
     'cookie_consent',
     'pending'
   );
+
+  const signupDisabled = new Date() < new Date('2023-06-20');
 
   return (
     <>
@@ -208,30 +211,36 @@ const Home = () => {
               />
             </Link>
           </div>
-          {/* <div className={styles.buttons}>
-          <Button
-            as="a"
-            href="https://forms.gle/pPBDp316unZQNzHv6"
-            target="_blank"
-            rel="noreferrer noopener"
-            size="xl"
-            variant="primary"
-            iconRight={<ChevronRight />}
-          >
-            Sign up — Petanque
-          </Button>
-          <Button
-            as="a"
-            href="https://forms.gle/gsZmucuve7tHacQd8"
-            target="_blank"
-            rel="noreferrer noopener"
-            size="xl"
-            variant="primary"
-            iconRight={<ChevronRight />}
-          >
-            Sign up — Paella
-          </Button>
-        </div> */}
+          <div className={styles.buttons}>
+            <Button
+              as="a"
+              {...(!signupDisabled && {
+                href: 'https://forms.gle/HEQ42wb9x1mLS93f6',
+                target: '_blank',
+                rel: 'noreferrer noopener',
+              })}
+              size="xl"
+              disabled={signupDisabled}
+              variant="primary"
+              iconRight={<ChevronRight />}
+            >
+              {t('petanque')}
+            </Button>
+            <Button
+              as="a"
+              {...(!signupDisabled && {
+                href: 'https://forms.gle/2Qi4wamhSU3fygW5A',
+                target: '_blank',
+                rel: 'noreferrer noopener',
+              })}
+              disabled={signupDisabled}
+              size="xl"
+              variant="primary"
+              iconRight={<ChevronRight />}
+            >
+              {t('paella')}
+            </Button>
+          </div>
         </div>
         <img
           className={cn('tear', 'tear--bottom')}
