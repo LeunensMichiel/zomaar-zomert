@@ -11,7 +11,6 @@ const { locales } = i18nConfig;
 
 export const LanguageSelectionModal = () => {
   const { t } = useTranslation('common');
-  //   const [, setCookie] = useCookies([COOKIE_NAME]);
 
   const handleLangChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (LangCode[e.target.value]) {

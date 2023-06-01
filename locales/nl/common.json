@@ -8,7 +8,7 @@
     "news": "Nieuws",
     "menu": "Menu",
     "partners": "Onze partners",
-    "legal": "Algemene voorwaarden"
+    "legal": "Privacybeleid"
   },
   "footer": {
     "line-up": {
@@ -23,6 +23,12 @@
       "contact": "Contacteer ons"
     },
     "copy": "Zomaar Zomert - Huisstijl @ FVB Design - Webdesign @ <0>Michiel Leunens</0>"
+  },
+  "cookies": {
+    "title": "Zomaar Zomert maakt gebruik van cookies",
+    "text": "We gebruiken cookies enkel voor functionele & analytische doeleinden en slaan <0>geen</0> persoonlijke gegevens op. Door het gebruiken van de site ga je hiermee akkoord.<1/>Meer info in ons <2>privacybeleid</2>.",
+    "deny": "Weigeren",
+    "consent": "Da's in orde!"
   },
   "i18n": {
     "select": "Taalvoorkeur selecteren"

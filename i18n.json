@@ -10,6 +10,7 @@
     "/history": ["history"],
     "/info": ["info"],
     "/line-up": ["line-up"],
-    "/menu": ["menu"]
+    "/menu": ["menu"],
+    "/privacy-policy": ["privacy"]
   }
 }

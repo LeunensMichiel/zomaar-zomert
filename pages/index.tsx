@@ -1,4 +1,6 @@
 import { ImageCard, Layout, Marquee } from '@components/common';
+import { CONSENT } from '@components/common/CookieBanner/CookieBanner';
+import { getLocalStorage } from '@components/common/CookieBanner/storagehelper';
 import { Triangle } from '@components/icons';
 import { Logo } from '@components/ui';
 import cn from 'classnames';
@@ -84,6 +86,11 @@ const Home = () => {
     .map((value) => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
+
+  const storedCookieConsent: CONSENT = getLocalStorage(
+    'cookie_consent',
+    'pending'
+  );
 
   return (
     <>
@@ -241,7 +248,11 @@ const Home = () => {
                 width={'100%'}
                 controls
                 height={'100%'}
-                url="https://www.youtube.com/embed/G2s9r_BohUE"
+                url={
+                  storedCookieConsent !== 'denied'
+                    ? 'https://www.youtube.com/embed/G2s9r_BohUE'
+                    : undefined
+                }
               />
             </div>
           </div>

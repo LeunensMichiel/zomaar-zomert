@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://zomaarzomert.be</loc><lastmod>2023-01-22T19:40:21.982Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://zomaarzomert.be/contact</loc><lastmod>2023-01-22T19:40:21.982Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://zomaarzomert.be/history</loc><lastmod>2023-01-22T19:40:21.982Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://zomaarzomert.be/info</loc><lastmod>2023-01-22T19:40:21.982Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://zomaarzomert.be/line-up</loc><lastmod>2023-01-22T19:40:21.982Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://zomaarzomert.be/menu</loc><lastmod>2023-01-22T19:40:21.982Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/contact</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/history</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/info</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/line-up</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/menu</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/privacy-policy</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/privacy-policy</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/privacy-policy</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/404</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/404</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/404</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/line-up</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/line-up</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/history</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/history</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/contact</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/contact</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/500</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/500</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/500</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/info</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/info</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/fr/menu</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://zomaarzomert.be/en/menu</loc><lastmod>2023-06-01T19:34:43.063Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -1,0 +1,58 @@
+@use '@styles/mixins';
+
+.root {
+  position: fixed;
+  left: 1rem;
+  bottom: 2rem;
+  width: calc(100% - 2rem);
+  background: #fff;
+  max-width: 800px;
+  padding: 1rem;
+  z-index: 10000;
+
+  display: grid;
+  align-items: center;
+  gap: 0.5rem;
+
+  @include mixins.breakpoint-up(md) {
+    bottom: 1rem;
+    grid-template-columns: 1fr auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  justify-content: flex-end;
+
+  @include mixins.breakpoint-up(md) {
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.text {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  line-height: var(--line-height-small);
+
+  a {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+.title {
+  font-family: var(--font-family-alt);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: var(--font-size-x-small);
+}

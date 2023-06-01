@@ -8,7 +8,7 @@
     "news": "Actualités",
     "menu": "La Carte",
     "partners": "Nos partenaires",
-    "legal": "Conditions générales"
+    "legal": "Politique de confidentialité"
   },
   "footer": {
     "line-up": {
@@ -23,6 +23,12 @@
       "contact": "Contactez nous"
     },
     "copy": "Zomaar Zomert - Branding @ FVB Design - Webdesign @ <0>Michiel Leunens</0>"
+  },
+  "cookies": {
+    "title": "Zomaar Zomert utilise des cookies",
+    "text": "Nous utilisons des cookies à des fins fonctionnelles et analytiques uniquement et ne stockons <0>aucune</0> donnée personnelle. En utilisant le site, vous acceptez cela.<1/>Plus d'informations dans notre <2>politique de confidentialité</2>.",
+    "deny": "Refuser",
+    "consent": "D'accord!"
   },
   "i18n": {
     "select": "Choisir la langue préférée"

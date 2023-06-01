@@ -164,7 +164,7 @@ const Footer: FC = () => {
               {t('links.menu')}
             </Link>
             <Link
-              href="/terms-and-conditions"
+              href="/privacy-policy"
               passHref
               className={styles.footer__block__link}
             >
