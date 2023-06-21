@@ -143,9 +143,9 @@ const Footer: FC = () => {
             <span className={styles.footer__block__title}>
               {t('footer.info.title')}
             </span>
-            <Link href="/news" passHref className={styles.footer__block__link}>
+            {/* <Link href="/news" passHref className={styles.footer__block__link}>
               {t('links.news')}
-            </Link>
+            </Link> */}
             <Link
               href="/history"
               passHref
@@ -153,13 +153,13 @@ const Footer: FC = () => {
             >
               {t('links.history')}
             </Link>
-            <Link
+            {/* <Link
               href="/partners"
               passHref
               className={styles.footer__block__link}
             >
               {t('links.partners')}
-            </Link>
+            </Link> */}
             <Link href="/menu" passHref className={styles.footer__block__link}>
               {t('links.menu')}
             </Link>

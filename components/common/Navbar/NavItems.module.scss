@@ -21,11 +21,13 @@
 .navMenuList {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding-top: 7.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
   width: 100%;
   max-width: 1024px;
+  height: calc(100% - 7.5rem);
   margin-left: auto;
   margin-right: auto;
   position: relative;

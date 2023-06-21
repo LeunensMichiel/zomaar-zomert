@@ -123,7 +123,7 @@
     "date": "2023-07-28",
     "isFiller": false,
     "hour": "16:00",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
       "nl": "Kom, drink, eet en geniet van ons Zomaar terras dat het hele weekend open is! ☀️🍹",
@@ -254,7 +254,7 @@
       "en": "Activities"
     },
     "date": "2023-07-29",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "isFiller": true,
     "hour": "🌞🌞🌞",
@@ -275,12 +275,12 @@
     "date": "2023-07-29",
     "isFiller": false,
     "hour": "12:30 - 17:00",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
-      "nl": "Ook dit jaar organiseren we weer een petanquetoernooi op zaterdag 29 juli. Wees er snel bij want de plaatsen zijn beperkt! U kunt zich inschrijven door op de link op de homepage te klikken.",
-      "fr": "Cette année encore, nous organisons un tournoi de pétanque le samedi 29 juillet. Faites vite car les places sont limitées ! Vous pouvez vous inscrire en cliquant sur le lien de la page d'accueil.",
-      "en": "This year we are once again organising a petanque tournament on Saturday 29 July. Be quick because places are limited! You can subscribe by clicking on the link on the homepage."
+      "nl": "Ook dit jaar organiseren we weer een petanquetoernooi op zaterdag 29 juli. Wees er snel bij want de plaatsen zijn beperkt! U kunt zich inschrijven door op de link op de homepage te klikken. Registreren kost €5.",
+      "fr": "Cette année encore, nous organisons un tournoi de pétanque le samedi 29 juillet. Faites vite car les places sont limitées ! Vous pouvez vous inscrire en cliquant sur le lien de la page d'accueil. S'inscrire coûte €5.",
+      "en": "This year we are once again organising a petanque tournament on Saturday 29 July. Be quick because places are limited! You can subscribe by clicking on the link on the homepage. Registration fee is €5."
     },
     "imgSrc": "/assets/artists/petanque.jpg"
   },
@@ -294,7 +294,7 @@
     "date": "2023-07-29",
     "isFiller": false,
     "hour": "12:00",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
       "nl": "Kom, drink, eet en geniet van ons Zomaar terras dat het hele weekend open is! ☀️🍹",
@@ -348,7 +348,7 @@
       "fr": "Pour les enfants",
       "en": "For the kids"
     },
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "date": "2023-07-30",
     "isFiller": false,
@@ -370,7 +370,7 @@
     "date": "2023-07-30",
     "isFiller": false,
     "hour": "12:30 - 15:00",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
       "nl": "Zondagmiddag serveren wij de specialiteit van het huis! Geniet van deze Spaanse specialiteit aan ons zonnig terrasje dat de hele dag geopend is. \n\nRegistreren voor een bord heerlijke Paella kan op onze website. Link staat op de homepage!",
@@ -389,12 +389,12 @@
     "date": "2023-07-30",
     "isFiller": false,
     "hour": "19:30 - 23:00",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
-      "nl": "We verwelkomen alle brainiacs, know-it-alls, grammatica verbeteraars en bourgondiërs (lees: bierdrinkers) op onze Zomaarquiz! We verwachten iedereen om 19:30 in onze feesttent. \n\nInschrijven is niet nodig. Maximaal 6 personen in één team.",
-      "fr": "Nous souhaitons la bienvenue à tous les cerveaux, les connaisseurs, les experts en grammaire et les Bourguignons (c'est-à-dire les buveurs de bière) à notre Zomaarquiz ! 🙌 \n\nNous accueillons tout le monde à 19h30 dans notre tente du festival. \n\nAucune inscription n'est nécessaire. Maximum 6 personnes par équipe.",
-      "en": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team."
+      "nl": "We verwelkomen alle brainiacs, know-it-alls, grammatica verbeteraars en bourgondiërs (lees: bierdrinkers) op onze Zomaarquiz! We verwachten iedereen om 19:30 in onze feesttent. \n\nInschrijven is niet nodig. Maximaal 6 personen in één team, registreren kost €10.",
+      "fr": "Nous souhaitons la bienvenue à tous les cerveaux, les connaisseurs, les experts en grammaire et les Bourguignons (c'est-à-dire les buveurs de bière) à notre Zomaarquiz ! 🙌 \n\nNous accueillons tout le monde à 19h30 dans notre tente du festival. \n\nAucune inscription n'est nécessaire. Maximum 6 personnes par équipe, prix: €10.",
+      "en": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team, registration fee equals 10€."
     },
     "imgSrc": "/assets/artists/quiz.jpg"
   },
@@ -408,7 +408,7 @@
     "date": "2023-07-30",
     "isFiller": false,
     "hour": "11:00",
-    "hiddenUntil": "2023-06-27T16:00:00.000Z",
+    "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
       "nl": "Kom, drink, eet en geniet van ons Zomaar terras dat het hele weekend open is! ☀️🍹",
