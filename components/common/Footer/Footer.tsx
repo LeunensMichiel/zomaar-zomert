@@ -215,8 +215,9 @@ const Footer: FC = () => {
             alt="moens"
           />
           <img
-            src="/assets/sponsors/timmermans-text-white.svg"
+            src="/assets/sponsors/timmermans--white.svg"
             alt="timmermans"
+            className={styles.scale_up}
           />
           <img src="/assets/sponsors/allur--white.svg" alt="allur vastgoed" />
           <img src="/assets/sponsors/wynant-white.svg" alt="wynant" />
@@ -240,6 +241,7 @@ const Footer: FC = () => {
             alt="optiek-trap"
             className={styles.scale_up}
           />
+          <img src="/assets/sponsors/artiosi--monotone.svg" alt="Artiosi" />
           <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
           <img src="/assets/sponsors/argenta--white.svg" alt="argenta" />
           <img src="/assets/sponsors/fierens--white.svg" alt="fierens" />
@@ -249,6 +251,7 @@ const Footer: FC = () => {
           />
           <img src="/assets/sponsors/erkermann-white.svg" alt="ekkermann" />
           <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
+          <img src="/assets/sponsors/CM--white.svg" alt="CM" />
           <img
             src="/assets/sponsors/sint-anna--white.svg"
             alt="cafe-sint-anna"

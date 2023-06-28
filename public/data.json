@@ -335,9 +335,9 @@
     "isFiller": false,
     "hour": "10:00 - 11:00",
     "description": {
-      "nl": "Ook dit jaar organiseren we weer de Zomaar Run, een concept dat in het verleden duidelijk zijn reputatie heeft verdiend. \n\nHet parcours van 5, 10 of 15 km vloeit door de mooiste weggetjes van Itterbeek en omgeving. \n\nBevoorrading is inbegrepen!",
+      "nl": "We zijn dit jaar weer terug met onze 5e editie van de ZomaarRun. Op zondagnamiddag 30 juli kan je tussen 10u en 11u vrij starten op onze weide. Het parcours van 5, 10 of 15 km leidt je doorheen de pittoreske veldwegjes van Itterbeek en omstreken. Bevoorrading wordt voorzien. Inschrijven doe je ter plaatse en kost 5 euro. En na de inspanning kan je genieten van een verfrissend drankje op ons zomerterras.\n\nDus wat maakt onze trailrun zo fijn:\n\n🗺️ Leuk gevarieerd parcours waarbij je wegen ontdekt die je nog nooit had gezien.\n\n✅ Geschikt voor elk type loper.\n\n🏃‍♀️ Ideale kans voor een leuke training in groep of alleen.\n\n🍻 U komt toe aan een heerlijk zomerterras waar u nog de hele namiddag kan blijven genieten van heerlijke drankjes en paella!",
       "fr": "Cette année, nous organisons à nouveau le Zomaar Run, un concept qui a déjà fait ses preuves par le passé. \n\nLe parcours de 5, 10 ou 15 km traverse les plus belles routes d'Itterbeek et de ses environs. \n\nLe ravitaillement est inclus !",
-      "en": "This year we are once again organising the ZomaarRun, a concept that has earned its reputation in the past. \n\nThe 5, 8 or 11 km course will lead you through the nicest little roads of Itterbeek and its surroundings. \n\nSupply will be provided!"
+      "en": "This year we are once again organising the ZomaarRun, a concept that has earned its reputation in the past. \n\nThe 5, 10 or 15 km course will lead you through the nicest little roads of Itterbeek and its surroundings. \n\nSupply will be provided!"
     },
     "imgSrc": "/assets/artists/run.jpg"
   },
@@ -392,9 +392,9 @@
     "hiddenUntil": "2023-06-25T16:00:00.000Z",
     "hiddenFrom": "2023-09-30T16:00:00.000Z",
     "description": {
-      "nl": "We verwelkomen alle brainiacs, know-it-alls, grammatica verbeteraars en bourgondiërs (lees: bierdrinkers) op onze Zomaarquiz! We verwachten iedereen om 19:30 in onze feesttent. \n\nInschrijven is niet nodig. Maximaal 6 personen in één team, registreren kost €10.",
-      "fr": "Nous souhaitons la bienvenue à tous les cerveaux, les connaisseurs, les experts en grammaire et les Bourguignons (c'est-à-dire les buveurs de bière) à notre Zomaarquiz ! 🙌 \n\nNous accueillons tout le monde à 19h30 dans notre tente du festival. \n\nAucune inscription n'est nécessaire. Maximum 6 personnes par équipe, prix: €10.",
-      "en": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team, registration fee equals 10€."
+      "nl": "We verwelkomen alle brainiacs, know-it-alls, grammatica verbeteraars en bourgondiërs (lees: bierdrinkers) op onze Zomaarquiz! We verwachten iedereen om 19:30 in onze feesttent. \n\nMaximaal 6 personen in één team, registreren (ter plekke) kost €10.",
+      "fr": "Nous souhaitons la bienvenue à tous les cerveaux, les connaisseurs, les experts en grammaire et les Bourguignons (c'est-à-dire les buveurs de bière) à notre Zomaarquiz ! 🙌 \n\nNous accueillons tout le monde à 19h30 dans notre tente du festival. \n\nAucune inscription n'est nécessaire. Maximum 6 personnes par équipe, prix: €10. (Quiz en NL)",
+      "en": "We welcome all brainiacs, know-it-alls, grammar savvies and burgundians (read: beer drinkers) to our Zomaarquiz! 🙌 \n\nWe welcome everyone at 19:30 in our festival tent. \n\nNo registration is required. Max 6 people in one team, registration fee equals 10€. (Quiz in Dutch)"
     },
     "imgSrc": "/assets/artists/quiz.jpg"
   },
