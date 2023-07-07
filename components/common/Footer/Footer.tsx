@@ -253,6 +253,11 @@ const Footer: FC = () => {
           <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
           <img src="/assets/sponsors/CM--white.svg" alt="CM" />
           <img
+            src="/assets/sponsors/chivato--white.svg"
+            alt="allur vastgoed"
+            className={styles.scale_up}
+          />
+          <img
             src="/assets/sponsors/sint-anna--white.svg"
             alt="cafe-sint-anna"
             className={styles.scale_down}
