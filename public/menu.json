@@ -14,9 +14,9 @@
     "img": "/assets/menu/still-water.jpg",
     "category": "Drinks",
     "subCategory": {
-      "en": "water & coffee",
-      "fr": "eau & café",
-      "nl": "water & koffie"
+      "en": "water",
+      "fr": "eau",
+      "nl": "water"
     }
   },
   {
@@ -34,29 +34,9 @@
     "img": "/assets/menu/sparkling-water.jpg",
     "category": "Drinks",
     "subCategory": {
-      "en": "water & coffee",
-      "fr": "eau & café",
-      "nl": "water & koffie"
-    }
-  },
-  {
-    "name": {
-      "en": "Coffee",
-      "fr": "Café",
-      "nl": "Koffie"
-    },
-    "description": {
-      "en": "No deca available.",
-      "fr": "Pas de café déca disponible.",
-      "nl": "Geen deca beschikbaar."
-    },
-    "price": 2,
-    "img": "/assets/menu/coffee.jpg",
-    "category": "Drinks",
-    "subCategory": {
-      "en": "water & coffee",
-      "fr": "eau & café",
-      "nl": "water & koffie"
+      "en": "water",
+      "fr": "eau",
+      "nl": "water"
     }
   },
   {
@@ -299,7 +279,6 @@
       "nl": "bieren"
     }
   },
-
   {
     "name": {
       "en": "Duvel",
@@ -322,6 +301,26 @@
   },
   {
     "name": {
+      "en": "Omer",
+      "fr": "Omer",
+      "nl": "Omer"
+    },
+    "description": {
+      "en": "A heavy yet smooth, blonde beer served from the bottle.",
+      "fr": "Une bière blonde lourde mais douce en bouteille.",
+      "nl": "Een zwaar maar zacht blond bierke van't fleske."
+    },
+    "price": 3,
+    "img": "/assets/menu/omer.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
+  },
+  {
+    "name": {
       "en": "Oude Geuze - Timmermans",
       "fr": "Geuze vieille - Timmermans",
       "nl": "Oude Geuze - Timmermans"
@@ -331,7 +330,7 @@
       "fr": "Une spécialité du Pajot. Aigre, en bouteille.",
       "nl": "Dé specialiteit van het Pajottenland. Zuur, uit 't fleske."
     },
-    "price": 5,
+    "price": 4,
     "img": "/assets/menu/oude-geuze.jpg",
     "category": "Drinks",
     "subCategory": {
@@ -351,7 +350,7 @@
       "fr": "Une spécialité du Pajot. Sucré-salé, en bouteille.",
       "nl": "Dé specialiteit van het Pajottenland. Zoet maar zuur, uit 't fleske."
     },
-    "price": 5,
+    "price": 4,
     "img": "/assets/menu/oude-kriek.jpg",
     "category": "Drinks",
     "subCategory": {
@@ -563,6 +562,26 @@
   },
   {
     "name": {
+      "en": "Mojito",
+      "fr": "Mojito",
+      "nl": "Mojito"
+    },
+    "description": {
+      "en": "White rum, mint and cane sugar.",
+      "fr": "Rhum blanc, menthe et sucre de canne.",
+      "nl": "Witte rum, munt en rietsuiker."
+    },
+    "price": 6,
+    "img": "/assets/menu/mojito.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
+  },
+  {
+    "name": {
       "en": "Virgin Mojito",
       "fr": "Virgin Mojito",
       "nl": "Virgin Mojito"
@@ -576,29 +595,9 @@
     "img": "/assets/menu/mojito-mocktail.jpg",
     "category": "Drinks",
     "subCategory": {
-      "en": "mocktails",
-      "fr": "mocktails",
-      "nl": "mocktails"
-    }
-  },
-  {
-    "name": {
-      "en": "Spiced Apple",
-      "fr": "Spiced Apple",
-      "nl": "Spiced Apple"
-    },
-    "description": {
-      "en": "An apple & ginger punch combo.",
-      "fr": "Une combinaison de jus de pomme et de gingembre.",
-      "nl": "Een mengeling van appelsap en gember."
-    },
-    "price": 4,
-    "img": "/assets/menu/spicy-apple-mocktail.jpg",
-    "category": "Drinks",
-    "subCategory": {
-      "en": "mocktails",
-      "fr": "mocktails",
-      "nl": "mocktails"
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
     }
   },
 
@@ -615,6 +614,46 @@
     },
     "price": 4,
     "img": "/assets/menu/pensen.jpg",
+    "category": "Food",
+    "subCategory": {
+      "en": "meals",
+      "fr": "charcuterie",
+      "nl": "hapjes"
+    }
+  },
+  {
+    "name": {
+      "en": "Hamburger",
+      "fr": "Hamburger",
+      "nl": "Hamburger"
+    },
+    "description": {
+      "en": "Classic carnival burger, you can't do anything wrong with it.",
+      "fr": "Un hamburger de foire classique.",
+      "nl": "Klassieke kermishamburger, kan je niets mis mee doen."
+    },
+    "price": 4,
+    "img": "/assets/menu/burger.jpg",
+    "category": "Food",
+    "subCategory": {
+      "en": "meals",
+      "fr": "charcuterie",
+      "nl": "hapjes"
+    }
+  },
+  {
+    "name": {
+      "en": "Cheeseburger",
+      "fr": "Cheeseburger",
+      "nl": "Cheeseburger"
+    },
+    "description": {
+      "en": "There's never enough cheese.",
+      "fr": "Le fromage rend tout meilleur.",
+      "nl": "Kaas maakt alles beter."
+    },
+    "price": 4,
+    "img": "/assets/menu/cheeseburger.jpg",
     "category": "Food",
     "subCategory": {
       "en": "meals",

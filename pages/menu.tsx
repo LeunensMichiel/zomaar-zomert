@@ -68,9 +68,9 @@ const MenuPage = ({ menu }: InferGetStaticPropsType<typeof getStaticProps>) => {
               }
             >
               {t(MenuType[type as keyof typeof MenuType])}
-              {MenuType[type as keyof typeof MenuType] === menuType ? (
+              {MenuType[type as keyof typeof MenuType] === menuType && (
                 <motion.div className={styles.underline} layoutId="underline" />
-              ) : null}
+              )}
             </Button>
           ))}
         </div>
@@ -87,7 +87,7 @@ const MenuPage = ({ menu }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <span className={styles.menu__category}>{subCategory}</span>
                 <div className={styles.menu__items}>
                   {menuBySubCategory[subCategory].map((item) => (
-                    <div key={item.name} className={styles.menu__item__outer}>
+                    <div key={item.name} className={styles.menu__item}>
                       <div className={styles.menu__item__inner}>
                         <ImageWithAspectRatio
                           aspectRatio="1/1"
