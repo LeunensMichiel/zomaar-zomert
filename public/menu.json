@@ -366,9 +366,9 @@
       "nl": "Rode wijn"
     },
     "description": {
-      "en": "A glass of Merlot wine.",
-      "fr": "Un verre de vin Merlot.",
-      "nl": "Een glas rode Merlot"
+      "en": "A glass of red wine.",
+      "fr": "Un verre de vin rouge.",
+      "nl": "Een glas rode wijn."
     },
     "price": 3,
     "img": "/assets/menu/red-wine.jpg",

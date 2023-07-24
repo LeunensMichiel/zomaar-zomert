@@ -112,12 +112,6 @@
   font-size: var(--font-size-small);
   color: var(--color-blue-1);
   margin-bottom: 0.75rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
 }
 
 .menu__item__vouchers {
