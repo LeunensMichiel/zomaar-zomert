@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
 import { consent } from 'nextjs-google-analytics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import styles from './CookieBanner.module.scss';
 import { getLocalStorage, setLocalStorage } from './storagehelper';
@@ -13,7 +13,24 @@ export type CONSENT = 'granted' | 'denied' | 'pending';
 
 export default function CookieBanner() {
   const { t } = useTranslation('common');
-  const [cookieConsent, setCookieConsent] = useState<CONSENT>('pending');
+  const [cookieConsent, setCookieConsent] = useState<CONSENT | undefined>(
+    undefined
+  );
+
+  const handleConsent = useCallback((newConsent: CONSENT) => {
+    if (newConsent === 'pending') return;
+
+    consent({
+      arg: 'update',
+      params: {
+        ad_storage: newConsent,
+        analytics_storage: newConsent,
+      },
+    });
+
+    setCookieConsent(newConsent);
+    setLocalStorage('cookie_consent', newConsent);
+  }, []);
 
   useEffect(() => {
     const storedCookieConsent: CONSENT = getLocalStorage(
@@ -23,20 +40,6 @@ export default function CookieBanner() {
 
     setCookieConsent(storedCookieConsent);
   }, [setCookieConsent]);
-
-  useEffect(() => {
-    if (cookieConsent === 'pending') return;
-
-    consent({
-      arg: 'update',
-      params: {
-        ad_storage: cookieConsent,
-        analytics_storage: cookieConsent,
-      },
-    });
-
-    setLocalStorage('cookie_consent', cookieConsent);
-  }, [cookieConsent]);
 
   if (cookieConsent !== 'pending') {
     return null;
@@ -56,14 +59,14 @@ export default function CookieBanner() {
       </div>
       <div className={styles.buttons}>
         <Button
-          onClick={() => setCookieConsent('denied')}
+          onClick={() => handleConsent('denied')}
           size="xs"
           variant="minimal-dark"
         >
           {t('cookies.deny')}
         </Button>
         <Button
-          onClick={() => setCookieConsent('granted')}
+          onClick={() => handleConsent('granted')}
           size="xs"
           variant="primary"
         >
