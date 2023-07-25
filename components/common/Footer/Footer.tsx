@@ -263,10 +263,6 @@ const Footer: FC = () => {
             className={styles.scale_down}
           />
           <img
-            src="/assets/sponsors/hof-te-berchemveld.svg"
-            alt="hof-the-berchemveld"
-          />
-          <img
             className={styles.scale_down}
             src="/assets/sponsors/carrosserie-jans-white.svg"
             alt="carrosserie-jans"
