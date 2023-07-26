@@ -244,7 +244,7 @@ const Footer: FC = () => {
           <img src="/assets/sponsors/artiosi--monotone.svg" alt="Artiosi" />
           <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
           <img src="/assets/sponsors/argenta--white.svg" alt="argenta" />
-          <img src="/assets/sponsors/fierens--white.svg" alt="fierens" />
+          <img src="/assets/sponsors/fierens-white.svg" alt="fierens" />
           <img
             src="/assets/sponsors/erasmus--white.svg"
             alt="erasmus hogeschool"
@@ -266,6 +266,11 @@ const Footer: FC = () => {
             className={styles.scale_down}
             src="/assets/sponsors/carrosserie-jans-white.svg"
             alt="carrosserie-jans"
+          />
+          <img
+            className={styles.scale_down}
+            src="/assets/sponsors/kantoor-jans--white.svg"
+            alt="kantoor-jans"
           />
           <img
             src="/assets/sponsors/vlaams-brabant-white.svg"
