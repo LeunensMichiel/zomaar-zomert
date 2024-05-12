@@ -1,6 +1,12 @@
 import { ImageCard, Layout } from '@components/common';
 import { Button, Spinner } from '@components/ui';
-import { APIArtist, Artist, languages, ZZ_DATES } from '@lib/models';
+import {
+  APIArtist,
+  Artist,
+  languages,
+  ZZ_DATE_FRIDAY,
+  ZZ_DATES,
+} from '@lib/models';
 import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import fsPromises from 'fs/promises';
@@ -60,11 +66,25 @@ const LineUpPage = ({
       new Date() >= new Date(artist.hiddenUntil) &&
       new Date() <= new Date(artist.hiddenFrom)
   );
+  if (!filteredArtists.length) {
+    filteredArtists.push({
+      id: 0,
+      name: 'TBA',
+      date: ZZ_DATE_FRIDAY,
+      hour: 'to be announced',
+      hiddenUntil: '',
+      hiddenFrom: '',
+      isFiller: true,
+      description:
+        'This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future.',
+      imgSrc: '/assets/artists/tba.jpg',
+    });
+  }
   const formattedDate = new Date(currentDate);
 
   useEffect(() => {
     if (!isReady) return;
-    setCurrentDate((query?.date as string) ?? '2023-07-28');
+    setCurrentDate((query?.date as string) ?? ZZ_DATE_FRIDAY);
   }, [isReady, query?.date]);
 
   const handleDaySelect = useCallback(
@@ -128,7 +148,7 @@ const LineUpPage = ({
               {ZZ_DATES.map((day) => (
                 <Button
                   key={day}
-                  size="sm"
+                  size="md"
                   variant="minimal"
                   onClick={() => handleDaySelect(day)}
                 >

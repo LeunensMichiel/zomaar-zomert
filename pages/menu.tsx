@@ -61,7 +61,7 @@ const MenuPage = ({ menu }: InferGetStaticPropsType<typeof getStaticProps>) => {
           {Object.keys(MenuType).map((type) => (
             <Button
               key={type}
-              size="sm"
+              size="md"
               variant="minimal"
               onClick={() =>
                 setCurrentMenuType(MenuType[type as keyof typeof MenuType])

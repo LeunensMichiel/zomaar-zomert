@@ -10,6 +10,7 @@ import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import Masonry from 'react-masonry-css';
 
+import { ZZ_DATE_SUNDAY, ZZ_YEAR } from '../lib/models';
 import styles from './styles/info.module.scss';
 
 const breakpointColumns = {
@@ -20,7 +21,9 @@ const breakpointColumns = {
 
 const InfoPage = () => {
   const { t } = useTranslation('info');
-  const signupDisabled = new Date() < new Date('2023-06-20');
+  const today = new Date();
+  const signupDisabled =
+    today < new Date(`${ZZ_YEAR}-06-01`) || today > new Date(ZZ_DATE_SUNDAY);
   return (
     <>
       <NextSeo
@@ -101,7 +104,7 @@ const InfoPage = () => {
                   target: '_blank',
                   rel: 'noreferrer noopener',
                 })}
-                size="xs"
+                size="sm"
                 disabled={signupDisabled}
                 variant="primary"
                 outlined
@@ -119,7 +122,7 @@ const InfoPage = () => {
                 disabled={signupDisabled}
                 variant="primary"
                 outlined
-                size="xs"
+                size="sm"
                 iconRight={<ChevronRight />}
               >
                 {t('faq.8.paella')}

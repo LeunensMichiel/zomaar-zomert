@@ -1,4 +1,8 @@
-export const ZZ_DATES = ['2023-07-28', '2023-07-29', '2023-07-30'];
+export const ZZ_DATES = ['2024-07-26', '2024-07-27', '2024-07-28'];
+export const ZZ_DATE_FRIDAY = ZZ_DATES[0];
+export const ZZ_DATE_SATURDAY = ZZ_DATES[1];
+export const ZZ_DATE_SUNDAY = ZZ_DATES[2];
+export const ZZ_YEAR = 2024;
 
 export type IImageCard = {
   title: string;

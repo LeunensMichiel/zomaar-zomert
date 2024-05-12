@@ -10,6 +10,12 @@ import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 
+import {
+  ZZ_DATE_FRIDAY,
+  ZZ_DATE_SATURDAY,
+  ZZ_DATE_SUNDAY,
+  ZZ_YEAR,
+} from '../lib/models';
 import styles from './styles/index.module.scss';
 
 const Countdown = dynamic(
@@ -93,12 +99,14 @@ const Home = () => {
     'pending'
   );
 
-  const signupDisabled = new Date() < new Date('2023-06-20');
+  const today = new Date();
+  const signupDisabled =
+    today < new Date(`${ZZ_YEAR}-06-01`) || today > new Date(ZZ_DATE_SUNDAY);
 
   return (
     <>
       <NextSeo
-        title={`Zomaar Zomert • ${new Date().getFullYear()}`}
+        title={`Zomaar Zomert • ${today.getFullYear()}`}
         titleTemplate="%s"
       />
       <section className={cn(styles.landing)}>
@@ -116,11 +124,13 @@ const Home = () => {
         <div className={cn(styles.landing__inner, 'container')}>
           <Logo variant="full" className={styles.logo} />
           <span className={styles.date}>
-            <span>28</span>
+            <span>{ZZ_DATE_FRIDAY.slice(-2)}</span>
             <Triangle />
-            <span>29</span>
+            <span>{ZZ_DATE_SATURDAY.slice(-2)}</span>
             <Triangle />
-            <span>30 {t('month')} 2023</span>
+            <span>
+              {ZZ_DATE_SUNDAY.slice(-2)} {t('month')} {ZZ_YEAR}
+            </span>
           </span>
         </div>
         <img
@@ -139,7 +149,7 @@ const Home = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2023-07-28',
+                  date: ZZ_DATE_FRIDAY,
                 },
               }}
               passHref
@@ -148,12 +158,12 @@ const Home = () => {
               <ImageCard
                 playAnimation
                 data={{
-                  subtitle: new Date('2023-07-28').toLocaleString(lang, {
+                  subtitle: new Date(ZZ_DATE_FRIDAY).toLocaleString(lang, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
                   }),
-                  title: new Date('2023-07-28').toLocaleString(lang, {
+                  title: new Date(ZZ_DATE_FRIDAY).toLocaleString(lang, {
                     weekday: 'long',
                   }),
                   imgSrc: '/assets/days/friday.jpg',
@@ -164,7 +174,7 @@ const Home = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2023-07-29',
+                  date: ZZ_DATE_SATURDAY,
                 },
               }}
               passHref
@@ -173,10 +183,10 @@ const Home = () => {
               <ImageCard
                 playAnimation
                 data={{
-                  title: new Date('2023-07-29').toLocaleString(lang, {
+                  title: new Date(ZZ_DATE_SATURDAY).toLocaleString(lang, {
                     weekday: 'long',
                   }),
-                  subtitle: new Date('2023-07-29').toLocaleString(lang, {
+                  subtitle: new Date(ZZ_DATE_SATURDAY).toLocaleString(lang, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -189,7 +199,7 @@ const Home = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2023-07-30',
+                  date: ZZ_DATE_SUNDAY,
                 },
               }}
               passHref
@@ -198,10 +208,10 @@ const Home = () => {
               <ImageCard
                 playAnimation
                 data={{
-                  title: new Date('2023-07-30').toLocaleString(lang, {
+                  title: new Date(ZZ_DATE_SUNDAY).toLocaleString(lang, {
                     weekday: 'long',
                   }),
-                  subtitle: new Date('2023-07-30').toLocaleString(lang, {
+                  subtitle: new Date(ZZ_DATE_SUNDAY).toLocaleString(lang, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',

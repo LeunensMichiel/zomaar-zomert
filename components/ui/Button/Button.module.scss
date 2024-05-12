@@ -97,17 +97,15 @@ $variants: default, primary, 'transparent', minimal, minimal-bright,
 .button-xs {
   font-size: 0.75rem;
   padding: 0.5em 1em;
-
-  @include mixins.breakpoint-up(md) {
-    font-size: 0.75rem;
-  }
-
-  @include mixins.breakpoint-up(lg) {
-    font-size: 0.75rem;
-  }
 }
 
+// Different Sizes
 .button-sm {
+  font-size: 0.875rem;
+  padding: 0.5em 1em;
+}
+
+.button-md {
   font-size: 1em;
   padding: 0.75em 1em;
   justify-content: center;
@@ -124,10 +122,6 @@ $variants: default, primary, 'transparent', minimal, minimal-bright,
   @include mixins.breakpoint-up(xxl) {
     font-size: 2.75rem;
   }
-}
-
-.button-md {
-  font-size: 1rem;
 }
 
 .button-lg {
