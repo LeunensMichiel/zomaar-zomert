@@ -191,7 +191,7 @@ const Home = () => {
                     month: 'long',
                     day: 'numeric',
                   }),
-                  imgSrc: '/assets/artists/2fabiola.jpg',
+                  imgSrc: '/assets/days/saturday.jpg',
                 }}
               />
             </Link>

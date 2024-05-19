@@ -17,22 +17,23 @@ const containerMotion = {
   initial: {
     scale: 1,
     transition: {
-      duration: 0.4,
       type: 'spring',
+      duration: 0.5,
     },
   },
   tap: {
     scale: 0.975,
     transition: {
-      duration: 1,
       type: 'spring',
+      duration: 0.2,
+      bounce: 1,
     },
   },
   hover: {
     scale: 1.025,
     transition: {
-      duration: 1,
       type: 'spring',
+      duration: 0.2,
     },
   },
 };
@@ -55,7 +56,7 @@ const pathMotion = {
   hover: {
     pathLength: 1,
     transition: {
-      duration: 1,
+      duration: 0.5,
       type: 'spring',
     },
   },

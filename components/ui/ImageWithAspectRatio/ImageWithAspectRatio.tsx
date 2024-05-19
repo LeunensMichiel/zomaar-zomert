@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { CSSProperties, ImgHTMLAttributes, VFC } from 'react';
+import { CSSProperties, ImgHTMLAttributes } from 'react';
 
 import styles from './ImageWithAspectRatio.module.scss';
 
@@ -9,13 +9,13 @@ type Props = ImgHTMLAttributes<HTMLImageElement> & {
   alt: string;
 };
 
-const ImageWithAspectRatio: VFC<Props> = ({
+const ImageWithAspectRatio = ({
   aspectRatio,
   src,
   wrapperClassName,
   alt,
   ...rest
-}) => {
+}: Props) => {
   const [width, height] = aspectRatio.split('/');
 
   const containerStyle: CSSProperties = {
