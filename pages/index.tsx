@@ -94,7 +94,7 @@ const Home = () => {
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 
-  const storedCookieConsent: CONSENT = getLocalStorage(
+  const storedCookieConsent = getLocalStorage<CONSENT>(
     'cookie_consent',
     'pending'
   );

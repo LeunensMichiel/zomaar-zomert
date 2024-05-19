@@ -1,8 +1,8 @@
-export function getLocalStorage<T = unknown>(
+export function getLocalStorage<R>(
   key: string,
-  defaultValue: T
-): T | undefined {
-  if (typeof window === 'undefined') return undefined;
+  defaultValue: R
+): R | undefined {
+  if (typeof window === 'undefined') return defaultValue;
   const stickyValue = localStorage.getItem(key);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
