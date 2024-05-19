@@ -21,37 +21,38 @@ const NavItem: FC<NavItemProps> = ({ children, label, link }) => {
     }
   }, [router.asPath]);
 
-  return <>
-    {!children && link ? (
-      (<Link
-        {...link}
-        role="menuitem"
-        className={cn(styles.navItemContainer, styles.linkContainer, {
-          [styles.activeLink]: router.pathname === link?.href,
-        })}>
-
-        {label}
-
-      </Link>)
-    ) : (
-      <Dropdown
-        label={label}
-        role="menu"
-        willFloat
-        willOpenOnHover
-        startOpen={open}
-        buttonClassName={cn(styles.subMenuButton, 'parentSubMenuButton')}
-        listClassName={styles.subMenuList}
-        containerOpenClassName={styles.subMenuOpen}
-        containerClassName={cn(
-          styles.navItemContainer,
-          styles.subMenuContainer
-        )}
-      >
-        {children}
-      </Dropdown>
-    )}
-  </>;
+  return (
+    <>
+      {!children && link ? (
+        <Link
+          {...link}
+          role="menuitem"
+          className={cn(styles.navItemContainer, styles.linkContainer, {
+            [styles.activeLink]: router.pathname === link?.href,
+          })}
+        >
+          {label}
+        </Link>
+      ) : (
+        <Dropdown
+          label={label}
+          role="menu"
+          willFloat
+          willOpenOnHover
+          startOpen={open}
+          buttonClassName={cn(styles.subMenuButton, 'parentSubMenuButton')}
+          listClassName={styles.subMenuList}
+          containerOpenClassName={styles.subMenuOpen}
+          containerClassName={cn(
+            styles.navItemContainer,
+            styles.subMenuContainer
+          )}
+        >
+          {children}
+        </Dropdown>
+      )}
+    </>
+  );
 };
 
 export default NavItem;

@@ -35,6 +35,7 @@ const Layout: FC<Props> = ({ children }: Props) => {
 
       <Modal open={displayModal} onClose={closeModal} title={modalTitle}>
         {modalView === 'ARTIST_VIEW' && (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           <ImageCardModalView data={data?.data} />
         )}
         {modalView === 'LANGUAGE_VIEW' && <LanguageSelectionModal />}

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext } from 'react';
 
 export type UIState = {
@@ -7,14 +6,14 @@ export type UIState = {
   modalTitle?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: Record<string, any>;
-  openModal(): void;
-  closeModal(): void;
-  setModalView(
+  openModal: () => void;
+  closeModal: () => void;
+  setModalView: (
     view: ModalViews,
     title?: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data?: Record<string, any>
-  ): void;
+  ) => void;
 };
 
 export const INITIAL_UI_STATE: UIState = {
@@ -22,9 +21,9 @@ export const INITIAL_UI_STATE: UIState = {
   modalView: 'NO_VIEW',
   modalTitle: '',
   data: undefined,
-  closeModal: () => {},
-  openModal: () => {},
-  setModalView: () => {},
+  closeModal: () => undefined,
+  openModal: () => undefined,
+  setModalView: () => undefined,
 };
 
 export type ModalViews = 'NO_VIEW' | 'ARTIST_VIEW' | 'LANGUAGE_VIEW';

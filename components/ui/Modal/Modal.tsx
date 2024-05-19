@@ -1,11 +1,5 @@
 import { CloseButton } from '@components/common';
 import { useClickOutside } from '@lib/hooks';
-import {
-  BodyScrollOptions,
-  clearAllBodyScrollLocks,
-  disableBodyScroll,
-  enableBodyScroll,
-} from 'body-scroll-lock';
 import cn from 'classnames';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -18,6 +12,7 @@ import {
   useRef,
 } from 'react';
 import FocusLock from 'react-focus-lock';
+import { clearBodyLocks, lock, unlock } from 'tua-body-scroll-lock';
 
 import styles from './Modal.module.scss';
 
@@ -35,10 +30,6 @@ type ModalProps = {
   container?: 'container' | 'page';
   onClose(): void;
   children?: ReactNode;
-};
-
-const BODY_SCROLL_OPTIONS: BodyScrollOptions = {
-  reserveScrollBarGap: true,
 };
 
 const Modal: FC<ModalProps> = ({
@@ -65,14 +56,14 @@ const Modal: FC<ModalProps> = ({
   );
 
   const clearBodyScroll = useCallback(() => {
-    enableBodyScroll(ref.current);
-    clearAllBodyScrollLocks();
+    lock(ref.current);
+    clearBodyLocks();
   }, []);
 
   useEffect(() => {
     if (ref.current) {
       if (open) {
-        disableBodyScroll(ref.current, BODY_SCROLL_OPTIONS);
+        unlock(ref.current);
         window.addEventListener('keydown', handleKey);
       }
     }

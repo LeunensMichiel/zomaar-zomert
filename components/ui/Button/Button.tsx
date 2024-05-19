@@ -69,6 +69,7 @@ const Button = <C extends React.ElementType = 'button'>({
       tabIndex={disabled ? -1 : 0}
       onClick={(e) => {
         e.currentTarget.blur();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         onClick?.(e);
       }}
       {...props}

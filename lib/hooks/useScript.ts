@@ -42,7 +42,6 @@ function useScript(src: string): Status {
     script.addEventListener('load', setStateFromEvent);
     script.addEventListener('error', setStateFromEvent);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       if (script) {
         script.removeEventListener('load', setStateFromEvent);

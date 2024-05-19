@@ -1,15 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getLocalStorage(key: string, defaultValue: any) {
-  if (typeof window === 'undefined') return;
+export function getLocalStorage<T = unknown>(
+  key: string,
+  defaultValue: T
+): T | undefined {
+  if (typeof window === 'undefined') return undefined;
   const stickyValue = localStorage.getItem(key);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return stickyValue !== null && stickyValue !== 'undefined'
     ? JSON.parse(stickyValue)
     : defaultValue;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function setLocalStorage(key: string, value: any) {
+export function setLocalStorage<T = unknown>(key: string, value: T) {
   if (typeof window === 'undefined') return;
   localStorage.setItem(key, JSON.stringify(value));
 }

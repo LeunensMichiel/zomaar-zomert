@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { Layout } from '@components/common';
 import cn from 'classnames';
 import { NextSeo } from 'next-seo';

@@ -19,7 +19,7 @@ const ImageWithAspectRatio: VFC<Props> = ({
   const [width, height] = aspectRatio.split('/');
 
   const containerStyle: CSSProperties = {
-    paddingTop: `${100 / (Number(width) / Number(height))}%` || 0,
+    paddingTop: `${100 / (Number(width) / Number(height))}%`,
   };
 
   return (

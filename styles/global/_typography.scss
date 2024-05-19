@@ -4,7 +4,9 @@
   font-style: normal;
   font-weight: 700;
   font-display: block;
-  src: local(''), url('/fonts/oswald-700.woff2') format('woff2');
+  src:
+    local(''),
+    url('/fonts/oswald-700.woff2') format('woff2');
 }
 
 /* open-sans-600 - latin */
@@ -13,5 +15,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local(''), url('/fonts/open-sans-600.woff2') format('woff2');
+  src:
+    local(''),
+    url('/fonts/open-sans-600.woff2') format('woff2');
 }

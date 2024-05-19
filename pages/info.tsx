@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { Layout, TexturedImage } from '@components/common';
 import ChevronRight from '@components/icons/Chevron';
 // import ChevronRight from '@components/icons/Chevron';

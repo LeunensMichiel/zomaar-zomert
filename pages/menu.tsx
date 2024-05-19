@@ -131,7 +131,7 @@ export const getStaticProps: GetStaticProps<{ menu: MenuItem[] }> = async ({
 }) => {
   const filePath = path.join(process.cwd(), 'public/menu.json');
   const jsonData = await fsPromises.readFile(filePath, 'utf-8');
-  const apiMenu: APIMenuItem[] = JSON.parse(jsonData);
+  const apiMenu = JSON.parse(jsonData) as APIMenuItem[];
 
   const menu: MenuItem[] = apiMenu.map(
     ({ name, description, subCategory, ...menuitem }) => ({

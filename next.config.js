@@ -1,7 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const nextTranslate = require('next-translate-plugin');
+import nextTranslate from 'next-translate-plugin';
 
-module.exports = nextTranslate({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+const translatedConfig = nextTranslate({
   i18n: {
     // These are all the locales you want to support in your application
     locales: ['en', 'fr', 'nl'],
@@ -9,4 +13,7 @@ module.exports = nextTranslate({
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'nl',
   },
+  ...nextConfig,
 });
+
+export default translatedConfig;

@@ -89,7 +89,7 @@ const LineUpPage = ({
 
   const handleDaySelect = useCallback(
     (newDate: string) => {
-      replace(
+      void replace(
         {
           pathname,
           query: {
@@ -205,7 +205,7 @@ export const getStaticProps: GetStaticProps<{ artists: Artist[] }> = async ({
 }) => {
   const filePath = path.join(process.cwd(), 'public/data.json');
   const jsonData = await fsPromises.readFile(filePath, 'utf-8');
-  const apiArtists: APIArtist[] = JSON.parse(jsonData);
+  const apiArtists = JSON.parse(jsonData) as APIArtist[];
 
   const artists: Artist[] = apiArtists.map(
     ({ name, description, ...artist }) => ({

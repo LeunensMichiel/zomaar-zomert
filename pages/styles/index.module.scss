@@ -37,7 +37,9 @@
       ),
       radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
     background-size: 4px 4px;
-    background-position: 0 0, 2px 2px;
+    background-position:
+      0 0,
+      2px 2px;
   }
 
   @include mixins.breakpoint-up(lg) {

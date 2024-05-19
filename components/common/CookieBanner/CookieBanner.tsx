@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { Button } from '@components/ui';
 import Link from 'next/link';
 import Trans from 'next-translate/Trans';
@@ -33,7 +32,7 @@ export default function CookieBanner() {
   }, []);
 
   useEffect(() => {
-    const storedCookieConsent: CONSENT = getLocalStorage(
+    const storedCookieConsent = getLocalStorage<CONSENT>(
       'cookie_consent',
       'pending'
     );

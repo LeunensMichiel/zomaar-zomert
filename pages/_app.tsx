@@ -16,7 +16,7 @@ type NoopProps = {
 const Noop = ({ children }: NoopProps) => <>{children}</>;
 
 function App({ Component, pageProps }: AppProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
   const Layout = (Component as any).Layout || Noop;
 
   //https://github.com/vercel/next.js/issues/5136
