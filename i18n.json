@@ -8,6 +8,7 @@
     "/": ["home"],
     "/contact": ["contact"],
     "/history": ["history"],
+    "/partners": ["partners"],
     "/info": ["info"],
     "/line-up": ["line-up"],
     "/menu": ["menu"],

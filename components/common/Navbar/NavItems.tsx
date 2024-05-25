@@ -30,6 +30,8 @@ const NavItems: FC<NavItemsProps> = ({
         <NavItem label={t('links.line-up')} link={{ href: '/line-up' }} />
         <NavItem label={t('links.info')} link={{ href: '/info' }} />
         <NavItem label={t('links.contact')} link={{ href: '/contact' }} />
+        <NavItem label={t('links.history')} link={{ href: '/history' }} />
+        <NavItem label={t('links.partners')} link={{ href: '/partners' }} />
       </div>
     </motion.div>
   );

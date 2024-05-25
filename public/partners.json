@@ -1,0 +1,399 @@
+[
+  {
+    "name": "Pepsi Max",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/pepsi-max-white.svg",
+    "logoSize": "md",
+    "site": "https://pepsi.be/",
+    "disabled": true
+  },
+  {
+    "name": "Crokaert Multitechnics",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/crokaert-white.svg",
+    "site": "http://multitechnics.be/",
+    "logoSize": "md"
+  },
+  {
+    "name": "Nationale Loterij",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/nationale-loterij--white.svg",
+    "logoSize": "md",
+    "site": "https://nationale-loterij.be/",
+    "disabled": true
+  },
+  {
+    "name": "Sound & CO",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/sound&co--white.svg",
+    "logoSize": "md",
+    "site": "https://soundenco.be/"
+  },
+  {
+    "name": "Megavolt",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/megavolt-white.svg",
+    "logoSize": "md",
+    "site": "https://megavolt.be/"
+  },
+  {
+    "name": "Limbourg",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/limbourg--white.svg",
+    "logoSize": "lg",
+    "site": "https://bierhandellimbourg.be/"
+  },
+  {
+    "name": "JRB Energy",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/jrb_energy--white.svg",
+    "logoSize": "md",
+    "site": "https://jrbenergy.be/"
+  },
+  {
+    "name": "Eagle Air Agencies",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/eagleair-white.svg",
+    "logoSize": "md",
+    "site": "https://eagleair.be/",
+    "disabled": true
+  },
+  {
+    "name": "Callebaut Schrijnwerkerij",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/callebaut-white.svg",
+    "logoSize": "md",
+    "site": "https://schrijnwerkerijcallebaut.be/"
+  },
+  {
+    "name": "Gemeente Dilbeek",
+    "formula": 5,
+    "logoWhite": "/assets/sponsors/dilbeek-white.svg",
+    "logoSize": "sm",
+    "site": "https://dilbeek.be"
+  },
+  {
+    "name": "EDR",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/edr-white.svg",
+    "logoSize": "md",
+    "site": "https://edrwebdeveloper.be/"
+  },
+  {
+    "name": "Moens",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/moens-white.svg",
+    "logoSize": "xl",
+    "site": "https://gardencentermoens.be/"
+  },
+  {
+    "name": "Timmermans",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/timmermans--white.svg",
+    "logoSize": "lg",
+    "site": "https://brtimmermans.be/"
+  },
+  {
+    "name": "Allur Vastgoed",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/allur--white.svg",
+    "logoSize": "md",
+    "site": "https://allur.be/"
+  },
+  {
+    "name": "Wynant",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/wynant-white.svg",
+    "logoSize": "md",
+    "site": "https://wynantvt.be/"
+  },
+  {
+    "name": "Lammens",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/lammens-white.svg",
+    "logoSize": "lg",
+    "site": "https://joerilammens.be/"
+  },
+  {
+    "name": "Itterplastiek",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/itterplastiek-white.svg",
+    "logoSize": "lg",
+    "disabled": true
+  },
+  {
+    "name": "Cameleon",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/cameleon-white.svg",
+    "logoSize": "lg"
+  },
+  {
+    "name": "Optiek Trap",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/optiek-trap-white.svg",
+    "logoSize": "lg",
+    "site": "https://optiektrap.be/"
+  },
+  {
+    "name": "Artiosi",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/artiosi--monotone.svg",
+    "logoSize": "md",
+    "site": "https://artiosi.be/",
+    "disabled": true
+  },
+  {
+    "name": "De Spanuit",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/spanuit-white.svg",
+    "logoSize": "md",
+    "site": "https://despanuit.be/"
+  },
+  {
+    "name": "Argenta Prinsen",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/argenta--white.svg",
+    "logoSize": "md",
+    "site": "https://argenta.be/nl/kantoren/prinsen-bv-3204.html",
+    "disabled": true
+  },
+  {
+    "name": "Erasmus Hogeschool",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/erasmus--white.svg",
+    "logoSize": "md"
+  },
+  {
+    "name": "Erkermann",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/erkermann-white.svg",
+    "logoSize": "md",
+    "site": "https://erkermann.be/"
+  },
+  {
+    "name": "Thesora",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/thesora-white.svg",
+    "logoSize": "md",
+    "site": "https://thesora.be/",
+    "disabled": true
+  },
+  {
+    "name": "Bamboe Frit",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/bamboe-white.svg",
+    "logoSize": "md"
+  },
+  {
+    "name": "CM",
+    "formula": 5,
+    "logoWhite": "/assets/sponsors/CM--white.svg",
+    "logoSize": "md",
+    "site": "https://cm.be/"
+  },
+  {
+    "name": "Chivato Barbershop",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/chivato--white.svg",
+    "logoSize": "lg",
+    "site": "https://chivato.be/"
+  },
+  {
+    "name": "Café Sint-Anna",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/sint-anna--white.svg",
+    "logoSize": "sm",
+    "disabled": true
+  },
+  {
+    "name": "Carrosserie Jans",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/carrosserie-jans-white.svg",
+    "logoSize": "sm"
+  },
+  {
+    "name": "PIVO",
+    "formula": 5,
+    "logoWhite": "/assets/sponsors/vlaams-brabant-white.svg",
+    "logoSize": "lg",
+    "site": "https://pivo.be/"
+  },
+  {
+    "name": "AT Construct",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/at-construct--white.svg",
+    "logoSize": "md",
+    "site": "https://at-construct.be/"
+  },
+  {
+    "name": "CDM ICT",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/cdmc-it.svg",
+    "logoSize": "md",
+    "site": "https://cdm-ict.be/"
+  },
+  {
+    "name": "De Living",
+    "formula": 5,
+    "logoWhite": "/assets/sponsors/de-living--white.svg",
+    "logoSize": "md",
+    "site": "https://deliving-dezaal.be/"
+  },
+  {
+    "name": "ELC Lighting",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/elc-lighting--white.svg",
+    "logoSize": "md"
+  },
+  {
+    "name": "Elektro Cirkel",
+    "formula": 5,
+    "logoWhite": "/assets/sponsors/electro-cirkel--white.svg",
+    "logoSize": "md",
+    "site": "https://electrocirkel.be/"
+  },
+  {
+    "name": "Garage Huma",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/garage_huma--white.svg",
+    "logoSize": "md"
+  },
+  {
+    "name": "Garage Geeraerts",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/geeraerts--white.svg",
+    "logoSize": "md",
+    "site": "https://geeraerts.be/"
+  },
+  {
+    "name": "Geurts Bedrijfswageninrichting",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/geurts--white.svg",
+    "logoSize": "sm",
+    "site": "https://geurts-bwi.be/home"
+  },
+  {
+    "name": "Interieur Lin",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/interieur-lin--white.svg",
+    "logoSize": "md",
+    "site": "https://interieurlin.be/"
+  },
+  {
+    "name": "Frituur Jos",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/jos__white.svg",
+    "logoSize": "sm"
+  },
+  {
+    "name": "Kannegieter",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/kannegieter--mono.svg",
+    "logoSize": "md",
+    "site": "https://kannegieter.be/"
+  },
+  {
+    "name": "Bistro La Morsa",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/la-morsa--white.svg",
+    "logoSize": "xl",
+    "site": "https://bistrolamorsa.be/"
+  },
+  {
+    "name": "Lio",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/lio--white.svg",
+    "logoSize": "md",
+    "site": "https://lioresto.be/"
+  },
+  {
+    "name": "Starchitecten",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/starchitecten--white.svg",
+    "logoSize": "md",
+    "site": "https://starchitecten.be/"
+  },
+  {
+    "name": "Maison C",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/maison_c--white.svg",
+    "logoSize": "sm",
+    "site": "https://maisoncstore.be/nl/home"
+  },
+  {
+    "name": "Textured Inc.",
+    "formula": 5,
+    "logoWhite": "/assets/sponsors/textured_inc--white.svg",
+    "logoSize": "md"
+  },
+  {
+    "name": "Waerwaters",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/waer-waters-white.svg",
+    "logoSize": "sm",
+    "site": "https://waerwaters.com/"
+  },
+  {
+    "name": "Sterslager De Wachter",
+    "formula": 4,
+    "logoWhite": "/assets/sponsors/sterslager-dewachter.svg",
+    "logoSize": "lg",
+    "site": "https://sterslager-dewachter.be/"
+  },
+  {
+    "name": "Electro-techniek Valon",
+    "formula": 5,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://valon.be/"
+  },
+  {
+    "name": "Atoma",
+    "formula": 4,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://atoma.be/"
+  },
+  {
+    "name": "Averti",
+    "formula": 4,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://averti.be/"
+  },
+  {
+    "name": "De Marie NV",
+    "formula": 4,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://nvdemarie.be/"
+  },
+  {
+    "name": "EBB",
+    "formula": 4,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://ebbsmartbuildings.be/"
+  },
+  {
+    "name": "Luchthavenvervoer Kevin",
+    "formula": 1,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://luchthavenvervoer-kevin.be/"
+  },
+  {
+    "name": "ToFix",
+    "formula": 1,
+    "logoWhite": "",
+    "logoSize": "md",
+    "site": "https://tofix.be/"
+  },
+  {
+    "name": "AMJ Rental",
+    "formula": 3,
+    "logoWhite": "/assets/sponsors/amj-rental--white.svg",
+    "logoSize": "md",
+    "site": "https://amjrental.be/"
+  }
+]

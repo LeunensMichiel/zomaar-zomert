@@ -9,6 +9,9 @@ import { FC } from 'react';
 import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 import styles from './Footer.module.scss';
 
+import partners from '../../../public/partners.json';
+import classNames from 'classnames';
+
 const variants = {
   initial: {
     y: 0,
@@ -153,13 +156,13 @@ const Footer: FC = () => {
             >
               {t('links.history')}
             </Link>
-            {/* <Link
+            <Link
               href="/partners"
               passHref
               className={styles.footer__block__link}
             >
               {t('links.partners')}
-            </Link> */}
+            </Link>
             <Link href="/menu" passHref className={styles.footer__block__link}>
               {t('links.menu')}
             </Link>
@@ -188,95 +191,32 @@ const Footer: FC = () => {
           </div>
         </div>
         <div className={cn(styles.partners, 'container')}>
-          <img src="/assets/sponsors/pepsi-max-white.svg" alt="pepsi-max" />
-          <img
-            src="/assets/sponsors/nationale-loterij--white.svg"
-            alt="nationale-loterij"
-          />
-          <img src="/assets/sponsors/crokaert-white.svg" alt="crokaert" />
-          <img src="/assets/sponsors/sound&co--white.svg" alt="sound&co" />
-          <img src="/assets/sponsors/megavolt-white.svg" alt="megavolt" />
-          <img
-            src="/assets/sponsors/limbourg--white.svg"
-            alt="limbourg"
-            className={styles.scale_up}
-          />
-          <img src="/assets/sponsors/eagleair-white.svg" alt="eagle air" />
-          <img src="/assets/sponsors/callebaut-white.svg" alt="callebaut" />
-          <img
-            className={styles.scale_down}
-            src="/assets/sponsors/dilbeek-white.svg"
-            alt="dilbeek"
-          />
-          <img src="/assets/sponsors/edr-white.svg" alt="edr" />
-          <img
-            className={styles.scale_up__xl}
-            src="/assets/sponsors/moens-white.svg"
-            alt="moens"
-          />
-          <img
-            src="/assets/sponsors/timmermans--white.svg"
-            alt="timmermans"
-            className={styles.scale_up}
-          />
-          <img src="/assets/sponsors/allur--white.svg" alt="allur vastgoed" />
-          <img src="/assets/sponsors/wynant-white.svg" alt="wynant" />
-          <img
-            src="/assets/sponsors/lammens-white.svg"
-            alt="lammens"
-            className={styles.scale_up}
-          />
-          <img
-            src="/assets/sponsors/itterplastiek-white.svg"
-            alt="itterplastiek"
-            className={styles.scale_up}
-          />
-          <img
-            src="/assets/sponsors/cameleon-white.svg"
-            alt="cameleon"
-            className={styles.scale_up}
-          />
-          <img
-            src="/assets/sponsors/optiek-trap-white.svg"
-            alt="optiek-trap"
-            className={styles.scale_up}
-          />
-          <img src="/assets/sponsors/artiosi--monotone.svg" alt="Artiosi" />
-          <img src="/assets/sponsors/spanuit-white.svg" alt="spanuit" />
-          <img src="/assets/sponsors/argenta--white.svg" alt="argenta" />
-          <img src="/assets/sponsors/fierens-white.svg" alt="fierens" />
-          <img
-            src="/assets/sponsors/erasmus--white.svg"
-            alt="erasmus hogeschool"
-          />
-          <img src="/assets/sponsors/erkermann-white.svg" alt="ekkermann" />
-          <img src="/assets/sponsors/thesora-white.svg" alt="thesora" />
-          <img src="/assets/sponsors/CM--white.svg" alt="CM" />
-          <img
-            src="/assets/sponsors/chivato--white.svg"
-            alt="allur vastgoed"
-            className={styles.scale_up}
-          />
-          <img
-            src="/assets/sponsors/sint-anna--white.svg"
-            alt="cafe-sint-anna"
-            className={styles.scale_down}
-          />
-          <img
-            className={styles.scale_down}
-            src="/assets/sponsors/carrosserie-jans-white.svg"
-            alt="carrosserie-jans"
-          />
-          <img
-            className={styles.scale_down}
-            src="/assets/sponsors/kantoor-jans--white.svg"
-            alt="kantoor-jans"
-          />
-          <img
-            src="/assets/sponsors/vlaams-brabant-white.svg"
-            alt="vlaams-brabant"
-            className={styles.scale_up}
-          />
+          {partners
+            .sort(
+              (a, b) => a.formula - b.formula || a.name.localeCompare(b.name)
+            )
+            .filter((p) => !p.disabled)
+            .map((p) => (
+              <a
+                className={classNames({
+                  [styles.scale_down]: p.logoSize === 'sm',
+                  [styles.scale_up]: p.logoSize === 'lg',
+                  [styles.scale_up__xl]: p.logoSize === 'xl',
+                })}
+                key={p.name}
+                {...(p.site && {
+                  href: p.site,
+                  target: '_blank',
+                  rel: 'noreferrer noopener',
+                })}
+              >
+                {!!p.logoWhite ? (
+                  <img src={p.logoWhite} alt={p.name} />
+                ) : (
+                  <span>{p.name}</span>
+                )}
+              </a>
+            ))}
         </div>
         <div className={cn('container', styles.footer__bottom)}>
           <LanguagePicker />

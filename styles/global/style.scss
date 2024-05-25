@@ -203,6 +203,12 @@ h6 {
   }
 }
 
+.paragraph {
+  text-align: center;
+  // color: var(--color-pink-0);
+  margin-bottom: 4rem;
+}
+
 small {
   font-size: var(--font-size-small);
   line-height: var(--line-height-small);
@@ -360,4 +366,8 @@ sub {
   &--top {
     top: -4px;
   }
+}
+
+.rfm-child {
+  display: inline-flex;
 }

@@ -1,5 +1,6 @@
 .fieldSetLabel {
   composes: inputLabel from '../../ui/Input/Input.module.scss';
+  color: var(--color-black);
 }
 
 .fieldSetContainer {

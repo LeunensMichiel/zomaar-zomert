@@ -26,12 +26,10 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
   }, [router.asPath]);
 
   useEffect(() => {
-    if (ref.current) {
-      if (navDrawerOpen) {
-        lock(ref.current);
-      } else {
-        unlock(ref.current);
-      }
+    if (navDrawerOpen) {
+      lock();
+    } else {
+      unlock();
     }
     return () => {
       clearBodyLocks();

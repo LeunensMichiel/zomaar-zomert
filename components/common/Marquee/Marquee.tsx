@@ -24,6 +24,7 @@ export const Marquee: FC<MarqueeProps> = ({
         direction={direction}
         speed={isMobile ? speed / 5 : speed}
         gradient={false}
+        className={styles.slide__container}
       >
         {slides?.map((slide) => (
           <img

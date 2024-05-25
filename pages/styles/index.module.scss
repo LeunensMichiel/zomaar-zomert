@@ -117,12 +117,11 @@
 
 .below__countdown {
   position: relative;
-  margin-top: 3rem;
   padding-bottom: 3rem;
 
   @include mixins.breakpoint-up(md) {
     padding-bottom: 9.5rem;
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
 
   @include mixins.breakpoint-up(xl) {

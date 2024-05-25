@@ -27,19 +27,9 @@ const ContactPage = () => {
           </div>
           <div className={styles.contact__persons}>
             <div className={styles.contact__person__block}>
-              <span>Timothy Januarius</span>
-              <span>timothy.januarius@zomaarzomert.be</span>
-              <span>+32 474 70 25 75</span>
-            </div>
-            <div className={styles.contact__person__block}>
-              <span>Tijl Itterbeek</span>
-              <span>tijl.itterbeek@zomaarzomert.be</span>
-              <span>+32 471 60 65 25</span>
-            </div>
-            <div className={styles.contact__person__block}>
-              <span>Rauke de Mesmaeker</span>
-              <span>rauke.de.mesmaeker@zomaarzomert.be</span>
-              <span>+32 470 22 71 76</span>
+              <span>Zomaar Zomert</span>
+              <span>info@zomaarzomert.be</span>
+              <span>Plankenstraat 23, Itterbeek</span>
             </div>
           </div>
         </div>
