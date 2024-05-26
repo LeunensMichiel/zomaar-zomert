@@ -117,11 +117,10 @@ const Home = () => {
           playsInline
           autoPlay
           muted
-          poster="/assets/card.jpg"
+          poster="/assets/landing.webp"
           loop
           preload="auto"
         >
-          <source src="/assets/landing.webm" type="video/webm" />
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
         <div className={cn(styles.landing__inner, 'container')}>
@@ -140,6 +139,7 @@ const Home = () => {
           className={cn('tear', 'tear--bottom')}
           src="/assets/tear-1.svg"
           alt="paper tear element"
+          style={{ bottom: -32 }}
         />
       </section>
       <section className={cn(styles.countdown, 'container')}>
