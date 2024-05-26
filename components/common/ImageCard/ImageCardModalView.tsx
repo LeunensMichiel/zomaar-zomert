@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const ImageCardModalView: FC<Props> = ({ data }) => {
-  const { lang } = useTranslation();
+  const { lang, t } = useTranslation();
   return (
     <div className={styles.root}>
       <div className={styles.image__container}>
@@ -34,6 +34,16 @@ export const ImageCardModalView: FC<Props> = ({ data }) => {
         <h1 className={styles.title}>{data.title}</h1>
         <span className={styles.subtitle}>{data.subtitle}</span>
         <p className={styles.text}>{data.description}</p>
+        {data.link && (
+          <a
+            className={styles.link}
+            href={data.link}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {t('register')}
+          </a>
+        )}
       </div>
     </div>
   );

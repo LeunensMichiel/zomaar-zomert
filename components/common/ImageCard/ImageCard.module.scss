@@ -21,14 +21,14 @@
 .image__card__inner {
   padding: 2rem;
   position: absolute;
+  height: 100%;
   left: 0;
   right: 0;
   z-index: 10;
-  display: grid;
-  gap: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-self: center;
   font-family: var(--font-family-alt);
   font-weight: 700;
 }
@@ -41,10 +41,12 @@
 }
 
 .image__card__inner__title {
+  margin-top: auto;
+  padding-top: 1rem;
   color: var(--color-white);
   font-size: 3.5rem;
   text-transform: uppercase;
-  line-height: var(--line-height-header);
+  line-height: 1;
 
   @include mixins.breakpoint-up(md) {
     font-size: 3.5rem;
@@ -58,4 +60,6 @@
 .image__card__inner__subtitle {
   color: var(--color-white);
   font-size: var(--font-size-subtitle);
+  margin-top: auto;
+  padding-bottom: 1rem;
 }

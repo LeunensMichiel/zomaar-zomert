@@ -3,6 +3,9 @@ export const ZZ_DATE_FRIDAY = ZZ_DATES[0];
 export const ZZ_DATE_SATURDAY = ZZ_DATES[1];
 export const ZZ_DATE_SUNDAY = ZZ_DATES[2];
 export const ZZ_YEAR = 2024;
+export const PAELLA_LINK = 'https://forms.gle/o4N4bSanA4Z1kGR26';
+export const PETANQUE_LINK = 'https://forms.gle/zPFPHgePwNoSbNRQA';
+export const ENABLE_LINKS_DATE = '2024-06-26';
 
 export type IImageCard = {
   title: string;
@@ -10,34 +13,39 @@ export type IImageCard = {
   imgSrc: string;
   description?: string;
   date?: string;
+  link?: string;
 };
 
 export type languages = 'nl' | 'fr' | 'en';
 
+export const getDateByDayString = (day: 'friday' | 'saturday' | 'sunday') => {
+  return day === 'friday'
+    ? ZZ_DATE_FRIDAY
+    : day === 'saturday'
+      ? ZZ_DATE_SATURDAY
+      : ZZ_DATE_SUNDAY;
+};
+
 type TranslationString = Record<languages, string>;
 
 export type APIArtist = {
-  id: number | string;
-  name: TranslationString;
-  date: string;
-  hour: string;
-  isFiller: boolean;
+  name: string;
   description: TranslationString;
+  day: 'friday' | 'saturday' | 'sunday';
+  hour: string;
   imgSrc: string;
-  hiddenUntil: string;
-  hiddenFrom: string;
+  showFrom: string;
+  link?: string;
 };
 
 export type Artist = {
-  id: number | string;
   name: string;
-  date: string;
-  hour: string;
-  isFiller: boolean;
   description: string;
+  day: 'friday' | 'saturday' | 'sunday';
+  hour: string;
   imgSrc: string;
-  hiddenUntil: string;
-  hiddenFrom: string;
+  showFrom: string;
+  link?: string;
 };
 
 export enum MenuType {

@@ -11,6 +11,9 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 
 import {
+  ENABLE_LINKS_DATE,
+  PAELLA_LINK,
+  PETANQUE_LINK,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
@@ -101,7 +104,7 @@ const Home = () => {
 
   const today = new Date();
   const signupDisabled =
-    today < new Date(`${ZZ_YEAR}-06-01`) || today > new Date(ZZ_DATE_SUNDAY);
+    today < new Date(ENABLE_LINKS_DATE) || today > new Date(ZZ_DATE_SUNDAY);
 
   return (
     <>
@@ -225,7 +228,7 @@ const Home = () => {
             <Button
               as="a"
               {...(!signupDisabled && {
-                href: 'https://forms.gle/HEQ42wb9x1mLS93f6',
+                href: PETANQUE_LINK,
                 target: '_blank',
                 rel: 'noreferrer noopener',
               })}
@@ -239,7 +242,7 @@ const Home = () => {
             <Button
               as="a"
               {...(!signupDisabled && {
-                href: 'https://forms.gle/2Qi4wamhSU3fygW5A',
+                href: PAELLA_LINK,
                 target: '_blank',
                 rel: 'noreferrer noopener',
               })}

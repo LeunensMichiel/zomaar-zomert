@@ -88,6 +88,9 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
         {...(opensModal && {
           onClick: handleArtistModalClick,
         })}
+        {...(!opensModal && {
+          style: { cursor: 'default' },
+        })}
         {...props}
       >
         <motion.svg

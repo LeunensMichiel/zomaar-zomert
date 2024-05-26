@@ -3,6 +3,7 @@ import { Button, Spinner } from '@components/ui';
 import {
   APIArtist,
   Artist,
+  getDateByDayString,
   languages,
   ZZ_DATE_FRIDAY,
   ZZ_DATES,
@@ -45,11 +46,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  exit: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, y: 20 },
+  exit: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
-    scale: 1,
+    y: 0,
   },
 };
 
@@ -60,25 +61,34 @@ const LineUpPage = ({
   const { query, replace, pathname, isReady } = useRouter();
   const [currentDate, setCurrentDate] = useState('');
 
-  const filteredArtists = artists?.filter(
-    (artist) =>
-      artist?.date === currentDate &&
-      new Date() >= new Date(artist.hiddenUntil) &&
-      new Date() <= new Date(artist.hiddenFrom)
+  const endDate = new Date(
+    new Date(ZZ_DATES[2]).setMonth(new Date(ZZ_DATES[2]).getMonth() + 8)
   );
-  if (!filteredArtists.length) {
-    filteredArtists.push({
-      id: 0,
-      name: 'TBA',
-      date: ZZ_DATE_FRIDAY,
-      hour: 'to be announced',
-      hiddenUntil: '',
-      hiddenFrom: '',
-      isFiller: true,
-      description:
-        'This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future.',
-      imgSrc: '/assets/artists/tba.jpg',
-    });
+  const today = new Date();
+
+  const filteredArtists = artists
+    ?.filter(
+      (artist) =>
+        new Date(artist.showFrom).getTime() <= today.getTime() &&
+        today.getTime() <= endDate.getTime() &&
+        getDateByDayString(artist.day) === currentDate
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  if (filteredArtists.length < 3) {
+    const TBAs: Artist[] = Array.from(
+      { length: 3 - filteredArtists.filter((x) => x.name !== 'TBA').length },
+      (_, i) => ({
+        name: `TBA`,
+        day: 'friday',
+        hour: 'to be announced',
+        description:
+          'This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future.',
+        imgSrc: '/assets/artists/tba.webp',
+        showFrom: i.toString(),
+      })
+    );
+    filteredArtists.push(...TBAs);
   }
   const formattedDate = new Date(currentDate);
 
@@ -174,16 +184,20 @@ const LineUpPage = ({
                 className={styles.artists}
               >
                 {filteredArtists.map((artist) => (
-                  <motion.div variants={itemVariants} key={artist.id}>
+                  <motion.div
+                    variants={itemVariants}
+                    key={`${artist.name} - ${artist.day} - ${artist.showFrom}`}
+                  >
                     <ImageCard
                       data={{
                         imgSrc: artist.imgSrc,
                         title: artist.name,
                         subtitle: artist.hour,
-                        date: artist.date,
+                        date: getDateByDayString(artist.day),
                         description: artist.description,
+                        link: artist.link,
                       }}
-                      opensModal={!artist.isFiller}
+                      opensModal={artist.name !== 'TBA'}
                     />
                   </motion.div>
                 ))}
@@ -207,13 +221,10 @@ export const getStaticProps: GetStaticProps<{ artists: Artist[] }> = async ({
   const jsonData = await fsPromises.readFile(filePath, 'utf-8');
   const apiArtists = JSON.parse(jsonData) as APIArtist[];
 
-  const artists: Artist[] = apiArtists.map(
-    ({ name, description, ...artist }) => ({
-      ...artist,
-      name: name[locale as languages],
-      description: description[locale as languages],
-    })
-  );
+  const artists: Artist[] = apiArtists.map(({ description, ...artist }) => ({
+    ...artist,
+    description: description[locale as languages],
+  }));
 
   return {
     props: { artists },

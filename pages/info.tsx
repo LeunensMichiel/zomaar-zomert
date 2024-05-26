@@ -9,7 +9,13 @@ import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import Masonry from 'react-masonry-css';
 
-import { ZZ_DATE_SUNDAY, ZZ_YEAR } from '../lib/models';
+import {
+  ENABLE_LINKS_DATE,
+  PAELLA_LINK,
+  PETANQUE_LINK,
+  ZZ_DATE_SUNDAY,
+  ZZ_YEAR,
+} from '../lib/models';
 import styles from './styles/info.module.scss';
 
 const breakpointColumns = {
@@ -22,7 +28,7 @@ const InfoPage = () => {
   const { t } = useTranslation('info');
   const today = new Date();
   const signupDisabled =
-    today < new Date(`${ZZ_YEAR}-06-01`) || today > new Date(ZZ_DATE_SUNDAY);
+    today < new Date(ENABLE_LINKS_DATE) || today > new Date(ZZ_DATE_SUNDAY);
   return (
     <>
       <NextSeo
@@ -99,7 +105,7 @@ const InfoPage = () => {
               <Button
                 as="a"
                 {...(!signupDisabled && {
-                  href: 'https://forms.gle/HEQ42wb9x1mLS93f6',
+                  href: PETANQUE_LINK,
                   target: '_blank',
                   rel: 'noreferrer noopener',
                 })}
@@ -114,7 +120,7 @@ const InfoPage = () => {
               <Button
                 as="a"
                 {...(!signupDisabled && {
-                  href: 'https://forms.gle/2Qi4wamhSU3fygW5A',
+                  href: PAELLA_LINK,
                   target: '_blank',
                   rel: 'noreferrer noopener',
                 })}

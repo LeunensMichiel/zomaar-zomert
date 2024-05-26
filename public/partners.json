@@ -116,10 +116,9 @@
   },
   {
     "name": "Itterplastiek",
-    "formula": 2,
+    "formula": 3,
     "logoWhite": "/assets/sponsors/itterplastiek-white.svg",
-    "logoSize": "lg",
-    "disabled": true
+    "logoSize": "lg"
   },
   {
     "name": "Cameleon",
@@ -193,17 +192,16 @@
   },
   {
     "name": "Chivato Barbershop",
-    "formula": 3,
+    "formula": 4,
     "logoWhite": "/assets/sponsors/chivato--white.svg",
     "logoSize": "lg",
     "site": "https://chivato.be/"
   },
   {
     "name": "Café Sint-Anna",
-    "formula": 3,
+    "formula": 5,
     "logoWhite": "/assets/sponsors/sint-anna--white.svg",
-    "logoSize": "sm",
-    "disabled": true
+    "logoSize": "sm"
   },
   {
     "name": "Carrosserie Jans",
@@ -263,7 +261,7 @@
     "formula": 4,
     "logoWhite": "/assets/sponsors/geeraerts--white.svg",
     "logoSize": "md",
-    "site": "https://geeraerts.be/"
+    "site": "https://www.geeraerts.be/"
   },
   {
     "name": "Geurts Bedrijfswageninrichting",
@@ -371,7 +369,7 @@
   {
     "name": "EBB",
     "formula": 4,
-    "logoWhite": "",
+    "logoWhite": "/assets/sponsors/ebb--white.svg",
     "logoSize": "md",
     "site": "https://ebbsmartbuildings.be/"
   },
@@ -391,7 +389,7 @@
   },
   {
     "name": "AMJ Rental",
-    "formula": 3,
+    "formula": 4,
     "logoWhite": "/assets/sponsors/amj-rental--white.svg",
     "logoSize": "md",
     "site": "https://amjrental.be/"
