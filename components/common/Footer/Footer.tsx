@@ -232,6 +232,12 @@ const Footer: FC = () => {
                   target="_blank"
                   rel="noreferrer noopener"
                 />,
+                <a
+                  key="lars puttaert"
+                  href="https://www.linkedin.com/in/lars-puttaert/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                />,
               ]}
             />
           </span>

@@ -56,16 +56,14 @@ const Modal: FC<ModalProps> = ({
   );
 
   const clearBodyScroll = useCallback(() => {
-    lock(ref.current);
+    unlock();
     clearBodyLocks();
   }, []);
 
   useEffect(() => {
-    if (ref.current) {
-      if (open) {
-        unlock(ref.current);
-        window.addEventListener('keydown', handleKey);
-      }
+    if (open) {
+      lock();
+      window.addEventListener('keydown', handleKey);
     }
     return () => {
       window.removeEventListener('keydown', handleKey);
