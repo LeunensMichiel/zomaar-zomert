@@ -7,6 +7,7 @@ import { clearBodyLocks, lock, unlock } from 'tua-body-scroll-lock';
 import { MenuButton } from '../IconButtons';
 import styles from './Navbar.module.scss';
 import NavItems from './NavItems';
+import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 
 type NavbarProps = {
   isTransparent?: boolean;
@@ -58,8 +59,14 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
               navDrawerOpen={navDrawerOpen}
             />
             <div className={cn(styles.toolbarIcons)}>
+              {navDrawerOpen && (
+                <LanguagePicker
+                  size="lg"
+                  variant="minimal-bright"
+                  withText={false}
+                />
+              )}
               <MenuButton
-                className={cn(styles.hamburger)}
                 navBarTransparent={isTransparent ? true : navDrawerOpen}
                 navBarOpen={navDrawerOpen}
                 onClick={() =>

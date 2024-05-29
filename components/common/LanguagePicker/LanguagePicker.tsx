@@ -2,7 +2,8 @@ import { Globe } from '@components/icons';
 import { Button } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import useTranslation from 'next-translate/useTranslation';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
+import { ButtonVariant } from '../../ui/Button/Button';
 
 export const LangCode: Record<string, string> = {
   nl: 'Nederlands',
@@ -12,10 +13,19 @@ export const LangCode: Record<string, string> = {
 
 type LanguagePickerProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  outlined?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  variant?: ButtonVariant;
+  withText?: boolean;
 };
 
-export const LanguagePicker: FC<LanguagePickerProps> = ({ size = 'xs' }) => {
+export const LanguagePicker: FC<LanguagePickerProps> = ({
+  size = 'xs',
+  className,
+  variant = 'transparent',
+  withText = true,
+  style,
+}) => {
   const { t, lang } = useTranslation('common');
   const { openModal, setModalView } = useUI();
 
@@ -29,10 +39,12 @@ export const LanguagePicker: FC<LanguagePickerProps> = ({ size = 'xs' }) => {
       type="button"
       iconLeft={<Globe />}
       onClick={handleLanguageBtnClick}
-      variant="transparent"
+      variant={variant}
       size={size}
+      className={className}
+      style={style}
     >
-      {LangCode[lang]}
+      {withText && LangCode[lang]}
     </Button>
   );
 };

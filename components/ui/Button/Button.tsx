@@ -4,18 +4,20 @@ import { ComponentPropsWithRef, ElementType, ReactNode } from 'react';
 
 import styles from './Button.module.scss';
 
+export type ButtonVariant =
+  | 'default'
+  | 'primary'
+  | 'minimal'
+  | 'minimal-bright'
+  | 'minimal-dark'
+  | 'transparent';
+
 // Inspired by
 // https://www.benmvp.com/blog/polymorphic-react-components-typescript/
 interface ButtonCustomProps<C extends React.ElementType> {
   as?: C;
   children?: ReactNode;
-  variant?:
-    | 'default'
-    | 'primary'
-    | 'minimal'
-    | 'minimal-bright'
-    | 'minimal-dark'
-    | 'transparent';
+  variant?: ButtonVariant;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   outlined?: boolean;
   circular?: boolean;

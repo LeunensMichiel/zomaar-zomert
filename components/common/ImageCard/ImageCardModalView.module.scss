@@ -36,7 +36,8 @@
         rgba(0, 0, 0, 0.15) 1px
       ),
       radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
-    background-size: 4px 4px;
+    background-size: 3px 3px;
+    mix-blend-mode: lighten;
     background-position:
       0 0,
       2px 2px;

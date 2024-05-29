@@ -11,12 +11,12 @@ type MenuButtonProps = {
   navBarTransparent?: boolean;
 };
 
-const MenuButton: VFC<MenuButtonProps> = ({
+const MenuButton = ({
   onClick,
   className,
   navBarOpen,
   navBarTransparent,
-}) => (
+}: MenuButtonProps) => (
   <motion.button
     initial={false}
     animate={navBarOpen ? 'open' : 'closed'}

@@ -339,24 +339,17 @@
     "site": "https://sterslager-dewachter.be/"
   },
   {
-    "name": "Electro-techniek Valon",
-    "formula": 5,
-    "logoWhite": "",
-    "logoSize": "md",
-    "site": "https://valon.be/"
-  },
-  {
     "name": "Atoma",
     "formula": 4,
-    "logoWhite": "",
+    "logoWhite": "/assets/sponsors/atoma--white.svg",
     "logoSize": "md",
     "site": "https://atoma.be/"
   },
   {
     "name": "Averti",
     "formula": 4,
-    "logoWhite": "",
-    "logoSize": "md",
+    "logoWhite": "/assets/sponsors/averti--white.svg",
+    "logoSize": "lg",
     "site": "https://averti.be/"
   },
   {
@@ -376,8 +369,8 @@
   {
     "name": "Luchthavenvervoer Kevin",
     "formula": 1,
-    "logoWhite": "",
-    "logoSize": "md",
+    "logoWhite": "/assets/sponsors/luchthavenvervoer-kevin--white.svg",
+    "logoSize": "xl",
     "site": "https://luchthavenvervoer-kevin.be/"
   },
   {
