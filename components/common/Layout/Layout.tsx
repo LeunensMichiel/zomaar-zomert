@@ -3,11 +3,12 @@ import { Modal } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 
 import { ImageCardModalView } from '../ImageCard/ImageCardModalView';
 import { LanguageSelectionModal } from '../LanguagePicker/LanguageSelectionModal';
 import styles from './Layout.module.scss';
+import { useTheme } from 'next-themes';
 
 type Props = {
   children: ReactNode;
@@ -17,6 +18,7 @@ const transparentRoutes = ['/'];
 
 const Layout: FC<Props> = ({ children }: Props) => {
   const { displayModal, closeModal, modalTitle, modalView, data } = useUI();
+
   const router = useRouter();
 
   const isTransparentRoute = transparentRoutes.includes(router?.pathname);

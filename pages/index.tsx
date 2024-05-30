@@ -34,64 +34,10 @@ const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 const Home = () => {
   const { t, lang } = useTranslation('home');
-  const slides = [
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-1.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-2.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-3.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-4.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-5.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-6.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-7.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-8.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-9.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-10.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-11.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-12.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-13.webp',
-    },
-    {
-      alt: 'carousel image',
-      url: '/assets/slides/slide-14.webp',
-    },
-  ];
+  const slides = Array.from({ length: 30 }, (_, i) => ({
+    alt: `carousel image ${i + 1}`,
+    url: `/assets/slides/slide${i + 1}.webp`,
+  }));
   const shuffledSlides = slides
     .map((value) => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)

@@ -1,7 +1,11 @@
 import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect, useState } from 'react';
 
-import { ZZ_DATE_FRIDAY } from '../../../lib/models';
+import {
+  ZZ_DATE_FRIDAY,
+  ZZ_DATE_MONDAY,
+  ZZ_DATE_SUNDAY,
+} from '../../../lib/models';
 import styles from './Countdown.module.scss';
 
 const countDownDate = new Date(`${ZZ_DATE_FRIDAY} 16:00:00`).getTime();
@@ -36,6 +40,9 @@ export const Countdown = () => {
   const { t } = useTranslation('home');
   const [days, hours, minutes, seconds] = useCountdown(countDownDate);
 
+  const today = new Date();
+  const lastDay = new Date(ZZ_DATE_MONDAY);
+
   if (days + hours + minutes + seconds <= 0) {
     return (
       <div className={styles.timer}>
@@ -56,7 +63,9 @@ export const Countdown = () => {
           <span className={styles.timer__item__unit}>{t('seconds')}</span>
         </span>
         <span className={styles['expired-notice']}>
-          {t('festivalHasStarted')}
+          {today.getTime() >= lastDay.getTime()
+            ? 'See you next year!'
+            : t('festivalHasStarted')}
         </span>
       </div>
     );

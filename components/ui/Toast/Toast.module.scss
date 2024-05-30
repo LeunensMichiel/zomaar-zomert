@@ -1,0 +1,11 @@
+.root {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  background-color: var(--color-bg-brand);
+  max-width: 240px;
+  font-size: 0.75rem;
+  color: white;
+  padding: 1rem;
+  z-index: 1000000;
+}

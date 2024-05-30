@@ -25,13 +25,6 @@ const ContactPage = () => {
           <div className={styles.map__container}>
             <Map height="100%" />
           </div>
-          <div className={styles.contact__persons}>
-            <div className={styles.contact__person__block}>
-              <span>Zomaar Zomert</span>
-              <span>info@zomaarzomert.be</span>
-              <span>Plankenstraat 23, Itterbeek</span>
-            </div>
-          </div>
         </div>
       </section>
     </>

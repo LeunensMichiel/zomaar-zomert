@@ -19,8 +19,7 @@
     "formula": 1,
     "logoWhite": "/assets/sponsors/nationale-loterij--white.svg",
     "logoSize": "md",
-    "site": "https://nationale-loterij.be/",
-    "disabled": true
+    "site": "https://nationale-loterij.be/"
   },
   {
     "name": "Sound & CO",
@@ -52,11 +51,10 @@
   },
   {
     "name": "Eagle Air Agencies",
-    "formula": 1,
+    "formula": 2,
     "logoWhite": "/assets/sponsors/eagleair-white.svg",
     "logoSize": "md",
-    "site": "https://eagleair.be/",
-    "disabled": true
+    "site": "https://eagleair.be/"
   },
   {
     "name": "Callebaut Schrijnwerkerij",
@@ -116,7 +114,7 @@
   },
   {
     "name": "Itterplastiek",
-    "formula": 3,
+    "formula": 2,
     "logoWhite": "/assets/sponsors/itterplastiek-white.svg",
     "logoSize": "lg"
   },
@@ -138,8 +136,7 @@
     "formula": 3,
     "logoWhite": "/assets/sponsors/artiosi--monotone.svg",
     "logoSize": "md",
-    "site": "https://artiosi.be/",
-    "disabled": true
+    "site": "https://artiosi.be/"
   },
   {
     "name": "De Spanuit",
@@ -174,8 +171,7 @@
     "formula": 4,
     "logoWhite": "/assets/sponsors/thesora-white.svg",
     "logoSize": "md",
-    "site": "https://thesora.be/",
-    "disabled": true
+    "site": "https://thesora.be/"
   },
   {
     "name": "Bamboe Frit",
@@ -267,7 +263,7 @@
     "name": "Geurts Bedrijfswageninrichting",
     "formula": 2,
     "logoWhite": "/assets/sponsors/geurts--white.svg",
-    "logoSize": "sm",
+    "logoSize": "md",
     "site": "https://geurts-bwi.be/home"
   },
   {
@@ -358,6 +354,12 @@
     "logoWhite": "",
     "logoSize": "md",
     "site": "https://nvdemarie.be/"
+  },
+  {
+    "name": "Certoo",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/certoo--white.svg",
+    "logoSize": "md"
   },
   {
     "name": "EBB",

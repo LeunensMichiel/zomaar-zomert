@@ -88,8 +88,8 @@ export const ManagedUIProvider: FC<ProviderProps> = ({ children }) => (
       enableSystem={false}
       enableColorScheme
       disableTransitionOnChange={true}
-      defaultTheme="system"
-      themes={['light']}
+      defaultTheme="light"
+      themes={['light', 'dark']}
     >
       {children}
     </ThemeProvider>

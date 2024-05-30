@@ -6,6 +6,7 @@ import { forwardRef, ReactNode, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import styles from './Form.module.scss';
+import { Toast } from '../../ui/Toast/Toast';
 
 type FormValues = {
   naam: string;
@@ -131,9 +132,9 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
         >
           {t('form.button')}
         </Button>
-        <p className={styles['message-received']}>
-          {isSubmitted && t('form.success')}
-        </p>
+        <Toast duration={5000} isShown={isSubmitted}>
+          {t('form.success')}
+        </Toast>
         {children}
       </form>
     );

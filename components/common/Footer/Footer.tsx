@@ -188,6 +188,11 @@ const Footer: FC = () => {
             >
               {t('footer.contact.contact')}
             </Link>
+
+            <div className={styles.contact__person__block}>
+              <span>info@zomaarzomert.be</span>
+              <span>Plankenstraat 23, Itterbeek</span>
+            </div>
           </div>
         </div>
         <div className={cn(styles.partners, 'container')}>

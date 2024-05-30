@@ -6,6 +6,8 @@ export const ZZ_YEAR = 2024;
 export const PAELLA_LINK = 'https://forms.gle/o4N4bSanA4Z1kGR26';
 export const PETANQUE_LINK = 'https://forms.gle/zPFPHgePwNoSbNRQA';
 export const ENABLE_LINKS_DATE = '2024-06-26';
+export const ZZ_DATE_MONDAY = '2024-07-29';
+export const ZZ_DATE_FRIDAY_NEXT_YEAR = '2025-07-25';
 
 export type IImageCard = {
   title: string;
