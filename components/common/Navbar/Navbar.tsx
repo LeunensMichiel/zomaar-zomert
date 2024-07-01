@@ -2,8 +2,12 @@ import { Logo } from '@components/ui';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
-import { clearBodyLocks, lock, unlock } from 'tua-body-scroll-lock';
-
+import {
+  BodyScrollOptions,
+  clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
+} from 'body-scroll-lock';
 import { MenuButton } from '../IconButtons';
 import styles from './Navbar.module.scss';
 import NavItems from './NavItems';
@@ -12,6 +16,10 @@ import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 type NavbarProps = {
   isTransparent?: boolean;
   children?: ReactNode;
+};
+
+const BODY_SCROLL_OPTIONS: BodyScrollOptions = {
+  reserveScrollBarGap: true,
 };
 
 const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
@@ -27,13 +35,15 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
   }, [router.asPath]);
 
   useEffect(() => {
-    if (navDrawerOpen) {
-      lock();
-    } else {
-      unlock();
+    if (ref.current) {
+      if (navDrawerOpen) {
+        disableBodyScroll(ref.current, BODY_SCROLL_OPTIONS);
+      } else {
+        enableBodyScroll(ref.current);
+      }
     }
     return () => {
-      clearBodyLocks();
+      clearAllBodyScrollLocks();
     };
   }, [navDrawerOpen]);
 

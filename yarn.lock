@@ -611,6 +611,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/body-scroll-lock@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "@types/body-scroll-lock@npm:3.1.2"
+  checksum: 10c0/e766e44ef16e2b9a50488944eb8310247df7a8acfbbc4ed6d9f19ba83987404080aa02eae0256a57b5dd29bf5b9d39f6fa357abcabc3fbc47b8772dc681a1fac
+  languageName: node
+  linkType: hard
+
 "@types/geojson@npm:*":
   version: 7946.0.8
   resolution: "@types/geojson@npm:7946.0.8"
@@ -920,6 +927,13 @@ __metadata:
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: 10c0/d73d8b897238a2d3ffa5f59c0241870043aa7471335e89ea5e1ff48edb7c2d0bb471517a3e4c5c3f4c043615caa2717b5f80a5e61e07503d51dc85cb848e665d
+  languageName: node
+  linkType: hard
+
+"body-scroll-lock@npm:^4.0.0-beta.0":
+  version: 4.0.0-beta.0
+  resolution: "body-scroll-lock@npm:4.0.0-beta.0"
+  checksum: 10c0/32a9553b83424e69f3784d7bbcef2949c43159ea13b5084c96dc08b1e2585e4eeb1e915f14e37a4ac44110339dfa6fa2ddde4d3d812be88ecbea060aa724a791
   languageName: node
   linkType: hard
 
@@ -3735,13 +3749,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tua-body-scroll-lock@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "tua-body-scroll-lock@npm:1.5.0"
-  checksum: 10c0/99442817bddf2a6f76576797a0e2ff59d1ca0f06093df7a8481a4c25819ee6797abc3545363eea85dd43667be0be7554788e9c2543bf59501117e41eb3f299a5
-  languageName: node
-  linkType: hard
-
 "tweakpane@npm:^4.0.3":
   version: 4.0.3
   resolution: "tweakpane@npm:4.0.3"
@@ -4007,8 +4014,10 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.3.0"
     "@radix-ui/react-portal": "npm:^1.0.4"
+    "@types/body-scroll-lock": "npm:^3.1.2"
     "@types/node": "npm:^20.12.12"
     "@types/react": "npm:^18.3.2"
+    body-scroll-lock: "npm:^4.0.0-beta.0"
     classnames: "npm:^2.5.1"
     dotenv-cli: "npm:^7.4.2"
     eslint: "npm:^9.3.0"
@@ -4037,7 +4046,6 @@ __metadata:
     react-player: "npm:^2.16.0"
     sass: "npm:^1.77.2"
     sharp: "npm:^0.33.4"
-    tua-body-scroll-lock: "npm:^1.5.0"
     typescript: "npm:^5.4.5"
     typescript-eslint: "npm:^7.9.0"
   languageName: unknown

@@ -4,6 +4,12 @@ import cn from 'classnames';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import {
+  BodyScrollOptions,
+  clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
+} from 'body-scroll-lock';
+import {
   FC,
   MutableRefObject,
   ReactNode,
@@ -12,7 +18,6 @@ import {
   useRef,
 } from 'react';
 import FocusLock from 'react-focus-lock';
-import { clearBodyLocks, lock, unlock } from 'tua-body-scroll-lock';
 
 import styles from './Modal.module.scss';
 
@@ -30,6 +35,10 @@ type ModalProps = {
   container?: 'container' | 'page';
   onClose(): void;
   children?: ReactNode;
+};
+
+const BODY_SCROLL_OPTIONS: BodyScrollOptions = {
+  reserveScrollBarGap: true,
 };
 
 const Modal: FC<ModalProps> = ({
@@ -56,14 +65,16 @@ const Modal: FC<ModalProps> = ({
   );
 
   const clearBodyScroll = useCallback(() => {
-    unlock();
-    clearBodyLocks();
+    enableBodyScroll(ref.current);
+    clearAllBodyScrollLocks();
   }, []);
 
   useEffect(() => {
-    if (open) {
-      lock();
-      window.addEventListener('keydown', handleKey);
+    if (ref.current) {
+      if (open) {
+        disableBodyScroll(ref.current, BODY_SCROLL_OPTIONS);
+        window.addEventListener('keydown', handleKey);
+      }
     }
     return () => {
       window.removeEventListener('keydown', handleKey);
