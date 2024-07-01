@@ -1,17 +1,18 @@
 import { Logo } from '@components/ui';
-import cn from 'classnames';
-import { useRouter } from 'next/router';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import {
   BodyScrollOptions,
   clearAllBodyScrollLocks,
   disableBodyScroll,
   enableBodyScroll,
 } from 'body-scroll-lock';
+import cn from 'classnames';
+import { useRouter } from 'next/router';
+import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+
 import { MenuButton } from '../IconButtons';
+import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 import styles from './Navbar.module.scss';
 import NavItems from './NavItems';
-import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 
 type NavbarProps = {
   isTransparent?: boolean;

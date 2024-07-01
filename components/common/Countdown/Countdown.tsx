@@ -1,11 +1,7 @@
 import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect, useState } from 'react';
 
-import {
-  ZZ_DATE_FRIDAY,
-  ZZ_DATE_MONDAY,
-  ZZ_DATE_SUNDAY,
-} from '../../../lib/models';
+import { ZZ_DATE_FRIDAY, ZZ_DATE_MONDAY } from '../../../lib/models';
 import styles from './Countdown.module.scss';
 
 const countDownDate = new Date(`${ZZ_DATE_FRIDAY} 16:00:00`).getTime();

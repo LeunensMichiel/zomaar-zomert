@@ -1,14 +1,14 @@
 import { CloseButton } from '@components/common';
 import { useClickOutside } from '@lib/hooks';
-import cn from 'classnames';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import {
   BodyScrollOptions,
   clearAllBodyScrollLocks,
   disableBodyScroll,
   enableBodyScroll,
 } from 'body-scroll-lock';
+import cn from 'classnames';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import {
   FC,
   MutableRefObject,

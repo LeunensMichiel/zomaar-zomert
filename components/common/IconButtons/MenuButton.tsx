@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { motion } from 'framer-motion';
-import { MouseEventHandler, VFC } from 'react';
+import { MouseEventHandler } from 'react';
 
 import styles from './MenuButton.module.scss';
 

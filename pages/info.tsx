@@ -1,6 +1,5 @@
 import { Layout, TexturedImage } from '@components/common';
 import ChevronRight from '@components/icons/Chevron';
-// import ChevronRight from '@components/icons/Chevron';
 import { Button, Card } from '@components/ui';
 import Map from '@components/ui/Map';
 import { NextSeo } from 'next-seo';
@@ -14,7 +13,6 @@ import {
   PAELLA_LINK,
   PETANQUE_LINK,
   ZZ_DATE_SUNDAY,
-  ZZ_YEAR,
 } from '../lib/models';
 import styles from './styles/info.module.scss';
 

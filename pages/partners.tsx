@@ -1,13 +1,11 @@
 import { Layout } from '@components/common';
-
 import cn from 'classnames';
+import { motion, Variants } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 
 import partners from '../public/partners.json';
-
 import styles from './styles/partners.module.scss';
-import { Variants, motion } from 'framer-motion';
 
 const cardVariants: Variants = {
   offscreen: {
@@ -58,7 +56,7 @@ const PartnerPage = () => {
                   rel: 'noreferrer noopener',
                 })}
               >
-                {!!p.logoWhite ? (
+                {p.logoWhite ? (
                   <img src={p.logoWhite} alt={p.name} />
                 ) : (
                   <span>{p.name}</span>

@@ -3,6 +3,7 @@ import { Button } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import useTranslation from 'next-translate/useTranslation';
 import { CSSProperties, FC } from 'react';
+
 import { ButtonVariant } from '../../ui/Button/Button';
 
 export const LangCode: Record<string, string> = {

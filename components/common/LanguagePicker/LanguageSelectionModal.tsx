@@ -6,7 +6,6 @@ import { ChangeEvent } from 'react';
 
 import i18nConfig from '../../../i18n.json';
 import { LangCode } from './LanguagePicker';
-
 import styles from './LanguageSelectionModal.module.scss';
 
 const { locales } = i18nConfig;

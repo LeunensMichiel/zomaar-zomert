@@ -5,8 +5,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { forwardRef, ReactNode, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import styles from './Form.module.scss';
 import { Toast } from '../../ui/Toast/Toast';
+import styles from './Form.module.scss';
 
 type FormValues = {
   naam: string;

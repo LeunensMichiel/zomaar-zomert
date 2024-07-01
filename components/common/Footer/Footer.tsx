@@ -1,16 +1,15 @@
 import { Facebook, Instagram, Youtube } from '@components/icons';
 import cn from 'classnames';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
+import partners from '../../../public/partners.json';
 import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 import styles from './Footer.module.scss';
-
-import partners from '../../../public/partners.json';
-import classNames from 'classnames';
 
 const variants = {
   initial: {
@@ -215,7 +214,7 @@ const Footer: FC = () => {
                   rel: 'noreferrer noopener',
                 })}
               >
-                {!!p.logoWhite ? (
+                {p.logoWhite ? (
                   <img src={p.logoWhite} alt={p.name} />
                 ) : (
                   <span>{p.name}</span>

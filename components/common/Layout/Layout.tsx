@@ -3,12 +3,11 @@ import { Modal } from '@components/ui';
 import { useUI } from '@lib/hooks';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { ImageCardModalView } from '../ImageCard/ImageCardModalView';
 import { LanguageSelectionModal } from '../LanguagePicker/LanguageSelectionModal';
 import styles from './Layout.module.scss';
-import { useTheme } from 'next-themes';
 
 type Props = {
   children: ReactNode;
