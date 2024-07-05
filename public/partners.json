@@ -19,7 +19,8 @@
     "formula": 1,
     "logoWhite": "/assets/sponsors/nationale-loterij--white.svg",
     "logoSize": "md",
-    "site": "https://nationale-loterij.be/"
+    "site": "https://nationale-loterij.be/",
+    "disabled": true
   },
   {
     "name": "Sound & CO",
