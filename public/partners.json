@@ -379,8 +379,8 @@
   {
     "name": "ToFix",
     "formula": 1,
-    "logoWhite": "",
-    "logoSize": "md",
+    "logoWhite": "/assets/sponsors/tofix--white.svg",
+    "logoSize": "xl",
     "site": "https://tofix.be/"
   },
   {
