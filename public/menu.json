@@ -261,6 +261,26 @@
   },
   {
     "name": {
+      "en": "Sportzot",
+      "fr": "Sportzot",
+      "nl": "Sportzot"
+    },
+    "description": {
+      "en": "A blonde beer for the designated drivers among us. 0.0% alcohol.",
+      "fr": "Une bière blonde pour les conducteurs désignés parmi nous. 0,0 % d'alcool.",
+      "nl": "Een blond bierke voor de BOB's onder ons. 0.0% alcohol."
+    },
+    "price": 3,
+    "img": "/assets/menu/sportzot.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
+  },
+  {
+    "name": {
       "en": "La Chouffe",
       "fr": "La Chouffe",
       "nl": "La Chouffe"
@@ -361,17 +381,17 @@
   },
   {
     "name": {
-      "en": "Red wine",
-      "fr": "Vin rouge",
-      "nl": "Rode wijn"
+      "en": "Rosé wine",
+      "fr": "Vin rosé",
+      "nl": "Rosé wijn"
     },
     "description": {
-      "en": "A glass of red wine.",
-      "fr": "Un verre de vin rouge.",
-      "nl": "Een glas rode wijn."
+      "en": "A glass of rosé wine.",
+      "fr": "Un verre de vin rosé.",
+      "nl": "Een glas rosé wijn."
     },
     "price": 3,
-    "img": "/assets/menu/red-wine.jpg",
+    "img": "/assets/menu/rose.jpg",
     "category": "Drinks",
     "subCategory": {
       "en": "wines",

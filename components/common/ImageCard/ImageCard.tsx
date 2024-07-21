@@ -21,14 +21,6 @@ const containerMotion = {
       duration: 0.5,
     },
   },
-  tap: {
-    scale: 0.975,
-    transition: {
-      type: 'spring',
-      duration: 0.2,
-      bounce: 1,
-    },
-  },
   hover: {
     scale: 1.025,
     transition: {
@@ -43,13 +35,6 @@ const pathMotion = {
     pathLength: 0,
     transition: {
       duration: 0.5,
-      type: 'spring',
-    },
-  },
-  tap: {
-    pathLength: 1,
-    transition: {
-      duration: 1,
       type: 'spring',
     },
   },
@@ -81,8 +66,6 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
         {...((opensModal || playAnimation) && {
           initial: 'initial',
           whileHover: 'hover',
-          whileFocus: 'tap',
-          whileTap: 'tap',
           variants: containerMotion,
         })}
         {...(opensModal && {
