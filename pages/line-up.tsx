@@ -7,6 +7,7 @@ import {
   languages,
   ZZ_DATE_FRIDAY,
   ZZ_DATES,
+  ZZ_YEAR,
 } from '@lib/models';
 import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -64,6 +65,7 @@ const LineUpPage = ({
   const endDate = new Date(
     new Date(ZZ_DATES[2]).setMonth(new Date(ZZ_DATES[2]).getMonth() + 8)
   );
+
   const today = new Date();
 
   const filteredArtists = artists
@@ -71,7 +73,8 @@ const LineUpPage = ({
       (artist) =>
         new Date(artist.showFrom).getTime() <= today.getTime() &&
         today.getTime() <= endDate.getTime() &&
-        getDateByDayString(artist.day) === currentDate
+        getDateByDayString(artist.day) === currentDate &&
+        new Date(artist.showFrom).getFullYear() >= ZZ_YEAR
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 

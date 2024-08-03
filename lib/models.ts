@@ -1,13 +1,13 @@
-export const ZZ_DATES = ['2024-07-26', '2024-07-27', '2024-07-28'];
+export const ZZ_DATES = ['2025-07-25', '2025-07-26', '2025-07-27'];
 export const ZZ_DATE_FRIDAY = ZZ_DATES[0];
 export const ZZ_DATE_SATURDAY = ZZ_DATES[1];
 export const ZZ_DATE_SUNDAY = ZZ_DATES[2];
-export const ZZ_YEAR = 2024;
+export const ZZ_YEAR = 2025;
 export const PAELLA_LINK = 'https://forms.gle/o4N4bSanA4Z1kGR26';
 export const PETANQUE_LINK = 'https://forms.gle/zPFPHgePwNoSbNRQA';
-export const ENABLE_LINKS_DATE = '2024-06-26';
-export const ZZ_DATE_MONDAY = '2024-07-29';
-export const ZZ_DATE_FRIDAY_NEXT_YEAR = '2025-07-25';
+export const ENABLE_LINKS_DATE = '2025-06-26';
+export const ZZ_DATE_MONDAY = '2025-07-28';
+export const ZZ_DATE_FRIDAY_NEXT_YEAR = '2026-07-24';
 
 export type IImageCard = {
   title: string;
