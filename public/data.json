@@ -1,9 +1,9 @@
 [
   {
     "name": "Kaaprisun",
-    "day": "friday",
+    "day": "saturday",
     "hour": "23:00 - 01:30",
-    "showFrom": "2024-06-07T15:30:00.000Z",
+    "showFrom": "2025-06-11T15:30:00.000Z",
     "description": {
       "nl": "Kaaprisun. Nee, niet het lekkere drankje dat iedereen wel kent. Maar wel dé DJ door wiens beats je letterlijk verfrissing gaat moeten opzoeken aan de bar. Met zijn 7 jaar ervaring is hij geen Pajottenaar onbekend. Hij is dan ook dé allround DJ, varend van klassieke partymuziek over Vlaamse meezingers naar retroschijfjes.\n\nHij heeft dus al vele Pajotse events op zijn palmares, maar onze vorige editie is hem toch wel enorm bijgebleven: ‘Er heerst een heel gezellige, familiale, warme sfeer. De leuke setting staat ook toe dat ik klassiekers en meezingers kan bovenhalen.’",
       "fr": "Kaaprisun. Non, pas la boisson délicieuse que tout le monde connaît. Mais bien le DJ dont les beats vous pousseront littéralement à chercher du rafraîchissement au bar. Avec ses 7 ans d'expérience, il n'est inconnu d'aucun Pajottenaar. Il est le DJ polyvalent, naviguant de la musique de fête classique aux chansons à reprendre en chœur en passant par les hits rétro.\n\nIl a donc de nombreux événements Pajot à son actif, mais notre édition précédente lui est particulièrement restée en mémoire : ‘Il règne une atmosphère très conviviale, familiale et chaleureuse. Le cadre agréable me permet aussi de sortir des classiques et des chansons à reprendre en chœur.’",
@@ -12,22 +12,22 @@
     "imgSrc": "/assets/artists/kaaprisun.webp"
   },
   {
-    "name": "Bart Kaëll",
+    "name": "Belle Perez",
     "day": "saturday",
     "hour": "20:30 - 21:10",
-    "showFrom": "2024-05-29T15:30:00.000Z",
+    "showFrom": "2025-05-31T15:30:00.000Z",
     "description": {
-      "nl": "‘Mooi weer vandaag’, hopelijk ja! ‘De Marie Louise zal nooit vergaan’, onze liefde voor jou ook nooit! ‘Zeil je voor het eerst’, met jou gaan we altijd in zee! Hij heeft niet bepaald een introductie nodig, maar uit respect voor deze chansonnier pur sang presenteren we u niemand minder dan Bart Kaëll!\n\nDit jaar blaast hij maar liefst veertig kaarsjes uit als professioneel zanger. Tijd dus om dit te vieren en zijn klassiekers luidkeels mee te brullen.",
-      "fr": "‘Mooi weer vandaag’, espérons-le oui ! ‘De Marie Louise zal nooit vergaan’, notre amour pour toi non plus ! ‘Zeil je voor het eerst’, avec toi, nous prenons toujours la mer ! Il n'a pas vraiment besoin d'une introduction, mais par respect pour ce chansonnier pur sang, nous vous présentons nul autre que Bart Kaëll !\n\nCette année, il souffle pas moins de quarante bougies en tant que chanteur professionnel. Il est donc temps de célébrer et de chanter ses classiques à tue-tête.",
-      "en": "‘Mooi weer vandaag’, hopefully yes! ‘De Marie Louise zal nooit vergaan’, our love for you never will either! ‘Zeil je voor het eerst’, we always set sail with you! He doesn't exactly need an introduction, but out of respect for this purebred chansonnier, we present to you none other than Bart Kaëll!\n\nThis year he is celebrating forty years as a professional singer. So it's time to celebrate and sing his classics out loud."
+      "nl": "Oooooh weeh oh weeh... Je hoort het, je voelt het: Belle Perez komt eraan met El Mundo Bailando en brengt de zon rechtstreeks naar Zomaar Zomert.\n\nAl meer dan twee decennia staat ze garant voor zomerse latin vibes, strakke live shows en een sfeer waar je onmogelijk stil bij kunt blijven staan. Haar stem, haar energie en haar charme zorgen elke keer weer voor magie op het podium. Of je haar nu al jaren volgt of haar voor het eerst live ziet: Belle neemt je mee op een muzikale reis vol passie, ritme en feest. Bereid je voor op een avond vol dans, meezingers en pure ambiance!",
+      "fr": "Oooooh weeh oh weeh... Vous l’entendez, vous le ressentez — Belle Perez arrive à Zomaar Zomert avec El Mundo Bailando, et elle apporte le soleil avec elle.\n\nDepuis plus de vingt ans, elle fait vibrer le public avec sa pop latino enflammée, son énergie contagieuse et ses performances inoubliables. Sa voix, son charisme et sa passion transforment chaque scène en véritable fête. Que vous soyez fan de la première heure ou que vous la découvriez en live, Belle vous embarque pour un voyage musical plein de chaleur et de bonne humeur. Préparez-vous à danser, chanter et vivre une soirée mémorable !",
+      "en": "Oooooh weeh oh weeh... You hear it, you feel it — Belle Perez is coming to Zomaar Zomert with El Mundo Bailando, bringing the sunshine straight to the stage. For over two decades, she’s been a powerhouse of Latin pop, known for her fiery energy, dazzling shows, and feel-good rhythms. Her voice, her presence, and her passion light up every festival she touches. \n\nWhether you’ve followed her for years or you’re seeing her live for the first time, Belle delivers a show full of joy, rhythm, and celebration. Get ready for a night of dancing, singing, and unforgettable moments!"
     },
-    "imgSrc": "/assets/artists/bart_kaell.webp"
+    "imgSrc": "/assets/artists/belle.webp"
   },
   {
     "name": "Zomaar Bike",
     "day": "friday",
     "hour": "16:00 - 22:00",
-    "showFrom": "2024-06-17T15:30:00.000Z",
+    "showFrom": "2025-06-16T15:30:00.000Z",
     "description": {
       "nl": "Naar jaarlijkse traditie kan je het feestweekend met de pedalen aftrappen tijdens de Zomaarbike. Voor zij die sprinten naar de eindmeet. Maar ook voor zij die willen walsen doorheen het pittoreske Sint-Ana-Pede. Een schietgebedje doen aan de kapel, de Bruegel-schilderijen en de 17 bruggen bewonderen: het kan allemaal.",
       "fr": "Selon la tradition annuelle, vous pouvez lancer le week-end de fête avec une balade à vélo pendant le Zomaarbike. Pour ceux qui sprintent jusqu'à la ligne d'arrivée. Mais aussi pour ceux qui veulent flâner à travers le pittoresque Sint-Ana-Pede. Faire une petite prière à la chapelle, admirer les peintures de Bruegel et les 17 ponts : tout est possible.",
@@ -36,70 +36,70 @@
     "imgSrc": "/assets/artists/bike.webp"
   },
   {
-    "name": "Dimitri Wouters",
+    "name": "FC Bokken",
     "day": "saturday",
-    "hour": "23:00 - 00:30",
-    "showFrom": "2024-06-03T15:30:00.000Z",
+    "hour": "21:20 - 23:00",
+    "showFrom": "2025-06-02T15:30:00.000Z",
     "description": {
-      "nl": "Dimitri Wouters heeft al op talloze events gestaan. Als lid van het Qmusic-team is zijn gevoel voor muziek alleen maar groter geworden. Naast zijn werk vertoeft hij het liefst in de studio. Hij laat zich niet beperken tot genres en verwent zijn publiek met onvoorspelbare mashups en bootlegs.\n\nOnder het motto ‘Het leven is een feest' speelde hij al negen jaar op rij een memorabele set op Tomorrowland. Nu trekt hij naar de Itterbeekse heide om er de Pajottenaar te verbazen met zijn skills.",
-      "fr": "Dimitri Wouters a déjà participé à d'innombrables événements. En tant que membre de l'équipe de Qmusic, son sens de la musique n'a fait que grandir. En dehors de son travail, il préfère passer du temps en studio. Il ne se limite pas aux genres et régale son public avec des mashups et bootlegs imprévisibles.\n\nSous la devise ‘Het leven is een feest' il a joué un set mémorable à Tomorrowland pendant neuf années consécutives. Maintenant, il se rend à la lande d'Itterbeek pour épater les Pajottenaar avec ses compétences.",
-      "en": "Dimitri Wouters has performed at countless events. As a member of the Qmusic team, his sense of music has only grown stronger. Besides his work, he prefers to spend time in the studio. He doesn't limit himself to genres and spoils his audience with unpredictable mashups and bootlegs.\n\nUnder the motto ‘Het leven is een feest' he has played a memorable set at Tomorrowland for nine years in a row. Now, he heads to the Itterbeek heath to amaze the Pajottenaar with his skills."
+      "nl": "Ze zijn terug — en hoe! FC Bokken, de onbetwiste koningen van de coverband-scene, brengen hun unieke mix van energie, humor en muzikale klasse naar Zomaar Zomert. Met een verleden bij de legendarische Magical Flying Thunderbirds weten broers Phile en Alain Bokken als geen ander hoe ze een publiek moeten bespelen.\n\nSamen met hun full band, inclusief de getalenteerde Anouck Luyten, brengen ze een repertoire vol meezingers en dansbare hits. Bereid je voor op een avond vol ambiance, waar stilstaan geen optie is!",
+      "fr": "Ils sont de retour — et comment! FC Bokken, les rois incontestés de la scène des groupes de reprises, apportent leur mélange unique d'énergie, d'humour et de talent musical à Zomaar Zomert.\n\nAvec un passé chez les légendaires Magical Flying Thunderbirds, les frères Phile et Alain Bokken savent mieux que quiconque comment captiver un public. Accompagnés de leur groupe complet, incluant la talentueuse Anouck Luyten, ils proposent un répertoire rempli de chansons entraînantes et dansantes. Préparez-vous pour une soirée pleine d'ambiance où rester immobile n'est pas une option!",
+      "en": "They're back — and how! FC Bokken, the undisputed kings of the cover band scene, are bringing their unique blend of energy, humor, and musical prowess to Zomaar Zomert.\n\nWith a background in the legendary Magical Flying Thunderbirds, brothers Phile and Alain Bokken know exactly how to captivate an audience. Joined by their full band, including the talented Anouck Luyten, they deliver a repertoire packed with sing-alongs and danceable hits. Get ready for an evening full of ambiance where standing still is not an option!"
     },
-    "imgSrc": "/assets/artists/dimitri_wouters.webp"
+    "imgSrc": "/assets/artists/fcbokken.webp"
   },
   {
-    "name": "DJ Creator",
+    "name": "Partyshakerz",
     "day": "saturday",
-    "hour": "00:30 - 02:30",
-    "showFrom": "2024-06-05T15:30:00.000Z",
+    "hour": "23:00 - 00:00",
+    "showFrom": "2025-06-07T15:30:00.000Z",
     "description": {
-      "nl": "Karaoke is hét woord waarmee DJ Creator zijn DJ-sets omschrijft. In 2019 behaalde hij de tweede plaats voor MNM Start To DJ. Zijn USB omvat Natasha Bedingfield tot Toto, over Drake en Miley Cyrus.\n\nDit jong geweld van 24 jaar oud weet hoe je een feestje bouwt, dus: ‘Warm die dansheupen maar op, je zal ze nodig hebben.’",
-      "fr": "Karaoke est le mot que DJ Creator utilise pour décrire ses sets de DJ. En 2019, il a obtenu la deuxième place au concours MNM Start To DJ. Sa clé USB comprend de Natasha Bedingfield à Toto, en passant par Drake et Miley Cyrus.\n\nCe jeune talent de 24 ans sait comment organiser une fête, alors : ‘Échauffez bien vos hanches de danse, vous en aurez besoin.’",
-      "en": "Karaoke is the word DJ Creator uses to describe his DJ sets. In 2019, he achieved second place in MNM Start To DJ. His USB includes Natasha Bedingfield to Toto, with Drake and Miley Cyrus.\n\nThis 24-year-old dynamo knows how to throw a party, so: ‘Warm up those dancing hips, you'll need them.’"
+      "nl": "Cocktailshakers mixen drankjes, maar PartyShakerz mixen beats tot een explosieve partycocktail! Dit Belgische DJ-duo serveert een set vol urban, house, drum 'n bass en popklassiekers die de dansvloer doen ontploffen.\n\nMet optredens op festivals als Tomorrowland, Laundry Day en Marktrock hebben ze bewezen dat ze elk publiek kunnen laten springen. Hun geheime ingrediënt? Een unieke blend van muziekgenres, een vonk van nachtleven en een vleugje flexibiliteit. Bereid je voor op een avond waar stilstaan geen optie is!",
+      "fr": "Les shakers à cocktail mélangent des boissons, mais PartyShakerz mélangent des beats pour créer un cocktail festif explosif! Ce duo de DJ belge propose un set rempli d'urban, de house, de drum 'n bass et de classiques pop qui enflamment la piste de danse.\n\nAvec des performances dans des festivals comme Tomorrowland, Laundry Day et Marktrock, ils ont prouvé qu'ils pouvaient faire bouger n'importe quelle foule. Leur ingrédient secret? Un mélange unique de genres musicaux, une étincelle de vie nocturne et une touche de flexibilité. Préparez-vous pour une soirée où rester immobile n'est pas une option!",
+      "en": "Cocktail shakers mix drinks, but PartyShakerz mix beats into an explosive party cocktail! This Belgian DJ duo delivers a set filled with urban, house, drum 'n bass, and pop classics that ignite the dance floor.\n\nWith performances at festivals like Tomorrowland, Laundry Day, and Marktrock, they've proven they can get any crowd jumping. Their secret ingredient? A unique blend of music genres, a spark of nightlife, and a dash of flexibility. Get ready for a night where standing still is not an option!"
     },
-    "imgSrc": "/assets/artists/dj_creator.webp"
+    "imgSrc": "/assets/artists/partyshakerz.webp"
   },
   {
-    "name": "DJ White",
+    "name": "DJ Fré",
     "day": "friday",
-    "hour": "01:30 - 04:00",
-    "showFrom": "2024-06-10T15:30:00.000Z",
+    "hour": "20:30 - 04:00",
+    "showFrom": "2025-06-04T15:30:00.000Z",
     "description": {
-      "nl": "Deze Lennikenaar serveert intussen al 15 jaar feestdeuntjes op de draaitafel. Maar liefst tien jaar was DJ WHITE resident van het befaamde Square Café. Hij deed dit ook voor Inside Club Knokke, Kokorico Lievegem, Lio Dilbeek, Dollar Ninove en Bowling Stones Group. Het feestgedruis van Bogaarden Barst en Dolle Dagen Gaasbeek zal hem vast wel kennen.\n\nAl blijft, naar onze bescheiden mening, Zomaar Zomert toch wel één van zijn beste events. ‘Er heerst altijd een heel leuke sfeer. Hun 80’s 90’s en 00’s-concept op vrijdag vind ik de max. Zo kan je al eens breder gaan qua muziek tegenover andere fuiven. Altijd een dik feestje!’",
-      "fr": "Ce résident de Lennik sert des morceaux de fête sur les platines depuis maintenant 15 ans. DJ WHITE a été résident du célèbre Square Café pendant pas moins de dix ans. Il a également fait cela pour Inside Club Knokke, Kokorico Lievegem, Lio Dilbeek, Dollar Ninove et Bowling Stones Group. Les fêtards de Bogaarden Barst et Dolle Dagen Gaasbeek le connaîtront sûrement.\n\nCependant, à notre humble avis, Zomaar Zomert reste l’un de ses meilleurs événements. ‘Il y règne toujours une très bonne ambiance. Leur concept 80’s 90’s et 00’s du vendredi, je trouve ça génial. Cela permet une plus grande variété de musique par rapport à d'autres soirées. Toujours une super fête !’",
-      "en": "This Lennik resident has been serving up party tunes on the turntables for 15 years now. DJ WHITE was a resident of the famous Square Café for no less than ten years. He also did this for Inside Club Knokke, Kokorico Lievegem, Lio Dilbeek, Dollar Ninove, and Bowling Stones Group. The revelers of Bogaarden Barst and Dolle Dagen Gaasbeek will surely know him.\n\nHowever, in our humble opinion, Zomaar Zomert remains one of his best events. ‘There is always a very nice atmosphere. Their 80’s 90’s and 00’s concept on Friday I find amazing. It allows for a wider range of music compared to other parties. Always a great party!’"
+      "nl": "Stap in de tijdmachine en herbeleef de gloriedagen van de 80's, 90's en 2000's met DJ Fré op Zomaar Zomert! Deze allround DJ, bekend van zijn residenties in Carré Willebroek, Diedjies Kuurne en Coulissen Gent en Brugge, brengt een avond vol nostalgie en dansplezier.\n\nMet zijn jarenlange ervaring weet hij precies hoe hij het publiek moet bespelen, van de grootste hits tot de vergeten pareltjes. Bereid je voor op een fuif waar herinneringen tot leven komen en de dansvloer nooit leeg is. Mis deze muzikale reis door de tijd niet!",
+      "fr": "Montez dans la machine à remonter le temps et revivez les jours glorieux des années 80, 90 et 2000 avec DJ Fré à Zomaar Zomert! Ce DJ polyvalent, connu pour ses résidences au Carré Willebroek, Diedjies Kuurne et Coulissen à Gand et Bruges, offre une soirée pleine de nostalgie et de plaisir dansant.\n\nAvec des années d'expérience, il sait exactement comment captiver le public, des plus grands hits aux perles oubliées. Préparez-vous pour une fête où les souvenirs prennent vie et où la piste de danse ne se vide jamais. Ne manquez pas ce voyage musical à travers le temps!",
+      "en": "Step into the time machine and relive the golden days of the 80s, 90s, and 2000s with DJ Fré at Zomaar Zomert!\n\nThis versatile DJ, known for his residencies at Carré Willebroek, Diedjies Kuurne, and Coulissen in Ghent and Bruges, delivers an evening full of nostalgia and dance fun. With years of experience, he knows exactly how to engage the audience, from the biggest hits to forgotten gems. Get ready for a party where memories come alive and the dance floor is never empty. Don't miss this musical journey through time!"
     },
-    "imgSrc": "/assets/artists/dj_white.webp"
+    "imgSrc": "/assets/artists/fre.webp"
   },
   {
     "name": "For The Record",
-    "day": "friday",
-    "hour": "20:00 - 21:30",
-    "showFrom": "2024-06-14T15:30:00.000Z",
+    "day": "saturday",
+    "hour": "19:30 - 20:30",
+    "showFrom": "2025-06-13T15:30:00.000Z",
     "description": {
       "nl": "Beginnen doen we bij het begin. Letterlijk. Dankzij de spinning fingers van For the Record keert jong en oud terug naar die vettige dansvloeren van de 90’s. Het collectief biedt een scala aan meer moderne (soul, funk, disco, new beat...) en hedendaagse muziek (house, techno...).\n\n'Zet die ploat af!’ Sorry, Bartje, wij leggen hem óp!",
       "fr": "Nous commençons par le début. Littéralement. Grâce aux doigts tournants de For the Record, jeunes et moins jeunes retournent sur ces pistes de danse grasses des années 90. Le collectif offre une gamme de musique plus moderne (soul, funk, disco, new beat...) et contemporaine (house, techno...).\n\n'Zet die ploat af!’ Désolé, Bartje, nous le mettons!",
       "en": "We start at the beginning. Literally. Thanks to the spinning fingers of For the Record, young and old return to those greasy dance floors of the 90’s. The collective offers a range of more modern (soul, funk, disco, new beat...) and contemporary music (house, techno...).\n\n'Zet die ploat af!’ Sorry, Bartje, we’re putting it on!"
     },
-    "imgSrc": "/assets/artists/for_the_record.webp"
+    "imgSrc": "/assets/artists/for-the-record.webp"
   },
   {
-    "name": "The Kicks",
-    "day": "friday",
-    "hour": "21:30 - 23:00",
-    "showFrom": "2024-05-31T15:30:00.000Z",
+    "name": "Double-U",
+    "day": "saturday",
+    "hour": "00:00 - 02:00",
+    "showFrom": "2025-06-09T15:30:00.000Z",
     "description": {
-      "nl": "Ze zijn nu al enkele jaren niet meer weg te denken uit het Pajottenland. Met hun weldoordachte medleys brengen ze keer op keer feest in de tent. Met hun eigen insteek schakelen ze Bryan Adams en Elvis Presley, over een studio 100-hit aan elkaar.\n\nDe frontman brengt je terug naar optredens waar je nog nooit geweest bent. De band neemt je dan weer mee naar idyllische oorden, onder begeleiding van akoestiek uit het hart.",
-      "fr": "Ils sont devenus incontournables dans le Pajottenland depuis quelques années. Avec leurs medleys bien pensés, ils apportent la fête sous le chapiteau à chaque fois. Avec leur approche unique, ils enchaînent Bryan Adams et Elvis Presley, jusqu'à un hit de Studio 100.\n\nLe frontman vous ramène à des concerts où vous n'êtes jamais allé. Le groupe vous emmène ensuite vers des endroits idylliques, accompagnés d'une acoustique sincère.",
-      "en": "They have been a fixture in Pajottenland for several years now. With their well-thought-out medleys, they bring the party to the tent time and time again. With their unique approach, they seamlessly transition from Bryan Adams and Elvis Presley to a Studio 100 hit.\n\nThe frontman takes you back to performances you've never been to. The band then takes you to idyllic places, accompanied by heartfelt acoustics."
+      "nl": "Maak je klaar voor een avond vol muzikale gekte met Double-U op Zomaar Zomert! Deze allround DJ uit De Kempen, actief sinds 2006, heeft zijn sporen verdiend op festivals zoals Tomorrowland, Summerfestival en Beachland. Bekend om zijn unieke mash-ups en bootlegs, weet hij elk publiek te verrassen en de dansvloer in vuur en vlam te zetten.\n\nMet een mix van genres en een feilloos gevoel voor sfeer, staat hij garant voor een onvergetelijke party. Bereid je voor op een avond waar stilstaan geen optie is!",
+      "fr": "Préparez-vous pour une soirée de folie musicale avec Double-U à Zomaar Zomert! Ce DJ polyvalent originaire de De Kempen, actif depuis 2006, s'est illustré dans des festivals tels que Tomorrowland, Summerfestival et Beachland.\n\nRéputé pour ses mash-ups et bootlegs uniques, il surprend chaque public et enflamme la piste de danse. Avec un mélange de genres et un sens infaillible de l'ambiance, il garantit une fête inoubliable. Préparez-vous pour une nuit où rester immobile n'est pas une option!",
+      "en": "Get ready for a night of musical madness with Double-U at Zomaar Zomert! This all-round DJ from De Kempen, active since 2006, has made his mark at festivals like Tomorrowland, Summerfestival, and Beachland.\n\nKnown for his unique mash-ups and bootlegs, he surprises every audience and sets the dance floor ablaze. With a blend of genres and an impeccable sense of atmosphere, he's guaranteed to deliver an unforgettable party. Prepare for a night where standing still is not an option!"
     },
-    "imgSrc": "/assets/artists/kicks.webp"
+    "imgSrc": "/assets/artists/double-u.webp"
   },
   {
     "name": "Zomaar Bar",
     "day": "friday",
     "hour": "16:00 - 21:00",
-    "showFrom": "2024-06-24T15:30:00.000Z",
+    "showFrom": "2025-06-24T15:30:00.000Z",
     "description": {
       "nl": "Ons gezellige Zomaar terras is ook gedurende het hele weekend open. Geniet van verfrissende drankjes zoals bier en Aperol Spritz terwijl je ontspant in de zon. Proef onze heerlijke zomerse cocktails en smul van lekkere snacks. Kom langs met vrienden en familie en beleef een onvergetelijke tijd bij ons!",
       "fr": "Notre terrasse Zomaar confortable est ouverte tout le week-end. Profitez de boissons rafraîchissantes comme la bière et l'Aperol Spritz tout en vous relaxant au soleil. Goûtez à nos délicieux cocktails estivaux et régalez-vous avec de délicieuses collations. Venez avec des amis et de la famille et passez un moment inoubliable avec nous!",
@@ -111,7 +111,7 @@
     "name": "Zomaar Bar",
     "day": "saturday",
     "hour": "12:00 - 21:00",
-    "showFrom": "2024-06-24T15:30:00.000Z",
+    "showFrom": "2025-06-24T15:30:00.000Z",
     "description": {
       "nl": "Ons gezellige Zomaar terras is ook gedurende het hele weekend open. Geniet van verfrissende drankjes zoals bier en Aperol Spritz terwijl je ontspant in de zon. Proef onze heerlijke zomerse cocktails en smul van lekkere snacks. Kom langs met vrienden en familie en beleef een onvergetelijke tijd bij ons!",
       "fr": "Notre terrasse Zomaar confortable est ouverte tout le week-end. Profitez de boissons rafraîchissantes comme la bière et l'Aperol Spritz tout en vous relaxant au soleil. Goûtez à nos délicieux cocktails estivaux et régalez-vous avec de délicieuses collations. Venez avec des amis et de la famille et passez un moment inoubliable avec nous!",
@@ -123,7 +123,7 @@
     "name": "Zomaar Bar",
     "day": "sunday",
     "hour": "12:00 - 20:00",
-    "showFrom": "2024-06-24T15:30:00.000Z",
+    "showFrom": "2025-06-24T15:30:00.000Z",
     "description": {
       "nl": "Zondag staat bij Zomaar Zomert in het teken van familie en vrienden. Naast ons terras en paella zijn er tal van randactiviteiten. Tover jezelf om tot tijger of aap aan de schmink-stand en maak stoere salto’s op het springkasteel. Pas wel op voor de goochelaar, hij zou je wel eens kunnen meenemen in zijn hoed.\n\nPasseer ook eens bij Barbershop Chivato en maak van jouw warrige haardos en onverzorgde baard een tijdloze snit waar iedereen jaloers op zal zijn.",
       "fr": "Le dimanche à Zomaar Zomert est placé sous le signe de la famille et des amis. En plus de notre terrasse et paella, il y a de nombreuses activités annexes. Transformez-vous en tigre ou en singe au stand de maquillage et faites des sauts périlleux audacieux sur le château gonflable. Attention au magicien, il pourrait bien vous emmener dans son chapeau.\n\nPassez également chez Barbershop Chivato et transformez vos cheveux en bataille et votre barbe négligée en une coupe intemporelle dont tout le monde sera jaloux.",
@@ -132,10 +132,10 @@
     "imgSrc": "/assets/artists/kinderanimatie.webp"
   },
   {
-    "name": "Ludo's Paella",
+    "name": "Zomaar Paella",
     "day": "sunday",
     "hour": "12:30 - 15:00",
-    "showFrom": "2024-06-26T15:30:00.000Z",
+    "showFrom": "2025-06-26T15:30:00.000Z",
     "link": "https://forms.gle/o4N4bSanA4Z1kGR26",
     "description": {
       "nl": "Zomaar zou niet kunnen zomeren zonder Ludo’s paella. Jaar na jaar brengt dit culinair wonder zijn Mediterraanse schotel mee. Perfect te combineren met een sangria, olé olé!\n\nSchrijf je hier in Google Forms en tel likkebaardend met ons af.",
@@ -148,7 +148,7 @@
     "name": "Zomaar Petanque",
     "day": "saturday",
     "hour": "12:30 - 15:00",
-    "showFrom": "2024-06-28T15:30:00.000Z",
+    "showFrom": "2025-06-23T15:30:00.000Z",
     "link": "https://forms.gle/zPFPHgePwNoSbNRQA",
     "description": {
       "nl": "De Petanqueballen gaan ook dit jaar aan het rollen. Test jouw mik-skills en troef die lokale vijand af tijdens het Petanque-tornooi. Voor de winnaars is er niet ver van het veld bier. Voor de verliezers is er nóg meer bier.\n\nLet op: tijdig inschrijven via Google Forms, bier niet incl., plezier wél.",
@@ -161,7 +161,7 @@
     "name": "Zomaar Quiz",
     "day": "sunday",
     "hour": "19:30 - 23:00",
-    "showFrom": "2024-06-21T15:30:00.000Z",
+    "showFrom": "2025-06-20T15:30:00.000Z",
     "description": {
       "nl": "Quiz erop los tijdens onze jaarlijkse Zomaar Quiz! De tent opent op zondag 28 juli om 19:30 voor een gezellige avond vol met slimme koppen.\n\nInschrijven is niet verplicht, maar we hopen wel dat jullie dit jaar wat meer originele teamnamen bedenken...",
       "fr": "Participez à notre quiz annuel Zomaar et testez vos connaissances ! La tente ouvre ses portes le dimanche 28 juillet à 19h30 pour une soirée conviviale pleine de têtes bien faites.\n\nL'inscription n'est pas obligatoire, mais nous espérons que vous viendrez avec des noms d'équipe plus originaux cette année...",
@@ -173,36 +173,12 @@
     "name": "Zomaar Run",
     "day": "sunday",
     "hour": "10:00 - 11:00",
-    "showFrom": "2024-06-19T15:30:00.000Z",
+    "showFrom": "2025-06-18T15:30:00.000Z",
     "description": {
       "nl": "'Who run the world? You!' Trek die loopschoenen en hoofdband maar aan want Zomaar runt voor de zesde keer! Neem plaats aan de startblokken op zondag tussen 10 en 11 uur voor de Zomaarrun. Of je nu kiest voor een parcours van 5, 10 of 15 km: je ontdekt er hoe dan ook de Itterbeekse parels.\n\nJe hoeft niet te vrezen voor een stilvallende motor, want bevoorrading is voorzien! Schrijf je ter plaatse in voor slechts vijf euro. Achteraf kan je bijtanken met een verfrissend drankje op ons zomerterras, alsook een kiné-sessie.\n\n🗺️ Leuk gevarieerd parcours waarbij je ongeziene wegen ontdekt.\n✅ Geschikt voor élke loper.\n🏃‍♀️ Ideale kans voor een leuke training in groep of alleen.",
       "fr": "'Who run the world? You!' Enfilez vos chaussures de course et vos bandeaux car Zomaar court pour la sixième fois ! Prenez place sur les starting-blocks le dimanche entre 10 et 11 heures pour la Zomaarrun. Que vous choisissiez un parcours de 5, 10 ou 15 km : vous découvrirez les joyaux d'Iterbeek de toute façon.\n\nVous n'avez pas à craindre un moteur qui cale car des ravitaillements sont prévus ! Inscrivez-vous sur place pour seulement cinq euros. Ensuite, vous pourrez vous ressourcer avec une boisson rafraîchissante sur notre terrasse d'été et aussi consultez notre session kiné.\n\n🗺️ Profitez d'un parcours varié où vous découvrirez des chemins inédits.\n✅ Convient à tous les coureurs.\n🏃‍♀️ Une occasion idéale pour un entraînement amusant en groupe ou en solo.",
       "en": "'Who run the world? You!' Put on those running shoes and headbands because Zomaar is running for the sixth time! Take your place at the starting blocks on Sunday between 10 and 11 a.m. for the Zomaarrun. Whether you choose a route of 5, 10, or 15 km: you will discover the gems of Itterbeek anyway.\n\nYou don't have to worry about a stalled engine because refreshments are provided! Register on-site for just five euros. Afterwards, you can recharge with a refreshing drink on our summer terrace as well with a free physiotherapy session.\n\n🗺️ Enjoy a varied course where you discover unseen paths.\n✅ Suitable for every runner.\n🏃‍♀️ An ideal opportunity for a fun group or solo workout."
     },
     "imgSrc": "/assets/artists/run.webp"
-  },
-  {
-    "name": "DJ Squirre",
-    "day": "saturday",
-    "hour": "02:30 - 04:00",
-    "showFrom": "2024-06-12T15:30:00.000Z",
-    "description": {
-      "nl": "Al 25 jaar haalt DJ Squirre het onderste uit de DJ-kan. Als iets wat begon als hobby, liep al snel uit de hand. Zijn bescheiden droom was draaien voor CC ‘t Vondel. Jeugdverenigingen pikten zijn mixjes echter op, waardoor de bal sneller aan het rollen ging.\n\nIntussen heeft hij met zijn brede waaier aan Allround en hedendaagse muziek menig muziekhart veroverd. Wij zijn er alvast van overtuigd dat Cupido ook bij Zomaar Zomert zal neerstrijken.",
-      "fr": "Depuis 25 ans maintenant, DJ Squirre tire le meilleur parti de la boîte de DJ. Ce qui a commencé comme un passe-temps a rapidement dégénéré. Son rêve modeste était de mixer au CC ‘t Vondel. Cependant, les organisations de jeunesse ont repéré ses mixages, ce qui a accéléré le mouvement.\n\nEntre-temps, avec son large éventail de musique Allround et contemporaine, il a conquis de nombreux cœurs musicaux. Nous sommes convaincus que Cupidon frappera également à Zomaar Zomert.",
-      "en": "For 25 years now, DJ Squirre has been getting the most out of the DJ jug. What started as a hobby quickly got out of hand. His modest dream was to spin at CC ‘t Vondel. However, youth organizations picked up on his mixes, which got the ball rolling.\n\nIn the meantime, with his wide range of Allround and contemporary music, he has conquered many a music heart. We are convinced that Cupid will also strike at Zomaar Zomert."
-    },
-    "imgSrc": "/assets/artists/squirre.jpg"
-  },
-  {
-    "name": "Sylver",
-    "day": "saturday",
-    "hour": "21:20 - 23:00",
-    "showFrom": "2024-05-27T15:30:00.000Z",
-    "description": {
-      "nl": "In 1999 ontmoetten Trance- en Danceliefhebbers Sylvie De Bie en DJ Wout mekaar in de befaamde Illusion, waar DJ Wout resident was. Hun gedeelde passie voor dancemuziek kende al snel een ambitieuze samenwerking. Niet veel later zag een nieuw millennium het levenslicht en zo ook SYLVER.\n\nHits als ‘Turn The Tide’ en ‘When The Rain Begins To Fall’ kunnen jong en oud bekoren. Dankzij een waanzinnige discografie mag SYLVER misschien eens nadenken over een naamsverandering. Ze hebben namelijk de GOLD-status in de Europese dance-scene behaald.",
-      "fr": "En 1999, les amateurs de trance et de danse Sylvie De Bie et DJ Wout se sont rencontrés au célèbre Illusion, où DJ Wout était résident. Leur passion commune pour la musique de danse a rapidement conduit à une collaboration ambitieuse. Peu de temps après, un nouveau millénaire a vu le jour, et SYLVER aussi.\n\nDes hits comme 'Turn The Tide' et 'When The Rain Begins To Fall' séduisent jeunes et moins jeunes. Grâce à une discographie incroyable, SYLVER pourrait envisager un changement de nom. Ils ont en effet atteint le statut GOLD dans la scène dance européenne.",
-      "en": "In 1999, trance and dance enthusiasts Sylvie De Bie and DJ Wout met at the famous Illusion, where DJ Wout was a resident. Their shared passion for dance music quickly led to an ambitious collaboration. Not long after, a new millennium dawned, and so did SYLVER.\n\nHits like 'Turn The Tide' and 'When The Rain Begins To Fall' appeal to young and old alike. Thanks to an incredible discography, SYLVER might consider a name change. They have indeed achieved GOLD status in the European dance scene."
-    },
-    "imgSrc": "/assets/artists/sylver.webp"
   }
 ]

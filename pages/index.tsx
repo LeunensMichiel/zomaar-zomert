@@ -115,7 +115,7 @@ const Home = () => {
                   title: new Date(ZZ_DATE_FRIDAY).toLocaleString(lang, {
                     weekday: 'long',
                   }),
-                  imgSrc: '/assets/days/friday.jpg',
+                  imgSrc: '/assets/days/friday.webp',
                 }}
               />
             </Link>
@@ -140,7 +140,7 @@ const Home = () => {
                     month: 'long',
                     day: 'numeric',
                   }),
-                  imgSrc: '/assets/days/saturday.jpg',
+                  imgSrc: '/assets/days/saturday.webp',
                 }}
               />
             </Link>
