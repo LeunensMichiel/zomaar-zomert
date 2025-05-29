@@ -136,6 +136,7 @@ const LineUpPage = ({
             <header>
               <AnimatePresence mode="wait">
                 <motion.div
+                  className={styles.headerroot}
                   key={currentDate ?? 'empty'}
                   initial={{ x: 10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
@@ -154,6 +155,13 @@ const LineUpPage = ({
                       day: 'numeric',
                     })}
                   </span>
+                  <img
+                    style={{
+                      transform: `rotate(${(ZZ_DATES.indexOf(currentDate) + 1) * 45}deg)`,
+                    }}
+                    className={styles.star}
+                    src="/assets/star.svg"
+                  />
                 </motion.div>
               </AnimatePresence>
             </header>

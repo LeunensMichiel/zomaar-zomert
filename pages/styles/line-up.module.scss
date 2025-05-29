@@ -15,6 +15,29 @@
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
+.headerroot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.star {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  max-width: 200px;
+
+  @include mixins.breakpoint-up(md) {
+    max-width: 300px;
+  }
+
+  @include mixins.breakpoint-up(lg) {
+    max-width: 350px;
+  }
+}
 
 .date {
   font-size: var(--font-size-subtitle);
