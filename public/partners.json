@@ -19,8 +19,7 @@
     "formula": 1,
     "logoWhite": "/assets/sponsors/nationale-loterij--white.svg",
     "logoSize": "md",
-    "site": "https://nationale-loterij.be/",
-    "disabled": true
+    "site": "https://nationale-loterij.be/"
   },
   {
     "name": "Sound & CO",
@@ -151,8 +150,7 @@
     "formula": 3,
     "logoWhite": "/assets/sponsors/argenta--white.svg",
     "logoSize": "md",
-    "site": "https://argenta.be/nl/kantoren/prinsen-bv-3204.html",
-    "disabled": true
+    "site": "https://argenta.be/nl/kantoren/prinsen-bv-3204.html"
   },
   {
     "name": "Erasmus Hogeschool",
