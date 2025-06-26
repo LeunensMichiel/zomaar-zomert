@@ -36,6 +36,13 @@
     "site": "https://megavolt.be/"
   },
   {
+    "name": "Thermen Dilbeek",
+    "formula": 1,
+    "logoWhite": "/assets/sponsors/thermen_dilbeek-white.svg",
+    "logoSize": "md",
+    "site": "https://www.thermendilbeek.be/"
+  },
+  {
     "name": "Limbourg",
     "formula": 1,
     "logoWhite": "/assets/sponsors/limbourg--white.svg",
@@ -324,7 +331,8 @@
     "formula": 4,
     "logoWhite": "/assets/sponsors/waer-waters-white.svg",
     "logoSize": "sm",
-    "site": "https://waerwaters.com/"
+    "site": "https://waerwaters.com/",
+    "disabled": true
   },
   {
     "name": "Sterslager De Wachter",
