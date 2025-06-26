@@ -47,6 +47,7 @@
   font-size: 3.5rem;
   text-transform: uppercase;
   line-height: 1;
+  overflow-wrap: break-word;
 
   @include mixins.breakpoint-up(md) {
     font-size: 3.5rem;

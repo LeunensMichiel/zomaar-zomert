@@ -18,6 +18,7 @@ const CustomMap: FC<CustomMapProps> = ({
   zoom = 14,
   height = 400,
 }) => {
+  if (!process.env.NEXT_PUBLIC_MAPBOX_TOKEN) return null;
   return (
     <Map
       initialViewState={{
