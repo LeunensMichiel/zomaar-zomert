@@ -33,7 +33,7 @@ type ModalProps = {
   open?: boolean;
   title?: string;
   container?: 'container' | 'page';
-  onClose(): void;
+  onClose: () => void;
   children?: ReactNode;
 };
 

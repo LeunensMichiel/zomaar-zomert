@@ -1,5 +1,6 @@
 import { useUI } from '@lib/hooks';
 import { IImageCard } from '@lib/models';
+import { formatArtistName } from '@lib/utils/string';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
@@ -90,7 +91,9 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
           />
         </motion.svg>
         <div className={styles.image__card__inner}>
-          <span className={styles.image__card__inner__title}>{data.title}</span>
+          <span className={styles.image__card__inner__title}>
+            {formatArtistName(data.title)}
+          </span>
           <span className={styles.image__card__inner__subtitle}>
             {data.subtitle}
           </span>

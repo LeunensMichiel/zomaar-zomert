@@ -1,4 +1,5 @@
 import { IImageCard } from '@lib/models';
+import { formatArtistName } from '@lib/utils/string';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
@@ -31,7 +32,7 @@ export const ImageCardModalView: FC<Props> = ({ data }) => {
               day: 'numeric',
             })}
         </span>
-        <h1 className={styles.title}>{data.title}</h1>
+        <h1 className={styles.title}>{formatArtistName(data.title)}</h1>
         <span className={styles.subtitle}>{data.subtitle}</span>
         <p className={styles.text}>{data.description}</p>
         {data.link && (
