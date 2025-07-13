@@ -306,6 +306,13 @@
     "disabled": true
   },
   {
+    "name": "Mustela",
+    "formula": 2,
+    "logoWhite": "/assets/sponsors/mustela-white.svg",
+    "logoSize": "md",
+    "site": "https://www.mustela.be/nl/"
+  },
+  {
     "name": "CDM ICT",
     "formula": 3,
     "logoWhite": "/assets/sponsors/cdmc-it.svg",
