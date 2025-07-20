@@ -158,6 +158,7 @@ const LineUpPage = ({
                   <img
                     style={{
                       transform: `rotate(${(ZZ_DATES.indexOf(currentDate) + 1) * 45}deg)`,
+                      maxHeight: '15rem',
                     }}
                     className={styles.star}
                     src="/assets/star.svg"

@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Youtube } from '@components/icons';
+import { ZZ_DATES } from '@lib/models';
 import cn from 'classnames';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
@@ -102,13 +103,13 @@ const Footer: FC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2023-07-28',
+                  date: ZZ_DATES[0],
                 },
               }}
               passHref
               className={styles.footer__block__link}
             >
-              {new Date('2023-07-28').toLocaleString(lang, {
+              {new Date(ZZ_DATES[0]).toLocaleString(lang, {
                 weekday: 'long',
               })}
             </Link>
@@ -116,13 +117,13 @@ const Footer: FC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2023-07-29',
+                  date: ZZ_DATES[1],
                 },
               }}
               passHref
               className={styles.footer__block__link}
             >
-              {new Date('2023-07-29').toLocaleString(lang, {
+              {new Date(ZZ_DATES[1]).toLocaleString(lang, {
                 weekday: 'long',
               })}
             </Link>
@@ -130,13 +131,13 @@ const Footer: FC = () => {
               href={{
                 pathname: '/line-up',
                 query: {
-                  date: '2023-07-30',
+                  date: ZZ_DATES[2],
                 },
               }}
               passHref
               className={styles.footer__block__link}
             >
-              {new Date('2023-07-30').toLocaleString(lang, {
+              {new Date(ZZ_DATES[2]).toLocaleString(lang, {
                 weekday: 'long',
               })}
             </Link>

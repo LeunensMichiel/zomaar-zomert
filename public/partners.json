@@ -246,10 +246,9 @@
   },
   {
     "name": "Café Sint-Anna",
-    "formula": 4,
+    "formula": 3,
     "logoWhite": "/assets/sponsors/sint-anna--white.svg",
-    "logoSize": "sm",
-    "disabled": true
+    "logoSize": "sm"
   },
   {
     "name": "Carrosserie Jans",
