@@ -44,7 +44,7 @@ const PartnerPage = () => {
             .filter((p) => !p.disabled)
             .map((p) => (
               <motion.a
-                className={styles['partiners__grid-item']}
+                className={styles['partners__grid-item']}
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0 }}
