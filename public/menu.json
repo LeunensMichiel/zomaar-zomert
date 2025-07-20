@@ -201,6 +201,26 @@
   },
   {
     "name": {
+      "en": "Stella 0.0",
+      "fr": "Stella 0.0",
+      "nl": "Stella 0.0"
+    },
+    "description": {
+      "nl": "Alle smaak, geen kater – Stella 0.0 doet het braaf.",
+      "en": "All the taste, none of the hangover – Stella 0.0 behaves itself.",
+      "fr": "Tout le goût, pas la gueule de bois – Stella 0.0 joue les sages."
+    },
+    "price": 2,
+    "img": "/assets/menu/stella0.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
+  },
+  {
+    "name": {
       "en": "Kriek",
       "fr": "Kriek",
       "nl": "Kriek"
@@ -252,6 +272,26 @@
     },
     "price": 2,
     "img": "/assets/menu/bolleke.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "beers",
+      "fr": "bières",
+      "nl": "bieren"
+    }
+  },
+  {
+    "name": {
+      "en": "Salitos",
+      "fr": "Salitos",
+      "nl": "Salitos"
+    },
+    "description": {
+      "nl": "Tropische vibes in een fles, Salitos, jouw zonnige sidekick.",
+      "en": "Tropical vibes in a bottle, Salitos, your sunny sidekick.",
+      "fr": "Des ondes tropicales en bouteille, Salitos, ton complice ensoleillé."
+    },
+    "price": 3,
+    "img": "/assets/menu/salitos.jpg",
     "category": "Drinks",
     "subCategory": {
       "en": "beers",
@@ -602,6 +642,26 @@
   },
   {
     "name": {
+      "en": "Zomaar Zpritz",
+      "fr": "Zomaar Zpritz",
+      "nl": "Zomaar Zpritz"
+    },
+    "description": {
+      "nl": "Zonnige mix van witte rum, pompelmoes, ananas en meer.",
+      "en": "Sunny mix of white rum, grapefruit, pineapple and more.",
+      "fr": "Mélange ensoleillé de rhum blanc, pamplemousse, ananas et plus encore."
+    },
+    "price": 6,
+    "img": "/assets/menu/zpritz.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
+  },
+  {
+    "name": {
       "en": "Virgin Mojito",
       "fr": "Virgin Mojito",
       "nl": "Virgin Mojito"
@@ -620,7 +680,26 @@
       "nl": "cocktails & sterke dranken"
     }
   },
-
+  {
+    "name": {
+      "en": "Zomaar Zonder",
+      "fr": "Zomaar Zonder",
+      "nl": "Zomaar Zonder"
+    },
+    "description": {
+      "nl": "(0.0) Zonnige mix van perzik, pompelmoes, ananas en meer.",
+      "en": "(0.0) Sunny mix of peach, grapefruit, pineapple and more.",
+      "fr": "(0.0) Mélange ensoleillé de pêche, pamplemousse, ananas et plus encore."
+    },
+    "price": 4,
+    "img": "/assets/menu/zpritz.jpg",
+    "category": "Drinks",
+    "subCategory": {
+      "en": "cocktails & strong alcohol",
+      "fr": "cocktails & alcools forts",
+      "nl": "cocktails & sterke dranken"
+    }
+  },
   {
     "name": {
       "en": "Saucage",
@@ -674,6 +753,26 @@
     },
     "price": 4,
     "img": "/assets/menu/cheeseburger.jpg",
+    "category": "Food",
+    "subCategory": {
+      "en": "meals",
+      "fr": "charcuterie",
+      "nl": "hapjes"
+    }
+  },
+  {
+    "name": {
+      "en": "Loempia",
+      "fr": "Loempia",
+      "nl": "Loempia"
+    },
+    "description": {
+      "nl": "Krokant van buiten, gevaarlijk verslavend van binnen.",
+      "en": "Crispy on the outside, dangerously addictive on the inside.",
+      "fr": "Croustillant dehors, terriblement addictif dedans."
+    },
+    "price": 3,
+    "img": "/assets/menu/loempia.jpg",
     "category": "Food",
     "subCategory": {
       "en": "meals",
