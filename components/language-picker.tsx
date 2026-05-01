@@ -51,7 +51,9 @@ export function LanguagePicker({
       <Button
         type="button"
         iconLeft={<Globe className="h-4 w-4" />}
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+        }}
         variant={variant}
         size={size}
         className={className}

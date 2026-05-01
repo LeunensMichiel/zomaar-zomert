@@ -23,9 +23,7 @@ function encode(formName: string, values: FormValues) {
       (key) =>
         encodeURIComponent(key) +
         '=' +
-        encodeURIComponent(
-          values?.[key as keyof FormValues] ?? 'Niet opgegeven'
-        )
+        encodeURIComponent(values[key as keyof FormValues] ?? 'Niet opgegeven')
     )
     .join('&')
     .concat(`&form-name=${formName}`);
@@ -51,7 +49,9 @@ export function Form() {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode(formName, { ...values }),
-      }).catch((error) => console.error(error));
+      }).catch((error: unknown) => {
+        console.error(error);
+      });
       setIsSubmitted(true);
     } catch (e) {
       console.error(e);

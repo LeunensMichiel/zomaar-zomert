@@ -1,8 +1,8 @@
-export const groupBy = <T>(array: T[], predicate: (v: T) => string) =>
-  array.reduce(
-    (acc, value) => {
-      (acc[predicate(value)] ||= []).push(value);
-      return acc;
-    },
-    {} as { [key: string]: T[] }
-  );
+export const groupBy = <T>(
+  array: T[],
+  predicate: (v: T) => string
+): Record<string, T[]> =>
+  array.reduce<Partial<Record<string, T[]>>>((acc, value) => {
+    (acc[predicate(value)] ??= []).push(value);
+    return acc;
+  }, {}) as Record<string, T[]>;

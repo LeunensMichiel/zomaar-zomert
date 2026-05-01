@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-`zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival *Zomaar Zomert*. It is built on top of an in-house "Next Foundry" starter — many of the components in [components/common](components/common/) and [components/ui](components/ui/) are generic template pieces that the festival site selectively uses.
+`zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival *Zomaar Zomert*. UI is built on **Tailwind v4** + **shadcn/ui** (the `new-york` style on the `base-ui` registry — see [components.json](components.json)), so primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com) under the shadcn conventions.
 
 ## Commands
 
@@ -23,26 +23,22 @@ There are no tests in this project.
 
 ### App Router with locale-aware shell
 
-All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the *only* layout that renders `<html>`/`<body>` — there is no separate `app/layout.tsx`. It validates the locale via `hasLocale(routing.locales, locale)` (calling `notFound()` on miss), runs `setRequestLocale(locale)`, then mounts the global providers and shell:
+All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the *only* layout that renders `<html>`/`<body>` — there is no separate `app/layout.tsx`. It validates the locale via `hasLocale(routing.locales, locale)` (calling `notFound()` on miss), runs `setRequestLocale(locale)`, then mounts the providers and shell:
 
 ```
 <NextIntlClientProvider>
-  <ManagedUIProvider>
-    <Layout>{children}<CookieBanner /></Layout>
-  </ManagedUIProvider>
+  <Layout>{children}</Layout>
 </NextIntlClientProvider>
 <GoogleAnalytics gaId={...} />
 ```
 
-[components/common/Layout/Layout.tsx](components/common/Layout/Layout.tsx) is a `'use client'` shell that renders `Navbar` / `<main>` / `Footer` and a single global `<Modal>` whose body is switched by the UI context. Navbar goes transparent only on routes listed in `transparentRoutes` inside Layout.tsx — currently just `/`.
+[components/layout.tsx](components/layout.tsx) is a `'use client'` shell that renders `Navbar` / `<main>` / `Footer` / `CookieBanner`. Navbar goes transparent only on routes listed in `transparentRoutes` inside that file — currently just `/`.
 
-**Server vs. client split**: `app/**/page.tsx` is always a server component — it `await params`, calls `setRequestLocale(locale)`, fetches/transforms data, calls `getTranslations(...)` for SEO, and renders a `'use client'` subcomponent in `_components/` for any interactive content. UI primitives that use motion, hooks, or DOM APIs (`Button`, `Modal`, `Navbar`, `Footer`, `LanguagePicker`, `CookieBanner`, `Form`, `Countdown`, `ImageCard`, `Map`) are all `'use client'`.
+**Server vs. client split**: `app/**/page.tsx` is always a server component — it `await params`, calls `setRequestLocale(locale)`, fetches/transforms data, calls `getTranslations(...)` for SEO, and renders a `'use client'` subcomponent in `_components/` for interactive content (e.g. [home-client.tsx](app/%5Blocale%5D/_components/home-client.tsx), [line-up-client.tsx](app/%5Blocale%5D/line-up/_components/line-up-client.tsx)). UI primitives that use motion, hooks, or DOM APIs (`Button`, `Dialog`, `Navbar`, `Footer`, `LanguagePicker`, `CookieBanner`, `Form`, `Countdown`, `ImageCard`, `Map`) are all `'use client'`. Component file names are kebab-case (`image-card.tsx`, not `ImageCard.tsx`).
 
-### Global modal via UI context
+### Modals
 
-[lib/context/ui](lib/context/ui/) exposes a `ManagedUIProvider` and a `useUI()` hook (re-exported from [@lib/hooks](lib/hooks/index.ts)). The Layout owns the single `<Modal>` and switches body by `modalView`: `'NO_VIEW' | 'ARTIST_VIEW' | 'LANGUAGE_VIEW'`. To show a new modal, call `setModalView('ARTIST_VIEW', title, data)` and `openModal()`. To add a new modal type, extend `ModalViews` in [UIContext.tsx](lib/context/ui/UIContext.tsx) and add the matching branch in Layout.tsx — don't render ad-hoc modals from inside pages.
-
-The Modal and the mobile Navbar drawer use `react-remove-scroll`'s `<RemoveScroll enabled={...}>` to lock body scroll while open — don't wire body-scroll-lock or hand-rolled overflow toggles back in.
+There is no global modal context — render modals locally with the shadcn `Dialog` wrapper from [components/ui/dialog.tsx](components/ui/dialog.tsx) (which proxies `@base-ui-components/react/dialog`). Hold open state where it belongs, e.g. [image-card.tsx](components/image-card.tsx) for the artist sheet, [language-picker.tsx](components/language-picker.tsx) for the locale switcher. Base UI's Dialog handles its own scroll lock — don't add `body.style.overflow` toggles or `react-remove-scroll` (it isn't installed).
 
 ### Content as static JSON, translated at build time
 
@@ -58,7 +54,7 @@ Artists are filtered at render time by `showFrom` (a date string) and the festiv
 
 ### Festival dates and feature gates
 
-Hard-coded festival constants live in [lib/models.ts](lib/models.ts) (`ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY`, `ZZ_YEAR`, signup form URLs, `ENABLE_LINKS_DATE`). Several pages compare `new Date()` against these to enable/disable signup buttons (e.g. [app/[locale]/_components/HomeClient.tsx](app/%5Blocale%5D/_components/HomeClient.tsx)). When rolling the site to a new edition, update these constants — they are the single source of truth, referenced from both pages and content filters.
+Hard-coded festival constants live in [lib/models.ts](lib/models.ts) (`ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY/MONDAY`, `ZZ_YEAR`, signup form URLs, `ENABLE_LINKS_DATE`). Several pages compare `new Date()` against these to enable/disable signup buttons (e.g. [home-client.tsx](app/%5Blocale%5D/_components/home-client.tsx)). When rolling the site to a new edition, update these constants — they are the single source of truth, referenced from both pages and content filters.
 
 ### Internationalization (next-intl)
 
@@ -86,21 +82,17 @@ Every page exports `generateMetadata({ params })` that awaits `params`, calls `g
 
 ### Path aliases
 
-Defined in [tsconfig.json](tsconfig.json): `@/*`, `@components/*`, `@lib/*`, `@styles/*`, `@utils/*`, `@config/*`, `@assets/*`, `@public/*`. Prefer these over relative imports.
-
-Component barrel exports live at [components/common/index.ts](components/common/index.ts), [components/ui/index.ts](components/ui/index.ts), and [components/icons/index.ts](components/icons/index.ts). Import from the barrel (`import { ImageCard, Layout } from '@components/common'`) rather than reaching into subfolders.
+Defined in [tsconfig.json](tsconfig.json): `@/*`, `@components/*`, `@lib/*`, `@public/*`. Prefer these over relative imports. There are no barrel files — import each component from its own file (e.g. `import { ImageCard } from '@components/image-card'`, `import { Button } from '@components/ui/button'`).
 
 ### Styling
 
-SCSS modules per component (`Foo.module.scss`) plus globals in [styles/](styles/):
+Tailwind v4 only — there is no SCSS in this project. Tokens, fonts, and the colour scale are declared in [app/globals.css](app/globals.css) inside an `@theme {}` block (e.g. `--color-brand-500`, `--font-display`); use the generated utilities (`bg-brand-500`, `font-display`) rather than hand-rolling CSS.
 
-- [styles/global/](styles/global/) — reset, typography, colors, grid; loaded once via [styles/global/style.scss](styles/global/style.scss) imported in the root layout.
-- [styles/themes/](styles/themes/) — light theme variables apply on `:root`. There is no theme switcher (next-themes was removed).
-- [styles/mixins/](styles/mixins/) — `breakpoint-up`, transitions, animations.
+- [app/globals.css](app/globals.css) is the single stylesheet, imported by the root layout.
+- shadcn primitives in [components/ui/](components/ui/) are styled with `tailwind-variants` / `class-variance-authority` and use `data-[...]` attributes from Base UI for state styling.
+- There is no theme switcher (light only).
 
-[next.config.js](next.config.js) sets `sassOptions.loadPaths` to `[./styles, ./]`, so use **bare imports**: `@use 'mixins'` then `mixins.breakpoint-up(md)`. Don't write `@use '@styles/mixins'` — the `@` alias is TS-only, sass doesn't honor it.
-
-Class composition is done with `classnames` (`cn()`). Container widths and section padding use the global utility classes `container` and `py-container--sm` rather than module-local rules.
+Class composition is done with **`cn()` from [lib/utils.ts](lib/utils.ts)** — it pipes `clsx` through `tailwind-merge`, so later classes win conflicts cleanly. Don't import `classnames` (not a dependency).
 
 ### Animation / motion
 
@@ -116,6 +108,7 @@ Don't import from `framer-motion` — it's not a dependency.
 
 The flat ESLint config ([eslint.config.js](eslint.config.js)) enables `typescript-eslint`'s **type-checked** ruleset, so lint requires a successful `tsc` parse and is sensitive to `any` and unsafe assignments. Notable enforced rules:
 
-- `@typescript-eslint/no-explicit-any: error` (a few legitimate escape hatches exist in [UIContext.tsx](lib/context/ui/UIContext.tsx) and [UIProvider.tsx](lib/context/ui/UIProvider.tsx) — disable line-locally with a comment if truly needed).
+- `@typescript-eslint/no-explicit-any: error` — disable line-locally with a comment if you genuinely need an escape hatch.
 - `simple-import-sort/imports` and `/exports` — imports are auto-sorted; don't hand-order them.
 - `reportUnusedDisableDirectives: error` — stale `eslint-disable` comments fail the build.
+- `react-hooks` plugin runs the `recommended-latest` config, which includes `set-state-in-effect`. The disables you see in the codebase mark genuine hydration-only patches (random shuffles, `localStorage` reads); don't reach for `setState` inside `useEffect` for ordinary state syncing — derive from props or URL instead.

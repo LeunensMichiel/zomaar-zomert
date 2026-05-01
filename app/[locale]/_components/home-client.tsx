@@ -38,10 +38,10 @@ export default function HomeClient() {
   const lang = useLocale();
   const [shuffledSlides, setShuffledSlides] = useState<Slide[]>(baseSlides);
   const [consent, setConsent] = useState<CONSENT | undefined>(undefined);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Hydration-only: random shuffle and localStorage are not SSR-safe
+    /* eslint-disable react-hooks/set-state-in-effect */
     setShuffledSlides(
       [...baseSlides]
         .map((value) => ({ value, sort: Math.random() }))
@@ -49,6 +49,7 @@ export default function HomeClient() {
         .map(({ value }) => value)
     );
     setConsent(getLocalStorage<CONSENT>('cookie_consent', 'pending'));
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   const today = new Date();
@@ -175,7 +176,7 @@ export default function HomeClient() {
         <div className="container-wide">
           <div className="relative h-0 overflow-hidden pb-[56.25%]">
             <div className="absolute inset-0 z-[1] h-full w-full">
-              {mounted && consent !== 'denied' && (
+              {consent && consent !== 'denied' && (
                 <ReactPlayer
                   width="100%"
                   height="100%"

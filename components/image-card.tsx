@@ -88,7 +88,9 @@ export function ImageCard({ data, opensModal = false, playAnimation }: Props) {
       <button
         type="button"
         className="block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+        }}
       >
         <CardBody data={data} hideOutline animate />
       </button>

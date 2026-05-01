@@ -20,11 +20,14 @@ const useCountdown = (targetDate: number) => {
   const [countDown, setCountDown] = useState<number | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- avoid 1s delay before first tick; Date.now() is not SSR-safe
     setCountDown(targetDate - new Date().getTime());
     const interval = setInterval(() => {
       setCountDown(targetDate - new Date().getTime());
     }, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, [targetDate]);
 
   return countDown === null ? null : getReturnValues(countDown);

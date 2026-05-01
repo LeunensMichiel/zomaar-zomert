@@ -32,6 +32,7 @@ export function CookieBanner() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage is not SSR-safe
     setConsent(getLocalStorage<CONSENT>('cookie_consent', 'pending'));
   }, []);
 
@@ -55,14 +56,18 @@ export function CookieBanner() {
       </div>
       <div className="flex w-full justify-end gap-8 md:justify-start md:gap-2">
         <Button
-          onClick={() => handleConsent('denied')}
+          onClick={() => {
+            handleConsent('denied');
+          }}
           size="xs"
           variant="minimal-dark"
         >
           {t('cookies.deny')}
         </Button>
         <Button
-          onClick={() => handleConsent('granted')}
+          onClick={() => {
+            handleConsent('granted');
+          }}
           size="xs"
           variant="primary"
         >

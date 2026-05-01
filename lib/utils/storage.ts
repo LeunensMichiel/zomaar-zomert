@@ -8,7 +8,7 @@ export function getLocalStorage<R>(
   return JSON.parse(stickyValue) as R;
 }
 
-export function setLocalStorage<T = unknown>(key: string, value: T) {
+export function setLocalStorage(key: string, value: unknown) {
   if (typeof window === 'undefined') return;
   localStorage.setItem(key, JSON.stringify(value));
 }

@@ -14,7 +14,9 @@ export function Toast({ children, duration, isShown }: ToastProps) {
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
     if (isShown) {
-      timer = setTimeout(() => setVisible((x) => !x), duration);
+      timer = setTimeout(() => {
+        setVisible((x) => !x);
+      }, duration);
     }
     return () => {
       if (timer) clearTimeout(timer);

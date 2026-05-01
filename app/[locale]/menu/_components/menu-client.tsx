@@ -41,9 +41,9 @@ export default function MenuClient({ menu }: Props) {
             size="md"
             variant="minimal"
             className="hover:text-pink-400 focus:text-pink-400"
-            onClick={() =>
-              setCurrentMenuType(MenuType[type as keyof typeof MenuType])
-            }
+            onClick={() => {
+              setCurrentMenuType(MenuType[type as keyof typeof MenuType]);
+            }}
           >
             {t(MenuType[type as keyof typeof MenuType])}
             {MenuType[type as keyof typeof MenuType] === menuType && (

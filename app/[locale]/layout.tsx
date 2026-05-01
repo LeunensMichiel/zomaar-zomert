@@ -8,7 +8,7 @@ import { Open_Sans, Oswald } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 const SITE_URL = process.env.SITE_URL ?? 'https://zomaarzomert.be';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;

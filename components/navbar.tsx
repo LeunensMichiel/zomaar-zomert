@@ -51,10 +51,12 @@ export function Navbar({ isTransparent = false }: NavbarProps) {
   const pathname = usePathname();
   const t = useTranslations('common');
   const [open, setOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   // Lock body scroll while drawer is open
   useEffect(() => {
@@ -97,7 +99,9 @@ export function Navbar({ isTransparent = false }: NavbarProps) {
               <MenuToggle
                 open={open}
                 transparent={isTransparent || open}
-                onClick={() => setOpen((v) => !v)}
+                onClick={() => {
+                  setOpen((v) => !v);
+                }}
                 aria-label="Menu"
               />
             </div>
