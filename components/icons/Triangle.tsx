@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { type ComponentProps } from 'react';
 
-export const Triangle: FC = ({ ...props }) => {
+export function Triangle(props: ComponentProps<'svg'>) {
   return (
     <svg
       width="71"
@@ -16,4 +16,4 @@ export const Triangle: FC = ({ ...props }) => {
       />
     </svg>
   );
-};
+}

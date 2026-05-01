@@ -1,11 +1,10 @@
-import '@styles/global/style.scss';
+import '../globals.css';
 
-import { Layout } from '@components/common';
-import CookieBanner from '@components/common/CookieBanner/CookieBanner';
-import { ManagedUIProvider } from '@lib/context/ui';
+import { Layout } from '@components/layout';
 import { routing } from '@lib/i18n/routing';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
+import { Open_Sans, Oswald } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -13,6 +12,20 @@ import { ReactNode } from 'react';
 
 const SITE_URL = process.env.SITE_URL ?? 'https://zomaarzomert.be';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-oswald',
+  display: 'swap',
+});
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-open-sans',
+  display: 'swap',
+});
 
 export const viewport: Viewport = {
   themeColor: '#de350b',
@@ -103,15 +116,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
-      <body className="loading">
+    <html lang={locale} className={`${oswald.variable} ${openSans.variable}`}>
+      <body>
         <NextIntlClientProvider>
-          <ManagedUIProvider>
-            <Layout>
-              {children}
-              <CookieBanner />
-            </Layout>
-          </ManagedUIProvider>
+          <Layout>{children}</Layout>
         </NextIntlClientProvider>
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>

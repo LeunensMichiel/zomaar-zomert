@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 
-import HomeClient from './_components/HomeClient';
+import HomeClient from './_components/home-client';
 
 type Props = { params: Promise<{ locale: string }> };
 

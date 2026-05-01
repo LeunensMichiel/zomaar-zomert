@@ -1,9 +1,8 @@
-import type { Locale } from '@lib/i18n/routing';
-import cn from 'classnames';
+import { type Locale } from '@lib/i18n/routing';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-import PartnersGrid from './_components/PartnersGrid';
+import PartnersGrid from './_components/partners-grid';
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -26,9 +25,11 @@ export default async function PartnersPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'partners' });
 
   return (
-    <section className={cn('container py-container--sm')}>
-      <h1 className="header">{t('main.header')}</h1>
-      <p className="paragraph">{t('main.paragraph')}</p>
+    <section className="container-wide section-y-sm">
+      <h1 className="mb-14 text-center font-bold uppercase md:mb-20 xl:mb-36">
+        {t('main.header')}
+      </h1>
+      <p className="mb-16 text-center">{t('main.paragraph')}</p>
       <PartnersGrid />
     </section>
   );

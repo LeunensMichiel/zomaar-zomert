@@ -1,9 +1,6 @@
-import type { Locale } from '@lib/i18n/routing';
-import cn from 'classnames';
+import { type Locale } from '@lib/i18n/routing';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-
-import styles from './page.module.scss';
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -26,16 +23,18 @@ export default async function HistoryPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'history' });
 
   return (
-    <section className={cn('container-page py-container--sm', styles.root)}>
-      <h1 className="header">{t('title')}</h1>
+    <section className="container-page section-y-sm px-6 lg:px-8">
+      <h1 className="mb-14 text-center font-bold uppercase md:mb-20 xl:mb-36">
+        {t('title')}
+      </h1>
       <div>
         {t.rich('content', {
-          p: (chunks) => <p>{chunks}</p>,
+          p: (chunks) => <p className="mb-6 lg:mb-8">{chunks}</p>,
           image: () => (
             <img
               src="/assets/random/crew.webp"
               alt="The Zomaar Zomert Crew"
-              className={styles.image}
+              className="my-12 block h-auto w-full object-contain"
             />
           ),
         })}

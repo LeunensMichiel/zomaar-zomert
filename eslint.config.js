@@ -51,6 +51,7 @@ export default tseslint.config(
       'next.config.js',
       'next.sitemap.js',
       'next-env.d.ts',
+      'postcss.config.mjs',
     ],
   }
 );
