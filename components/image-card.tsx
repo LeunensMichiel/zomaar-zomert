@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { ArtistModalContent } from '@components/artist-modal';
-import { TexturedImage } from '@components/textured-image';
-import { Dialog, DialogContent } from '@components/ui/dialog';
-import { type IImageCard } from '@lib/models';
-import { formatArtistName } from '@lib/utils/string';
-import { motion } from 'motion/react';
-import { useState } from 'react';
+import { ArtistModalContent } from "@components/artist-modal";
+import { TexturedImage } from "@components/textured-image";
+import { Dialog, DialogContent } from "@components/ui/dialog";
+import { type IImageCard } from "@lib/models";
+import { formatArtistName } from "@lib/utils/string";
+import { motion } from "motion/react";
+import { useState } from "react";
 
 type Props = {
   data: IImageCard;
@@ -15,21 +15,21 @@ type Props = {
 };
 
 const containerMotion = {
-  initial: { scale: 1, transition: { type: 'spring' as const, duration: 0.5 } },
+  initial: { scale: 1, transition: { type: "spring" as const, duration: 0.5 } },
   hover: {
     scale: 1.025,
-    transition: { type: 'spring' as const, duration: 0.2 },
+    transition: { type: "spring" as const, duration: 0.2 },
   },
 };
 
 const pathMotion = {
   initial: {
     pathLength: 0,
-    transition: { duration: 0.5, type: 'spring' as const },
+    transition: { duration: 0.5, type: "spring" as const },
   },
   hover: {
     pathLength: 1,
-    transition: { duration: 0.5, type: 'spring' as const },
+    transition: { duration: 0.5, type: "spring" as const },
   },
 };
 
@@ -43,7 +43,7 @@ function CardBody({
   animate?: boolean;
 }) {
   const motionProps = animate
-    ? { initial: 'initial', whileHover: 'hover', variants: containerMotion }
+    ? { initial: "initial", whileHover: "hover", variants: containerMotion }
     : {};
   return (
     <motion.div
@@ -58,7 +58,7 @@ function CardBody({
           width="100%"
           height="100%"
           fill="transparent"
-          strokeWidth={hideOutline ? '0' : '4'}
+          strokeWidth={hideOutline ? "0" : "4"}
           stroke="#ffffff"
           variants={pathMotion}
         />

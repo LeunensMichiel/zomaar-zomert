@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { type IImageCard } from '@lib/models';
-import { formatArtistName } from '@lib/utils/string';
-import { useLocale, useTranslations } from 'next-intl';
+import { type IImageCard } from "@lib/models";
+import { formatArtistName } from "@lib/utils/string";
+import { useLocale, useTranslations } from "next-intl";
 
 type Props = { data: IImageCard };
 
 export function ArtistModalContent({ data }: Props) {
   const lang = useLocale();
-  const t = useTranslations('common');
+  const t = useTranslations("common");
 
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto bg-white lg:grid lg:grid-cols-[4fr_5fr]">
@@ -34,9 +34,9 @@ export function ArtistModalContent({ data }: Props) {
         <span className="font-display inline-block text-2xl leading-tight font-bold">
           {data.date &&
             new Date(data.date).toLocaleString(lang, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
+              year: "numeric",
+              month: "long",
+              day: "numeric",
             })}
         </span>
         <h1 className="mb-6 text-5xl font-bold break-words text-blue-500 uppercase md:text-7xl">
@@ -55,7 +55,7 @@ export function ArtistModalContent({ data }: Props) {
             target="_blank"
             rel="noreferrer noopener"
           >
-            {t('register')}
+            {t("register")}
           </a>
         )}
       </div>

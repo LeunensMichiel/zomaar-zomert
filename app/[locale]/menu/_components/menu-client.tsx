@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { Button } from '@components/ui/button';
-import { ImageWithAspectRatio } from '@components/ui/image-with-aspect-ratio';
-import { type MenuItem, MenuType } from '@lib/models';
-import { groupBy } from '@lib/utils/groupBy';
-import { Ticket } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
-import { useTranslations } from 'next-intl';
-import { useMemo, useState } from 'react';
+import { Button } from "@components/ui/button";
+import { ImageWithAspectRatio } from "@components/ui/image-with-aspect-ratio";
+import { type MenuItem, MenuType } from "@lib/models";
+import { groupBy } from "@lib/utils/groupBy";
+import { Ticket } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useTranslations } from "next-intl";
+import { useMemo, useState } from "react";
 
 const itemVariants = {
   hidden: { x: 10, opacity: 0, transition: { duration: 0.2 } },
@@ -18,22 +18,22 @@ const itemVariants = {
 type Props = { menu: MenuItem[] };
 
 export default function MenuClient({ menu }: Props) {
-  const t = useTranslations('menu');
+  const t = useTranslations("menu");
   const [menuType, setCurrentMenuType] = useState<MenuType>(MenuType.DRINKS);
 
   const filteredMenu = useMemo(
     () => menu.filter((menuItem) => menuItem.category === menuType),
-    [menu, menuType]
+    [menu, menuType],
   );
 
   const menuBySubCategory = useMemo(
     () => groupBy(filteredMenu, (x) => x.subCategory),
-    [filteredMenu]
+    [filteredMenu],
   );
 
   return (
     <section className="container-wide section-y-sm grid">
-      <h1 className="mb-12 text-center font-bold uppercase">{t('title')}</h1>
+      <h1 className="mb-12 text-center font-bold uppercase">{t("title")}</h1>
       <div className="mx-auto mb-14 grid grid-cols-2 text-center md:mb-20">
         {Object.keys(MenuType).map((type) => (
           <Button

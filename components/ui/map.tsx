@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
-import { type ReactNode } from 'react';
-import { Map as MapboxMap, Marker } from 'react-map-gl/mapbox';
+import { type ReactNode } from "react";
+import { Map as MapboxMap, Marker } from "react-map-gl/mapbox";
 
 type Props = {
   latitude?: number;
@@ -24,7 +24,7 @@ export function Map({
   return (
     <MapboxMap
       initialViewState={{ latitude, longitude, zoom }}
-      style={{ width: '100%', height }}
+      style={{ width: "100%", height }}
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/michielleunens/cl5jje415002315pc5hysl0do"
       cooperativeGestures

@@ -37,3 +37,8 @@ yarn-error.log*
 
 # Visual Code
 .vscode
+
+# Claude
+.claude
+.agents
+CLAUDE.md

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion } from 'motion/react';
-import { type PropsWithChildren, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from "motion/react";
+import { type PropsWithChildren, useEffect, useState } from "react";
 
 type ToastProps = {
   isShown: boolean;

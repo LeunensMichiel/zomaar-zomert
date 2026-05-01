@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { type CONSENT } from '@components/cookie-banner';
-import { Countdown } from '@components/countdown';
-import { Triangle } from '@components/icons/triangle';
-import { ImageCard } from '@components/image-card';
-import { Marquee } from '@components/marquee';
-import { Button } from '@components/ui/button';
-import { Logo } from '@components/ui/logo';
-import { Link } from '@lib/i18n/navigation';
+import { type CONSENT } from "@components/cookie-banner";
+import { Countdown } from "@components/countdown";
+import { Triangle } from "@components/icons/triangle";
+import { ImageCard } from "@components/image-card";
+import { Marquee } from "@components/marquee";
+import { Button } from "@components/ui/button";
+import { Logo } from "@components/ui/logo";
+import { Link } from "@lib/i18n/navigation";
 import {
   ENABLE_LINKS_DATE,
   PAELLA_LINK,
@@ -16,12 +16,12 @@ import {
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
   ZZ_YEAR,
-} from '@lib/models';
-import { getLocalStorage } from '@lib/utils/storage';
-import { ChevronRight } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { useEffect, useMemo, useState } from 'react';
-import ReactPlayer from 'react-player';
+} from "@lib/models";
+import { getLocalStorage } from "@lib/utils/storage";
+import { ChevronRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useMemo, useState } from "react";
+import ReactPlayer from "react-player";
 
 type Slide = { alt: string; url: string };
 
@@ -30,11 +30,11 @@ const baseSlides: Slide[] = Array.from({ length: 30 }, (_, i) => ({
   url: `/assets/slides/slide${i + 1}.webp`,
 }));
 
-const tearBottom = 'absolute left-0 -bottom-1 z-10 w-full object-cover';
-const tearTop = 'absolute left-0 -top-1 z-10 w-full object-cover';
+const tearBottom = "absolute left-0 -bottom-1 z-10 w-full object-cover";
+const tearTop = "absolute left-0 -top-1 z-10 w-full object-cover";
 
 export default function HomeClient() {
-  const t = useTranslations('home');
+  const t = useTranslations("home");
   const lang = useLocale();
   const [shuffledSlides, setShuffledSlides] = useState<Slide[]>(baseSlides);
   const [consent, setConsent] = useState<CONSENT | undefined>(undefined);
@@ -46,9 +46,9 @@ export default function HomeClient() {
       [...baseSlides]
         .map((value) => ({ value, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value)
+        .map(({ value }) => value),
     );
-    setConsent(getLocalStorage<CONSENT>('cookie_consent', 'pending'));
+    setConsent(getLocalStorage<CONSENT>("cookie_consent", "pending"));
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
@@ -57,15 +57,15 @@ export default function HomeClient() {
     today < new Date(ENABLE_LINKS_DATE) || today > new Date(ZZ_DATE_SUNDAY);
 
   const days: Array<{ date: string; image: string }> = [
-    { date: ZZ_DATE_FRIDAY, image: '/assets/days/friday.webp' },
-    { date: ZZ_DATE_SATURDAY, image: '/assets/days/saturday.webp' },
-    { date: ZZ_DATE_SUNDAY, image: '/assets/days/sunday.jpg' },
+    { date: ZZ_DATE_FRIDAY, image: "/assets/days/friday.webp" },
+    { date: ZZ_DATE_SATURDAY, image: "/assets/days/saturday.webp" },
+    { date: ZZ_DATE_SUNDAY, image: "/assets/days/sunday.jpg" },
   ];
 
   const slidesTop = useMemo(() => shuffledSlides.slice(0, 6), [shuffledSlides]);
   const slidesBottom = useMemo(
     () => shuffledSlides.slice(-6),
-    [shuffledSlides]
+    [shuffledSlides],
   );
 
   return (
@@ -92,7 +92,7 @@ export default function HomeClient() {
             </span>
             <Triangle className="h-6 w-6 md:h-8" />
             <span>
-              {ZZ_DATE_SUNDAY.slice(-2)} {t('month')} {ZZ_YEAR}
+              {ZZ_DATE_SUNDAY.slice(-2)} {t("month")} {ZZ_YEAR}
             </span>
           </span>
         </div>
@@ -114,19 +114,19 @@ export default function HomeClient() {
             {days.map((day) => (
               <Link
                 key={day.date}
-                href={{ pathname: '/line-up', query: { date: day.date } }}
+                href={{ pathname: "/line-up", query: { date: day.date } }}
                 className="block"
               >
                 <ImageCard
                   playAnimation
                   data={{
                     title: new Date(day.date).toLocaleString(lang, {
-                      weekday: 'long',
+                      weekday: "long",
                     }),
                     subtitle: new Date(day.date).toLocaleString(lang, {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
                     }),
                     imgSrc: day.image,
                   }}
@@ -139,29 +139,29 @@ export default function HomeClient() {
               as="a"
               {...(!signupDisabled && {
                 href: PETANQUE_LINK,
-                target: '_blank',
-                rel: 'noreferrer noopener',
+                target: "_blank",
+                rel: "noreferrer noopener",
               })}
               size="xl"
               disabled={signupDisabled}
               variant="primary"
               iconRight={<ChevronRight className="h-6 w-6" />}
             >
-              {t('petanque')}
+              {t("petanque")}
             </Button>
             <Button
               as="a"
               {...(!signupDisabled && {
                 href: PAELLA_LINK,
-                target: '_blank',
-                rel: 'noreferrer noopener',
+                target: "_blank",
+                rel: "noreferrer noopener",
               })}
               disabled={signupDisabled}
               size="xl"
               variant="primary"
               iconRight={<ChevronRight className="h-6 w-6" />}
             >
-              {t('paella')}
+              {t("paella")}
             </Button>
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function HomeClient() {
         <div className="container-wide">
           <div className="relative h-0 overflow-hidden pb-[56.25%]">
             <div className="absolute inset-0 z-[1] h-full w-full">
-              {consent && consent !== 'denied' && (
+              {consent && consent !== "denied" && (
                 <ReactPlayer
                   width="100%"
                   height="100%"

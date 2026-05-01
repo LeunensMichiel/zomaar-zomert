@@ -1,19 +1,19 @@
-import { cn } from '@lib/utils';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { cn } from "@lib/utils";
+import { tv, type VariantProps } from "tailwind-variants";
 
 const spinner = tv({
-  base: 'animate-spin',
+  base: "animate-spin",
   variants: {
     size: {
-      xs: 'h-4 w-4',
-      sm: 'h-5 w-5',
-      md: 'h-6 w-6',
-      lg: 'h-7 w-7',
-      xl: 'h-9 w-9',
+      xs: "h-4 w-4",
+      sm: "h-5 w-5",
+      md: "h-6 w-6",
+      lg: "h-7 w-7",
+      xl: "h-9 w-9",
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: "md",
   },
 });
 

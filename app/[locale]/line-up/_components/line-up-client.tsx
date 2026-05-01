@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { ImageCard } from '@components/image-card';
-import { Button } from '@components/ui/button';
-import { usePathname, useRouter } from '@lib/i18n/navigation';
+import { ImageCard } from "@components/image-card";
+import { Button } from "@components/ui/button";
+import { usePathname, useRouter } from "@lib/i18n/navigation";
 import {
   type Artist,
   getDateByDayString,
   ZZ_DATE_FRIDAY,
   ZZ_DATES,
   ZZ_YEAR,
-} from '@lib/models';
-import { AnimatePresence, motion } from 'motion/react';
-import { useSearchParams } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
-import { useCallback, useMemo } from 'react';
+} from "@lib/models";
+import { AnimatePresence, motion } from "motion/react";
+import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { useCallback, useMemo } from "react";
 
 const containerVariants = {
   hidden: { y: 10, opacity: 0, transition: { duration: 0.2 } },
@@ -34,17 +34,17 @@ const itemVariants = {
 type Props = { artists: Artist[] };
 
 export default function LineUpClient({ artists }: Props) {
-  const t = useTranslations('line-up');
+  const t = useTranslations("line-up");
   const lang = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentDate = searchParams.get('date') ?? ZZ_DATE_FRIDAY;
+  const currentDate = searchParams.get("date") ?? ZZ_DATE_FRIDAY;
 
   const filteredArtists = useMemo(() => {
     const today = new Date();
     const endDate = new Date(
-      new Date(ZZ_DATES[2]).setMonth(new Date(ZZ_DATES[2]).getMonth() + 8)
+      new Date(ZZ_DATES[2]).setMonth(new Date(ZZ_DATES[2]).getMonth() + 8),
     );
 
     const result = artists
@@ -53,22 +53,22 @@ export default function LineUpClient({ artists }: Props) {
           new Date(artist.showFrom).getTime() <= today.getTime() &&
           today.getTime() <= endDate.getTime() &&
           getDateByDayString(artist.day) === currentDate &&
-          new Date(artist.showFrom).getFullYear() >= ZZ_YEAR
+          new Date(artist.showFrom).getFullYear() >= ZZ_YEAR,
       )
       .sort((a, b) => a.name.localeCompare(b.name));
 
     if (result.length < 3) {
       const TBAs: Artist[] = Array.from(
-        { length: 3 - result.filter((x) => x.name !== 'TBA').length },
+        { length: 3 - result.filter((x) => x.name !== "TBA").length },
         (_, i) => ({
-          name: 'TBA',
-          day: 'friday',
-          hour: 'to be announced',
+          name: "TBA",
+          day: "friday",
+          hour: "to be announced",
           description:
-            'This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future.',
-          imgSrc: '/assets/artists/tba.webp',
+            "This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future.",
+          imgSrc: "/assets/artists/tba.webp",
           showFrom: i.toString(),
-        })
+        }),
       );
       result.push(...TBAs);
     }
@@ -81,7 +81,7 @@ export default function LineUpClient({ artists }: Props) {
     (newDate: string) => {
       router.replace({ pathname, query: { date: newDate } }, { scroll: false });
     },
-    [pathname, router]
+    [pathname, router],
   );
 
   return (
@@ -97,19 +97,19 @@ export default function LineUpClient({ artists }: Props) {
             transition={{ duration: 0.2 }}
           >
             <h1 className="mb-3 text-center text-5xl font-bold uppercase md:mb-5 md:text-6xl xl:mb-9">
-              {formattedDate.toLocaleString(lang, { weekday: 'long' })}
+              {formattedDate.toLocaleString(lang, { weekday: "long" })}
             </h1>
             <span className="font-display text-2xl">
               {formattedDate.toLocaleString(lang, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
+                year: "numeric",
+                month: "long",
+                day: "numeric",
               })}
             </span>
             <img
               style={{
                 transform: `rotate(${(ZZ_DATES.indexOf(currentDate) + 1) * 45}deg)`,
-                maxHeight: '15rem',
+                maxHeight: "15rem",
               }}
               className="absolute z-[-1] block max-w-[200px] md:max-w-[300px] lg:max-w-[350px]"
               src="/assets/star.svg"
@@ -130,7 +130,7 @@ export default function LineUpClient({ artists }: Props) {
               handleDaySelect(day);
             }}
           >
-            {new Date(day).toLocaleString(lang, { weekday: 'long' })}
+            {new Date(day).toLocaleString(lang, { weekday: "long" })}
             {day === currentDate ? (
               <motion.div
                 className="bg-brand-500 absolute right-0 -bottom-0.5 left-0 z-[3] h-1 w-full"
@@ -164,13 +164,13 @@ export default function LineUpClient({ artists }: Props) {
                   description: artist.description,
                   link: artist.link,
                 }}
-                opensModal={artist.name !== 'TBA'}
+                opensModal={artist.name !== "TBA"}
               />
             </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
-      <span className="sr-only">{t('SEO.title')}</span>
+      <span className="sr-only">{t("SEO.title")}</span>
     </section>
   );
 }

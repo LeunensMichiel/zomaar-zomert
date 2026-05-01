@@ -1,6 +1,6 @@
 # zomaar-zomert
 
-Next.js 16 (App Router, Turbopack) website for the Belgian summer festival *Zomaar Zomert*.
+Next.js 16 (App Router, Turbopack) website for the Belgian summer festival _Zomaar Zomert_.
 
 Built with **React 19**, **Tailwind v4**, **shadcn/ui** on the `base-ui` registry, **next-intl 4**, and **motion**. See [CLAUDE.md](CLAUDE.md) for architecture details.
 

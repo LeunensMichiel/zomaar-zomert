@@ -1,9 +1,9 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   /* Fonts */
-  --font-sans: var(--font-open-sans), 'Helvetica Neue', system-ui, sans-serif;
-  --font-display: var(--font-oswald), 'Helvetica Neue', system-ui, sans-serif;
+  --font-sans: var(--font-open-sans), "Helvetica Neue", system-ui, sans-serif;
+  --font-display: var(--font-oswald), "Helvetica Neue", system-ui, sans-serif;
 
   /* Brand: Orange (primary, de350b) */
   --color-brand-50: #fff1ec;

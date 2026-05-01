@@ -1,6 +1,6 @@
-import { Button } from '@components/ui/button';
-import { Link } from '@lib/i18n/navigation';
-import { ChevronRight } from 'lucide-react';
+import { Button } from "@components/ui/button";
+import { Link } from "@lib/i18n/navigation";
+import { ChevronRight } from "lucide-react";
 
 export default function NotFound() {
   return (

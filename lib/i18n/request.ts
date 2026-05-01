@@ -1,7 +1,7 @@
-import { hasLocale } from 'next-intl';
-import { getRequestConfig } from 'next-intl/server';
+import { hasLocale } from "next-intl";
+import { getRequestConfig } from "next-intl/server";
 
-import { routing } from './routing';
+import { routing } from "./routing";
 
 type Namespace = Record<string, unknown>;
 type ImportedJson = { default: Namespace };
@@ -35,7 +35,7 @@ const loadMessages = async (locale: string) => {
     history: history.default,
     home: home.default,
     info: info.default,
-    'line-up': lineUp.default,
+    "line-up": lineUp.default,
     menu: menu.default,
     partners: partners.default,
     privacy: privacy.default,

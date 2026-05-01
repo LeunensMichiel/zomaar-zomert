@@ -1,8 +1,8 @@
-import { cn } from '@lib/utils';
-import { type ReactNode } from 'react';
-import { type FieldError as RHFFieldError } from 'react-hook-form';
+import { cn } from "@lib/utils";
+import { type ReactNode } from "react";
+import { type FieldError as RHFFieldError } from "react-hook-form";
 
-import { FieldError } from './field-error';
+import { FieldError } from "./field-error";
 
 type FieldsetProps = {
   label: string;
@@ -20,7 +20,7 @@ export function Fieldset({
   className,
 }: FieldsetProps) {
   return (
-    <fieldset className={cn('grid', className)}>
+    <fieldset className={cn("grid", className)}>
       <legend className="font-display mb-6 block text-base font-bold tracking-wide text-gray-900 uppercase">
         {label}
       </legend>

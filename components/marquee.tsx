@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { useSyncExternalStore } from 'react';
-import FastMarquee from 'react-fast-marquee';
+import { useSyncExternalStore } from "react";
+import FastMarquee from "react-fast-marquee";
 
 type MarqueeProps = {
   slides: Array<{ url: string; alt?: string }>;
   speed: number;
-  direction: 'left' | 'right';
+  direction: "left" | "right";
 };
 
-const MOBILE_QUERY = '(max-width: 767px)';
+const MOBILE_QUERY = "(max-width: 767px)";
 
 const subscribeMobile = (cb: () => void) => {
   const mq = window.matchMedia(MOBILE_QUERY);
-  mq.addEventListener('change', cb);
+  mq.addEventListener("change", cb);
   return () => {
-    mq.removeEventListener('change', cb);
+    mq.removeEventListener("change", cb);
   };
 };
 
@@ -26,7 +26,7 @@ export function Marquee({ slides, speed, direction }: MarqueeProps) {
   const isMobile = useSyncExternalStore(
     subscribeMobile,
     getMobileSnapshot,
-    getMobileServerSnapshot
+    getMobileServerSnapshot,
   );
 
   return (

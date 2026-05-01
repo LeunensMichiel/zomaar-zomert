@@ -1,6 +1,6 @@
-import { type ComponentProps } from 'react';
+import { type ComponentProps } from "react";
 
-export function Triangle(props: ComponentProps<'svg'>) {
+export function Triangle(props: ComponentProps<"svg">) {
   return (
     <svg
       width="71"

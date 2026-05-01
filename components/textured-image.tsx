@@ -1,4 +1,4 @@
-import { ImageWithAspectRatio } from '@components/ui/image-with-aspect-ratio';
+import { ImageWithAspectRatio } from "@components/ui/image-with-aspect-ratio";
 
 type Props = {
   alt: string;

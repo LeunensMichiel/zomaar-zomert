@@ -1,35 +1,35 @@
-'use client';
+"use client";
 
-import { Button, type ButtonProps } from '@components/ui/button';
-import { Dialog, DialogContent, DialogTitle } from '@components/ui/dialog';
-import { Fieldset } from '@components/ui/fieldset';
-import { Radio } from '@components/ui/radio-group';
-import { usePathname, useRouter } from '@lib/i18n/navigation';
-import { routing } from '@lib/i18n/routing';
-import { Globe } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { type ChangeEvent, useState, useTransition } from 'react';
+import { Button, type ButtonProps } from "@components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@components/ui/dialog";
+import { Fieldset } from "@components/ui/fieldset";
+import { Radio } from "@components/ui/radio-group";
+import { usePathname, useRouter } from "@lib/i18n/navigation";
+import { routing } from "@lib/i18n/routing";
+import { Globe } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { type ChangeEvent, useState, useTransition } from "react";
 
 export const LangCode: Record<string, string> = {
-  nl: 'Nederlands',
-  fr: 'Français',
-  en: 'English',
+  nl: "Nederlands",
+  fr: "Français",
+  en: "English",
 };
 
 type LanguagePickerProps = {
-  size?: ButtonProps['size'];
-  variant?: ButtonProps['variant'];
+  size?: ButtonProps["size"];
+  variant?: ButtonProps["variant"];
   className?: string;
   withText?: boolean;
 };
 
 export function LanguagePicker({
-  size = 'xs',
-  variant = 'transparent',
+  size = "xs",
+  variant = "transparent",
   className,
   withText = true,
 }: LanguagePickerProps) {
-  const t = useTranslations('common');
+  const t = useTranslations("common");
   const lang = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -62,8 +62,8 @@ export function LanguagePicker({
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="inset-x-4 inset-y-12 max-w-[600px] bg-yellow-200 p-8 pt-16">
-          <DialogTitle className="sr-only">{t('i18n.select')}</DialogTitle>
-          <Fieldset label={t('i18n.select')} withFeedback={false}>
+          <DialogTitle className="sr-only">{t("i18n.select")}</DialogTitle>
+          <Fieldset label={t("i18n.select")} withFeedback={false}>
             {routing.locales.map((lng) => (
               <Radio
                 key={lng}

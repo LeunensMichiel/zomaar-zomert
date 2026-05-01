@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-`zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival *Zomaar Zomert*. UI is built on **Tailwind v4** + **shadcn/ui** (the `new-york` style on the `base-ui` registry — see [components.json](components.json)), so primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com) under the shadcn conventions.
+`zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival _Zomaar Zomert_. UI is built on **Tailwind v4** + **shadcn/ui** (the `new-york` style on the `base-ui` registry — see [components.json](components.json)), so primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com) under the shadcn conventions.
 
 ## Commands
 
@@ -23,7 +23,7 @@ There are no tests in this project.
 
 ### App Router with locale-aware shell
 
-All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the *only* layout that renders `<html>`/`<body>` — there is no separate `app/layout.tsx`. It validates the locale via `hasLocale(routing.locales, locale)` (calling `notFound()` on miss), runs `setRequestLocale(locale)`, then mounts the providers and shell:
+All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the _only_ layout that renders `<html>`/`<body>` — there is no separate `app/layout.tsx`. It validates the locale via `hasLocale(routing.locales, locale)` (calling `notFound()` on miss), runs `setRequestLocale(locale)`, then mounts the providers and shell:
 
 ```
 <NextIntlClientProvider>
@@ -65,9 +65,17 @@ i18n is powered by **next-intl 4** with **localized pathnames** and `localePrefi
 - Locale negotiation runs in [proxy.ts](proxy.ts) (Next 16 renamed `middleware.ts` → `proxy.ts`). It sets the `NEXT_LOCALE` cookie and rewrites incoming localized URLs to the internal route.
 
 **Always use the locale-aware navigation primitives** from [lib/i18n/navigation.ts](lib/i18n/navigation.ts):
+
 ```ts
-import { Link, redirect, useRouter, usePathname, getPathname } from '@lib/i18n/navigation';
+import {
+  Link,
+  redirect,
+  useRouter,
+  usePathname,
+  getPathname,
+} from '@lib/i18n/navigation';
 ```
+
 Never import `Link` / `useRouter` / `usePathname` from `next/link` or `next/navigation` for app navigation — those don't honor pathname localization. (`useSearchParams` is fine to import from `next/navigation`.)
 
 **Translations**: per-namespace JSON files in [locales/{nl,fr,en}/](locales/) (one file per page namespace plus `common`). [lib/i18n/request.ts](lib/i18n/request.ts) loads them all per request. Adding a new namespace means adding the JSON file in all three locales **and** updating the `loadMessages` array in `request.ts`.

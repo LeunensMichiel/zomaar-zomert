@@ -1,23 +1,23 @@
-import fsPromises from 'node:fs/promises';
-import path from 'node:path';
+import fsPromises from "node:fs/promises";
+import path from "node:path";
 
-import { type Locale } from '@lib/i18n/routing';
-import { type APIMenuItem, type MenuItem } from '@lib/models';
-import type { Metadata } from 'next';
-import { setRequestLocale } from 'next-intl/server';
+import { type Locale } from "@lib/i18n/routing";
+import { type APIMenuItem, type MenuItem } from "@lib/models";
+import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 
-import MenuClient from './_components/menu-client';
+import MenuClient from "./_components/menu-client";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
 export const metadata: Metadata = {
-  title: 'Menu',
+  title: "Menu",
   robots: { index: false, follow: false },
 };
 
 const loadMenu = async (locale: Locale): Promise<MenuItem[]> => {
-  const filePath = path.join(process.cwd(), 'public/menu.json');
-  const jsonData = await fsPromises.readFile(filePath, 'utf-8');
+  const filePath = path.join(process.cwd(), "public/menu.json");
+  const jsonData = await fsPromises.readFile(filePath, "utf-8");
   const apiMenu = JSON.parse(jsonData) as APIMenuItem[];
   return apiMenu.map(({ name, description, subCategory, ...menuitem }) => ({
     ...menuitem,

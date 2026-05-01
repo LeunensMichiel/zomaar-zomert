@@ -1,6 +1,6 @@
-import { cn } from '@lib/utils';
-import { CircleAlert } from 'lucide-react';
-import { type FieldError as RHFFieldError } from 'react-hook-form';
+import { cn } from "@lib/utils";
+import { CircleAlert } from "lucide-react";
+import { type FieldError as RHFFieldError } from "react-hook-form";
 
 type FieldErrorProps = {
   error?: RHFFieldError;
@@ -11,7 +11,7 @@ export function FieldError({ error, className }: FieldErrorProps) {
   return (
     <div
       role="alert"
-      className={cn('mt-2 flex min-h-3 items-center text-pink-700', className)}
+      className={cn("mt-2 flex min-h-3 items-center text-pink-700", className)}
     >
       {error && (
         <>

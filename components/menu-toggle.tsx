@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { cn } from '@lib/utils';
-import { type HTMLMotionProps, motion } from 'motion/react';
+import { cn } from "@lib/utils";
+import { type HTMLMotionProps, motion } from "motion/react";
 
 type MenuToggleProps = {
   open?: boolean;
   transparent?: boolean;
-} & HTMLMotionProps<'button'>;
+} & HTMLMotionProps<"button">;
 
 export function MenuToggle({
   open,
@@ -18,11 +18,11 @@ export function MenuToggle({
     <motion.button
       type="button"
       initial={false}
-      animate={open ? 'open' : 'closed'}
+      animate={open ? "open" : "closed"}
       className={cn(
-        'inline-flex cursor-pointer items-center justify-center border-0 bg-transparent p-0.5 outline-none',
-        transparent ? 'text-white' : 'text-gray-900',
-        className
+        "inline-flex cursor-pointer items-center justify-center border-0 bg-transparent p-0.5 outline-none",
+        transparent ? "text-white" : "text-gray-900",
+        className,
       )}
       {...props}
     >
@@ -34,8 +34,8 @@ export function MenuToggle({
       >
         <motion.path
           variants={{
-            closed: { d: 'M3 12, L21 12' },
-            open: { d: 'M6 6, L18 18' },
+            closed: { d: "M3 12, L21 12" },
+            open: { d: "M6 6, L18 18" },
           }}
           fill="transparent"
           strokeWidth="2"
@@ -51,8 +51,8 @@ export function MenuToggle({
         />
         <motion.path
           variants={{
-            closed: { d: 'M3 18, L21 18' },
-            open: { d: 'M6 18, L18 6' },
+            closed: { d: "M3 18, L21 18" },
+            open: { d: "M6 18, L18 6" },
           }}
           fill="transparent"
           strokeWidth="2"

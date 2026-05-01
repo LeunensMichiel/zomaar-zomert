@@ -1,6 +1,6 @@
-import { type ComponentProps } from 'react';
+import { type ComponentProps } from "react";
 
-export function Facebook(props: ComponentProps<'svg'>) {
+export function Facebook(props: ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import partners from '@public/partners.json';
-import { motion, type Variants } from 'motion/react';
+import partners from "@public/partners.json";
+import { motion, type Variants } from "motion/react";
 
 const cardVariants: Variants = {
   offscreen: { y: 30 },
   onscreen: {
     y: 0,
-    transition: { type: 'spring', bounce: 0.4, duration: 0.8 },
+    transition: { type: "spring", bounce: 0.4, duration: 0.8 },
   },
 };
 
@@ -27,8 +27,8 @@ export default function PartnersGrid() {
             variants={cardVariants}
             {...(p.site && {
               href: p.site,
-              target: '_blank',
-              rel: 'noreferrer noopener',
+              target: "_blank",
+              rel: "noreferrer noopener",
             })}
           >
             {p.logoWhite ? (

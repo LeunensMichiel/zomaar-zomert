@@ -1,36 +1,36 @@
-'use client';
+"use client";
 
-import { Facebook } from '@components/icons/facebook';
-import { Instagram } from '@components/icons/instagram';
-import { Youtube } from '@components/icons/youtube';
-import { LanguagePicker } from '@components/language-picker';
-import { Link } from '@lib/i18n/navigation';
-import { ZZ_DATES } from '@lib/models';
-import { cn } from '@lib/utils';
-import partners from '@public/partners.json';
-import { motion } from 'motion/react';
-import { useLocale, useTranslations } from 'next-intl';
+import { Facebook } from "@components/icons/facebook";
+import { Instagram } from "@components/icons/instagram";
+import { Youtube } from "@components/icons/youtube";
+import { LanguagePicker } from "@components/language-picker";
+import { Link } from "@lib/i18n/navigation";
+import { ZZ_DATES } from "@lib/models";
+import { cn } from "@lib/utils";
+import partners from "@public/partners.json";
+import { motion } from "motion/react";
+import { useLocale, useTranslations } from "next-intl";
 
 const socialMotion = {
-  initial: { y: 0, transition: { duration: 0.3, type: 'spring' as const } },
-  tap: { y: 4, transition: { duration: 0.3, type: 'spring' as const } },
+  initial: { y: 0, transition: { duration: 0.3, type: "spring" as const } },
+  tap: { y: 4, transition: { duration: 0.3, type: "spring" as const } },
   hover: {
     y: -2,
-    color: '#ffb600',
-    transition: { duration: 0.3, type: 'spring' as const },
+    color: "#ffb600",
+    transition: { duration: 0.3, type: "spring" as const },
   },
 };
 
 const SOCIAL_LINKS = [
-  { href: 'https://facebook.com/zomaarzomert', Icon: Facebook },
-  { href: 'https://www.instagram.com/zomaarzomert/', Icon: Instagram },
-  { href: 'https://www.youtube.com/watch?v=G2s9r_BohUE', Icon: Youtube },
+  { href: "https://facebook.com/zomaarzomert", Icon: Facebook },
+  { href: "https://www.instagram.com/zomaarzomert/", Icon: Instagram },
+  { href: "https://www.youtube.com/watch?v=G2s9r_BohUE", Icon: Youtube },
 ];
 
 const tearTop =
-  'absolute left-0 top-0 z-10 w-full -translate-y-px object-cover';
+  "absolute left-0 top-0 z-10 w-full -translate-y-px object-cover";
 const tearBottom =
-  'absolute left-0 bottom-0 z-10 w-full translate-y-px object-cover';
+  "absolute left-0 bottom-0 z-10 w-full translate-y-px object-cover";
 
 function FooterColumn({
   title,
@@ -53,7 +53,7 @@ function FooterLink({
   href,
   children,
 }: {
-  href: React.ComponentProps<typeof Link>['href'];
+  href: React.ComponentProps<typeof Link>["href"];
   children: React.ReactNode;
 }) {
   return (
@@ -66,21 +66,21 @@ function FooterLink({
   );
 }
 
-const partnerLogoSize = (size: 'sm' | 'lg' | 'xl' | undefined) => {
+const partnerLogoSize = (size: "sm" | "lg" | "xl" | undefined) => {
   switch (size) {
-    case 'sm':
-      return 'h-5 md:h-7 lg:h-7';
-    case 'lg':
-      return 'h-12 md:h-14 lg:h-20';
-    case 'xl':
-      return 'h-16 md:h-20 lg:h-24';
+    case "sm":
+      return "h-5 md:h-7 lg:h-7";
+    case "lg":
+      return "h-12 md:h-14 lg:h-20";
+    case "xl":
+      return "h-16 md:h-20 lg:h-24";
     default:
-      return 'h-10 md:h-12 lg:h-16';
+      return "h-10 md:h-12 lg:h-16";
   }
 };
 
 export function Footer() {
-  const t = useTranslations('common');
+  const t = useTranslations("common");
   const lang = useLocale();
   return (
     <>
@@ -115,28 +115,28 @@ export function Footer() {
       <footer className="mt-auto w-full bg-gray-900 text-white">
         <div className="container-wide section-y-sm">
           <div className="grid gap-12 lg:grid-cols-3">
-            <FooterColumn title={t('footer.line-up.title')}>
+            <FooterColumn title={t("footer.line-up.title")}>
               {ZZ_DATES.map((date) => (
                 <FooterLink
                   key={date}
-                  href={{ pathname: '/line-up', query: { date } }}
+                  href={{ pathname: "/line-up", query: { date } }}
                 >
-                  {new Date(date).toLocaleString(lang, { weekday: 'long' })}
+                  {new Date(date).toLocaleString(lang, { weekday: "long" })}
                 </FooterLink>
               ))}
             </FooterColumn>
-            <FooterColumn title={t('footer.info.title')}>
-              <FooterLink href="/history">{t('links.history')}</FooterLink>
-              <FooterLink href="/partners">{t('links.partners')}</FooterLink>
-              <FooterLink href="/menu">{t('links.menu')}</FooterLink>
-              <FooterLink href="/privacy-policy">{t('links.legal')}</FooterLink>
+            <FooterColumn title={t("footer.info.title")}>
+              <FooterLink href="/history">{t("links.history")}</FooterLink>
+              <FooterLink href="/partners">{t("links.partners")}</FooterLink>
+              <FooterLink href="/menu">{t("links.menu")}</FooterLink>
+              <FooterLink href="/privacy-policy">{t("links.legal")}</FooterLink>
             </FooterColumn>
-            <FooterColumn title={t('footer.contact.title')}>
+            <FooterColumn title={t("footer.contact.title")}>
               <FooterLink href="/info">
-                {t('footer.contact.activities')}
+                {t("footer.contact.activities")}
               </FooterLink>
               <FooterLink href="/contact">
-                {t('footer.contact.contact')}
+                {t("footer.contact.contact")}
               </FooterLink>
               <div className="mt-4 flex flex-col text-center leading-relaxed text-white lg:text-left">
                 <span>info@zomaarzomert.be</span>
@@ -148,22 +148,22 @@ export function Footer() {
           <div className="mt-20 flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
             {partners
               .sort(
-                (a, b) => a.formula - b.formula || a.name.localeCompare(b.name)
+                (a, b) => a.formula - b.formula || a.name.localeCompare(b.name),
               )
               .filter((p) => !p.disabled)
               .map((p) => (
                 <a
                   key={p.name}
                   className={cn(
-                    'inline-flex max-w-40 items-center justify-center opacity-50 transition-opacity hover:opacity-75',
+                    "inline-flex max-w-40 items-center justify-center opacity-50 transition-opacity hover:opacity-75",
                     partnerLogoSize(
-                      p.logoSize as 'sm' | 'lg' | 'xl' | undefined
-                    )
+                      p.logoSize as "sm" | "lg" | "xl" | undefined,
+                    ),
                   )}
                   {...(p.site && {
                     href: p.site,
-                    target: '_blank',
-                    rel: 'noreferrer noopener',
+                    target: "_blank",
+                    rel: "noreferrer noopener",
                   })}
                 >
                   {p.logoWhite ? (
@@ -184,8 +184,8 @@ export function Footer() {
           <div className="mt-12 grid items-center justify-items-center gap-6 lg:mt-20">
             <LanguagePicker />
             <span className="block w-full text-center text-xs leading-tight">
-              ©{new Date().getFullYear()}{' '}
-              {t.rich('footer.copy', {
+              ©{new Date().getFullYear()}{" "}
+              {t.rich("footer.copy", {
                 michiel: (chunks) => (
                   <a
                     href="https://leunesmedia.netlify.app/"

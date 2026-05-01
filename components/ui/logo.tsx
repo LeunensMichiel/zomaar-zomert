@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { Link } from '@lib/i18n/navigation';
-import { cn } from '@lib/utils';
-import { type ComponentProps } from 'react';
+import { Link } from "@lib/i18n/navigation";
+import { cn } from "@lib/utils";
+import { type ComponentProps } from "react";
 
 type LogoProps = {
   className?: string;
-  variant?: 'icon' | 'full';
-} & ComponentProps<'svg'>;
+  variant?: "icon" | "full";
+} & ComponentProps<"svg">;
 
-export function Logo({ className, variant = 'icon', ...props }: LogoProps) {
+export function Logo({ className, variant = "icon", ...props }: LogoProps) {
   const sharedClass = cn(
-    'cursor-pointer p-0.5 outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-gray-300',
-    className
+    "cursor-pointer p-0.5 outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-gray-300",
+    className,
   );
 
-  if (variant === 'icon') {
+  if (variant === "icon") {
     return (
       <Link href="/" aria-label="Home">
         <svg
