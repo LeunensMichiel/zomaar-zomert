@@ -1,6 +1,8 @@
+'use client';
+
 import { IImageCard } from '@lib/models';
 import { formatArtistName } from '@lib/utils/string';
-import useTranslation from 'next-translate/useTranslation';
+import { useLocale, useTranslations } from 'next-intl';
 import { FC } from 'react';
 
 import styles from './ImageCardModalView.module.scss';
@@ -10,7 +12,8 @@ type Props = {
 };
 
 export const ImageCardModalView: FC<Props> = ({ data }) => {
-  const { lang, t } = useTranslation();
+  const lang = useLocale();
+  const t = useTranslations('common');
   return (
     <div className={styles.root}>
       <div className={styles.image__container}>

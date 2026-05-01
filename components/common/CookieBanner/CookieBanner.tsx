@@ -1,8 +1,8 @@
+'use client';
+
 import { Button } from '@components/ui';
-import Link from 'next/link';
-import Trans from 'next-translate/Trans';
-import useTranslation from 'next-translate/useTranslation';
-import { consent } from 'nextjs-google-analytics';
+import { Link } from '@lib/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 
 import styles from './CookieBanner.module.scss';
@@ -10,8 +10,22 @@ import { getLocalStorage, setLocalStorage } from './storagehelper';
 
 export type CONSENT = 'granted' | 'denied' | 'pending';
 
+type DataLayerWindow = Window & {
+  dataLayer?: unknown[];
+};
+
+export const updateGoogleConsent = (newConsent: 'granted' | 'denied') => {
+  if (typeof window === 'undefined') return;
+  const w = window as DataLayerWindow;
+  w.dataLayer = w.dataLayer ?? [];
+  w.dataLayer.push('consent', 'update', {
+    ad_storage: newConsent,
+    analytics_storage: newConsent,
+  });
+};
+
 export default function CookieBanner() {
-  const { t } = useTranslation('common');
+  const t = useTranslations('common');
   const [cookieConsent, setCookieConsent] = useState<CONSENT | undefined>(
     undefined
   );
@@ -19,13 +33,7 @@ export default function CookieBanner() {
   const handleConsent = useCallback((newConsent: CONSENT) => {
     if (newConsent === 'pending') return;
 
-    consent({
-      arg: 'update',
-      params: {
-        ad_storage: newConsent,
-        analytics_storage: newConsent,
-      },
-    });
+    updateGoogleConsent(newConsent);
 
     setCookieConsent(newConsent);
     setLocalStorage('cookie_consent', newConsent);
@@ -49,11 +57,11 @@ export default function CookieBanner() {
       <div className={styles.info}>
         <div className={styles.title}>{t('cookies.title')}</div>
         <div className={styles.text}>
-          <Trans
-            i18nKey="cookies.text"
-            ns="common"
-            components={[<strong />, <br />, <Link href="/privacy-policy" />]}
-          />
+          {t.rich('cookies.text', {
+            strong: (chunks) => <strong>{chunks}</strong>,
+            br: () => <br />,
+            policy: (chunks) => <Link href="/privacy-policy">{chunks}</Link>,
+          })}
         </div>
       </div>
       <div className={styles.buttons}>
@@ -75,3 +83,5 @@ export default function CookieBanner() {
     </div>
   );
 }
+
+export { CookieBanner };

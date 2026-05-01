@@ -11,19 +11,19 @@
   "faq": {
     "1": {
       "title": "Comment, quoi, où",
-      "content": "Zomaar zomert est situé au cœur de Sint-Anna-Pede à Itterbeek. <0/><0/>Notre tente se trouve à l'est de la célèbre église Sint-Anna et en face du restaurant Noa."
+      "content": "Zomaar zomert est situé au cœur de Sint-Anna-Pede à Itterbeek. <br></br><br></br>Notre tente se trouve à l'est de la célèbre église Sint-Anna et en face du restaurant Noa."
     },
     "2": {
       "title": "Où se garer",
-      "content": "Tout le centre de Sint-Anna-Pede est fermé. Vous pouvez facilement vous garer aux bouts de Herdebeekstraat et de Rollestraat et marcher 5 à 10 minutes jusqu'au festival. D'autres solutions possibles sont Lossebaan, Plankenstraat et Oude Geraardsbergsebaan.<0/><0/>Le stationnement est gratuit."
+      "content": "Tout le centre de Sint-Anna-Pede est fermé. Vous pouvez facilement vous garer aux bouts de Herdebeekstraat et de Rollestraat et marcher 5 à 10 minutes jusqu'au festival. D'autres solutions possibles sont Lossebaan, Plankenstraat et Oude Geraardsbergsebaan.<br></br><br></br>Le stationnement est gratuit."
     },
     "3": {
       "title": "Transports publics",
-      "content": "Le bus <0>118</0> est le moyen le plus simple de se rendre à Zomaar Zomert. Vous pouvez également prendre le bus <0>141/142</0> si vous venez du sud (Vlezenbeek, Herdebeekstraat), et le bus <0>117/810/127/128</0> si vous venez du nord (Ninoofsesteenweg).<1/><1/>Vous venez en train ? Le plus simple est de prendre le bus 117 ou 810, mais le bus 127/128 vous y conduira également.<1/><1/><0>Veuillez noter qu'il n'y a pas de bus de nuit.</0>"
+      "content": "Le bus <strong>118</strong> est le moyen le plus simple de se rendre à Zomaar Zomert. Vous pouvez également prendre le bus <strong>141/142</strong> si vous venez du sud (Vlezenbeek, Herdebeekstraat), et le bus <strong>117/810/127/128</strong> si vous venez du nord (Ninoofsesteenweg).<br></br><br></br>Vous venez en train ? Le plus simple est de prendre le bus 117 ou 810, mais le bus 127/128 vous y conduira également.<br></br><br></br><strong>Veuillez noter qu'il n'y a pas de bus de nuit.</strong>"
     },
     "4": {
       "title": "Écologie",
-      "content": "Chaque année, nous essayons de faire notre part pour une planète plus verte.<0/><0/>Nous servons uniquement dans des verres pendant la journée et dans des gobelets réutilisables le soir. Nous réduisons notre consommation d'eau au minimum et encourageons tout le monde à venir à pied, à vélo, en transports en commun ou en covoiturage. À la fin du festival, tous les déchets seront recyclés et la prairie sera remise dans son état d'origine."
+      "content": "Chaque année, nous essayons de faire notre part pour une planète plus verte.<br></br><br></br>Nous servons uniquement dans des verres pendant la journée et dans des gobelets réutilisables le soir. Nous réduisons notre consommation d'eau au minimum et encourageons tout le monde à venir à pied, à vélo, en transports en commun ou en covoiturage. À la fin du festival, tous les déchets seront recyclés et la prairie sera remise dans son état d'origine."
     },
     "5": {
       "title": "Billets",
@@ -35,11 +35,11 @@
     },
     "7": {
       "title": "Bons d'alimentation et de boissons",
-      "content": "Vous pouvez acheter des bons de boissons et de nourriture au pré. Nous acceptons les modes de paiement suivants : <0>Payconic</0>, <0>Bancontact</0> et espèces.<1/><1/> Pour des raisons de sécurité, nous vous conseillons vivement de laisser vos espèces à la maison et d'utiliser les autres modes de paiement. Si vous souhaitez retirer de l'argent liquide, vous pouvez le faire à Argenta Prinsen à Itterbeek."
+      "content": "Vous pouvez acheter des bons de boissons et de nourriture au pré. Nous acceptons les modes de paiement suivants : <strong>Payconic</strong>, <strong>Bancontact</strong> et espèces.<br></br><br></br> Pour des raisons de sécurité, nous vous conseillons vivement de laisser vos espèces à la maison et d'utiliser les autres modes de paiement. Si vous souhaitez retirer de l'argent liquide, vous pouvez le faire à Argenta Prinsen à Itterbeek."
     },
     "8": {
       "title": "Activités périphériques",
-      "content": "Chaque année, nous organisons de nombreuses activités périphériques telles que le ZomaarBike, le ZomaarRun, des animations pour les enfants, un quiz et un concours de pétanque. Le dimanche, vous trouverez également un stand de paella.<0/><0/>Toutes nos activités sont payants: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<0/><0/><1>L'inscription</1>pour la pétanque et la paella est <1>obligatoire.</1>Inscrivez-vous ici:<0/>",
+      "content": "Chaque année, nous organisons de nombreuses activités périphériques telles que le ZomaarBike, le ZomaarRun, des animations pour les enfants, un quiz et un concours de pétanque. Le dimanche, vous trouverez également un stand de paella.<br></br><br></br>Toutes nos activités sont payants: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>L'inscription</strong> pour la pétanque et la paella est <strong>obligatoire.</strong> Inscrivez-vous ici:<br></br>",
       "tba": "(Les inscriptions commenceront bientôt !)",
       "petanque": "S'inscrire — Petanque",
       "paella": "S'inscrire — Paella"

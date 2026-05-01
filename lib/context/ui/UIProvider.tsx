@@ -1,4 +1,5 @@
-import { ThemeProvider } from 'next-themes';
+'use client';
+
 import { FC, ReactNode, useMemo, useReducer } from 'react';
 
 import { INITIAL_UI_STATE, ModalViews, UIContext, UIState } from './UIContext';
@@ -56,7 +57,7 @@ type ProviderProps = {
   children?: ReactNode;
 };
 
-const UIProvider: FC<ProviderProps> = (props) => {
+export const ManagedUIProvider: FC<ProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(uiReducer, INITIAL_UI_STATE);
 
   const openModal = () => dispatch({ type: 'OPEN_MODAL' });
@@ -79,19 +80,5 @@ const UIProvider: FC<ProviderProps> = (props) => {
     [state]
   );
 
-  return <UIContext.Provider value={value} {...props} />;
+  return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 };
-
-export const ManagedUIProvider: FC<ProviderProps> = ({ children }) => (
-  <UIProvider>
-    <ThemeProvider
-      enableSystem={false}
-      enableColorScheme
-      disableTransitionOnChange={true}
-      defaultTheme="light"
-      themes={['light', 'dark']}
-    >
-      {children}
-    </ThemeProvider>
-  </UIProvider>
-);

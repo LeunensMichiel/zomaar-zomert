@@ -5,6 +5,5 @@ export { default as useInterval } from './useInterval';
 export { default as useIsClient } from './useIsClient';
 export { default as useScreen } from './useScreen';
 export { default as useScript } from './useScript';
-export { default as useSmoothHashScroll } from './useSmoothHashScroll';
 export { default as useUI } from './useUI';
 export { default as useWindowSize } from './useWindowSize';

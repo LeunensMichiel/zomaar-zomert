@@ -1,4 +1,6 @@
-import { AnimatePresence, motion } from 'framer-motion';
+'use client';
+
+import { AnimatePresence, motion } from 'motion/react';
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 
 import styles from './Toast.module.scss';

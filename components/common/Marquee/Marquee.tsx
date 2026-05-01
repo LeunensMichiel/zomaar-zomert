@@ -1,3 +1,5 @@
+'use client';
+
 import { useScreen } from '@lib/hooks';
 import { FC } from 'react';
 import FastMarquee from 'react-fast-marquee';

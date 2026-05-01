@@ -1,14 +1,14 @@
+'use client';
+
 import { Facebook, Instagram, Youtube } from '@components/icons';
+import { Link } from '@lib/i18n/navigation';
 import { ZZ_DATES } from '@lib/models';
+import partners from '@public/partners.json';
 import cn from 'classnames';
-import classNames from 'classnames';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Trans from 'next-translate/Trans';
-import useTranslation from 'next-translate/useTranslation';
+import { motion } from 'motion/react';
+import { useLocale, useTranslations } from 'next-intl';
 import { FC } from 'react';
 
-import partners from '../../../public/partners.json';
 import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
 import styles from './Footer.module.scss';
 
@@ -17,14 +17,14 @@ const variants = {
     y: 0,
     transition: {
       duration: 0.3,
-      type: 'spring',
+      type: 'spring' as const,
     },
   },
   tap: {
     y: 4,
     transition: {
       duration: 0.3,
-      type: 'spring',
+      type: 'spring' as const,
     },
   },
   hover: {
@@ -32,13 +32,14 @@ const variants = {
     color: 'var(--color-yellow-2)',
     transition: {
       duration: 0.3,
-      type: 'spring',
+      type: 'spring' as const,
     },
   },
 };
 
 const Footer: FC = () => {
-  const { t, lang } = useTranslation();
+  const t = useTranslations('common');
+  const lang = useLocale();
   return (
     <>
       <div className={styles.socials}>
@@ -100,77 +101,38 @@ const Footer: FC = () => {
               {t('footer.line-up.title')}
             </span>
             <Link
-              href={{
-                pathname: '/line-up',
-                query: {
-                  date: ZZ_DATES[0],
-                },
-              }}
-              passHref
+              href={{ pathname: '/line-up', query: { date: ZZ_DATES[0] } }}
               className={styles.footer__block__link}
             >
-              {new Date(ZZ_DATES[0]).toLocaleString(lang, {
-                weekday: 'long',
-              })}
+              {new Date(ZZ_DATES[0]).toLocaleString(lang, { weekday: 'long' })}
             </Link>
             <Link
-              href={{
-                pathname: '/line-up',
-                query: {
-                  date: ZZ_DATES[1],
-                },
-              }}
-              passHref
+              href={{ pathname: '/line-up', query: { date: ZZ_DATES[1] } }}
               className={styles.footer__block__link}
             >
-              {new Date(ZZ_DATES[1]).toLocaleString(lang, {
-                weekday: 'long',
-              })}
+              {new Date(ZZ_DATES[1]).toLocaleString(lang, { weekday: 'long' })}
             </Link>
             <Link
-              href={{
-                pathname: '/line-up',
-                query: {
-                  date: ZZ_DATES[2],
-                },
-              }}
-              passHref
+              href={{ pathname: '/line-up', query: { date: ZZ_DATES[2] } }}
               className={styles.footer__block__link}
             >
-              {new Date(ZZ_DATES[2]).toLocaleString(lang, {
-                weekday: 'long',
-              })}
+              {new Date(ZZ_DATES[2]).toLocaleString(lang, { weekday: 'long' })}
             </Link>
           </div>
           <div className={styles.footer__block}>
             <span className={styles.footer__block__title}>
               {t('footer.info.title')}
             </span>
-            {/* <Link href="/news" passHref className={styles.footer__block__link}>
-              {t('links.news')}
-            </Link> */}
-            <Link
-              href="/history"
-              passHref
-              className={styles.footer__block__link}
-            >
+            <Link href="/history" className={styles.footer__block__link}>
               {t('links.history')}
             </Link>
-            <Link
-              href="/partners"
-              passHref
-              className={styles.footer__block__link}
-            >
+            <Link href="/partners" className={styles.footer__block__link}>
               {t('links.partners')}
             </Link>
-            <Link href="/menu" passHref className={styles.footer__block__link}>
+            <Link href="/menu" className={styles.footer__block__link}>
               {t('links.menu')}
             </Link>
-            <Link
-              href="/privacy-policy"
-              passHref
-              className={styles.footer__block__link}
-            >
+            <Link href="/privacy-policy" className={styles.footer__block__link}>
               {t('links.legal')}
             </Link>
           </div>
@@ -178,14 +140,10 @@ const Footer: FC = () => {
             <span className={styles.footer__block__title}>
               {t('footer.contact.title')}
             </span>
-            <Link href="/info" passHref className={styles.footer__block__link}>
+            <Link href="/info" className={styles.footer__block__link}>
               {t('footer.contact.activities')}
             </Link>
-            <Link
-              href="/contact"
-              passHref
-              className={styles.footer__block__link}
-            >
+            <Link href="/contact" className={styles.footer__block__link}>
               {t('footer.contact.contact')}
             </Link>
 
@@ -203,7 +161,7 @@ const Footer: FC = () => {
             .filter((p) => !p.disabled)
             .map((p) => (
               <a
-                className={classNames({
+                className={cn({
                   [styles.scale_down]: p.logoSize === 'sm',
                   [styles.scale_up]: p.logoSize === 'lg',
                   [styles.scale_up__xl]: p.logoSize === 'xl',
@@ -227,24 +185,26 @@ const Footer: FC = () => {
           <LanguagePicker />
           <span className={cn(styles.copy)}>
             ©{new Date().getFullYear()}{' '}
-            <Trans
-              i18nKey="footer.copy"
-              ns="common"
-              components={[
+            {t.rich('footer.copy', {
+              michiel: (chunks) => (
                 <a
-                  key="michiel leunens"
                   href="https://leunesmedia.netlify.app/"
                   target="_blank"
                   rel="noreferrer noopener"
-                />,
+                >
+                  {chunks}
+                </a>
+              ),
+              lars: (chunks) => (
                 <a
-                  key="lars puttaert"
                   href="https://www.linkedin.com/in/lars-puttaert/"
                   target="_blank"
                   rel="noreferrer noopener"
-                />,
-              ]}
-            />
+                >
+                  {chunks}
+                </a>
+              ),
+            })}
           </span>
         </div>
       </footer>

@@ -50,6 +50,7 @@ export default tseslint.config(
       'lint-staged.config.js',
       'next.config.js',
       'next.sitemap.js',
+      'next-env.d.ts',
     ],
   }
 );

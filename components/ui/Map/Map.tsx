@@ -1,7 +1,9 @@
+'use client';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { FC, ReactNode } from 'react';
-import Map, { Marker } from 'react-map-gl';
+import { Map, Marker } from 'react-map-gl/mapbox';
 
 type CustomMapProps = {
   latitude?: number;

@@ -5,7 +5,9 @@
  * "FC Bokken" is skipped because it contains a space.
  * "DJMIKE" is skipped because it’s all caps.
  */
-export function formatArtistName(name: string): JSX.Element | string {
+import { ReactElement } from 'react';
+
+export function formatArtistName(name: string): ReactElement | string {
   // Skip names with spaces or all-uppercase
   if (name.includes(' ') || name === name.toUpperCase()) {
     return name;

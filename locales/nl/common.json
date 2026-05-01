@@ -1,4 +1,7 @@
 {
+  "seo": {
+    "description": "Zomaar Zomert is een gratis festival in het hart van Itterbeek, aan de Sint-Anna-Pedekerk. Het laatste weekend van juli geniet je van frisse pintjes, talrijke optredens & activiteiten. Een onvergetelijk zomerweekend gegarandeerd. ☀🚀"
+  },
   "links": {
     "home": "Home",
     "line-up": "Line-Up",
@@ -23,11 +26,11 @@
       "activities": "Inschrijven randactiviteiten",
       "contact": "Contacteer ons"
     },
-    "copy": "Zomaar Zomert - Webdesign door <0>Michiel Leunens</0> - Copywriting door <1>Lars Puttaert</1>"
+    "copy": "Zomaar Zomert - Webdesign door <michiel>Michiel Leunens</michiel> - Copywriting door <lars>Lars Puttaert</lars>"
   },
   "cookies": {
     "title": "Zomaar Zomert maakt gebruik van cookies",
-    "text": "We gebruiken cookies enkel voor functionele & analytische doeleinden en slaan <0>geen</0> persoonlijke gegevens op. Door het gebruiken van de site ga je hiermee akkoord.<1/>Meer info in ons <2>privacybeleid</2>.",
+    "text": "We gebruiken cookies enkel voor functionele & analytische doeleinden en slaan <strong>geen</strong> persoonlijke gegevens op. Door het gebruiken van de site ga je hiermee akkoord.<br></br>Meer info in ons <policy>privacybeleid</policy>.",
     "deny": "Weigeren",
     "consent": "Da's in orde!"
   },

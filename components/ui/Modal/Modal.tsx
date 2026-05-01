@@ -1,32 +1,15 @@
+'use client';
+
 import { CloseButton } from '@components/common';
 import { useClickOutside } from '@lib/hooks';
-import {
-  BodyScrollOptions,
-  clearAllBodyScrollLocks,
-  disableBodyScroll,
-  enableBodyScroll,
-} from 'body-scroll-lock';
+import { Root as PortalRoot } from '@radix-ui/react-portal';
 import cn from 'classnames';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-import {
-  FC,
-  MutableRefObject,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-} from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import styles from './Modal.module.scss';
-
-const PortalRoot = dynamic(
-  () => import('@radix-ui/react-portal').then((mod) => mod.Root),
-  {
-    ssr: false,
-  }
-);
 
 type ModalProps = {
   className?: string;
@@ -37,10 +20,6 @@ type ModalProps = {
   children?: ReactNode;
 };
 
-const BODY_SCROLL_OPTIONS: BodyScrollOptions = {
-  reserveScrollBarGap: true,
-};
-
 const Modal: FC<ModalProps> = ({
   children,
   className,
@@ -49,11 +28,16 @@ const Modal: FC<ModalProps> = ({
   open,
   title,
 }) => {
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [mounted, setMounted] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const closedY = shouldReduceMotion ? 0 : 200;
   const duration = 0.3;
   useClickOutside(ref, () => onClose());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
@@ -64,68 +48,63 @@ const Modal: FC<ModalProps> = ({
     [onClose]
   );
 
-  const clearBodyScroll = useCallback(() => {
-    enableBodyScroll(ref.current);
-    clearAllBodyScrollLocks();
-  }, []);
-
   useEffect(() => {
-    if (ref.current) {
-      if (open) {
-        disableBodyScroll(ref.current, BODY_SCROLL_OPTIONS);
-        window.addEventListener('keydown', handleKey);
-      }
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKey);
-    };
+    if (!open) return;
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, [open, handleKey]);
+
+  if (!mounted) return null;
 
   return (
     <PortalRoot>
-      <AnimatePresence onExitComplete={clearBodyScroll}>
+      <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration }}
-            className={cn(styles.overlay)}
-          >
+          <RemoveScroll>
             <motion.div
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={{
-                open: { opacity: 1, y: 0 },
-                closed: { opacity: 0, y: closedY },
-              }}
-              transition={{
-                duration,
-                type: 'spring',
-              }}
-              aria-modal
-              aria-labelledby={title}
-              tabIndex={-1}
-              ref={ref}
-              role="dialog"
-              className={cn(
-                styles.modal,
-                {
-                  container: container === 'container',
-                  'container-page': container === 'page',
-                },
-                className
-              )}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration }}
+              className={cn(styles.overlay)}
             >
-              <CloseButton
-                className={cn(styles.modalCloseButton)}
-                onClick={() => onClose()}
-                size="lg"
-              />
-              <FocusLock className={cn(styles.modalBody)}>{children}</FocusLock>
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={{
+                  open: { opacity: 1, y: 0 },
+                  closed: { opacity: 0, y: closedY },
+                }}
+                transition={{
+                  duration,
+                  type: 'spring',
+                }}
+                aria-modal
+                aria-labelledby={title}
+                tabIndex={-1}
+                ref={ref}
+                role="dialog"
+                className={cn(
+                  styles.modal,
+                  {
+                    container: container === 'container',
+                    'container-page': container === 'page',
+                  },
+                  className
+                )}
+              >
+                <CloseButton
+                  className={cn(styles.modalCloseButton)}
+                  onClick={() => onClose()}
+                  size="lg"
+                />
+                <FocusLock className={cn(styles.modalBody)}>
+                  {children}
+                </FocusLock>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </RemoveScroll>
         )}
       </AnimatePresence>
     </PortalRoot>

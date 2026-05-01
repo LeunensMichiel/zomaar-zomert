@@ -1,7 +1,9 @@
+'use client';
+
 import { Globe } from '@components/icons';
 import { Button } from '@components/ui';
 import { useUI } from '@lib/hooks';
-import useTranslation from 'next-translate/useTranslation';
+import { useLocale, useTranslations } from 'next-intl';
 import { CSSProperties, FC } from 'react';
 
 import { ButtonVariant } from '../../ui/Button/Button';
@@ -27,7 +29,8 @@ export const LanguagePicker: FC<LanguagePickerProps> = ({
   withText = true,
   style,
 }) => {
-  const { t, lang } = useTranslation('common');
+  const t = useTranslations('common');
+  const lang = useLocale();
   const { openModal, setModalView } = useUI();
 
   const handleLanguageBtnClick = () => {

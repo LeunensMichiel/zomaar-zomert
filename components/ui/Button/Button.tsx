@@ -1,3 +1,5 @@
+'use client';
+
 import { Spinner } from '@components/ui';
 import cn from 'classnames';
 import { ComponentPropsWithRef, ElementType, ReactNode } from 'react';

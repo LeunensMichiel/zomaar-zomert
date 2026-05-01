@@ -1,8 +1,10 @@
+'use client';
+
 import { useUI } from '@lib/hooks';
 import { IImageCard } from '@lib/models';
 import { formatArtistName } from '@lib/utils/string';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { forwardRef } from 'react';
 
 import { TexturedImage } from '..';
@@ -18,14 +20,14 @@ const containerMotion = {
   initial: {
     scale: 1,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       duration: 0.5,
     },
   },
   hover: {
     scale: 1.025,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       duration: 0.2,
     },
   },
@@ -36,34 +38,33 @@ const pathMotion = {
     pathLength: 0,
     transition: {
       duration: 0.5,
-      type: 'spring',
+      type: 'spring' as const,
     },
   },
   hover: {
     pathLength: 1,
     transition: {
       duration: 0.5,
-      type: 'spring',
+      type: 'spring' as const,
     },
   },
 };
 
-export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
+export const ImageCard = forwardRef<HTMLDivElement, Props>(
   ({ data, opensModal = false, playAnimation, ...props }, ref) => {
     const { openModal, setModalView } = useUI();
 
     const handleArtistModalClick = () => {
-      setModalView('ARTIST_VIEW', undefined, {
-        data,
-      });
+      setModalView('ARTIST_VIEW', undefined, { data });
       openModal();
     };
 
     return (
-      <motion.a
+      <motion.div
         className={cn(styles.image__card)}
         ref={ref}
-        tabIndex={0}
+        tabIndex={opensModal ? 0 : undefined}
+        role={opensModal ? 'button' : undefined}
         {...((opensModal || playAnimation) && {
           initial: 'initial',
           whileHover: 'hover',
@@ -71,10 +72,18 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
         })}
         {...(opensModal && {
           onClick: handleArtistModalClick,
+          onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleArtistModalClick();
+            }
+          },
+          style: { cursor: 'pointer' },
         })}
-        {...(!opensModal && {
-          style: { cursor: 'default' },
-        })}
+        {...(!opensModal &&
+          !playAnimation && {
+            style: { cursor: 'default' },
+          })}
         {...props}
       >
         <motion.svg
@@ -99,7 +108,7 @@ export const ImageCard = forwardRef<HTMLAnchorElement, Props>(
           </span>
         </div>
         <TexturedImage alt={data.title} src={data.imgSrc} />
-      </motion.a>
+      </motion.div>
     );
   }
 );

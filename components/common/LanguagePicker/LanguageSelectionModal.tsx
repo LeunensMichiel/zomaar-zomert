@@ -1,31 +1,41 @@
+'use client';
+
 import { Fieldset } from '@components/common';
 import { RadioButton } from '@components/ui';
-import setLanguage from 'next-translate/setLanguage';
-import useTranslation from 'next-translate/useTranslation';
-import { ChangeEvent } from 'react';
+import { usePathname, useRouter } from '@lib/i18n/navigation';
+import { routing } from '@lib/i18n/routing';
+import { useLocale, useTranslations } from 'next-intl';
+import { ChangeEvent, useTransition } from 'react';
 
-import i18nConfig from '../../../i18n.json';
 import { LangCode } from './LanguagePicker';
 import styles from './LanguageSelectionModal.module.scss';
 
-const { locales } = i18nConfig;
-
 export const LanguageSelectionModal = () => {
-  const { t } = useTranslation('common');
+  const t = useTranslations('common');
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale();
+  const [isPending, startTransition] = useTransition();
 
-  const handleLangChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (LangCode[e.target.value]) {
-      await setLanguage(e.target.value);
-    }
+  const handleLangChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const next = e.target.value as (typeof routing.locales)[number];
+    if (!LangCode[next] || next === currentLocale) return;
+
+    startTransition(() => {
+      router.replace(pathname, { locale: next });
+    });
   };
+
   return (
     <div className={styles.root}>
       <Fieldset label={t('i18n.select')} withFeedback={false}>
-        {locales?.map((lng) => (
+        {routing.locales.map((lng) => (
           <RadioButton
             label={LangCode[lng]}
             onChange={handleLangChange}
             value={lng}
+            defaultChecked={lng === currentLocale}
+            disabled={isPending}
             key={lng}
             name="language"
             tabIndex={0}

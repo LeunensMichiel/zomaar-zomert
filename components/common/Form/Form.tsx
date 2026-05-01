@@ -1,7 +1,9 @@
+'use client';
+
 import ChevronRight from '@components/icons/Chevron';
 import { Button, Input, TextArea } from '@components/ui';
 import cn from 'classnames';
-import useTranslation from 'next-translate/useTranslation';
+import { useTranslations } from 'next-intl';
 import { forwardRef, ReactNode, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -37,7 +39,7 @@ type FormProps = {
 
 const Form = forwardRef<HTMLFormElement, FormProps>(
   ({ children, wrapperClassName, ...rest }, ref) => {
-    const { t } = useTranslation('contact');
+    const t = useTranslations('contact');
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const formName = 'contactformulier';
@@ -80,7 +82,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
       >
         <input type="hidden" name="form-name" value={formName} />
         <label style={{ display: 'none' }}>
-          Don’t fill this out if you’re human:
+          Don't fill this out if you're human:
           <input name="bot-field" />
         </label>
         <Input

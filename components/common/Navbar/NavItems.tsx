@@ -1,6 +1,8 @@
+'use client';
+
 import cn from 'classnames';
-import { motion } from 'framer-motion';
-import useTranslation from 'next-translate/useTranslation';
+import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { FC } from 'react';
 
 import NavItem from './NavItem';
@@ -15,7 +17,7 @@ const NavItems: FC<NavItemsProps> = ({
   navDrawerOpen = false,
   isTransparent = false,
 }) => {
-  const { t } = useTranslation('common');
+  const t = useTranslations('common');
   return (
     <motion.div
       initial={false}
@@ -26,18 +28,18 @@ const NavItems: FC<NavItemsProps> = ({
       })}
     >
       <div className={cn(styles.navMenuList)}>
-        <NavItem label={t('links.home')} link={{ href: '/' }} />
-        <NavItem label={t('links.line-up')} link={{ href: '/line-up' }} />
-        <NavItem label={t('links.info')} link={{ href: '/info' }} />
+        <NavItem label={t('links.home')} href="/" />
+        <NavItem label={t('links.line-up')} href="/line-up" />
+        <NavItem label={t('links.info')} href="/info" />
         <motion.span
           initial={false}
           transition={{ delay: !navDrawerOpen ? 0 : 0.1 }}
           animate={navDrawerOpen ? { width: '100%' } : { width: 0 }}
           className={styles.line}
         />
-        <NavItem label={t('links.contact')} link={{ href: '/contact' }} />
-        <NavItem label={t('links.history')} link={{ href: '/history' }} />
-        <NavItem label={t('links.partners')} link={{ href: '/partners' }} />
+        <NavItem label={t('links.contact')} href="/contact" />
+        <NavItem label={t('links.history')} href="/history" />
+        <NavItem label={t('links.partners')} href="/partners" />
       </div>
     </motion.div>
   );

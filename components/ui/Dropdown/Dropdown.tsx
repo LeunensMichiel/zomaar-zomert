@@ -1,6 +1,8 @@
+'use client';
+
 import { Chevron } from '@components/icons';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useCallback, useState } from 'react';
 
 import { Button } from '..';

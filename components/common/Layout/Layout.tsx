@@ -1,8 +1,10 @@
+'use client';
+
 import { Footer, Navbar } from '@components/common';
 import { Modal } from '@components/ui';
 import { useUI } from '@lib/hooks';
+import { usePathname } from '@lib/i18n/navigation';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
 import { FC, ReactNode } from 'react';
 
 import { ImageCardModalView } from '../ImageCard/ImageCardModalView';
@@ -18,9 +20,9 @@ const transparentRoutes = ['/'];
 const Layout: FC<Props> = ({ children }: Props) => {
   const { displayModal, closeModal, modalTitle, modalView, data } = useUI();
 
-  const router = useRouter();
+  const pathname = usePathname();
 
-  const isTransparentRoute = transparentRoutes.includes(router?.pathname);
+  const isTransparentRoute = transparentRoutes.includes(pathname);
 
   return (
     <>

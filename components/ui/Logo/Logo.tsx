@@ -1,8 +1,11 @@
+'use client';
+
+import { Link } from '@lib/i18n/navigation';
 import cn from 'classnames';
-import Link from 'next/link';
 import { forwardRef, SVGProps } from 'react';
 
 import styles from './Logo.module.scss';
+
 type LogoProps = {
   className?: string;
   variant?: 'icon' | 'full';
@@ -12,7 +15,7 @@ const Logo = forwardRef<SVGSVGElement, LogoProps>(
   ({ onClick, className, variant = 'icon', ...props }, ref) => {
     if (variant === 'icon') {
       return (
-        <Link href="/" legacyBehavior>
+        <Link href="/" aria-label="Home">
           <svg
             version="1.1"
             id="Layer_2"
@@ -51,7 +54,7 @@ const Logo = forwardRef<SVGSVGElement, LogoProps>(
       );
     }
     return (
-      <Link href="/" legacyBehavior>
+      <Link href="/" aria-label="Home">
         <svg
           version="1.1"
           id="Layer_2"

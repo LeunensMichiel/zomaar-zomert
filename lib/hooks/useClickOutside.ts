@@ -4,7 +4,7 @@ type AnyEvent = MouseEvent | TouchEvent;
 
 // https://usehooks-typescript.com/react-hook/use-on-click-outside
 function useClickOutside<T extends HTMLElement = HTMLElement>(
-  ref: RefObject<T>,
+  ref: RefObject<T | null>,
   handler: (event: AnyEvent) => void
 ): void {
   useEffect(() => {

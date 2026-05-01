@@ -1,13 +1,10 @@
+'use client';
+
 import { Logo } from '@components/ui';
-import {
-  BodyScrollOptions,
-  clearAllBodyScrollLocks,
-  disableBodyScroll,
-  enableBodyScroll,
-} from 'body-scroll-lock';
+import { usePathname } from '@lib/i18n/navigation';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import { MenuButton } from '../IconButtons';
 import { LanguagePicker } from '../LanguagePicker/LanguagePicker';
@@ -19,34 +16,13 @@ type NavbarProps = {
   children?: ReactNode;
 };
 
-const BODY_SCROLL_OPTIONS: BodyScrollOptions = {
-  reserveScrollBarGap: true,
-};
-
 const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
-  const router = useRouter();
-
+  const pathname = usePathname();
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
-  const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
-    if (router.asPath) {
-      setNavDrawerOpen(false);
-    }
-  }, [router.asPath]);
-
-  useEffect(() => {
-    if (ref.current) {
-      if (navDrawerOpen) {
-        disableBodyScroll(ref.current, BODY_SCROLL_OPTIONS);
-      } else {
-        enableBodyScroll(ref.current);
-      }
-    }
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [navDrawerOpen]);
+    setNavDrawerOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -54,40 +30,41 @@ const Navbar: FC<NavbarProps> = ({ children, isTransparent = false }) => {
         [styles.headerTransparent]: isTransparent,
         [styles.navContainerOpen]: navDrawerOpen,
       })}
-      ref={ref}
     >
       {children}
-      <div className={cn(styles.headerContainer, 'container')}>
-        <nav
-          className={cn(styles.navigation, {
-            [styles.navigationTransparent]: isTransparent,
-          })}
-        >
-          <div className={cn(styles.toolbar)}>
-            <Logo className={styles.logo} />
-            <NavItems
-              isTransparent={isTransparent}
-              navDrawerOpen={navDrawerOpen}
-            />
-            <div className={cn(styles.toolbarIcons)}>
-              {navDrawerOpen && (
-                <LanguagePicker
-                  size="lg"
-                  variant="minimal-bright"
-                  withText={false}
-                />
-              )}
-              <MenuButton
-                navBarTransparent={isTransparent ? true : navDrawerOpen}
-                navBarOpen={navDrawerOpen}
-                onClick={() =>
-                  setNavDrawerOpen((prevNavDrawerOpen) => !prevNavDrawerOpen)
-                }
+      <RemoveScroll enabled={navDrawerOpen}>
+        <div className={cn(styles.headerContainer, 'container')}>
+          <nav
+            className={cn(styles.navigation, {
+              [styles.navigationTransparent]: isTransparent,
+            })}
+          >
+            <div className={cn(styles.toolbar)}>
+              <Logo className={styles.logo} />
+              <NavItems
+                isTransparent={isTransparent}
+                navDrawerOpen={navDrawerOpen}
               />
+              <div className={cn(styles.toolbarIcons)}>
+                {navDrawerOpen && (
+                  <LanguagePicker
+                    size="lg"
+                    variant="minimal-bright"
+                    withText={false}
+                  />
+                )}
+                <MenuButton
+                  navBarTransparent={isTransparent ? true : navDrawerOpen}
+                  navBarOpen={navDrawerOpen}
+                  onClick={() =>
+                    setNavDrawerOpen((prevNavDrawerOpen) => !prevNavDrawerOpen)
+                  }
+                />
+              </div>
             </div>
-          </div>
-        </nav>
-      </div>
+          </nav>
+        </div>
+      </RemoveScroll>
     </header>
   );
 };

@@ -1,4 +1,7 @@
 {
+  "seo": {
+    "description": "Zomaar Zomert is a free festival in the heart of Itterbeek, at the Sint-Anna church. The whole last weekend of July you can enjoy fresh drinks, numerous performances & activities. You're sure to have an extraordinary summer weekend. ☀🚀"
+  },
   "links": {
     "home": "Home",
     "line-up": "Line-Up",
@@ -23,11 +26,11 @@
       "activities": "Register for activities",
       "contact": "Contact us"
     },
-    "copy": "Zomaar Zomert - Webdesign by <0>Michiel Leunens</0> - Copywriting by <1>Lars Puttaert</1>"
+    "copy": "Zomaar Zomert - Webdesign by <michiel>Michiel Leunens</michiel> - Copywriting by <lars>Lars Puttaert</lars>"
   },
   "cookies": {
     "title": "Zomaar Zomert makes use of cookies",
-    "text": "We use cookies for functional & analytical purposes only and do <0>not</0> store any personal data. By using the site, you agree to our policy.<1/>More info in our <2>privacy policy</2>.",
+    "text": "We use cookies for functional & analytical purposes only and do <strong>not</strong> store any personal data. By using the site, you agree to our policy.<br></br>More info in our <policy>privacy policy</policy>.",
     "deny": "Deny",
     "consent": "Okay for me!"
   },

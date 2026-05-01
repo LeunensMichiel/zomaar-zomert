@@ -1,12 +1,11 @@
-import { Layout } from '@components/common';
 import { Chevron } from '@components/icons';
 import { Button } from '@components/ui';
+import { Link } from '@lib/i18n/navigation';
 import cn from 'classnames';
-import Link from 'next/link';
 
-import styles from './styles/404.module.scss';
+import styles from './not-found.module.scss';
 
-const Custom404 = () => {
+export default function NotFound() {
   return (
     <div className={cn('container', styles.custom404, 'py-container')}>
       <h1>
@@ -18,8 +17,8 @@ const Custom404 = () => {
             Looks like you entered a page that does not exist. Please contact us
             if this should not be the case.
           </p>
-          <Link passHref href="/" legacyBehavior>
-            <Button variant="primary" as="a" iconRight={<Chevron />}>
+          <Link href="/">
+            <Button variant="primary" as="span" iconRight={<Chevron />}>
               Return to homepage
             </Button>
           </Link>
@@ -27,8 +26,4 @@ const Custom404 = () => {
       </div>
     </div>
   );
-};
-
-export default Custom404;
-
-Custom404.Layout = Layout;
+}

@@ -1,34 +1,35 @@
+'use client';
+
 import { Dropdown } from '@components/ui';
+import { Link, usePathname } from '@lib/i18n/navigation';
+import type { AppPathname } from '@lib/i18n/routing';
 import cn from 'classnames';
-import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
-import { FC, LiHTMLAttributes, useEffect, useState } from 'react';
+import { FC, LiHTMLAttributes, ReactNode, useEffect, useState } from 'react';
 
 import styles from './NavItem.module.scss';
 
 type NavItemProps = {
   label: string;
-  link?: LinkProps;
-} & LiHTMLAttributes<HTMLLIElement>;
+  href?: AppPathname;
+  children?: ReactNode;
+} & Omit<LiHTMLAttributes<HTMLLIElement>, 'children'>;
 
-const NavItem: FC<NavItemProps> = ({ children, label, link }) => {
-  const router = useRouter();
+const NavItem: FC<NavItemProps> = ({ children, label, href }) => {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (router.asPath) {
-      setOpen(false);
-    }
-  }, [router.asPath]);
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <>
-      {!children && link ? (
+      {!children && href ? (
         <Link
-          {...link}
+          href={href}
           role="menuitem"
           className={cn(styles.navItemContainer, styles.linkContainer, {
-            [styles.activeLink]: router.pathname === link?.href,
+            [styles.activeLink]: pathname === href,
           })}
         >
           {label}

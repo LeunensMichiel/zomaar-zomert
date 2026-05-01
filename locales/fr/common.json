@@ -1,4 +1,7 @@
 {
+  "seo": {
+    "description": "Zomaar Zomert est un festival gratuit au cœur d'Itterbeek, à l'église Sainte-Anne. Le dernier week-end de juillet, profitez de boissons fraîches, de nombreux concerts et activités. Un week-end d'été inoubliable garanti. ☀🚀"
+  },
   "links": {
     "home": "Accueil",
     "line-up": "Line-Up",
@@ -23,11 +26,11 @@
       "activities": "Enregistrement d'activités",
       "contact": "Contactez nous"
     },
-    "copy": "Zomaar Zomert - Webdesign par <0>Michiel Leunens</0> - Copywriting par <1>Lars Puttaert</1>"
+    "copy": "Zomaar Zomert - Webdesign par <michiel>Michiel Leunens</michiel> - Copywriting par <lars>Lars Puttaert</lars>"
   },
   "cookies": {
     "title": "Zomaar Zomert utilise des cookies",
-    "text": "Nous utilisons des cookies à des fins fonctionnelles et analytiques uniquement et ne stockons <0>aucune</0> donnée personnelle. En utilisant le site, vous acceptez cela.<1/>Plus d'informations dans notre <2>politique de confidentialité</2>.",
+    "text": "Nous utilisons des cookies à des fins fonctionnelles et analytiques uniquement et ne stockons <strong>aucune</strong> donnée personnelle. En utilisant le site, vous acceptez cela.<br></br>Plus d'informations dans notre <policy>politique de confidentialité</policy>.",
     "deny": "Refuser",
     "consent": "D'accord!"
   },

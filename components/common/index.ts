@@ -2,7 +2,6 @@ export { Countdown } from './Countdown/Countdown';
 export { default as Footer } from './Footer';
 export { default as Form } from './Form';
 export { Fieldset } from './Form';
-export { default as Head } from './Head';
 export * from './IconButtons';
 export { ImageCard } from './ImageCard/ImageCard';
 export { default as Layout } from './Layout';
