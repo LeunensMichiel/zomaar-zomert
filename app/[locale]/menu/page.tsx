@@ -1,35 +1,39 @@
-import fsPromises from "node:fs/promises";
-import path from "node:path";
-
+import menuData from "@lib/data/menu.json";
 import { type Locale } from "@lib/i18n/routing";
 import { type APIMenuItem, type MenuItem } from "@lib/models";
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import MenuClient from "./_components/menu-client";
+import { MenuClient } from "./_components/menu-client";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
-export const metadata: Metadata = {
-  title: "Menu",
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "menu" });
+  return {
+    title: t("SEO.title"),
+    description: t("SEO.description"),
+    openGraph: {
+      title: t("SEO.openGraph.title"),
+      description: t("SEO.openGraph.description"),
+    },
+  };
+}
 
-const loadMenu = async (locale: Locale): Promise<MenuItem[]> => {
-  const filePath = path.join(process.cwd(), "public/menu.json");
-  const jsonData = await fsPromises.readFile(filePath, "utf-8");
-  const apiMenu = JSON.parse(jsonData) as APIMenuItem[];
-  return apiMenu.map(({ name, description, subCategory, ...menuitem }) => ({
-    ...menuitem,
-    name: name[locale],
-    description: description[locale],
-    subCategory: subCategory[locale],
-  }));
-};
+const loadMenu = (locale: Locale): MenuItem[] =>
+  (menuData as APIMenuItem[]).map(
+    ({ name, description, subCategory, ...menuitem }) => ({
+      ...menuitem,
+      name: name[locale],
+      description: description[locale],
+      subCategory: subCategory[locale],
+    }),
+  );
 
 export default async function MenuPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const menu = await loadMenu(locale);
+  const menu = loadMenu(locale);
   return <MenuClient menu={menu} />;
 }

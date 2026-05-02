@@ -36,5 +36,11 @@
   },
   "i18n": {
     "select": "Taalvoorkeur selecteren"
+  },
+  "notFound": {
+    "title": "Festival niet gevonden",
+    "code": "404",
+    "message": "Het lijkt erop dat je op een pagina bent beland die niet bestaat. Neem gerust contact met ons op als dit niet de bedoeling was.",
+    "button": "Terug naar home"
   }
 }

@@ -36,5 +36,11 @@
   },
   "i18n": {
     "select": "Choisir la langue préférée"
+  },
+  "notFound": {
+    "title": "Festival introuvable",
+    "code": "404",
+    "message": "Il semble que vous soyez arrivé sur une page qui n'existe pas. N'hésitez pas à nous contacter si ce n'était pas le cas.",
+    "button": "Retour à l'accueil"
   }
 }

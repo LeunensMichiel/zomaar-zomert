@@ -28,7 +28,8 @@ export function HomeMarquees() {
       <img
         className="absolute -top-1 left-0 z-10 w-full object-cover"
         src="/assets/tear-3.svg"
-        alt="paper tear element"
+        alt=""
+        aria-hidden="true"
       />
       <Marquee
         speed={20}
@@ -39,7 +40,8 @@ export function HomeMarquees() {
       <img
         className="absolute -bottom-1 left-0 z-10 w-full object-cover"
         src="/assets/tear-4.svg"
-        alt="paper tear element"
+        alt=""
+        aria-hidden="true"
       />
     </section>
   );

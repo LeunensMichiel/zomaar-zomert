@@ -1,4 +1,12 @@
 {
+  "SEO": {
+    "title": "Zomaar Zomert — Festival à Itterbeek",
+    "description": "Zomaar Zomert est un festival d'été gratuit au cœur d'Itterbeek. Le dernier week-end de juillet, profitez de concerts, d'activités et d'ambiance à l'église Sainte-Anne.",
+    "openGraph": {
+      "title": "Zomaar Zomert — Festival à Itterbeek",
+      "description": "Un festival d'été gratuit au cœur d'Itterbeek. Concerts, activités et ambiance à l'église Sainte-Anne."
+    }
+  },
   "month": "JUILLET",
   "days": "jr.",
   "hours": "h.",

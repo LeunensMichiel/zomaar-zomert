@@ -36,5 +36,11 @@
   },
   "i18n": {
     "select": "Select preferred language"
+  },
+  "notFound": {
+    "title": "Festival not found",
+    "code": "404",
+    "message": "Looks like you ended up on a page that doesn't exist. Please contact us if this should not be the case.",
+    "button": "Return to homepage"
   }
 }

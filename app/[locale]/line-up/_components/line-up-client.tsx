@@ -33,7 +33,7 @@ const itemVariants = {
 
 type Props = { artists: Artist[] };
 
-export default function LineUpClient({ artists }: Props) {
+export function LineUpClient({ artists }: Props) {
   const t = useTranslations("line-up");
   const lang = useLocale();
   const router = useRouter();
@@ -43,9 +43,10 @@ export default function LineUpClient({ artists }: Props) {
 
   const filteredArtists = useMemo(() => {
     const today = new Date();
-    const endDate = new Date(
-      new Date(ZZ_DATES[2]).setMonth(new Date(ZZ_DATES[2]).getMonth() + 8),
-    );
+    // Keep showing artists for 8 months after the festival ends so the
+    // line-up page stays useful for archival/recap purposes off-season.
+    const festivalEnd = new Date(ZZ_DATES[2]);
+    const endDate = new Date(festivalEnd.setMonth(festivalEnd.getMonth() + 8));
 
     const result = artists
       .filter(

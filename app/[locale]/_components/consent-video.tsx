@@ -2,8 +2,10 @@
 
 import { type CONSENT } from "@components/cookie-banner";
 import { getLocalStorage } from "@lib/utils/storage";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
+
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 export function ConsentVideo() {
   const [consent, setConsent] = useState<CONSENT | undefined>(undefined);

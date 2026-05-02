@@ -2,7 +2,7 @@ import { type Locale } from "@lib/i18n/routing";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import PartnersGrid from "./_components/partners-grid";
+import { PartnersGrid } from "./_components/partners-grid";
 
 type Props = { params: Promise<{ locale: Locale }> };
 

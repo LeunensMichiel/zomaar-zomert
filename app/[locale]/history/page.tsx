@@ -1,5 +1,6 @@
 import { type Locale } from "@lib/i18n/routing";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -31,9 +32,13 @@ export default async function HistoryPage({ params }: Props) {
         {t.rich("content", {
           p: (chunks) => <p className="mb-6 lg:mb-8">{chunks}</p>,
           image: () => (
-            <img
+            <Image
               src="/assets/random/crew.webp"
               alt="The Zomaar Zomert Crew"
+              width={1600}
+              height={1067}
+              quality={100}
+              sizes="(max-width: 1140px) 100vw, 1140px"
               className="my-12 block h-auto w-full object-contain"
             />
           ),

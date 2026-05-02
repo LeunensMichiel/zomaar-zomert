@@ -1,7 +1,8 @@
 "use client";
 
-import partners from "@public/partners.json";
+import partners from "@lib/data/partners.json";
 import { motion, type Variants } from "motion/react";
+import Image from "next/image";
 
 const cardVariants: Variants = {
   offscreen: { y: 30 },
@@ -11,7 +12,7 @@ const cardVariants: Variants = {
   },
 };
 
-export default function PartnersGrid() {
+export function PartnersGrid() {
   return (
     <motion.div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
       {partners
@@ -32,10 +33,13 @@ export default function PartnersGrid() {
             })}
           >
             {p.logoWhite ? (
-              <img
+              <Image
                 src={p.logoWhite}
                 alt={p.name}
-                className="h-full w-full opacity-90"
+                width={400}
+                height={400}
+                quality={100}
+                className="h-full w-full object-contain opacity-90"
               />
             ) : (
               <span className="font-display inline-block w-full text-5xl leading-none text-white opacity-75">

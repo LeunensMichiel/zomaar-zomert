@@ -3,7 +3,7 @@
 import { Button } from "@components/ui/button";
 import { ImageWithAspectRatio } from "@components/ui/image-with-aspect-ratio";
 import { type MenuItem, MenuType } from "@lib/models";
-import { groupBy } from "@lib/utils/groupBy";
+import { groupBy } from "@lib/utils/group-by";
 import { Ticket } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
@@ -17,7 +17,7 @@ const itemVariants = {
 
 type Props = { menu: MenuItem[] };
 
-export default function MenuClient({ menu }: Props) {
+export function MenuClient({ menu }: Props) {
   const t = useTranslations("menu");
   const [menuType, setCurrentMenuType] = useState<MenuType>(MenuType.DRINKS);
 

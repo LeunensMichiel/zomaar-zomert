@@ -6,12 +6,17 @@ Built with **React 19**, **Tailwind v4**, **shadcn/ui** on the `base-ui` registr
 
 ## Requirements
 
-- Node `>=24`
+- Node `>=24` (Ideally use nvm when on mac)
 - Yarn `4.14.1` (Berry)
 
 ## Getting started
 
-```bash
+```zsh
+# enable corepack if not yet done to download yarn 4
+corepack enable
+```
+
+```zsh
 yarn         # install
 yarn dev     # dev server
 yarn build   # production build
@@ -20,7 +25,7 @@ yarn start   # serve the build
 
 ## Quality
 
-```bash
+```zsh
 yarn lint           # eslint (flat config)
 yarn format         # prettier
 yarn tsc --noEmit   # type-check (also runs on staged files via Husky)

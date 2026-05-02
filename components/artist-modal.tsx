@@ -1,7 +1,8 @@
 "use client";
 
 import { type IImageCard } from "@lib/models";
-import { formatArtistName } from "@lib/utils/string";
+import { formatArtistName } from "@lib/utils/string-utils";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
 type Props = { data: IImageCard };
@@ -13,10 +14,13 @@ export function ArtistModalContent({ data }: Props) {
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto bg-white lg:grid lg:grid-cols-[4fr_5fr]">
       <div className='relative flex h-[70vw] overflow-hidden before:absolute before:inset-0 before:z-[2] before:bg-[image:radial-gradient(rgba(255,255,255,0.2)_1px,rgba(0,0,0,0.15)_1px),radial-gradient(rgba(255,255,255,0.1)_1px,rgba(0,0,0,0.1)_1px)] before:[background-size:3px_3px] before:[background-position:0_0,2px_2px] before:mix-blend-lighten before:content-[""] lg:h-full'>
-        <img
-          className="absolute inset-0 z-[1] h-full w-full object-cover object-center"
+        <Image
+          className="z-[1] object-cover object-center"
           src={data.imgSrc}
           alt={data.title}
+          fill
+          quality={100}
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
         <picture>
           <source
@@ -26,6 +30,7 @@ export function ArtistModalContent({ data }: Props) {
           <img
             src="/assets/tear-7.svg"
             alt=""
+            aria-hidden="true"
             className="absolute -bottom-0.5 left-0 z-[3] w-full object-cover lg:top-0 lg:-right-0.5 lg:bottom-0 lg:left-auto lg:w-36"
           />
         </picture>

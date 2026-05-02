@@ -4,7 +4,7 @@ import { ArtistModalContent } from "@components/artist-modal";
 import { TexturedImage } from "@components/textured-image";
 import { Dialog, DialogContent } from "@components/ui/dialog";
 import { type IImageCard } from "@lib/models";
-import { formatArtistName } from "@lib/utils/string";
+import { formatArtistName } from "@lib/utils/string-utils";
 import { motion } from "motion/react";
 import { useState } from "react";
 

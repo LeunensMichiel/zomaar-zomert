@@ -6,7 +6,7 @@ import { Logo } from "@components/ui/logo";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
-  ENABLE_LINKS_DATE,
+  isSignupOpen,
   PAELLA_LINK,
   PETANQUE_LINK,
   ZZ_DATE_FRIDAY,
@@ -15,6 +15,7 @@ import {
   ZZ_YEAR,
 } from "@lib/models";
 import { ChevronRight } from "lucide-react";
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ConsentVideo } from "./_components/consent-video";
@@ -28,14 +29,25 @@ const days: Array<{ date: string; image: string }> = [
   { date: ZZ_DATE_SUNDAY, image: "/assets/days/sunday.jpg" },
 ];
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+  return {
+    title: { absolute: t("SEO.title") },
+    description: t("SEO.description"),
+    openGraph: {
+      title: t("SEO.openGraph.title"),
+      description: t("SEO.openGraph.description"),
+    },
+  };
+}
+
 export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "home" });
 
-  const today = new Date();
-  const signupDisabled =
-    today < new Date(ENABLE_LINKS_DATE) || today > new Date(ZZ_DATE_SUNDAY);
+  const signupDisabled = !isSignupOpen();
 
   return (
     <>
@@ -68,7 +80,8 @@ export default async function Home({ params }: Props) {
         <img
           className="absolute -bottom-1 left-0 z-10 w-full object-cover"
           src="/assets/tear-1.svg"
-          alt="paper tear element"
+          alt=""
+          aria-hidden="true"
           style={{ bottom: -32 }}
         />
       </section>
@@ -137,7 +150,8 @@ export default async function Home({ params }: Props) {
         <img
           className="absolute -bottom-1 left-0 z-10 w-full object-cover"
           src="/assets/tear-2.svg"
-          alt="paper tear element"
+          alt=""
+          aria-hidden="true"
         />
       </section>
 

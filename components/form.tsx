@@ -17,23 +17,20 @@ type FormValues = {
   bericht: string;
 };
 
-function encode(formName: string, values: FormValues) {
-  return Object.keys(values)
-    .map(
-      (key) =>
-        encodeURIComponent(key) +
-        "=" +
-        encodeURIComponent(values[key as keyof FormValues] ?? "Niet opgegeven"),
-    )
-    .join("&")
-    .concat(`&form-name=${formName}`);
+const FORM_NAME = "contactformulier";
+
+function encodeForm(values: FormValues) {
+  const params = new URLSearchParams({ "form-name": FORM_NAME });
+  for (const [key, value] of Object.entries(values)) {
+    params.set(key, value ?? "Niet opgegeven");
+  }
+  return params.toString();
 }
 
 export function Form() {
   const t = useTranslations("contact");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formName = "contactformulier";
 
   const {
     register,
@@ -41,20 +38,19 @@ export function Form() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = useCallback((values: FormValues) => {
+  const onSubmit = useCallback(async (values: FormValues) => {
+    setIsSubmitted(false);
+    setIsSubmitting(true);
     try {
-      setIsSubmitted(false);
-      setIsSubmitting(true);
-      fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode(formName, { ...values }),
-      }).catch((error: unknown) => {
-        console.error(error);
+        body: encodeForm(values),
       });
+      if (!response.ok) throw new Error(`Form submit failed: ${response.status}`);
       setIsSubmitted(true);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -63,16 +59,16 @@ export function Form() {
   return (
     <form
       className="grid items-start gap-4"
-      name={formName}
+      name={FORM_NAME}
       method="POST"
       data-netlify="true"
       onSubmit={handleSubmit(onSubmit)}
       {...{ "netlify-honeypot": "bot-field" }}
     >
-      <input type="hidden" name="form-name" value={formName} />
-      <label className="hidden">
+      <input type="hidden" name="form-name" value={FORM_NAME} />
+      <label className="hidden" aria-hidden="true">
         Don&apos;t fill this out if you&apos;re human:
-        <input name="bot-field" />
+        <input name="bot-field" tabIndex={-1} />
       </label>
       <Input
         label={t("form.name.label")}

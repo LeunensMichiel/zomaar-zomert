@@ -4,12 +4,7 @@ import { TexturedImage } from "@components/textured-image";
 import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
 import { Map } from "@components/ui/map";
-import {
-  ENABLE_LINKS_DATE,
-  PAELLA_LINK,
-  PETANQUE_LINK,
-  ZZ_DATE_SUNDAY,
-} from "@lib/models";
+import { isSignupOpen, PAELLA_LINK, PETANQUE_LINK } from "@lib/models";
 import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Masonry from "react-masonry-css";
@@ -20,11 +15,9 @@ const breakpointColumns = {
   "639": 1,
 };
 
-export default function InfoCards() {
+export function InfoCards() {
   const t = useTranslations("info");
-  const today = new Date();
-  const signupDisabled =
-    today < new Date(ENABLE_LINKS_DATE) || today > new Date(ZZ_DATE_SUNDAY);
+  const signupDisabled = !isSignupOpen();
 
   const richBr = { br: () => <br /> };
   const richStrongBr = {

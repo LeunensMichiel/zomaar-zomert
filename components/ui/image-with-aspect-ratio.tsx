@@ -1,8 +1,10 @@
 import { cn } from "@lib/utils";
+import Image from "next/image";
 import { type ComponentProps } from "react";
 
-type Props = ComponentProps<"img"> & {
+type Props = Omit<ComponentProps<typeof Image>, "src" | "alt" | "fill"> & {
   aspectRatio: string;
+  src: string;
   wrapperClassName?: string;
   alt: string;
 };
@@ -23,13 +25,13 @@ export function ImageWithAspectRatio({
       className={cn("relative h-0 w-full overflow-hidden", wrapperClassName)}
       style={{ paddingTop: ratio }}
     >
-      <img
+      <Image
         src={src}
         alt={alt}
-        className={cn(
-          "absolute inset-0 z-0 h-full w-full object-cover object-center",
-          className,
-        )}
+        fill
+        quality={100}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+        className={cn("z-0 object-cover object-center", className)}
         {...rest}
       />
     </div>

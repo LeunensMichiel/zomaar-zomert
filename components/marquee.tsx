@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useSyncExternalStore } from "react";
 import FastMarquee from "react-fast-marquee";
 
@@ -37,11 +38,15 @@ export function Marquee({ slides, speed, direction }: MarqueeProps) {
         gradient={false}
       >
         {slides.map((slide) => (
-          <img
+          <Image
             src={slide.url}
             key={slide.url}
+            alt={slide.alt ?? ""}
+            width={0}
+            height={0}
+            sizes="50vw"
+            quality={100}
             className="h-[25vh] w-auto object-cover object-center md:h-[40vh]"
-            alt={slide.alt}
             loading="lazy"
           />
         ))}

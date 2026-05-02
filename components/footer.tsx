@@ -7,8 +7,9 @@ import { LanguagePicker } from "@components/language-picker";
 import { Link } from "@lib/i18n/navigation";
 import { ZZ_DATES } from "@lib/models";
 import { cn } from "@lib/utils";
-import partners from "@public/partners.json";
+import partners from "@lib/data/partners.json";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
 const socialMotion = {
@@ -103,10 +104,16 @@ export function Footer() {
               </motion.a>
             ))}
           </div>
-          <img src="/assets/tear-5.svg" alt="paper tear" className={tearTop} />
+          <img
+            src="/assets/tear-5.svg"
+            alt=""
+            aria-hidden="true"
+            className={tearTop}
+          />
           <img
             src="/assets/tear-6.svg"
-            alt="paper tear"
+            alt=""
+            aria-hidden="true"
             className={tearBottom}
           />
         </div>
@@ -167,10 +174,13 @@ export function Footer() {
                   })}
                 >
                   {p.logoWhite ? (
-                    <img
+                    <Image
                       src={p.logoWhite}
                       alt={p.name}
-                      className="h-full w-full"
+                      width={200}
+                      height={120}
+                      quality={100}
+                      className="h-full w-full object-contain"
                     />
                   ) : (
                     <span className="font-display block w-full text-center text-lg leading-none break-words text-white md:text-xl lg:text-2xl">
