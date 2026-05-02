@@ -47,7 +47,8 @@ export function Form() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encodeForm(values),
       });
-      if (!response.ok) throw new Error(`Form submit failed: ${response.status}`);
+      if (!response.ok)
+        throw new Error(`Form submit failed: ${response.status}`);
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);

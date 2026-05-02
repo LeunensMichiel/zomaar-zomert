@@ -54,34 +54,6 @@ export async function generateMetadata({
       template: "%s | Zomaar Zomert",
     },
     description,
-    icons: {
-      icon: [
-        {
-          url: "/meta/favicon-32x32.png?v=1",
-          sizes: "32x32",
-          type: "image/png",
-        },
-        {
-          url: "/meta/favicon-16x16.png?v=1",
-          sizes: "16x16",
-          type: "image/png",
-        },
-      ],
-      apple: "/meta/apple-touch-icon.png?v=1",
-      other: [
-        {
-          rel: "mask-icon",
-          url: "/meta/safari-pinned-tab.svg?v=1",
-          color: "#de350b",
-        },
-        { rel: "shortcut icon", url: "/meta/favicon.ico?v=1" },
-      ],
-    },
-    manifest: "/meta/site.webmanifest?v=1",
-    other: {
-      "msapplication-TileColor": "#de350b",
-      "msapplication-config": "/meta/browserconfig.xml?v=1",
-    },
     openGraph: {
       title,
       description,
@@ -89,14 +61,6 @@ export async function generateMetadata({
       type: "website",
       locale,
       siteName: "Zomaar Zomert",
-      images: [
-        {
-          url: "/assets/card.jpg",
-          width: 1200,
-          height: 630,
-          alt: "Zomaar Zomert",
-        },
-      ],
     },
   };
 }
@@ -117,6 +81,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} className={`${oswald.variable} ${openSans.variable}`}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body>
         <NextIntlClientProvider>
           <Layout>{children}</Layout>

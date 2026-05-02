@@ -1,8 +1,8 @@
 "use client";
 
+import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { LanguagePicker } from "@components/language-picker";
 import { MenuToggle } from "@components/menu-toggle";
-import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { Logo } from "@components/ui/logo";
 import { Link, usePathname } from "@lib/i18n/navigation";
 import { type AppPathname } from "@lib/i18n/routing";
