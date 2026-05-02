@@ -1,5 +1,4 @@
 import { Countdown } from "@components/countdown";
-import { Triangle } from "@components/icons/triangle";
 import { ImageCard } from "@components/image-card";
 import { Button } from "@components/ui/button";
 import { Logo } from "@components/ui/logo";
@@ -17,6 +16,8 @@ import {
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { Triangle } from "@/components/icons/Triangle";
 
 import { ConsentVideo } from "./_components/consent-video";
 import { HomeMarquees } from "./_components/home-marquees";

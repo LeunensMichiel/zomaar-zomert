@@ -1,16 +1,17 @@
 "use client";
 
-import { Facebook } from "@components/icons/facebook";
-import { Instagram } from "@components/icons/instagram";
-import { Youtube } from "@components/icons/youtube";
 import { LanguagePicker } from "@components/language-picker";
+import partners from "@lib/data/partners.json";
 import { Link } from "@lib/i18n/navigation";
 import { ZZ_DATES } from "@lib/models";
 import { cn } from "@lib/utils";
-import partners from "@lib/data/partners.json";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
+
+import { Facebook } from "@/components/icons/Facebook";
+import { Instagram } from "@/components/icons/Instagram";
+import { Youtube } from "@/components/icons/Youtube";
 
 const socialMotion = {
   initial: { y: 0, transition: { duration: 0.3, type: "spring" as const } },
