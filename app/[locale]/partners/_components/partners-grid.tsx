@@ -1,5 +1,6 @@
 "use client";
 
+import { FitText } from "@components/fit-text";
 import partners from "@lib/data/partners.json";
 import { motion, type Variants } from "motion/react";
 import Image from "next/image";
@@ -21,7 +22,7 @@ export function PartnersGrid() {
         .map((p) => (
           <motion.a
             key={p.name}
-            className="bg-brand-500 flex aspect-square items-center justify-center overflow-hidden p-16 text-center break-words text-white"
+            className="bg-brand-500 flex aspect-square items-center justify-center overflow-hidden p-16 text-center text-white"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true, amount: 0 }}
@@ -42,9 +43,10 @@ export function PartnersGrid() {
                 className="h-full w-full object-contain opacity-90"
               />
             ) : (
-              <span className="font-display inline-block w-full text-5xl leading-none text-white opacity-75">
-                {p.name}
-              </span>
+              <FitText
+                text={p.name}
+                className="font-display text-5xl leading-none text-white opacity-75"
+              />
             )}
           </motion.a>
         ))}

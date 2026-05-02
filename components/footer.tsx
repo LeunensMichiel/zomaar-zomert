@@ -1,5 +1,6 @@
 "use client";
 
+import { FitText } from "@components/fit-text";
 import { LanguagePicker } from "@components/language-picker";
 import partners from "@lib/data/partners.json";
 import { Link } from "@lib/i18n/navigation";
@@ -184,9 +185,10 @@ export function Footer() {
                       className="h-full w-full object-contain"
                     />
                   ) : (
-                    <span className="font-display block w-full text-center text-lg leading-none break-words text-white md:text-xl lg:text-2xl">
-                      {p.name}
-                    </span>
+                    <FitText
+                      text={p.name}
+                      className="font-display text-lg leading-none text-white md:text-xl lg:text-2xl"
+                    />
                   )}
                 </a>
               ))}
