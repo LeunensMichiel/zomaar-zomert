@@ -43,10 +43,10 @@ export function LineUpClient({ artists }: Props) {
 
   const filteredArtists = useMemo(() => {
     const today = new Date();
-    // Keep showing artists for 8 months after the festival ends so the
+    // Keep showing artists for 6 months after the festival ends so the
     // line-up page stays useful for archival/recap purposes off-season.
     const festivalEnd = new Date(ZZ_DATES[2]);
-    const endDate = new Date(festivalEnd.setMonth(festivalEnd.getMonth() + 8));
+    const endDate = new Date(festivalEnd.setMonth(festivalEnd.getMonth() + 6));
 
     const result = artists
       .filter(

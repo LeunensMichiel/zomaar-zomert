@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival _Zomaar Zomert_. UI is built on **Tailwind v4** + **shadcn/ui** (the `new-york` style on the `base-ui` registry — see [components.json](components.json)), so primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com) under the shadcn conventions.
 
+For the visual language, design tokens, and reusable primitives (stickers, paper tears, halftones, ticker strips, sticker buttons), see [Design.md](Design.md). The in-progress home redesign lives at [/redesign](app/%5Blocale%5D/redesign/page.tsx) — keep production work and the redesign visually consistent.
+
 ## Commands
 
 Package manager is **Yarn 4.14.1** (Berry) and Node `>=24`.

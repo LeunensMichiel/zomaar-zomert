@@ -33,6 +33,12 @@ export const buttonVariants = tv({
         "bg-transparent border-transparent text-white hover:text-gray-300 hover:border-white/15 focus:text-gray-300 focus:border-white/15 active:text-gray-100 active:border-white/50",
       "minimal-dark":
         "bg-transparent border-transparent text-gray-900 hover:text-gray-600 focus:text-gray-500 focus:border-black/15 active:text-gray-600 active:border-black/50",
+      brand:
+        "bg-brand-500 border-gray-900 text-white hover:bg-brand-600 active:bg-brand-700",
+      accent:
+        "bg-yellow-400 border-gray-900 text-gray-900 hover:bg-yellow-300 active:bg-yellow-500",
+      sky: "bg-blue-500 border-gray-900 text-white hover:bg-blue-400 active:bg-blue-700",
+      ink: "bg-gray-900 border-gray-900 text-yellow-300 hover:bg-gray-800 active:bg-black",
     },
     outlined: {
       true: "bg-transparent",
@@ -43,6 +49,11 @@ export const buttonVariants = tv({
       md: "text-base px-4 py-3 md:text-2xl lg:text-3xl xxl:text-4xl border-0",
       lg: "text-lg px-5 py-3 [&_svg]:h-6 [&_svg]:w-6",
       xl: "text-lg px-5 py-3 md:text-3xl lg:text-2xl xxl:text-4xl [&_svg]:h-6 [&_svg]:w-6",
+      "2xl":
+        "text-2xl px-6 py-4 md:text-4xl lg:text-5xl [&_svg]:h-7 [&_svg]:w-7 md:[&_svg]:h-9 md:[&_svg]:w-9",
+    },
+    sticker: {
+      true: "shadow-sticker-sm md:shadow-sticker hover:-translate-y-0.5 hover:[--sticker-y:8px] active:translate-y-0.5 active:[--sticker-y:2px] transition-all",
     },
     shape: {
       default: "rounded-none text-left",
@@ -107,6 +118,7 @@ export function Button<C extends ElementType = "button">({
   shape,
   circular,
   squared,
+  sticker,
   loading,
   iconLeft,
   iconRight,
@@ -135,6 +147,7 @@ export function Button<C extends ElementType = "button">({
           outlined,
           stretched,
           shape: resolvedShape,
+          sticker,
           loading,
         }),
         className,

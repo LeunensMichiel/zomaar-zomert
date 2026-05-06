@@ -9,7 +9,7 @@ import { type ReactNode } from "react";
 
 type Props = { children: ReactNode };
 
-const transparentRoutes = ["/"];
+const transparentRoutes = ["/", "/redesign"];
 
 export function Layout({ children }: Props) {
   const pathname = usePathname();

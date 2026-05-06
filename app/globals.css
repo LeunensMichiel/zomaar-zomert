@@ -272,3 +272,65 @@
     padding-block: 5rem;
   }
 }
+
+/* ---------- Redesign primitives ---------- */
+
+/* Halftone dot overlay — drop on top of imagery for the collage feel.
+   Two layered radial gradients sized 4px give a tight risograph dot. */
+@utility halftone {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.2) 1px, rgba(0, 0, 0, 0.18) 1px),
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
+  background-size: 4px 4px;
+  background-position:
+    0 0,
+    2px 2px;
+}
+@utility halftone-soft {
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1.2px),
+    radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1.2px);
+  background-size: 6px 6px;
+  background-position:
+    0 0,
+    3px 3px;
+}
+@utility halftone-dense {
+  background-image: radial-gradient(currentColor 1.4px, transparent 1.6px);
+  background-size: 8px 8px;
+  background-position: 0 0;
+}
+
+/* Hard offset shadow used for sticker-style buttons & cards.
+   --offset and --color drive direction & color so utilities can override. */
+@utility shadow-sticker {
+  --sticker-x: 6px;
+  --sticker-y: 6px;
+  --sticker-color: var(--color-gray-900);
+  box-shadow: var(--sticker-x) var(--sticker-y) 0 0 var(--sticker-color);
+}
+@utility shadow-sticker-sm {
+  --sticker-x: 3px;
+  --sticker-y: 3px;
+  --sticker-color: var(--color-gray-900);
+  box-shadow: var(--sticker-x) var(--sticker-y) 0 0 var(--sticker-color);
+}
+@utility shadow-sticker-lg {
+  --sticker-x: 10px;
+  --sticker-y: 10px;
+  --sticker-color: var(--color-gray-900);
+  box-shadow: var(--sticker-x) var(--sticker-y) 0 0 var(--sticker-color);
+}
+
+/* Tape strip — small piece of "washi" tape for collage corners. */
+@utility tape-strip {
+  background: var(--color-yellow-200);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.06) 0,
+    rgba(0, 0, 0, 0.06) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
