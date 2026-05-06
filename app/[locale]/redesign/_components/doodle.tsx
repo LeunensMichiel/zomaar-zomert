@@ -260,12 +260,7 @@ function renderShape(
     case "eye":
       return (
         <g>
-          <path
-            d={EYE_OUTLINE}
-            fill="none"
-            stroke={fill}
-            strokeWidth={6}
-          />
+          <path d={EYE_OUTLINE} fill="none" stroke={fill} strokeWidth={6} />
           <circle cx={50} cy={50} r={16} fill={fill} />
         </g>
       );
@@ -347,12 +342,7 @@ function renderShape(
       );
     case "peace":
       return (
-        <g
-          fill="none"
-          stroke={fill}
-          strokeWidth={8}
-          strokeLinecap="round"
-        >
+        <g fill="none" stroke={fill} strokeWidth={8} strokeLinecap="round">
           <circle cx={50} cy={50} r={38} />
           <line x1={50} y1={12} x2={50} y2={88} />
           <line x1={50} y1={50} x2={24} y2={76} />
@@ -382,12 +372,7 @@ function renderShape(
       );
     case "radio-waves":
       return (
-        <g
-          fill="none"
-          stroke={fill}
-          strokeWidth={6}
-          strokeLinecap="round"
-        >
+        <g fill="none" stroke={fill} strokeWidth={6} strokeLinecap="round">
           <path d="M30 70 Q50 38 70 70" />
           <path d="M18 80 Q50 24 82 80" />
           <path d="M6 90 Q50 12 94 90" />
@@ -469,14 +454,8 @@ function renderShape(
     case "wave-pair":
       return (
         <g fill="none" strokeLinecap="round" strokeWidth={9}>
-          <path
-            d="M 6 36 Q 28 16 50 36 T 96 36"
-            stroke={fill}
-          />
-          <path
-            d="M 6 64 Q 28 84 50 64 T 96 64"
-            stroke={accent}
-          />
+          <path d="M 6 36 Q 28 16 50 36 T 96 36" stroke={fill} />
+          <path d="M 6 64 Q 28 84 50 64 T 96 64" stroke={accent} />
         </g>
       );
     case "striped-rect":
@@ -485,13 +464,7 @@ function renderShape(
           <rect x={6} y={6} width={88} height={88} fill={fill} />
           <g fill={accent}>
             {Array.from({ length: 5 }).map((_, i) => (
-              <rect
-                key={i}
-                x={6}
-                y={10 + i * 18}
-                width={88}
-                height={8}
-              />
+              <rect key={i} x={6} y={10 + i * 18} width={88} height={8} />
             ))}
           </g>
         </g>
@@ -575,10 +548,7 @@ function renderShape(
       // Sticker-tag silhouette with a small accent-color hole.
       return (
         <g>
-          <path
-            d="M14 30 L50 8 L86 30 L86 84 L14 84 Z"
-            fill={fill}
-          />
+          <path d="M14 30 L50 8 L86 30 L86 84 L14 84 Z" fill={fill} />
           <circle cx={50} cy={28} r={5} fill={accent} />
         </g>
       );

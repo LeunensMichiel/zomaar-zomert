@@ -137,6 +137,20 @@ Existing component, now with extra variants for the redesign:
 
 The legacy variants (`primary`, `transparent`, `minimal*`) are unchanged so existing pages keep their look.
 
+### Navigation — kinetic full-screen menu — [components/navbar.tsx](components/navbar.tsx)
+
+The menu is a Base UI `Dialog` that takes over the viewport when triggered. Notes:
+
+- **Header** — permanently `position: fixed`. As the page scrolls past the first 120px, vertical padding tightens and the logo scales to 70% via `motion`'s `useScroll` + `useTransform` (no CSS keyframes — the motion values feed `motion.nav` and `motion.div` directly).
+- **Backdrop** — `bg-brand-500/65` (intentionally translucent) with `backdrop-blur-2xl` and a `halftone` overlay on top, so the page underneath shows through tinted, blurred, and halftoned. The popup itself stays put; an inner `motion.div` slides the colored layer down from `translate-y: -100%` to `0` (the "gate" drop). No more clip-path reveal.
+- **Link stagger** — the link list runs `motion` parent/child variants: `staggerChildren: 0.05`, `delayChildren: 0.35`, each link transitions `opacity 0 → 1` + `y: 30 → 0`. Reverse stagger on close.
+- **Kinetic hover** — every menu link wraps two stacked copies of the label in a CSS grid cell with `overflow-hidden` + `leading-none` on the wrapper (so the row is exactly one glyph tall and `translate-y-full` is a clean 100% shift). On `:hover` / `:focus-visible` both copies translate up together — original slides out the top, the yellow duplicate slides in from below. Pure CSS, no JS.
+- **Sizing** — `text-4xl md:text-6xl xl:text-7xl` with `py-2.5 px-4` on mobile (44px+ tap target, 8px gap between rows) tightening to `md:py-1` + `md:gap-1` on larger viewports. Tight enough that all six items fit on common breakpoints, loose enough that mobile fingers don't mis-tap.
+- **Locale switcher** — uses [`<LocaleSwitcher>`](components/locale-switcher.tsx) (the previous globe-icon-opens-a-modal pattern is gone). Three two-letter codes (`NL FR EN`); inactive sit at `opacity-50`, the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Keep it subtle — only visible while the menu is open, fading in once the link stagger settles.
+- **Base UI integration** — `BaseDialog.Portal keepMounted` keeps the popup in the DOM so `motion`-driven exits play out. Use `data-closed:pointer-events-none` so the popup doesn't intercept clicks while invisible.
+
+When adding new menu items, keep the size scale and the `<span className="grid overflow-hidden leading-none">` wrapper so the kinetic swap stays in sync.
+
 ## Layout & spacing
 
 - Use `container-wide` for the redesign — `1640px` max width, more breathing room than `container-page`. The existing home page also uses `container-wide`.

@@ -366,7 +366,7 @@ export default async function RedesignHome({ params }: Props) {
       <section className="relative overflow-hidden bg-pink-50">
         {/* Big flame anchor in the right bleed + one small spiral. */}
         <Doodle
-          shape="flame"
+          shape="cross"
           color="brand"
           rotate={-8}
           grain

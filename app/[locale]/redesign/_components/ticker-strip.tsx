@@ -45,12 +45,12 @@ export function TickerStrip({
           <span
             key={`${String(i)}-${item}`}
             className={cn(
-              "mx-4 inline-flex items-center gap-4 text-xl tracking-tight md:mx-6 md:text-2xl xl:text-3xl",
+              "inline-flex items-center text-xl tracking-tight md:text-2xl xl:text-3xl",
               itemClassName,
             )}
           >
             <span>{item}</span>
-            <span aria-hidden="true" className="opacity-60">
+            <span aria-hidden="true" className="mx-4 md:mx-6">
               {separator}
             </span>
           </span>
