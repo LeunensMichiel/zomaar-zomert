@@ -32,6 +32,13 @@ import { TickerStrip } from "@/app/[locale]/redesign/_components/ticker-strip";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
+type Headliner = {
+  name: string;
+  hour: string;
+  day: "friday" | "saturday" | "sunday";
+  imgSrc: string;
+};
+
 const days: Array<{ date: string; image: string }> = [
   { date: ZZ_DATE_FRIDAY, image: "/assets/days/friday.webp" },
   { date: ZZ_DATE_SATURDAY, image: "/assets/days/saturday.webp" },
@@ -64,13 +71,38 @@ export default async function RedesignHome({ params }: Props) {
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const signupDisabled = !isSignupOpen();
 
-  // Pick up to 3 headliners from the data file. Pad with placeholders if fewer.
-  const headliners = artistsData.slice(0, 3).map((a) => ({
-    name: a.name,
-    hour: a.hour,
-    day: a.day as "friday" | "saturday" | "sunday",
-    imgSrc: a.imgSrc,
-  }));
+  // Mirror the line-up page's TBA logic: only show artists whose `showFrom`
+  // date has passed and that belong to this edition, then pad to 3 with TBA
+  // placeholder cards so the row is always visually complete.
+  // Server components re-execute per request, so reading the clock at render
+  // is safe — react-hooks/purity targets re-rendering client components.
+  // eslint-disable-next-line react-hooks/purity
+  const today = Date.now();
+  const visibleHeadliners: Headliner[] = artistsData
+    .filter(
+      (a) =>
+        new Date(a.showFrom).getTime() <= today &&
+        new Date(a.showFrom).getFullYear() >= ZZ_YEAR,
+    )
+    .slice(0, 3)
+    .map((a) => ({
+      name: a.name,
+      hour: a.hour,
+      day: a.day as "friday" | "saturday" | "sunday",
+      imgSrc: a.imgSrc,
+    }));
+  const headliners: Headliner[] = [
+    ...visibleHeadliners,
+    ...Array.from(
+      { length: 3 - visibleHeadliners.length },
+      (): Headliner => ({
+        name: "TBA",
+        hour: "",
+        day: "friday",
+        imgSrc: "",
+      }),
+    ),
+  ];
 
   // Highlight a small sampling of partner logos in the partners teaser.
   const partnerSamples = partnersData
@@ -168,7 +200,12 @@ export default async function RedesignHome({ params }: Props) {
             fully visible below. Use `tear={5}` — its natural ink
             aspect (~22:1) is the most compact. */}
         <div className="relative z-20">
-          <PaperTear edge="top" tear={5} color="yellow-400" />
+          <PaperTear
+            edge="top"
+            tear={5}
+            color="yellow-400"
+            className="translate-y-px"
+          />
           <TickerStrip
             items={tHome.raw("ticker") as string[]}
             speed={50}
@@ -181,8 +218,8 @@ export default async function RedesignHome({ params }: Props) {
           INTRO + COUNTDOWN — short story of the festival next to a
           big countdown. The countdown component is unchanged.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-pink-50">
-        <PaperTear edge="top" tear={3} color="pink-50" bgColor="yellow-400" />
+      <section className="relative isolate overflow-x-clip bg-pink-50">
+        <PaperTear edge="top" tear={4} bgColor="pink-50" color="yellow-400" />
         {/* One big anchor in the lower-left bleed; one tiny accent. */}
         <Doodle
           shape="halftone-blob"
@@ -199,7 +236,7 @@ export default async function RedesignHome({ params }: Props) {
           rotate={8}
           className="absolute top-12 left-6 h-10 w-10 md:top-16 md:left-12 md:h-14 md:w-14"
         />
-        <div className="container-wide section-y grid gap-10 md:gap-16 lg:grid-cols-12">
+        <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             {/* Poster-style display word — replaces the eyebrow + sentence
                 title with a single oversized statement. */}
@@ -260,7 +297,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           DAYS — three hand-cut cards with sticker numbers
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-pink-300">
+      <section className="relative isolate overflow-x-clip bg-pink-300">
         <PaperTear edge="top" tear={2} color="pink-50" />
         {/* Big anchor in the right bleed + one tiny accent. */}
         <Doodle
@@ -278,7 +315,7 @@ export default async function RedesignHome({ params }: Props) {
           rotate={-12}
           className="absolute bottom-20 left-6 hidden h-10 w-10 md:left-12 md:block md:h-14 md:w-14"
         />
-        <div className="container-wide section-y">
+        <div className="container-wide section-y relative z-20">
           {/* Just an eyebrow — the day cards do the talking. */}
           <div className="mb-10 md:mb-14">
             <Sticker color="ink" size="sm" rotate={-3}>
@@ -305,7 +342,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           HEADLINERS — featured artists w/ overlay sticker
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-blue-500 text-white">
+      <section className="relative isolate overflow-x-clip bg-blue-500 text-white">
         {/* Big halftone star bleeding off the right + one small note. */}
         <Doodle
           shape="halftone-star"
@@ -320,7 +357,7 @@ export default async function RedesignHome({ params }: Props) {
           color="yellow"
           className="absolute bottom-32 left-6 hidden h-10 w-10 md:left-12 md:block md:h-14 md:w-14"
         />
-        <div className="container-wide section-y">
+        <div className="container-wide section-y relative z-20">
           {/* Single oversized poster word — context speaks for itself. */}
           <div className="mb-10 flex flex-col items-start gap-6 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-10">
             <h2 className="text-7xl leading-[0.85] text-yellow-400 md:text-[10rem] xl:text-[14rem]">
@@ -342,7 +379,7 @@ export default async function RedesignHome({ params }: Props) {
           <div className="grid gap-10 md:gap-8 lg:grid-cols-3">
             {headliners.map((h, i) => (
               <HeadlinerCard
-                key={h.name}
+                key={`${h.name}_${i}`}
                 name={h.name}
                 hour={h.hour}
                 day={h.day}
@@ -361,7 +398,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           ACTIVITIES — bento layout: paella + petanque + food + crew
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-pink-50">
+      <section className="relative isolate overflow-x-clip bg-pink-50">
         {/* Big flame anchor in the right bleed + one small spiral. */}
         <Doodle
           shape="cross"
@@ -376,7 +413,7 @@ export default async function RedesignHome({ params }: Props) {
           rotate={-15}
           className="absolute right-1/3 bottom-12 hidden h-10 w-10 md:block md:h-14 md:w-14"
         />
-        <div className="container-wide section-y">
+        <div className="container-wide section-y relative z-20">
           {/* Single oversized poster word, no sentence-y subtitle. */}
           <h2 className="text-brand-500 mb-10 text-7xl leading-[0.85] md:mb-14 md:text-9xl xl:text-[14rem]">
             Doe mee.
@@ -494,43 +531,18 @@ export default async function RedesignHome({ params }: Props) {
             </article>
           </div>
         </div>
-        <PaperTear edge="bottom" tear={5} bgColor="brand-500" color="pink-50" />
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          AFTERMOVIE — keep the existing consent video section,
-          wrap with eyebrow/title and stronger frame.
-          ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative overflow-hidden text-pink-50">
-        {/* Single oversized peace sign in the bleed + a small note. */}
-        <Doodle
-          shape="peace"
-          color="yellow"
-          rotate={20}
-          className="absolute -top-16 -right-16 h-56 w-56 md:-top-24 md:-right-24 md:h-96 md:w-96"
+        <PaperTear
+          edge="bottom"
+          tear={5}
+          bgColor="yellow-400"
+          color="pink-50"
         />
-        <Doodle
-          shape="note"
-          color="yellow"
-          rotate={-12}
-          grain
-          className="absolute right-1/4 bottom-12 hidden h-12 w-12 md:block md:h-16 md:w-16"
-        />
-        <div className="container-wide pt-12 md:pt-20">
-          <h2 className="mb-8 text-7xl leading-[0.85] text-pink-50 md:mb-12 md:text-9xl xl:text-[14rem]">
-            Aftermovie.
-          </h2>
-        </div>
-        <div className="pb-16 md:pb-24">
-          <ConsentVideo />
-        </div>
-        <PaperTear edge="bottom" tear={6} color="yellow-400" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           GALLERY — keep marquees, frame them like a polaroid wall
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-yellow-400">
+      <section className="relative isolate overflow-x-clip bg-yellow-400">
         {/* Single huge flower in the right gutter + a small arrow. */}
         <Doodle
           shape="flower"
@@ -546,22 +558,54 @@ export default async function RedesignHome({ params }: Props) {
           rotate={-6}
           className="absolute bottom-12 left-6 hidden h-10 w-10 md:left-12 md:block md:h-14 md:w-14"
         />
-        <div className="container-wide pt-16 md:pt-20">
+        <div className="container-wide relative z-20 pt-16 md:pt-20">
           <h2 className="text-7xl leading-[0.85] text-gray-900 md:text-9xl xl:text-[14rem]">
             Vibes.
           </h2>
         </div>
-        <div className="relative mt-8 mb-16 md:mt-12 md:mb-24">
+        <div className="relative">
+          <PaperTear
+            className="absolute top-0 z-40"
+            edge="top"
+            tear={7}
+            color="yellow-400"
+          />
           <PhotoMarquees />
+          <PaperTear
+            className="absolute bottom-0 z-40"
+            edge="bottom"
+            tear={6}
+            color="brand-500"
+          />
         </div>
-        <PaperTear edge="bottom" tear={7} color="brand-500" />
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          AFTERMOVIE — untitled; the Vibes section above already sets
+          the visual mood, so the video gets to speak for itself.
+          ─────────────────────────────────────────────────────────────*/}
+      <section className="bg-brand-500 relative isolate overflow-x-clip text-pink-50">
+        {/* Single oversized peace sign in the bleed + a small note. */}
+        <Doodle
+          shape="peace"
+          color="yellow"
+          rotate={20}
+          className="absolute -top-16 -right-16 h-56 w-56 md:-top-24 md:-right-24 md:h-96 md:w-96"
+        />
+        <Doodle
+          shape="note"
+          color="yellow"
+          rotate={-12}
+          grain
+          className="absolute right-1/4 bottom-12 hidden h-12 w-12 md:block md:h-16 md:w-16"
+        />
+        <ConsentVideo />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           NUMBERS — chunky stat stickers on a brand-orange field
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative overflow-hidden text-pink-50">
-        <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
+      <section className="bg-brand-500 relative isolate overflow-x-clip text-pink-50">
         {/* Big burst anchor + one small wave for variation. */}
         <Doodle
           shape="burst-dot"
@@ -578,7 +622,7 @@ export default async function RedesignHome({ params }: Props) {
           rotate={-8}
           className="absolute right-1/4 bottom-12 hidden h-12 w-12 md:block md:h-16 md:w-16"
         />
-        <div className="container-wide section-y relative">
+        <div className="container-wide section-y relative z-20">
           {/* No header — the stat stickers are the design. */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {[
@@ -589,7 +633,7 @@ export default async function RedesignHome({ params }: Props) {
                 tilt: -2,
               },
               {
-                value: "30+",
+                value: "10+",
                 label: tHome("numbers.artists"),
                 tone: "bg-pink-50 text-gray-900",
                 tilt: 2,
@@ -629,7 +673,7 @@ export default async function RedesignHome({ params }: Props) {
           PARTNERS TEASER — small partner cluster + CTA. Full list
           remains in the global footer.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-pink-50">
+      <section className="relative isolate overflow-x-clip bg-pink-50">
         {/* Big radio-waves anchor in the bottom-right + a small smile. */}
         <Doodle
           shape="radio-waves"
@@ -643,7 +687,7 @@ export default async function RedesignHome({ params }: Props) {
           rotate={6}
           className="absolute top-12 right-6 h-12 w-12 md:top-20 md:right-12 md:h-16 md:w-16"
         />
-        <div className="container-wide section-y grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="container-wide section-y relative z-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Sticker color="brand" size="sm" rotate={-3}>
               {tHome("partners.eyebrow")}
@@ -715,7 +759,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           CLOSING CTA — last loud moment before the footer.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-gray-900 text-pink-50">
+      <section className="relative isolate overflow-x-clip bg-gray-900 text-pink-50">
         <div className='halftone absolute inset-0 opacity-25 mix-blend-screen content-[""]' />
         <PaperTear edge="top" tear={6} color="pink-50" />
         {/* One huge halftone-star anchor + a small bars accent. */}
@@ -733,7 +777,7 @@ export default async function RedesignHome({ params }: Props) {
           rotate={-6}
           className="absolute top-44 left-1/3 hidden h-10 w-10 md:block md:h-14 md:w-14"
         />
-        <div className="container-wide section-y relative grid gap-10 md:gap-16 lg:grid-cols-12">
+        <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Sticker color="brand" size="sm" rotate={-4}>
               {tHome("cta.eyebrow")}

@@ -322,6 +322,23 @@
   box-shadow: var(--sticker-x) var(--sticker-y) 0 0 var(--sticker-color);
 }
 
+/*
+ * Keep Base UI's `Dialog.Popup` mounted for the duration of our motion-driven
+ * close animation. Base UI calls `setMounted(false)` (which sets the `hidden`
+ * attribute) as soon as `element.getAnimations()` on the popup reports zero
+ * animations — but our exit animations live on inner `motion.div`s, not on
+ * the popup itself. This no-op CSS animation gives the popup a real
+ * Web-Animations-API entry to wait for, so it stays visible until the inner
+ * motion exits finish. Keep the duration in sync with the longest inner exit
+ * (currently the 0.3s backdrop slide-out).
+ */
+@keyframes dialog-stay-mounted {
+  from,
+  to {
+    opacity: 1;
+  }
+}
+
 /* Tape strip — small piece of "washi" tape for collage corners. */
 @utility tape-strip {
   background: var(--color-yellow-200);

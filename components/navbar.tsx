@@ -32,19 +32,17 @@ const NAV_LINKS: NavLinkData[] = [
 const ease = [0.22, 0.61, 0.36, 1] as const;
 
 const containerVariants = {
-  hidden: {},
+  hidden: {
+    transition: { staggerChildren: 0.02, staggerDirection: -1 },
+  },
   visible: {
     transition: { staggerChildren: 0.05, delayChildren: 0.35 },
-  },
-  exit: {
-    transition: { staggerChildren: 0.03, staggerDirection: -1 },
   },
 };
 
 const linkItemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 30, transition: { duration: 0.18, ease } },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-  exit: { opacity: 0, y: 30, transition: { duration: 0.3, ease } },
 };
 
 function NavLink({
@@ -162,14 +160,14 @@ export function Navbar({ isTransparent = false }: NavbarProps) {
 
       <BaseDialog.Portal keepMounted>
         <BaseDialog.Backdrop className="fixed inset-0 z-40 bg-black/0" />
-        <BaseDialog.Popup className="fixed inset-0 z-40 outline-none data-closed:pointer-events-none">
+        <BaseDialog.Popup className="fixed inset-0 z-40 outline-none data-closed:pointer-events-none data-closed:animate-[dialog-stay-mounted_300ms]">
           <BaseDialog.Title className="sr-only">Menu</BaseDialog.Title>
 
           {/* Backdrop slides down from the top — the "gate" drop. */}
           <motion.div
             initial={false}
             animate={{ y: open ? "0%" : "-100%" }}
-            transition={{ duration: 0.55, ease }}
+            transition={{ duration: open ? 0.55 : 0.3, ease }}
             className="bg-brand-500/65 absolute inset-0 backdrop-blur-2xl"
           >
             <div

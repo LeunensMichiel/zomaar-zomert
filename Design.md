@@ -99,7 +99,7 @@ Examples that earn their place: a 96–128 unit `halftone-star` bleeding off the
 
 ### `<PaperTear>` — [app/[locale]/redesign/_components/paper-tear.tsx](app/%5Blocale%5D/redesign/_components/paper-tear.tsx)
 
-Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each `<path d="…">` inline so we control `fill` directly — no `mask-image` recolor trickery. Renders as an in-flow `block` element — drop it as the first or last child of a section and the tear sits flush at that section's edge. No absolute positioning means it isn't clipped when the section uses `overflow-hidden` to contain bleeding doodles.
+Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each `<path d="…">` inline so we control `fill` directly — no `mask-image` recolor trickery. Renders as an in-flow `block` element with `relative z-0` (lowest layer in the section's z-stack) and a 1px negative margin (`-mt-px` for `edge="top"`, `-mb-px` for `edge="bottom"`) that bleeds the tear into the adjacent section to hide sub-pixel rendering hairlines. Drop it as the first or last child of a section and it sits flush at that section's edge — see the section template below.
 
 Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only occupies a slice of that — anywhere from ~520 (tear-4, tear-5) to ~1300 units tall (tear-1). The component stores a per-tear cropped viewBox in `TEAR_VIEWBOX` so the rendered SVG's intrinsic aspect matches the visible ink. Result: the box on screen is exactly the size of the tear, no phantom empty area.
 
@@ -178,6 +178,16 @@ When adding new menu items, keep the size scale and the `<span className="grid o
 - Vertical rhythm via `section-y` (3rem mobile / 6rem md / 9rem xl) and `section-y-sm` (3rem / 5rem). Stick to these — don't hand-roll padding values.
 - Cards: 2px solid black border + `shadow-sticker[-lg]`. No drop shadows, no rounded corners.
 - Mobile is the primary canvas — 80% of traffic. Card stacks should collapse to a single column comfortably; tilt remains visible at any breakpoint.
+
+### Section template & z-layering
+
+Each redesign section is `relative isolate overflow-x-clip bg-X` — `isolate` gives the section its own stacking context, `overflow-x-clip` lets bleeding doodles get clipped horizontally without clipping the tear's vertical 1px bleed (regular `overflow-hidden` would clip both). Inside, the layers are explicit:
+
+- `<PaperTear>` ships `relative z-0` — lowest.
+- `<Doodle>` ships `z-10` (effective when the consumer adds `absolute …`) — middle.
+- Each content wrapper gets `relative z-20` — top.
+
+Without the explicit `z-20` on the content wrapper, non-positioned content paints at CSS step 3 (in-flow) which sits _below_ `absolute z-auto` doodles — leading to doodles overlapping headlines.
 
 ## Motion
 

@@ -126,7 +126,7 @@ export function Doodle({
     <svg
       aria-hidden="true"
       viewBox="0 0 100 100"
-      className={cn("pointer-events-none block select-none", className)}
+      className={cn("pointer-events-none z-10 block select-none", className)}
       style={{
         transform: `rotate(${String(rotate)}deg)`,
         ...style,
@@ -150,15 +150,15 @@ export function Doodle({
         <filter id={grainId}>
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="2.4"
-            numOctaves={2}
+            baseFrequency="8"
+            numOctaves={100}
             stitchTiles="stitch"
             result="noise"
           />
           <feColorMatrix
             in="noise"
             type="matrix"
-            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.3 0"
             result="grain"
           />
           <feComposite
