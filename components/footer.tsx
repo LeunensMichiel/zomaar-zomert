@@ -4,12 +4,14 @@ import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import partners from "@lib/data/partners.json";
 import { Link } from "@lib/i18n/navigation";
-import { ZZ_DATES } from "@lib/models";
+import { ZZ_DATES, ZZ_YEAR } from "@lib/models";
 import { cn } from "@lib/utils";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { PaperTear } from "@/app/[locale]/redesign/_components/paper-tear";
+import { StarBurst } from "@/app/[locale]/redesign/_components/star-burst";
 import { Facebook } from "@/components/icons/Facebook";
 import { Instagram } from "@/components/icons/Instagram";
 import { Youtube } from "@/components/icons/Youtube";
@@ -239,40 +241,109 @@ export async function Footer() {
       <footer className="mt-auto w-full bg-gray-900 text-white">
         <div className="container-wide section-y-sm">
           <div className="grid gap-12 md:gap-16 lg:grid-cols-12">
-            <div className="flex flex-col items-start lg:col-span-5">
-              <ColumnHeading rotate={-3}>
-                {t("footer.contact.title")}
-              </ColumnHeading>
-              <address className="font-display text-3xl leading-[1.05] not-italic md:text-4xl lg:text-5xl">
-                <a
-                  href="mailto:info@zomaarzomert.be"
-                  className="block break-all transition-colors hover:text-yellow-400 focus-visible:text-yellow-400"
-                >
-                  info@zomaarzomert.be
-                </a>
-                <span className="mt-3 block text-base leading-snug font-normal tracking-normal normal-case opacity-80 md:text-lg">
-                  Plankenstraat 23
-                  <br />
-                  1701 Itterbeek
-                </span>
-              </address>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/contact">
-                  <Button as="span" variant="accent" size="sm" sticker>
-                    {t("footer.contact.contact")}
-                  </Button>
-                </Link>
-                <Link href="/info">
-                  <Button
-                    as="span"
-                    variant="ink"
-                    size="sm"
-                    sticker
-                    className="border-yellow-400"
-                  >
-                    {t("footer.contact.activities")}
-                  </Button>
-                </Link>
+            <div className="lg:col-span-5">
+              {/* Postcard collage — the contact column reads like a
+                  pinned festival postcard rather than a stacked text
+                  block. Tape strips, halftone wash, dashed cut-line,
+                  postmark stamp, and a slight tilt do the work. */}
+              <div className="relative">
+                <span
+                  aria-hidden="true"
+                  className="tape-strip absolute -top-2 left-8 z-30 h-5 w-24 -rotate-[16deg] md:left-12"
+                />
+                <span
+                  aria-hidden="true"
+                  className="tape-strip absolute -top-3 right-10 z-30 h-5 w-20 rotate-12"
+                />
+
+                <article className="shadow-sticker-lg relative -rotate-1 border-2 border-gray-900 bg-pink-50 p-6 text-gray-900 md:p-8">
+                  <div
+                    aria-hidden="true"
+                    className="halftone pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply"
+                  />
+
+                  <div className="relative">
+                    <div className="flex items-center justify-between gap-4">
+                      <Sticker color="yellow" size="xs" rotate={-3}>
+                        {t("footer.contact.title")}
+                      </Sticker>
+                      <span
+                        aria-hidden="true"
+                        className="font-display hidden text-[10px] tracking-[0.3em] uppercase opacity-50 md:inline"
+                      >
+                        ZZ // {ZZ_YEAR}
+                      </span>
+                    </div>
+
+                    <a
+                      href="mailto:info@zomaarzomert.be"
+                      className="font-display text-brand-500 hover:text-brand-700 focus-visible:text-brand-700 mt-5 block text-3xl leading-[0.92] tracking-tight break-all uppercase transition-colors md:text-4xl lg:text-5xl"
+                    >
+                      info@zomaarzomert.be
+                    </a>
+
+                    <div
+                      aria-hidden="true"
+                      className="my-6 flex items-center gap-3"
+                    >
+                      <span className="font-display text-[10px] tracking-[0.25em] uppercase opacity-50">
+                        Adres
+                      </span>
+                      <span className="h-px flex-1 border-t border-dashed border-gray-900/40" />
+                    </div>
+
+                    <div className="flex items-end justify-between gap-4">
+                      <address className="text-sm leading-relaxed not-italic md:text-base">
+                        Plankenstraat 23
+                        <br />
+                        1701 Itterbeek
+                        <br />
+                        <span className="opacity-60">BELGIË</span>
+                      </address>
+
+                      <div className="shrink-0">
+                        <StarBurst
+                          fill="text-brand-500"
+                          className="h-24 w-24 md:h-28 md:w-28"
+                          style={{ transform: "rotate(-12deg)" }}
+                        >
+                          <span className="font-display px-1 text-center text-[10px] leading-none tracking-widest text-pink-50 uppercase">
+                            ZZ
+                            <br />
+                            EDITIE
+                            <br />
+                            {String(ZZ_YEAR).slice(-2)}
+                          </span>
+                        </StarBurst>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <div className="mt-10 flex flex-wrap items-start gap-3 md:mt-12">
+                  <Link href="/contact" className="inline-block rotate-1">
+                    <Button
+                      as="span"
+                      variant="accent"
+                      size="md"
+                      sticker
+                      iconRight={<ChevronRight />}
+                    >
+                      {t("footer.contact.contact")}
+                    </Button>
+                  </Link>
+                  <Link href="/info" className="inline-block -rotate-2">
+                    <Button
+                      as="span"
+                      variant="brand"
+                      size="md"
+                      sticker
+                      iconRight={<ChevronRight />}
+                    >
+                      {t("footer.contact.activities")}
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 

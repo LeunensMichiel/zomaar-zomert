@@ -119,7 +119,7 @@ export default async function RedesignHome({ params }: Props) {
           the viewport on first load. The transparent navbar sits on top
           (handled in components/layout.tsx via `transparentRoutes`).
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate flex min-h-dvh w-full flex-col overflow-hidden bg-gray-900 text-white">
+      <section className="relative isolate flex min-h-dvh w-full flex-col overflow-hidden bg-blue-900 text-white">
         <video
           playsInline
           autoPlay
@@ -131,32 +131,30 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 -z-10 bg-linear-to-b from-gray-900/40 via-gray-900/30 to-gray-900/80" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-b from-blue-900/40 via-blue-900/30 to-blue-900/80" />
         <div className='halftone absolute inset-0 -z-10 opacity-90 mix-blend-multiply content-[""]' />
 
         {/* Scatter doodles — sparse and size-varied so it reads as a
             hand-pinned poster, not a sticker-bombed laptop. One large
             anchor + one mid + one tiny accent per region. */}
         <Doodle
-          shape="halftone-star"
-          color="yellow"
-          accent="brand"
+          shape="sun-rays"
+          color="royal-yellow"
+          accent="summer-red"
           rotate={-14}
-          grain
-          className="absolute top-24 -left-8 z-10 h-44 w-44 md:top-28 md:-left-12 md:h-72 md:w-72 lg:top-32 lg:-left-16 lg:h-96 lg:w-96"
-        />
-        <Doodle
-          shape="squiggle"
-          color="pink"
-          rotate={12}
-          className="absolute top-36 right-4 z-10 h-12 w-12 md:top-40 md:right-12 md:h-20 md:w-20"
+          className="absolute top-24 -left-8 z-10 h-44 md:top-28 md:-left-12 md:h-72 lg:top-32 lg:-left-16 lg:h-96"
         />
         <Doodle
           shape="lightning"
-          color="yellow"
+          color="pink"
+          rotate={12}
+          className="absolute top-36 right-4 z-10 h-12 md:top-40 md:right-12 md:h-20"
+        />
+        <Doodle
+          shape="coil"
+          color="summer-red"
           rotate={-10}
-          grain
-          className="absolute right-1/4 bottom-44 z-10 hidden h-8 w-8 md:block"
+          className="absolute right-1/4 bottom-44 z-10 hidden h-10 md:block md:h-14"
         />
 
         {/* Logo + date — vertically centered. The marquee sits flush at
@@ -218,23 +216,20 @@ export default async function RedesignHome({ params }: Props) {
           INTRO + COUNTDOWN — short story of the festival next to a
           big countdown. The countdown component is unchanged.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-pink-50">
+      <section className="relative isolate bg-pink-50">
         <PaperTear edge="top" tear={4} bgColor="pink-50" color="yellow-400" />
         {/* One big anchor in the lower-left bleed; one tiny accent. */}
         <Doodle
-          shape="halftone-blob"
-          color="brand"
-          accent="ink"
+          shape="flame"
           rotate={-12}
-          grain
-          className="absolute -bottom-15 -left-12 h-48 w-48 md:-right-20 md:-bottom-50 md:left-auto md:h-80 md:w-80 lg:h-112 lg:w-md"
+          className="absolute -bottom-12 -left-12 h-48 md:-right-16 md:-bottom-16 md:left-auto md:h-80 lg:h-112"
         />
         <Doodle
-          shape="smile"
-          color="yellow"
-          accent="ink"
+          shape="cross"
+          color="dimmed-led"
+          accent="summer-red"
           rotate={8}
-          className="absolute top-12 left-6 h-10 w-10 md:top-16 md:left-12 md:h-14 md:w-14"
+          className="absolute top-12 left-6 h-10 md:top-16 md:left-12 md:h-14"
         />
         <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -276,7 +271,7 @@ export default async function RedesignHome({ params }: Props) {
           {/* Countdown panel — date repeated below the clock was redundant
               with the hero stickers, so it's gone. */}
           <div className="relative lg:col-span-5">
-            <div className="bg-brand-500 shadow-sticker-lg relative border-2 border-gray-900 p-6 text-pink-50 md:p-8">
+            <div className="bg-linear-red shadow-sticker-lg relative border-2 border-gray-900 p-6 text-pink-50 md:p-8">
               <div className='halftone absolute inset-0 z-0 opacity-25 mix-blend-screen content-[""]' />
               <div className="relative z-10 flex flex-col gap-6">
                 <Sticker color="yellow" size="sm" rotate={-3}>
@@ -297,23 +292,21 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           DAYS — three hand-cut cards with sticker numbers
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-pink-300">
+      <section className="relative isolate bg-pink-300">
         <PaperTear edge="top" tear={2} color="pink-50" />
-        {/* Big anchor in the right bleed + one tiny accent. */}
+        {/* Big anchor in the right bleed + one tiny accent. The `eye` is
+            the lone inline doodle we kept from the original set. */}
         <Doodle
-          shape="eye-iris"
+          shape="eye"
           color="ink"
-          accent="brand"
           rotate={8}
-          grain
           className="absolute -top-12 left-16 h-56 w-56 md:-top-20 md:-right-24 md:h-80 md:w-80 lg:h-96 lg:w-96"
         />
         <Doodle
-          shape="checkered"
-          color="ink"
-          accent="pink"
+          shape="zz"
+          color="royal-yellow"
           rotate={-12}
-          className="absolute bottom-20 left-6 hidden h-10 w-10 md:left-12 md:block md:h-14 md:w-14"
+          className="absolute bottom-20 left-6 hidden h-12 md:left-12 md:block md:h-16"
         />
         <div className="container-wide section-y relative z-20">
           {/* Just an eyebrow — the day cards do the talking. */}
@@ -342,20 +335,18 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           HEADLINERS — featured artists w/ overlay sticker
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-blue-500 text-white">
-        {/* Big halftone star bleeding off the right + one small note. */}
+      <section className="relative isolate bg-blue-500 text-white">
+        {/* Big star-burst bleeding off the right + one small accent. */}
         <Doodle
-          shape="halftone-star"
-          color="yellow"
-          accent="pink"
+          shape="zzz"
           rotate={20}
-          grain
-          className="absolute -top-12 -right-16 h-56 w-56 md:-top-20 md:-right-24 md:h-96 md:w-96 lg:h-112 lg:w-md"
+          className="absolute -top-12 -right-16 h-56 md:-top-20 md:-right-24 md:h-96 lg:h-112"
         />
         <Doodle
-          shape="note"
-          color="yellow"
-          className="absolute bottom-32 left-6 hidden h-10 w-10 md:left-12 md:block md:h-14 md:w-14"
+          shape="cocktail"
+          color="dimmed-led"
+          rotate={-6}
+          className="absolute bottom-32 left-6 hidden h-12 md:left-12 md:block md:h-16"
         />
         <div className="container-wide section-y relative z-20">
           {/* Single oversized poster word — context speaks for itself. */}
@@ -398,20 +389,20 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           ACTIVITIES — bento layout: paella + petanque + food + crew
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-pink-50">
-        {/* Big flame anchor in the right bleed + one small spiral. */}
+      <section className="relative isolate bg-pink-50">
+        {/* Big horns anchor in the right bleed + one small play accent. */}
         <Doodle
-          shape="cross"
-          color="brand"
+          shape="horns"
+          color="ink"
+          accent="summer-red"
           rotate={-8}
-          grain
-          className="absolute -top-12 -right-12 h-48 w-48 md:-top-20 md:-right-20 md:h-80 md:w-80 lg:h-96 lg:w-96"
+          className="absolute -top-12 -right-12 h-48 md:-top-20 md:-right-20 md:h-80 lg:h-96"
         />
         <Doodle
-          shape="spiral"
-          color="brand"
+          shape="play"
+          color="royal-yellow"
           rotate={-15}
-          className="absolute right-1/3 bottom-12 hidden h-10 w-10 md:block md:h-14 md:w-14"
+          className="absolute right-1/3 bottom-12 hidden h-12 md:block md:h-16"
         />
         <div className="container-wide section-y relative z-20">
           {/* Single oversized poster word, no sentence-y subtitle. */}
@@ -514,9 +505,6 @@ export default async function RedesignHome({ params }: Props) {
                   <div className='halftone absolute inset-0 opacity-40 mix-blend-multiply content-[""]' />
                 </div>
                 <div className="col-span-3 flex flex-col gap-2 p-5 md:p-6">
-                  <Sticker color="ink" size="xs" rotate={-4}>
-                    {tCommon("footer.contact.activities")}
-                  </Sticker>
                   <p className="font-display text-2xl leading-[0.95] md:text-3xl">
                     Doe mee als vrijwilliger of partner.
                   </p>
@@ -542,28 +530,26 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           GALLERY — keep marquees, frame them like a polaroid wall
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-yellow-400">
-        {/* Single huge flower in the right gutter + a small arrow. */}
+      <section className="relative isolate bg-yellow-400">
+        {/* Single huge lips in the right gutter + a small asterisk. */}
         <Doodle
-          shape="flower"
-          color="brand"
-          accent="pink"
+          shape="lips"
+          color="summer-red"
           rotate={6}
-          grain
-          className="absolute -top-16 -right-16 h-56 w-56 md:-top-20 md:-right-20 md:h-96 md:w-96 lg:h-112 lg:w-md"
+          className="absolute -top-16 -right-16 h-56 md:-top-20 md:-right-20 md:h-96 lg:h-112"
         />
         <Doodle
-          shape="arrow"
-          color="brand"
+          shape="asterisk"
+          color="tardis-blue"
           rotate={-6}
-          className="absolute bottom-12 left-6 hidden h-10 w-10 md:left-12 md:block md:h-14 md:w-14"
+          className="absolute bottom-12 left-6 hidden h-10 md:left-12 md:block md:h-14"
         />
         <div className="container-wide relative z-20 pt-16 md:pt-20">
           <h2 className="text-7xl leading-[0.85] text-gray-900 md:text-9xl xl:text-[14rem]">
             Vibes.
           </h2>
         </div>
-        <div className="relative">
+        <div className="relative isolate">
           <PaperTear
             className="absolute top-0 z-40"
             edge="top"
@@ -584,20 +570,19 @@ export default async function RedesignHome({ params }: Props) {
           AFTERMOVIE — untitled; the Vibes section above already sets
           the visual mood, so the video gets to speak for itself.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative isolate overflow-x-clip text-pink-50">
-        {/* Single oversized peace sign in the bleed + a small note. */}
+      <section className="bg-brand-500 relative isolate text-pink-50">
+        {/* Single oversized radial in the bleed + a small banner. */}
         <Doodle
-          shape="peace"
-          color="yellow"
+          shape="radial"
+          color="dimmed-led"
           rotate={20}
-          className="absolute -top-16 -right-16 h-56 w-56 md:-top-24 md:-right-24 md:h-96 md:w-96"
+          className="absolute -top-16 -right-16 h-56 md:-top-24 md:-right-24 md:h-96"
         />
         <Doodle
-          shape="note"
-          color="yellow"
+          shape="banner"
+          color="royal-yellow"
           rotate={-12}
-          grain
-          className="absolute right-1/4 bottom-12 hidden h-12 w-12 md:block md:h-16 md:w-16"
+          className="absolute right-1/4 bottom-12 hidden h-12 md:block md:h-16"
         />
         <ConsentVideo />
       </section>
@@ -605,22 +590,19 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           NUMBERS — chunky stat stickers on a brand-orange field
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative isolate overflow-x-clip text-pink-50">
-        {/* Big burst anchor + one small wave for variation. */}
+      <section className="bg-brand-500 relative isolate text-pink-50">
+        {/* Big star anchor + one stripes accent. */}
         <Doodle
-          shape="burst-dot"
-          color="yellow"
-          accent="pink"
+          shape="star"
+          color="pink"
           rotate={10}
-          grain
-          className="absolute -top-12 -right-12 h-48 w-48 md:-top-16 md:-right-16 md:h-80 md:w-80 lg:h-96 lg:w-96"
+          className="absolute -top-12 -right-12 h-48 md:-top-16 md:-right-16 md:h-80 lg:h-96"
         />
         <Doodle
-          shape="wave-pair"
-          color="pink"
-          accent="yellow"
+          shape="stripes"
+          color="royal-yellow"
           rotate={-8}
-          className="absolute right-1/4 bottom-12 hidden h-12 w-12 md:block md:h-16 md:w-16"
+          className="absolute right-1/4 bottom-12 hidden h-10 md:block md:h-14"
         />
         <div className="container-wide section-y relative z-20">
           {/* No header — the stat stickers are the design. */}
@@ -673,19 +655,18 @@ export default async function RedesignHome({ params }: Props) {
           PARTNERS TEASER — small partner cluster + CTA. Full list
           remains in the global footer.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-pink-50">
-        {/* Big radio-waves anchor in the bottom-right + a small smile. */}
+      <section className="relative isolate bg-pink-50">
+        {/* Big zzz anchor in the bottom-right + a small cross. */}
         <Doodle
-          shape="radio-waves"
-          color="blue"
-          className="absolute -right-16 -bottom-12 h-56 w-56 md:-right-20 md:-bottom-16 md:h-80 md:w-80 lg:h-96 lg:w-96"
+          shape="zzz"
+          className="absolute -right-16 -bottom-12 h-56 md:-right-20 md:-bottom-16 md:h-80 lg:h-96"
         />
         <Doodle
-          shape="smile"
-          color="yellow"
-          accent="brand"
+          shape="cross"
+          color="tardis-blue"
+          accent="summer-red"
           rotate={6}
-          className="absolute top-12 right-6 h-12 w-12 md:top-20 md:right-12 md:h-16 md:w-16"
+          className="absolute top-12 right-6 h-12 md:top-20 md:right-12 md:h-16"
         />
         <div className="container-wide section-y relative z-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
@@ -759,23 +740,20 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           CLOSING CTA — last loud moment before the footer.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate overflow-x-clip bg-gray-900 text-pink-50">
+      <section className="relative isolate bg-blue-900 text-pink-50">
         <div className='halftone absolute inset-0 opacity-25 mix-blend-screen content-[""]' />
         <PaperTear edge="top" tear={6} color="pink-50" />
-        {/* One huge halftone-star anchor + a small bars accent. */}
+        {/* One huge star-burst anchor + a small star accent. */}
         <Doodle
-          shape="halftone-star"
-          color="yellow"
-          accent="brand"
+          shape="star-burst"
           rotate={20}
-          grain
-          className="absolute -right-12 -bottom-16 h-64 w-64 md:-right-20 md:-bottom-24 md:h-112 md:w-md lg:h-128 lg:w-lg"
+          className="absolute -right-12 -bottom-16 h-64 md:-right-20 md:-bottom-24 md:h-112 lg:h-128"
         />
         <Doodle
-          shape="bars"
+          shape="star"
           color="pink"
           rotate={-6}
-          className="absolute top-44 left-1/3 hidden h-10 w-10 md:block md:h-14 md:w-14"
+          className="absolute top-44 left-1/3 hidden h-12 md:block md:h-16"
         />
         <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">

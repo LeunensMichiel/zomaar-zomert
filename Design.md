@@ -22,16 +22,33 @@ All tokens live in [app/globals.css](app/globals.css) inside the `@theme` block;
 
 ### Color roles
 
-| Role          | Token                 | Hex       | Usage                                                     |
-| ------------- | --------------------- | --------- | --------------------------------------------------------- |
-| Primary       | `--color-brand-500`   | `#de350b` | Big CTAs, headline accents, hot fills                     |
-| Accent        | `--color-yellow-400`  | `#ffb600` | Stickers, highlights, "free entry" stamps                 |
-| Cool          | `--color-blue-500`    | `#3b84db` | Secondary tiles, headliner cards                          |
-| Soft          | `--color-pink-300/50` | —         | Background washes, soft frames                            |
-| Ink           | `--color-gray-900`    | `#1a1a1a` | Body text, sticker borders, hard offset shadow            |
-| Paper (page)  | `--color-pink-50`     | `#fff1f7` | Default body background — _never_ pure white              |
+The palette is anchored on the **Zomaar Zomert** colour set defined in the ZZ 2026 Figma file. Each named anchor sits at a fixed slot in its scale so tints/shades stay in lockstep, and an alias token (`--color-summer-red`, etc.) points to the slot.
 
-Don't introduce greys outside the existing scale. Black is reserved for **borders, type, and the offset shadow** — never as a fill behind body content.
+| Name (Figma) | Hex       | Scale slot           | Alias token            | Usage                                                |
+| ------------ | --------- | -------------------- | ---------------------- | ---------------------------------------------------- |
+| Summer Red   | `#de350b` | `--color-brand-500`  | `--color-summer-red`   | Big CTAs, hot fills, brand accents                   |
+| Royal Yellow | `#ffb600` | `--color-yellow-400` | `--color-royal-yellow` | Stickers, highlights, "free entry" stamps            |
+| Dimmed Led   | `#fee198` | `--color-yellow-100` | `--color-dimmed-led`   | Cream highlights, soft sticker fills                 |
+| Blue Cola    | `#3b84db` | `--color-blue-500`   | `--color-blue-cola`    | Secondary tiles, headliner cards                     |
+| Tardis Blue  | `#193d6b` | `--color-blue-900`   | `--color-tardis-blue`  | Deep "summer night" backgrounds (hero, closing CTA)  |
+| Black        | `#000000` | n/a                  | n/a                    | Reserved for offset shadow / sticker borders only    |
+
+**Adjacent helpers.** Pink (`--color-pink-400` `#ff8faa`) is the hot pink used in the gradient stops — keep the existing pink scale for soft backgrounds (`pink-50`, `pink-300`). Ink lives at `--color-gray-900` (`#1a1a1a`) — body text and the offset shadow.
+
+Don't introduce greys outside the existing scale. The named ZZ palette is the source of truth — when in doubt, reach for an alias.
+
+### Gradients
+
+Four named gradient styles ride alongside the solid palette (Figma styles `Linear Red`, `Linear Sunset`, `Radial Red`, `80s Gum`). Exposed as Tailwind `bg-*` utilities in [app/globals.css](app/globals.css):
+
+| Utility            | Style          | Stops                                  | Where it earns its place                                |
+| ------------------ | -------------- | -------------------------------------- | ------------------------------------------------------- |
+| `bg-linear-red`    | Linear Red     | `#ff1d25` 0% → `#961702` 100%          | Countdown panel, "linear-red" doodle fill (anchors)     |
+| `bg-linear-sunset` | Linear Sunset  | `#ffb600` 0% → `#ff7bac` 100%          | Star-bursts, sun-rays — yellow→pink hero/closing pieces |
+| `bg-radial-red`    | Radial Red     | `#ff7bac` 0% → `#de350b` 100% (radial) | One-off accents (e.g. lips on the yellow gallery)       |
+| `bg-80s-gum`       | 80s Gum        | `#3b84db` 3% → `#ff8faa` 61%           | Cool-to-hot accent for blue-leaning sections            |
+
+Use gradients _sparingly_ — too many on one page reads as Web 2.0 sheen. The current rule of thumb: **at most one gradient per section**, applied either to the anchor doodle or to a single panel (e.g. the redesign countdown).
 
 ### Type
 
@@ -78,13 +95,29 @@ Use for eyebrows, "FREE ENTRY", date pills, "DOE MEE" callouts, footer column he
 
 ### `<Doodle>` — [app/[locale]/redesign/_components/doodle.tsx](app/%5Blocale%5D/redesign/_components/doodle.tsx)
 
-Tiny inline-SVG decorative shapes — the building block for the maximalist, sticker-pack feel.
+Decorative shapes — the building block for the maximalist, sticker-pack feel. SVG illustrations exported from the **Doodles** frame in the ZZ 2026 Figma file (sources in [public/assets/doodles/](public/assets/doodles/), pre-extracted into [doodle-svgs.ts](app/%5Blocale%5D/redesign/_components/doodle-svgs.ts)) are inlined so each layer's fill/stroke can be themed independently — `mask-image` would collapse every layer to a single colour, which is why we don't use it. Two inline shapes (`eye`, `plus`) are drawn as plain JSX paths.
 
-**Single-color shapes (24):** `dot`, `donut`, `ring`, `plus`, `cross`, `squiggle`, `wave`, `asterisk`, `blob`, `eye`, `star4`, `star8`, `diamond`, `triangle`, `halftone`, `bars`, `burst`, `spiral`, `lightning`, `flame`, `arrow`, `peace`, `note`, `radio-waves`.
+**Shapes:**
 
-**Multi-color shapes (use both `color` + `accent`):** `halftone-circle`, `halftone-blob`, `halftone-star`, `split-circle`, `concentric`, `eye-iris`, `sun-rays`, `wave-pair`, `striped-rect`, `striped-circle`, `burst-dot`, `flower`, `smile`, `checkered`, `tag`.
+- _Inline_: `eye`, `plus`.
+- _Asset-backed_: `zz`, `play`, `cross`, `banner`, `sun-rays`, `star-burst`, `zzz`, `lightning`, `horns`, `coil`, `radial`, `lips`, `stripes`, `asterisk`, `flame`, `cocktail`, `star`.
 
-Add `grain` for risograph-style fractal noise (uses `<feTurbulence>` scoped to the SVG instance). Size doodles with Tailwind `w-*`/`h-*` utilities on `className` — the inline width/height attrs are overridden by CSS.
+**Theming**:
+
+- `color` — primary fill (maps to the SVG's `var(--fill-0)` slot, plus the inline shapes' single colour). Default `ink`.
+- `accent` — secondary stroke / detail layer (maps to `var(--stroke-0)`). Optional.
+
+Doodles fall into three theming buckets:
+
+1. **Single-layer.** Only one paint reference — pass `color`. `accent` is ignored. Includes `asterisk`, `banner`, `cocktail`, `lips`, `play`, `radial`, `star`, `stripes`, `zz`, plus the inline `eye` and `plus`.
+2. **Duo-layer.** Two distinct paints — pass both `color` (front) and `accent` (back/stroke detail). When `accent` is omitted, the SVG falls back to its baked-in Figma detail colour, so duo-coloured doodles _never_ collapse to a flat fill. Includes `cross` (cream front + red shadow), `sun-rays` (yellow front + red shadow), `horns` (black hand + red outline).
+3. **Gradient-baked.** The original Figma gradient (`Linear Red`, `Linear Sunset`, `Radial Red`) is embedded in the SVG defs; `color`/`accent` only affect any remaining `var(...)` slots. Includes `coil` (Linear Red), `lightning` (Linear Sunset), `star-burst` (yellow), `zzz` (Linear Sunset × 4), `flame` (Radial Red fill + themable red stroke). Drop these in without props for the gradient look; pass `accent` on `flame` to recolour its outer stroke.
+
+The asset-backed shapes have varying intrinsic aspect ratios (e.g. `lips` ≈ 1.76:1, `play` ≈ 0.72:1, `stripes` ≈ 3.5:1). Size them with a height utility (`h-44`, `lg:h-96`, …) and let the SVG's viewBox handle width — `<Doodle shape="lips" color="summer-red" className="h-44" />`. Don't force a square `w-* h-*` pair on a non-square shape.
+
+If you re-export an SVG from Figma, regenerate `doodle-svgs.ts` (small Node script lives in the commit history under "extract doodle svgs"). Watch out for hardcoded hex colours in the export — convert them to `var(--stroke-0, …)` or `var(--fill-0, …)` so they remain themable. The included `cross` and `sun-rays` are the only ones with this pattern today.
+
+**Doodle component is server-only** — `doodle-svgs.ts` is large enough to bloat the client bundle if it ever crosses a `'use client'` boundary. Both current consumers ([page.tsx](app/%5Blocale%5D/redesign/page.tsx), [headliner-card.tsx](app/%5Blocale%5D/redesign/_components/headliner-card.tsx)) are server components.
 
 #### Scatter rule: fewer, bigger, with extreme size variation
 
@@ -198,13 +231,17 @@ When adding new menu items, keep the size scale and the `<span className="grid o
 
 ### Section template & z-layering
 
-Each redesign section is `relative isolate overflow-x-clip bg-X` — `isolate` gives the section its own stacking context, `overflow-x-clip` lets bleeding doodles get clipped horizontally without clipping the tear's vertical 1px bleed (regular `overflow-hidden` would clip both). Inside, the layers are explicit:
+Each redesign section is `relative isolate bg-X` — `isolate` gives the section its own stacking context. **Don't** add `overflow-x-clip` to a section: per the CSS Overflow spec, mixing `overflow-x: clip` with `overflow-y: visible` forces the visible axis to compute as `auto`, which clips negative-offset doodles vertically. Horizontal clipping is handled once at the page level via `overflow-x: clip` on `body` ([app/globals.css](app/globals.css)), so individual sections can keep `overflow: visible` and let bleeding doodles cross section boundaries vertically.
+
+Inside, the layers are explicit:
 
 - `<PaperTear>` ships `relative z-0` — lowest.
 - `<Doodle>` ships `z-10` (effective when the consumer adds `absolute …`) — middle.
 - Each content wrapper gets `relative z-20` — top.
 
 Without the explicit `z-20` on the content wrapper, non-positioned content paints at CSS step 3 (in-flow) which sits _below_ `absolute z-auto` doodles — leading to doodles overlapping headlines.
+
+If a section has an inner block that uses high z-indexes (e.g. the gallery's `<PhotoMarquees>` wrapper, where the marquee tears sit at `z-40` to ride over the photos), wrap it in `relative isolate` so those z-indexes stay inside the wrapper and don't leak past the section's gutter doodles.
 
 ## Motion
 

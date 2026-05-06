@@ -105,7 +105,7 @@ export function HeadlinerCard({
 /**
  * Playing-card-back style fill for TBA placeholders: tone-colored background
  * with a halftone wash, an oversized "medallion" doodle centered, four small
- * plus-sign accents at the corners (the symmetric repeating motif), and a
+ * plus accents at the corners (the symmetric repeating motif), and a
  * tilted "Soon" sticker as the wax seal.
  */
 function CardBack() {
@@ -113,12 +113,10 @@ function CardBack() {
     <div className='before:halftone relative aspect-4/5 overflow-hidden border-b-2 border-gray-900 before:absolute before:inset-0 before:z-10 before:opacity-50 before:mix-blend-multiply before:content-[""]'>
       <div className="absolute inset-0 flex items-center justify-center">
         <Doodle
-          shape="halftone-blob"
-          color="ink"
-          accent="paper"
+          shape="star-burst"
+          color="royal-yellow"
           rotate={-12}
-          grain
-          className="h-[85%] w-[85%]"
+          className="h-[85%]"
         />
       </div>
       <Doodle

@@ -5,7 +5,12 @@
   --font-sans: var(--font-open-sans), "Helvetica Neue", system-ui, sans-serif;
   --font-display: var(--font-oswald), "Helvetica Neue", system-ui, sans-serif;
 
-  /* Brand: Orange (primary, de350b) */
+  /* ─── Zomaar Zomert palette (source of truth — see Design.md) ───────
+     Named anchors live at fixed scale slots so semantic aliases
+     (`--color-summer-red`, `--color-royal-yellow`, …) and tints/shades
+     stay in lockstep. Don't introduce new colours outside these scales. */
+
+  /* Summer Red — #DE350B (brand-500) */
   --color-brand-50: #fff1ec;
   --color-brand-100: #ffd9cc;
   --color-brand-200: #f2ae9c;
@@ -18,7 +23,7 @@
   --color-brand-900: #591404;
   --color-brand-950: #3b0d02;
 
-  /* Yellow (FFB600) */
+  /* Royal Yellow — #FFB600 (yellow-400); Dimmed Led — #FEE198 (yellow-100) */
   --color-yellow-50: #fff8e0;
   --color-yellow-100: #fee198;
   --color-yellow-200: #fecc4d;
@@ -31,7 +36,7 @@
   --color-yellow-900: #654900;
   --color-yellow-950: #3d2c00;
 
-  /* Blue (3B84DB) */
+  /* Blue Cola — #3B84DB (blue-500); Tardis Blue — #193D6B (blue-900) */
   --color-blue-50: #eef5fc;
   --color-blue-100: #d6e4f6;
   --color-blue-200: #b1cdf0;
@@ -44,7 +49,7 @@
   --color-blue-900: #193d6b;
   --color-blue-950: #0f2542;
 
-  /* Pink (FF8FAA) */
+  /* Pink — #FF8FAA (pink-400) — appears in 80s Gum / Linear Sunset gradient stops */
   --color-pink-50: #fff1f7;
   --color-pink-100: #ffd6e3;
   --color-pink-200: #ffb0c3;
@@ -56,6 +61,14 @@
   --color-pink-800: #884c5b;
   --color-pink-900: #663943;
   --color-pink-950: #3a1f25;
+
+  /* Named brand aliases — utility shorthands for the canonical ZZ tokens.
+     `bg-summer-red`, `text-tardis-blue`, etc. resolve to the scale slots. */
+  --color-summer-red: var(--color-brand-500);
+  --color-royal-yellow: var(--color-yellow-400);
+  --color-dimmed-led: var(--color-yellow-100);
+  --color-blue-cola: var(--color-blue-500);
+  --color-tardis-blue: var(--color-blue-900);
 
   /* Neutrals */
   --color-gray-50: #fcfcfc;
@@ -110,6 +123,14 @@
 
   html {
     height: 100%;
+    /* Page-level horizontal clip on the viewport-bound root, so
+       individual sections can stay `overflow: visible` and let
+       bleeding doodles cross section boundaries vertically. (Pairing
+       `overflow-x: clip` with `overflow-y: visible` on a section
+       forces y to compute as `auto`, which clips negative-offset
+       doodles.) `body` would also work in theory but isn't width-
+       bound, so wide content can stretch it past the viewport. */
+    overflow-x: clip;
   }
 
   body {
@@ -337,6 +358,23 @@
   to {
     opacity: 1;
   }
+}
+
+/* ─── Zomaar Zomert gradients ───────────────────────────────────────
+   Four named gradient styles from the Figma file. Use with mask-image
+   to paint doodles, or as section-level fills (countdown panel, etc.).
+   Stops match the Figma styles exactly — don't tweak. */
+@utility bg-radial-red {
+  background: radial-gradient(circle at 30% 30%, #ff7bac 0%, #de350b 100%);
+}
+@utility bg-linear-sunset {
+  background: linear-gradient(135deg, #ffb600 0%, #ff7bac 100%);
+}
+@utility bg-linear-red {
+  background: linear-gradient(135deg, #ff1d25 0%, #961702 100%);
+}
+@utility bg-80s-gum {
+  background: linear-gradient(135deg, #3b84db 3%, #ff8faa 61%);
 }
 
 /* Tape strip — small piece of "washi" tape for collage corners. */
