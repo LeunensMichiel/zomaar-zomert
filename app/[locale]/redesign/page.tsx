@@ -1,4 +1,5 @@
 import { Triangle } from "@components/icons/Triangle";
+import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Logo } from "@components/ui/logo";
 import artistsData from "@lib/data/artists.json";
@@ -27,7 +28,6 @@ import { PaperTear } from "@/app/[locale]/redesign/_components/paper-tear";
 import { PhotoMarquees } from "@/app/[locale]/redesign/_components/photo-marquees";
 import { RedesignCountdown } from "@/app/[locale]/redesign/_components/redesign-countdown";
 import { StarBurst } from "@/app/[locale]/redesign/_components/star-burst";
-import { Sticker } from "@/app/[locale]/redesign/_components/sticker";
 import { TickerStrip } from "@/app/[locale]/redesign/_components/ticker-strip";
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -841,6 +841,7 @@ export default async function RedesignHome({ params }: Props) {
             </div>
           </div>
         </div>
+        <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
     </>
   );

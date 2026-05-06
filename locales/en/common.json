@@ -26,7 +26,15 @@
       "activities": "Register for activities",
       "contact": "Contact us"
     },
-    "copy": "Zomaar Zomert - Webdesign by <michiel>Michiel Leunens</michiel> - Copywriting by <lars>Lars Puttaert</lars>"
+    "social": {
+      "eyebrow": "Follow us"
+    },
+    "partners": {
+      "eyebrow": "Made possible by",
+      "lead": "Lead partners",
+      "support": "With support from"
+    },
+    "copy": "Zomaar Zomert - Webdesign by <michiel>Michiel Leunens</michiel>"
   },
   "cookies": {
     "title": "Zomaar Zomert makes use of cookies",

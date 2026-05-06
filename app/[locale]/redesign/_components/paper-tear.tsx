@@ -1,17 +1,9 @@
 import { cn } from "@lib/utils";
-import { readFileSync } from "fs";
-import { join } from "path";
 
-type Tear = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+import { type Tear, type TearColor } from "./paper-tear-types";
+import { TEAR_PATHS } from "./tear-paths";
 
-export type TearColor =
-  | "pink-50"
-  | "pink-300"
-  | "brand-500"
-  | "blue-500"
-  | "yellow-400"
-  | "gray-900"
-  | "white";
+export { type TearColor };
 
 const colorHex: Record<TearColor, string> = {
   "pink-50": "#fff1f7",
@@ -46,28 +38,6 @@ const TEAR_VIEWBOX: Record<
   7: { x: 0, y: 599, w: 11339, h: 809 },
 };
 
-/**
- * Tear `<path d="…"/>` strings, lifted from each source SVG once at
- * module load and cached. We re-render them inline so we control the
- * fill color directly (no `mask-image` recolor trickery).
- */
-const ASSETS_DIR = join(process.cwd(), "public", "assets");
-const tearPathsCache = new Map<Tear, string[]>();
-
-function getTearPaths(tear: Tear): string[] {
-  const cached = tearPathsCache.get(tear);
-  if (cached) return cached;
-  const raw = readFileSync(
-    join(ASSETS_DIR, `tear-${String(tear)}.svg`),
-    "utf8",
-  );
-  const paths = Array.from(
-    raw.matchAll(/<path[^>]*\bd="([^"]+)"[^/]*\/?>/g),
-  ).map((m) => m[1]);
-  tearPathsCache.set(tear, paths);
-  return paths;
-}
-
 type Props = {
   edge: "top" | "bottom";
   tear?: Tear;
@@ -99,7 +69,7 @@ export function PaperTear({
   className,
 }: Props) {
   const vb = TEAR_VIEWBOX[tear];
-  const paths = getTearPaths(tear);
+  const paths = TEAR_PATHS[tear];
   const fill = colorHex[color];
   const bg = bgColor ? colorHex[bgColor] : undefined;
 

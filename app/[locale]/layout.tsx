@@ -1,5 +1,6 @@
 import "../globals.css";
 
+import { Footer } from "@components/footer";
 import { Layout } from "@components/layout";
 import { routing } from "@lib/i18n/routing";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -86,7 +87,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body>
         <NextIntlClientProvider>
-          <Layout>{children}</Layout>
+          <Layout footer={<Footer />}>{children}</Layout>
         </NextIntlClientProvider>
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>

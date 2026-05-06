@@ -1,10 +1,10 @@
+import { Sticker } from "@components/sticker";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import { cn } from "@lib/utils";
 import Image from "next/image";
 
 import { Doodle } from "@/app/[locale]/redesign/_components/doodle";
-import { Sticker } from "@/app/[locale]/redesign/_components/sticker";
 
 type Props = {
   name: string;

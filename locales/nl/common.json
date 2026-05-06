@@ -26,7 +26,15 @@
       "activities": "Inschrijven randactiviteiten",
       "contact": "Contacteer ons"
     },
-    "copy": "Zomaar Zomert - Webdesign door <michiel>Michiel Leunens</michiel> - Copywriting door <lars>Lars Puttaert</lars>"
+    "social": {
+      "eyebrow": "Volg ons"
+    },
+    "partners": {
+      "eyebrow": "Mogelijk gemaakt door",
+      "lead": "Hoofdpartners",
+      "support": "Met de steun van"
+    },
+    "copy": "Zomaar Zomert - Webdesign door <michiel>Michiel Leunens</michiel>"
   },
   "cookies": {
     "title": "Zomaar Zomert maakt gebruik van cookies",

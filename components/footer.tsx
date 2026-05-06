@@ -1,54 +1,67 @@
-"use client";
-
 import { FitText } from "@components/fit-text";
-import { LanguagePicker } from "@components/language-picker";
+import { LocaleSwitcher } from "@components/locale-switcher";
+import { Sticker } from "@components/sticker";
+import { Button } from "@components/ui/button";
 import partners from "@lib/data/partners.json";
 import { Link } from "@lib/i18n/navigation";
 import { ZZ_DATES } from "@lib/models";
 import { cn } from "@lib/utils";
-import { motion } from "motion/react";
 import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 
+import { PaperTear } from "@/app/[locale]/redesign/_components/paper-tear";
 import { Facebook } from "@/components/icons/Facebook";
 import { Instagram } from "@/components/icons/Instagram";
 import { Youtube } from "@/components/icons/Youtube";
 
-const socialMotion = {
-  initial: { y: 0, transition: { duration: 0.3, type: "spring" as const } },
-  tap: { y: 4, transition: { duration: 0.3, type: "spring" as const } },
-  hover: {
-    y: -2,
-    color: "#ffb600",
-    transition: { duration: 0.3, type: "spring" as const },
-  },
-};
-
 const SOCIAL_LINKS = [
-  { href: "https://facebook.com/zomaarzomert", Icon: Facebook },
-  { href: "https://www.instagram.com/zomaarzomert/", Icon: Instagram },
-  { href: "https://www.youtube.com/watch?v=G2s9r_BohUE", Icon: Youtube },
+  {
+    href: "https://www.instagram.com/zomaarzomert/",
+    label: "Instagram",
+    Icon: Instagram,
+    color: "yellow" as const,
+    rotate: -4,
+  },
+  {
+    href: "https://facebook.com/zomaarzomert",
+    label: "Facebook",
+    Icon: Facebook,
+    color: "brand" as const,
+    rotate: 3,
+  },
+  {
+    href: "https://www.youtube.com/watch?v=G2s9r_BohUE",
+    label: "YouTube",
+    Icon: Youtube,
+    color: "blue" as const,
+    rotate: -2,
+  },
 ];
 
-const tearTop =
-  "absolute left-0 top-0 z-10 w-full -translate-y-px object-cover";
-const tearBottom =
-  "absolute left-0 bottom-0 z-10 w-full translate-y-px object-cover";
+const SOCIAL_TILE = {
+  yellow: "bg-yellow-400 text-gray-900",
+  brand: "bg-brand-500 text-white",
+  blue: "bg-blue-500 text-white",
+} as const;
 
-function FooterColumn({
-  title,
+function ColumnHeading({
   children,
+  rotate,
+  color = "yellow",
 }: {
-  title: string;
   children: React.ReactNode;
+  rotate: number;
+  color?: "yellow" | "brand" | "pink";
 }) {
   return (
-    <div className="grid content-start justify-items-center lg:justify-items-start">
-      <span className="font-display mb-3 text-2xl font-bold text-yellow-200 uppercase md:mb-4 lg:mb-8">
-        {title}
-      </span>
+    <Sticker
+      color={color}
+      size="sm"
+      rotate={rotate}
+      className="mb-5 self-start"
+    >
       {children}
-    </div>
+    </Sticker>
   );
 }
 
@@ -62,159 +75,304 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="py-2 leading-tight font-semibold text-white underline"
+      className="font-display block py-1 text-lg leading-tight font-bold tracking-wide text-white uppercase transition-colors hover:text-yellow-400 focus-visible:text-yellow-400"
     >
       {children}
     </Link>
   );
 }
 
-const partnerLogoSize = (size: "sm" | "lg" | "xl" | undefined) => {
+const partnerLogoSize = (
+  size: "sm" | "md" | "lg" | "xl" | undefined,
+  tier: "lead" | "support",
+) => {
+  if (tier === "lead") {
+    switch (size) {
+      case "sm":
+        return "h-7 md:h-9 lg:h-11";
+      case "lg":
+        return "h-14 md:h-16 lg:h-24";
+      case "xl":
+        return "h-16 md:h-20 lg:h-28";
+      default:
+        return "h-12 md:h-14 lg:h-20";
+    }
+  }
   switch (size) {
     case "sm":
-      return "h-5 md:h-7 lg:h-7";
+      return "h-4 md:h-5 lg:h-6";
     case "lg":
-      return "h-12 md:h-14 lg:h-20";
+      return "h-9 md:h-11 lg:h-14";
     case "xl":
-      return "h-16 md:h-20 lg:h-24";
+      return "h-11 md:h-14 lg:h-16";
     default:
-      return "h-10 md:h-12 lg:h-16";
+      return "h-7 md:h-9 lg:h-11";
   }
 };
 
-export function Footer() {
-  const t = useTranslations("common");
-  const lang = useLocale();
+type Partner = (typeof partners)[number];
+
+function PartnerLogo({
+  partner,
+  tier,
+}: {
+  partner: Partner;
+  tier: "lead" | "support";
+}) {
+  const sizeClass = partnerLogoSize(
+    partner.logoSize as "sm" | "md" | "lg" | "xl" | undefined,
+    tier,
+  );
+  const className = cn(
+    "inline-flex items-center justify-center transition-opacity",
+    tier === "lead"
+      ? "max-w-44 hover:opacity-80"
+      : "max-w-32 opacity-60 hover:opacity-100",
+    sizeClass,
+  );
+  const content = partner.logoWhite ? (
+    <Image
+      src={partner.logoWhite}
+      alt={partner.name}
+      width={240}
+      height={120}
+      quality={100}
+      className="h-full w-full object-contain"
+    />
+  ) : (
+    <FitText
+      text={partner.name}
+      className={cn(
+        "font-display leading-none text-white",
+        tier === "lead" ? "text-xl lg:text-2xl" : "text-sm lg:text-base",
+      )}
+    />
+  );
+  return partner.site ? (
+    <a
+      href={partner.site}
+      target="_blank"
+      rel="noreferrer noopener"
+      className={className}
+    >
+      {content}
+    </a>
+  ) : (
+    <span className={className}>{content}</span>
+  );
+}
+
+export async function Footer() {
+  const lang = await getLocale();
+  const t = await getTranslations({ locale: lang, namespace: "common" });
+  const year = new Date().getFullYear();
+
+  const visiblePartners = partners.filter((p) => !p.disabled);
+  const leadPartners = visiblePartners
+    .filter((p) => p.formula === 1)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const supportPartners = visiblePartners
+    .filter((p) => p.formula !== 1)
+    .sort((a, b) => a.formula - b.formula || a.name.localeCompare(b.name));
+
   return (
     <>
-      <div className="relative flex items-center justify-center overflow-hidden">
-        <div className='relative z-[1] w-full bg-[url("/assets/footer.webp")] bg-cover bg-[50%_70%] px-6 py-32 before:absolute before:inset-0 before:-z-[1] before:bg-black/50 before:bg-[image:radial-gradient(rgba(255,255,255,0.2)_1px,rgba(0,0,0,0.15)_1px),radial-gradient(rgba(255,255,255,0.1)_1px,rgba(0,0,0,0.1)_1px)] before:[background-size:4px_4px] before:[background-position:0_0,2px_2px] before:content-[""] xl:py-48'>
-          <div className="mx-auto grid max-w-md grid-cols-3 items-center justify-center justify-items-center gap-0.5">
-            {SOCIAL_LINKS.map(({ href, Icon }) => (
-              <motion.a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="z-10 text-white hover:text-pink-50 focus:text-pink-50"
-                initial="initial"
-                whileHover="hover"
-                whileTap="tap"
-                variants={socialMotion}
-              >
-                <Icon className="h-14 w-14" />
-              </motion.a>
-            ))}
+      <div className="relative isolate flex items-center justify-center overflow-hidden">
+        <div className='relative z-[1] w-full bg-[url("/assets/footer.webp")] bg-cover bg-[50%_70%] px-6 py-32 before:absolute before:inset-0 before:-z-[1] before:bg-black/55 before:bg-[image:radial-gradient(rgba(255,255,255,0.2)_1px,rgba(0,0,0,0.15)_1px),radial-gradient(rgba(255,255,255,0.1)_1px,rgba(0,0,0,0.1)_1px)] before:[background-size:4px_4px] before:[background-position:0_0,2px_2px] before:content-[""] xl:py-60'>
+          <div className="relative z-10 mx-auto flex max-w-md flex-col items-center gap-6">
+            <Sticker color="yellow" size="md" rotate={-4}>
+              {t("footer.social.eyebrow")}
+            </Sticker>
+            <ul className="flex items-center justify-center gap-4 md:gap-6">
+              {SOCIAL_LINKS.map(({ href, label, Icon, color, rotate }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={label}
+                    className="group grid h-20 w-20 place-items-center focus-visible:outline-none md:h-24 md:w-24"
+                  >
+                    <span
+                      style={
+                        {
+                          "--rotate": `${String(rotate)}deg`,
+                        } as React.CSSProperties
+                      }
+                      className={cn(
+                        "shadow-sticker md:shadow-sticker-lg flex h-16 w-16 items-center justify-center border-2 border-gray-900 md:h-20 md:w-20",
+                        "transform-[rotate(var(--rotate))] transition-transform duration-300 ease-out motion-reduce:transition-none",
+                        "group-hover:transform-[rotate(0deg)_translateY(-6px)]",
+                        "group-focus-visible:transform-[rotate(0deg)_translateY(-6px)]",
+                        "group-active:transform-[rotate(var(--rotate))_translateY(2px)]",
+                        SOCIAL_TILE[color],
+                      )}
+                    >
+                      <Icon className="h-8 w-8 md:h-10 md:w-10" />
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          <img
-            src="/assets/tear-5.svg"
-            alt=""
-            aria-hidden="true"
-            className={tearTop}
+          <PaperTear
+            edge="bottom"
+            tear={3}
+            color="pink-50"
+            className="absolute inset-x-0 -top-[10px] z-10"
           />
-          <img
-            src="/assets/tear-6.svg"
-            alt=""
-            aria-hidden="true"
-            className={tearBottom}
+          <PaperTear
+            edge="bottom"
+            tear={1}
+            color="pink-50"
+            className="absolute inset-x-0 -bottom-[10px] z-10"
+          />
+          <PaperTear
+            edge="bottom"
+            tear={6}
+            color="gray-900"
+            className="absolute inset-x-0 bottom-0 z-10"
           />
         </div>
       </div>
 
       <footer className="mt-auto w-full bg-gray-900 text-white">
         <div className="container-wide section-y-sm">
-          <div className="grid gap-12 lg:grid-cols-3">
-            <FooterColumn title={t("footer.line-up.title")}>
-              {ZZ_DATES.map((date) => (
-                <FooterLink
-                  key={date}
-                  href={{ pathname: "/line-up", query: { date } }}
-                >
-                  {new Date(date).toLocaleString(lang, { weekday: "long" })}
-                </FooterLink>
-              ))}
-            </FooterColumn>
-            <FooterColumn title={t("footer.info.title")}>
-              <FooterLink href="/history">{t("links.history")}</FooterLink>
-              <FooterLink href="/partners">{t("links.partners")}</FooterLink>
-              <FooterLink href="/menu">{t("links.menu")}</FooterLink>
-              <FooterLink href="/privacy-policy">{t("links.legal")}</FooterLink>
-            </FooterColumn>
-            <FooterColumn title={t("footer.contact.title")}>
-              <FooterLink href="/info">
-                {t("footer.contact.activities")}
-              </FooterLink>
-              <FooterLink href="/contact">
-                {t("footer.contact.contact")}
-              </FooterLink>
-              <div className="mt-4 flex flex-col text-center leading-relaxed text-white lg:text-left">
-                <span>info@zomaarzomert.be</span>
-                <span>Plankenstraat 23, Itterbeek</span>
-              </div>
-            </FooterColumn>
-          </div>
-
-          <div className="mt-20 flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
-            {partners
-              .sort(
-                (a, b) => a.formula - b.formula || a.name.localeCompare(b.name),
-              )
-              .filter((p) => !p.disabled)
-              .map((p) => (
+          <div className="grid gap-12 md:gap-16 lg:grid-cols-12">
+            <div className="flex flex-col items-start lg:col-span-5">
+              <ColumnHeading rotate={-3}>
+                {t("footer.contact.title")}
+              </ColumnHeading>
+              <address className="font-display text-3xl leading-[1.05] not-italic md:text-4xl lg:text-5xl">
                 <a
-                  key={p.name}
-                  className={cn(
-                    "inline-flex max-w-40 items-center justify-center opacity-50 transition-opacity hover:opacity-75",
-                    partnerLogoSize(
-                      p.logoSize as "sm" | "lg" | "xl" | undefined,
-                    ),
-                  )}
-                  {...(p.site && {
-                    href: p.site,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                  })}
+                  href="mailto:info@zomaarzomert.be"
+                  className="block break-all transition-colors hover:text-yellow-400 focus-visible:text-yellow-400"
                 >
-                  {p.logoWhite ? (
-                    <Image
-                      src={p.logoWhite}
-                      alt={p.name}
-                      width={200}
-                      height={120}
-                      quality={100}
-                      className="h-full w-full object-contain"
-                    />
-                  ) : (
-                    <FitText
-                      text={p.name}
-                      className="font-display text-lg leading-none text-white md:text-xl lg:text-2xl"
-                    />
-                  )}
+                  info@zomaarzomert.be
                 </a>
-              ))}
+                <span className="mt-3 block text-base leading-snug font-normal tracking-normal normal-case opacity-80 md:text-lg">
+                  Plankenstraat 23
+                  <br />
+                  1701 Itterbeek
+                </span>
+              </address>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/contact">
+                  <Button as="span" variant="accent" size="sm" sticker>
+                    {t("footer.contact.contact")}
+                  </Button>
+                </Link>
+                <Link href="/info">
+                  <Button
+                    as="span"
+                    variant="ink"
+                    size="sm"
+                    sticker
+                    className="border-yellow-400"
+                  >
+                    {t("footer.contact.activities")}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <nav aria-label="Line-up" className="flex flex-col lg:col-span-3">
+              <ColumnHeading rotate={2} color="brand">
+                {t("footer.line-up.title")}
+              </ColumnHeading>
+              <ul>
+                {ZZ_DATES.map((date) => (
+                  <li key={date}>
+                    <FooterLink
+                      href={{ pathname: "/line-up", query: { date } }}
+                    >
+                      {new Date(date).toLocaleString(lang, { weekday: "long" })}
+                    </FooterLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav
+              aria-label={t("footer.info.title")}
+              className="flex flex-col lg:col-span-4"
+            >
+              <ColumnHeading rotate={-2} color="pink">
+                {t("footer.info.title")}
+              </ColumnHeading>
+              <ul>
+                <li>
+                  <FooterLink href="/history">{t("links.history")}</FooterLink>
+                </li>
+                <li>
+                  <FooterLink href="/partners">
+                    {t("links.partners")}
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href="/menu">{t("links.menu")}</FooterLink>
+                </li>
+                <li>
+                  <FooterLink href="/privacy-policy">
+                    {t("links.legal")}
+                  </FooterLink>
+                </li>
+              </ul>
+            </nav>
           </div>
 
-          <div className="mt-12 grid items-center justify-items-center gap-6 lg:mt-20">
-            <LanguagePicker />
-            <span className="block w-full text-center text-xs leading-tight">
-              ©{new Date().getFullYear()}{" "}
+          <section
+            aria-label={t("footer.partners.eyebrow")}
+            className="mt-20 lg:mt-28"
+          >
+            <div className="flex flex-col items-center gap-3 text-center">
+              <Sticker color="yellow" size="sm" rotate={-3}>
+                {t("footer.partners.eyebrow")}
+              </Sticker>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-10 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-16 lg:gap-y-14">
+              {leadPartners.map((p) => (
+                <PartnerLogo key={p.name} partner={p} tier="lead" />
+              ))}
+            </div>
+
+            {supportPartners.length > 0 && (
+              <>
+                <div className="mt-16 flex items-center gap-4">
+                  <span
+                    className="h-px flex-1 bg-white/15"
+                    aria-hidden="true"
+                  />
+                  <Sticker color="ink" size="xs" rotate={-1}>
+                    {t("footer.partners.support")}
+                  </Sticker>
+                  <span
+                    className="h-px flex-1 bg-white/15"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 lg:gap-x-14">
+                  {supportPartners.map((p) => (
+                    <PartnerLogo key={p.name} partner={p} tier="support" />
+                  ))}
+                </div>
+              </>
+            )}
+          </section>
+
+          <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 lg:mt-24 lg:flex-row">
+            <LocaleSwitcher className="text-sm" />
+            <span className="text-center text-xs leading-snug opacity-70 lg:text-right">
+              ©{year}{" "}
               {t.rich("footer.copy", {
                 michiel: (chunks) => (
                   <a
                     href="https://leunesmedia.netlify.app/"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="font-inherit underline"
-                  >
-                    {chunks}
-                  </a>
-                ),
-                lars: (chunks) => (
-                  <a
-                    href="https://www.linkedin.com/in/lars-puttaert/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="font-inherit underline"
+                    className="font-black underline-offset-2 hover:underline"
                   >
                     {chunks}
                   </a>

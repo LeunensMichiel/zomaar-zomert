@@ -70,11 +70,11 @@ Two-layer radial gradient that mimics a halftone print. Use with `mix-blend-mult
 
 Striped washi-tape look for collage corners.
 
-### `<Sticker>` — [app/[locale]/redesign/_components/sticker.tsx](app/%5Blocale%5D/redesign/_components/sticker.tsx)
+### `<Sticker>` — [components/sticker.tsx](components/sticker.tsx)
 
-Rotated badge with bordered fill and offset shadow.
+Rotated badge with bordered fill and offset shadow. Lives at the top level (not in `redesign/_components/`) because the global `<Footer>` uses it too — anywhere a sticker eyebrow makes sense, this is the primitive.
 Props: `color` (`yellow|brand|blue|pink|ink|paper`), `size` (`xs|sm|md|lg|xl`), `shape` (`rect|pill|tag`), `rotate` (number, deg).
-Use for eyebrows, "FREE ENTRY", date pills, "DOE MEE" callouts.
+Use for eyebrows, "FREE ENTRY", date pills, "DOE MEE" callouts, footer column headings.
 
 ### `<Doodle>` — [app/[locale]/redesign/_components/doodle.tsx](app/%5Blocale%5D/redesign/_components/doodle.tsx)
 
@@ -99,7 +99,7 @@ Examples that earn their place: a 96–128 unit `halftone-star` bleeding off the
 
 ### `<PaperTear>` — [app/[locale]/redesign/_components/paper-tear.tsx](app/%5Blocale%5D/redesign/_components/paper-tear.tsx)
 
-Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each `<path d="…">` inline so we control `fill` directly — no `mask-image` recolor trickery. Renders as an in-flow `block` element with `relative z-0` (lowest layer in the section's z-stack) and a 1px negative margin (`-mt-px` for `edge="top"`, `-mb-px` for `edge="bottom"`) that bleeds the tear into the adjacent section to hide sub-pixel rendering hairlines. Drop it as the first or last child of a section and it sits flush at that section's edge — see the section template below.
+Re-renders each `<path d="…">` from the festival's torn-paper SVGs inline so we control `fill` directly — no `mask-image` recolor trickery. Path strings are pre-extracted into [tear-paths.ts](app/%5Blocale%5D/redesign/_components/tear-paths.ts) (regenerate when the source SVGs change) so PaperTear has no `fs` / runtime file IO. Keep PaperTear in **server components only** — its 270KB of path data should never end up in the client bundle. Renders as an in-flow `block` element with `relative z-0` (lowest layer in the section's z-stack) and a 1px negative margin (`-mt-px` for `edge="top"`, `-mb-px` for `edge="bottom"`) that bleeds the tear into the adjacent section to hide sub-pixel rendering hairlines. Drop it as the first or last child of a section and it sits flush at that section's edge — see the section template below.
 
 Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only occupies a slice of that — anywhere from ~520 (tear-4, tear-5) to ~1300 units tall (tear-1). The component stores a per-tear cropped viewBox in `TEAR_VIEWBOX` so the rendered SVG's intrinsic aspect matches the visible ink. Result: the box on screen is exactly the size of the tear, no phantom empty area.
 
@@ -157,6 +157,23 @@ Existing component, now with extra variants for the redesign:
 - `sticker` (boolean) — adds the offset shadow + lift-on-hover behavior.
 
 The legacy variants (`primary`, `transparent`, `minimal*`) are unchanged so existing pages keep their look.
+
+### Footer — [components/footer.tsx](components/footer.tsx)
+
+Two-part global footer used on every page (production + redesign).
+
+- **Photo strip** — full-bleed `footer.webp` with a darkened halftone overlay, paper tears top + bottom (`tear-5` top, `tear-6` bottom), and three rotated **sticker** social buttons (Instagram / Facebook / YouTube in `yellow / brand / blue`) above a small "Volg ons" sticker eyebrow. Each social tile is 64–80px square, 2px black border, sticker shadow, and uses `motion`'s `whileHover` to straighten its rotation and lift `-y: 6px` on hover.
+- **Dark info section** (`bg-gray-900`) — asymmetric 12-col grid:
+  - **5/12 — Contact**: poster-sized `info@zomaarzomert.be` (Oswald, `text-3xl md:text-4xl lg:text-5xl`) sitting under a yellow rotated sticker eyebrow, address below in body type, then accent + ink sticker buttons for "Contacteer ons" / "Inschrijven randactiviteiten".
+  - **3/12 — Line-Up**: brand-colored sticker eyebrow + uppercase day links.
+  - **4/12 — More info**: pink sticker eyebrow + uppercase nav links (history, partners, menu, privacy).
+  - All column headings are `<Sticker>` instances (sm size, ±2–3° rotation) — never plain underlined h3s. Links use `font-display uppercase tracking-wide` and yellow on hover.
+- **Partner hierarchy** — two distinct tiers driven by `formula` in [partners.json](lib/data/partners.json):
+  - **Lead partners (formula 1)** — eyebrow stack: small yellow "Mogelijk gemaakt door" + medium brand "Hoofdpartners" stickers, then a `grid-cols-2 md:grid-cols-3 lg:grid-cols-4` of larger logos (`h-12 md:h-14 lg:h-20`) at full opacity.
+  - **Support partners (formula 2+)** — separated by an ink sticker tag "Met de steun van" between two thin `bg-white/15` rules, then a `flex-wrap` of smaller logos (`h-7 md:h-9 lg:h-11`) at `opacity-60`. The opacity + size jump is the hierarchy signal — don't equalize them.
+- **Bottom bar** — `<LocaleSwitcher>` (matches the navbar's locale pattern) on the left, single-line copyright on the right, separated from partners by a `border-white/10` rule. Credits are minimal — webdesign credit only.
+
+Don't add a newsletter, "stay in the loop" CTA, or any copy that pretends the festival has a continuous funnel. The footer is signage, not lead-gen.
 
 ### Navigation — kinetic full-screen menu — [components/navbar.tsx](components/navbar.tsx)
 
