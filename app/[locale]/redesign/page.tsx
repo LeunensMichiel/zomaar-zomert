@@ -138,7 +138,7 @@ export default async function RedesignHome({ params }: Props) {
 
             {/* Sticker-style date stamp instead of an inline triangle row. */}
             <div className="mt-6 inline-flex items-center gap-3 md:mt-8">
-              <Sticker color="yellow" size="lg" rotate={-3}>
+              <Sticker color="brand" size="lg" rotate={-3}>
                 <span className="inline-flex items-center gap-2">
                   <span>{ZZ_DATE_FRIDAY.slice(-2)}</span>
                   <Triangle className="h-4 w-4 md:h-5 md:w-5" />
@@ -147,7 +147,7 @@ export default async function RedesignHome({ params }: Props) {
                   <span>{ZZ_DATE_SUNDAY.slice(-2)}</span>
                 </span>
               </Sticker>
-              <Sticker color="brand" size="lg" rotate={3}>
+              <Sticker color="yellow" size="lg" rotate={3}>
                 {tHome("month")} {ZZ_YEAR}
               </Sticker>
             </div>
@@ -162,11 +162,11 @@ export default async function RedesignHome({ params }: Props) {
 
         {/* In-hero marquee — anchored at the bottom of the hero so the
             yellow ticker is part of the 100vh frame, not a separate
-            element below. The tear is nested *inside* this wrapper with
-            `bottom-full` so it sits ABOVE the marquee (not on top of
-            the text); its yellow body extends up into the dark hero,
-            with the marquee text fully visible below. Use `tear={5}` —
-            its natural ink aspect (~22:1) is the most compact. */}
+            element below. The tear renders in-flow above the marquee
+            with edge="top" (so it's flipped vertically); its yellow
+            body extends up into the dark hero with the marquee text
+            fully visible below. Use `tear={5}` — its natural ink
+            aspect (~22:1) is the most compact. */}
         <div className="relative z-20">
           <PaperTear edge="top" tear={5} color="yellow-400" />
           <TickerStrip
@@ -182,6 +182,7 @@ export default async function RedesignHome({ params }: Props) {
           big countdown. The countdown component is unchanged.
           ─────────────────────────────────────────────────────────────*/}
       <section className="relative overflow-hidden bg-pink-50">
+        <PaperTear edge="top" tear={3} color="pink-50" bgColor="yellow-400" />
         {/* One big anchor in the lower-left bleed; one tiny accent. */}
         <Doodle
           shape="halftone-blob"
@@ -254,13 +255,12 @@ export default async function RedesignHome({ params }: Props) {
             </div>
           </div>
         </div>
-        <PaperTear edge="bottom" tear={3} color="yellow-400" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           DAYS — three hand-cut cards with sticker numbers
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-pink-300 pb-20 md:pb-28">
+      <section className="relative overflow-hidden bg-pink-300">
         <PaperTear edge="top" tear={2} color="pink-50" />
         {/* Big anchor in the right bleed + one tiny accent. */}
         <Doodle
@@ -299,13 +299,13 @@ export default async function RedesignHome({ params }: Props) {
             ))}
           </div>
         </div>
-        <PaperTear edge="bottom" tear={3} color="pink-50" />
+        <PaperTear edge="bottom" tear={3} color="pink-300" bgColor="blue-500" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           HEADLINERS — featured artists w/ overlay sticker
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-blue-500 pb-24 text-white md:pb-32">
+      <section className="relative overflow-hidden bg-blue-500 text-white">
         {/* Big halftone star bleeding off the right + one small note. */}
         <Doodle
           shape="halftone-star"
@@ -494,14 +494,14 @@ export default async function RedesignHome({ params }: Props) {
             </article>
           </div>
         </div>
-        <PaperTear edge="bottom" tear={5} color="brand-500" />
+        <PaperTear edge="bottom" tear={5} bgColor="brand-500" color="pink-50" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           AFTERMOVIE — keep the existing consent video section,
           wrap with eyebrow/title and stronger frame.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative overflow-hidden pb-16 text-pink-50 md:pb-24">
+      <section className="bg-brand-500 relative overflow-hidden text-pink-50">
         {/* Single oversized peace sign in the bleed + a small note. */}
         <Doodle
           shape="peace"
@@ -521,14 +521,16 @@ export default async function RedesignHome({ params }: Props) {
             Aftermovie.
           </h2>
         </div>
-        <ConsentVideo />
+        <div className="pb-16 md:pb-24">
+          <ConsentVideo />
+        </div>
         <PaperTear edge="bottom" tear={6} color="yellow-400" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           GALLERY — keep marquees, frame them like a polaroid wall
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative overflow-hidden bg-yellow-400 pb-16 md:pb-24">
+      <section className="relative overflow-hidden bg-yellow-400">
         {/* Single huge flower in the right gutter + a small arrow. */}
         <Doodle
           shape="flower"
@@ -549,7 +551,7 @@ export default async function RedesignHome({ params }: Props) {
             Vibes.
           </h2>
         </div>
-        <div className="relative mt-8 md:mt-12">
+        <div className="relative mt-8 mb-16 md:mt-12 md:mb-24">
           <PhotoMarquees />
         </div>
         <PaperTear edge="bottom" tear={7} color="brand-500" />
@@ -558,7 +560,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           NUMBERS — chunky stat stickers on a brand-orange field
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative overflow-hidden pb-24 text-pink-50 md:pb-32">
+      <section className="bg-brand-500 relative overflow-hidden text-pink-50">
         <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
         {/* Big burst anchor + one small wave for variation. */}
         <Doodle

@@ -99,7 +99,7 @@ Examples that earn their place: a 96–128 unit `halftone-star` bleeding off the
 
 ### `<PaperTear>` — [app/[locale]/redesign/_components/paper-tear.tsx](app/%5Blocale%5D/redesign/_components/paper-tear.tsx)
 
-Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each `<path d="…">` inline so we control `fill` directly — no `mask-image` recolor trickery. The parent must be `position: relative` and **clip overflow** (`overflow-hidden`).
+Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each `<path d="…">` inline so we control `fill` directly — no `mask-image` recolor trickery. Renders as an in-flow `block` element — drop it as the first or last child of a section and the tear sits flush at that section's edge. No absolute positioning means it isn't clipped when the section uses `overflow-hidden` to contain bleeding doodles.
 
 Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only occupies a slice of that — anywhere from ~520 (tear-4, tear-5) to ~1300 units tall (tear-1). The component stores a per-tear cropped viewBox in `TEAR_VIEWBOX` so the rendered SVG's intrinsic aspect matches the visible ink. Result: the box on screen is exactly the size of the tear, no phantom empty area.
 

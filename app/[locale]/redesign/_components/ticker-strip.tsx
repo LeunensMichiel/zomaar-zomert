@@ -31,7 +31,7 @@ export function TickerStrip({
   return (
     <div
       className={cn(
-        "font-display relative overflow-clip border-b-2 border-gray-900 leading-none font-bold uppercase select-none",
+        "font-display relative overflow-clip leading-none font-bold uppercase select-none",
         // Fixed height + descendant overflow override kills the y-scrollbar
         // FastMarquee otherwise produces when its child line-boxes are
         // taller than the container.

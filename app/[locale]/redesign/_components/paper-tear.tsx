@@ -108,14 +108,8 @@ export function PaperTear({
       aria-hidden="true"
       preserveAspectRatio="none"
       viewBox={`${String(vb.x)} ${String(vb.y)} ${String(vb.w)} ${String(vb.h)}`}
-      className={cn(
-        "pointer-events-none absolute left-0 z-10 block h-auto w-full",
-        edge === "top"
-          ? "bottom-full translate-y-px"
-          : "top-full -translate-y-px",
-        className,
-      )}
-      style={{ transform: edge === "top" ? "scaleY(-1)" : undefined }}
+      className={cn("pointer-events-none block h-auto w-full", className)}
+      style={edge === "top" ? { transform: "scaleY(-1)" } : undefined}
     >
       {bg && <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill={bg} />}
       {paths.map((d, i) => (
