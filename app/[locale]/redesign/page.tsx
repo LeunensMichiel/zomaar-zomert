@@ -20,7 +20,6 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ConsentVideo } from "@/app/[locale]/_components/consent-video";
-import { COPY, t } from "@/app/[locale]/redesign/_components/copy";
 import { DayCard } from "@/app/[locale]/redesign/_components/day-card";
 import { Doodle } from "@/app/[locale]/redesign/_components/doodle";
 import { HeadlinerCard } from "@/app/[locale]/redesign/_components/headliner-card";
@@ -171,7 +170,7 @@ export default async function RedesignHome({ params }: Props) {
         <div className="relative z-20">
           <PaperTear edge="top" tear={5} color="yellow-400" />
           <TickerStrip
-            items={[...COPY.ticker[locale]]}
+            items={tHome.raw("ticker") as string[]}
             speed={50}
             className="bg-yellow-400 text-gray-900"
           />
@@ -183,8 +182,6 @@ export default async function RedesignHome({ params }: Props) {
           big countdown. The countdown component is unchanged.
           ─────────────────────────────────────────────────────────────*/}
       <section className="relative overflow-hidden bg-pink-50">
-        <PaperTear edge="bottom" tear={3} color="yellow-400" />
-
         {/* One big anchor in the lower-left bleed; one tiny accent. */}
         <Doodle
           shape="halftone-blob"
@@ -209,7 +206,7 @@ export default async function RedesignHome({ params }: Props) {
               ZOMAAR.
             </h2>
             <p className="mt-6 max-w-xl text-base text-gray-700 md:text-lg">
-              {t(locale, COPY.introBody)}
+              {tHome("intro.body")}
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -245,7 +242,7 @@ export default async function RedesignHome({ params }: Props) {
               <div className='halftone absolute inset-0 z-0 opacity-25 mix-blend-screen content-[""]' />
               <div className="relative z-10 flex flex-col gap-6">
                 <Sticker color="yellow" size="sm" rotate={-3}>
-                  {t(locale, COPY.daysAway)}
+                  {tHome("countdown.daysAway")}
                 </Sticker>
                 <RedesignCountdown />
               </div>
@@ -257,6 +254,7 @@ export default async function RedesignHome({ params }: Props) {
             </div>
           </div>
         </div>
+        <PaperTear edge="bottom" tear={3} color="yellow-400" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
@@ -296,7 +294,7 @@ export default async function RedesignHome({ params }: Props) {
                 image={day.image}
                 index={i}
                 locale={locale}
-                ctaLabel={t(locale, COPY.seeLineup)}
+                ctaLabel={tHome("lineup.seeDay")}
               />
             ))}
           </div>
@@ -336,7 +334,7 @@ export default async function RedesignHome({ params }: Props) {
                 sticker
                 iconRight={<ChevronRight />}
               >
-                {t(locale, COPY.lineupAll)}
+                {tHome("lineup.all")}
               </Button>
             </Link>
           </div>
@@ -399,16 +397,16 @@ export default async function RedesignHome({ params }: Props) {
                 <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
                 <div className="absolute top-4 left-4">
                   <Sticker color="ink" size="md" rotate={-6}>
-                    {t(locale, COPY.activitiesPaellaTitle)}
+                    {tHome("activities.paella.title")}
                   </Sticker>
                 </div>
               </div>
               <div className="flex flex-col gap-4 p-6 md:p-8">
                 <h3 className="text-3xl leading-[0.95] md:text-5xl">
-                  {t(locale, COPY.activitiesPaellaTitle)}
+                  {tHome("activities.paella.title")}
                 </h3>
                 <p className="max-w-md text-base md:text-lg">
-                  {t(locale, COPY.activitiesPaellaBody)}
+                  {tHome("activities.paella.body")}
                 </p>
                 <Button
                   as="a"
@@ -442,10 +440,10 @@ export default async function RedesignHome({ params }: Props) {
               </div>
               <div className="flex flex-col gap-3 p-5 md:p-6">
                 <h3 className="text-2xl leading-[0.95] md:text-4xl">
-                  {t(locale, COPY.activitiesPetanqueTitle)}
+                  {tHome("activities.petanque.title")}
                 </h3>
                 <p className="text-sm md:text-base">
-                  {t(locale, COPY.activitiesPetanqueBody)}
+                  {tHome("activities.petanque.body")}
                 </p>
                 <Button
                   as="a"
@@ -489,7 +487,7 @@ export default async function RedesignHome({ params }: Props) {
                     href="/contact"
                     className="font-display mt-auto text-base font-bold text-gray-900 uppercase underline md:text-lg"
                   >
-                    {t(locale, COPY.contact)} →
+                    {tHome("activities.contact")} →
                   </Link>
                 </div>
               </div>
@@ -584,25 +582,25 @@ export default async function RedesignHome({ params }: Props) {
             {[
               {
                 value: "3",
-                label: t(locale, COPY.numberDays),
+                label: tHome("numbers.days"),
                 tone: "bg-yellow-400 text-gray-900",
                 tilt: -2,
               },
               {
                 value: "30+",
-                label: t(locale, COPY.numberArtists),
+                label: tHome("numbers.artists"),
                 tone: "bg-pink-50 text-gray-900",
                 tilt: 2,
               },
               {
                 value: "100%",
-                label: t(locale, COPY.numberFree),
+                label: tHome("numbers.free"),
                 tone: "bg-blue-500 text-white",
                 tilt: -1,
               },
               {
                 value: "5K+",
-                label: t(locale, COPY.numberVisitors),
+                label: tHome("numbers.visitors"),
                 tone: "bg-pink-300 text-gray-900",
                 tilt: 1.5,
               },
@@ -646,13 +644,13 @@ export default async function RedesignHome({ params }: Props) {
         <div className="container-wide section-y grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Sticker color="brand" size="sm" rotate={-3}>
-              {t(locale, COPY.partnersEyebrow)}
+              {tHome("partners.eyebrow")}
             </Sticker>
             <h2 className="text-brand-500 mt-4 text-7xl leading-[0.85] md:mt-6 md:text-9xl xl:text-[12rem]">
               100% Gratis.
             </h2>
             <p className="mt-6 max-w-md text-base text-gray-700 md:text-lg">
-              {t(locale, COPY.partnersBody)}
+              {tHome("partners.body")}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/partners">
@@ -663,7 +661,7 @@ export default async function RedesignHome({ params }: Props) {
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {t(locale, COPY.partnersAll)}
+                  {tHome("partners.all")}
                 </Button>
               </Link>
               <Link href="/contact">
@@ -674,7 +672,7 @@ export default async function RedesignHome({ params }: Props) {
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {t(locale, COPY.partnersBecome)}
+                  {tHome("partners.become")}
                 </Button>
               </Link>
             </div>
@@ -736,13 +734,13 @@ export default async function RedesignHome({ params }: Props) {
         <div className="container-wide section-y relative grid gap-10 md:gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Sticker color="brand" size="sm" rotate={-4}>
-              {t(locale, COPY.ctaEyebrow)}
+              {tHome("cta.eyebrow")}
             </Sticker>
             <h2 className="mt-4 text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]">
               Tot dan.
             </h2>
             <p className="mt-6 max-w-xl text-base md:text-lg">
-              {t(locale, COPY.ctaBody)}
+              {tHome("cta.body")}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/line-up">

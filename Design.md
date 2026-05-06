@@ -99,14 +99,27 @@ Examples that earn their place: a 96–128 unit `halftone-star` bleeding off the
 
 ### `<PaperTear>` — [app/[locale]/redesign/_components/paper-tear.tsx](app/%5Blocale%5D/redesign/_components/paper-tear.tsx)
 
-Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each path inline as `<svg><path fill={color}>…</svg>` — that's how we recolor on the fly without touching the source files. Each tear file ships only the wave silhouettes and stops at ~y=1000 of a 1418 viewBox, so the component also draws a backing `<rect>` from y=420 down to keep the divider opaque all the way to its bottom edge. The parent must be `position: relative` and **clip overflow** (`overflow-hidden`).
+Reads the festival's torn-paper SVGs at module load (`fs.readFileSync`) and re-renders each `<path d="…">` inline so we control `fill` directly — no `mask-image` recolor trickery. The parent must be `position: relative` and **clip overflow** (`overflow-hidden`).
 
-Pass the **adjacent section's color** as `color` so the tear visually flows:
+Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only occupies a slice of that — anywhere from ~520 (tear-4, tear-5) to ~1300 units tall (tear-1). The component stores a per-tear cropped viewBox in `TEAR_VIEWBOX` so the rendered SVG's intrinsic aspect matches the visible ink. Result: the box on screen is exactly the size of the tear, no phantom empty area.
+
+Pick the tear by feel — natural aspects after cropping:
+
+| tear | aspect | use |
+| --- | --- | --- |
+| 1, 2 | ~9:1 / ~10:1 | full-body dividers between tall sections |
+| 3, 7 | ~14:1 | medium dividers |
+| 6 | ~18:1 | medium-compact |
+| 4, 5 | ~22:1 | the most compact — use over short marquees etc. |
+
+Pass the **adjacent section's color** as `color` so the divider visually flows:
 
 - `edge="bottom"` → tear sits at the bottom of section A; pass section B's color (the section _below_).
 - `edge="top"` → tear sits at the top of section B; pass section A's color (the section _above_).
 
-Example: hero (`bg-gray-900`) followed by a yellow ticker → `<PaperTear edge="bottom" color="yellow-400" />` on the hero.
+Optional `bgColor` makes the tear a self-contained two-tone block — `color` paints the painted silhouette, `bgColor` paints everything outside it. Swap the two values to flip which side reads as primary without touching the parent's background.
+
+Example: hero (`bg-gray-900`) ending in a yellow ticker → `<PaperTear edge="top" tear={5} color="yellow-400" />` rendered above the ticker so the wave looks "torn" up into the dark hero.
 
 ### `<TickerStrip>` — [app/[locale]/redesign/_components/ticker-strip.tsx](app/%5Blocale%5D/redesign/_components/ticker-strip.tsx)
 
@@ -123,6 +136,14 @@ Tilted, halftoned image cards used in the line-up sections. Each has a slight pe
 ### `<PhotoMarquees>` — [app/[locale]/redesign/_components/photo-marquees.tsx](app/%5Blocale%5D/redesign/_components/photo-marquees.tsx)
 
 Twin marquees of festival photos with a randomized client-side shuffle. Same behavior as the production `<HomeMarquees>`, minus the inner white tear SVGs that clash with the redesign's colored sections.
+
+### `<RedesignCountdown>` — [app/[locale]/redesign/_components/redesign-countdown.tsx](app/%5Blocale%5D/redesign/_components/redesign-countdown.tsx)
+
+Festival countdown clock for the intro panel. Replacement for the production `<Countdown />` — the legacy one highlights seconds in `text-brand-500` (invisible on the redesign's `bg-brand-500` panel) and uses `flex-wrap` (which kicks SEC to a second row in narrow panels). This one forces `grid-cols-4`, shares one color across all four cells, and inherits its color from the parent so the panel can re-skin it.
+
+### `<LocaleSwitcher>` — [components/locale-switcher.tsx](components/locale-switcher.tsx)
+
+Compact two-letter language picker (`NL FR EN`). Inactive codes sit at `opacity-50`; the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Replaces the older globe-icon-opens-a-modal `<LanguagePicker>` pattern with a single tap. Keep it subtle — only show it when there's a clear context for switching (e.g. inside the open menu).
 
 ### `<Button>` — [components/ui/button.tsx](components/ui/button.tsx)
 
@@ -160,31 +181,39 @@ When adding new menu items, keep the size scale and the `<span className="grid o
 
 ## Motion
 
-The redesign currently ships with **no JS-driven motion** by design — we'll layer it in once the layout is approved. The only "motion" today is:
+Use `motion/react` (the rebranded `framer-motion`, already a dep). **Never gsap** — applies to the public site and any internal tools. Honor `useReducedMotion()` for any new effect.
 
-- The hero `<video>` background loop.
-- `<TickerStrip>` (CSS marquee).
-- Hover micro-translations on stickers / cards (`hover:-translate-y-1`).
+Current motion moments:
 
-When motion is added later, prefer `motion/react` (rebrand of `framer-motion`) — already a dep. Honor `useReducedMotion()`.
+- **Hero** — `<video>` background loop; `<TickerStrip>` CSS marquee; doodles include optional `feTurbulence` grain (SVG filter).
+- **Header** — permanently `position: fixed`. `motion`'s `useScroll` + `useTransform` shrink padding and logo over the first 120px of scroll.
+- **Menu open** — backdrop slides down from `translate-y: -100%` to `0` (the "gate" drop, easing `[0.22, 0.61, 0.36, 1]`); link list runs parent/child variants with `staggerChildren: 0.05` + `delayChildren: 0.35`, each link `opacity 0 → 1` + `y: 30 → 0`. Reverse stagger on close. `BaseDialog.Portal keepMounted` so exits play out.
+- **Kinetic link hover** — pure CSS text-swap (no JS).
+- **Locale switcher** — `motion.span` with `layoutId="locale-bar"` slides the yellow underline between codes when the active locale changes.
+- **Sticker / card hover** — `hover:-translate-y-1` micro-translations.
+
+For new effects, prefer CSS transitions where they suffice; reach for `motion` when you need orchestration (stagger, layout animations, scroll-driven values).
 
 ## Where the redesign lives
 
 - Page: [app/[locale]/redesign/page.tsx](app/%5Blocale%5D/redesign/page.tsx)
 - Local components: [app/[locale]/redesign/_components/](app/%5Blocale%5D/redesign/_components/)
-- Shared copy strings: [copy.ts](app/%5Blocale%5D/redesign/_components/copy.ts) — keyed by locale, ready to extract into the next-intl JSON namespaces once the layout is locked.
+- Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) — read via `getTranslations({ namespace: "home" })`. The ticker uses `tHome.raw("ticker") as string[]` to pull the array.
 - The `/redesign` route is registered in [lib/i18n/routing.ts](lib/i18n/routing.ts) and added to `transparentRoutes` in [components/layout.tsx](components/layout.tsx) so the navbar appears in white over the hero video.
 
 ### Sections, top to bottom
 
-1. **Hero** — full-bleed video, halftone, edition sticker, "FREE ENTRY" starburst, stacked logo + date triangle, paper tear out.
-2. **Ticker strip** — yellow ribbon, rolling all-caps copy.
-3. **Intro + countdown** — short story of the festival next to a brand-orange countdown panel.
-4. **Days** — three tilted halftone day-cards with sticker numbers (`<DayCard>`).
-5. **Headliners** — three featured artists pulled from `artists.json` (`<HeadlinerCard>`).
-6. **Activities (bento)** — paella (large) + pétanque + crew/volunteer tile.
-7. **Aftermovie** — re-uses `<ConsentVideo>`, framed in dark.
-8. **Gallery** — re-uses `<HomeMarquees>`, framed in yellow.
-9. **Numbers** — four chunky stat stickers on brand-orange.
-10. **Partners teaser** — sticker grid of 8 partner logos + "All partners" / "Become a partner" CTAs (full list still lives in the global `<Footer>`).
-11. **Closing CTA** — last loud moment before the footer.
+`min-h-dvh` hero, then nine alternating-color sections, then the closing CTA before the global footer.
+
+1. **Hero** (`bg-gray-900` over the looping video) — halftone overlay, sparse scatter doodles (one huge anchor + small accents), centered logo + tilted date sticker stamps + small location strip, in-hero yellow `<TickerStrip>` flush at the bottom with a `<PaperTear edge="top" tear={5} color="yellow-400">` over it so the marquee reads as "torn".
+2. **Intro + countdown** (`bg-pink-50`) — poster-sized `ZOMAAR.` headline + short body next to a brand-orange `<RedesignCountdown>` panel.
+3. **Days** (`bg-pink-300`) — small "Programma" sticker eyebrow only; three tilted halftone `<DayCard>`s do the talking.
+4. **Headliners** (`bg-blue-500`) — `Line-up.` poster headline + "Volledige line-up" button; three `<HeadlinerCard>`s.
+5. **Activities (bento)** (`bg-pink-50`) — `Doe mee.` poster headline; paella (large), pétanque, and crew/volunteer tiles.
+6. **Aftermovie** (`bg-brand-500`) — `Aftermovie.` headline + `<ConsentVideo>`.
+7. **Gallery** (`bg-yellow-400`) — `Vibes.` headline + `<PhotoMarquees>`.
+8. **Numbers** (`bg-brand-500`) — no headline; four tilted stat stickers do it.
+9. **Partners teaser** (`bg-pink-50`) — "Mogelijk gemaakt door" sticker eyebrow + `100% Gratis.` headline + sticker grid of 8 partner logos + "Alle partners" / "Word partner" CTAs (the full list still lives in the global `<Footer>`).
+10. **Closing CTA** (`bg-gray-900`) — `Tot dan.` poster headline + body + buttons + a `<StarBurst>` and sticker stack on the right.
+
+Section dividers all use `<PaperTear>` with the adjacent section's color so transitions flow.

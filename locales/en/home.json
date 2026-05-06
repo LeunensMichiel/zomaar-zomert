@@ -14,5 +14,57 @@
   "seconds": "sec",
   "festivalHasStarted": "The festival has started!",
   "paella": "Sign up — Paella",
-  "petanque": "Sign up — Petanque"
+  "petanque": "Sign up — Petanque",
+  "ticker": [
+    "Free entry",
+    "Three days",
+    "Live music",
+    "Pétanque",
+    "Paella",
+    "Bring on summer",
+    "Bike Tour",
+    "Run Competition",
+    "Fresh beers",
+    "Quiz",
+    "Vibes",
+    "Foodtrucks",
+    "Open air"
+  ],
+  "intro": {
+    "body": "On the last weekend of July, the Sint-Anna church in Itterbeek calls in sick for three days. Live music, cold beer, paella, pétanque and a few thousand friends you haven't met yet. No tickets, no wristbands — just walk in and stretch summer until sundown."
+  },
+  "countdown": {
+    "daysAway": "until the festival"
+  },
+  "lineup": {
+    "all": "Full line-up",
+    "seeDay": "See day"
+  },
+  "activities": {
+    "paella": {
+      "title": "Sunday paella",
+      "body": "Long tables, one giant pan, your neighbours for company. Sign-up required — sells out every year."
+    },
+    "petanque": {
+      "title": "Pétanque tournament",
+      "body": "Three balls, one sandpit, and your street's honour on the line. Beginners welcome, champions too."
+    },
+    "contact": "Contact"
+  },
+  "numbers": {
+    "days": "Days",
+    "artists": "Artists",
+    "free": "Free",
+    "visitors": "Visitors"
+  },
+  "partners": {
+    "eyebrow": "Made possible by",
+    "body": "Zomaar Zomert is free because a whole crew of local businesses, volunteers and sponsors keep it that way. Want to help shape the next edition?",
+    "all": "All partners",
+    "become": "Become a partner"
+  },
+  "cta": {
+    "eyebrow": "Save the date",
+    "body": "No tickets. No fuss. Just a summer worth remembering. Follow us on Instagram or drop us a line."
+  }
 }
