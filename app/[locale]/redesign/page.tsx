@@ -312,7 +312,7 @@ export default async function RedesignHome({ params }: Props) {
           {/* Just an eyebrow — the day cards do the talking. */}
           <div className="mb-10 md:mb-14">
             <Sticker color="ink" size="sm" rotate={-3}>
-              Programma
+              {tHome("programme.eyebrow")}
             </Sticker>
           </div>
 
@@ -379,6 +379,7 @@ export default async function RedesignHome({ params }: Props) {
                 locale={locale}
                 tilt={headlinerTilts[i % headlinerTilts.length]}
                 tone={headlinerTones[i % headlinerTones.length]}
+                tbaLabel={tHome("lineup.tba")}
               />
             ))}
           </div>
@@ -506,7 +507,7 @@ export default async function RedesignHome({ params }: Props) {
                 </div>
                 <div className="col-span-3 flex flex-col gap-2 p-5 md:p-6">
                   <p className="font-display text-2xl leading-[0.95] md:text-3xl">
-                    Doe mee als vrijwilliger of partner.
+                    {tHome("activities.crew.body")}
                   </p>
                   <Link
                     href="/contact"
@@ -707,31 +708,44 @@ export default async function RedesignHome({ params }: Props) {
 
           <div className="lg:col-span-7">
             <div className="relative grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-              {partnerSamples.map((p, i) => (
-                <a
-                  key={p.name}
-                  {...(p.site && {
-                    href: p.site,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                  })}
-                  className="group shadow-sticker-sm relative flex aspect-square items-center justify-center border-2 border-gray-900 bg-gray-900 p-4 transition-transform hover:-translate-y-1"
-                  style={{
-                    transform: `rotate(${String(((i % 4) - 1.5) * 1.5)}deg)`,
-                  }}
-                  aria-label={p.name}
-                >
-                  {p.logoWhite && (
-                    <Image
-                      src={p.logoWhite}
-                      alt={p.name}
-                      width={160}
-                      height={120}
-                      className="max-h-12 w-auto object-contain opacity-90 transition-opacity group-hover:opacity-100 md:max-h-16"
-                    />
-                  )}
-                </a>
-              ))}
+              {partnerSamples.map((p, i) => {
+                const tileClass =
+                  "group shadow-sticker-sm relative flex aspect-square items-center justify-center border-2 border-gray-900 bg-gray-900 p-4";
+                const tileStyle = {
+                  transform: `rotate(${String(((i % 4) - 1.5) * 1.5)}deg)`,
+                };
+                const logo = p.logoWhite ? (
+                  <Image
+                    src={p.logoWhite}
+                    alt={p.name}
+                    width={160}
+                    height={120}
+                    className="max-h-12 w-auto object-contain opacity-90 transition-opacity group-hover:opacity-100 md:max-h-16"
+                  />
+                ) : null;
+                return p.site ? (
+                  <a
+                    key={p.name}
+                    href={p.site}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={`${tileClass} transition-transform hover:-translate-y-1`}
+                    style={tileStyle}
+                    aria-label={p.name}
+                  >
+                    {logo}
+                  </a>
+                ) : (
+                  <span
+                    key={p.name}
+                    className={tileClass}
+                    style={tileStyle}
+                    aria-label={p.name}
+                  >
+                    {logo}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>

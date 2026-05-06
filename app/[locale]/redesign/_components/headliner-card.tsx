@@ -17,6 +17,8 @@ type Props = {
   tilt?: number;
   /** Background color of the card frame. */
   tone?: "blue" | "yellow" | "pink" | "brand";
+  /** Label for the wax-seal sticker on TBA placeholder cards. */
+  tbaLabel: string;
 };
 
 const toneClass: Record<NonNullable<Props["tone"]>, string> = {
@@ -38,6 +40,7 @@ export function HeadlinerCard({
   locale,
   tilt = 0,
   tone = "blue",
+  tbaLabel,
 }: Props) {
   const isTBA = name === "TBA";
   const style = { transform: `rotate(${String(tilt)}deg)` };
@@ -45,7 +48,7 @@ export function HeadlinerCard({
   if (isTBA) {
     return (
       <div className={cn(cardFrame, toneClass[tone])} style={style}>
-        <CardBack />
+        <CardBack label={tbaLabel} />
         <div className="flex items-baseline justify-between gap-2 px-4 py-4 md:px-5">
           <span className="font-display block text-3xl leading-[0.9] font-bold uppercase md:text-5xl xl:text-6xl">
             TBA
@@ -108,7 +111,7 @@ export function HeadlinerCard({
  * plus accents at the corners (the symmetric repeating motif), and a
  * tilted "Soon" sticker as the wax seal.
  */
-function CardBack() {
+function CardBack({ label }: { label: string }) {
   return (
     <div className='before:halftone relative aspect-4/5 overflow-hidden border-b-2 border-gray-900 before:absolute before:inset-0 before:z-10 before:opacity-50 before:mix-blend-multiply before:content-[""]'>
       <div className="absolute inset-0 flex items-center justify-center">
@@ -141,7 +144,7 @@ function CardBack() {
       />
       <div className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
         <Sticker color="brand" size="md" rotate={-8}>
-          Soon
+          {label}
         </Sticker>
       </div>
     </div>

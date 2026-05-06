@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival _Zomaar Zomert_. UI is built on **Tailwind v4** + **shadcn/ui** (the `new-york` style on the `base-ui` registry — see [components.json](components.json)), so primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com) under the shadcn conventions.
 
-For the visual language, design tokens, and reusable primitives (stickers, paper tears, halftones, ticker strips, sticker buttons), see [Design.md](Design.md). The in-progress home redesign lives at [/redesign](app/%5Blocale%5D/redesign/page.tsx) — keep production work and the redesign visually consistent.
+For the visual language, design tokens, and reusable primitives (stickers, paper tears, halftones, ticker strips, sticker buttons), see [Design.md](Design.md). [/redesign](app/%5Blocale%5D/redesign/page.tsx) is the reference implementation — when applying the design language to other pages, mirror its patterns.
 
 ## Commands
 
@@ -36,21 +36,21 @@ All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/lay
 <GoogleAnalytics gaId={...} />
 ```
 
-[components/layout.tsx](components/layout.tsx) is a `'use client'` shell that renders `Navbar` / `<main>` / `Footer` / `CookieBanner`. Navbar goes transparent only on routes listed in `transparentRoutes` inside that file — currently just `/`.
+[components/layout.tsx](components/layout.tsx) is a `'use client'` shell that renders `Navbar` / `<main>` / `Footer` / `CookieBanner`. Navbar goes transparent only on routes listed in `transparentRoutes` inside that file (routes whose hero sits behind the fixed navbar).
 
-**Server vs. client split**: `app/**/page.tsx` is always a server component — it `await params`, calls `setRequestLocale(locale)`, fetches/transforms data, calls `getTranslations(...)` for SEO, and renders a `'use client'` subcomponent in `_components/` for interactive content (e.g. [home-client.tsx](app/%5Blocale%5D/_components/home-client.tsx), [line-up-client.tsx](app/%5Blocale%5D/line-up/_components/line-up-client.tsx)). UI primitives that use motion, hooks, or DOM APIs (`Button`, `Dialog`, `Navbar`, `Footer`, `LanguagePicker`, `CookieBanner`, `Form`, `Countdown`, `ImageCard`, `Map`) are all `'use client'`. Component file names are kebab-case (`image-card.tsx`, not `ImageCard.tsx`).
+**Server vs. client split**: `app/**/page.tsx` is always a server component — it `await params`, calls `setRequestLocale(locale)`, fetches/transforms data, calls `getTranslations(...)` for SEO, and renders a `'use client'` subcomponent in `_components/` for interactive content (e.g. [home-client.tsx](app/%5Blocale%5D/_components/home-client.tsx), [line-up-client.tsx](app/%5Blocale%5D/line-up/_components/line-up-client.tsx)). UI primitives that use motion, hooks, or DOM APIs (`Button`, `Dialog`, `Navbar`, `LocaleSwitcher`, `CookieBanner`, `Form`, `Countdown`, `ImageCard`, `Map`) are all `'use client'`. The global `Footer` is a server component (rendered as a prop into the client `Layout`). Component file names are kebab-case (`image-card.tsx`, not `ImageCard.tsx`).
 
 ### Modals
 
-There is no global modal context — render modals locally with the shadcn `Dialog` wrapper from [components/ui/dialog.tsx](components/ui/dialog.tsx) (which proxies `@base-ui-components/react/dialog`). Hold open state where it belongs, e.g. [image-card.tsx](components/image-card.tsx) for the artist sheet, [language-picker.tsx](components/language-picker.tsx) for the locale switcher. Base UI's Dialog handles its own scroll lock — don't add `body.style.overflow` toggles or `react-remove-scroll` (it isn't installed).
+There is no global modal context — render modals locally with the shadcn `Dialog` wrapper from [components/ui/dialog.tsx](components/ui/dialog.tsx) (which proxies `@base-ui-components/react/dialog`). Hold open state where it belongs, e.g. [image-card.tsx](components/image-card.tsx) for the artist sheet, [navbar.tsx](components/navbar.tsx) for the kinetic full-screen menu. Base UI's Dialog handles its own scroll lock — don't add `body.style.overflow` toggles or `react-remove-scroll` (it isn't installed).
 
 ### Content as static JSON, translated at build time
 
-Festival content lives as JSON in [public/](public/), not in a CMS:
+Festival content lives as JSON in [lib/data/](lib/data/), not in a CMS:
 
-- [public/data.json](public/data.json) — artists/line-up
-- [public/menu.json](public/menu.json) — food & drinks
-- [public/partners.json](public/partners.json) — sponsors
+- [lib/data/artists.json](lib/data/artists.json) — artists/line-up
+- [lib/data/menu.json](lib/data/menu.json) — food & drinks
+- [lib/data/partners.json](lib/data/partners.json) — sponsors
 
 Each record stores translated strings as `{ nl, fr, en }` objects (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages read these from disk in `loadXxx(locale)` helpers, flatten the strings down to the active `locale`, and pass the result to a client subcomponent — see [app/[locale]/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) (`APIArtist → Artist`) and [app/[locale]/menu/page.tsx](app/%5Blocale%5D/menu/page.tsx) (`APIMenuItem → MenuItem`) for the canonical pattern. When you add a new content collection, mirror this `API*` → flat-shape transform so page components stay locale-agnostic.
 

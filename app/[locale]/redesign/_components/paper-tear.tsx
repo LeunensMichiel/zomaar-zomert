@@ -1,3 +1,5 @@
+import "server-only";
+
 import { cn } from "@lib/utils";
 
 import { type Tear, type TearColor } from "./paper-tear-types";

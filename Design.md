@@ -1,6 +1,6 @@
 # Design.md — Zomaar Zomert
 
-Living reference for the visual language, design tokens, and reusable primitives used across the site. Applies to the production pages and to the in-progress redesign at [/redesign](app/%5Blocale%5D/redesign/page.tsx).
+Living reference for the visual language, design tokens, and reusable primitives used across the site. [/redesign](app/%5Blocale%5D/redesign/page.tsx) is the reference implementation — when porting another page to this design language, copy its patterns.
 
 ## Aesthetic direction
 
@@ -48,21 +48,21 @@ Four named gradient styles ride alongside the solid palette (Figma styles `Linea
 | `bg-radial-red`    | Radial Red     | `#ff7bac` 0% → `#de350b` 100% (radial) | One-off accents (e.g. lips on the yellow gallery)       |
 | `bg-80s-gum`       | 80s Gum        | `#3b84db` 3% → `#ff8faa` 61%           | Cool-to-hot accent for blue-leaning sections            |
 
-Use gradients _sparingly_ — too many on one page reads as Web 2.0 sheen. The current rule of thumb: **at most one gradient per section**, applied either to the anchor doodle or to a single panel (e.g. the redesign countdown).
+Use gradients _sparingly_ — too many on one page reads as Web 2.0 sheen. **At most one gradient per section**, applied either to the anchor doodle or to a single panel (e.g. the countdown).
 
 ### Type
 
 - **Display**: `Oswald 700` (`font-display`). All headings, sticker labels, button labels, sectional eyebrows. UPPERCASE, line-height ≤ 1.05.
 - **Body**: `Open Sans` (`font-sans`), 400 default, 700 for `<strong>`. Line-height 1.5.
 
-Headline scale is set in [app/globals.css](app/globals.css#L137-L178). For loud hero moments, use `text-4xl md:text-6xl xl:text-7xl` (or `clamp(...)` when you need a continuous ramp). The redesign uses **stacked logo + headline + date triangle** as the visual anchor, not a single `<h1>`.
+Headline scale is set in [app/globals.css](app/globals.css#L137-L178). For loud hero moments, use `text-4xl md:text-6xl xl:text-7xl` (or `clamp(...)` when you need a continuous ramp). For the home hero, **stacked logo + date stamps + location strip** is the visual anchor — not a single `<h1>`.
 
 #### Section titles: short, big, or absent
 
 This is **not** a SaaS site. Section eyebrows + sentence-y subtitles read like product copy and dilute the festival voice. Apply this rule for new sections:
 
 - **Prefer no title at all** when context (sticker eyebrow + cards/visuals) already says what the section is. The Days, Numbers, and Activities cards make their meaning obvious; a sentence on top is noise.
-- **If you do keep a title, use one or two words and make it huge** — poster-grade, not header-grade. The redesign uses `text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]` for these single-word "stamps" (e.g. `Line-up.`, `Doe mee.`, `Vibes.`, `Aftermovie.`, `Tot dan.`). Pick a scale, commit to it, and let the type itself be the visual.
+- **If you do keep a title, use one or two words and make it huge** — poster-grade, not header-grade. The standard scale is `text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]` for these single-word "stamps" (e.g. `Line-up.`, `Doe mee.`, `Vibes.`, `Aftermovie.`, `Tot dan.`). Pick a scale, commit to it, and let the type itself be the visual.
 - **Drop redundant lede paragraphs.** A short body line under the big stamp is fine; a marketing summary is not.
 - **Sticker eyebrows are still allowed** when they add useful context the headline doesn't ("Mogelijk gemaakt door" before "100% Gratis."), but most sections don't need one.
 
@@ -95,7 +95,7 @@ Use for eyebrows, "FREE ENTRY", date pills, "DOE MEE" callouts, footer column he
 
 ### `<Doodle>` — [app/[locale]/redesign/_components/doodle.tsx](app/%5Blocale%5D/redesign/_components/doodle.tsx)
 
-Decorative shapes — the building block for the maximalist, sticker-pack feel. SVG illustrations exported from the **Doodles** frame in the ZZ 2026 Figma file (sources in [public/assets/doodles/](public/assets/doodles/), pre-extracted into [doodle-svgs.ts](app/%5Blocale%5D/redesign/_components/doodle-svgs.ts)) are inlined so each layer's fill/stroke can be themed independently — `mask-image` would collapse every layer to a single colour, which is why we don't use it. Two inline shapes (`eye`, `plus`) are drawn as plain JSX paths.
+Decorative shapes — the building block for the maximalist, sticker-pack feel. SVG illustrations exported from the **Doodles** frame in the ZZ 2026 Figma file (sources in [public/assets/doodles/](public/assets/doodles/), pre-extracted into [doodle-svgs.ts](app/%5Blocale%5D/redesign/_components/doodle-svgs.ts)) are inlined so each layer's fill/stroke can be themed independently — `mask-image` would collapse every layer to a single colour. Two inline shapes (`eye`, `plus`) are drawn as plain JSX paths.
 
 **Shapes:**
 
@@ -117,7 +117,7 @@ The asset-backed shapes have varying intrinsic aspect ratios (e.g. `lips` ≈ 1.
 
 If you re-export an SVG from Figma, regenerate `doodle-svgs.ts` (small Node script lives in the commit history under "extract doodle svgs"). Watch out for hardcoded hex colours in the export — convert them to `var(--stroke-0, …)` or `var(--fill-0, …)` so they remain themable. The included `cross` and `sun-rays` are the only ones with this pattern today.
 
-**Doodle component is server-only** — `doodle-svgs.ts` is large enough to bloat the client bundle if it ever crosses a `'use client'` boundary. Both current consumers ([page.tsx](app/%5Blocale%5D/redesign/page.tsx), [headliner-card.tsx](app/%5Blocale%5D/redesign/_components/headliner-card.tsx)) are server components.
+**Doodle is server-only** — the module declares `import "server-only"` so a stray client import fails the build. `doodle-svgs.ts` is large enough to bloat the client bundle if it ever crossed a `'use client'` boundary; same goes for `<PaperTear>`.
 
 #### Scatter rule: fewer, bigger, with extreme size variation
 
@@ -132,7 +132,7 @@ Examples that earn their place: a 96–128 unit `halftone-star` bleeding off the
 
 ### `<PaperTear>` — [app/[locale]/redesign/_components/paper-tear.tsx](app/%5Blocale%5D/redesign/_components/paper-tear.tsx)
 
-Re-renders each `<path d="…">` from the festival's torn-paper SVGs inline so we control `fill` directly — no `mask-image` recolor trickery. Path strings are pre-extracted into [tear-paths.ts](app/%5Blocale%5D/redesign/_components/tear-paths.ts) (regenerate when the source SVGs change) so PaperTear has no `fs` / runtime file IO. Keep PaperTear in **server components only** — its 270KB of path data should never end up in the client bundle. Renders as an in-flow `block` element with `relative z-0` (lowest layer in the section's z-stack) and a 1px negative margin (`-mt-px` for `edge="top"`, `-mb-px` for `edge="bottom"`) that bleeds the tear into the adjacent section to hide sub-pixel rendering hairlines. Drop it as the first or last child of a section and it sits flush at that section's edge — see the section template below.
+Re-renders each `<path d="…">` from the festival's torn-paper SVGs inline so we control `fill` directly — no `mask-image` recolor trickery. Path strings are pre-extracted into [tear-paths.ts](app/%5Blocale%5D/redesign/_components/tear-paths.ts) (regenerate when the source SVGs change) so PaperTear has no `fs` / runtime file IO. **Server-only** (declares `import "server-only"`) — its 270KB of path data must never end up in the client bundle. Renders as an in-flow `block` with `relative z-0` (lowest layer in the section's z-stack) and a 1px translate (`-translate-y-px` for `edge="top"`, `translate-y-px` for `edge="bottom"`) that bleeds the tear into the adjacent section to hide sub-pixel hairlines. Tailwind v4 emits `translate-y-*` via the standalone `translate` CSS property, so it stacks cleanly with the inline `transform: scaleY(-1)` that flips top-edge tears. Drop it as the first or last child of a section and it sits flush at that section's edge.
 
 Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only occupies a slice of that — anywhere from ~520 (tear-4, tear-5) to ~1300 units tall (tear-1). The component stores a per-tear cropped viewBox in `TEAR_VIEWBOX` so the rendered SVG's intrinsic aspect matches the visible ink. Result: the box on screen is exactly the size of the tear, no phantom empty area.
 
@@ -152,7 +152,7 @@ Pass the **adjacent section's color** as `color` so the divider visually flows:
 
 Optional `bgColor` makes the tear a self-contained two-tone block — `color` paints the painted silhouette, `bgColor` paints everything outside it. Swap the two values to flip which side reads as primary without touching the parent's background.
 
-Example: hero (`bg-gray-900`) ending in a yellow ticker → `<PaperTear edge="top" tear={5} color="yellow-400" />` rendered above the ticker so the wave looks "torn" up into the dark hero.
+Example: hero (`bg-blue-900`) ending in a yellow ticker → `<PaperTear edge="top" tear={5} color="yellow-400" />` rendered above the ticker so the wave looks "torn" up into the dark hero.
 
 ### `<TickerStrip>` — [app/[locale]/redesign/_components/ticker-strip.tsx](app/%5Blocale%5D/redesign/_components/ticker-strip.tsx)
 
@@ -162,25 +162,25 @@ Pukkelpop-style rolling marquee of all-caps strings, separator between items. Wr
 
 16-point star stamp built with a CSS clip-path so we don't need a new SVG asset. Drop a child label inside (e.g. "GRATIS / INKOM") and rotate the wrapper.
 
-### `<DayCard>` / `<HeadlinerCard>` — [app/[locale]/redesign/_components/day-card.tsx](app/%5Blocale%5D/redesign/_components/day-card.tsx), [headliner-card.tsx](app/%5Blocale%5D/redesign/_components/headliner-card.tsx)
+### `<DayCard>` / `<HeadlinerCard>` — [day-card.tsx](app/%5Blocale%5D/redesign/_components/day-card.tsx), [headliner-card.tsx](app/%5Blocale%5D/redesign/_components/headliner-card.tsx)
 
-Tilted, halftoned image cards used in the line-up sections. Each has a slight per-card tilt (set in the page) so the row feels hand-arranged.
+Tilted, halftoned image cards used in the line-up sections. Each has a slight per-card tilt (set in the page) so the row feels hand-arranged. `<HeadlinerCard>` takes a `tbaLabel` prop for the wax-seal sticker on TBA placeholders so the parent owns the translation.
 
-### `<PhotoMarquees>` — [app/[locale]/redesign/_components/photo-marquees.tsx](app/%5Blocale%5D/redesign/_components/photo-marquees.tsx)
+### `<PhotoMarquees>` — [photo-marquees.tsx](app/%5Blocale%5D/redesign/_components/photo-marquees.tsx)
 
-Twin marquees of festival photos with a randomized client-side shuffle. Same behavior as the production `<HomeMarquees>`, minus the inner white tear SVGs that clash with the redesign's colored sections.
+Twin marquees of festival photos with a randomized client-side shuffle. Use over colored sections — the legacy `<HomeMarquees>` bakes in white tear SVGs that clash with non-white backgrounds.
 
-### `<RedesignCountdown>` — [app/[locale]/redesign/_components/redesign-countdown.tsx](app/%5Blocale%5D/redesign/_components/redesign-countdown.tsx)
+### `<RedesignCountdown>` — [redesign-countdown.tsx](app/%5Blocale%5D/redesign/_components/redesign-countdown.tsx)
 
-Festival countdown clock for the intro panel. Replacement for the production `<Countdown />` — the legacy one highlights seconds in `text-brand-500` (invisible on the redesign's `bg-brand-500` panel) and uses `flex-wrap` (which kicks SEC to a second row in narrow panels). This one forces `grid-cols-4`, shares one color across all four cells, and inherits its color from the parent so the panel can re-skin it.
+Festival countdown clock. Replaces the production `<Countdown />` — the legacy one highlights seconds in `text-brand-500` (invisible on a `bg-brand-500` panel) and uses `flex-wrap` (which kicks SEC to a second row in narrow panels). This one forces `grid-cols-4`, shares one color across all four cells, and inherits text color from its parent so any panel can re-skin it.
 
-### `<LocaleSwitcher>` — [components/locale-switcher.tsx](components/locale-switcher.tsx)
+### `<LocaleSwitcher>` — [locale-switcher.tsx](components/locale-switcher.tsx)
 
-Compact two-letter language picker (`NL FR EN`). Inactive codes sit at `opacity-50`; the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Replaces the older globe-icon-opens-a-modal `<LanguagePicker>` pattern with a single tap. Keep it subtle — only show it when there's a clear context for switching (e.g. inside the open menu).
+Compact two-letter language picker (`NL FR EN`). Inactive codes sit at `opacity-50`; the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Keep it subtle — only show it when there's a clear context for switching (e.g. inside the open menu, or in the footer bottom bar).
 
-### `<Button>` — [components/ui/button.tsx](components/ui/button.tsx)
+### `<Button>` — [button.tsx](components/ui/button.tsx)
 
-Existing component, now with extra variants for the redesign:
+The shared button. Variants used in the new design language:
 
 - `variant="brand"` — orange fill, black border, white text.
 - `variant="accent"` — yellow fill, black border, dark text.
@@ -189,11 +189,11 @@ Existing component, now with extra variants for the redesign:
 - `size="2xl"` — extra-large CTA scale.
 - `sticker` (boolean) — adds the offset shadow + lift-on-hover behavior.
 
-The legacy variants (`primary`, `transparent`, `minimal*`) are unchanged so existing pages keep their look.
+Polymorphic via `as`. `disabled` only emits the HTML attribute when `as` resolves to `"button"`; on `<a>`/`<span>` it sets `aria-disabled` and `tabIndex=-1` instead. The legacy variants (`primary`, `transparent`, `minimal*`) are still around for pages that haven't been ported yet.
 
 ### Footer — [components/footer.tsx](components/footer.tsx)
 
-Two-part global footer used on every page (production + redesign).
+Two-part global footer used on every page.
 
 - **Photo strip** — full-bleed `footer.webp` with a darkened halftone overlay, paper tears top + bottom (`tear-5` top, `tear-6` bottom), and three rotated **sticker** social buttons (Instagram / Facebook / YouTube in `yellow / brand / blue`) above a small "Volg ons" sticker eyebrow. Each social tile is 64–80px square, 2px black border, sticker shadow, and uses `motion`'s `whileHover` to straighten its rotation and lift `-y: 6px` on hover.
 - **Dark info section** (`bg-gray-900`) — asymmetric 12-col grid:
@@ -213,25 +213,25 @@ Don't add a newsletter, "stay in the loop" CTA, or any copy that pretends the fe
 The menu is a Base UI `Dialog` that takes over the viewport when triggered. Notes:
 
 - **Header** — permanently `position: fixed`. As the page scrolls past the first 120px, vertical padding tightens and the logo scales to 70% via `motion`'s `useScroll` + `useTransform` (no CSS keyframes — the motion values feed `motion.nav` and `motion.div` directly).
-- **Backdrop** — `bg-brand-500/65` (intentionally translucent) with `backdrop-blur-2xl` and a `halftone` overlay on top, so the page underneath shows through tinted, blurred, and halftoned. The popup itself stays put; an inner `motion.div` slides the colored layer down from `translate-y: -100%` to `0` (the "gate" drop). No more clip-path reveal.
+- **Backdrop** — `bg-brand-500/65` (intentionally translucent) with `backdrop-blur-2xl` and a `halftone` overlay on top, so the page underneath shows through tinted, blurred, and halftoned. The popup itself stays put; an inner `motion.div` slides the colored layer down from `translate-y: -100%` to `0` (the "gate" drop).
 - **Link stagger** — the link list runs `motion` parent/child variants: `staggerChildren: 0.05`, `delayChildren: 0.35`, each link transitions `opacity 0 → 1` + `y: 30 → 0`. Reverse stagger on close.
 - **Kinetic hover** — every menu link wraps two stacked copies of the label in a CSS grid cell with `overflow-hidden` + `leading-none` on the wrapper (so the row is exactly one glyph tall and `translate-y-full` is a clean 100% shift). On `:hover` / `:focus-visible` both copies translate up together — original slides out the top, the yellow duplicate slides in from below. Pure CSS, no JS.
 - **Sizing** — `text-4xl md:text-6xl xl:text-7xl` with `py-2.5 px-4` on mobile (44px+ tap target, 8px gap between rows) tightening to `md:py-1` + `md:gap-1` on larger viewports. Tight enough that all six items fit on common breakpoints, loose enough that mobile fingers don't mis-tap.
-- **Locale switcher** — uses [`<LocaleSwitcher>`](components/locale-switcher.tsx) (the previous globe-icon-opens-a-modal pattern is gone). Three two-letter codes (`NL FR EN`); inactive sit at `opacity-50`, the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Keep it subtle — only visible while the menu is open, fading in once the link stagger settles.
+- **Locale switcher** — [`<LocaleSwitcher>`](components/locale-switcher.tsx). Three two-letter codes (`NL FR EN`); inactive sit at `opacity-50`, the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Keep it subtle — only visible while the menu is open, fading in once the link stagger settles.
 - **Base UI integration** — `BaseDialog.Portal keepMounted` keeps the popup in the DOM so `motion`-driven exits play out. Use `data-closed:pointer-events-none` so the popup doesn't intercept clicks while invisible.
 
 When adding new menu items, keep the size scale and the `<span className="grid overflow-hidden leading-none">` wrapper so the kinetic swap stays in sync.
 
 ## Layout & spacing
 
-- Use `container-wide` for the redesign — `1640px` max width, more breathing room than `container-page`. The existing home page also uses `container-wide`.
+- Use `container-wide` (`1640px` max width) — more breathing room than `container-page`. `container-page` is reserved for legacy pages.
 - Vertical rhythm via `section-y` (3rem mobile / 6rem md / 9rem xl) and `section-y-sm` (3rem / 5rem). Stick to these — don't hand-roll padding values.
 - Cards: 2px solid black border + `shadow-sticker[-lg]`. No drop shadows, no rounded corners.
 - Mobile is the primary canvas — 80% of traffic. Card stacks should collapse to a single column comfortably; tilt remains visible at any breakpoint.
 
 ### Section template & z-layering
 
-Each redesign section is `relative isolate bg-X` — `isolate` gives the section its own stacking context. **Don't** add `overflow-x-clip` to a section: per the CSS Overflow spec, mixing `overflow-x: clip` with `overflow-y: visible` forces the visible axis to compute as `auto`, which clips negative-offset doodles vertically. Horizontal clipping is handled once at the page level via `overflow-x: clip` on `body` ([app/globals.css](app/globals.css)), so individual sections can keep `overflow: visible` and let bleeding doodles cross section boundaries vertically.
+Each section is `relative isolate bg-X` — `isolate` gives the section its own stacking context. **Don't** add `overflow-x-clip` to a section: per the CSS Overflow spec, mixing `overflow-x: clip` with `overflow-y: visible` forces the visible axis to compute as `auto`, which clips negative-offset doodles vertically. Horizontal clipping is handled once at the page level via `overflow-x: clip` on `html` ([app/globals.css](app/globals.css)), so individual sections can keep `overflow: visible` and let bleeding doodles cross section boundaries vertically.
 
 Inside, the layers are explicit:
 
@@ -258,18 +258,17 @@ Current motion moments:
 
 For new effects, prefer CSS transitions where they suffice; reach for `motion` when you need orchestration (stagger, layout animations, scroll-driven values).
 
-## Where the redesign lives
+## Reference implementation: `/redesign`
 
-- Page: [app/[locale]/redesign/page.tsx](app/%5Blocale%5D/redesign/page.tsx)
-- Local components: [app/[locale]/redesign/_components/](app/%5Blocale%5D/redesign/_components/)
-- Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) — read via `getTranslations({ namespace: "home" })`. The ticker uses `tHome.raw("ticker") as string[]` to pull the array.
-- The `/redesign` route is registered in [lib/i18n/routing.ts](lib/i18n/routing.ts) and added to `transparentRoutes` in [components/layout.tsx](components/layout.tsx) so the navbar appears in white over the hero video.
+The home redesign at [app/[locale]/redesign/page.tsx](app/%5Blocale%5D/redesign/page.tsx) is the canonical worked example. Local components live in [app/[locale]/redesign/_components/](app/%5Blocale%5D/redesign/_components/); copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) and is read via `getTranslations({ namespace: "home" })` (the ticker uses `tHome.raw("ticker") as string[]` for the array). The `/redesign` route is registered in [lib/i18n/routing.ts](lib/i18n/routing.ts) and added to `transparentRoutes` in [components/layout.tsx](components/layout.tsx) so the navbar floats white over the hero video.
 
-### Sections, top to bottom
+When porting another page to this language, mirror the pattern: a server `page.tsx` does data + translations and renders a stack of `relative isolate bg-X` sections separated by `<PaperTear>`s, with `<Doodle>` scatter in the gutters and any interactivity inside `'use client'` subcomponents.
+
+### Reference sections, top to bottom
 
 `min-h-dvh` hero, then nine alternating-color sections, then the closing CTA before the global footer.
 
-1. **Hero** (`bg-gray-900` over the looping video) — halftone overlay, sparse scatter doodles (one huge anchor + small accents), centered logo + tilted date sticker stamps + small location strip, in-hero yellow `<TickerStrip>` flush at the bottom with a `<PaperTear edge="top" tear={5} color="yellow-400">` over it so the marquee reads as "torn".
+1. **Hero** (`bg-blue-900` — Tardis Blue, our deep summer-night anchor — over the looping video) — halftone overlay, sparse scatter doodles (one huge anchor + small accents), centered logo + tilted date sticker stamps + small location strip, in-hero yellow `<TickerStrip>` flush at the bottom with a `<PaperTear edge="top" tear={5} color="yellow-400">` over it so the marquee reads as "torn".
 2. **Intro + countdown** (`bg-pink-50`) — poster-sized `ZOMAAR.` headline + short body next to a brand-orange `<RedesignCountdown>` panel.
 3. **Days** (`bg-pink-300`) — small "Programma" sticker eyebrow only; three tilted halftone `<DayCard>`s do the talking.
 4. **Headliners** (`bg-blue-500`) — `Line-up.` poster headline + "Volledige line-up" button; three `<HeadlinerCard>`s.
@@ -278,6 +277,6 @@ For new effects, prefer CSS transitions where they suffice; reach for `motion` w
 7. **Gallery** (`bg-yellow-400`) — `Vibes.` headline + `<PhotoMarquees>`.
 8. **Numbers** (`bg-brand-500`) — no headline; four tilted stat stickers do it.
 9. **Partners teaser** (`bg-pink-50`) — "Mogelijk gemaakt door" sticker eyebrow + `100% Gratis.` headline + sticker grid of 8 partner logos + "Alle partners" / "Word partner" CTAs (the full list still lives in the global `<Footer>`).
-10. **Closing CTA** (`bg-gray-900`) — `Tot dan.` poster headline + body + buttons + a `<StarBurst>` and sticker stack on the right.
+10. **Closing CTA** (`bg-blue-900`) — `Tot dan.` poster headline + body + buttons + a `<StarBurst>` and sticker stack on the right.
 
 Section dividers all use `<PaperTear>` with the adjacent section's color so transitions flow.

@@ -29,6 +29,11 @@ function compute(diff: number): [number, number, number, number] {
 export function RedesignCountdown() {
   const t = useTranslations("home");
   const [diff, setDiff] = useState<number | null>(null);
+  // Captured once at mount so the "festival started" / "see you next year"
+  // branch isn't an impure call during render. Refining this mid-session
+  // would require sitting on the page across LAST_DAY, which doesn't
+  // happen in practice.
+  const [mountedAt] = useState(() => Date.now());
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- avoid 1s delay before first tick; Date.now() is not SSR-safe
@@ -45,9 +50,7 @@ export function RedesignCountdown() {
   if (ended) {
     return (
       <p className="font-display text-3xl leading-tight font-bold uppercase md:text-4xl">
-        {Date.now() >= LAST_DAY
-          ? "See you next year!"
-          : t("festivalHasStarted")}
+        {mountedAt >= LAST_DAY ? "See you next year!" : t("festivalHasStarted")}
       </p>
     );
   }

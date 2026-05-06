@@ -138,6 +138,11 @@ export function Button<C extends ElementType = "button">({
           ? "squared"
           : "default");
 
+  // `disabled` is only a real HTML attribute on <button>; setting it on <a>
+  // or <span> is invalid. `tabIndex={-1}` removes the element from the tab
+  // order when disabled — but we don't want to *force* tabIndex=0 on
+  // non-disabled spans (the parent <Link> already provides focus).
+  const isNativeButton = Component === "button";
   return (
     <Component
       className={cn(
@@ -153,8 +158,8 @@ export function Button<C extends ElementType = "button">({
         className,
       )}
       aria-disabled={disabled}
-      disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
+      {...(isNativeButton ? { disabled } : {})}
+      {...(disabled ? { tabIndex: -1 } : {})}
       {...rest}
     >
       {(loading || iconLeft) && (

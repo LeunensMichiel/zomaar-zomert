@@ -61,7 +61,7 @@ export function LocaleSwitcher({ className }: Props) {
             aria-pressed={isActive}
             disabled={isPending}
             className={cn(
-              "relative cursor-pointer px-1.5 py-1 outline-none transition-opacity",
+              "relative cursor-pointer px-1.5 py-1 transition-opacity outline-none",
               "focus-visible:opacity-100",
               isActive ? "opacity-100" : "opacity-50 hover:opacity-100",
             )}

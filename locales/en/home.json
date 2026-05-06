@@ -38,7 +38,11 @@
   },
   "lineup": {
     "all": "Full line-up",
-    "seeDay": "See day"
+    "seeDay": "See day",
+    "tba": "Soon"
+  },
+  "programme": {
+    "eyebrow": "Programme"
   },
   "activities": {
     "paella": {
@@ -48,6 +52,9 @@
     "petanque": {
       "title": "Pétanque tournament",
       "body": "Three balls, one sandpit, and your street's honour on the line. Beginners welcome, champions too."
+    },
+    "crew": {
+      "body": "Join us as a volunteer or partner."
     },
     "contact": "Contact"
   },

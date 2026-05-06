@@ -38,7 +38,11 @@
   },
   "lineup": {
     "all": "Programmation complète",
-    "seeDay": "Voir le jour"
+    "seeDay": "Voir le jour",
+    "tba": "Bientôt"
+  },
+  "programme": {
+    "eyebrow": "Programme"
   },
   "activities": {
     "paella": {
@@ -48,6 +52,9 @@
     "petanque": {
       "title": "Tournoi de pétanque",
       "body": "Trois boules, un bac de sable, et l'honneur de votre rue. Débutants bienvenus, champions aussi."
+    },
+    "crew": {
+      "body": "Rejoignez-nous comme bénévole ou partenaire."
     },
     "contact": "Contact"
   },

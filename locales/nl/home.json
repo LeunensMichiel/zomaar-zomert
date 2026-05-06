@@ -38,7 +38,11 @@
   },
   "lineup": {
     "all": "Volledige line-up",
-    "seeDay": "Bekijk dag"
+    "seeDay": "Bekijk dag",
+    "tba": "Binnenkort"
+  },
+  "programme": {
+    "eyebrow": "Programma"
   },
   "activities": {
     "paella": {
@@ -48,6 +52,9 @@
     "petanque": {
       "title": "Petanque-tornooi",
       "body": "Drie ballen, één zandbak, en de eer van je straat. Beginners welkom, kampioenen ook."
+    },
+    "crew": {
+      "body": "Doe mee als vrijwilliger of partner."
     },
     "contact": "Contact"
   },

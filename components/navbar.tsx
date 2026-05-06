@@ -117,7 +117,7 @@ export function Navbar({ isTransparent = false }: NavbarProps) {
       >
         <div className="container-wide">
           <motion.nav style={{ paddingTop: navPadY, paddingBottom: navPadY }}>
-            <div className="relative z-10000 flex w-full items-center justify-between">
+            <div className="relative flex w-full items-center justify-between">
               <motion.div style={{ scale: logoScale }} className="origin-left">
                 <Logo
                   className={cn(

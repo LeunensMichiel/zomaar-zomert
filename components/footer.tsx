@@ -217,6 +217,14 @@ export async function Footer() {
               ))}
             </ul>
           </div>
+          {/* All three tears use `edge="bottom"` (no scaleY flip) and are
+              absolutely positioned over the photo strip, so the SVG
+              orientation reads consistently regardless of which side of
+              the strip they sit on. The semantic `edge` prop is meant
+              for in-flow placement; the redesign page uses it that way.
+              Here we're stamping these on top of an image, so we pick
+              the orientation that paints in the right direction and
+              ignore the in-flow semantics. */}
           <PaperTear
             edge="bottom"
             tear={3}
