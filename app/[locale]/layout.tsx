@@ -82,9 +82,6 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} className={`${oswald.variable} ${openSans.variable}`}>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body>
         <NextIntlClientProvider>
           <Layout footer={<Footer />}>{children}</Layout>

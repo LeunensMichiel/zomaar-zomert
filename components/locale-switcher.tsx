@@ -71,7 +71,7 @@ export function LocaleSwitcher({ className }: Props) {
               <motion.span
                 layoutId="locale-bar"
                 aria-hidden="true"
-                className="absolute inset-x-1 -bottom-0.5 h-0.5 bg-yellow-400"
+                className="absolute inset-x-1 -bottom-0.5 h-px bg-yellow-400"
                 transition={{ type: "spring", duration: 0.45, bounce: 0.25 }}
               />
             )}

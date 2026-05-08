@@ -202,7 +202,7 @@ export function LineUpClient({ artists, children }: Props) {
             filter switch — that's how the entry animation re-runs even
             when the same day was already on screen (e.g. friday → all
             keeps friday in view, but we still want it to re-animate). */}
-        <div className="mt-12 grid gap-y-12 md:mt-16 md:gap-y-16">
+        <div className="mt-12 grid gap-y-12 md:mt-16 md:gap-y-24">
           {visibleDates.map((date, dayIndex) => (
             <DaySection
               key={`${currentDate ?? "all"}-${date}`}

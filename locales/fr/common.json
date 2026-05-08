@@ -50,5 +50,12 @@
     "code": "404",
     "message": "Il semble que vous soyez arrivé sur une page qui n'existe pas. N'hésitez pas à nous contacter si ce n'était pas le cas.",
     "button": "Retour à l'accueil"
+  },
+  "error": {
+    "eyebrow": "Oups, panne technique",
+    "title": "Quelque chose a déraillé",
+    "message": "Nos serveurs ont fait un court-circuit. Réessayez ou retournez à l'accueil — si le problème persiste, n'hésitez pas à nous le signaler.",
+    "button": "Réessayer",
+    "home": "Vers l'accueil"
   }
 }

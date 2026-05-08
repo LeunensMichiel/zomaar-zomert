@@ -35,10 +35,10 @@ export type DoodleShape =
 
 /**
  * Solid colour tokens (Zomaar Zomert palette) and the four named
- * gradient styles. Solids are CSS variable references so they keep
- * pace with theme changes; gradients resolve to literal `linear-gradient`
- * /`radial-gradient` strings (used as inline `<linearGradient>` defs
- * isn't worth the complexity for a single per-layer pass).
+ * gradient styles. Solids resolve to a CSS variable. Gradients are
+ * injected into the SVG as inline `<linearGradient>` / `<radialGradient>`
+ * defs and referenced via `url(#...)` — CSS gradients can't be used as
+ * SVG paint servers, so we mint the def per render with a unique id.
  */
 export type DoodleColor =
   // Solid — ZZ named anchors + utility neutrals.
@@ -50,9 +50,20 @@ export type DoodleColor =
   | "pink"
   | "ink"
   | "paper"
-  | "white";
+  | "white"
+  // Gradients — match the four named styles in app/globals.css.
+  | "linear-red"
+  | "linear-sunset"
+  | "radial-red"
+  | "80s-gum";
 
-const colorVar: Record<DoodleColor, string> = {
+const colorVar: Record<
+  Exclude<
+    DoodleColor,
+    "linear-red" | "linear-sunset" | "radial-red" | "80s-gum"
+  >,
+  string
+> = {
   "summer-red": "var(--color-brand-500)",
   "royal-yellow": "var(--color-yellow-400)",
   "dimmed-led": "var(--color-yellow-100)",
@@ -62,6 +73,27 @@ const colorVar: Record<DoodleColor, string> = {
   ink: "var(--color-gray-900)",
   paper: "var(--color-pink-50)",
   white: "#ffffff",
+};
+
+type GradientName = "linear-red" | "linear-sunset" | "radial-red" | "80s-gum";
+
+const isGradient = (c: DoodleColor): c is GradientName =>
+  c === "linear-red" ||
+  c === "linear-sunset" ||
+  c === "radial-red" ||
+  c === "80s-gum";
+
+const gradientDef = (name: GradientName, id: string) => {
+  switch (name) {
+    case "linear-red":
+      return `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF1D25"/><stop offset="100%" stop-color="#961702"/></linearGradient>`;
+    case "linear-sunset":
+      return `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFB600"/><stop offset="100%" stop-color="#FF7BAC"/></linearGradient>`;
+    case "radial-red":
+      return `<radialGradient id="${id}" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FF7BAC"/><stop offset="100%" stop-color="#DE350B"/></radialGradient>`;
+    case "80s-gum":
+      return `<linearGradient id="${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="3%" stop-color="#3B84DB"/><stop offset="61%" stop-color="#FF8FAA"/></linearGradient>`;
+  }
 };
 
 const EYE_OUTLINE = "M 6 50 Q 50 6 94 50 Q 50 94 6 50 Z";
@@ -81,15 +113,22 @@ type Props = {
   style?: CSSProperties;
 };
 
+let doodleIdCounter = 0;
+const nextDoodleId = () => `dg-${String(++doodleIdCounter)}`;
+
+const resolveFill = (color: DoodleColor, id: string) =>
+  isGradient(color) ? `url(#${id})` : colorVar[color];
+
 /**
  * Decorative doodle dropped into section gutters — `pointer-events-none`,
  * `aria-hidden`. Asset-backed shapes are SVG illustrations from the
  * "Doodles" frame in the ZZ 2026 Figma file, inlined so each layer's
  * fill/stroke can be themed independently via `color` (primary) and
- * `accent` (secondary). Doodles that ship with built-in linear/radial
- * gradients (coil, lightning, star-burst, zzz, flame) keep those
- * gradients regardless of the props — the props only affect any
- * remaining `var(--fill-0)` / `var(--stroke-0)` slots in those shapes.
+ * `accent` (secondary). Both can be solid palette tokens or one of the
+ * four named gradients (`linear-red`, `linear-sunset`, `radial-red`,
+ * `80s-gum`). Doodles that ship with built-in Figma gradients (coil,
+ * lightning, star-burst, zzz, flame) keep those baked-in gradients on
+ * any path that isn't bound to `var(--fill-0)` / `var(--stroke-0)`.
  *
  * Size with a single-axis utility (`h-44`, `lg:w-96`, …); the SVG's
  * intrinsic viewBox provides the aspect ratio.
@@ -103,9 +142,24 @@ export function Doodle({
   style,
 }: Props) {
   const transform = `rotate(${String(rotate)}deg)`;
+  const fillId = isGradient(color) ? nextDoodleId() : "";
+  const strokeId = accent && isGradient(accent) ? nextDoodleId() : "";
+  const fillVar = resolveFill(color, fillId);
+  const strokeVar =
+    accent !== undefined ? resolveFill(accent, strokeId) : undefined;
 
   if (shape === "eye") {
-    const stroke = colorVar[color];
+    // Three-layer eye: outline stroke (color), white-of-eye fill (paper),
+    // pupil fill (accent if set, else color). Without a fill on the
+    // outline path, the eye-white area is transparent and the eye reads
+    // flat — losing the sticker-pack feel.
+    const eyeDefs = [
+      isGradient(color) ? gradientDef(color, fillId) : "",
+      accent && isGradient(accent) ? gradientDef(accent, strokeId) : "",
+    ]
+      .filter(Boolean)
+      .join("");
+    const pupilFill = strokeVar ?? fillVar;
     return (
       <svg
         aria-hidden="true"
@@ -113,19 +167,27 @@ export function Doodle({
         className={cn("pointer-events-none z-10 block select-none", className)}
         style={{ transform, ...style }}
       >
-        <path d={EYE_OUTLINE} fill="none" stroke={stroke} strokeWidth={6} />
-        <circle cx={50} cy={50} r={16} fill={stroke} />
+        {eyeDefs && <defs dangerouslySetInnerHTML={{ __html: eyeDefs }} />}
+        <path
+          d={EYE_OUTLINE}
+          fill="var(--color-pink-50)"
+          stroke={fillVar}
+          strokeWidth={6}
+        />
+        <circle cx={50} cy={50} r={16} fill={pupilFill} />
       </svg>
     );
   }
 
   const asset = DOODLE_SVGS[shape];
-  const fillVar = colorVar[color];
-  // When no accent is given, duo-colour SVGs use their baked-in default
-  // (which is what `var(--stroke-0, default)` resolves to on its own).
-  // Setting `--stroke-0: undefined` here means "don't override". React
-  // drops `undefined` values from the style object.
-  const strokeVar = accent !== undefined ? colorVar[accent] : undefined;
+  const defs = [
+    isGradient(color) ? gradientDef(color, fillId) : "",
+    accent && isGradient(accent) ? gradientDef(accent, strokeId) : "",
+  ]
+    .filter(Boolean)
+    .join("");
+  const inner = defs ? `<defs>${defs}</defs>${asset.inner}` : asset.inner;
+
   return (
     <svg
       aria-hidden="true"
@@ -139,7 +201,7 @@ export function Doodle({
           ...style,
         } as CSSProperties
       }
-      dangerouslySetInnerHTML={{ __html: asset.inner }}
+      dangerouslySetInnerHTML={{ __html: inner }}
     />
   );
 }

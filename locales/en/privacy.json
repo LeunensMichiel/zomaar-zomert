@@ -1,5 +1,10 @@
 {
   "title": "Privacy Policy",
+  "hero": {
+    "title": "Privacy.",
+    "intro": "The boring but important part. How Zomaar Zomert handles your data — short, clear, and in line with the GDPR."
+  },
+  "eyebrow": "Privacy Policy",
   "block1": "Zomaar Zomert respects the privacy of every visitor to this website and in doing so, always acts in accordance with the GDPR and any other laws or decisions arising from the GDPR.",
   "block2": "Zomaar Zomert makes every effort to ensure the reliability, security and integrity of the data collected. This means that any personal data you enter on the website or otherwise provide to us will be kept strictly confidential and will only be collected and processed to communicate with or contact you.",
   "block3": "While surfing on our website, certain information may be collected passively, in other words without this information being actively provided by yourself, through various tools such as IP addresses, cookies, ... This information is only used to support technical decisions and statistical processing, but never to identify individuals. We only use minimal data: namely, to see how many visitors our website amounts to and from where they come, as well as to play our aftermovie on the main page.",

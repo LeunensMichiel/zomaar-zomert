@@ -75,7 +75,7 @@ export default async function PartnersPage({ params }: Props) {
             {t("hero.intro")}
           </p>
         </div>
-        <PaperTear edge="bottom" tear={4} color="blue-900" />
+        <PaperTear edge="bottom" tear={2} color="blue-900" />
       </section>
 
       <section className="relative bg-blue-900 text-pink-50">
