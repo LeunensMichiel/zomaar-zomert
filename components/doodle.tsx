@@ -6,14 +6,7 @@ import { type CSSProperties } from "react";
 import { DOODLE_SVGS } from "./doodle-svgs";
 
 export type DoodleShape =
-  // Inline shape — drawn directly in this component so it can be
-  // recoloured per section without touching the asset pipeline.
   | "eye"
-  // Asset-backed doodles, drawn in Figma and exported as SVG to
-  // [public/assets/doodles/](public/assets/doodles/). Pre-extracted
-  // into [doodle-svgs.ts](./doodle-svgs.ts) so we can render them
-  // inline (which is the only way to theme per-layer fills/strokes
-  // — `mask-image` collapses every layer to one colour).
   | "plus"
   | "zz"
   | "play"
@@ -33,13 +26,6 @@ export type DoodleShape =
   | "cocktail"
   | "star";
 
-/**
- * Solid colour tokens (Zomaar Zomert palette) and the four named
- * gradient styles. Solids resolve to a CSS variable. Gradients are
- * injected into the SVG as inline `<linearGradient>` / `<radialGradient>`
- * defs and referenced via `url(#...)` — CSS gradients can't be used as
- * SVG paint servers, so we mint the def per render with a unique id.
- */
 export type DoodleColor =
   // Solid — ZZ named anchors + utility neutrals.
   | "summer-red"
@@ -119,20 +105,6 @@ const nextDoodleId = () => `dg-${String(++doodleIdCounter)}`;
 const resolveFill = (color: DoodleColor, id: string) =>
   isGradient(color) ? `url(#${id})` : colorVar[color];
 
-/**
- * Decorative doodle dropped into section gutters — `pointer-events-none`,
- * `aria-hidden`. Asset-backed shapes are SVG illustrations from the
- * "Doodles" frame in the ZZ 2026 Figma file, inlined so each layer's
- * fill/stroke can be themed independently via `color` (primary) and
- * `accent` (secondary). Both can be solid palette tokens or one of the
- * four named gradients (`linear-red`, `linear-sunset`, `radial-red`,
- * `80s-gum`). Doodles that ship with built-in Figma gradients (coil,
- * lightning, star-burst, zzz, flame) keep those baked-in gradients on
- * any path that isn't bound to `var(--fill-0)` / `var(--stroke-0)`.
- *
- * Size with a single-axis utility (`h-44`, `lg:w-96`, …); the SVG's
- * intrinsic viewBox provides the aspect ratio.
- */
 export function Doodle({
   shape,
   color = "ink",
@@ -149,10 +121,6 @@ export function Doodle({
     accent !== undefined ? resolveFill(accent, strokeId) : undefined;
 
   if (shape === "eye") {
-    // Three-layer eye: outline stroke (color), white-of-eye fill (paper),
-    // pupil fill (accent if set, else color). Without a fill on the
-    // outline path, the eye-white area is transparent and the eye reads
-    // flat — losing the sticker-pack feel.
     const eyeDefs = [
       isGradient(color) ? gradientDef(color, fillId) : "",
       accent && isGradient(accent) ? gradientDef(accent, strokeId) : "",

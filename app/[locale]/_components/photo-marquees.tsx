@@ -11,9 +11,9 @@ const baseSlides: Slide[] = Array.from({ length: 30 }, (_, i) => ({
 }));
 
 /**
- * Redesign-only twin marquees. Same shuffling behavior as
- * `app/[locale]/_components/home-marquees.tsx`, but without the inner
- * white tear SVGs that clash with the redesign's colored sections.
+ * Twin marquees of festival photos with a randomized client-side
+ * shuffle. Used over coloured sections (the marquee has no internal
+ * tear SVGs — pair it with `<PaperTear>` if a torn divider is needed).
  */
 export function PhotoMarquees() {
   const [shuffled, setShuffled] = useState<Slide[]>(baseSlides);

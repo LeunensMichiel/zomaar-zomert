@@ -23,25 +23,12 @@ export const buttonVariants = tv({
     variant: {
       default:
         "bg-gray-200 border-gray-200 text-gray-900 hover:bg-gray-300 hover:border-gray-300 active:bg-gray-400 active:border-gray-400",
-      primary:
-        "bg-gray-900 text-white border-gray-900 hover:bg-blue-500 hover:border-blue-500 hover:text-pink-200 focus:bg-blue-500 focus:border-blue-500 focus:text-pink-200 active:bg-blue-900 active:border-blue-900 active:text-pink-400",
-      transparent:
-        "bg-white/15 border-white/15 text-white hover:bg-white/30 hover:border-white/30 active:bg-white/70 active:border-white/70",
-      minimal:
-        "bg-transparent border-transparent text-gray-900 hover:text-white hover:border-black/15 focus:text-white focus:border-black/15 active:text-gray-600 active:border-black/50",
-      "minimal-bright":
-        "bg-transparent border-transparent text-white hover:text-gray-300 hover:border-white/15 focus:text-gray-300 focus:border-white/15 active:text-gray-100 active:border-white/50",
-      "minimal-dark":
-        "bg-transparent border-transparent text-gray-900 hover:text-gray-600 focus:text-gray-500 focus:border-black/15 active:text-gray-600 active:border-black/50",
       brand:
         "bg-brand-500 border-gray-900 text-white hover:bg-brand-600 active:bg-brand-700",
       accent:
         "bg-yellow-400 border-gray-900 text-gray-900 hover:bg-yellow-300 active:bg-yellow-500",
       sky: "bg-blue-500 border-gray-900 text-white hover:bg-blue-400 active:bg-blue-700",
       ink: "bg-gray-900 border-gray-900 text-yellow-300 hover:bg-gray-800 active:bg-black",
-    },
-    outlined: {
-      true: "bg-transparent",
     },
     size: {
       xs: "text-xs px-4 py-2",
@@ -68,24 +55,6 @@ export const buttonVariants = tv({
       true: "pointer-events-none select-none",
     },
   },
-  compoundVariants: [
-    {
-      variant: "primary",
-      outlined: true,
-      class:
-        "bg-transparent text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white",
-    },
-    {
-      variant: "default",
-      outlined: true,
-      class: "bg-transparent text-gray-600 border-gray-600",
-    },
-    {
-      variant: "transparent",
-      outlined: true,
-      class: "bg-transparent text-white border-white/15",
-    },
-  ],
   defaultVariants: {
     variant: "default",
     size: "md",
@@ -113,7 +82,6 @@ export function Button<C extends ElementType = "button">({
   as,
   variant,
   size,
-  outlined,
   stretched,
   shape,
   circular,
@@ -149,7 +117,6 @@ export function Button<C extends ElementType = "button">({
         buttonVariants({
           variant,
           size,
-          outlined,
           stretched,
           shape: resolvedShape,
           sticker,

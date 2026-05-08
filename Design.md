@@ -244,7 +244,7 @@ The shared button. Variants used in the new design language:
 - `size="2xl"` — extra-large CTA scale.
 - `sticker` (boolean) — adds the offset shadow + lift-on-hover behavior.
 
-Polymorphic via `as`. `disabled` only emits the HTML attribute when `as` resolves to `"button"`; on `<a>`/`<span>` it sets `aria-disabled` and `tabIndex=-1` instead. The legacy variants (`primary`, `transparent`, `minimal*`) are still around for pages that haven't been ported yet.
+Polymorphic via `as`. `disabled` only emits the HTML attribute when `as` resolves to `"button"`; on `<a>`/`<span>` it sets `aria-disabled` and `tabIndex=-1` instead.
 
 ### Footer — [components/footer.tsx](components/footer.tsx)
 
@@ -314,7 +314,7 @@ Worked examples:
 
 - [/info](app/%5Blocale%5D/info/page.tsx) — chunky block (`bg-gray-900` + `text-pink-300`, `-rotate-2`) on the **left**, `<Doodle shape="zzz">` on the **right**. Tight `pt-6 md:pt-8` so the bento sits above the fold.
 - [/contact](app/%5Blocale%5D/contact/page.tsx) — chunky block (`bg-gray-900` + `text-yellow-400`, `rotate-2`) on the **right**, `<Doodle shape="lips">` on the **left**. Mirrors `/info` to keep the two pages visually distinct.
-- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered**, with `/assets/star.svg` rotating behind it as a backdrop. Section is `bg-blue-900`; route is in `transparentRoutes` so the navbar floats white over the dark hero. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
+- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered**, with `/assets/star.svg` rotating behind it as a backdrop. Section is `bg-blue-900` so the always-transparent navbar floats white over the dark hero. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
 - [/history](app/%5Blocale%5D/history/page.tsx) — chunky block (`bg-blue-900` + `text-yellow-400`, `-rotate-1`) on the **left**, `<Doodle shape="banner">` on the **right**. Same position as `/info` but a fresh bg colour + lighter tilt + different doodle so the four chunky pages all read distinctly.
 - [/](app/%5Blocale%5D/page.tsx) (home) — `min-h-dvh` video hero with logo + date stickers, no chunky block at all. Different paradigm because the home is the brand moment.
 
@@ -341,7 +341,7 @@ For new effects, prefer CSS transitions where they suffice; reach for `motion` w
 
 ## Reference implementation: home
 
-The home page at [app/[locale]/page.tsx](app/%5Blocale%5D/page.tsx) is the canonical worked example. Home-internal components live in [app/[locale]/_components/](app/%5Blocale%5D/_components/) (`<DayCard>`, `<HeadlinerCard>`, `<PhotoMarquees>`, `<Countdown>`, `<TickerStrip>`); site-wide primitives (`<Doodle>`, `<PaperTear>`, `<StarBurst>`, `<Sticker>`) live in [components/](components/). Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) and is read via `getTranslations({ namespace: "home" })` (the ticker uses `tHome.raw("ticker") as string[]` for the array). The `/` route is in `transparentRoutes` in [components/layout.tsx](components/layout.tsx) so the navbar floats white over the hero video.
+The home page at [app/[locale]/page.tsx](app/%5Blocale%5D/page.tsx) is the canonical worked example. Home-internal components live in [app/[locale]/_components/](app/%5Blocale%5D/_components/) (`<DayCard>`, `<HeadlinerCard>`, `<PhotoMarquees>`, `<Countdown>`, `<TickerStrip>`); site-wide primitives (`<Doodle>`, `<PaperTear>`, `<StarBurst>`, `<Sticker>`) live in [components/](components/). Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) and is read via `getTranslations({ namespace: "home" })` (the ticker uses `tHome.raw("ticker") as string[]` for the array). The navbar is always transparent (set in [components/layout.tsx](components/layout.tsx)), so the home's dark video hero lets the white logo float on top.
 
 When porting another page to this language, mirror the pattern: a server `page.tsx` does data + translations and renders a stack of `relative isolate bg-X` sections separated by `<PaperTear>`s, with `<Doodle>` scatter in the gutters and any interactivity inside `'use client'` subcomponents.
 

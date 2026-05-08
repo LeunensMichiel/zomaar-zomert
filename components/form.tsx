@@ -22,7 +22,7 @@ const FORM_NAME = "contactformulier";
 function encodeForm(values: FormValues) {
   const params = new URLSearchParams({ "form-name": FORM_NAME });
   for (const [key, value] of Object.entries(values)) {
-    params.set(key, value ?? "Niet opgegeven");
+    params.set(key, value);
   }
   return params.toString();
 }

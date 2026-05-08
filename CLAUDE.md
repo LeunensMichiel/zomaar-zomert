@@ -8,34 +8,11 @@ Guidance for Claude Code in this repo. Visual language, primitives, and motion c
 
 `zomaar-zomert` is the Next.js 16 (App Router, Turbopack) site for the Belgian summer festival _Zomaar Zomert_. Stack: **Tailwind v4** + **shadcn/ui** (`new-york` style on the `base-ui` registry — see [components.json](components.json)). Primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com).
 
-## Redesign rollout — status
+## Design language
 
-The site is mid-rollout of a new visual language (festival zine / sticker-pack / paper-cut postcard). Patterns and primitives live in [Design.md](Design.md); the home page is the reference implementation.
+Visual language, tokens, and primitives live in [Design.md](Design.md). The festival-zine / sticker-pack / paper-cut-postcard system is fully rolled out across the site — every page opens with a dark hero band (so the always-transparent navbar reads in white), with a chunky-block headline + paired doodle, a `<PaperTear>` into the lighter content section below, and gutter doodles per the scatter rule. The [home page](app/%5Blocale%5D/page.tsx) is the canonical reference; mirror an existing page when adding a new one and pick a fresh chunky-block combo per the [per-page header variation](Design.md#per-page-header-variation) rule.
 
-**Done** (ported to the new design language):
-
-- `/` (home) — was the `/redesign` prototype; now the live home, with the `/redesign` route + folder removed
-- `/contact` — chunky-block header (yellow-on-black, right), form-first layout, map below
-- `/info` — chunky-block header (pink-on-black, left), bento grid for FAQ + activities feature section
-- `/line-up` — chunky-block header (red-on-yellow, centered) on `bg-blue-900`, sticky filter chips with `layoutId` pill, deal/flip card animations, route in `transparentRoutes`
-- `/history` — chunky-block header (yellow-on-blue, left), shadcn-installed `<Timeline>` re-skinned, scroll-driven bg colour wave (`<ScrollBg>`), real first-edition poster + slides + closing crew portrait
-
-**Not yet ported** (still on legacy markup):
-
-- `/menu`, `/partners`, `/privacy-policy`, `app/[locale]/not-found.tsx`, `app/[locale]/error.tsx`
-
-When porting, mirror an existing chunky-block page and pick a fresh colour combo for the header — the per-page header variation rule in [Design.md](Design.md#per-page-header-variation) lists the four taken so far. Keep server `page.tsx` + `'use client'` `_components/*` boundary; remember `<Doodle>` and `<PaperTear>` are server-only (server-render in the page, pass through as children when a client subtree needs them).
-
-**Known dead code** (safe to delete in a cleanup pass; no remaining import paths):
-
-- [app/[locale]/_components/home-marquees.tsx](app/%5Blocale%5D/_components/home-marquees.tsx) — used by the legacy home, replaced by `<PhotoMarquees>`. Source of the two pre-existing `<img>` lint warnings.
-- [components/image-card.tsx](components/image-card.tsx) — legacy artist tile (`<ImageCard>`), unused since `/line-up` switched to `<LineUpArtistCard>` and the home swap. Note: `IImageCard` _type_ in [lib/models.ts](lib/models.ts) is still used by [components/artist-modal.tsx](components/artist-modal.tsx).
-- [components/textured-image.tsx](components/textured-image.tsx) — only consumer is the dead `image-card.tsx`.
-
-**Known acceptable noise**:
-
-- [components/form.tsx:25](components/form.tsx#L25) — pre-existing `@typescript-eslint/no-unnecessary-condition` error on the `??` operator. Left alone per the original task brief.
-- Legacy `<Button>` variants (`primary`, `transparent`, `minimal*`) — still used by `error.tsx`, `not-found.tsx`, `menu/_components/menu-client.tsx`, `cookie-banner.tsx`. Decommission only after the remaining pages are ported.
+Keep the server `page.tsx` + `'use client'` `_components/*` boundary. `<Doodle>` and `<PaperTear>` are server-only — render them in the page and pass through as named props (`topTear`, `bottomTear`, etc.) when a client subtree needs them.
 
 ## Commands
 
@@ -55,7 +32,7 @@ There are no tests.
 
 All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the _only_ layout that renders `<html>`/`<body>` — there is no `app/layout.tsx`. It validates locale via `hasLocale(routing.locales, locale)` (`notFound()` on miss), runs `setRequestLocale(locale)`, then mounts providers and the shell.
 
-[components/layout.tsx](components/layout.tsx) is a `'use client'` shell rendering `Navbar` / `<main>` / `Footer` / `CookieBanner`. Navbar goes transparent only on routes listed in `transparentRoutes` inside that file (routes whose hero floats behind the navbar — currently `/` and `/line-up`).
+[components/layout.tsx](components/layout.tsx) is the shell rendering `Navbar` / `<main>` / `Footer` / `CookieBanner`. The navbar is always transparent — every page is responsible for opening with a dark hero band so the white logo + menu trigger read on top.
 
 ### Server vs. client split
 
