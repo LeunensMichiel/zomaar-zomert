@@ -7,7 +7,9 @@
       "description": "Het volledige aanbod aan dranken en gerechten op Zomaar Zomert."
     }
   },
-  "title": "Menu",
+  "hero": {
+    "title": "Menu."
+  },
   "Food": "Voedsel",
   "Drinks": "Drank"
 }

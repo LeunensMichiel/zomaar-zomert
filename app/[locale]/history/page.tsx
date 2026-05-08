@@ -1,4 +1,5 @@
 import { Doodle } from "@components/doodle";
+import { ScrollBg } from "@components/scroll-bg";
 import { Sticker } from "@components/sticker";
 import { Timeline } from "@components/ui/timeline";
 import { type Locale } from "@lib/i18n/routing";
@@ -7,7 +8,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { ScrollBg } from "./_components/scroll-bg";
+// Warm wave through the milestones:
+// cream → soft yellow → hot pink → soft yellow → cream.
+const HISTORY_BG_COLORS = [
+  "#fff1f7", // pink-50    (cream — 1998)
+  "#fee198", // yellow-100 (dimmed-led — early years)
+  "#ff9bb6", // pink-300   (growth)
+  "#fee198", // yellow-100 (covid pause)
+  "#fff1f7", // pink-50    (current)
+];
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -32,7 +41,7 @@ export default async function HistoryPage({ params }: Props) {
   const yearStamp = `'${String(ZZ_YEAR).slice(-2)}`;
 
   return (
-    <ScrollBg>
+    <ScrollBg colors={HISTORY_BG_COLORS}>
       <Doodle
         shape="flame"
         rotate={-12}

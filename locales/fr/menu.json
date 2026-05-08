@@ -7,7 +7,9 @@
       "description": "L'offre complète de boissons et de plats à Zomaar Zomert."
     }
   },
-  "title": "La Carte",
+  "hero": {
+    "title": "La Carte."
+  },
   "Food": "Alimentation",
   "Drinks": "Boissons"
 }

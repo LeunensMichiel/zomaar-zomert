@@ -8,7 +8,7 @@ import { type ReactNode } from "react";
 
 type Props = { children: ReactNode; footer: ReactNode };
 
-const transparentRoutes = ["/", "/line-up"];
+const transparentRoutes = ["/", "/line-up", "/menu"];
 
 export function Layout({ children, footer }: Props) {
   const pathname = usePathname();

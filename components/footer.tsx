@@ -448,7 +448,7 @@ export async function Footer() {
               {t.rich("footer.copy", {
                 michiel: (chunks) => (
                   <a
-                    href="https://leunesmedia.netlify.app/"
+                    href="https://www.instagram.com/michielleunens/"
                     target="_blank"
                     rel="noreferrer noopener"
                     className="font-black underline-offset-2 hover:underline"
