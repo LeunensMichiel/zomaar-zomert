@@ -43,14 +43,7 @@ export default async function HistoryPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative isolate bg-blue-900">
-        <Doodle
-          shape="cross"
-          color="dimmed-led"
-          accent="summer-red"
-          rotate={8}
-          className="pointer-events-none absolute top-32 right-6 hidden h-12 md:right-12 md:block md:h-16"
-        />
+      <section className="relative bg-blue-900">
         <Doodle
           shape="flame"
           rotate={-12}
@@ -159,12 +152,21 @@ export default async function HistoryPage({ params }: Props) {
                     stickerRotate={-3}
                     body={t("now.body")}
                     extra={
-                      <PhotoPair
-                        photos={[
-                          { src: "/assets/slides/slide25.webp", tilt: -2 },
-                          { src: "/assets/slides/slide28.webp", tilt: 2 },
-                        ]}
-                      />
+                      <>
+                        <PhotoPair
+                          photos={[
+                            { src: "/assets/slides/slide25.webp", tilt: -2 },
+                            { src: "/assets/slides/slide28.webp", tilt: 2 },
+                          ]}
+                        />
+                        <Doodle
+                          shape="cross"
+                          color="paper"
+                          accent="summer-red"
+                          rotate={8}
+                          className="pointer-events-none absolute top-32 right-6 hidden h-12 md:right-12 md:block md:h-24"
+                        />
+                      </>
                     }
                   />
                 ),

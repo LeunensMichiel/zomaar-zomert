@@ -135,33 +135,18 @@ export default async function RedesignHome({ params }: Props) {
         <div className="absolute inset-0 -z-10 bg-linear-to-b from-blue-900/40 via-blue-900/30 to-blue-900/80" />
         <div className='halftone absolute inset-0 -z-10 opacity-90 mix-blend-multiply content-[""]' />
 
-        {/* Scatter doodles — sparse and size-varied so it reads as a
-            hand-pinned poster, not a sticker-bombed laptop. One large
-            anchor + one mid + one tiny accent per region. */}
         <Doodle
           shape="sun-rays"
           color="royal-yellow"
           accent="summer-red"
           rotate={-14}
-          className="absolute top-24 -left-8 z-10 h-44 md:top-28 md:-left-12 md:h-72 lg:top-32 lg:-left-16 lg:h-96"
-        />
-        <Doodle
-          shape="stroke"
-          color="pink"
-          rotate={12}
-          className="absolute top-36 right-4 z-10 h-12 md:top-40 md:right-12 md:h-20"
-        />
-        <Doodle
-          shape="coil"
-          color="summer-red"
-          rotate={-10}
-          className="absolute right-1/4 bottom-44 z-10 hidden h-10 md:block md:h-14"
+          className="absolute top-24 -left-8 z-10 h-44 md:top-28 md:-left-12 md:h-72 lg:-top-125 lg:-left-125 lg:h-250"
         />
 
         {/* Logo + date — vertically centered. The marquee sits flush at
             the bottom (no extra reserved padding needed). */}
         <div className="container-wide relative flex flex-1 flex-col items-center justify-center pt-24 pb-12 md:pt-28 md:pb-16">
-          <div className="relative z-20 flex flex-col items-center text-center">
+          <div className="relative z-30 flex flex-col items-center text-center">
             <Logo
               variant="full"
               className="w-full max-w-72 text-white md:max-w-160 xl:max-w-200"
@@ -190,14 +175,12 @@ export default async function RedesignHome({ params }: Props) {
             </span>
           </div>
         </div>
-
-        {/* In-hero marquee — anchored at the bottom of the hero so the
-            yellow ticker is part of the 100vh frame, not a separate
-            element below. The tear renders in-flow above the marquee
-            with edge="top" (so it's flipped vertically); its yellow
-            body extends up into the dark hero with the marquee text
-            fully visible below. Use `tear={5}` — its natural ink
-            aspect (~22:1) is the most compact. */}
+        <Doodle
+          shape="stroke"
+          color="pink"
+          rotate={12}
+          className="absolute -right-1/2 bottom-0 z-20 h-100 md:-right-1/6 md:-bottom-14 md:h-150"
+        />
         <div className="relative z-20">
           <PaperTear
             edge="top"
@@ -217,7 +200,7 @@ export default async function RedesignHome({ params }: Props) {
           INTRO + COUNTDOWN — short story of the festival next to a
           big countdown. The countdown component is unchanged.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-pink-50">
+      <section className="relative bg-pink-50">
         <PaperTear edge="top" tear={4} bgColor="pink-50" color="yellow-400" />
         {/* One big anchor in the lower-left bleed; one tiny accent. */}
         <Doodle
@@ -293,7 +276,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           DAYS — three hand-cut cards with sticker numbers
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-pink-300">
+      <section className="relative bg-pink-300">
         <PaperTear edge="top" tear={2} color="pink-50" />
         {/* Big anchor in the right bleed + one tiny accent. The `eye` is
             the lone inline doodle we kept from the original set. */}
@@ -337,7 +320,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           HEADLINERS — featured artists w/ overlay sticker
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-blue-500 text-white">
+      <section className="relative bg-blue-500 text-white">
         {/* Big star-burst bleeding off the right + one small accent. */}
         <Doodle
           shape="zzz"
@@ -393,7 +376,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           ACTIVITIES — bento layout: paella + petanque + food + crew
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-pink-50">
+      <section className="relative bg-pink-50">
         {/* Big horns anchor in the right bleed + one small play accent. */}
         <Doodle
           shape="horns"
@@ -417,7 +400,7 @@ export default async function RedesignHome({ params }: Props) {
           {/* Bento */}
           <div className="grid gap-6 md:gap-8 lg:grid-cols-12">
             {/* Paella — large hero tile */}
-            <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-yellow-400 lg:col-span-7 lg:row-span-2">
+            <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-yellow-400 lg:col-span-7 lg:row-span-2">
               <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
                 <Image
                   src="/assets/random/food.jpg"
@@ -433,11 +416,11 @@ export default async function RedesignHome({ params }: Props) {
                   </Sticker>
                 </div>
               </div>
-              <div className="flex flex-col gap-4 p-6 md:p-8">
+              <div className="flex grow flex-col gap-4 p-6 md:p-8">
                 <h3 className="text-3xl leading-[0.95] md:text-5xl">
                   {tHome("activities.paella.title")}
                 </h3>
-                <p className="max-w-md text-base md:text-lg">
+                <p className="max-w-md flex-1 text-base md:text-lg">
                   {tHome("activities.paella.body")}
                 </p>
                 <Button
@@ -448,6 +431,7 @@ export default async function RedesignHome({ params }: Props) {
                     rel: "noreferrer noopener",
                   })}
                   disabled={signupDisabled}
+                  className="mt-auto"
                   variant="brand"
                   size="xl"
                   sticker
@@ -534,7 +518,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           GALLERY — keep marquees, frame them like a polaroid wall
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-yellow-400">
+      <section className="relative bg-yellow-400">
         {/* Single huge lips in the right gutter + a small asterisk. */}
         <Doodle
           shape="lips"
@@ -574,7 +558,7 @@ export default async function RedesignHome({ params }: Props) {
           AFTERMOVIE — untitled; the Vibes section above already sets
           the visual mood, so the video gets to speak for itself.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative isolate text-pink-50">
+      <section className="bg-brand-500 relative text-pink-50">
         {/* Single oversized radial in the bleed + a small banner. */}
         <Doodle
           shape="radial"
@@ -594,7 +578,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           NUMBERS — chunky stat stickers on a brand-orange field
           ─────────────────────────────────────────────────────────────*/}
-      <section className="bg-brand-500 relative isolate text-pink-50">
+      <section className="bg-brand-500 relative text-pink-50">
         {/* Big star anchor + one stripes accent. */}
         <Doodle
           shape="star"
@@ -659,7 +643,7 @@ export default async function RedesignHome({ params }: Props) {
           PARTNERS TEASER — small partner cluster + CTA. Full list
           remains in the global footer.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-pink-50">
+      <section className="relative bg-pink-50">
         {/* Big zzz anchor in the bottom-right + a small cross. */}
         <Doodle
           shape="zzz"
@@ -757,7 +741,7 @@ export default async function RedesignHome({ params }: Props) {
       {/* ─────────────────────────────────────────────────────────────
           CLOSING CTA — last loud moment before the footer.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-blue-900 text-pink-50">
+      <section className="relative bg-blue-900 text-pink-50">
         <div className='halftone absolute inset-0 opacity-25 mix-blend-screen content-[""]' />
         <PaperTear edge="top" tear={6} color="pink-50" />
         {/* One huge star-burst anchor + a small star accent. */}

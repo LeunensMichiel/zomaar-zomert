@@ -45,7 +45,7 @@ export default async function PartnersPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-brand-500 relative isolate">
+      <section className="bg-brand-500 relative">
         <Doodle
           shape="sun-rays"
           rotate={-12}
@@ -78,7 +78,7 @@ export default async function PartnersPage({ params }: Props) {
         <PaperTear edge="bottom" tear={4} color="blue-900" />
       </section>
 
-      <section className="relative isolate bg-blue-900 text-pink-50">
+      <section className="relative bg-blue-900 text-pink-50">
         <Doodle
           shape="star-burst"
           rotate={20}
@@ -116,7 +116,7 @@ export default async function PartnersPage({ params }: Props) {
         <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
 
-      <section className="relative isolate bg-pink-50">
+      <section className="relative bg-pink-50">
         <Doodle
           shape="horns"
           color="ink"

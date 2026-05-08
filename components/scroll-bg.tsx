@@ -39,7 +39,7 @@ export function ScrollBg({ children, className, colors }: Props) {
   return (
     <motion.section
       ref={ref}
-      className={cn("relative isolate", className)}
+      className={cn("relative", className)}
       style={{ backgroundColor }}
     >
       {children}

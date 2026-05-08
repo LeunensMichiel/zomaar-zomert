@@ -40,7 +40,7 @@ export default async function InfoPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-brand-500 relative isolate">
+      <section className="bg-brand-500 relative">
         <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
             <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 self-start bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
@@ -58,7 +58,7 @@ export default async function InfoPage({ params }: Props) {
         <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
 
-      <section className="relative isolate bg-pink-50">
+      <section className="relative bg-pink-50">
         <Doodle
           shape="asterisk"
           color="tardis-blue"
@@ -191,7 +191,7 @@ export default async function InfoPage({ params }: Props) {
           sticker buttons (petanque + paella) and a polaroid of
           actual pétanque on the right.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-blue-500 text-white">
+      <section className="relative bg-blue-500 text-white">
         <Doodle
           shape="star-burst"
           rotate={20}

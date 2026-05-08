@@ -21,7 +21,7 @@ const SOCIAL_LINKS = [
     href: "https://www.instagram.com/zomaarzomert/",
     label: "Instagram",
     Icon: Instagram,
-    color: "yellow" as const,
+    color: "pink" as const,
     rotate: -4,
   },
   {
@@ -32,8 +32,8 @@ const SOCIAL_LINKS = [
     rotate: 3,
   },
   {
-    href: "https://www.youtube.com/watch?v=G2s9r_BohUE",
-    label: "YouTube",
+    href: "https://open.spotify.com/playlist/1ZBMaGt1qcli9ejTu3spov?si=5d39aa4a607e4eb9",
+    label: "Spotify",
     Icon: Youtube,
     color: "blue" as const,
     rotate: -2,
@@ -41,7 +41,7 @@ const SOCIAL_LINKS = [
 ];
 
 const SOCIAL_TILE = {
-  yellow: "bg-yellow-400 text-gray-900",
+  pink: "bg-pink-400 text-gray-950",
   brand: "bg-brand-500 text-white",
   blue: "bg-blue-500 text-white",
 } as const;

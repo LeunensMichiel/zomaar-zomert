@@ -3,16 +3,24 @@ import { type ComponentProps } from "react";
 export function Facebook(props: ComponentProps<"svg">) {
   return (
     <svg
+      width="48"
+      height="48"
+      viewBox="0 0 48 48"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      width="54.506"
-      height="54.506"
-      viewBox="0 0 54.506 54.506"
       {...props}
     >
-      <path
-        d="M0,0V51.862H51.862V0ZM35.71,14.712H32.828c-2.84,0-3.725,1.763-3.725,3.57v4.29h6.339L34.428,29.18H29.1V43.219H21.959V29.18H16.152V22.573h5.807V17.536c0-5.728,3.41-8.893,8.634-8.893a35.154,35.154,0,0,1,5.117.446Z"
-        fill="currentColor"
-      />
+      <g clipPath="url(#clip0_17_61)">
+        <path
+          d="M24 0C10.7453 0 0 10.7453 0 24C0 35.255 7.74912 44.6995 18.2026 47.2934V31.3344H13.2538V24H18.2026V20.8397C18.2026 12.671 21.8995 8.8848 29.9194 8.8848C31.44 8.8848 34.0637 9.18336 35.137 9.48096V16.129C34.5706 16.0694 33.5866 16.0397 32.3645 16.0397C28.4294 16.0397 26.9088 17.5306 26.9088 21.4061V24H34.7482L33.4013 31.3344H26.9088V47.8243C38.7926 46.3891 48.001 36.2707 48.001 24C48 10.7453 37.2547 0 24 0Z"
+          fill="currentColor"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_17_61">
+          <rect width="48" height="48" fill="currentColor" />
+        </clipPath>
+      </defs>
     </svg>
   );
 }

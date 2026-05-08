@@ -286,7 +286,9 @@ When adding new menu items, keep the size scale and the `<span className="grid o
 
 ### Section template & z-layering
 
-Each section is `relative isolate bg-X` — `isolate` gives the section its own stacking context. **Don't** add `overflow-x-clip` to a section: per the CSS Overflow spec, mixing `overflow-x: clip` with `overflow-y: visible` forces the visible axis to compute as `auto`, which clips negative-offset doodles vertically. Horizontal clipping is handled once at the page level via `overflow-x: clip` on `html` ([app/globals.css](app/globals.css)), so individual sections can keep `overflow: visible` and let bleeding doodles cross section boundaries vertically.
+Each section is `relative bg-X` — **don't add `isolate`** to the section wrapper. A doodle bleeding off section A (e.g. `-bottom-12 -left-12`) paints during A's stacking context; if A is isolated, B's background paints over the bleeding doodle when B renders next. Without `isolate`, the doodle's `z-10` lives in the page-level stacking context and paints _above_ B's bg but _below_ B's `z-20` content — exactly what the layered design wants.
+
+**Don't** add `overflow-x-clip` to a section either: per the CSS Overflow spec, mixing `overflow-x: clip` with `overflow-y: visible` forces the visible axis to compute as `auto`, which clips negative-offset doodles vertically. Horizontal clipping is handled once at the page level via `overflow-x: clip` on `html` ([app/globals.css](app/globals.css)), so individual sections can keep `overflow: visible` and let bleeding doodles cross section boundaries.
 
 Inside, the layers are explicit:
 
@@ -296,7 +298,7 @@ Inside, the layers are explicit:
 
 Without the explicit `z-20` on the content wrapper, non-positioned content paints at CSS step 3 (in-flow) which sits _below_ `absolute z-auto` doodles — leading to doodles overlapping headlines.
 
-If a section has an inner block that uses high z-indexes (e.g. the gallery's `<PhotoMarquees>` wrapper, where the marquee tears sit at `z-40` to ride over the photos), wrap it in `relative isolate` so those z-indexes stay inside the wrapper and don't leak past the section's gutter doodles.
+**Inner isolation for high-z subtrees.** If a section has an inner block that uses high z-indexes (e.g. the gallery's `<PhotoMarquees>` wrapper, where the marquee tears sit at `z-40` to ride over the photos), wrap that subtree — not the whole section — in `relative isolate`. That contains the high-z values inside the subtree without preventing gutter doodles from bleeding past the section.
 
 ### Per-page header variation
 

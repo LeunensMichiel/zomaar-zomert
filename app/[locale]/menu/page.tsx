@@ -41,7 +41,7 @@ export default async function MenuPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative isolate bg-blue-500">
+      <section className="relative bg-blue-500">
         <Doodle
           shape="coil"
           rotate={12}

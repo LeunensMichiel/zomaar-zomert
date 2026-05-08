@@ -31,7 +31,7 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-brand-500 relative isolate">
+      <section className="bg-brand-500 relative">
         <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
             <div className="order-2 self-start md:order-1">
@@ -50,7 +50,7 @@ export default async function ContactPage({ params }: Props) {
         <PaperTear edge="bottom" tear={7} color="pink-50" />
       </section>
 
-      <section className="relative isolate bg-pink-50">
+      <section className="relative bg-pink-50">
         <Doodle
           shape="flame"
           rotate={12}
