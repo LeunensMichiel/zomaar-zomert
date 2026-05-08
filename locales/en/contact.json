@@ -7,7 +7,13 @@
       "description": "Contact the Zomaar Zomert crew. We can also be reached through our social channels such as Instagram and Facebook."
     }
   },
-  "title": "Contact us",
+  "hero": {
+    "title": "Hi there.",
+    "body": "A question, an idea, or want to help build? Email us or fill in the form."
+  },
+  "mapCard": {
+    "venue": "Sint-Anna-Pedekerk"
+  },
   "form": {
     "name": {
       "label": "Name*",

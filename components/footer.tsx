@@ -1,5 +1,7 @@
 import { FitText } from "@components/fit-text";
 import { LocaleSwitcher } from "@components/locale-switcher";
+import { PaperTear } from "@components/paper-tear";
+import { StarBurst } from "@components/star-burst";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import partners from "@lib/data/partners.json";
@@ -10,8 +12,6 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 
-import { PaperTear } from "@/app/[locale]/redesign/_components/paper-tear";
-import { StarBurst } from "@/app/[locale]/redesign/_components/star-burst";
 import { Facebook } from "@/components/icons/Facebook";
 import { Instagram } from "@/components/icons/Instagram";
 import { Youtube } from "@/components/icons/Youtube";
@@ -221,7 +221,7 @@ export async function Footer() {
               absolutely positioned over the photo strip, so the SVG
               orientation reads consistently regardless of which side of
               the strip they sit on. The semantic `edge` prop is meant
-              for in-flow placement; the redesign page uses it that way.
+              for in-flow placement; section dividers across the site use it that way.
               Here we're stamping these on top of an image, so we pick
               the orientation that paints in the right direction and
               ignore the in-flow semantics. */}

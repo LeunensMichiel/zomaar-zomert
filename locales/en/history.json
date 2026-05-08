@@ -7,6 +7,38 @@
       "description": "Find out how Zomaar Zomert first saw the light of day. Only for the really interested!"
     }
   },
-  "title": "How ZZ came to be",
-  "content": "<p>On the occasion of the annual fair in Sint-Anna-Pede, 24 years ago, the idea was born from the Zomaar youth club to organise an event during the annual fair. In July 1998 Zomaar Zomert was born.</p><p> The first edition of the party weekend was an unexpected success. Since then, the event has grown steadily. Names like Kate Ryan, 2Fabiola, Sam Gooris, Get Ready and Avalonn all liked to perform at our festival. The success led to the establishment of a non-profit organisation around our project in 2012. This way, the existence and sustainability of the project was assured.</p><image></image><p> Every year, we do our best to make Zomaar Zomert a successful festival weekend for everyone to enjoy. This would not have been possible without the current and past crewmembers, all of the volunteers, our partners and the support of municipality Dilbeek.</p>"
+  "hero": {
+    "title": "History.",
+    "intro": "How Zomaar Zomert started, grew, and ended up where it is today. A short story of almost thirty years of partying in Sint-Anna-Pede."
+  },
+  "origin": {
+    "label": "The start",
+    "body": "On the occasion of the annual fair in Sint-Anna-Pede, the idea was born from the Zomaar youth club to organise an event during the fair. In July 1998 Zomaar Zomert was born — a small, local initiative for the neighbourhood."
+  },
+  "earlyYears": {
+    "label": "Step by step",
+    "body": "The first editions were modest: a tent, a few bands, the neighbours stopping by for a pint. Year by year we grew along with the field — not with grand gestures, just steadily building atmosphere. What started as a youth-club party slowly became a fixed summer date for Sint-Anna-Pede."
+  },
+  "growth": {
+    "label": "Anchored",
+    "body": "In 2012 we set up a non-profit so we could build the organisation sustainably, transparently and professionally. From then on the line-up gained some lift — names like Kate Ryan, 2Fabiola, Sam Gooris, Get Ready and Avalonn took our stage. None of that would have been possible without the steady support of our partners and the municipality of Dilbeek."
+  },
+  "covid": {
+    "label": "Pause",
+    "body": "In 2020 the world hit pause. No tent, no pints, no music on the field. A strange summer for everyone, us included. Most of all a reminder that gathering and celebrating with the neighbours isn't a given — and how badly we wanted to do it all again."
+  },
+  "now": {
+    "label": "Today",
+    "body": "For three days we put Sint-Anna-Pede in summer mode: ambiance for neighbours, families, accidental passers-by and every ZZ regular. By day, easy drinks at the bar; by night, live acts or DJs; and always free. The crew looks forward to every edition figuring out how to make next year just a bit better."
+  },
+  "crew": {
+    "caption": "The crew."
+  },
+  "terras": {
+    "caption": "On the field."
+  },
+  "posters": {
+    "firstEdition": "First edition",
+    "venue": "Sint-Anna-Pede"
+  }
 }

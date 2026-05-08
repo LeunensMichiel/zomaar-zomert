@@ -7,7 +7,13 @@
       "description": "Contacteer de Zomaar Zomert crew. We zijn ook bereikbaar via onze sociale kanalen zoals Instagram en Facebook."
     }
   },
-  "title": "Contacteer ons",
+  "hero": {
+    "title": "Hallo.",
+    "body": "Vraag, voorstel of zin om mee te bouwen? Mail rechtstreeks of vul het formulier in."
+  },
+  "mapCard": {
+    "venue": "Sint-Anna-Pedekerk"
+  },
   "form": {
     "name": {
       "label": "Naam*",

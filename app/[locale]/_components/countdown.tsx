@@ -18,15 +18,12 @@ function compute(diff: number): [number, number, number, number] {
 }
 
 /**
- * Festival countdown rendered as a four-segment clock — a redesign-local
- * replacement for the production `<Countdown />`. Differences:
- *   - All four cells share the same color (the production version
- *     highlights seconds in `brand-500`, which disappears on this
- *     panel's `bg-brand-500`).
- *   - Forced `grid-cols-4` so the cells never wrap to a second row.
- *   - Inherits text color from its parent so the panel can re-skin it.
+ * Festival countdown rendered as a four-segment clock. All four cells
+ * share one colour (inherited from the parent panel via `currentColor`),
+ * a forced `grid-cols-4` so the cells never wrap, and tabular-nums for
+ * stable widths as the digits tick.
  */
-export function RedesignCountdown() {
+export function Countdown() {
   const t = useTranslations("home");
   const [diff, setDiff] = useState<number | null>(null);
   // Captured once at mount so the "festival started" / "see you next year"

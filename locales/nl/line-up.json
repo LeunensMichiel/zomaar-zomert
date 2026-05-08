@@ -7,5 +7,12 @@
       "description": "Zomaar Zomert speelt zich af in het laatste weekend van juli. Van vrijdag tot zondag voorziet het festival tal van optredes, randactiviteiten en muziek om er een memorabel weekend van te maken."
     }
   },
-  "title": "Line-Up"
+  "title": "Line-Up",
+  "hero": {
+    "title": "Line-up."
+  },
+  "filter": {
+    "all": "Alle"
+  },
+  "tba": "Binnenkort"
 }

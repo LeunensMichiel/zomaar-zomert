@@ -7,5 +7,12 @@
       "description": "Zomaar Zomert a lieu le dernier week-end de juillet. Du vendredi au dimanche, le festival propose de nombreux spectacles, des activités périphériques et de la musique pour faire de ce week-end un moment inoubliable."
     }
   },
-  "title": "Line-Up"
+  "title": "Line-Up",
+  "hero": {
+    "title": "Line-up."
+  },
+  "filter": {
+    "all": "Tous"
+  },
+  "tba": "Bientôt"
 }

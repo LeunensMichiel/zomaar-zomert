@@ -39,37 +39,45 @@ export function CookieBanner() {
   if (consent !== "pending") return null;
 
   return (
-    <div className="fixed right-4 bottom-8 left-4 z-[10000] grid max-w-3xl items-center gap-2 bg-white p-4 md:right-auto md:bottom-4 md:left-1/2 md:w-full md:-translate-x-1/2 md:grid-cols-[1fr_auto]">
-      <div className="flex flex-col gap-2 text-xs">
-        <div className="font-display">{t("cookies.title")}</div>
-        <div className="font-sans leading-snug font-normal">
+    <div className="shadow-sticker fixed right-4 bottom-6 left-4 z-10000 grid max-w-2xl items-center gap-3 border-2 border-gray-900 bg-pink-50 p-4 md:right-auto md:left-1/2 md:w-full md:-translate-x-1/2 md:grid-cols-[1fr_auto] md:gap-5 md:p-5">
+      <div className="flex flex-col gap-1.5">
+        <div className="font-display text-sm font-bold tracking-wide text-gray-900 uppercase">
+          {t("cookies.title")}
+        </div>
+        <p className="text-sm leading-snug text-gray-700">
           {t.rich("cookies.text", {
-            strong: (chunks) => <strong>{chunks}</strong>,
+            strong: (chunks) => (
+              <strong className="font-bold text-gray-900">{chunks}</strong>
+            ),
             br: () => <br />,
             policy: (chunks) => (
-              <Link href="/privacy-policy" className="font-bold underline">
+              <Link
+                href="/privacy-policy"
+                className="hover:text-brand-500 font-bold text-gray-900 underline underline-offset-2 transition-colors"
+              >
                 {chunks}
               </Link>
             ),
           })}
-        </div>
+        </p>
       </div>
-      <div className="flex w-full justify-end gap-8 md:justify-start md:gap-2">
-        <Button
+      <div className="flex items-center justify-end gap-4 md:justify-start">
+        <button
+          type="button"
           onClick={() => {
             handleConsent("denied");
           }}
-          size="xs"
-          variant="minimal-dark"
+          className="font-display hover:text-brand-500 text-xs font-bold tracking-wide text-gray-900 uppercase underline underline-offset-2 transition-colors md:text-sm"
         >
           {t("cookies.deny")}
-        </Button>
+        </button>
         <Button
           onClick={() => {
             handleConsent("granted");
           }}
-          size="xs"
-          variant="primary"
+          size="sm"
+          variant="accent"
+          sticker
         >
           {t("cookies.consent")}
         </Button>

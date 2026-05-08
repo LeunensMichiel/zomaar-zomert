@@ -48,7 +48,7 @@ export function Input({
 }: InputProps) {
   return (
     <div className="group">
-      <Label htmlFor={name} className="group-focus-within:text-pink-400">
+      <Label htmlFor={name} className="group-focus-within:text-brand-500">
         {label}
       </Label>
       <input
@@ -59,9 +59,10 @@ export function Input({
         inputMode={getInputMode(type)}
         aria-invalid={!!error}
         className={cn(
-          "min-h-9 w-full rounded-none border-0 bg-white px-3 py-4 text-sm text-gray-800 transition-colors outline-none",
-          "placeholder:text-blue-300 focus:placeholder:text-pink-400",
-          "disabled:bg-gray-100 disabled:text-gray-300",
+          "min-h-12 w-full rounded-none border-2 border-gray-900 bg-white px-4 py-3 text-base text-gray-900 transition-colors outline-none",
+          "placeholder:text-gray-400 focus:bg-pink-50",
+          "aria-invalid:border-brand-500",
+          "disabled:bg-gray-100 disabled:text-gray-400",
           className,
         )}
         {...rest}

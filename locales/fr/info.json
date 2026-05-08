@@ -7,7 +7,18 @@
       "description": "Informations pratiques sur l'accessibilité, le stationnement, les partenaires, la signalisation routière et d'autres questions fréquemment posées. Vous trouverez ici toutes les réponses à vos questions."
     }
   },
-  "title": "Information",
+  "hero": {
+    "title": "Infos."
+  },
+  "mapVenue": "Sint-Anna-Pedekerk",
+  "bento": {
+    "terrasCaption": "Le pré."
+  },
+  "activities": {
+    "eyebrow": "Bouge un peu",
+    "title": "Partant.",
+    "petanqueCaption": "Pétanque."
+  },
   "faq": {
     "1": {
       "title": "Comment, quoi, où",
@@ -27,6 +38,7 @@
     },
     "5": {
       "title": "Billets",
+      "poster": "Gratuit!",
       "content": "Le festival est gratuit ! Tout ce que nous vous demandons, c'est de vous amuser ! 🚀"
     },
     "6": {

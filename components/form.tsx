@@ -107,10 +107,11 @@ export function Form() {
       <Button
         type="submit"
         size="lg"
-        variant="primary"
-        iconRight={<ChevronRight className="h-6 w-6" />}
+        variant="brand"
+        sticker
+        iconRight={<ChevronRight />}
         loading={isSubmitting}
-        className="md:justify-self-start"
+        className="mt-2 md:justify-self-start"
       >
         {t("form.button")}
       </Button>

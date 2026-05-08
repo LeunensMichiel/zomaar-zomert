@@ -7,7 +7,13 @@
       "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook."
     }
   },
-  "title": "Contactez nous",
+  "hero": {
+    "title": "Coucou.",
+    "body": "Une question, une idée ou envie de nous rejoindre ? Écris-nous ou remplis le formulaire."
+  },
+  "mapCard": {
+    "venue": "Sint-Anna-Pedekerk"
+  },
   "form": {
     "name": {
       "label": "Nom*",

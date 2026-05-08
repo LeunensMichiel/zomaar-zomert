@@ -7,7 +7,18 @@
       "description": "Practical info regarding accessibility, parking, partners, directions, and other frequently asked questions."
     }
   },
-  "title": "Practical information",
+  "hero": {
+    "title": "Info."
+  },
+  "mapVenue": "Sint-Anna-Pedekerk",
+  "bento": {
+    "terrasCaption": "The field."
+  },
+  "activities": {
+    "eyebrow": "Do something",
+    "title": "Join.",
+    "petanqueCaption": "Petanque."
+  },
   "faq": {
     "1": {
       "title": "How, when & where",
@@ -27,6 +38,7 @@
     },
     "5": {
       "title": "Tickets",
+      "poster": "Free!",
       "content": "The festival is free! The only thing we ask in return is for you to have a good time 🚀"
     },
     "6": {

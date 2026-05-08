@@ -11,7 +11,10 @@ export function FieldError({ error, className }: FieldErrorProps) {
   return (
     <div
       role="alert"
-      className={cn("mt-2 flex min-h-3 items-center text-pink-700", className)}
+      className={cn(
+        "font-display text-brand-700 mt-2 flex min-h-3 items-center font-bold tracking-wide uppercase",
+        className,
+      )}
     >
       {error && (
         <>

@@ -7,6 +7,38 @@
       "description": "Découvrez comment Zomaar Zomert a vu le jour. Uniquement pour les personnes vraiment intéressées !"
     }
   },
-  "title": "La création de ZZ",
-  "content": "<p>Après la foire annuelle de Sint-Anna-Pede, l'idée est venue il y a 24 ans du club de jeunes le Zomaar d'organiser un événement dans le cadre de la foire. En juillet 1998, le Zomaar Zomert est né.</p><p>La première édition du week-end de fête a connu un succès inattendu. Depuis lors, l'événement n'a cessé de croître. Des noms comme Kate Ryan, 2Fabiola, Sam Gooris, Get Ready et Avalonn se sont tous produits à notre festival avec un enthousiasme débordant. Le succès a conduit à la création d'une association à but non lucratif autour de notre projet en 2012. </p><image></image><p>Chaque année, nous faisons de notre mieux pour faire de Zomaar Zomert un week-end de festival réussi dont tout le monde peut profiter. Cela n'aurait pas été possible sans les membres actuels et anciens de l'équipage, tous les bénévoles, nos partenaires et le soutien de la commune de Dilbeek.</p>"
+  "hero": {
+    "title": "Histoire.",
+    "intro": "Comment Zomaar Zomert est né, a grandi et est devenu ce qu'il est aujourd'hui. Une courte histoire de presque trente ans de fête à Sint-Anna-Pede."
+  },
+  "origin": {
+    "label": "Le début",
+    "body": "À l'occasion de la foire annuelle de Sint-Anna-Pede, l'idée est née au sein du club de jeunes Zomaar d'organiser un événement dans le cadre de la fête. En juillet 1998, Zomaar Zomert voyait le jour — une petite initiative locale, pour le quartier."
+  },
+  "earlyYears": {
+    "label": "Petit à petit",
+    "body": "Les premières éditions étaient modestes : une tente, quelques groupes, les voisins qui passaient boire un verre. Année après année, on a grandi en même temps que le pré — pas avec de grands gestes, mais avec de l'ambiance. Ce qui avait commencé comme une fête de club de jeunes est devenu un rendez-vous fixe de l'été à Sint-Anna-Pede."
+  },
+  "growth": {
+    "label": "Bien ancré",
+    "body": "En 2012, on a créé une asbl pour pouvoir construire l'organisation de manière durable, transparente et professionnelle. À partir de là, l'affiche a pris plus d'élan — des noms comme Kate Ryan, 2Fabiola, Sam Gooris, Get Ready et Avalonn sont passés sur notre scène. Sans le soutien fidèle de nos partenaires et de la commune de Dilbeek, ce pas n'aurait jamais été possible."
+  },
+  "covid": {
+    "label": "Pause",
+    "body": "En 2020, le monde s'est arrêté un moment. Pas de tente, pas de bières, pas de musique sur le pré. Un drôle d'été pour tout le monde, pour nous aussi. Surtout un rappel que se réunir et faire la fête avec les voisins n'est pas une évidence — et combien on avait envie de tout recommencer."
+  },
+  "now": {
+    "label": "Aujourd'hui",
+    "body": "Pendant trois jours, on met Sint-Anna-Pede en mode été : ambiance à volonté pour les voisins, les familles, les passants par hasard et tous les sympathisants de ZZ. La journée, convivialité au bar ; le soir, des concerts ou des DJ's ; et toujours gratuit. L'équipe a hâte chaque édition de rendre l'année suivante un peu plus chouette."
+  },
+  "crew": {
+    "caption": "L'équipe."
+  },
+  "terras": {
+    "caption": "Sur le pré."
+  },
+  "posters": {
+    "firstEdition": "Première édition",
+    "venue": "Sint-Anna-Pede"
+  }
 }

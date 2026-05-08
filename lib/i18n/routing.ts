@@ -37,7 +37,6 @@ export const routing = defineRouting({
       fr: "/politique-de-confidentialite",
       en: "/privacy-policy",
     },
-    "/redesign": "/redesign",
   },
 });
 

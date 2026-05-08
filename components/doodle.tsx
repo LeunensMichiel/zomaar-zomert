@@ -3,7 +3,7 @@ import "server-only";
 import { cn } from "@lib/utils";
 import { type CSSProperties } from "react";
 
-import { DOODLE_SVGS } from "@/app/[locale]/redesign/_components/doodle-svgs";
+import { DOODLE_SVGS } from "./doodle-svgs";
 
 export type DoodleShape =
   // Inline shape — drawn directly in this component so it can be
@@ -22,7 +22,7 @@ export type DoodleShape =
   | "sun-rays"
   | "star-burst"
   | "zzz"
-  | "lightning"
+  | "stroke"
   | "horns"
   | "coil"
   | "radial"

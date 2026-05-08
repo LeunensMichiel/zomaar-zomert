@@ -246,21 +246,6 @@
     display: inline-flex;
   }
 
-  /* react-masonry-css */
-  .my-masonry-grid {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-left: -1.5rem;
-    width: auto;
-  }
-  .my-masonry-grid_column {
-    padding-left: 1.5rem;
-    background-clip: padding-box;
-  }
-  .my-masonry-grid_column > * {
-    margin-bottom: 1.5rem;
-  }
 }
 
 @utility container-page {

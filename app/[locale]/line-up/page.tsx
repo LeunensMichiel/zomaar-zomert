@@ -1,3 +1,4 @@
+import { PaperTear } from "@components/paper-tear";
 import artistsData from "@lib/data/artists.json";
 import { type Locale } from "@lib/i18n/routing";
 import { type APIArtist, type Artist } from "@lib/models";
@@ -31,5 +32,13 @@ export default async function LineUpPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const artists = loadArtists(locale);
-  return <LineUpClient artists={artists} />;
+  return (
+    <LineUpClient artists={artists}>
+      {/* Bottom paper-tear bridges the dark blue section into the
+          footer's photo strip. Server-rendered (PaperTear is
+          server-only) and passed through as children so the client
+          tree never imports it directly. */}
+      <PaperTear edge="bottom" tear={6} color="pink-50" />
+    </LineUpClient>
+  );
 }

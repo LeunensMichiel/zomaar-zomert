@@ -2,125 +2,118 @@
 
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code in this repo. Visual language, primitives, and motion conventions live in [Design.md](Design.md). The [home page](app/%5Blocale%5D/page.tsx) is the canonical reference implementation for the design language.
 
 ## Project
 
-`zomaar-zomert` is the Next.js 16 (App Router, Turbopack) website for the Belgian summer festival _Zomaar Zomert_. UI is built on **Tailwind v4** + **shadcn/ui** (the `new-york` style on the `base-ui` registry — see [components.json](components.json)), so primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com) under the shadcn conventions.
+`zomaar-zomert` is the Next.js 16 (App Router, Turbopack) site for the Belgian summer festival _Zomaar Zomert_. Stack: **Tailwind v4** + **shadcn/ui** (`new-york` style on the `base-ui` registry — see [components.json](components.json)). Primitives in [components/ui/](components/ui/) wrap [`@base-ui-components/react`](https://base-ui.com).
 
-For the visual language, design tokens, and reusable primitives (stickers, paper tears, halftones, ticker strips, sticker buttons), see [Design.md](Design.md). [/redesign](app/%5Blocale%5D/redesign/page.tsx) is the reference implementation — when applying the design language to other pages, mirror its patterns.
+## Redesign rollout — status
+
+The site is mid-rollout of a new visual language (festival zine / sticker-pack / paper-cut postcard). Patterns and primitives live in [Design.md](Design.md); the home page is the reference implementation.
+
+**Done** (ported to the new design language):
+
+- `/` (home) — was the `/redesign` prototype; now the live home, with the `/redesign` route + folder removed
+- `/contact` — chunky-block header (yellow-on-black, right), form-first layout, map below
+- `/info` — chunky-block header (pink-on-black, left), bento grid for FAQ + activities feature section
+- `/line-up` — chunky-block header (red-on-yellow, centered) on `bg-blue-900`, sticky filter chips with `layoutId` pill, deal/flip card animations, route in `transparentRoutes`
+- `/history` — chunky-block header (yellow-on-blue, left), shadcn-installed `<Timeline>` re-skinned, scroll-driven bg colour wave (`<ScrollBg>`), real first-edition poster + slides + closing crew portrait
+
+**Not yet ported** (still on legacy markup):
+
+- `/menu`, `/partners`, `/privacy-policy`, `app/[locale]/not-found.tsx`, `app/[locale]/error.tsx`
+
+When porting, mirror an existing chunky-block page and pick a fresh colour combo for the header — the per-page header variation rule in [Design.md](Design.md#per-page-header-variation) lists the four taken so far. Keep server `page.tsx` + `'use client'` `_components/*` boundary; remember `<Doodle>` and `<PaperTear>` are server-only (server-render in the page, pass through as children when a client subtree needs them).
+
+**Known dead code** (safe to delete in a cleanup pass; no remaining import paths):
+
+- [app/[locale]/_components/home-marquees.tsx](app/%5Blocale%5D/_components/home-marquees.tsx) — used by the legacy home, replaced by `<PhotoMarquees>`. Source of the two pre-existing `<img>` lint warnings.
+- [components/image-card.tsx](components/image-card.tsx) — legacy artist tile (`<ImageCard>`), unused since `/line-up` switched to `<LineUpArtistCard>` and the home swap. Note: `IImageCard` _type_ in [lib/models.ts](lib/models.ts) is still used by [components/artist-modal.tsx](components/artist-modal.tsx).
+- [components/textured-image.tsx](components/textured-image.tsx) — only consumer is the dead `image-card.tsx`.
+
+**Known acceptable noise**:
+
+- [components/form.tsx:25](components/form.tsx#L25) — pre-existing `@typescript-eslint/no-unnecessary-condition` error on the `??` operator. Left alone per the original task brief.
+- Legacy `<Button>` variants (`primary`, `transparent`, `minimal*`) — still used by `error.tsx`, `not-found.tsx`, `menu/_components/menu-client.tsx`, `cookie-banner.tsx`. Decommission only after the remaining pages are ported.
 
 ## Commands
 
-Package manager is **Yarn 4.14.1** (Berry) and Node `>=24`.
+Yarn 4.14.1 (Berry), Node `>=24`.
 
-- `yarn dev` — Next dev server (Turbopack by default in Next 16; output to `.next/dev`).
-- `yarn build` — production build (Turbopack).
-- `yarn start` — run the built app.
-- `yarn lint` — `eslint .` (flat config in [eslint.config.js](eslint.config.js); type-checked rules require a working `tsconfig`).
-- `yarn format` — run Prettier across the repo.
-- `yarn tsc --noEmit` — type-check only. The Husky pre-commit hook runs this on staged `.ts`/`.tsx` via [lint-staged.config.js](lint-staged.config.js).
+- `yarn dev` — Next dev server (Turbopack).
+- `yarn build` / `yarn start` — production.
+- `yarn lint` — `eslint .` (flat config in [eslint.config.js](eslint.config.js); type-checked rules need a clean tsc parse).
+- `yarn format` — Prettier across the repo.
+- `yarn tsc --noEmit` — type-check only. Husky pre-commit runs this on staged `.ts`/`.tsx` via [lint-staged.config.js](lint-staged.config.js).
 
-There are no tests in this project.
+There are no tests.
 
 ## Architecture
 
 ### App Router with locale-aware shell
 
-All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the _only_ layout that renders `<html>`/`<body>` — there is no separate `app/layout.tsx`. It validates the locale via `hasLocale(routing.locales, locale)` (calling `notFound()` on miss), runs `setRequestLocale(locale)`, then mounts the providers and shell:
+All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/layout.tsx](app/[locale]/layout.tsx) is the _only_ layout that renders `<html>`/`<body>` — there is no `app/layout.tsx`. It validates locale via `hasLocale(routing.locales, locale)` (`notFound()` on miss), runs `setRequestLocale(locale)`, then mounts providers and the shell.
 
-```
-<NextIntlClientProvider>
-  <Layout>{children}</Layout>
-</NextIntlClientProvider>
-<GoogleAnalytics gaId={...} />
-```
+[components/layout.tsx](components/layout.tsx) is a `'use client'` shell rendering `Navbar` / `<main>` / `Footer` / `CookieBanner`. Navbar goes transparent only on routes listed in `transparentRoutes` inside that file (routes whose hero floats behind the navbar — currently `/` and `/line-up`).
 
-[components/layout.tsx](components/layout.tsx) is a `'use client'` shell that renders `Navbar` / `<main>` / `Footer` / `CookieBanner`. Navbar goes transparent only on routes listed in `transparentRoutes` inside that file (routes whose hero sits behind the fixed navbar).
+### Server vs. client split
 
-**Server vs. client split**: `app/**/page.tsx` is always a server component — it `await params`, calls `setRequestLocale(locale)`, fetches/transforms data, calls `getTranslations(...)` for SEO, and renders a `'use client'` subcomponent in `_components/` for interactive content (e.g. [home-client.tsx](app/%5Blocale%5D/_components/home-client.tsx), [line-up-client.tsx](app/%5Blocale%5D/line-up/_components/line-up-client.tsx)). UI primitives that use motion, hooks, or DOM APIs (`Button`, `Dialog`, `Navbar`, `LocaleSwitcher`, `CookieBanner`, `Form`, `Countdown`, `ImageCard`, `Map`) are all `'use client'`. The global `Footer` is a server component (rendered as a prop into the client `Layout`). Component file names are kebab-case (`image-card.tsx`, not `ImageCard.tsx`).
+`app/**/page.tsx` is **always** a server component — `await params`, call `setRequestLocale(locale)`, fetch/transform data, call `getTranslations(...)` for SEO, render a `'use client'` subcomponent in `_components/` for interactive content. UI primitives that use motion / hooks / DOM APIs (`Button`, `Dialog`, `Navbar`, `LocaleSwitcher`, `CookieBanner`, `Form`, `Map`) are `'use client'`. Component file names are kebab-case.
 
-### Modals
+`<Doodle>` and `<PaperTear>` are **server-only** (declare `import "server-only"`) — the inlined SVG path data would bloat the client bundle. To use them inside a client tree, render them in the parent `page.tsx` and pass through as `children` or a ReactNode prop. See [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) for the bottom paper-tear pattern.
 
-There is no global modal context — render modals locally with the shadcn `Dialog` wrapper from [components/ui/dialog.tsx](components/ui/dialog.tsx) (which proxies `@base-ui-components/react/dialog`). Hold open state where it belongs, e.g. [image-card.tsx](components/image-card.tsx) for the artist sheet, [navbar.tsx](components/navbar.tsx) for the kinetic full-screen menu. Base UI's Dialog handles its own scroll lock — don't add `body.style.overflow` toggles or `react-remove-scroll` (it isn't installed).
+### Content as static JSON
 
-### Content as static JSON, translated at build time
+Festival content lives as JSON in [lib/data/](lib/data/), not a CMS:
 
-Festival content lives as JSON in [lib/data/](lib/data/), not in a CMS:
+- [lib/data/artists.json](lib/data/artists.json), [lib/data/menu.json](lib/data/menu.json), [lib/data/partners.json](lib/data/partners.json)
 
-- [lib/data/artists.json](lib/data/artists.json) — artists/line-up
-- [lib/data/menu.json](lib/data/menu.json) — food & drinks
-- [lib/data/partners.json](lib/data/partners.json) — sponsors
+Each record stores translated strings as `{ nl, fr, en }` (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages flatten these to the active locale via `loadXxx(locale)` helpers — see [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) (`APIArtist → Artist`) for the canonical pattern. New content collections should mirror this `API*` → flat-shape transform so page components stay locale-agnostic.
 
-Each record stores translated strings as `{ nl, fr, en }` objects (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages read these from disk in `loadXxx(locale)` helpers, flatten the strings down to the active `locale`, and pass the result to a client subcomponent — see [app/[locale]/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) (`APIArtist → Artist`) and [app/[locale]/menu/page.tsx](app/%5Blocale%5D/menu/page.tsx) (`APIMenuItem → MenuItem`) for the canonical pattern. When you add a new content collection, mirror this `API*` → flat-shape transform so page components stay locale-agnostic.
-
-Artists are filtered at render time by `showFrom` (a date string) and the festival date constants — TBA placeholders are appended client-side until at least 3 entries exist for a day.
+Artists are filtered at render time by `showFrom` (date string) and `ZZ_YEAR`; TBA placeholders pad each day to a minimum count.
 
 ### Festival dates and feature gates
 
-Hard-coded festival constants live in [lib/models.ts](lib/models.ts) (`ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY/MONDAY`, `ZZ_YEAR`, signup form URLs, `ENABLE_LINKS_DATE`). Several pages compare `new Date()` against these to enable/disable signup buttons (e.g. [home-client.tsx](app/%5Blocale%5D/_components/home-client.tsx)). When rolling the site to a new edition, update these constants — they are the single source of truth, referenced from both pages and content filters.
+Constants in [lib/models.ts](lib/models.ts): `ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY/MONDAY`, `ZZ_YEAR`, signup form URLs, `ENABLE_LINKS_DATE`. `isSignupOpen()` gates petanque/paella signup buttons. When rolling to a new edition, this file is the single source of truth.
 
 ### Internationalization (next-intl)
 
-i18n is powered by **next-intl 4** with **localized pathnames** and `localePrefix: 'never'`. Routing config lives in [lib/i18n/routing.ts](lib/i18n/routing.ts):
-
-- Locales `['nl', 'fr', 'en']`, **default `nl`** (Belgian site — keep this in mind when adding strings or test data).
-- Per-locale URLs (e.g. `/history` → NL `/historie`, FR `/histoire`, EN `/history`). Internal route keys are typed as `AppPathname`.
-- Locale negotiation runs in [proxy.ts](proxy.ts) (Next 16 renamed `middleware.ts` → `proxy.ts`). It sets the `NEXT_LOCALE` cookie and rewrites incoming localized URLs to the internal route.
+**next-intl 4** with **localized pathnames**, `localePrefix: 'never'`, default locale `nl` (Belgian site). Routing config in [lib/i18n/routing.ts](lib/i18n/routing.ts). Locale negotiation runs in [proxy.ts](proxy.ts) (Next 16 renamed `middleware.ts` → `proxy.ts`).
 
 **Always use the locale-aware navigation primitives** from [lib/i18n/navigation.ts](lib/i18n/navigation.ts):
 
 ```ts
-import {
-  Link,
-  redirect,
-  useRouter,
-  usePathname,
-  getPathname,
-} from '@lib/i18n/navigation';
+import { Link, redirect, useRouter, usePathname, getPathname } from '@lib/i18n/navigation';
 ```
 
 Never import `Link` / `useRouter` / `usePathname` from `next/link` or `next/navigation` for app navigation — those don't honor pathname localization. (`useSearchParams` is fine to import from `next/navigation`.)
 
-**Translations**: per-namespace JSON files in [locales/{nl,fr,en}/](locales/) (one file per page namespace plus `common`). [lib/i18n/request.ts](lib/i18n/request.ts) loads them all per request. Adding a new namespace means adding the JSON file in all three locales **and** updating the `loadMessages` array in `request.ts`.
+**Translations**: per-namespace JSON files in [locales/{nl,fr,en}/](locales/) (one per page namespace + `common`), loaded by [lib/i18n/request.ts](lib/i18n/request.ts). Adding a new namespace means adding the JSON in all three locales **and** updating the `loadMessages` array in `request.ts`.
 
-**Rich strings**: use named tags with `t.rich(...)`, e.g. `<strong>...</strong>`, `<br></br>` (use empty close tag rather than self-closing — ICU MessageFormat doesn't support `<br/>`), `<policy>...</policy>`. Don't use the legacy `<0>...</0>` indexed syntax from `next-translate`.
+**Rich strings**: `t.rich(...)` with named tags, e.g. `<strong>...</strong>`, `<br></br>` (use empty close tag — ICU MessageFormat doesn't support `<br/>`).
 
 ### SEO / metadata
 
-Every page exports `generateMetadata({ params })` that awaits `params`, calls `getTranslations({ locale, namespace })` for SEO copy, and returns a `Metadata` object. The root layout sets the title template, default OG image, icons, manifest, and theme color. There is no `next-seo`.
-
-[app/sitemap.ts](app/sitemap.ts) generates the sitemap with `hreflang` alternates for every locale, reading `routing.pathnames` directly (don't use `getPathname` here — it requires a request context). [app/robots.ts](app/robots.ts) handles robots.txt. There is no `next-sitemap` config.
+Every page exports `generateMetadata({ params })` that awaits params, calls `getTranslations({ locale, namespace })` for SEO copy, and returns a `Metadata` object. Root layout sets the title template, default OG image, icons, manifest, theme color. There is no `next-seo`. [app/sitemap.ts](app/sitemap.ts) reads `routing.pathnames` directly (don't use `getPathname` here — needs request context). [app/robots.ts](app/robots.ts) handles robots.txt.
 
 ### Path aliases
 
-Defined in [tsconfig.json](tsconfig.json): `@/*`, `@components/*`, `@lib/*`, `@public/*`. Prefer these over relative imports. There are no barrel files — import each component from its own file (e.g. `import { ImageCard } from '@components/image-card'`, `import { Button } from '@components/ui/button'`).
+Defined in [tsconfig.json](tsconfig.json): `@/*`, `@components/*`, `@lib/*`, `@public/*`. Prefer these over relative imports. No barrel files — import each component from its own file.
 
 ### Styling
 
-Tailwind v4 only — there is no SCSS in this project. Tokens, fonts, and the colour scale are declared in [app/globals.css](app/globals.css) inside an `@theme {}` block (e.g. `--color-brand-500`, `--font-display`); use the generated utilities (`bg-brand-500`, `font-display`) rather than hand-rolling CSS.
+Tailwind v4 only — tokens, fonts, scales declared in [app/globals.css](app/globals.css) `@theme {}` block. Class composition via `cn()` from [lib/utils.ts](lib/utils.ts) (wraps `clsx` + `tailwind-merge`). Don't import `classnames` — not a dependency. shadcn primitives in [components/ui/](components/ui/) are styled with `tailwind-variants` / `class-variance-authority`. No theme switcher (light only). For visual conventions and primitives, see [Design.md](Design.md).
 
-- [app/globals.css](app/globals.css) is the single stylesheet, imported by the root layout.
-- shadcn primitives in [components/ui/](components/ui/) are styled with `tailwind-variants` / `class-variance-authority` and use `data-[...]` attributes from Base UI for state styling.
-- There is no theme switcher (light only).
+### Motion
 
-Class composition is done with **`cn()` from [lib/utils.ts](lib/utils.ts)** — it pipes `clsx` through `tailwind-merge`, so later classes win conflicts cleanly. Don't import `classnames` (not a dependency).
-
-### Animation / motion
-
-Motion is provided by [`motion`](https://motion.dev) (rebranded `framer-motion`). Import from `motion/react`:
-
-```ts
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-```
-
-Don't import from `framer-motion` — it's not a dependency.
+`motion/react` (rebranded `framer-motion`). Don't import from `framer-motion` — not a dep. Honor `useReducedMotion()` for any new effect. Specific motion moments (header scroll-shrink, kinetic menu hover, line-up filter pill, deal/flip card entries, etc.) documented in [Design.md](Design.md#motion).
 
 ### Lint rules worth knowing
 
-The flat ESLint config ([eslint.config.js](eslint.config.js)) enables `typescript-eslint`'s **type-checked** ruleset, so lint requires a successful `tsc` parse and is sensitive to `any` and unsafe assignments. Notable enforced rules:
+ESLint flat config, type-checked. Notable enforced rules:
 
-- `@typescript-eslint/no-explicit-any: error` — disable line-locally with a comment if you genuinely need an escape hatch.
-- `simple-import-sort/imports` and `/exports` — imports are auto-sorted; don't hand-order them.
+- `@typescript-eslint/no-explicit-any: error` — disable line-locally if you genuinely need an escape hatch.
+- `simple-import-sort/imports` and `/exports` — imports are auto-sorted; don't hand-order.
 - `reportUnusedDisableDirectives: error` — stale `eslint-disable` comments fail the build.
-- `react-hooks` plugin runs the `recommended-latest` config, which includes `set-state-in-effect`. The disables you see in the codebase mark genuine hydration-only patches (random shuffles, `localStorage` reads); don't reach for `setState` inside `useEffect` for ordinary state syncing — derive from props or URL instead.
+- `react-hooks/recommended-latest` (incl. `set-state-in-effect`). The `eslint-disable react-hooks/purity` lines you'll see are for legitimate hydration-only patches (random shuffles, `Date.now()` in server-component render, `localStorage` reads). Don't reach for `setState` inside `useEffect` for ordinary state syncing — derive from props/URL instead.

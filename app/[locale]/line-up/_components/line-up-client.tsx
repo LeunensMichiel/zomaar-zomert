@@ -1,177 +1,387 @@
 "use client";
 
-import { ImageCard } from "@components/image-card";
-import { Button } from "@components/ui/button";
+import { Sticker } from "@components/sticker";
 import { usePathname, useRouter } from "@lib/i18n/navigation";
 import {
   type Artist,
   getDateByDayString,
   ZZ_DATE_FRIDAY,
+  ZZ_DATE_SATURDAY,
+  ZZ_DATE_SUNDAY,
   ZZ_DATES,
   ZZ_YEAR,
 } from "@lib/models";
-import { AnimatePresence, motion } from "motion/react";
+import { cn } from "@lib/utils";
+import { motion, useReducedMotion } from "motion/react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useMemo } from "react";
+import { type ReactNode, useCallback, useMemo } from "react";
 
-const containerVariants = {
-  hidden: { y: 10, opacity: 0, transition: { duration: 0.2 } },
-  exit: { y: -10, opacity: 0, transition: { duration: 0.2 } },
-  show: {
-    y: 0,
-    opacity: 1,
-    transition: { staggerChildren: 0.05, duration: 0.2 },
-  },
+import { LineUpArtistCard } from "./line-up-card";
+
+type Tone = "blue" | "brand" | "pink";
+const toneCycle: Tone[] = ["blue", "brand", "pink", "brand", "pink", "blue"];
+const tiltCycle = [-1.5, 1.2, -0.8, 0.9, -1.2, 1.5];
+
+// Four cycling origins for the "deal" entry animation. Cards fly in
+// from these four corners in sequence — bottom-left, top-right,
+// bottom-right, top-left — so the deal looks like a dealer slinging
+// cards across a table rather than all coming from one direction.
+const DEAL_ORIGINS = [
+  { x: -340, y: 240 },
+  { x: 340, y: -260 },
+  { x: 340, y: 240 },
+  { x: -340, y: -260 },
+] as const;
+
+const dayFromDate = (date: string): "friday" | "saturday" | "sunday" => {
+  if (date === ZZ_DATE_SATURDAY) return "saturday";
+  if (date === ZZ_DATE_SUNDAY) return "sunday";
+  return "friday";
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  exit: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+type Props = { artists: Artist[]; children?: ReactNode };
 
-type Props = { artists: Artist[] };
-
-export function LineUpClient({ artists }: Props) {
+export function LineUpClient({ artists, children }: Props) {
   const t = useTranslations("line-up");
   const lang = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentDate = searchParams.get("date") ?? ZZ_DATE_FRIDAY;
+  const reducedMotion = useReducedMotion();
+  const currentDate = searchParams.get("date");
+  const showAll = !currentDate;
 
-  const filteredArtists = useMemo(() => {
-    const today = new Date();
-    // Keep showing artists for 6 months after the festival ends so the
-    // line-up page stays useful for archival/recap purposes off-season.
-    const festivalEnd = new Date(ZZ_DATES[2]);
-    const endDate = new Date(festivalEnd.setMonth(festivalEnd.getMonth() + 6));
+  // Filter to confirmed-and-current artists, grouped by day. Each day
+  // pads to a min of 3 with TBA placeholders so the grid never feels
+  // half-empty pre-announcement. `showFrom` gates per-artist reveals,
+  // and `ZZ_YEAR` filters out previous editions still in the JSON.
+  // eslint-disable-next-line react-hooks/purity
+  const today = Date.now();
+  const visibleArtists = useMemo(
+    () =>
+      artists.filter(
+        (a) =>
+          new Date(a.showFrom).getTime() <= today &&
+          new Date(a.showFrom).getFullYear() >= ZZ_YEAR,
+      ),
+    [artists, today],
+  );
 
-    const result = artists
-      .filter(
-        (artist) =>
-          new Date(artist.showFrom).getTime() <= today.getTime() &&
-          today.getTime() <= endDate.getTime() &&
-          getDateByDayString(artist.day) === currentDate &&
-          new Date(artist.showFrom).getFullYear() >= ZZ_YEAR,
-      )
-      .sort((a, b) => a.name.localeCompare(b.name));
-
-    if (result.length < 3) {
-      const TBAs: Artist[] = Array.from(
-        { length: 3 - result.filter((x) => x.name !== "TBA").length },
-        (_, i) => ({
+  const byDay = useMemo(() => {
+    const result: Record<string, Artist[]> = {};
+    for (const date of ZZ_DATES) {
+      const list = visibleArtists
+        .filter((a) => getDateByDayString(a.day) === date)
+        .sort((a, b) => a.hour.localeCompare(b.hour));
+      // Pad each day to a minimum of 4 cards. Real days will always
+      // have at least four artists/activities, so this matches the
+      // expected count instead of leaving an awkward gap.
+      while (list.length < 4) {
+        list.push({
           name: "TBA",
-          day: "friday",
-          hour: "to be announced",
-          description:
-            "This artist will be announced soon! Stay in touch with our social channels or revisit zomaarzomert.be in the near future.",
-          imgSrc: "/assets/artists/tba.webp",
-          showFrom: i.toString(),
-        }),
-      );
-      result.push(...TBAs);
+          day: dayFromDate(date),
+          hour: "",
+          imgSrc: "",
+          showFrom: `tba-${date}-${String(list.length)}`,
+          description: "",
+        });
+      }
+      result[date] = list;
     }
     return result;
-  }, [artists, currentDate]);
-
-  const formattedDate = new Date(currentDate);
+  }, [visibleArtists]);
 
   const handleDaySelect = useCallback(
-    (newDate: string) => {
-      router.replace({ pathname, query: { date: newDate } }, { scroll: false });
+    (date: string | null) => {
+      if (date === null) {
+        router.replace({ pathname }, { scroll: false });
+      } else {
+        router.replace({ pathname, query: { date } }, { scroll: false });
+      }
     },
     [pathname, router],
   );
 
-  return (
-    <section className="container-wide section-y-sm grid gap-14 text-center font-bold md:gap-20">
-      <header>
-        <AnimatePresence mode="wait">
-          <motion.div
-            className="relative z-[1] flex flex-col items-center justify-center"
-            key={currentDate}
-            initial={{ x: 10, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <h1 className="mb-3 text-center text-5xl font-bold uppercase md:mb-5 md:text-6xl xl:mb-9">
-              {formattedDate.toLocaleString(lang, { weekday: "long" })}
-            </h1>
-            <span className="font-display text-2xl">
-              {formattedDate.toLocaleString(lang, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-            <img
-              style={{
-                transform: `rotate(${(ZZ_DATES.indexOf(currentDate) + 1) * 45}deg)`,
-                maxHeight: "15rem",
-              }}
-              className="absolute z-[-1] block max-w-[200px] md:max-w-[300px] lg:max-w-[350px]"
-              src="/assets/star.svg"
-              alt=""
-            />
-          </motion.div>
-        </AnimatePresence>
-      </header>
+  const visibleDates = showAll
+    ? ZZ_DATES
+    : ZZ_DATES.filter((d) => d === currentDate);
 
-      <div className="grid grid-cols-3">
-        {ZZ_DATES.map((day) => (
-          <Button
-            key={day}
-            size="md"
-            variant="minimal"
-            className="hover:text-pink-400 focus:text-pink-400"
-            onClick={() => {
-              handleDaySelect(day);
+  // Star backdrop rotates with the active filter — gives the page a
+  // single piece of moving geometry that responds to interaction
+  // without re-rendering the whole grid.
+  const starRotation = currentDate
+    ? (ZZ_DATES.indexOf(currentDate) + 1) * 45
+    : 0;
+
+  const filters: { value: string | null; label: string }[] = [
+    { value: null, label: t("filter.all") },
+    {
+      value: ZZ_DATE_FRIDAY,
+      label: new Date(ZZ_DATE_FRIDAY).toLocaleString(lang, { weekday: "long" }),
+    },
+    {
+      value: ZZ_DATE_SATURDAY,
+      label: new Date(ZZ_DATE_SATURDAY).toLocaleString(lang, {
+        weekday: "long",
+      }),
+    },
+    {
+      value: ZZ_DATE_SUNDAY,
+      label: new Date(ZZ_DATE_SUNDAY).toLocaleString(lang, { weekday: "long" }),
+    },
+  ];
+
+  return (
+    <section className="relative isolate overflow-hidden bg-blue-900 text-pink-50">
+      {/* Star backdrop — yellow ZZ asterisk-burst that rotates with the
+          active filter. Sits at low opacity behind the header so the
+          chunky block + filter chips read clearly on top. */}
+      <motion.img
+        src="/assets/star.svg"
+        alt=""
+        aria-hidden="true"
+        animate={{ rotate: starRotation }}
+        transition={
+          reducedMotion
+            ? { duration: 0 }
+            : { type: "spring", duration: 1.2, bounce: 0.2 }
+        }
+        className="pointer-events-none absolute -top-12 left-1/2 z-0 h-72 -translate-x-1/2 opacity-25 mix-blend-screen md:-top-16 md:h-96 lg:h-112"
+      />
+
+      <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
+        {/* Centered chunky-block headline — third position variation
+            after /info (left) and /contact (right). Yellow block + red
+            text breaks the gray-900 trend used on the other two. */}
+        <div className="text-center">
+          <h1 className="font-display shadow-sticker-lg text-brand-500 inline-block rotate-1 bg-yellow-400 px-5 py-2 text-5xl leading-[0.9] font-bold uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+            {t("hero.title")}
+          </h1>
+        </div>
+
+        {/* Filter chips — `layoutId="filter-pill"` slides the active
+            yellow indicator between chips on click. Pukkelpop-style. */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 md:mt-10 md:gap-3">
+          {filters.map(({ value, label }) => {
+            const isActive =
+              (value === null && showAll) || value === currentDate;
+            return (
+              <button
+                key={value ?? "all"}
+                onClick={() => {
+                  handleDaySelect(value);
+                }}
+                className={cn(
+                  "font-display relative px-4 py-2 text-base font-bold tracking-wide uppercase transition-colors md:px-5 md:py-2.5 md:text-lg",
+                  isActive
+                    ? "text-gray-900"
+                    : "text-pink-50 hover:text-yellow-300",
+                )}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="filter-pill"
+                    className="shadow-sticker absolute inset-0 -z-10 border-2 border-gray-900 bg-yellow-400"
+                    transition={
+                      reducedMotion
+                        ? { duration: 0 }
+                        : { type: "spring", duration: 0.4, bounce: 0.2 }
+                    }
+                  />
+                )}
+                <span className="relative">{label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Grids — one per visible day. In "all" view each day gets a
+            sticker heading; per-day view drops the heading. The key
+            includes the active filter so DaySections re-mount on every
+            filter switch — that's how the entry animation re-runs even
+            when the same day was already on screen (e.g. friday → all
+            keeps friday in view, but we still want it to re-animate). */}
+        <div className="mt-12 grid gap-y-12 md:mt-16 md:gap-y-16">
+          {visibleDates.map((date, dayIndex) => (
+            <DaySection
+              key={`${currentDate ?? "all"}-${date}`}
+              date={date}
+              artists={byDay[date]}
+              showHeading={showAll}
+              lang={lang}
+              tbaLabel={t("tba")}
+              reducedMotion={reducedMotion ?? false}
+              animationType={showAll ? "deal" : "flip"}
+              dayIndex={dayIndex}
+            />
+          ))}
+        </div>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+type DaySectionProps = {
+  date: string;
+  artists: Artist[];
+  showHeading: boolean;
+  lang: string;
+  tbaLabel: string;
+  reducedMotion: boolean;
+  animationType: "deal" | "flip";
+  dayIndex: number;
+};
+
+function DaySection({
+  date,
+  artists,
+  showHeading,
+  lang,
+  tbaLabel,
+  reducedMotion,
+  animationType,
+  dayIndex,
+}: DaySectionProps) {
+  const dayName = new Date(date).toLocaleString(lang, { weekday: "long" });
+
+  // Two animation modes:
+  // - "flip" — used when a single day is selected. Cards enter
+  //   edge-on (rotateY -90°) and rotate to flat, like a deck being
+  //   flipped face-up.
+  // - "deal" — used in "all" view. Each card is "thrown" from
+  //   above with a slightly varied trajectory and rotation, like a
+  //   dealer sliding cards across a table. Day sections deal
+  //   sequentially via `delayChildren` offset by `dayIndex`.
+  // Shuffled order so flip stagger fires in random sequence rather
+  // than left-to-right. Re-rolls on each filter switch (DaySection
+  // re-mounts via the composite key in the parent), so users get a
+  // fresh order every time. Math.random in render is impure, but the
+  // useMemo + identity deps make it run exactly once per mount.
+  const shuffleOrder = useMemo(() => {
+    const order = artists.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) {
+      // eslint-disable-next-line react-hooks/purity
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+    return order;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artists.length]);
+
+  const containerVariants = reducedMotion
+    ? undefined
+    : {
+        hidden: { opacity: 1 },
+        show: {
+          opacity: 1,
+          transition:
+            animationType === "deal"
+              ? {
+                  staggerChildren: 0.09,
+                  delayChildren: 0.1 + dayIndex * 0.35,
+                }
+              : {
+                  // Flip mode handles delay per-card via the shuffled
+                  // order in `flipItem.show` — no parent stagger.
+                  delayChildren: 0.05,
+                },
+        },
+      };
+
+  const flipItem = {
+    hidden: { opacity: 0, rotateY: -90, scale: 0.85 },
+    show: (i: number) => ({
+      opacity: 1,
+      rotateY: 0,
+      scale: 1,
+      transition: {
+        duration: 0.55,
+        ease: [0.22, 0.61, 0.36, 1] as const,
+        delay: shuffleOrder[i] * 0.1,
+      },
+    }),
+  };
+
+  // Deal variants — each card flies in from one of four corners
+  // (bottom-left, top-right, bottom-right, top-left), cycled by
+  // index. Combined with a varied start rotation, this reads as a
+  // dealer slinging cards across a table from different positions
+  // rather than dropping them straight from above.
+  const dealItem = reducedMotion
+    ? undefined
+    : {
+        hidden: (i: number) => {
+          const origin = DEAL_ORIGINS[i % DEAL_ORIGINS.length];
+          return {
+            opacity: 0,
+            x: origin.x,
+            y: origin.y,
+            rotate: -45 + ((i * 17) % 90),
+            scale: 0.95,
+          };
+        },
+        show: {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          rotate: 0,
+          scale: 1,
+          transition: { type: "spring" as const, duration: 0.7, bounce: 0.3 },
+        },
+      };
+
+  const itemVariants = reducedMotion
+    ? undefined
+    : animationType === "deal"
+      ? dealItem
+      : flipItem;
+
+  // Flip mode needs `perspective` on the parent for the 3D rotateY
+  // to read as a real hinge. Deal mode is 2D and doesn't need it.
+  const gridStyle =
+    animationType === "flip" ? { perspective: "1200px" } : undefined;
+
+  return (
+    <div>
+      {showHeading && (
+        <div className="mb-6 md:mb-8">
+          <Sticker color="brand" size="lg" rotate={-3}>
+            {dayName}
+          </Sticker>
+        </div>
+      )}
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={containerVariants}
+        style={gridStyle}
+        className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8"
+      >
+        {artists.map((artist, i) => (
+          <motion.div
+            key={`${artist.name}-${artist.showFrom}`}
+            // `custom={i}` feeds the index into deal-mode's per-card
+            // `hidden` function so each card has a slightly different
+            // start angle + horizontal offset.
+            custom={i}
+            variants={itemVariants}
+            style={{
+              transformOrigin: "center center",
+              transformStyle: "preserve-3d",
             }}
           >
-            {new Date(day).toLocaleString(lang, { weekday: "long" })}
-            {day === currentDate ? (
-              <motion.div
-                className="bg-brand-500 absolute right-0 -bottom-0.5 left-0 z-[3] h-1 w-full"
-                layoutId="underline"
-              />
-            ) : null}
-          </Button>
+            <LineUpArtistCard
+              artist={artist}
+              date={date}
+              tone={toneCycle[i % toneCycle.length]}
+              tilt={tiltCycle[i % tiltCycle.length]}
+              tbaLabel={tbaLabel}
+            />
+          </motion.div>
         ))}
-      </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentDate}
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          exit="exit"
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {filteredArtists.map((artist) => (
-            <motion.div
-              variants={itemVariants}
-              key={`${artist.name} - ${artist.day} - ${artist.showFrom}`}
-            >
-              <ImageCard
-                data={{
-                  imgSrc: artist.imgSrc,
-                  title: artist.name,
-                  subtitle: artist.hour,
-                  date: getDateByDayString(artist.day),
-                  description: artist.description,
-                  link: artist.link,
-                }}
-                opensModal={artist.name !== "TBA"}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
-      <span className="sr-only">{t("SEO.title")}</span>
-    </section>
+      </motion.div>
+    </div>
   );
 }

@@ -7,5 +7,12 @@
       "description": "Zomaar Zomert takes place on the last weekend of July. From Friday to Sunday, the festival provides numerous performances, activities, music and ambiance to make it a memorable weekend."
     }
   },
-  "title": "Line-Up"
+  "title": "Line-Up",
+  "hero": {
+    "title": "Line-up."
+  },
+  "filter": {
+    "all": "All"
+  },
+  "tba": "Soon"
 }
