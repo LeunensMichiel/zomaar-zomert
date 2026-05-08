@@ -4,7 +4,7 @@ import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import partnersData from "@lib/data/partners.json";
-import { Link } from "@lib/i18n/navigation";
+import { getPathname } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
@@ -32,6 +32,8 @@ export default async function PartnersPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "partners" });
+
+  const contactHref = getPathname({ locale, href: "/contact" });
 
   const visible = partnersData.filter((p) => !p.disabled);
   const lead = visible
@@ -73,7 +75,7 @@ export default async function PartnersPage({ params }: Props) {
             {t("hero.intro")}
           </p>
         </div>
-        <PaperTear edge="bottom" tear={3} color="blue-900" />
+        <PaperTear edge="bottom" tear={4} color="blue-900" />
       </section>
 
       <section className="relative isolate bg-blue-900 text-pink-50">
@@ -142,8 +144,8 @@ export default async function PartnersPage({ params }: Props) {
               </p>
               <div className="mt-8 md:mt-10">
                 <Button
-                  as={Link}
-                  href="/contact"
+                  as="a"
+                  href={contactHref}
                   variant="brand"
                   size="lg"
                   sticker
