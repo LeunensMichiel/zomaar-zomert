@@ -4,7 +4,6 @@ import { Button } from "@components/ui/button";
 import { Link } from "@lib/i18n/navigation";
 import { ChevronRight, RotateCw, Zap } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
@@ -41,23 +40,6 @@ export default function Error({ error, unstable_retry }: Props) {
 
   return (
     <section className="relative bg-blue-900 pt-24 pb-20 md:pt-32 md:pb-28">
-      <Image
-        src="/assets/doodles/asterisk.svg"
-        alt=""
-        aria-hidden="true"
-        width={120}
-        height={120}
-        className="pointer-events-none absolute top-28 left-6 hidden h-12 w-12 -rotate-12 md:left-12 md:block md:h-16 md:w-16"
-      />
-      <Image
-        src="/assets/doodles/star.svg"
-        alt=""
-        aria-hidden="true"
-        width={160}
-        height={160}
-        className="pointer-events-none absolute -right-10 -bottom-10 hidden h-44 w-44 rotate-12 md:right-0 md:bottom-0 md:block md:h-64 md:w-64 lg:h-80 lg:w-80"
-      />
-
       <div className="container-wide relative z-20 text-center">
         <p className="font-display shadow-sticker-sm inline-block -rotate-2 border-2 border-gray-900 bg-yellow-400 px-3 py-1 text-sm font-bold text-gray-900 uppercase md:text-base">
           {t("error.eyebrow")}

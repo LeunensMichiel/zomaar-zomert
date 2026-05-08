@@ -75,10 +75,12 @@ export default async function RedesignHome({ params }: Props) {
   // Mirror the line-up page's TBA logic: only show artists whose `showFrom`
   // date has passed and that belong to this edition, then pad to 3 with TBA
   // placeholder cards so the row is always visually complete.
+
   // Server components re-execute per request, so reading the clock at render
   // is safe — react-hooks/purity targets re-rendering client components.
   // eslint-disable-next-line react-hooks/purity
   const today = Date.now();
+
   const visibleHeadliners: Headliner[] = artistsData
     .filter(
       (a) =>
@@ -177,7 +179,7 @@ export default async function RedesignHome({ params }: Props) {
         </div>
         <Doodle
           shape="stroke"
-          color="pink"
+          color="linear-sunset"
           rotate={12}
           className="absolute -right-1/2 bottom-0 z-20 h-100 md:-right-1/6 md:-bottom-14 md:h-150"
         />
@@ -204,7 +206,8 @@ export default async function RedesignHome({ params }: Props) {
         <PaperTear edge="top" tear={4} bgColor="pink-50" color="yellow-400" />
         {/* One big anchor in the lower-left bleed; one tiny accent. */}
         <Doodle
-          shape="flame"
+          shape="coil"
+          color="linear-red"
           rotate={-12}
           className="absolute -bottom-12 -left-12 h-48 md:-right-16 md:-bottom-16 md:left-auto md:h-80 lg:h-112"
         />
@@ -282,7 +285,8 @@ export default async function RedesignHome({ params }: Props) {
             the lone inline doodle we kept from the original set. */}
         <Doodle
           shape="eye"
-          color="ink"
+          color="summer-red"
+          accent="80s-gum"
           rotate={8}
           className="absolute -top-12 left-16 h-56 w-56 md:-top-20 md:-right-24 md:h-80 md:w-80 lg:h-96 lg:w-96"
         />
@@ -321,17 +325,12 @@ export default async function RedesignHome({ params }: Props) {
           HEADLINERS — featured artists w/ overlay sticker
           ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-blue-500 text-white">
-        {/* Big star-burst bleeding off the right + one small accent. */}
+        {/* Big asterisk bleeding off the right + one small accent. */}
         <Doodle
-          shape="zzz"
+          shape="asterisk"
+          color="linear-sunset"
           rotate={20}
           className="absolute -top-12 -right-16 h-56 md:-top-20 md:-right-24 md:h-96 lg:h-112"
-        />
-        <Doodle
-          shape="cocktail"
-          color="dimmed-led"
-          rotate={-6}
-          className="absolute bottom-32 left-6 hidden h-12 md:left-12 md:block md:h-16"
         />
         <div className="container-wide section-y relative z-20">
           {/* Single oversized poster word — context speaks for itself. */}
@@ -380,16 +379,16 @@ export default async function RedesignHome({ params }: Props) {
         {/* Big horns anchor in the right bleed + one small play accent. */}
         <Doodle
           shape="horns"
-          color="ink"
+          color="royal-yellow"
           accent="summer-red"
           rotate={-8}
           className="absolute -top-12 -right-12 h-48 md:-top-20 md:-right-20 md:h-80 lg:h-96"
         />
         <Doodle
-          shape="play"
+          shape="radial"
           color="royal-yellow"
           rotate={-15}
-          className="absolute right-1/3 bottom-12 hidden h-12 md:block md:h-16"
+          className="absolute right-1/3 bottom-20 hidden h-15 md:block md:h-16"
         />
         <div className="container-wide section-y relative z-20">
           {/* Single oversized poster word, no sentence-y subtitle. */}
@@ -524,7 +523,7 @@ export default async function RedesignHome({ params }: Props) {
           shape="lips"
           color="summer-red"
           rotate={6}
-          className="absolute -top-16 -right-16 h-56 md:-top-20 md:-right-20 md:h-96 lg:h-112"
+          className="absolute -top-16 -right-16 h-32 md:-top-20 md:-right-20 md:h-96"
         />
         <Doodle
           shape="asterisk"
@@ -567,7 +566,7 @@ export default async function RedesignHome({ params }: Props) {
           className="absolute -top-16 -right-16 h-56 md:-top-24 md:-right-24 md:h-96"
         />
         <Doodle
-          shape="banner"
+          shape="star"
           color="royal-yellow"
           rotate={-12}
           className="absolute right-1/4 bottom-12 hidden h-12 md:block md:h-16"
@@ -587,7 +586,7 @@ export default async function RedesignHome({ params }: Props) {
           className="absolute -top-12 -right-12 h-48 md:-top-16 md:-right-16 md:h-80 lg:h-96"
         />
         <Doodle
-          shape="stripes"
+          shape="plus"
           color="royal-yellow"
           rotate={-8}
           className="absolute right-1/4 bottom-12 hidden h-10 md:block md:h-14"
@@ -647,6 +646,7 @@ export default async function RedesignHome({ params }: Props) {
         {/* Big zzz anchor in the bottom-right + a small cross. */}
         <Doodle
           shape="zzz"
+          color="summer-red"
           className="absolute -right-16 -bottom-12 h-56 md:-right-20 md:-bottom-16 md:h-80 lg:h-96"
         />
         <Doodle
@@ -747,6 +747,7 @@ export default async function RedesignHome({ params }: Props) {
         {/* One huge star-burst anchor + a small star accent. */}
         <Doodle
           shape="star-burst"
+          color="royal-yellow"
           rotate={20}
           className="absolute -right-12 -bottom-16 h-64 md:-right-20 md:-bottom-24 md:h-112 lg:h-128"
         />

@@ -48,7 +48,8 @@ export default async function InfoPage({ params }: Props) {
             </h1>
             <div className="self-end">
               <Doodle
-                shape="zzz"
+                shape="star"
+                color="dimmed-led"
                 rotate={-8}
                 className="h-24 md:h-28 lg:h-36"
               />
@@ -194,6 +195,7 @@ export default async function InfoPage({ params }: Props) {
       <section className="relative bg-blue-500 text-white">
         <Doodle
           shape="star-burst"
+          color="royal-yellow"
           rotate={20}
           className="absolute -right-12 -bottom-16 h-56 md:-right-20 md:-bottom-24 md:h-96 lg:h-112"
         />

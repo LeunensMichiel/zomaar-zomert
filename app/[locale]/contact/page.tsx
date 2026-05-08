@@ -36,13 +36,13 @@ export default async function ContactPage({ params }: Props) {
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
             <div className="order-2 self-start md:order-1">
               <Doodle
-                shape="lips"
+                shape="stripes"
                 color="dimmed-led"
                 rotate={-8}
-                className="h-24 md:h-28 lg:h-36"
+                className="absolute top-3 z-2 h-auto w-140 lg:w-250"
               />
             </div>
-            <h1 className="font-display shadow-sticker-lg order-1 inline-block rotate-2 self-end bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:order-2 md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+            <h1 className="font-display shadow-sticker-lg z-5 order-1 inline-block rotate-2 self-end bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:order-2 md:px-7 md:py-3 md:text-7xl xl:text-8xl">
               {t("hero.title")}
             </h1>
           </div>

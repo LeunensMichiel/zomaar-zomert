@@ -39,7 +39,7 @@ Don't introduce greys outside the existing scale. The named ZZ palette is the so
 
 ### Gradients
 
-Four named gradient styles ride alongside the solid palette (Figma styles `Linear Red`, `Linear Sunset`, `Radial Red`, `80s Gum`). Exposed as Tailwind `bg-*` utilities in [app/globals.css](app/globals.css):
+Four named gradient styles ride alongside the solid palette (Figma styles `Linear Red`, `Linear Sunset`, `Radial Red`, `80s Gum`). Exposed as Tailwind `bg-*` utilities in [app/globals.css](app/globals.css), and accepted as `color`/`accent` values on `<Doodle>` (e.g. `<Doodle shape="lips" color="linear-sunset" />`):
 
 | Utility            | Style          | Stops                                  | Where it earns its place                                |
 | ------------------ | -------------- | -------------------------------------- | ------------------------------------------------------- |
@@ -110,22 +110,28 @@ Decorative shapes — the building block for the maximalist, sticker-pack feel. 
 **Shapes:**
 
 - _Inline_: `eye`, `plus`.
-- _Asset-backed_: `zz`, `play`, `cross`, `banner`, `sun-rays`, `star-burst`, `zzz`, `lightning`, `horns`, `coil`, `radial`, `lips`, `stripes`, `asterisk`, `flame`, `cocktail`, `star`.
+- _Asset-backed_: `zz`, `play`, `cross`, `banner`, `sun-rays`, `star-burst`, `zzz`, `stroke`, `horns`, `coil`, `radial`, `lips`, `stripes`, `asterisk`, `flame`, `cocktail`, `star`.
 
 **Theming**:
 
-- `color` — primary fill (maps to the SVG's `var(--fill-0)` slot, plus the inline shapes' single colour). Default `ink`.
-- `accent` — secondary stroke / detail layer (maps to `var(--stroke-0)`). Optional.
+- `color` — primary paint. Maps to the SVG's `var(--fill-0)` slot, the inline shapes' outline + pupil, and (for gradient-baked shapes) overrides the baked gradient. Default `ink`.
+- `accent` — secondary detail. Maps to `var(--stroke-0)` on duo-layer shapes (the back/outline) and to the pupil on `eye`. Optional.
+
+Both `color` and `accent` accept solid palette tokens (`summer-red`, `royal-yellow`, `dimmed-led`, `blue-cola`, `tardis-blue`, `pink`, `ink`, `paper`, `white`) **or** one of the four named gradients: `linear-red`, `linear-sunset`, `radial-red`, `80s-gum`. Gradients are minted at render time as inline `<linearGradient>` / `<radialGradient>` defs with unique ids; the prop value resolves to a `url(#…)` paint server.
 
 Doodles fall into three theming buckets:
 
-1. **Single-layer.** Only one paint reference — pass `color`. `accent` is ignored. Includes `asterisk`, `banner`, `cocktail`, `lips`, `play`, `radial`, `star`, `stripes`, `zz`, plus the inline `eye` and `plus`.
-2. **Duo-layer.** Two distinct paints — pass both `color` (front) and `accent` (back/stroke detail). When `accent` is omitted, the SVG falls back to its baked-in Figma detail colour, so duo-coloured doodles _never_ collapse to a flat fill. Includes `cross` (cream front + red shadow), `sun-rays` (yellow front + red shadow), `horns` (black hand + red outline).
-3. **Gradient-baked.** The original Figma gradient (`Linear Red`, `Linear Sunset`, `Radial Red`) is embedded in the SVG defs; `color`/`accent` only affect any remaining `var(...)` slots. Includes `coil` (Linear Red), `lightning` (Linear Sunset), `star-burst` (yellow), `zzz` (Linear Sunset × 4), `flame` (Radial Red fill + themable red stroke). Drop these in without props for the gradient look; pass `accent` on `flame` to recolour its outer stroke.
+1. **Single-layer.** One paint reference — pass `color`. `accent` is ignored. Includes `asterisk`, `banner`, `cocktail`, `lips`, `play`, `radial`, `star`, `stripes`, `zz`, plus the inline `plus`.
+2. **Duo-layer.** Two distinct paints — pass both `color` (front) and `accent` (back/outline). When `accent` is omitted, the SVG falls back to its baked-in Figma detail colour. Includes `cross` (cream front + red shadow), `sun-rays` (yellow front + red shadow), `horns` (yellow hand + red outline), and the inline `eye` (outline + pupil; the white-of-eye is hardcoded `pink-50`).
+3. **Gradient-baked.** Ship with a Figma gradient embedded in the SVG defs (`Linear Red`, `Linear Sunset`, `Radial Red`). The path's paint is wrapped as `var(--fill-0, url(#paint…))` so passing `color` overrides the gradient with whatever you pass — including another gradient — and omitting `color` keeps the original baked look. Includes `coil` (Linear Red stroke), `stroke` (Linear Sunset stroke — used by the loading spinner), `star-burst` (yellow), `zzz` (Linear Sunset × 4), `flame` (Radial Red fill + themable red stroke via `accent`).
+
+Stroke-only single-layer shapes (`asterisk`, `cocktail`, `lips`, `radial`, `star`, `stripes`) use `fill="none"` so the path doesn't render a black silhouette behind the stroke — the SVG default of `fill: black` would otherwise leak through.
 
 The asset-backed shapes have varying intrinsic aspect ratios (e.g. `lips` ≈ 1.76:1, `play` ≈ 0.72:1, `stripes` ≈ 3.5:1). Size them with a height utility (`h-44`, `lg:h-96`, …) and let the SVG's viewBox handle width — `<Doodle shape="lips" color="summer-red" className="h-44" />`. Don't force a square `w-* h-*` pair on a non-square shape.
 
-If you re-export an SVG from Figma, regenerate `doodle-svgs.ts` (small Node script lives in the commit history under "extract doodle svgs"). Watch out for hardcoded hex colours in the export — convert them to `var(--stroke-0, …)` or `var(--fill-0, …)` so they remain themable. The included `cross` and `sun-rays` are the only ones with this pattern today.
+**Always pass an explicit `color`.** Without one, single-layer shapes fall back to the dull Figma export colour and gradient-baked shapes fall back to their built-in gradient — both options should be a deliberate choice, not an oversight. Avoid `color="ink"` (black) and `color="white"` for decorative gutter doodles; reach for the bright tokens or a gradient.
+
+If you re-export an SVG from Figma, regenerate `doodle-svgs.ts` (small Node script lives in the commit history under "extract doodle svgs"). Watch out for hardcoded hex colours in the export — convert them to `var(--fill-0, …)` for the primary paint and `var(--stroke-0, …)` for any duo-layer detail.
 
 **Doodle is server-only** — the module declares `import "server-only"` so a stray client import fails the build. `doodle-svgs.ts` is large enough to bloat the client bundle if it ever crossed a `'use client'` boundary; same goes for `<PaperTear>`.
 
@@ -140,7 +146,14 @@ Drop doodles into section gutters with absolute positioning — never on top of 
 - **One or two _small_ accents** (`h-10` to `h-16`) elsewhere in the gutter, in a contrasting shape and color.
 - **Never two doodles at the same size** in one section — the size jump is the whole point.
 
-Examples that earn their place: a 96–128 unit `halftone-star` bleeding off the right edge of the headliner section + a 14-unit `note` near the title; a 80-unit `flame` in the activities corner + a 12-unit `spiral` accent. Avoid: four 20-unit shapes evenly distributed around a section.
+#### Shape-picking rules
+
+- **Small doodles look good in this set:** `plus`, `cross`, `play`, `sun-rays`, `star-burst`, `zz`, `radial`, `asterisk`, `cocktail`, `star`. The other shapes (`banner`, `lips`, `stripes`, `flame`, `horns`, `zzz`, `coil`, `stroke`, `eye`) are designed for big anchors — they don't read at small sizes. Header-pair doodles (the `h-20`–`h-36` partner next to a chunky-block headline) count as small for this purpose.
+- **Repeating a small shape is fine.** Three little `cross`es clustered with slight rotation/size variation reads as deliberate dynamism, not laziness.
+- **A big anchor shape can't appear twice on the same page** — unless it's the same shape at a different scale (one big + one or more small variants is fine). Pick a different shape for each section's anchor.
+- **Distribute big anchors across pages.** Don't show the same big shape on multiple pages above the fold; the festival should feel like every page has its own poster, not a single repeated motif. Two pages sharing one big shape is borderline OK; three or more is too many.
+
+Examples that earn their place: a 96–128 unit `lips` bleeding off the right edge of the gallery section + a 14-unit `cross` near the title; a 80-unit `flame` in the activities corner + a 12-unit `plus` accent. Avoid: four 20-unit shapes evenly distributed around a section, or `lips` big on three different pages.
 
 ### `<PaperTear>` — [components/paper-tear.tsx](components/paper-tear.tsx)
 

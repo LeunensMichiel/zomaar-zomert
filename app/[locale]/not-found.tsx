@@ -16,7 +16,8 @@ export default async function NotFound() {
   return (
     <section className="relative bg-blue-900 text-pink-50">
       <Doodle
-        shape="star-burst"
+        shape="radial"
+        color="linear-sunset"
         rotate={-14}
         className="pointer-events-none absolute -top-10 -left-12 hidden h-56 md:-top-16 md:-left-20 md:block md:h-80 lg:h-112"
       />

@@ -48,6 +48,8 @@ export default async function PartnersPage({ params }: Props) {
       <section className="bg-brand-500 relative">
         <Doodle
           shape="sun-rays"
+          color="royal-yellow"
+          accent="summer-red"
           rotate={-12}
           className="pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
         />
@@ -61,8 +63,9 @@ export default async function PartnersPage({ params }: Props) {
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
             <div className="order-2 self-start md:order-1">
               <Doodle
-                shape="stripes"
+                shape="cross"
                 color="dimmed-led"
+                accent="tardis-blue"
                 rotate={-4}
                 className="h-12 md:h-16 lg:h-20"
               />
@@ -80,7 +83,8 @@ export default async function PartnersPage({ params }: Props) {
 
       <section className="relative bg-blue-900 text-pink-50">
         <Doodle
-          shape="star-burst"
+          shape="cocktail"
+          color="linear-sunset"
           rotate={20}
           className="pointer-events-none absolute -right-12 -bottom-16 hidden h-56 md:-right-20 md:-bottom-20 md:block md:h-80 lg:h-96"
         />
@@ -118,17 +122,10 @@ export default async function PartnersPage({ params }: Props) {
 
       <section className="relative bg-pink-50">
         <Doodle
-          shape="horns"
-          color="ink"
-          accent="summer-red"
+          shape="cross"
+          color="linear-red"
           rotate={-8}
           className="pointer-events-none absolute -bottom-8 -left-6 hidden h-40 md:-bottom-12 md:-left-10 md:block md:h-64 lg:h-80"
-        />
-        <Doodle
-          shape="asterisk"
-          color="summer-red"
-          rotate={20}
-          className="pointer-events-none absolute top-12 right-6 hidden h-10 md:right-12 md:block md:h-14"
         />
         <div className="container-wide relative z-20 pt-12 pb-16 md:pt-16 md:pb-20">
           <div className="grid gap-10 md:gap-12 lg:grid-cols-12">

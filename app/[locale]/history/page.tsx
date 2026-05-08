@@ -45,7 +45,7 @@ export default async function HistoryPage({ params }: Props) {
     <>
       <section className="relative bg-blue-900">
         <Doodle
-          shape="flame"
+          shape="coil"
           rotate={-12}
           className="pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
         />
@@ -56,7 +56,7 @@ export default async function HistoryPage({ params }: Props) {
             </h1>
             <div className="self-end">
               <Doodle
-                shape="banner"
+                shape="zz"
                 color="summer-red"
                 rotate={6}
                 className="h-20 md:h-28 lg:h-32"
@@ -161,7 +161,7 @@ export default async function HistoryPage({ params }: Props) {
                         />
                         <Doodle
                           shape="cross"
-                          color="paper"
+                          color="royal-yellow"
                           accent="summer-red"
                           rotate={8}
                           className="pointer-events-none absolute top-32 right-6 hidden h-12 md:right-12 md:block md:h-24"

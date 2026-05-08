@@ -55,8 +55,9 @@ export default async function PrivacyPage({ params }: Props) {
 
       <section className="relative bg-pink-50">
         <Doodle
-          shape="stripes"
+          shape="cross"
           color="summer-red"
+          accent="dimmed-led"
           rotate={-6}
           className="pointer-events-none absolute -top-2 right-6 hidden h-10 md:right-12 md:block md:h-14"
         />
