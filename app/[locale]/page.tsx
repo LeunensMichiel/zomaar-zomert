@@ -4,6 +4,7 @@ import { PaperTear } from "@components/paper-tear";
 import { StarBurst } from "@components/star-burst";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
+import { GradientDots } from "@components/ui/gradient-dots";
 import { Logo } from "@components/ui/logo";
 import artistsData from "@lib/data/artists.json";
 import partnersData from "@lib/data/partners.json";
@@ -134,17 +135,15 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 -z-10 bg-linear-to-b from-blue-900/40 via-blue-900/30 to-blue-900/80" />
-        <div className='halftone absolute inset-0 -z-10 opacity-90 mix-blend-multiply content-[""]' />
-
+        <div className="absolute inset-0 -z-20 bg-gray-900/75" />
         <Doodle
           shape="sun-rays"
           color="royal-yellow"
           accent="summer-red"
           rotate={-14}
-          className="absolute top-24 -left-8 z-10 h-44 md:top-28 md:-left-12 md:h-72 lg:-top-125 lg:-left-125 lg:h-250"
+          className="absolute top-24 -left-8 -z-20 h-44 md:top-28 md:-left-12 md:h-72 lg:-top-125 lg:-left-125 lg:h-250"
         />
-
+        <GradientDots className="-z-10" />
         {/* Logo + date — vertically centered. The marquee sits flush at
             the bottom (no extra reserved padding needed). */}
         <div className="container-wide relative flex flex-1 flex-col items-center justify-center pt-24 pb-12 md:pt-28 md:pb-16">
@@ -181,7 +180,7 @@ export default async function RedesignHome({ params }: Props) {
           shape="stroke"
           color="linear-sunset"
           rotate={12}
-          className="absolute -right-1/2 bottom-0 z-20 h-100 md:-right-1/6 md:-bottom-14 md:h-150"
+          className="absolute -right-1/2 bottom-0 -z-20 h-100 md:-right-1/6 md:-bottom-14 md:h-150"
         />
         <div className="relative z-20">
           <PaperTear
