@@ -1,4 +1,5 @@
 import { Doodle } from "@components/doodle";
+import { PaperTear } from "@components/paper-tear";
 import { ScrollBg } from "@components/scroll-bg";
 import { Sticker } from "@components/sticker";
 import { Timeline } from "@components/ui/timeline";
@@ -41,171 +42,174 @@ export default async function HistoryPage({ params }: Props) {
   const yearStamp = `'${String(ZZ_YEAR).slice(-2)}`;
 
   return (
-    <ScrollBg colors={HISTORY_BG_COLORS}>
-      <Doodle
-        shape="flame"
-        rotate={-12}
-        className="absolute -right-12 -bottom-16 h-40 md:-right-20 md:-bottom-24 md:h-72 lg:h-96"
-      />
-      <Doodle
-        shape="cross"
-        color="tardis-blue"
-        accent="summer-red"
-        rotate={8}
-        className="absolute top-12 right-6 hidden h-12 md:top-20 md:right-12 md:block md:h-16"
-      />
-      <div className="container-wide relative z-20 pt-6 pb-20 md:pt-8 md:pb-28">
-        {/* Hero — chunky block, fourth variation in the per-page
-            header rotation. Yellow-on-tardis-blue + -rotate-1 + LEFT
-            keeps it in step with /info, /contact, /line-up while
-            still being distinct. Banner doodle on the right balances
-            the composition. */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
-          <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 self-start bg-blue-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
-            {t("hero.title")}
-          </h1>
-          <div className="self-end">
-            <Doodle
-              shape="banner"
-              color="summer-red"
-              rotate={6}
-              className="h-20 md:h-28 lg:h-32"
-            />
-          </div>
-        </div>
-        <p className="mt-6 max-w-2xl text-base text-gray-700 md:mt-10 md:text-lg">
-          {t("hero.intro")}
-        </p>
-
-        <Timeline
-          data={[
-            {
-              title: "1998",
-              content: (
-                <MilestoneContent
-                  label={t("origin.label")}
-                  stickerColor="ink"
-                  stickerRotate={-3}
-                  body={t("origin.body")}
-                  extra={
-                    <PosterCard
-                      src="/assets/affiches/first_edition.webp"
-                      alt="Zomaar Zomert eerste editie poster"
-                      eyebrow={t("posters.firstEdition")}
-                      year="'98"
-                      tilt={-2}
-                    />
-                  }
-                />
-              ),
-            },
-            {
-              title: "2003",
-              content: (
-                <MilestoneContent
-                  label={t("earlyYears.label")}
-                  stickerColor="yellow"
-                  stickerRotate={2}
-                  body={t("earlyYears.body")}
-                  extra={
-                    <PhotoPair
-                      photos={[
-                        { src: "/assets/slides/slide1.webp", tilt: -2 },
-                        { src: "/assets/slides/slide5.webp", tilt: 2 },
-                      ]}
-                    />
-                  }
-                />
-              ),
-            },
-            {
-              title: "2012",
-              content: (
-                <MilestoneContent
-                  label={t("growth.label")}
-                  stickerColor="brand"
-                  stickerRotate={3}
-                  body={t("growth.body")}
-                  extra={
-                    <PhotoPair
-                      photos={[
-                        { src: "/assets/slides/slide10.webp", tilt: 2 },
-                        { src: "/assets/slides/slide15.webp", tilt: -2 },
-                      ]}
-                    />
-                  }
-                />
-              ),
-            },
-            {
-              title: "2020",
-              content: (
-                <MilestoneContent
-                  label={t("covid.label")}
-                  stickerColor="ink"
-                  stickerRotate={-2}
-                  body={t("covid.body")}
-                />
-              ),
-            },
-            {
-              title: String(ZZ_YEAR),
-              content: (
-                <MilestoneContent
-                  label={t("now.label")}
-                  stickerColor="brand"
-                  stickerRotate={-3}
-                  body={t("now.body")}
-                  extra={
-                    <PhotoPair
-                      photos={[
-                        { src: "/assets/slides/slide25.webp", tilt: -2 },
-                        { src: "/assets/slides/slide28.webp", tilt: 2 },
-                      ]}
-                    />
-                  }
-                />
-              ),
-            },
-          ]}
+    <>
+      <section className="relative isolate bg-blue-900">
+        <Doodle
+          shape="cross"
+          color="dimmed-led"
+          accent="summer-red"
+          rotate={8}
+          className="pointer-events-none absolute top-32 right-6 hidden h-12 md:right-12 md:block md:h-16"
         />
-
-        {/* Closing crew portrait — pulled out of the 2012 entry so
-            it can read as a centerpiece. Wide bordered card with
-            tape strips on the corners + a brand-coloured caption
-            sticker, slight tilt to keep it scrapbook-y. */}
-        <div className="relative mx-auto mt-20 max-w-5xl md:mt-32">
-          <span
-            aria-hidden="true"
-            className="tape-strip absolute -top-3 left-12 z-30 h-5 w-28 -rotate-6"
-          />
-          <span
-            aria-hidden="true"
-            className="tape-strip absolute -top-2 right-16 z-30 h-5 w-24 rotate-6"
-          />
-          <div className="shadow-sticker-lg relative -rotate-1 overflow-hidden border-2 border-gray-900">
-            <div className="relative aspect-3/2">
-              <Image
-                src="/assets/random/crew26.webp"
-                alt={t("crew.caption")}
-                fill
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                className="object-cover object-center"
-              />
-              <div
-                aria-hidden="true"
-                className="halftone pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"
+        <Doodle
+          shape="flame"
+          rotate={-12}
+          className="pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
+        />
+        <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
+            <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 self-start bg-pink-300 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+              {t("hero.title")}
+            </h1>
+            <div className="self-end">
+              <Doodle
+                shape="banner"
+                color="summer-red"
+                rotate={6}
+                className="h-20 md:h-28 lg:h-32"
               />
             </div>
           </div>
-          <div className="absolute right-4 -bottom-6 z-20 md:right-12 md:-bottom-8">
-            <Sticker color="brand" size="lg" rotate={-6}>
-              {t("crew.caption")} ZZ {yearStamp}
-            </Sticker>
+          <p className="mt-6 max-w-2xl text-base text-pink-50 md:mt-10 md:text-lg">
+            {t("hero.intro")}
+          </p>
+        </div>
+      </section>
+
+      <ScrollBg colors={HISTORY_BG_COLORS}>
+        <PaperTear edge="top" tear={2} color="blue-900" />
+        <div className="container-wide relative z-20 pt-12 pb-20 md:pt-16 md:pb-28">
+          <Timeline
+            data={[
+              {
+                title: "1998",
+                content: (
+                  <MilestoneContent
+                    label={t("origin.label")}
+                    stickerColor="ink"
+                    stickerRotate={-3}
+                    body={t("origin.body")}
+                    extra={
+                      <PosterCard
+                        src="/assets/affiches/first_edition.webp"
+                        alt="Zomaar Zomert eerste editie poster"
+                        eyebrow={t("posters.firstEdition")}
+                        year="'98"
+                        tilt={-2}
+                      />
+                    }
+                  />
+                ),
+              },
+              {
+                title: "2003",
+                content: (
+                  <MilestoneContent
+                    label={t("earlyYears.label")}
+                    stickerColor="yellow"
+                    stickerRotate={2}
+                    body={t("earlyYears.body")}
+                    extra={
+                      <PhotoPair
+                        photos={[
+                          { src: "/assets/slides/slide1.webp", tilt: -2 },
+                          { src: "/assets/slides/slide5.webp", tilt: 2 },
+                        ]}
+                      />
+                    }
+                  />
+                ),
+              },
+              {
+                title: "2012",
+                content: (
+                  <MilestoneContent
+                    label={t("growth.label")}
+                    stickerColor="brand"
+                    stickerRotate={3}
+                    body={t("growth.body")}
+                    extra={
+                      <PhotoPair
+                        photos={[
+                          { src: "/assets/slides/slide10.webp", tilt: 2 },
+                          { src: "/assets/slides/slide15.webp", tilt: -2 },
+                        ]}
+                      />
+                    }
+                  />
+                ),
+              },
+              {
+                title: "2020",
+                content: (
+                  <MilestoneContent
+                    label={t("covid.label")}
+                    stickerColor="ink"
+                    stickerRotate={-2}
+                    body={t("covid.body")}
+                  />
+                ),
+              },
+              {
+                title: String(ZZ_YEAR),
+                content: (
+                  <MilestoneContent
+                    label={t("now.label")}
+                    stickerColor="brand"
+                    stickerRotate={-3}
+                    body={t("now.body")}
+                    extra={
+                      <PhotoPair
+                        photos={[
+                          { src: "/assets/slides/slide25.webp", tilt: -2 },
+                          { src: "/assets/slides/slide28.webp", tilt: 2 },
+                        ]}
+                      />
+                    }
+                  />
+                ),
+              },
+            ]}
+          />
+
+          {/* Closing crew portrait — pulled out of the 2012 entry so
+            it can read as a centerpiece. Wide bordered card with
+            tape strips on the corners + a brand-coloured caption
+            sticker, slight tilt to keep it scrapbook-y. */}
+          <div className="relative mx-auto mt-20 max-w-5xl md:mt-32">
+            <span
+              aria-hidden="true"
+              className="tape-strip absolute -top-3 left-12 z-30 h-5 w-28 -rotate-6"
+            />
+            <span
+              aria-hidden="true"
+              className="tape-strip absolute -top-2 right-16 z-30 h-5 w-24 rotate-6"
+            />
+            <div className="shadow-sticker-lg relative -rotate-1 overflow-hidden border-2 border-gray-900">
+              <div className="relative aspect-3/2">
+                <Image
+                  src="/assets/random/crew26.webp"
+                  alt={t("crew.caption")}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="object-cover object-center"
+                />
+                <div
+                  aria-hidden="true"
+                  className="halftone pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"
+                />
+              </div>
+            </div>
+            <div className="absolute right-4 -bottom-6 z-20 md:right-12 md:-bottom-8">
+              <Sticker color="brand" size="lg" rotate={-6}>
+                {t("crew.caption")} ZZ {yearStamp}
+              </Sticker>
+            </div>
           </div>
         </div>
-      </div>
-    </ScrollBg>
+        <PaperTear edge="bottom" tear={6} color="pink-50" />
+      </ScrollBg>
+    </>
   );
 }
 

@@ -7,8 +7,25 @@
       "description": "Découvrez les personnes qui rendent Zomaar Zomert possible."
     }
   },
-  "main": {
-    "header": "Notre Partenaires",
-    "paragraph": "Zomaar Zomert ne peut exister sans ses partenaires. Découvrez les personnes qui rendent Zomaar Zomert possible."
+  "hero": {
+    "title": "Partenaires.",
+    "intro": "Zomaar Zomert est gratuit pour tous — et cela n'est possible que grâce aux entreprises, commerçants locaux et amis qui nous soutiennent année après année."
+  },
+  "lead": {
+    "eyebrow": "Partenaires Principaux"
+  },
+  "support": {
+    "eyebrow": "Avec le soutien de"
+  },
+  "become": {
+    "eyebrow": "Rejoignez-nous",
+    "title": "Devenez partenaire.",
+    "body": "Touchez des milliers de festivaliers, soutenez la communauté locale et rejoignez une belle équipe. Choisissez une formule, ou contactez-nous pour du sur-mesure.",
+    "perks": {
+      "1": "Logo sur scène, T-shirts et site web",
+      "2": "Mention sur les réseaux sociaux & affiches",
+      "3": "Goodies, invitations et visibilité au festival"
+    },
+    "cta": "Contactez-nous"
   }
 }

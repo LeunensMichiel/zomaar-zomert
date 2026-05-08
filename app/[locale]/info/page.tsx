@@ -40,24 +40,8 @@ export default async function InfoPage({ params }: Props) {
 
   return (
     <>
-      {/* ─────────────────────────────────────────────────────────────
-          HERO + BENTO — small heading band drops straight into a
-          12-col bento. Each tile a different colour + tilt; tiny
-          one-liner cards (Tickets, Fair) carry their meaning as
-          poster-grade words instead of paragraphs.
-          ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate bg-pink-50">
-        <Doodle
-          shape="asterisk"
-          color="tardis-blue"
-          rotate={12}
-          className="absolute right-6 bottom-12 hidden h-10 md:right-12 md:block md:h-14"
-        />
-        <div className="container-wide relative z-20 pt-6 pb-12 md:pt-8 md:pb-16">
-          {/* Compact hero band — eyebrow + chunky black-block
-              headline on the left, zzz doodle on the right.
-              Tight top padding so the bento sits close to the
-              navbar and reaches above the fold. */}
+      <section className="bg-brand-500 relative isolate">
+        <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
             <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 self-start bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
               {t("hero.title")}
@@ -70,8 +54,19 @@ export default async function InfoPage({ params }: Props) {
               />
             </div>
           </div>
+        </div>
+        <PaperTear edge="bottom" tear={6} color="pink-50" />
+      </section>
 
-          <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2 md:gap-6 lg:grid-cols-12">
+      <section className="relative isolate bg-pink-50">
+        <Doodle
+          shape="asterisk"
+          color="tardis-blue"
+          rotate={12}
+          className="absolute right-6 bottom-12 hidden h-10 md:right-12 md:block md:h-14"
+        />
+        <div className="container-wide relative z-20 pt-12 pb-12 md:pt-16 md:pb-16">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-12">
             {/* How / what / where — yellow tile, slight left-tilt */}
             <article className="shadow-sticker-lg relative -rotate-1 border-2 border-gray-900 bg-yellow-400 p-6 md:p-8 lg:col-span-7">
               <h3 className="font-display text-2xl leading-[0.95] font-bold text-gray-900 uppercase md:text-3xl">
@@ -187,7 +182,7 @@ export default async function InfoPage({ params }: Props) {
             </article>
           </div>
         </div>
-        <PaperTear edge="bottom" tear={3} color="pink-50" bgColor="blue-500" />
+        <PaperTear edge="bottom" tear={2} bgColor="pink-50" color="blue-500" />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
@@ -283,6 +278,7 @@ export default async function InfoPage({ params }: Props) {
             </article>
           </div>
         </div>
+        <PaperTear edge="bottom" tear={3} bgColor="pink-50" color="blue-500" />
       </section>
     </>
   );

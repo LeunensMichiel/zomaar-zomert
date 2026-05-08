@@ -7,8 +7,25 @@
       "description": "Kom meer te weten over de mensen die zomaar zomert mogelijk maken."
     }
   },
-  "main": {
-    "header": "Onze partners",
-    "paragraph": "Dit festival kan niet bestaan zonder zijn partners. Kom meer te weten over de mensen die Zomaar Zomert mogelijk maken."
+  "hero": {
+    "title": "Partners.",
+    "intro": "Zomaar Zomert is gratis voor iedereen — en dat is alleen mogelijk dankzij de bedrijven, lokale ondernemers en sympathisanten die ons jaar na jaar steunen."
+  },
+  "lead": {
+    "eyebrow": "Hoofdpartners"
+  },
+  "support": {
+    "eyebrow": "Met de steun van"
+  },
+  "become": {
+    "eyebrow": "Doe mee",
+    "title": "Word partner.",
+    "body": "Bereik duizenden festivalgangers, steun de lokale gemeenschap en kom in goed gezelschap. Kies een formule, of bel ons voor iets op maat.",
+    "perks": {
+      "1": "Logo op podium, T-shirts en website",
+      "2": "Vermelding op socials & affiches",
+      "3": "Goodies, uitnodigingen en zichtbaarheid op het festival"
+    },
+    "cta": "Neem contact op"
   }
 }
