@@ -25,8 +25,9 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ConsentVideo } from "./_components/consent-video";
-import { Countdown } from "./_components/countdown";
+import { CountdownHero } from "./_components/countdown-hero";
 import { DayCard } from "./_components/day-card";
+import { FloatingPolaroid } from "./_components/floating-polaroid";
 import { HeadlinerCard } from "./_components/headliner-card";
 import { PhotoMarquees } from "./_components/photo-marquees";
 import { RevealCard } from "./_components/reveal-card";
@@ -218,58 +219,55 @@ export default async function RedesignHome({ params }: Props) {
           className="absolute top-12 left-6 h-10 md:top-16 md:left-12 md:h-14"
         />
         <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            {/* Poster-style display word — replaces the eyebrow + sentence
-                title with a single oversized statement. */}
-            <h2 className="text-brand-500 text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]">
-              ZOMAAR.
-            </h2>
-            <p className="mt-6 max-w-xl text-base text-gray-700 md:text-lg">
-              {tHome("intro.body")}
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/line-up">
-                <Button
-                  as="span"
-                  variant="brand"
-                  size="xl"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {tCommon("links.line-up")}
-                </Button>
-              </Link>
-              <Link href="/info">
-                <Button
-                  as="span"
-                  variant="ink"
-                  size="xl"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {tCommon("links.info")}
-                </Button>
-              </Link>
-            </div>
+          {/* Countdown owns the headline — the day count is the giant
+              poster word, paired with a chunky-block "DAGEN." stamp
+              and a live HH:MM:SS digit-roll clock. */}
+          <div className="lg:col-span-8">
+            <CountdownHero />
           </div>
 
-          {/* Countdown panel — date repeated below the clock was redundant
-              with the hero stickers, so it's gone. */}
-          <div className="relative lg:col-span-5">
-            <div className="bg-linear-red shadow-sticker-lg relative border-2 border-gray-900 p-6 text-pink-50 md:p-8">
-              <div className='halftone absolute inset-0 z-0 opacity-25 mix-blend-screen content-[""]' />
-              <div className="relative z-10 flex flex-col gap-6">
-                <Sticker color="yellow" size="sm" rotate={-3}>
-                  {tHome("countdown.daysAway")}
+          {/* Side column — floating polaroid up top to balance the
+              left-side typography, then body copy + CTAs below. */}
+          <div className="flex flex-col gap-8 lg:col-span-4">
+            <FloatingPolaroid
+              src="/assets/slides/slide14.webp"
+              alt=""
+              caption={
+                <Sticker color="brand" size="sm" rotate={4}>
+                  Zin in.
                 </Sticker>
-                <Countdown />
+              }
+              tilt={-2}
+              className="mx-auto w-full max-w-xs md:max-w-sm lg:mx-0"
+            />
+            <div className="flex flex-1 flex-col justify-end gap-6">
+              <p className="max-w-xl text-base text-gray-700 md:text-lg">
+                {tHome("intro.body")}
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link href="/line-up">
+                  <Button
+                    as="span"
+                    variant="brand"
+                    size="xl"
+                    sticker
+                    iconRight={<ChevronRight />}
+                  >
+                    {tCommon("links.line-up")}
+                  </Button>
+                </Link>
+                <Link href="/info">
+                  <Button
+                    as="span"
+                    variant="ink"
+                    size="xl"
+                    sticker
+                    iconRight={<ChevronRight />}
+                  >
+                    {tCommon("links.info")}
+                  </Button>
+                </Link>
               </div>
-            </div>
-            <div className="absolute -top-6 -right-4 hidden md:block">
-              <Sticker color="ink" size="md" rotate={9}>
-                Itterbeek
-              </Sticker>
             </div>
           </div>
         </div>

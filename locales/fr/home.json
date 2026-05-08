@@ -34,7 +34,9 @@
     "body": "Le dernier week-end de juillet, l'église Sainte-Anne d'Itterbeek prend trois jours de congé. Musique live, bière fraîche, paella, pétanque et des milliers d'amis encore à rencontrer. Pas de billets, pas de bracelets — entrez, c'est l'été."
   },
   "countdown": {
-    "daysAway": "avant le festival"
+    "daysAway": "avant le festival",
+    "dayWord": "JOUR.",
+    "daysWord": "JOURS."
   },
   "lineup": {
     "all": "Programmation complète",

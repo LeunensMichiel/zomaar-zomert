@@ -34,7 +34,9 @@
     "body": "On the last weekend of July, the Sint-Anna church in Itterbeek calls in sick for three days. Live music, cold beer, paella, pétanque and a few thousand friends you haven't met yet. No tickets, no wristbands — just walk in and stretch summer until sundown."
   },
   "countdown": {
-    "daysAway": "until the festival"
+    "daysAway": "until the festival",
+    "dayWord": "DAY.",
+    "daysWord": "DAYS."
   },
   "lineup": {
     "all": "Full line-up",

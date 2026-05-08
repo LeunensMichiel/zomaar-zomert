@@ -34,7 +34,9 @@
     "body": "Het laatste weekend van juli neemt de Sint-Anna-Pedekerk in Itterbeek drie dagen lang vrij. Live muziek, koud bier, paella, petanque en duizenden vrienden die nog komen. Geen tickets, geen polsbandjes — gewoon binnenstappen en zomeren tot de zon onder gaat."
   },
   "countdown": {
-    "daysAway": "tot we doorgaan"
+    "daysAway": "tot we doorgaan",
+    "dayWord": "DAG.",
+    "daysWord": "DAGEN."
   },
   "lineup": {
     "all": "Volledige line-up",
