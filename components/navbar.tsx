@@ -15,17 +15,21 @@ import {
   ZZ_YEAR,
 } from "@lib/models";
 import { cn } from "@lib/utils";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import {
+  animate as motionAnimate,
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import { Facebook } from "@/components/icons/Facebook";
 import { Instagram } from "@/components/icons/Instagram";
 import { Youtube } from "@/components/icons/Youtube";
-
-type NavbarProps = {
-  isTransparent?: boolean;
-};
 
 type NavLinkData = {
   key: string;
@@ -195,49 +199,118 @@ function formatDateStamp() {
   return `${day(ZZ_DATE_FRIDAY)} · ${day(ZZ_DATE_SATURDAY)} · ${day(ZZ_DATE_SUNDAY)} JULI '${String(ZZ_YEAR).slice(-2)}`;
 }
 
-export function Navbar({ isTransparent = false }: NavbarProps) {
+export function Navbar() {
   const t = useTranslations("common");
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const noiseId = useId();
   const close = () => {
     setOpen(false);
   };
 
   const { scrollY } = useScroll();
-  const navPadY = useTransform(scrollY, [0, 120], ["1.5rem", "0.5rem"]);
-  const logoScale = useTransform(scrollY, [0, 120], [1, 0.7]);
+  useMotionValueEvent(scrollY, "change", (v) => {
+    setScrolled(v > 24);
+  });
+
+  // `openMv` mirrors `open` as a motion value (0 = closed, 1 = open) so
+  // the logo's scroll-driven scale + opacity can be lerp'd back to
+  // "fully visible" whenever the menu opens, regardless of scroll
+  // position. Without this we'd have to choose between scroll-driven
+  // animation and an open-state override.
+  const openMv = useMotionValue(0);
+  useEffect(() => {
+    const controls = motionAnimate(openMv, open ? 1 : 0, {
+      duration: 0.3,
+      ease,
+    });
+    return () => {
+      controls.stop();
+    };
+  }, [open, openMv]);
+
+  // Logo scales 1 → 0.4 and fades 1 → 0 over the first 120px of scroll,
+  // then is forced back to (1, 1) when the menu opens.
+  const logoScale = useTransform(() => {
+    const sy = scrollY.get();
+    const o = openMv.get();
+    const scrollScale = 1 - Math.min(sy / 120, 1) * 0.6;
+    return scrollScale + (1 - scrollScale) * o;
+  });
+  const logoOpacity = useTransform(() => {
+    const sy = scrollY.get();
+    const o = openMv.get();
+    const scrollOpacity = 1 - Math.min(sy / 120, 1);
+    return scrollOpacity + (1 - scrollOpacity) * o;
+  });
+  // Don't intercept clicks once the logo has faded out.
+  const logoPointerEvents = useTransform(logoOpacity, (o) =>
+    o > 0.05 ? "auto" : "none",
+  );
 
   return (
     <BaseDialog.Root open={open} onOpenChange={setOpen}>
-      <header
-        className={cn(
-          "fixed top-0 left-0 z-50 w-full bg-transparent transition-colors",
-          isTransparent || open ? "text-white" : "text-gray-900",
-        )}
-      >
-        <div className="container-wide">
-          <motion.nav style={{ paddingTop: navPadY, paddingBottom: navPadY }}>
-            <div className="relative flex w-full items-center justify-between">
-              <motion.div style={{ scale: logoScale }} className="origin-left">
-                <Logo
-                  className={cn(
-                    "h-10 w-auto md:h-14 lg:h-16",
-                    isTransparent || open ? "text-white" : "text-gray-900",
-                  )}
-                />
-              </motion.div>
-              <div className="-mr-2 flex items-center gap-2">
-                <BaseDialog.Trigger
-                  render={
-                    <MenuToggle
-                      open={open}
-                      transparent={isTransparent || open}
-                      aria-label="Menu"
+      <header className="fixed inset-x-0 top-0 z-50 text-white">
+        <div className="container-wide px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-5">
+          <div className="relative flex items-center justify-between">
+            {/* Logo — scroll-fades out, menu-open forces back. */}
+            <motion.div
+              style={{
+                scale: logoScale,
+                opacity: logoOpacity,
+                pointerEvents: logoPointerEvents,
+              }}
+              className="origin-left"
+            >
+              <Logo className="h-9 w-auto md:h-11 lg:h-12" />
+            </motion.div>
+
+            {/* Hamburger — wrapped in a tight frosted-glass circle
+                that only appears once the user has scrolled. Same
+                recipe as the menu's backdrop (dark tint + colour glow
+                + risograph grain) but scaled down to chip size. Hidden
+                at the top of the page (clean floating icon) and when
+                the menu opens (the menu owns its own gradient). */}
+            <div className="relative">
+              <motion.div
+                aria-hidden="true"
+                initial={false}
+                animate={{
+                  opacity: scrolled && !open ? 1 : 0,
+                  scale: scrolled && !open ? 1 : 0.92,
+                }}
+                transition={{ duration: 0.25, ease }}
+                className="absolute inset-0 -z-10 overflow-hidden rounded-full border border-white/15 bg-gray-900/20 backdrop-blur-md"
+              >
+                <div className="from-brand-900/20 absolute inset-0 bg-linear-to-br via-transparent to-blue-900/25" />
+                <svg
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full opacity-55 mix-blend-overlay"
+                >
+                  <filter id={noiseId}>
+                    <feTurbulence
+                      type="fractalNoise"
+                      baseFrequency="0.9"
+                      numOctaves="2"
+                      stitchTiles="stitch"
                     />
-                  }
-                />
-              </div>
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.65 0"
+                    />
+                  </filter>
+                  <rect
+                    width="100%"
+                    height="100%"
+                    filter={`url(#${noiseId})`}
+                  />
+                </svg>
+              </motion.div>
+              <BaseDialog.Trigger
+                render={<MenuToggle open={open} aria-label="Menu" />}
+              />
             </div>
-          </motion.nav>
+          </div>
         </div>
       </header>
 

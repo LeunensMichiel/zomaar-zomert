@@ -5,23 +5,17 @@ import { type HTMLMotionProps, motion } from "motion/react";
 
 type MenuToggleProps = {
   open?: boolean;
-  transparent?: boolean;
 } & HTMLMotionProps<"button">;
 
-export function MenuToggle({
-  open,
-  transparent,
-  className,
-  ...props
-}: MenuToggleProps) {
+export function MenuToggle({ open, className, ...props }: MenuToggleProps) {
   return (
     <motion.button
       type="button"
       initial={false}
       animate={open ? "open" : "closed"}
       className={cn(
-        "inline-flex cursor-pointer items-center justify-center border-0 bg-transparent p-0.5 outline-none",
-        transparent ? "text-white" : "text-gray-900",
+        "inline-flex cursor-pointer items-center justify-center rounded-full border-0 bg-transparent outline-none",
+        "p-1.5 sm:p-2",
         className,
       )}
       {...props}
@@ -30,7 +24,7 @@ export function MenuToggle({
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        className="h-10 w-10 md:h-14 md:w-14"
+        className="h-9 w-9 md:h-11 md:w-11 lg:h-12 lg:w-12"
       >
         <motion.path
           variants={{

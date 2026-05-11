@@ -7,7 +7,7 @@ type Props = { children: ReactNode; footer: ReactNode };
 export function Layout({ children, footer }: Props) {
   return (
     <>
-      <Navbar isTransparent />
+      <Navbar />
       <main className="min-h-[75%]">{children}</main>
       {footer}
       <CookieBanner />

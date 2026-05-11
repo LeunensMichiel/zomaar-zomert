@@ -252,7 +252,6 @@
   .rfm-child {
     display: inline-flex;
   }
-
 }
 
 @utility container-page {
@@ -390,7 +389,7 @@
   }
 }
 @utility animate-doodle-spin-slow {
-  animation: doodle-spin-slow 60s linear infinite;
+  animation: doodle-spin-slow 100s linear infinite;
 }
 
 /* Brush-stroke reveal — walks the SVG path from start to end.

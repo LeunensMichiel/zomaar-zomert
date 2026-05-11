@@ -17,7 +17,11 @@ export function Logo({ className, variant = "icon", ...props }: LogoProps) {
 
   if (variant === "icon") {
     return (
-      <Link href="/" aria-label="Home">
+      <Link
+        href="/"
+        aria-label="Home"
+        className="text-current hover:text-current"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 252.4 482.5"
