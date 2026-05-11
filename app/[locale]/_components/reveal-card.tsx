@@ -29,8 +29,9 @@ export function RevealCard({ index = 0, children }: Props) {
   if (reducedMotion) return <>{children}</>;
 
   return (
-    <div style={{ perspective: "1200px" }}>
+    <div className="h-full" style={{ perspective: "1200px" }}>
       <motion.div
+        className="h-full"
         initial={{ opacity: 0, rotateY: -90, scale: 0.85 }}
         whileInView={{
           opacity: 1,

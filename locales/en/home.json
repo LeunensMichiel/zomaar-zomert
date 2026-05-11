@@ -15,6 +15,8 @@
   "festivalHasStarted": "The festival has started!",
   "paella": "Sign up — Paella",
   "petanque": "Sign up — Petanque",
+  "paellaSoon": "Soon — Paella",
+  "petanqueSoon": "Soon — Petanque",
   "ticker": [
     "Free entry",
     "Three days",
@@ -71,9 +73,5 @@
     "body": "Zomaar Zomert is free because a whole crew of local businesses, volunteers and sponsors keep it that way. Want to help shape the next edition?",
     "all": "All partners",
     "become": "Become a partner"
-  },
-  "cta": {
-    "eyebrow": "Save the date",
-    "body": "No tickets. No fuss. Just a summer worth remembering. Follow us on Instagram or drop us a line."
   }
 }

@@ -54,7 +54,9 @@
       "content": "Each year, we organize tons of activities, like ZomaarBike, ZomaarRun, kids animation, a quiz and petanque game. On Sunday you will also find a paella stand.<br></br><br></br>All of our activities require a registration fee: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Registration</strong> for the petanque game or the paella stand is <strong>required.</strong> You can register here: <br></br>",
       "tba": "(Registration to be announced at a later date)",
       "petanque": "Sign up — Petanque",
-      "paella": "Sign up — Paella"
+      "paella": "Sign up — Paella",
+      "petanqueSoon": "Soon — Petanque",
+      "paellaSoon": "Soon — Paella"
     }
   }
 }

@@ -52,7 +52,7 @@ export function DayCard({ date, image, index, locale, ctaLabel }: Props) {
           src={image}
           alt={weekday}
           fill
-          sizes="(max-width: 1024px) 100vw, 33vw"
+          sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover object-center transition-transform group-hover:scale-[1.04]"
         />
         <div className='halftone absolute inset-0 z-10 opacity-50 mix-blend-multiply content-[""]' />
@@ -68,10 +68,13 @@ export function DayCard({ date, image, index, locale, ctaLabel }: Props) {
         </div>
       </div>
       <div className="flex items-end justify-between gap-3 px-5 py-5">
-        <span className="font-display text-4xl leading-[0.9] font-bold uppercase md:text-5xl xl:text-6xl">
+        <span className="font-display text-4xl leading-[0.9] font-bold uppercase lg:text-5xl xl:text-6xl">
           {weekday}
         </span>
-        <span className="font-display inline-flex items-center gap-1 pb-1 text-sm font-bold uppercase md:text-base">
+        {/* Hidden at md (the iPad 3-col size where each card is too
+            narrow to fit the weekday + CTA on one line). Mobile and
+            lg+ both have room for it. */}
+        <span className="font-display inline-flex items-center gap-1 pb-1 text-sm font-bold uppercase md:hidden lg:inline-flex lg:text-base">
           {ctaLabel} <span aria-hidden="true">→</span>
         </span>
       </div>

@@ -29,7 +29,7 @@ const toneClass: Record<NonNullable<Props["tone"]>, string> = {
 };
 
 const cardFrame =
-  "group relative block border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg";
+  "group relative flex h-full flex-col border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg";
 
 export function HeadlinerCard({
   name,
@@ -74,13 +74,13 @@ export function HeadlinerCard({
           </Sticker>
         </div>
       </div>
-      <div className="flex items-baseline justify-between gap-2 px-4 py-4 md:px-5">
-        <span className="font-display block text-3xl leading-[0.9] font-bold wrap-break-word uppercase md:text-5xl xl:text-6xl">
+      <div className="flex flex-1 items-center justify-between gap-2 px-4 py-4 md:px-5">
+        <span className="font-display block text-3xl leading-[0.9] font-bold wrap-break-word uppercase lg:text-5xl xl:text-6xl">
           {name}
         </span>
         <span
           aria-hidden="true"
-          className="font-display text-3xl leading-none md:text-4xl"
+          className="font-display text-3xl leading-none lg:text-4xl"
         >
           →
         </span>

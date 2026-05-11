@@ -17,7 +17,7 @@ export const buttonVariants = tv({
     "border-2 border-transparent",
     "transition-[background,border,color] duration-200",
     "focus-visible:outline-none",
-    "aria-disabled:cursor-default aria-disabled:opacity-60",
+    "aria-disabled:cursor-default aria-disabled:opacity-60 aria-disabled:pointer-events-none",
   ],
   variants: {
     variant: {
@@ -35,7 +35,7 @@ export const buttonVariants = tv({
       sm: "text-sm px-4 py-2",
       md: "text-base px-4 py-3 md:text-2xl lg:text-3xl xxl:text-4xl border-0",
       lg: "text-lg px-5 py-3 [&_svg]:h-6 [&_svg]:w-6",
-      xl: "text-lg px-5 py-3 md:text-3xl lg:text-2xl xxl:text-4xl [&_svg]:h-6 [&_svg]:w-6",
+      xl: "text-lg px-5 py-4 md:text-3xl md:py-5 lg:text-2xl xxl:text-4xl [&_svg]:h-6 [&_svg]:w-6",
       "2xl":
         "text-2xl px-6 py-4 md:text-4xl lg:text-5xl [&_svg]:h-7 [&_svg]:w-7 md:[&_svg]:h-9 md:[&_svg]:w-9",
     },

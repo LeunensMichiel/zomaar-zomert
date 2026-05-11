@@ -47,6 +47,11 @@ export function LineUpArtistCard({
   }
 
   const dayLabel = new Date(date).toLocaleString(lang, { weekday: "long" });
+  // Short weekday for mobile so the day/hour sticker fits on one line
+  // inside the narrow card. Strips the trailing period nl/fr add.
+  const shortDayLabel = new Date(date)
+    .toLocaleString(lang, { weekday: "short" })
+    .replace(/\.$/, "");
 
   return (
     <>
@@ -70,9 +75,22 @@ export function LineUpArtistCard({
             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover object-center transition-transform group-hover:scale-105"
           />
-          <div className="absolute top-3 left-3 z-20">
-            <Sticker color="ink" size="sm" rotate={-6}>
-              {dayLabel} · {artist.hour}
+          <div className="absolute top-2 left-2 z-20 md:top-3 md:left-3">
+            {/* Smaller padding + text on mobile so the sticker covers
+                less of the artist's face. Size "sm" defaults restore
+                from md: onwards. */}
+            <Sticker
+              color="ink"
+              size="sm"
+              rotate={-6}
+              className="px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-base"
+            >
+              <span className="md:hidden">
+                {shortDayLabel} · {artist.hour}
+              </span>
+              <span className="hidden md:inline">
+                {dayLabel} · {artist.hour}
+              </span>
             </Sticker>
           </div>
         </div>

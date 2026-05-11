@@ -29,12 +29,14 @@ const toneClass: Record<Tone, string> = {
 
 const labelTextClass: Record<NonNullable<Props["size"]>, string> = {
   md: "text-2xl md:text-3xl xl:text-4xl",
-  lg: "text-3xl md:text-5xl xl:text-6xl",
+  // `lg` mirrors HeadlinerCard's name scale — no md jump so the TBA
+  // card doesn't overshoot the artist cards in the 3-col iPad layout.
+  lg: "text-3xl lg:text-5xl xl:text-6xl",
 };
 
 const symbolTextClass: Record<NonNullable<Props["size"]>, string> = {
   md: "text-2xl md:text-3xl",
-  lg: "text-3xl md:text-4xl",
+  lg: "text-3xl lg:text-4xl",
 };
 
 const labelPadClass: Record<NonNullable<Props["size"]>, string> = {
@@ -43,7 +45,7 @@ const labelPadClass: Record<NonNullable<Props["size"]>, string> = {
 };
 
 const cardFrame =
-  "group relative block border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg";
+  "group relative flex h-full flex-col border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg";
 
 /**
  * Shared TBA placeholder card — used by the home page's
@@ -64,7 +66,7 @@ export function TBACard({ tone, tilt = 0, tbaLabel, size = "md" }: Props) {
       <CardBack label={tbaLabel} />
       <div
         className={cn(
-          "flex items-baseline justify-between gap-2",
+          "flex flex-1 items-center justify-between gap-2",
           labelPadClass[size],
         )}
       >

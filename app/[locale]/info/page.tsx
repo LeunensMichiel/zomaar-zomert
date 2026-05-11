@@ -235,7 +235,7 @@ export default async function InfoPage({ params }: Props) {
                 sticker
                 iconRight={<ChevronRight />}
               >
-                {t("faq.8.petanque")}
+                {t(signupDisabled ? "faq.8.petanqueSoon" : "faq.8.petanque")}
               </Button>
               <Button
                 as="a"
@@ -250,7 +250,7 @@ export default async function InfoPage({ params }: Props) {
                 sticker
                 iconRight={<ChevronRight />}
               >
-                {t("faq.8.paella")}
+                {t(signupDisabled ? "faq.8.paellaSoon" : "faq.8.paella")}
               </Button>
             </div>
           </div>

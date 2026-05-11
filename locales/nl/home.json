@@ -15,6 +15,8 @@
   "festivalHasStarted": "Het festival is gestart!",
   "paella": "Inschrijven — Paella",
   "petanque": "Inschrijven — Petanque",
+  "paellaSoon": "Binnenkort — Paella",
+  "petanqueSoon": "Binnenkort — Petanque",
   "ticker": [
     "Gratis inkom",
     "Drie dagen",
@@ -71,9 +73,5 @@
     "body": "Zomaar Zomert is gratis omdat een hele bende lokale ondernemers, vrijwilligers en sponsors er hun schouders onder zet. Wil je mee zorgen voor de volgende editie?",
     "all": "Alle partners",
     "become": "Word partner"
-  },
-  "cta": {
-    "eyebrow": "Save the date",
-    "body": "Geen tickets. Geen gedoe. Wel: een zomer die je wil onthouden. Volg ons op Instagram of stuur ons een mailtje."
   }
 }

@@ -54,7 +54,9 @@
       "content": "Chaque année, nous organisons de nombreuses activités périphériques telles que le ZomaarBike, le ZomaarRun, des animations pour les enfants, un quiz et un concours de pétanque. Le dimanche, vous trouverez également un stand de paella.<br></br><br></br>Toutes nos activités sont payants: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>L'inscription</strong> pour la pétanque et la paella est <strong>obligatoire.</strong> Inscrivez-vous ici:<br></br>",
       "tba": "(Les inscriptions commenceront bientôt !)",
       "petanque": "S'inscrire — Petanque",
-      "paella": "S'inscrire — Paella"
+      "paella": "S'inscrire — Paella",
+      "petanqueSoon": "Bientôt — Petanque",
+      "paellaSoon": "Bientôt — Paella"
     }
   }
 }

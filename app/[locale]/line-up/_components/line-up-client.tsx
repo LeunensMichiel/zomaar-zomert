@@ -12,10 +12,10 @@ import {
   ZZ_YEAR,
 } from "@lib/models";
 import { cn } from "@lib/utils";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useAnimationControls, useReducedMotion } from "motion/react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { type ReactNode, useCallback, useMemo } from "react";
+import { type ReactNode, useCallback, useEffect, useMemo } from "react";
 
 import { LineUpArtistCard } from "./line-up-card";
 
@@ -103,10 +103,6 @@ export function LineUpClient({ artists, children }: Props) {
     [pathname, router],
   );
 
-  const visibleDates = showAll
-    ? ZZ_DATES
-    : ZZ_DATES.filter((d) => d === currentDate);
-
   // Star backdrop rotates with the active filter — gives the page a
   // single piece of moving geometry that responds to interaction
   // without re-rendering the whole grid.
@@ -114,21 +110,31 @@ export function LineUpClient({ artists, children }: Props) {
     ? (ZZ_DATES.indexOf(currentDate) + 1) * 45
     : 0;
 
-  const filters: { value: string | null; label: string }[] = [
-    { value: null, label: t("filter.all") },
+  // Both long + short weekday labels — long renders md+, short
+  // renders on mobile so the filter row never wraps to two lines.
+  // `short` strips the trailing period that nl/fr add (e.g. "vr.").
+  const weekdayShort = (date: string) =>
+    new Date(date)
+      .toLocaleString(lang, { weekday: "short" })
+      .replace(/\.$/, "");
+  const filters: { value: string | null; label: string; short: string }[] = [
+    { value: null, label: t("filter.all"), short: t("filter.all") },
     {
       value: ZZ_DATE_FRIDAY,
       label: new Date(ZZ_DATE_FRIDAY).toLocaleString(lang, { weekday: "long" }),
+      short: weekdayShort(ZZ_DATE_FRIDAY),
     },
     {
       value: ZZ_DATE_SATURDAY,
       label: new Date(ZZ_DATE_SATURDAY).toLocaleString(lang, {
         weekday: "long",
       }),
+      short: weekdayShort(ZZ_DATE_SATURDAY),
     },
     {
       value: ZZ_DATE_SUNDAY,
       label: new Date(ZZ_DATE_SUNDAY).toLocaleString(lang, { weekday: "long" }),
+      short: weekdayShort(ZZ_DATE_SUNDAY),
     },
   ];
 
@@ -163,7 +169,7 @@ export function LineUpClient({ artists, children }: Props) {
         {/* Filter chips — `layoutId="filter-pill"` slides the active
             yellow indicator between chips on click. Pukkelpop-style. */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 md:mt-10 md:gap-3">
-          {filters.map(({ value, label }) => {
+          {filters.map(({ value, label, short }) => {
             const isActive =
               (value === null && showAll) || value === currentDate;
             return (
@@ -190,32 +196,39 @@ export function LineUpClient({ artists, children }: Props) {
                     }
                   />
                 )}
-                <span className="relative">{label}</span>
+                <span className="relative md:hidden">{short}</span>
+                <span className="relative hidden md:inline">{label}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Grids — one per visible day. In "all" view each day gets a
-            sticker heading; per-day view drops the heading. The key
-            includes the active filter so DaySections re-mount on every
-            filter switch — that's how the entry animation re-runs even
-            when the same day was already on screen (e.g. friday → all
-            keeps friday in view, but we still want it to re-animate). */}
+        {/* Grids — one per day. All three are always mounted so that
+            filter switches don't unmount/remount cards (each card has
+            a Next/Image + Dialog subtree, and remounting them was the
+            cause of the frame drops mid-animation). Visibility is
+            toggled via CSS, and the entry animation is re-fired
+            imperatively inside DaySection on filter change via
+            useAnimationControls. */}
         <div className="mt-12 grid gap-y-12 md:mt-16 md:gap-y-24">
-          {visibleDates.map((date, dayIndex) => (
-            <DaySection
-              key={`${currentDate ?? "all"}-${date}`}
-              date={date}
-              artists={byDay[date]}
-              showHeading={showAll}
-              lang={lang}
-              tbaLabel={t("tba")}
-              reducedMotion={reducedMotion ?? false}
-              animationType={showAll ? "deal" : "flip"}
-              dayIndex={dayIndex}
-            />
-          ))}
+          {ZZ_DATES.map((date, dayIndex) => {
+            const isVisible = showAll || date === currentDate;
+            return (
+              <DaySection
+                key={date}
+                date={date}
+                artists={byDay[date]}
+                showHeading={showAll}
+                isVisible={isVisible}
+                lang={lang}
+                tbaLabel={t("tba")}
+                reducedMotion={reducedMotion ?? false}
+                animationType={showAll ? "deal" : "flip"}
+                animationKey={currentDate ?? "all"}
+                dayIndex={dayIndex}
+              />
+            );
+          })}
         </div>
       </div>
       {children}
@@ -227,10 +240,12 @@ type DaySectionProps = {
   date: string;
   artists: Artist[];
   showHeading: boolean;
+  isVisible: boolean;
   lang: string;
   tbaLabel: string;
   reducedMotion: boolean;
   animationType: "deal" | "flip";
+  animationKey: string;
   dayIndex: number;
 };
 
@@ -238,13 +253,25 @@ function DaySection({
   date,
   artists,
   showHeading,
+  isVisible,
   lang,
   tbaLabel,
   reducedMotion,
   animationType,
+  animationKey,
   dayIndex,
 }: DaySectionProps) {
   const dayName = new Date(date).toLocaleString(lang, { weekday: "long" });
+  const controls = useAnimationControls();
+
+  // Re-fire the entry animation whenever the filter changes (the
+  // animationKey is the active filter or "all"). Cards stay mounted
+  // across switches; we just reset them to `hidden` and play `show`.
+  useEffect(() => {
+    if (reducedMotion || !isVisible) return;
+    controls.set("hidden");
+    void controls.start("show");
+  }, [animationKey, animationType, reducedMotion, isVisible, controls]);
 
   // Two animation modes:
   // - "flip" — used when a single day is selected. Cards enter
@@ -255,10 +282,10 @@ function DaySection({
   //   dealer sliding cards across a table. Day sections deal
   //   sequentially via `delayChildren` offset by `dayIndex`.
   // Shuffled order so flip stagger fires in random sequence rather
-  // than left-to-right. Re-rolls on each filter switch (DaySection
-  // re-mounts via the composite key in the parent), so users get a
-  // fresh order every time. Math.random in render is impure, but the
-  // useMemo + identity deps make it run exactly once per mount.
+  // than left-to-right. Re-rolls on each filter switch (keyed by
+  // animationKey) so users get a fresh order every time. Math.random
+  // in render is impure; the useMemo + identity deps keep it stable
+  // between switches.
   const shuffleOrder = useMemo(() => {
     const order = artists.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) {
@@ -268,7 +295,7 @@ function DaySection({
     }
     return order;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [artists.length]);
+  }, [artists.length, animationKey]);
 
   const containerVariants = reducedMotion
     ? undefined
@@ -344,7 +371,7 @@ function DaySection({
     animationType === "flip" ? { perspective: "1200px" } : undefined;
 
   return (
-    <div>
+    <div className={cn(!isVisible && "hidden")} aria-hidden={!isVisible}>
       {showHeading && (
         <div className="mb-6 md:mb-8">
           <Sticker color="brand" size="lg" rotate={-3}>
@@ -354,7 +381,7 @@ function DaySection({
       )}
       <motion.div
         initial="hidden"
-        animate="show"
+        animate={controls}
         variants={containerVariants}
         style={gridStyle}
         className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8"
@@ -367,10 +394,6 @@ function DaySection({
             // start angle + horizontal offset.
             custom={i}
             variants={itemVariants}
-            style={{
-              transformOrigin: "center center",
-              transformStyle: "preserve-3d",
-            }}
           >
             <LineUpArtistCard
               artist={artist}

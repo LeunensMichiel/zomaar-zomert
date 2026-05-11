@@ -1,7 +1,6 @@
 import { Doodle } from "@components/doodle";
 import { Triangle } from "@components/icons/Triangle";
 import { PaperTear } from "@components/paper-tear";
-import { StarBurst } from "@components/star-burst";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { GradientDots } from "@components/ui/gradient-dots";
@@ -136,15 +135,36 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 -z-20 bg-gray-900/75" />
         <Doodle
           shape="sun-rays"
           color="royal-yellow"
           accent="summer-red"
           rotate={-14}
-          className="absolute top-24 -left-8 -z-20 h-44 md:top-28 md:-left-12 md:h-72 lg:-top-125 lg:-left-125 lg:h-250"
+          className="absolute -top-60 -left-60 z-0 h-120 md:-top-100 md:-left-100 md:h-200 lg:-top-125 lg:-left-125 lg:h-250"
         />
-        <GradientDots className="-z-10" />
+        <Doodle
+          shape="stroke"
+          color="linear-sunset"
+          rotate={12}
+          className="absolute -right-35 -bottom-20 z-0 h-60 md:-right-45 md:-bottom-30 md:h-120"
+        />
+        <GradientDots
+          className="-z-10 mix-blend-hard-light filter-[brightness(1.25)_saturate(1.55)_drop-shadow(0_0_1.5px_rgba(255,255,255,0.55))]"
+          dotSize={2}
+          spacing={6}
+          colors={["#ffb600", "#ff8faa", "#193d6b", "#fee198"]}
+        />
+        {/* Soft centred vignette — sits between the LEDs and the
+            content so the logo + location strip read on a darker
+            "spotlight" while the LEDs keep glowing at the edges. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[-5]"
+          style={{
+            background:
+              "radial-gradient(ellipse 65% 45% at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+          }}
+        />
         {/* Logo + date — vertically centered. The marquee sits flush at
             the bottom (no extra reserved padding needed). */}
         <div className="container-wide relative flex flex-1 flex-col items-center justify-center pt-24 pb-12 md:pt-28 md:pb-16">
@@ -170,19 +190,13 @@ export default async function RedesignHome({ params }: Props) {
               </Sticker>
             </div>
 
-            <span className="mt-5 inline-flex items-center gap-2 text-sm tracking-[0.3em] uppercase md:text-base">
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black tracking-[0.3em] uppercase md:text-base">
               <span aria-hidden="true">●</span>
               <span>Itterbeek · Dilbeek · BE</span>
               <span aria-hidden="true">●</span>
             </span>
           </div>
         </div>
-        <Doodle
-          shape="stroke"
-          color="linear-sunset"
-          rotate={12}
-          className="absolute -right-1/2 bottom-0 -z-20 h-100 md:-right-1/6 md:-bottom-14 md:h-150"
-        />
         <div className="relative z-20">
           <PaperTear
             edge="top"
@@ -301,7 +315,7 @@ export default async function RedesignHome({ params }: Props) {
             </Sticker>
           </div>
 
-          <div className="grid gap-12 md:gap-8 lg:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-3 md:gap-8">
             {days.map((day, i) => (
               <RevealCard key={day.date} index={i}>
                 <DayCard
@@ -348,7 +362,7 @@ export default async function RedesignHome({ params }: Props) {
             </Link>
           </div>
 
-          <div className="grid gap-10 md:gap-8 lg:grid-cols-3">
+          <div className="grid gap-10 md:grid-cols-3 md:gap-8">
             {headliners.map((h, i) => (
               <RevealCard key={`${h.name}_${i}`} index={i}>
                 <HeadlinerCard
@@ -433,7 +447,7 @@ export default async function RedesignHome({ params }: Props) {
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {tHome("paella")}
+                  {tHome(signupDisabled ? "paellaSoon" : "paella")}
                 </Button>
               </div>
             </article>
@@ -470,7 +484,7 @@ export default async function RedesignHome({ params }: Props) {
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {tHome("petanque")}
+                  {tHome(signupDisabled ? "petanqueSoon" : "petanque")}
                 </Button>
               </div>
             </article>
@@ -503,48 +517,24 @@ export default async function RedesignHome({ params }: Props) {
             </article>
           </div>
         </div>
-        <PaperTear
-          edge="bottom"
-          tear={5}
-          bgColor="yellow-400"
-          color="pink-50"
-        />
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
           GALLERY — keep marquees, frame them like a polaroid wall
           ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-yellow-400">
-        {/* Single huge lips in the right gutter + a small asterisk. */}
-        <Doodle
-          shape="lips"
-          color="summer-red"
-          rotate={6}
-          className="absolute -top-16 -right-16 h-32 md:-top-20 md:-right-20 md:h-96"
-        />
-        <Doodle
-          shape="asterisk"
-          color="tardis-blue"
-          rotate={-6}
-          className="absolute bottom-12 left-6 hidden h-10 md:left-12 md:block md:h-14"
-        />
-        <div className="container-wide relative z-20 pt-16 md:pt-20">
-          <h2 className="text-7xl leading-[0.85] text-gray-900 md:text-9xl xl:text-[14rem]">
-            Vibes.
-          </h2>
-        </div>
         <div className="relative isolate">
           <PaperTear
-            className="absolute top-0 z-40"
-            edge="top"
-            tear={7}
-            color="yellow-400"
+            className="absolute top-0 z-40 -translate-y-[20%]"
+            edge="bottom"
+            tear={5}
+            color="pink-50"
           />
           <PhotoMarquees />
           <PaperTear
             className="absolute bottom-0 z-40"
             edge="bottom"
-            tear={6}
+            tear={1}
             color="brand-500"
           />
         </div>
@@ -733,92 +723,6 @@ export default async function RedesignHome({ params }: Props) {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          CLOSING CTA — last loud moment before the footer.
-          ─────────────────────────────────────────────────────────────*/}
-      <section className="relative bg-blue-900 text-pink-50">
-        <div className='halftone absolute inset-0 opacity-25 mix-blend-screen content-[""]' />
-        <PaperTear edge="top" tear={6} color="pink-50" />
-        {/* One huge star-burst anchor + a small star accent. */}
-        <Doodle
-          shape="star-burst"
-          color="royal-yellow"
-          rotate={20}
-          className="absolute -right-12 -bottom-16 h-64 md:-right-20 md:-bottom-24 md:h-112 lg:h-128"
-        />
-        <Doodle
-          shape="star"
-          color="pink"
-          rotate={-6}
-          className="absolute top-44 left-1/3 hidden h-12 md:block md:h-16"
-        />
-        <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <Sticker color="brand" size="sm" rotate={-4}>
-              {tHome("cta.eyebrow")}
-            </Sticker>
-            <h2 className="mt-4 text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]">
-              Tot dan.
-            </h2>
-            <p className="mt-6 max-w-xl text-base md:text-lg">
-              {tHome("cta.body")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/line-up">
-                <Button
-                  as="span"
-                  variant="brand"
-                  size="xl"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {tCommon("links.line-up")}
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button
-                  as="span"
-                  variant="accent"
-                  size="xl"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {tCommon("links.contact")}
-                </Button>
-              </Link>
-            </div>
-          </div>
-          <div className="relative hidden lg:col-span-5 lg:block">
-            <div className="absolute -top-10 right-10">
-              <StarBurst
-                fill="text-yellow-400"
-                className="h-44 w-44"
-                style={{ transform: "rotate(-8deg)" }}
-              >
-                <span className="font-display text-2xl leading-[0.9] font-bold text-gray-900 uppercase">
-                  {ZZ_DATE_FRIDAY.slice(-2)}
-                  <br />
-                  →
-                  <br />
-                  {ZZ_DATE_SUNDAY.slice(-2)}
-                </span>
-              </StarBurst>
-            </div>
-            <div className="absolute right-2 bottom-0">
-              <Sticker color="pink" size="lg" rotate={-7}>
-                Itterbeek · BE
-              </Sticker>
-            </div>
-            <div className="absolute right-32 bottom-24">
-              <Sticker color="paper" size="md" rotate={6}>
-                {tHome("month")} {ZZ_YEAR}
-              </Sticker>
-            </div>
-          </div>
-        </div>
-        <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
     </>
   );
