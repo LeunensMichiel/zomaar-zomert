@@ -1,6 +1,5 @@
 "use client";
 
-import { Sticker } from "@components/sticker";
 import { ZZ_DATE_FRIDAY, ZZ_DATE_MONDAY } from "@lib/models";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
@@ -133,10 +132,7 @@ export function CountdownHero() {
 
   if (ended) {
     return (
-      <div className="flex flex-col items-start gap-5 md:gap-7">
-        <Sticker color="brand" size="md" rotate={-3}>
-          {t("countdown.daysAway")}
-        </Sticker>
+      <div className="flex flex-col items-center gap-5 text-center md:gap-7">
         <p className="font-display text-brand-500 text-6xl leading-[0.85] font-bold uppercase md:text-8xl xl:text-9xl">
           {mountedAt >= LAST_DAY
             ? "See you next year!"
@@ -155,23 +151,21 @@ export function CountdownHero() {
       animate="show"
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+        show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
       }}
-      className="flex flex-col items-start gap-6 md:gap-8"
+      className="flex flex-col items-center gap-4 text-center md:gap-5"
     >
-      <motion.div
+      <motion.span
         variants={{
           hidden: { y: 12, opacity: 0 },
           show: { y: 0, opacity: 1 },
         }}
+        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-700 uppercase md:text-sm"
       >
-        <Sticker color="brand" size="md" rotate={-3}>
-          {t("countdown.daysAway")}
-        </Sticker>
-      </motion.div>
+        {t("countdown.daysAway")}
+      </motion.span>
 
-      {/* Days lockup — giant number stacked on a chunky-block stamp. */}
-      <div className="flex flex-col items-start gap-2 md:gap-3">
+      <div className="flex flex-col items-center gap-1 md:gap-2">
         <motion.div
           variants={{
             hidden: { y: 32, opacity: 0, rotate: -6, scale: 0.9 },
@@ -185,8 +179,6 @@ export function CountdownHero() {
           }}
           className="relative"
         >
-          {/* AnimatePresence on the day value so the rare day-roll-over
-              gets a satisfying flip rather than a jump cut. */}
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.span
               key={d}
@@ -200,7 +192,7 @@ export function CountdownHero() {
                   : { y: "-40%", opacity: 0, rotate: 5 }
               }
               transition={{ type: "spring", damping: 16, stiffness: 140 }}
-              className="font-display text-brand-500 inline-block text-[clamp(7rem,22vw,16rem)] leading-[0.78] font-bold uppercase tabular-nums"
+              className="font-display text-brand-500 inline-block text-[clamp(8rem,30vw,22rem)] leading-[0.78] font-bold uppercase tabular-nums"
             >
               {d}
             </motion.span>
@@ -217,13 +209,12 @@ export function CountdownHero() {
               transition: { type: "spring", damping: 12, stiffness: 160 },
             },
           }}
-          className="font-display shadow-sticker-lg inline-block bg-gray-900 px-4 py-1.5 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:px-6 md:py-2 md:text-7xl xl:text-8xl"
+          className="font-display shadow-sticker-lg inline-block bg-gray-900 px-5 py-1.5 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:px-7 md:py-2 md:text-7xl xl:text-8xl"
         >
           {dayWord}
         </motion.h2>
       </div>
 
-      {/* Live HH:MM:SS row. Each digit rolls in on change; colons pulse. */}
       <motion.div
         variants={{
           hidden: { y: 16, opacity: 0 },

@@ -381,3 +381,49 @@
   );
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
+
+@keyframes doodle-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@utility animate-doodle-spin-slow {
+  animation: doodle-spin-slow 60s linear infinite;
+}
+
+/* Brush-stroke reveal — walks the SVG path from start to end.
+   `stroke-dasharray` defines a single dash long enough to cover the
+   whole path; `stroke-dashoffset` shifts that dash off the path,
+   then animates back to 0 so the stroke "paints" along the path. */
+@keyframes doodle-paint-stroke {
+  from {
+    stroke-dashoffset: var(--paint-length, 4000);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@utility animate-doodle-paint-stroke {
+  & svg path {
+    stroke-dasharray: var(--paint-length, 4000);
+    animation: doodle-paint-stroke 0.9s cubic-bezier(0.85, 0, 0.2, 1) both;
+  }
+}
+
+/* Same keyframes as the one-shot variant, but looping infinitely
+   with `alternate` so the stroke draws in, erases out, redraws — a
+   continuous start → end → start → end rhythm for loading states. */
+@utility animate-doodle-paint-stroke-loop {
+  & svg path {
+    stroke-dasharray: var(--paint-length, 4000);
+    animation: doodle-paint-stroke 1.2s ease-in-out infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-doodle-spin-slow,
+  .animate-doodle-paint-stroke svg path,
+  .animate-doodle-paint-stroke-loop svg path {
+    animation: none !important;
+  }
+}

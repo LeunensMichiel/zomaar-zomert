@@ -39,7 +39,7 @@ export default function Error({ error, unstable_retry }: Props) {
   }, [error]);
 
   return (
-    <section className="relative bg-blue-900 pt-24 pb-20 md:pt-32 md:pb-28">
+    <section className="relative bg-blue-900 pt-20 pb-16 md:pt-24 md:pb-20">
       <div className="container-wide relative z-20 text-center">
         <p className="font-display shadow-sticker-sm inline-block -rotate-2 border-2 border-gray-900 bg-yellow-400 px-3 py-1 text-sm font-bold text-gray-900 uppercase md:text-base">
           {t("error.eyebrow")}

@@ -2,6 +2,7 @@ import { FitText } from "@components/fit-text";
 import { LocaleSwitcher } from "@components/locale-switcher";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
+import { GradientDots } from "@components/ui/gradient-dots";
 import partners from "@lib/data/partners.json";
 import { Link } from "@lib/i18n/navigation";
 import { ZZ_DATES } from "@lib/models";
@@ -177,7 +178,14 @@ export async function Footer() {
   return (
     <>
       <div className="relative isolate flex items-center justify-center overflow-hidden">
-        <div className='relative z-[1] w-full bg-[url("/assets/footer.webp")] bg-cover bg-[50%_70%] px-6 py-32 before:absolute before:inset-0 before:-z-[1] before:bg-black/55 before:bg-[image:radial-gradient(rgba(255,255,255,0.2)_1px,rgba(0,0,0,0.15)_1px),radial-gradient(rgba(255,255,255,0.1)_1px,rgba(0,0,0,0.1)_1px)] before:[background-size:4px_4px] before:[background-position:0_0,2px_2px] before:content-[""] xl:py-60'>
+        <div className='relative z-[1] w-full bg-[url("/assets/footer.webp")] bg-cover bg-[50%_70%] px-6 py-32 before:absolute before:inset-0 before:-z-[1] before:bg-black/55 before:content-[""] xl:py-60'>
+          <GradientDots
+            className="mix-blend-hard-light filter-[brightness(1.25)_saturate(1.55)_drop-shadow(0_0_1.5px_rgba(255,255,255,0.55))]"
+            dotSize={2}
+            spacing={6}
+            duration={20}
+            colors={["#ffb600", "#ff8faa", "#193d6b", "#fee198"]}
+          />
           <div className="relative z-10 mx-auto flex max-w-md flex-col items-center gap-6">
             <Sticker color="yellow" size="md" rotate={-4}>
               {t("footer.social.eyebrow")}

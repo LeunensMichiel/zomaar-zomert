@@ -30,6 +30,7 @@ import { FloatingPolaroid } from "./_components/floating-polaroid";
 import { HeadlinerCard } from "./_components/headliner-card";
 import { PhotoMarquees } from "./_components/photo-marquees";
 import { RevealCard } from "./_components/reveal-card";
+import { ScrollStrokeDoodle } from "./_components/scroll-stroke-doodle";
 import { TickerStrip } from "./_components/ticker-strip";
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -123,7 +124,7 @@ export default async function RedesignHome({ params }: Props) {
           the viewport on first load. The transparent navbar sits on top
           (handled in components/layout.tsx via `transparentRoutes`).
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative isolate flex min-h-dvh w-full flex-col overflow-hidden bg-blue-900 text-white">
+      <section className="relative isolate flex min-h-svh w-full flex-col overflow-hidden bg-blue-900 text-white">
         <video
           playsInline
           autoPlay
@@ -135,18 +136,18 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <Doodle
-          shape="sun-rays"
-          color="royal-yellow"
-          accent="summer-red"
-          rotate={-14}
-          className="absolute -top-60 -left-60 z-0 h-120 md:-top-100 md:-left-100 md:h-200 lg:-top-125 lg:-left-125 lg:h-250"
-        />
-        <Doodle
-          shape="stroke"
-          color="linear-sunset"
+        <div className="animate-doodle-spin-slow pointer-events-none absolute -top-40 -left-40 z-0 h-80 will-change-transform md:-top-100 md:-left-100 md:h-200 lg:-top-125 lg:-left-125 lg:h-250">
+          <Doodle
+            shape="sun-rays"
+            color="royal-yellow"
+            accent="summer-red"
+            rotate={-14}
+            className="h-full w-full"
+          />
+        </div>
+        <ScrollStrokeDoodle
           rotate={12}
-          className="absolute -right-35 -bottom-20 z-0 h-60 md:-right-45 md:-bottom-30 md:h-120"
+          className="pointer-events-none absolute -right-35 -bottom-20 z-0 h-60 md:-right-45 md:-bottom-30 md:h-120"
         />
         <GradientDots
           className="-z-10 mix-blend-hard-light filter-[brightness(1.25)_saturate(1.55)_drop-shadow(0_0_1.5px_rgba(255,255,255,0.55))]"
@@ -212,37 +213,20 @@ export default async function RedesignHome({ params }: Props) {
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          INTRO + COUNTDOWN — short story of the festival next to a
-          big countdown. The countdown component is unchanged.
-          ─────────────────────────────────────────────────────────────*/}
-      <section className="relative bg-pink-50">
+      <section className="relative overflow-hidden bg-pink-50">
         <PaperTear edge="top" tear={4} bgColor="pink-50" color="yellow-400" />
-        {/* One big anchor in the lower-left bleed; one tiny accent. */}
-        <Doodle
-          shape="coil"
-          color="linear-red"
-          rotate={-12}
-          className="absolute -bottom-12 -left-12 h-48 md:-right-16 md:-bottom-16 md:left-auto md:h-80 lg:h-112"
-        />
         <Doodle
           shape="cross"
           color="dimmed-led"
           accent="summer-red"
           rotate={8}
-          className="absolute top-12 left-6 h-10 md:top-16 md:left-12 md:h-14"
+          className="absolute top-10 right-6 z-0 h-10 md:top-16 md:right-12 md:h-14"
         />
-        <div className="container-wide section-y relative z-20 grid gap-10 md:gap-16 lg:grid-cols-12">
-          {/* Countdown owns the headline — the day count is the giant
-              poster word, paired with a chunky-block "DAGEN." stamp
-              and a live HH:MM:SS digit-roll clock. */}
-          <div className="lg:col-span-8">
-            <CountdownHero />
-          </div>
 
-          {/* Side column — floating polaroid up top to balance the
-              left-side typography, then body copy + CTAs below. */}
-          <div className="flex flex-col gap-8 lg:col-span-4">
+        <div className="container-wide relative z-20 py-10 md:py-12 lg:py-14">
+          <CountdownHero />
+
+          <div className="mt-8 grid items-center gap-6 md:mt-10 md:gap-8 lg:grid-cols-12 lg:gap-12">
             <FloatingPolaroid
               src="/assets/slides/slide14.webp"
               alt=""
@@ -252,36 +236,37 @@ export default async function RedesignHome({ params }: Props) {
                 </Sticker>
               }
               tilt={-2}
-              className="mx-auto w-full max-w-xs md:max-w-sm lg:mx-0"
+              float={false}
+              className="mx-auto w-full max-w-44 md:max-w-48 lg:col-span-3 lg:mx-0"
             />
-            <div className="flex flex-1 flex-col justify-end gap-6">
-              <p className="max-w-xl text-base text-gray-700 md:text-lg">
-                {tHome("intro.body")}
-              </p>
-              <div className="flex flex-wrap items-center gap-4">
-                <Link href="/line-up">
-                  <Button
-                    as="span"
-                    variant="brand"
-                    size="xl"
-                    sticker
-                    iconRight={<ChevronRight />}
-                  >
-                    {tCommon("links.line-up")}
-                  </Button>
-                </Link>
-                <Link href="/info">
-                  <Button
-                    as="span"
-                    variant="ink"
-                    size="xl"
-                    sticker
-                    iconRight={<ChevronRight />}
-                  >
-                    {tCommon("links.info")}
-                  </Button>
-                </Link>
-              </div>
+
+            <p className="text-center text-base text-gray-700 md:text-lg lg:col-span-5 lg:text-left">
+              {tHome("intro.body")}
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 lg:col-span-4 lg:justify-end">
+              <Link href="/line-up">
+                <Button
+                  as="span"
+                  variant="brand"
+                  size="lg"
+                  sticker
+                  iconRight={<ChevronRight />}
+                >
+                  {tCommon("links.line-up")}
+                </Button>
+              </Link>
+              <Link href="/info">
+                <Button
+                  as="span"
+                  variant="ink"
+                  size="lg"
+                  sticker
+                  iconRight={<ChevronRight />}
+                >
+                  {tCommon("links.info")}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -297,19 +282,19 @@ export default async function RedesignHome({ params }: Props) {
         <Doodle
           shape="eye"
           color="summer-red"
-          accent="80s-gum"
+          accent="blue-cola"
           rotate={8}
-          className="absolute -top-12 left-16 h-56 w-56 md:-top-20 md:-right-24 md:h-80 md:w-80 lg:h-96 lg:w-96"
+          className="absolute -top-12 -left-12 h-56 w-56 md:-top-20 md:-right-24 md:left-auto md:h-80 md:w-80 lg:h-96 lg:w-96"
         />
         <Doodle
-          shape="zz"
-          color="royal-yellow"
+          shape="coil"
+          color="blue-cola"
           rotate={-12}
-          className="absolute bottom-20 left-6 hidden h-12 md:left-12 md:block md:h-16"
+          className="absolute bottom-20 left-6 hidden h-40 md:left-12 md:block md:h-40"
         />
         <div className="container-wide section-y relative z-20">
           {/* Just an eyebrow — the day cards do the talking. */}
-          <div className="mb-10 md:mb-14">
+          <div className="mb-10 flex justify-end md:mb-14 md:justify-start">
             <Sticker color="ink" size="sm" rotate={-3}>
               {tHome("programme.eyebrow")}
             </Sticker>
@@ -393,7 +378,7 @@ export default async function RedesignHome({ params }: Props) {
           color="royal-yellow"
           accent="summer-red"
           rotate={-8}
-          className="absolute -top-12 -right-12 h-48 md:-top-20 md:-right-20 md:h-80 lg:h-96"
+          className="absolute -top-12 -right-16 h-40 md:-top-20 md:-right-20 md:h-80 lg:h-96"
         />
         <Doodle
           shape="radial"
@@ -532,9 +517,9 @@ export default async function RedesignHome({ params }: Props) {
           />
           <PhotoMarquees />
           <PaperTear
-            className="absolute bottom-0 z-40"
-            edge="bottom"
-            tear={1}
+            className="absolute bottom-0 z-40 translate-y-[30%]"
+            edge="top"
+            tear={5}
             color="brand-500"
           />
         </div>
@@ -545,13 +530,6 @@ export default async function RedesignHome({ params }: Props) {
           the visual mood, so the video gets to speak for itself.
           ─────────────────────────────────────────────────────────────*/}
       <section className="bg-brand-500 relative text-pink-50">
-        {/* Single oversized radial in the bleed + a small banner. */}
-        <Doodle
-          shape="radial"
-          color="dimmed-led"
-          rotate={20}
-          className="absolute -top-16 -right-16 h-56 md:-top-24 md:-right-24 md:h-96"
-        />
         <Doodle
           shape="star"
           color="royal-yellow"
@@ -630,11 +608,10 @@ export default async function RedesignHome({ params }: Props) {
           remains in the global footer.
           ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-pink-50">
-        {/* Big zzz anchor in the bottom-right + a small cross. */}
         <Doodle
-          shape="zzz"
-          color="summer-red"
-          className="absolute -right-16 -bottom-12 h-56 md:-right-20 md:-bottom-16 md:h-80 lg:h-96"
+          shape="lips"
+          color="80s-gum"
+          className="absolute -right-20 -bottom-20 h-40 md:-right-20 md:-bottom-16 md:h-80 lg:h-96"
         />
         <Doodle
           shape="cross"

@@ -13,6 +13,8 @@ type Props = {
   caption?: ReactNode;
   /** Base tilt — the float animation oscillates ±0.6° around it. */
   tilt?: number;
+  /** Toggle the floating animation. Static tilt still applies. */
+  float?: boolean;
   className?: string;
 };
 
@@ -28,19 +30,24 @@ export function FloatingPolaroid({
   alt,
   caption,
   tilt = -2,
+  float = true,
   className,
 }: Props) {
   const reducedMotion = useReducedMotion();
+  const shouldFloat = float && !reducedMotion;
   return (
     <motion.div
       className={cn("relative", className)}
+      style={
+        shouldFloat ? undefined : { transform: `rotate(${String(tilt)}deg)` }
+      }
       animate={
-        reducedMotion
-          ? undefined
-          : {
+        shouldFloat
+          ? {
               y: [0, -8, 0],
               rotate: [tilt, tilt + 0.8, tilt],
             }
+          : undefined
       }
       transition={{
         duration: 6,

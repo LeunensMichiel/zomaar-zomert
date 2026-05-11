@@ -187,7 +187,7 @@ export function LineUpClient({ artists, children }: Props) {
                   handleDaySelect(value);
                 }}
                 className={cn(
-                  "font-display relative px-4 py-2 text-base font-bold tracking-wide uppercase transition-colors md:px-5 md:py-2.5 md:text-lg",
+                  "font-display relative min-h-11 touch-manipulation px-4 py-3 text-base font-bold tracking-wide uppercase transition-colors md:px-5 md:py-2.5 md:text-lg",
                   isActive
                     ? "text-gray-900"
                     : "text-pink-50 hover:text-yellow-300",
@@ -196,7 +196,7 @@ export function LineUpClient({ artists, children }: Props) {
                 {isActive && (
                   <motion.span
                     layoutId="filter-pill"
-                    className="shadow-sticker absolute inset-0 -z-10 border-2 border-gray-900 bg-yellow-400"
+                    className="shadow-sticker pointer-events-none absolute inset-0 -z-10 border-2 border-gray-900 bg-yellow-400"
                     transition={
                       reducedMotion
                         ? { duration: 0 }

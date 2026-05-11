@@ -143,6 +143,7 @@ export function Doodle({
           strokeWidth={6}
         />
         <circle cx={50} cy={50} r={16} fill={pupilFill} />
+        <circle cx={50} cy={50} r={10} fill="var(--color-gray-900)" />
       </svg>
     );
   }
