@@ -337,13 +337,15 @@
 
 /*
  * Keep Base UI's `Dialog.Popup` mounted for the duration of our motion-driven
- * close animation. Base UI calls `setMounted(false)` (which sets the `hidden`
- * attribute) as soon as `element.getAnimations()` on the popup reports zero
- * animations — but our exit animations live on inner `motion.div`s, not on
- * the popup itself. This no-op CSS animation gives the popup a real
- * Web-Animations-API entry to wait for, so it stays visible until the inner
- * motion exits finish. Keep the duration in sync with the longest inner exit
- * (currently the 0.3s backdrop slide-out).
+ * close animation. The portal no longer uses `keepMounted`, so Base UI tears
+ * the whole dialog subtree down once it stops detecting animations on the
+ * popup — but our exit animations live on inner `motion.div`s, not on the
+ * popup itself, so `element.getAnimations()` would otherwise report zero and
+ * unmount instantly. This no-op CSS animation gives the popup a real
+ * Web-Animations-API entry to wait for, so the AnimatePresence exit can
+ * finish before Base UI unmounts the portal and the heavy menu content is
+ * fully removed from the DOM. Keep the duration ≥ the longest inner exit
+ * (currently ~0.50s — background grain at delay 0.22 + duration 0.28).
  */
 @keyframes dialog-stay-mounted {
   from,
@@ -420,10 +422,65 @@
   }
 }
 
+/* Menu noisy-gradient blob drift — four organic offsets that loop
+   slowly so the open menu feels alive. Honour reduced-motion below. */
+@keyframes menu-blob-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(60px, 40px, 0) scale(1.08);
+  }
+}
+@keyframes menu-blob-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-40px, 50px, 0) scale(0.95);
+  }
+}
+@keyframes menu-blob-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-50px, -30px, 0) scale(1.1);
+  }
+}
+@keyframes menu-blob-d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(50px, -40px, 0) scale(0.92);
+  }
+}
+@utility animate-menu-blob-a {
+  animation: menu-blob-a 18s ease-in-out infinite;
+}
+@utility animate-menu-blob-b {
+  animation: menu-blob-b 22s ease-in-out infinite;
+}
+@utility animate-menu-blob-c {
+  animation: menu-blob-c 26s ease-in-out infinite;
+}
+@utility animate-menu-blob-d {
+  animation: menu-blob-d 20s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-doodle-spin-slow,
   .animate-doodle-paint-stroke svg path,
-  .animate-doodle-paint-stroke-loop svg path {
+  .animate-doodle-paint-stroke-loop svg path,
+  .animate-menu-blob-a,
+  .animate-menu-blob-b,
+  .animate-menu-blob-c,
+  .animate-menu-blob-d {
     animation: none !important;
   }
 }

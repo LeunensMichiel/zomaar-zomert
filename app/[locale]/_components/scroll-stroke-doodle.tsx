@@ -4,6 +4,7 @@ import { cn } from "@lib/utils";
 import {
   motion,
   type MotionValue,
+  useMotionValue,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -36,27 +37,25 @@ const SEGMENTS = POINTS.slice(1).map((p, i) => {
 
 // Within each segment's scroll slot, the draw happens over this
 // fraction; the remainder is the "hold" pause before the next zig.
-const DRAW_RATIO = 30 / 80;
+const DRAW_RATIO = 20 / 80;
 
-type SegmentProps = {
+type AnimatedSegmentProps = {
   d: string;
   length: number;
   scrollStart: number;
   scrollEnd: number;
-  scrollY: MotionValue<number>;
-  reducedMotion: boolean;
+  progress: MotionValue<number>;
 };
 
-function Segment({
+function AnimatedSegment({
   d,
   length,
   scrollStart,
   scrollEnd,
-  scrollY,
-  reducedMotion,
-}: SegmentProps) {
+  progress,
+}: AnimatedSegmentProps) {
   const dashOffset = useTransform(
-    scrollY,
+    progress,
     [scrollStart, scrollEnd],
     [length, 0],
     { clamp: true },
@@ -76,11 +75,20 @@ function Segment({
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="none"
-      style={{
-        strokeDasharray: length,
-        strokeDashoffset: reducedMotion ? 0 : dashOffset,
-        opacity: reducedMotion ? 1 : opacity,
-      }}
+      style={{ strokeDasharray: length, strokeDashoffset: dashOffset, opacity }}
+    />
+  );
+}
+
+function StaticSegment({ d }: { d: string }) {
+  return (
+    <path
+      d={d}
+      stroke="url(#scroll-stroke-gradient)"
+      strokeWidth="36.1349"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
     />
   );
 }
@@ -93,6 +101,7 @@ type Props = {
 export function ScrollStrokeDoodle({ className, rotate = 0 }: Props) {
   const reducedMotion = useReducedMotion();
   const [vh, setVh] = useState(800);
+  const [allDone, setAllDone] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -106,9 +115,25 @@ export function ScrollStrokeDoodle({ className, rotate = 0 }: Props) {
   }, []);
 
   const { scrollY } = useScroll();
+  const maxScrollY = useMotionValue(0);
 
   const perSegment = vh / SEGMENTS.length;
   const drawWindow = perSegment * DRAW_RATIO;
+  const finalScrollEnd = (SEGMENTS.length - 1) * perSegment + drawWindow;
+
+  useEffect(() => {
+    if (allDone) return;
+    const sync = (latest: number) => {
+      if (latest > maxScrollY.get()) {
+        maxScrollY.set(latest);
+        if (latest >= finalScrollEnd) setAllDone(true);
+      }
+    };
+    sync(scrollY.get());
+    return scrollY.on("change", sync);
+  }, [allDone, finalScrollEnd, maxScrollY, scrollY]);
+
+  const useStatic = allDone || reducedMotion === true;
 
   return (
     <div className={cn(className)}>
@@ -133,16 +158,18 @@ export function ScrollStrokeDoodle({ className, rotate = 0 }: Props) {
           </linearGradient>
         </defs>
         {SEGMENTS.map((seg, i) => {
+          if (useStatic) {
+            return <StaticSegment key={i} d={seg.d} />;
+          }
           const scrollStart = i * perSegment;
           return (
-            <Segment
+            <AnimatedSegment
               key={i}
               d={seg.d}
               length={seg.length}
               scrollStart={scrollStart}
               scrollEnd={scrollStart + drawWindow}
-              scrollY={scrollY}
-              reducedMotion={reducedMotion ?? false}
+              progress={maxScrollY}
             />
           );
         })}
