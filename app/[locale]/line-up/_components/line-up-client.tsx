@@ -12,10 +12,10 @@ import {
   ZZ_YEAR,
 } from "@lib/models";
 import { cn } from "@lib/utils";
-import { motion, useAnimationControls, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { type ReactNode, useCallback, useEffect, useMemo } from "react";
+import { type ReactNode, useCallback, useMemo } from "react";
 
 import { LineUpArtistCard } from "./line-up-card";
 
@@ -103,6 +103,10 @@ export function LineUpClient({ artists, children }: Props) {
     [pathname, router],
   );
 
+  const visibleDates = showAll
+    ? ZZ_DATES
+    : ZZ_DATES.filter((d) => d === currentDate);
+
   // Star backdrop rotates with the active filter — gives the page a
   // single piece of moving geometry that responds to interaction
   // without re-rendering the whole grid.
@@ -140,11 +144,15 @@ export function LineUpClient({ artists, children }: Props) {
 
   return (
     <section className="relative isolate overflow-hidden bg-blue-900 text-pink-50">
+      <div
+        aria-hidden="true"
+        className="halftone pointer-events-none absolute inset-0 z-0 opacity-25"
+      />
       {/* Star backdrop — yellow ZZ asterisk-burst that rotates with the
           active filter. Sits at low opacity behind the header so the
           chunky block + filter chips read clearly on top. */}
       <motion.img
-        src="/assets/star.svg"
+        src="/assets/star-tear.svg"
         alt=""
         aria-hidden="true"
         animate={{ rotate: starRotation }}
@@ -153,7 +161,7 @@ export function LineUpClient({ artists, children }: Props) {
             ? { duration: 0 }
             : { type: "spring", duration: 1.2, bounce: 0.2 }
         }
-        className="pointer-events-none absolute -top-12 left-1/2 z-0 h-72 -translate-x-1/2 opacity-25 mix-blend-screen md:-top-16 md:h-96 lg:h-112"
+        className="pointer-events-none absolute -top-12 left-1/2 z-0 h-72 -translate-x-1/2 opacity-40 md:-top-16 md:h-96 lg:h-112"
       />
 
       <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
@@ -203,32 +211,20 @@ export function LineUpClient({ artists, children }: Props) {
           })}
         </div>
 
-        {/* Grids — one per day. All three are always mounted so that
-            filter switches don't unmount/remount cards (each card has
-            a Next/Image + Dialog subtree, and remounting them was the
-            cause of the frame drops mid-animation). Visibility is
-            toggled via CSS, and the entry animation is re-fired
-            imperatively inside DaySection on filter change via
-            useAnimationControls. */}
         <div className="mt-12 grid gap-y-12 md:mt-16 md:gap-y-24">
-          {ZZ_DATES.map((date, dayIndex) => {
-            const isVisible = showAll || date === currentDate;
-            return (
-              <DaySection
-                key={date}
-                date={date}
-                artists={byDay[date]}
-                showHeading={showAll}
-                isVisible={isVisible}
-                lang={lang}
-                tbaLabel={t("tba")}
-                reducedMotion={reducedMotion ?? false}
-                animationType={showAll ? "deal" : "flip"}
-                animationKey={currentDate ?? "all"}
-                dayIndex={dayIndex}
-              />
-            );
-          })}
+          {visibleDates.map((date, dayIndex) => (
+            <DaySection
+              key={`${currentDate ?? "all"}-${date}`}
+              date={date}
+              artists={byDay[date]}
+              showHeading={showAll}
+              lang={lang}
+              tbaLabel={t("tba")}
+              reducedMotion={reducedMotion ?? false}
+              animationType={showAll ? "deal" : "flip"}
+              dayIndex={dayIndex}
+            />
+          ))}
         </div>
       </div>
       {children}
@@ -240,12 +236,10 @@ type DaySectionProps = {
   date: string;
   artists: Artist[];
   showHeading: boolean;
-  isVisible: boolean;
   lang: string;
   tbaLabel: string;
   reducedMotion: boolean;
   animationType: "deal" | "flip";
-  animationKey: string;
   dayIndex: number;
 };
 
@@ -253,25 +247,13 @@ function DaySection({
   date,
   artists,
   showHeading,
-  isVisible,
   lang,
   tbaLabel,
   reducedMotion,
   animationType,
-  animationKey,
   dayIndex,
 }: DaySectionProps) {
   const dayName = new Date(date).toLocaleString(lang, { weekday: "long" });
-  const controls = useAnimationControls();
-
-  // Re-fire the entry animation whenever the filter changes (the
-  // animationKey is the active filter or "all"). Cards stay mounted
-  // across switches; we just reset them to `hidden` and play `show`.
-  useEffect(() => {
-    if (reducedMotion || !isVisible) return;
-    controls.set("hidden");
-    void controls.start("show");
-  }, [animationKey, animationType, reducedMotion, isVisible, controls]);
 
   // Two animation modes:
   // - "flip" — used when a single day is selected. Cards enter
@@ -295,7 +277,7 @@ function DaySection({
     }
     return order;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [artists.length, animationKey]);
+  }, [artists.length]);
 
   const containerVariants = reducedMotion
     ? undefined
@@ -371,7 +353,7 @@ function DaySection({
     animationType === "flip" ? { perspective: "1200px" } : undefined;
 
   return (
-    <div className={cn(!isVisible && "hidden")} aria-hidden={!isVisible}>
+    <div>
       {showHeading && (
         <div className="mb-6 md:mb-8">
           <Sticker color="brand" size="lg" rotate={-3}>
@@ -381,7 +363,7 @@ function DaySection({
       )}
       <motion.div
         initial="hidden"
-        animate={controls}
+        animate="show"
         variants={containerVariants}
         style={gridStyle}
         className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8"
@@ -389,11 +371,12 @@ function DaySection({
         {artists.map((artist, i) => (
           <motion.div
             key={`${artist.name}-${artist.showFrom}`}
-            // `custom={i}` feeds the index into deal-mode's per-card
-            // `hidden` function so each card has a slightly different
-            // start angle + horizontal offset.
             custom={i}
             variants={itemVariants}
+            style={{
+              transformOrigin: "center center",
+              transformStyle: "preserve-3d",
+            }}
           >
             <LineUpArtistCard
               artist={artist}

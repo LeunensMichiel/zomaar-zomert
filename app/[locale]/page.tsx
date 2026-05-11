@@ -347,7 +347,7 @@ export default async function RedesignHome({ params }: Props) {
           {/* Single oversized poster word — context speaks for itself. */}
           <div className="mb-10 flex flex-col items-start gap-6 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-10">
             <h2 className="text-7xl leading-[0.85] text-yellow-400 md:text-[10rem] xl:text-[14rem]">
-              Line-up.
+              Line-up
             </h2>
             <Link href="/line-up">
               <Button
@@ -525,7 +525,7 @@ export default async function RedesignHome({ params }: Props) {
       <section className="relative bg-yellow-400">
         <div className="relative isolate">
           <PaperTear
-            className="absolute top-0 z-40 -translate-y-[20%]"
+            className="absolute top-0 z-40 translate-y-[-20%]"
             edge="bottom"
             tear={5}
             color="pink-50"

@@ -24,14 +24,14 @@ All tokens live in [app/globals.css](app/globals.css) inside the `@theme` block;
 
 The palette is anchored on the **Zomaar Zomert** colour set defined in the ZZ 2026 Figma file. Each named anchor sits at a fixed slot in its scale so tints/shades stay in lockstep, and an alias token (`--color-summer-red`, etc.) points to the slot.
 
-| Name (Figma) | Hex       | Scale slot           | Alias token            | Usage                                                |
-| ------------ | --------- | -------------------- | ---------------------- | ---------------------------------------------------- |
-| Summer Red   | `#de350b` | `--color-brand-500`  | `--color-summer-red`   | Big CTAs, hot fills, brand accents                   |
-| Royal Yellow | `#ffb600` | `--color-yellow-400` | `--color-royal-yellow` | Stickers, highlights, "free entry" stamps            |
-| Dimmed Led   | `#fee198` | `--color-yellow-100` | `--color-dimmed-led`   | Cream highlights, soft sticker fills                 |
-| Blue Cola    | `#3b84db` | `--color-blue-500`   | `--color-blue-cola`    | Secondary tiles, headliner cards                     |
-| Tardis Blue  | `#193d6b` | `--color-blue-900`   | `--color-tardis-blue`  | Deep "summer night" backgrounds (hero, closing CTA)  |
-| Black        | `#000000` | n/a                  | n/a                    | Reserved for offset shadow / sticker borders only    |
+| Name (Figma) | Hex       | Scale slot           | Alias token            | Usage                                               |
+| ------------ | --------- | -------------------- | ---------------------- | --------------------------------------------------- |
+| Summer Red   | `#de350b` | `--color-brand-500`  | `--color-summer-red`   | Big CTAs, hot fills, brand accents                  |
+| Royal Yellow | `#ffb600` | `--color-yellow-400` | `--color-royal-yellow` | Stickers, highlights, "free entry" stamps           |
+| Dimmed Led   | `#fee198` | `--color-yellow-100` | `--color-dimmed-led`   | Cream highlights, soft sticker fills                |
+| Blue Cola    | `#3b84db` | `--color-blue-500`   | `--color-blue-cola`    | Secondary tiles, headliner cards                    |
+| Tardis Blue  | `#193d6b` | `--color-blue-900`   | `--color-tardis-blue`  | Deep "summer night" backgrounds (hero, closing CTA) |
+| Black        | `#000000` | n/a                  | n/a                    | Reserved for offset shadow / sticker borders only   |
 
 **Adjacent helpers.** Pink (`--color-pink-400` `#ff8faa`) is the hot pink used in the gradient stops — keep the existing pink scale for soft backgrounds (`pink-50`, `pink-300`). Ink lives at `--color-gray-900` (`#1a1a1a`) — body text and the offset shadow.
 
@@ -41,12 +41,12 @@ Don't introduce greys outside the existing scale. The named ZZ palette is the so
 
 Four named gradient styles ride alongside the solid palette (Figma styles `Linear Red`, `Linear Sunset`, `Radial Red`, `80s Gum`). Exposed as Tailwind `bg-*` utilities in [app/globals.css](app/globals.css), and accepted as `color`/`accent` values on `<Doodle>` (e.g. `<Doodle shape="lips" color="linear-sunset" />`):
 
-| Utility            | Style          | Stops                                  | Where it earns its place                                |
-| ------------------ | -------------- | -------------------------------------- | ------------------------------------------------------- |
-| `bg-linear-red`    | Linear Red     | `#ff1d25` 0% → `#961702` 100%          | Countdown panel, "linear-red" doodle fill (anchors)     |
-| `bg-linear-sunset` | Linear Sunset  | `#ffb600` 0% → `#ff7bac` 100%          | Star-bursts, sun-rays — yellow→pink hero/closing pieces |
-| `bg-radial-red`    | Radial Red     | `#ff7bac` 0% → `#de350b` 100% (radial) | One-off accents (e.g. lips on the yellow gallery)       |
-| `bg-80s-gum`       | 80s Gum        | `#3b84db` 3% → `#ff8faa` 61%           | Cool-to-hot accent for blue-leaning sections            |
+| Utility            | Style         | Stops                                  | Where it earns its place                                |
+| ------------------ | ------------- | -------------------------------------- | ------------------------------------------------------- |
+| `bg-linear-red`    | Linear Red    | `#ff1d25` 0% → `#961702` 100%          | Countdown panel, "linear-red" doodle fill (anchors)     |
+| `bg-linear-sunset` | Linear Sunset | `#ffb600` 0% → `#ff7bac` 100%          | Star-bursts, sun-rays — yellow→pink hero/closing pieces |
+| `bg-radial-red`    | Radial Red    | `#ff7bac` 0% → `#de350b` 100% (radial) | One-off accents (e.g. lips on the yellow gallery)       |
+| `bg-80s-gum`       | 80s Gum       | `#3b84db` 3% → `#ff8faa` 61%           | Cool-to-hot accent for blue-leaning sections            |
 
 Use gradients _sparingly_ — too many on one page reads as Web 2.0 sheen. **At most one gradient per section**, applied either to the anchor doodle or to a single panel (e.g. the countdown).
 
@@ -163,12 +163,12 @@ Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only
 
 Pick the tear by feel — natural aspects after cropping:
 
-| tear | aspect | use |
-| --- | --- | --- |
-| 1, 2 | ~9:1 / ~10:1 | full-body dividers between tall sections |
-| 3, 7 | ~14:1 | medium dividers |
-| 6 | ~18:1 | medium-compact |
-| 4, 5 | ~22:1 | the most compact — use over short marquees etc. |
+| tear | aspect       | use                                             |
+| ---- | ------------ | ----------------------------------------------- |
+| 1, 2 | ~9:1 / ~10:1 | full-body dividers between tall sections        |
+| 3, 7 | ~14:1        | medium dividers                                 |
+| 6    | ~18:1        | medium-compact                                  |
+| 4, 5 | ~22:1        | the most compact — use over short marquees etc. |
 
 Pass the **adjacent section's color** as `color` so the divider visually flows:
 
@@ -179,7 +179,7 @@ Optional `bgColor` makes the tear a self-contained two-tone block — `color` pa
 
 Example: hero (`bg-blue-900`) ending in a yellow ticker → `<PaperTear edge="top" tear={5} color="yellow-400" />` rendered above the ticker so the wave looks "torn" up into the dark hero.
 
-### `<TickerStrip>` — [app/[locale]/_components/ticker-strip.tsx](app/%5Blocale%5D/_components/ticker-strip.tsx)
+### `<TickerStrip>` — [app/[locale]/\_components/ticker-strip.tsx](app/%5Blocale%5D/_components/ticker-strip.tsx)
 
 Pukkelpop-style rolling marquee of all-caps strings, separator between items. Wraps `react-fast-marquee` (already a dep). Set `direction` to `right` for the second strip in a paired layout.
 
@@ -191,7 +191,7 @@ Pukkelpop-style rolling marquee of all-caps strings, separator between items. Wr
 
 Tilted, halftoned image cards used in the line-up sections. Each has a slight per-card tilt (set in the page) so the row feels hand-arranged. `<HeadlinerCard>` takes a `tbaLabel` prop for the wax-seal sticker on TBA placeholders so the parent owns the translation. When `name === "TBA"` the card delegates the visual to `<TBACard>` (below).
 
-### `<TBACard>` — [app/[locale]/_components/tba-card.tsx](app/%5Blocale%5D/_components/tba-card.tsx)
+### `<TBACard>` — [app/[locale]/\_components/tba-card.tsx](app/%5Blocale%5D/_components/tba-card.tsx)
 
 Shared TBA placeholder used by both the home page (`<HeadlinerCard>`'s TBA branch) and the line-up grid (`<LineUpArtistCard>`'s TBA branch). Static visual: tone-coloured background with halftone, oversized star-burst doodle centred, four small plus accents at the corners, "Soon" sticker as the wax seal. Gentle hover (card scales 1 → 1.015 + 1° rotation nudge, star-burst inside swings -12° → 8° via `group-hover:`) — distinct from the artist cards' lift, signals "stirs but not clickable". `size: "md" | "lg"` lets the line-up's denser 4-col grid use a smaller "TBA / ✦" footer than the home's 3-col headliner row.
 
@@ -207,22 +207,30 @@ A standard treatment for festival photos — used on [/info](app/%5Blocale%5D/in
 
 ```tsx
 <div className="relative">
-  <span aria-hidden className="tape-strip absolute -top-3 left-10 z-30 h-5 w-24 -rotate-12" />
+  <span
+    aria-hidden
+    className="tape-strip absolute -top-3 left-10 z-30 h-5 w-24 -rotate-12"
+  />
   <article className="shadow-sticker-lg relative -rotate-2 border-2 border-gray-900 bg-white p-3 pb-10 md:p-4 md:pb-14">
     <div className="relative h-72 overflow-hidden border-2 border-gray-900">
       <Image src="..." alt="" fill className="object-cover" />
-      <div aria-hidden className="halftone absolute inset-0 opacity-30 mix-blend-multiply" />
+      <div
+        aria-hidden
+        className="halftone absolute inset-0 opacity-30 mix-blend-multiply"
+      />
     </div>
-    <p className="font-display mt-4 text-center text-base font-bold uppercase">{caption}</p>
+    <p className="font-display mt-4 text-center text-base font-bold uppercase">
+      {caption}
+    </p>
   </article>
 </div>
 ```
 
-### `<PhotoMarquees>` — [app/[locale]/_components/photo-marquees.tsx](app/%5Blocale%5D/_components/photo-marquees.tsx)
+### `<PhotoMarquees>` — [app/[locale]/\_components/photo-marquees.tsx](app/%5Blocale%5D/_components/photo-marquees.tsx)
 
 Twin marquees of festival photos with a randomized client-side shuffle. Use over colored sections — the legacy `<HomeMarquees>` bakes in white tear SVGs that clash with non-white backgrounds.
 
-### `<Countdown>` — [app/[locale]/_components/countdown.tsx](app/%5Blocale%5D/_components/countdown.tsx)
+### `<Countdown>` — [app/[locale]/\_components/countdown.tsx](app/%5Blocale%5D/_components/countdown.tsx)
 
 Festival countdown clock — four segments (days / hours / minutes / seconds), forced `grid-cols-4` so cells never wrap, tabular-nums for stable digit width. Inherits text colour from its parent so any panel can re-skin it.
 
@@ -230,15 +238,15 @@ Festival countdown clock — four segments (days / hours / minutes / seconds), f
 
 Vertical scroll-driven timeline with sticky year markers on the left and an animated trailing line that fills as the user scrolls. Adapted from a shadcn/Aceternity component and re-skinned: square yellow sticker dots (not round circles), Oswald-poster year titles in `text-brand-500`, brand-red → royal-yellow gradient on the active line. Renders only the timeline body — pages provide their own hero/heading above. Each entry takes `{ title, content }`; each `content` is free-form, so milestones can mix sticker eyebrows, body copy, polaroids, poster cards, etc. Used on `/history`.
 
-### `<RevealCard>` — [app/[locale]/_components/reveal-card.tsx](app/%5Blocale%5D/_components/reveal-card.tsx)
+### `<RevealCard>` — [app/[locale]/\_components/reveal-card.tsx](app/%5Blocale%5D/_components/reveal-card.tsx)
 
 Wraps a card with the same `rotateY: -90 → 0` flip + scale + opacity entry animation as the line-up grid, but triggered by viewport intersection (`whileInView`) rather than filter state. Each card animates once when it scrolls into view; an `index` prop adds a small per-card delay so a row of cards appears to flip in sequence rather than all at once. `useReducedMotion` short-circuits to plain children. Used on the home page around `<DayCard>` and `<HeadlinerCard>` rows.
 
-### `<StrokeLoader>` — [app/[locale]/_components/stroke-loader.tsx](app/%5Blocale%5D/_components/stroke-loader.tsx)
+### `<StrokeLoader>` — [app/[locale]/\_components/stroke-loader.tsx](app/%5Blocale%5D/_components/stroke-loader.tsx)
 
 Loading state — the `stroke` doodle drawn by hand, four bursts cycling on repeat ("djoef djoef djoef djoef"). The original SVG path is split into four chunks; each `<motion.path>` animates `pathLength: [0 → 1 → 1 → 0]` over 1.5 s with staggered delays so the strokes appear sequentially and erase in the same order. Original Linear Sunset gradient (yellow → pink) preserved. Reduced-motion users get a static fully-drawn path. Replaces the legacy spinner in [loading.tsx](app/%5Blocale%5D/loading.tsx).
 
-### `<ScrollBg>` — [app/[locale]/history/_components/scroll-bg.tsx](app/%5Blocale%5D/history/_components/scroll-bg.tsx)
+### `<ScrollBg>` — [app/[locale]/history/\_components/scroll-bg.tsx](app/%5Blocale%5D/history/_components/scroll-bg.tsx)
 
 Page-scoped section wrapper whose `backgroundColor` interpolates as the user scrolls. Uses `useScroll({ offset: ["start start", "end end"] })` mapped to five colour stops, e.g. on `/history`: `pink-50 → yellow-100 → pink-300 → yellow-100 → pink-50` — a warm wave through the milestones. Currently `/history`-only (the colour stops are hard-coded in the file); generalise via props if another page needs it.
 
@@ -327,7 +335,7 @@ Worked examples:
 
 - [/info](app/%5Blocale%5D/info/page.tsx) — chunky block (`bg-gray-900` + `text-pink-300`, `-rotate-2`) on the **left**, `<Doodle shape="zzz">` on the **right**. Tight `pt-6 md:pt-8` so the bento sits above the fold.
 - [/contact](app/%5Blocale%5D/contact/page.tsx) — chunky block (`bg-gray-900` + `text-yellow-400`, `rotate-2`) on the **right**, `<Doodle shape="lips">` on the **left**. Mirrors `/info` to keep the two pages visually distinct.
-- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered**, with `/assets/star.svg` rotating behind it as a backdrop. Section is `bg-blue-900` so the always-transparent navbar floats white over the dark hero. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
+- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered**, with `/assets/star-tear.svg` rotating behind it as a backdrop. Section is `bg-blue-900` so the always-transparent navbar floats white over the dark hero. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
 - [/history](app/%5Blocale%5D/history/page.tsx) — chunky block (`bg-blue-900` + `text-yellow-400`, `-rotate-1`) on the **left**, `<Doodle shape="banner">` on the **right**. Same position as `/info` but a fresh bg colour + lighter tilt + different doodle so the four chunky pages all read distinctly.
 - [/](app/%5Blocale%5D/page.tsx) (home) — `min-h-dvh` video hero with logo + date stickers, no chunky block at all. Different paradigm because the home is the brand moment.
 
@@ -354,7 +362,7 @@ For new effects, prefer CSS transitions where they suffice; reach for `motion` w
 
 ## Reference implementation: home
 
-The home page at [app/[locale]/page.tsx](app/%5Blocale%5D/page.tsx) is the canonical worked example. Home-internal components live in [app/[locale]/_components/](app/%5Blocale%5D/_components/) (`<DayCard>`, `<HeadlinerCard>`, `<PhotoMarquees>`, `<Countdown>`, `<TickerStrip>`); site-wide primitives (`<Doodle>`, `<PaperTear>`, `<StarBurst>`, `<Sticker>`) live in [components/](components/). Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) and is read via `getTranslations({ namespace: "home" })` (the ticker uses `tHome.raw("ticker") as string[]` for the array). The navbar is always transparent (set in [components/layout.tsx](components/layout.tsx)), so the home's dark video hero lets the white logo float on top.
+The home page at [app/[locale]/page.tsx](app/%5Blocale%5D/page.tsx) is the canonical worked example. Home-internal components live in [app/[locale]/\_components/](app/%5Blocale%5D/_components/) (`<DayCard>`, `<HeadlinerCard>`, `<PhotoMarquees>`, `<Countdown>`, `<TickerStrip>`); site-wide primitives (`<Doodle>`, `<PaperTear>`, `<StarBurst>`, `<Sticker>`) live in [components/](components/). Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) and is read via `getTranslations({ namespace: "home" })` (the ticker uses `tHome.raw("ticker") as string[]` for the array). The navbar is always transparent (set in [components/layout.tsx](components/layout.tsx)), so the home's dark video hero lets the white logo float on top.
 
 When porting another page to this language, mirror the pattern: a server `page.tsx` does data + translations and renders a stack of `relative isolate bg-X` sections separated by `<PaperTear>`s, with `<Doodle>` scatter in the gutters and any interactivity inside `'use client'` subcomponents.
 
