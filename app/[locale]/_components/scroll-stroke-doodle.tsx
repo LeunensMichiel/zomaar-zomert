@@ -37,7 +37,6 @@ const SEGMENTS = POINTS.slice(1).map((p, i) => {
 // Within each segment's scroll slot, the draw happens over this
 // fraction; the remainder is the "hold" pause before the next zig.
 const DRAW_RATIO = 30 / 80;
-const SECTION_FRACTION = 2 / 3;
 
 type SegmentProps = {
   d: string;
@@ -62,6 +61,13 @@ function Segment({
     [length, 0],
     { clamp: true },
   );
+  // Safari/Firefox render the round linecap at dash boundaries even
+  // when the visible stroke length is 0 — leaving a phantom dot at
+  // each segment's start point before its draw window begins.
+  // Gating the whole path with opacity hides the cap too.
+  const opacity = useTransform(dashOffset, (current) =>
+    current >= length - 1 ? 0 : 1,
+  );
   return (
     <motion.path
       d={d}
@@ -73,6 +79,7 @@ function Segment({
       style={{
         strokeDasharray: length,
         strokeDashoffset: reducedMotion ? 0 : dashOffset,
+        opacity: reducedMotion ? 1 : opacity,
       }}
     />
   );
@@ -100,8 +107,7 @@ export function ScrollStrokeDoodle({ className, rotate = 0 }: Props) {
 
   const { scrollY } = useScroll();
 
-  const totalScroll = vh * SECTION_FRACTION;
-  const perSegment = totalScroll / SEGMENTS.length;
+  const perSegment = vh / SEGMENTS.length;
   const drawWindow = perSegment * DRAW_RATIO;
 
   return (
