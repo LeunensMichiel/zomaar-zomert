@@ -421,36 +421,7 @@
   }
 }
 
-/* Menu noisy-gradient blob drift — four organic loops with asymmetric
-   waypoints so motion never repeats in a tight rhythm. Honour
-   reduced-motion below. */
-@keyframes menu-blob-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(90px, 60px, 0) scale(1.12);
-  }
-}
-@keyframes menu-blob-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-65px, 75px, 0) scale(0.92);
-  }
-}
-@keyframes menu-blob-c {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-75px, -50px, 0) scale(1.14);
-  }
-}
+/* Menu background blob drift. Honour reduced-motion below. */
 @keyframes menu-blob-d {
   0%,
   100% {
@@ -460,15 +431,6 @@
     transform: translate3d(75px, -60px, 0) scale(0.88);
   }
 }
-@utility animate-menu-blob-a {
-  animation: menu-blob-a 14s ease-in-out infinite;
-}
-@utility animate-menu-blob-b {
-  animation: menu-blob-b 17s ease-in-out infinite;
-}
-@utility animate-menu-blob-c {
-  animation: menu-blob-c 20s ease-in-out infinite;
-}
 @utility animate-menu-blob-d {
   animation: menu-blob-d 16s ease-in-out infinite;
 }
@@ -477,9 +439,6 @@
   .animate-doodle-spin-slow,
   .animate-doodle-paint-stroke svg path,
   .animate-doodle-paint-stroke-loop svg path,
-  .animate-menu-blob-a,
-  .animate-menu-blob-b,
-  .animate-menu-blob-c,
   .animate-menu-blob-d {
     animation: none !important;
   }

@@ -77,32 +77,26 @@ const panelVariants = {
   exit: {},
 };
 
-// Primary link — fade in, then slide-up + fade on exit (the inverse of
-// the text-reveal entry direction). Index-staggered via `custom`.
-// Entry stagger is tight (0.05s) so the five rows feel like one cascade;
-// exit is ~⅓ faster than entry.
+// Primary link — fade in, then slide-up + fade on exit. Entry kicks
+// off almost immediately (no gating delay) so the text doesn't lag
+// behind the background fade-in.
 const primaryItemVariants = {
   hidden: { opacity: 0, y: 0 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: 0.18 + i * 0.05, ease },
+    transition: { duration: 0.32, delay: 0.04 + i * 0.04, ease },
   }),
   exit: (i: number) => ({
     opacity: 0,
     y: -30,
-    transition: { duration: 0.22, delay: i * 0.03, ease: exitEase },
+    transition: { duration: 0.24, delay: i * 0.025, ease: exitEase },
   }),
 };
 
-// Secondary leaves animate in *waves* rather than single-file: paired
-// sibling links land together, the three socials follow as one beat,
-// locale + date stamp share the closing beat. Same logic on exit so
-// multiple sections compress into the same fade window.
-//
 //                      [link1, link2, soc1, soc2, soc3, locale, stamp]
-const SECONDARY_VISIBLE = [0.42, 0.42, 0.5, 0.52, 0.54, 0.6, 0.6];
-const SECONDARY_EXIT = [0.12, 0.12, 0.14, 0.15, 0.16, 0.18, 0.18];
+const SECONDARY_VISIBLE = [0.22, 0.22, 0.28, 0.3, 0.32, 0.36, 0.36];
+const SECONDARY_EXIT = [0.06, 0.06, 0.08, 0.09, 0.1, 0.12, 0.12];
 
 const secondaryItemVariants = {
   hidden: { opacity: 0 },

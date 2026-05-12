@@ -12,7 +12,7 @@ export function Layout({ children, footer }: Props) {
         starBurst={
           <Doodle
             shape="star-burst"
-            color="radial-red"
+            color="linear-sunset"
             className="h-full w-full"
           />
         }

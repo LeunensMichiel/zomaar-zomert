@@ -5,7 +5,7 @@ import { type Locale, routing } from "@lib/i18n/routing";
 import { cn } from "@lib/utils";
 import { motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
-import { useTransition } from "react";
+import { useId, useTransition } from "react";
 
 const LANG_CODES: Record<Locale, string> = {
   nl: "NL",
@@ -33,6 +33,10 @@ export function LocaleSwitcher({ className }: Props) {
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("common");
+  // Per-instance scope so the navbar + footer switchers don't share
+  // the same shared-layout bar (which would otherwise fly between
+  // their two positions on mount).
+  const barId = useId();
 
   const handleSelect = (next: Locale) => {
     if (next === lang || isPending) return;
@@ -70,7 +74,7 @@ export function LocaleSwitcher({ className }: Props) {
             {LANG_CODES[lng]}
             {isActive && (
               <motion.span
-                layoutId="locale-bar"
+                layoutId={`locale-bar-${barId}`}
                 aria-hidden="true"
                 className="absolute inset-x-1 -bottom-0.5 h-px bg-yellow-400"
                 transition={{ type: "spring", duration: 0.45, bounce: 0.25 }}
