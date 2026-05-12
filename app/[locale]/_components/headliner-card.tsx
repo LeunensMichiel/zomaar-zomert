@@ -60,7 +60,7 @@ export function HeadlinerCard({
       )}
       style={style}
     >
-      <div className='before:halftone relative aspect-4/5 overflow-hidden border-b-2 border-gray-900 before:absolute before:inset-0 before:z-10 before:opacity-70 before:mix-blend-multiply before:content-[""]'>
+      <div className="relative aspect-4/5 overflow-hidden border-b-2 border-gray-900">
         <Image
           src={imgSrc}
           alt={name}

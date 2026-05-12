@@ -132,6 +132,9 @@ export function Doodle({
       <svg
         aria-hidden="true"
         viewBox="0 0 100 100"
+        width="100"
+        height="100"
+        preserveAspectRatio="xMidYMid meet"
         className={cn("pointer-events-none z-10 block select-none", className)}
         style={{ transform, ...style }}
       >
@@ -156,11 +159,19 @@ export function Doodle({
     .filter(Boolean)
     .join("");
   const inner = defs ? `<defs>${defs}</defs>${asset.inner}` : asset.inner;
+  // Safari collapses the SVG to 0 width when the parent is absolutely
+  // positioned with only height set and the SVG has no intrinsic
+  // dimensions. Emitting width/height attrs from the viewBox gives it
+  // an explicit aspect ratio so `h-full w-full` resolves correctly.
+  const [, , vbW, vbH] = asset.viewBox.split(/\s+/).map(Number);
 
   return (
     <svg
       aria-hidden="true"
       viewBox={asset.viewBox}
+      width={vbW}
+      height={vbH}
+      preserveAspectRatio="xMidYMid meet"
       className={cn("pointer-events-none z-10 block select-none", className)}
       style={
         {

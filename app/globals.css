@@ -288,29 +288,15 @@
 /* ---------- Redesign primitives ---------- */
 
 /* Halftone dot overlay — drop on top of imagery for the collage feel.
-   Two layered radial gradients sized 4px give a tight risograph dot. */
+   Inline SVG tile: the browser decodes once and caches as a real texture,
+   so the compositor doesn't recompute gradient pixels per frame on
+   animated/transformed layers (Safari was very unhappy with the previous
+   layered radial-gradients). Looks correct with or without
+   `mix-blend-multiply` — for static section backgrounds, multiply still
+   sells the print feel; for cards whose image hover-scales, drop it. */
 @utility halftone {
-  background-image:
-    radial-gradient(rgba(255, 255, 255, 0.2) 1px, rgba(0, 0, 0, 0.18) 1px),
-    radial-gradient(rgba(255, 255, 255, 0.1) 1px, rgba(0, 0, 0, 0.1) 1px);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><circle cx='1' cy='1' r='0.7' fill='rgba(0,0,0,0.5)'/><circle cx='3' cy='3' r='0.7' fill='rgba(0,0,0,0.3)'/></svg>");
   background-size: 4px 4px;
-  background-position:
-    0 0,
-    2px 2px;
-}
-@utility halftone-soft {
-  background-image:
-    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1.2px),
-    radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1.2px);
-  background-size: 6px 6px;
-  background-position:
-    0 0,
-    3px 3px;
-}
-@utility halftone-dense {
-  background-image: radial-gradient(currentColor 1.4px, transparent 1.6px);
-  background-size: 8px 8px;
-  background-position: 0 0;
 }
 
 /* Hard offset shadow used for sticker-style buttons & cards.

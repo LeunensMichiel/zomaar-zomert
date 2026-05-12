@@ -249,7 +249,7 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
               <Logo className="h-9 w-auto md:h-11 lg:h-12" />
             </motion.div>
 
-            <div className="relative">
+            <div className="relative isolate">
               <motion.div
                 aria-hidden="true"
                 initial={false}
@@ -258,7 +258,7 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
                   scale: scrolled && !open ? 1 : 0.92,
                 }}
                 transition={{ duration: 0.25, ease }}
-                className="absolute inset-0 -z-10 overflow-hidden rounded-full border border-white/15 bg-gray-900/20 backdrop-blur-md"
+                className="pointer-events-none absolute inset-0 overflow-hidden rounded-full border border-white/15 bg-gray-900/20 backdrop-blur-md"
               >
                 <div className="from-brand-900/20 absolute inset-0 bg-linear-to-br via-transparent to-blue-900/25" />
                 <svg
@@ -285,7 +285,13 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
                 </svg>
               </motion.div>
               <BaseDialog.Trigger
-                render={<MenuToggle open={open} aria-label={t("aria.menu")} />}
+                render={
+                  <MenuToggle
+                    open={open}
+                    aria-label={t("aria.menu")}
+                    className="relative z-10"
+                  />
+                }
               />
             </div>
           </div>

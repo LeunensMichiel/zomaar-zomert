@@ -139,6 +139,9 @@ export function ScrollStrokeDoodle({ className, rotate = 0 }: Props) {
     <div className={cn(className)}>
       <svg
         viewBox="0 0 435.309 319.496"
+        width="435.309"
+        height="319.496"
+        preserveAspectRatio="xMidYMid meet"
         fill="none"
         aria-hidden="true"
         className="h-full w-full"

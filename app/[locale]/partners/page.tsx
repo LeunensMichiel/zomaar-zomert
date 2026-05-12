@@ -53,7 +53,7 @@ export default async function PartnersPage({ params }: Props) {
           color="royal-yellow"
           accent="summer-red"
           rotate={-12}
-          className="pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
+          className="pointer-events-none absolute -bottom-12 -left-12 hidden aspect-square h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
         />
         <Doodle
           shape="plus"

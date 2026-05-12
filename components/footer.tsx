@@ -5,7 +5,6 @@ import { Youtube } from "@components/icons/youtube";
 import { LocaleSwitcher } from "@components/locale-switcher";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
-import { GradientDots } from "@components/ui/gradient-dots";
 import {
   loadLeadPartners,
   loadSupportPartners,
@@ -175,13 +174,6 @@ export async function Footer() {
     <>
       <div className="relative isolate flex items-center justify-center overflow-hidden">
         <div className='relative z-[1] w-full bg-[url("/assets/footer.webp")] bg-cover bg-[50%_70%] px-6 py-32 before:absolute before:inset-0 before:-z-[1] before:bg-black/55 before:content-[""] xl:py-60'>
-          <GradientDots
-            className="mix-blend-hard-light filter-[brightness(1.25)_saturate(1.55)_drop-shadow(0_0_1.5px_rgba(255,255,255,0.55))]"
-            dotSize={2}
-            spacing={6}
-            duration={20}
-            colors={["#ffb600", "#ff8faa", "#193d6b", "#fee198"]}
-          />
           <div className="relative z-10 mx-auto flex max-w-md flex-col items-center gap-6">
             <Sticker color="yellow" size="md" rotate={-4}>
               {t("footer.social.eyebrow")}

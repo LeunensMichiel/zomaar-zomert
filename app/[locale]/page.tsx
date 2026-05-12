@@ -3,7 +3,6 @@ import { Triangle } from "@components/icons/triangle";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
-import { GradientDots } from "@components/ui/gradient-dots";
 import { Logo } from "@components/ui/logo";
 import { loadVisibleArtists } from "@lib/data/artists";
 import { loadFeaturedPartnerLogos } from "@lib/data/partners";
@@ -121,7 +120,7 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <div className="animate-doodle-spin-slow pointer-events-none absolute -top-40 -left-40 z-0 h-80 will-change-transform md:-top-100 md:-left-100 md:h-200 lg:-top-125 lg:-left-125 lg:h-250">
+        <div className="animate-doodle-spin-slow pointer-events-none absolute -top-40 -left-40 z-0 aspect-square h-80 will-change-transform md:-top-100 md:-left-100 md:h-200 lg:-top-125 lg:-left-125 lg:h-250">
           <Doodle
             shape="sun-rays"
             color="royal-yellow"
@@ -132,25 +131,9 @@ export default async function RedesignHome({ params }: Props) {
         </div>
         <ScrollStrokeDoodle
           rotate={12}
-          className="pointer-events-none absolute -right-35 -bottom-20 z-0 h-60 md:-right-45 md:-bottom-30 md:h-120"
+          className="pointer-events-none absolute -right-35 -bottom-20 z-0 aspect-435/319 h-60 md:-right-45 md:-bottom-30 md:h-120"
         />
-        <GradientDots
-          className="-z-10 mix-blend-hard-light filter-[brightness(1.25)_saturate(1.55)_drop-shadow(0_0_1.5px_rgba(255,255,255,0.55))]"
-          dotSize={2}
-          spacing={6}
-          colors={["#ffb600", "#ff8faa", "#193d6b", "#fee198"]}
-        />
-        {/* Soft centred vignette — sits between the LEDs and the
-            content so the logo + location strip read on a darker
-            "spotlight" while the LEDs keep glowing at the edges. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-[-5]"
-          style={{
-            background:
-              "radial-gradient(ellipse 65% 45% at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
-          }}
-        />
+
         {/* Logo + date — vertically centered. The marquee sits flush at
             the bottom (no extra reserved padding needed). */}
         <div className="container-wide relative flex flex-1 flex-col items-center justify-center pt-24 pb-12 md:pt-28 md:pb-16">

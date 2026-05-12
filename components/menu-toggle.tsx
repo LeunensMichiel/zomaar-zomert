@@ -7,6 +7,12 @@ type MenuToggleProps = {
   open?: boolean;
 } & HTMLMotionProps<"button">;
 
+const TOP_CLOSED = "M3 12 L21 12";
+const TOP_OPEN = "M6 6 L18 18";
+const MIDDLE = "M3 6 L21 6";
+const BOTTOM_CLOSED = "M3 18 L21 18";
+const BOTTOM_OPEN = "M6 18 L18 6";
+
 export function MenuToggle({ open, className, ...props }: MenuToggleProps) {
   return (
     <motion.button
@@ -21,36 +27,24 @@ export function MenuToggle({ open, className, ...props }: MenuToggleProps) {
       {...props}
     >
       <svg
-        width="24"
-        height="24"
         viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
         className="h-9 w-9 md:h-11 md:w-11 lg:h-12 lg:w-12"
       >
         <motion.path
-          variants={{
-            closed: { d: "M3 12, L21 12" },
-            open: { d: "M6 6, L18 18" },
-          }}
-          fill="transparent"
-          strokeWidth="2"
-          stroke="currentColor"
+          d={TOP_CLOSED}
+          variants={{ closed: { d: TOP_CLOSED }, open: { d: TOP_OPEN } }}
         />
         <motion.path
-          d="M3 6, L21 6"
+          d={MIDDLE}
           variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }}
           transition={{ duration: 0.1 }}
-          fill="transparent"
-          strokeWidth="2"
-          stroke="currentColor"
         />
         <motion.path
-          variants={{
-            closed: { d: "M3 18, L21 18" },
-            open: { d: "M6 18, L18 6" },
-          }}
-          fill="transparent"
-          strokeWidth="2"
-          stroke="currentColor"
+          d={BOTTOM_CLOSED}
+          variants={{ closed: { d: BOTTOM_CLOSED }, open: { d: BOTTOM_OPEN } }}
         />
       </svg>
     </motion.button>

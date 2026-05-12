@@ -55,7 +55,6 @@ export function DayCard({ date, image, index, locale, ctaLabel }: Props) {
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover object-center transition-transform group-hover:scale-[1.04]"
         />
-        <div className='halftone absolute inset-0 z-10 opacity-50 mix-blend-multiply content-[""]' />
         <div className="absolute top-4 left-4 z-20">
           <Sticker color={tone.sticker} size="lg" rotate={-8}>
             {String(index + 1).padStart(2, "0")}

@@ -27,11 +27,14 @@ const tiltCycle = [-1.5, 1.2, -0.8, 0.9, -1.2, 1.5];
 // from these four corners in sequence — bottom-left, top-right,
 // bottom-right, top-left — so the deal looks like a dealer slinging
 // cards across a table rather than all coming from one direction.
+// Distances are intentionally small: a smaller travel area means a
+// smaller per-frame "dirty rectangle" for the compositor to repaint,
+// which is the main Safari frame-budget cost during the entrance.
 const DEAL_ORIGINS = [
-  { x: -340, y: 240 },
-  { x: 340, y: -260 },
-  { x: 340, y: 240 },
-  { x: -340, y: -260 },
+  { x: -160, y: 120 },
+  { x: 160, y: -130 },
+  { x: 160, y: 120 },
+  { x: -160, y: -130 },
 ] as const;
 
 const dayFromDate = (date: string): "friday" | "saturday" | "sunday" => {
@@ -362,10 +365,6 @@ function DaySection({
             key={`${artist.name}-${artist.showFrom}`}
             custom={i}
             variants={itemVariants}
-            style={{
-              transformOrigin: "center center",
-              transformStyle: "preserve-3d",
-            }}
           >
             <LineUpArtistCard
               artist={artist}
