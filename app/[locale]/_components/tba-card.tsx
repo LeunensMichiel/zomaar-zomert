@@ -2,8 +2,15 @@
 
 import { Sticker } from "@components/sticker";
 import { cn } from "@lib/utils";
-import { motion } from "motion/react";
+import {
+  motion,
+  type MotionValue,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import Image from "next/image";
+import { useRef } from "react";
 
 type Tone = "blue" | "brand" | "pink" | "yellow";
 
@@ -56,14 +63,27 @@ const cardFrame =
  * lift — signals "stirs but not clickable".
  */
 export function TBACard({ tone, tilt = 0, tbaLabel, size = "md" }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const scrollRotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? [0, 0] : [-16, 16],
+  );
+
   return (
     <motion.div
+      ref={ref}
       className={cn(cardFrame, toneClass[tone])}
       initial={{ rotate: tilt, scale: 1 }}
       whileHover={{ rotate: tilt + 1, scale: 1.015 }}
       transition={{ type: "spring", duration: 0.4, bounce: 0.2 }}
     >
-      <CardBack label={tbaLabel} />
+      <CardBack label={tbaLabel} scrollRotate={scrollRotate} />
       <div
         className={cn(
           "flex flex-1 items-center justify-between gap-2",
@@ -89,10 +109,19 @@ export function TBACard({ tone, tilt = 0, tbaLabel, size = "md" }: Props) {
   );
 }
 
-function CardBack({ label }: { label: string }) {
+function CardBack({
+  label,
+  scrollRotate,
+}: {
+  label: string;
+  scrollRotate: MotionValue<number>;
+}) {
   return (
     <div className='relative aspect-4/5 overflow-hidden border-b-2 border-gray-900 before:absolute before:inset-0 before:z-10 before:opacity-50 before:content-[""]'>
-      <div className="absolute inset-0 flex items-center justify-center">
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ rotate: scrollRotate }}
+      >
         <Image
           src="/assets/doodles/star-burst.svg"
           alt=""
@@ -101,7 +130,7 @@ function CardBack({ label }: { label: string }) {
           aria-hidden="true"
           className="h-[85%] w-auto -rotate-12 transition-transform duration-700 ease-out group-hover:rotate-[8deg]"
         />
-      </div>
+      </motion.div>
       <PlusMark className="absolute top-3 left-3 z-20" />
       <PlusMark className="absolute top-3 right-3 z-20" />
       <PlusMark className="absolute bottom-3 left-3 z-20" />
