@@ -4,6 +4,7 @@ export type TearColor =
   | "pink-50"
   | "pink-300"
   | "brand-500"
+  | "brand-900"
   | "blue-500"
   | "blue-900"
   | "yellow-400"

@@ -38,24 +38,25 @@ export default async function InfoPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "info" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
   const signupDisabled = !isSignupOpen();
 
   return (
     <>
-      <section className="bg-brand-500 relative">
+      <section className="bg-brand-500 relative overflow-hidden">
+        <Doodle
+          shape="asterisk"
+          color="royal-yellow"
+          className="animate-doodle-spin-slow pointer-events-none absolute -top-8 -right-12 z-10 h-40 md:-top-12 md:-right-16 md:h-56 lg:h-72"
+        />
         <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
-            <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 self-start bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+          <div className="flex flex-col items-start gap-4">
+            <Sticker color="yellow" size="sm" rotate={-3}>
+              {tCommon("links.info")}
+            </Sticker>
+            <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
               {t("hero.title")}
             </h1>
-            <div className="self-end">
-              <Doodle
-                shape="star"
-                color="dimmed-led"
-                rotate={-8}
-                className="h-24 md:h-28 lg:h-36"
-              />
-            </div>
           </div>
         </div>
         <PaperTear edge="bottom" tear={6} color="pink-50" />

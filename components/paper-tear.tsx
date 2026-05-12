@@ -11,6 +11,7 @@ const colorHex: Record<TearColor, string> = {
   "pink-50": "#fff1f7",
   "pink-300": "#ff9bb6",
   "brand-500": "#de350b",
+  "brand-900": "#591404",
   "blue-500": "#3b84db",
   "blue-900": "#193d6b",
   "yellow-400": "#ffb600",

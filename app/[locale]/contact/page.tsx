@@ -30,23 +30,31 @@ export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "contact" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
 
   return (
     <>
-      <section className="bg-brand-500 relative">
+      <section className="bg-brand-500 relative overflow-hidden">
+        <Doodle
+          shape="stripes"
+          color="royal-yellow"
+          rotate={-8}
+          className="absolute top-3 z-2 h-auto w-140 lg:w-250"
+        />
         <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
-            <div className="order-2 self-start md:order-1">
-              <Doodle
-                shape="stripes"
-                color="dimmed-led"
-                rotate={-8}
-                className="absolute top-3 z-2 h-auto w-140 lg:w-250"
-              />
-            </div>
-            <h1 className="font-display shadow-sticker-lg z-5 order-1 inline-block rotate-2 self-end bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:order-2 md:px-7 md:py-3 md:text-7xl xl:text-8xl">
-              {t("hero.title")}
-            </h1>
+          {/* The email replaces the page-name headline. The page's
+              purpose IS the email; the small eyebrow keeps the wayfinding. */}
+          <div className="flex flex-col items-end gap-3">
+            <Sticker color="yellow" size="sm" rotate={-3}>
+              {tCommon("links.contact")}
+            </Sticker>
+            <a
+              href={`mailto:${EMAIL}`}
+              aria-label={t("hero.title")}
+              className="font-display shadow-sticker-lg z-5 inline-block rotate-2 bg-gray-900 px-5 py-2 text-3xl leading-[0.9] font-bold tracking-tight text-yellow-400 lowercase transition-transform hover:-translate-y-1 hover:rotate-0 hover:text-yellow-300 focus-visible:-translate-y-1 focus-visible:rotate-0 focus-visible:text-yellow-300 focus-visible:outline-none md:px-7 md:py-3 md:text-5xl xl:text-6xl"
+            >
+              {EMAIL}
+            </a>
           </div>
         </div>
         <PaperTear edge="bottom" tear={7} color="pink-50" />
@@ -56,6 +64,7 @@ export default async function ContactPage({ params }: Props) {
         <Doodle
           shape="flame"
           rotate={12}
+          color="radial-red"
           className="absolute -bottom-10 -left-8 hidden h-24 md:-bottom-12 md:-left-12 md:block md:h-44 lg:h-64"
         />
         <div className="container-wide relative z-20 pt-12 pb-12 md:pt-16 md:pb-16">

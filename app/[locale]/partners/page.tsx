@@ -47,13 +47,12 @@ export default async function PartnersPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-brand-500 relative">
+      <section className="bg-brand-900 relative overflow-hidden">
         <Doodle
           shape="sun-rays"
           color="royal-yellow"
           accent="summer-red"
-          rotate={-12}
-          className="pointer-events-none absolute -bottom-12 -left-12 hidden aspect-square h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
+          className="animate-doodle-spin-slow pointer-events-none absolute -top-32 -left-32 aspect-square h-80 sm:-top-40 sm:-left-40 sm:h-110 md:-top-48 md:-left-48 md:h-140 lg:-top-56 lg:-left-56 lg:h-180"
         />
         <Doodle
           shape="plus"
@@ -62,17 +61,8 @@ export default async function PartnersPage({ params }: Props) {
           className="pointer-events-none absolute top-32 right-6 hidden h-10 md:right-12 md:block md:h-12"
         />
         <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
-            <div className="order-2 self-start md:order-1">
-              <Doodle
-                shape="cross"
-                color="dimmed-led"
-                accent="tardis-blue"
-                rotate={-4}
-                className="h-12 md:h-16 lg:h-20"
-              />
-            </div>
-            <h1 className="font-display shadow-sticker-lg order-1 inline-block -rotate-2 self-end bg-yellow-400 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:order-2 md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+          <div className="flex justify-end">
+            <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-yellow-400 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
               {t("hero.title")}
             </h1>
           </div>
@@ -82,8 +72,8 @@ export default async function PartnersPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="bg-80s-gum relative text-pink-50">
-        <PaperTear edge="top" tear={6} color="brand-500" />
+      <section className="bg-brand-500 relative text-pink-50">
+        <PaperTear edge="top" tear={6} color="brand-900" />
         <Doodle
           shape="cocktail"
           color="linear-sunset"
@@ -198,7 +188,7 @@ function LeadPartnerCard({
         target: "_blank",
         rel: "noreferrer noopener",
       })}
-      className="shadow-sticker-lg relative flex aspect-4/3 items-center justify-center border-2 border-gray-900 bg-blue-500 p-8 transition-transform hover:-translate-y-1 hover:rotate-0 md:p-10"
+      className="shadow-sticker-lg relative flex aspect-4/3 items-center justify-center border-2 border-gray-900 bg-gray-900 p-8 transition-transform hover:-translate-y-1 hover:rotate-0 md:p-10"
       style={{ transform: `rotate(${String(tilt)}deg)` }}
     >
       <div

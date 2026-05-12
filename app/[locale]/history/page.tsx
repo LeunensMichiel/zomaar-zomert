@@ -45,25 +45,22 @@ export default async function HistoryPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative bg-blue-900">
+      <section className="relative overflow-hidden bg-blue-900">
         <Doodle
           shape="coil"
-          rotate={-12}
-          className="pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
+          className="animate-doodle-spin-slow pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
+        />
+        <Doodle
+          shape="zzz"
+          color="linear-sunset"
+          rotate={-8}
+          className="pointer-events-none absolute -top-6 -right-10 z-10 h-28 md:-top-8 md:-right-14 md:h-40 lg:h-48"
         />
         <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
-            <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 self-start bg-pink-300 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+          <div className="flex flex-col items-start">
+            <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 bg-pink-300 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
               {t("hero.title")}
             </h1>
-            <div className="self-end">
-              <Doodle
-                shape="zz"
-                color="summer-red"
-                rotate={6}
-                className="h-20 md:h-28 lg:h-32"
-              />
-            </div>
           </div>
           <p className="mt-6 max-w-2xl text-base text-pink-50 md:mt-10 md:text-lg">
             {t("hero.intro")}
