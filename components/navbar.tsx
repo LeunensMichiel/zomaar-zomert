@@ -69,14 +69,6 @@ const SOCIAL_LINKS = [
 const ease = [0.22, 0.61, 0.36, 1] as const;
 const exitEase = [0.4, 0, 1, 1] as const;
 
-// Whole panel fades as one surface — the background layers inside are
-// static, so there's no race between independently-animated children.
-const panelVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.35, ease } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: exitEase } },
-};
-
 // Primary link — fade in, then slide-up + fade on exit. Entry kicks
 // off almost immediately (no gating delay) so the text doesn't lag
 // behind the background fade-in.
@@ -300,134 +292,149 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
         </div>
       </header>
 
-      <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="fixed inset-0 z-40 bg-black/0" />
-        <BaseDialog.Popup className="fixed inset-0 z-40 outline-none data-closed:pointer-events-none data-closed:animate-[dialog-stay-mounted_600ms]">
-          <BaseDialog.Title className="sr-only">
-            {t("aria.menu")}
-          </BaseDialog.Title>
-
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                key="panel"
-                variants={panelVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="absolute inset-0 overflow-hidden"
-              >
-                {/* Background layers — each fades in/out via parent variants. */}
-                <MenuBackground starBurst={starBurst} />
-
-                {/* Content */}
-                <div
-                  className="container-wide relative z-10 flex h-full flex-col overflow-y-auto pt-24 pb-6 sm:pt-28 md:pt-32 md:pb-10"
-                  style={{
-                    paddingTop:
-                      "max(6rem, calc(6rem + env(safe-area-inset-top)))",
-                    paddingBottom:
-                      "max(1.5rem, calc(1.5rem + env(safe-area-inset-bottom)))",
+      <AnimatePresence>
+        {open && (
+          <BaseDialog.Portal keepMounted>
+            <BaseDialog.Backdrop className="fixed inset-0 z-40 bg-black/0" />
+            <BaseDialog.Popup
+              className="fixed inset-0 z-40 overflow-hidden outline-none"
+              render={
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    transition: { duration: 0.35, ease },
                   }}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.3, ease: exitEase },
+                  }}
+                />
+              }
+            >
+              <BaseDialog.Title className="sr-only">
+                {t("aria.menu")}
+              </BaseDialog.Title>
+
+              <MenuBackground starBurst={starBurst} />
+
+              <div
+                className="container-wide relative z-10 flex h-full flex-col overflow-y-auto pt-24 pb-6 sm:pt-28 md:pt-32 md:pb-10"
+                style={{
+                  paddingTop:
+                    "max(6rem, calc(6rem + env(safe-area-inset-top)))",
+                  paddingBottom:
+                    "max(1.5rem, calc(1.5rem + env(safe-area-inset-bottom)))",
+                }}
+              >
+                <ul
+                  className="flex flex-col items-start gap-0 sm:gap-1 md:gap-0.5"
+                  role="menu"
                 >
-                  {/* Primary nav — fade-in stagger, slide-up + fade on exit. */}
-                  <ul
-                    className="flex flex-col items-start gap-0 sm:gap-1 md:gap-0.5"
-                    role="menu"
-                  >
-                    {PRIMARY_LINKS.map((l, i) => (
-                      <motion.li
-                        key={l.key}
-                        variants={primaryItemVariants}
-                        custom={i}
-                        className="block"
-                      >
-                        <NavLink
-                          href={l.href}
-                          label={t(`links.${l.key}`)}
-                          onNavigate={close}
-                        />
-                      </motion.li>
-                    ))}
-                  </ul>
+                  {PRIMARY_LINKS.map((l, i) => (
+                    <motion.li
+                      key={l.key}
+                      variants={primaryItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      custom={i}
+                      className="block"
+                    >
+                      <NavLink
+                        href={l.href}
+                        label={t(`links.${l.key}`)}
+                        onNavigate={close}
+                      />
+                    </motion.li>
+                  ))}
+                </ul>
 
-                  {/* Secondary band — every leaf fades on its own delayed beat. */}
-                  <div className="mt-auto pt-6 sm:pt-10">
-                    <div className="border-t border-white/25 pt-4 sm:pt-6 md:pt-8">
-                      <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
-                        {/* Secondary links */}
-                        <ul className="flex flex-col gap-2 sm:gap-2.5">
-                          {SECONDARY_LINKS.map((l, i) => (
-                            <motion.li
-                              key={l.key}
-                              variants={secondaryItemVariants}
-                              custom={i}
-                            >
-                              <Link
-                                href={l.href}
-                                onClick={close}
-                                className="font-display group inline-flex items-center gap-3 text-xs font-bold tracking-wider text-white/70 uppercase transition-colors hover:text-white sm:text-sm md:text-base"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  className="block h-px w-5 bg-current transition-all duration-300 group-hover:w-9"
-                                />
-                                {t(`links.${l.key}`)}
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </ul>
-
-                        {/* Right cluster — socials + locale. */}
-                        <div className="flex flex-col items-start gap-4 sm:items-end">
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            {SOCIAL_LINKS.map(({ href, label, Icon }, i) => (
-                              <motion.a
-                                key={label}
-                                href={href}
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label={label}
-                                variants={secondaryItemVariants}
-                                custom={2 + i}
-                                className={cn(
-                                  "group relative inline-flex items-center justify-center border-2 border-white/40 bg-white/5 text-white outline-none",
-                                  "h-9 w-9 sm:h-10 sm:w-10",
-                                  "transition-all duration-200 ease-out",
-                                  "hover:-translate-y-0.5 hover:rotate-3 hover:border-yellow-300 hover:bg-yellow-300 hover:text-gray-900",
-                                  "focus-visible:-translate-y-0.5 focus-visible:border-yellow-300 focus-visible:bg-yellow-300 focus-visible:text-gray-900",
-                                )}
-                              >
-                                <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-                              </motion.a>
-                            ))}
-                          </div>
-                          <motion.div
+                <div className="mt-auto pt-6 sm:pt-10">
+                  <div className="border-t border-white/25 pt-4 sm:pt-6 md:pt-8">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
+                      <ul className="flex flex-col gap-2 sm:gap-2.5">
+                        {SECONDARY_LINKS.map((l, i) => (
+                          <motion.li
+                            key={l.key}
                             variants={secondaryItemVariants}
-                            custom={5}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            custom={i}
                           >
-                            <LocaleSwitcher className="text-white" />
-                          </motion.div>
-                        </div>
-                      </div>
+                            <Link
+                              href={l.href}
+                              onClick={close}
+                              className="font-display group inline-flex items-center gap-3 text-xs font-bold tracking-wider text-white/70 uppercase transition-colors hover:text-white sm:text-sm md:text-base"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className="block h-px w-5 bg-current transition-all duration-300 group-hover:w-9"
+                              />
+                              {t(`links.${l.key}`)}
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
 
-                      <motion.div
-                        variants={secondaryItemVariants}
-                        custom={6}
-                        className="mt-5 flex justify-center sm:mt-8 sm:justify-end"
-                      >
-                        <Sticker color="ink" size="sm" rotate={-2}>
-                          {formatDateStamp()}
-                        </Sticker>
-                      </motion.div>
+                      <div className="flex flex-col items-start gap-4 sm:items-end">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          {SOCIAL_LINKS.map(({ href, label, Icon }, i) => (
+                            <motion.a
+                              key={label}
+                              href={href}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={label}
+                              variants={secondaryItemVariants}
+                              initial="hidden"
+                              animate="visible"
+                              exit="exit"
+                              custom={2 + i}
+                              className={cn(
+                                "group relative inline-flex items-center justify-center border-2 border-white/40 bg-white/5 text-white outline-none",
+                                "h-9 w-9 sm:h-10 sm:w-10",
+                                "transition-[transform,background-color,border-color,color] duration-200 ease-out",
+                                "hover:-translate-y-0.5 hover:rotate-3 hover:border-yellow-300 hover:bg-yellow-300 hover:text-gray-900",
+                                "focus-visible:-translate-y-0.5 focus-visible:border-yellow-300 focus-visible:bg-yellow-300 focus-visible:text-gray-900",
+                              )}
+                            >
+                              <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
+                            </motion.a>
+                          ))}
+                        </div>
+                        <motion.div
+                          variants={secondaryItemVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="exit"
+                          custom={5}
+                        >
+                          <LocaleSwitcher className="text-white" />
+                        </motion.div>
+                      </div>
                     </div>
+
+                    <motion.div
+                      variants={secondaryItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      custom={6}
+                      className="mt-5 flex justify-center sm:mt-8 sm:justify-end"
+                    >
+                      <Sticker color="ink" size="sm" rotate={-2}>
+                        {formatDateStamp()}
+                      </Sticker>
+                    </motion.div>
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </BaseDialog.Popup>
-      </BaseDialog.Portal>
+              </div>
+            </BaseDialog.Popup>
+          </BaseDialog.Portal>
+        )}
+      </AnimatePresence>
     </BaseDialog.Root>
   );
 }

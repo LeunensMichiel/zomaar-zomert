@@ -334,25 +334,6 @@
   box-shadow: var(--sticker-x) var(--sticker-y) 0 0 var(--sticker-color);
 }
 
-/*
- * Keep Base UI's `Dialog.Popup` mounted for the duration of our motion-driven
- * close animation. The portal no longer uses `keepMounted`, so Base UI tears
- * the whole dialog subtree down once it stops detecting animations on the
- * popup — but our exit animations live on inner `motion.div`s, not on the
- * popup itself, so `element.getAnimations()` would otherwise report zero and
- * unmount instantly. This no-op CSS animation gives the popup a real
- * Web-Animations-API entry to wait for, so the AnimatePresence exit can
- * finish before Base UI unmounts the portal and the heavy menu content is
- * fully removed from the DOM. Keep the duration ≥ the longest inner exit
- * (currently ~0.50s — background grain at delay 0.22 + duration 0.28).
- */
-@keyframes dialog-stay-mounted {
-  from,
-  to {
-    opacity: 1;
-  }
-}
-
 /* ─── Zomaar Zomert gradients ───────────────────────────────────────
    Four named gradient styles from the Figma file. Use with mask-image
    to paint doodles, or as section-level fills (countdown panel, etc.).
