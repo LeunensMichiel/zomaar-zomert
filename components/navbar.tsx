@@ -69,12 +69,12 @@ const SOCIAL_LINKS = [
 const ease = [0.22, 0.61, 0.36, 1] as const;
 const exitEase = [0.4, 0, 1, 1] as const;
 
-// Panel parent — exists only to host the variant context so children can
-// resolve `hidden / visible / exit` independently. No animation of its own.
+// Whole panel fades as one surface — the background layers inside are
+// static, so there's no race between independently-animated children.
 const panelVariants = {
-  hidden: {},
-  visible: {},
-  exit: {},
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.35, ease } },
+  exit: { opacity: 0, transition: { duration: 0.3, ease: exitEase } },
 };
 
 // Primary link — fade in, then slide-up + fade on exit. Entry kicks
