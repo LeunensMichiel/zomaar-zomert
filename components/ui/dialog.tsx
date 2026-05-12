@@ -3,6 +3,7 @@
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { cn } from "@lib/utils";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { type ComponentProps, type ReactNode } from "react";
 
 export const Dialog = BaseDialog.Root;
@@ -38,6 +39,7 @@ export function DialogContent({
   closeClassName,
   ...props
 }: DialogContentProps) {
+  const t = useTranslations("common");
   return (
     <BaseDialog.Portal>
       <DialogOverlay />
@@ -54,7 +56,7 @@ export function DialogContent({
         {children}
         {!hideClose && (
           <BaseDialog.Close
-            aria-label="Close"
+            aria-label={t("aria.close")}
             className={cn(
               "hover:text-brand-500 absolute top-2 right-2 z-10 inline-flex h-12 w-12 cursor-pointer items-center justify-center text-gray-900 transition-colors",
               closeClassName,

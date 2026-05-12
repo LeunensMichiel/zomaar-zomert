@@ -1,12 +1,12 @@
 import { Doodle } from "@components/doodle";
-import { Triangle } from "@components/icons/Triangle";
+import { Triangle } from "@components/icons/triangle";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { GradientDots } from "@components/ui/gradient-dots";
 import { Logo } from "@components/ui/logo";
-import artistsData from "@lib/data/artists.json";
-import partnersData from "@lib/data/partners.json";
+import { loadVisibleArtists } from "@lib/data/artists";
+import { loadFeaturedPartnerLogos } from "@lib/data/partners";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
@@ -34,6 +34,8 @@ import { ScrollStrokeDoodle } from "./_components/scroll-stroke-doodle";
 import { TickerStrip } from "./_components/ticker-strip";
 
 type Props = { params: Promise<{ locale: Locale }> };
+
+export const revalidate = 3600;
 
 type Headliner = {
   name: string;
@@ -74,26 +76,12 @@ export default async function RedesignHome({ params }: Props) {
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const signupDisabled = !isSignupOpen();
 
-  // Mirror the line-up page's TBA logic: only show artists whose `showFrom`
-  // date has passed and that belong to this edition, then pad to 3 with TBA
-  // placeholder cards so the row is always visually complete.
-
-  // Server components re-execute per request, so reading the clock at render
-  // is safe — react-hooks/purity targets re-rendering client components.
-  // eslint-disable-next-line react-hooks/purity
-  const today = Date.now();
-
-  const visibleHeadliners: Headliner[] = artistsData
-    .filter(
-      (a) =>
-        new Date(a.showFrom).getTime() <= today &&
-        new Date(a.showFrom).getFullYear() >= ZZ_YEAR,
-    )
+  const visibleHeadliners: Headliner[] = loadVisibleArtists(locale)
     .slice(0, 3)
     .map((a) => ({
       name: a.name,
       hour: a.hour,
-      day: a.day as "friday" | "saturday" | "sunday",
+      day: a.day,
       imgSrc: a.imgSrc,
     }));
   const headliners: Headliner[] = [
@@ -109,10 +97,7 @@ export default async function RedesignHome({ params }: Props) {
     ),
   ];
 
-  // Highlight a small sampling of partner logos in the partners teaser.
-  const partnerSamples = partnersData
-    .filter((p) => !p.disabled && p.logoWhite)
-    .slice(0, 8);
+  const partnerSamples = loadFeaturedPartnerLogos();
 
   return (
     <>

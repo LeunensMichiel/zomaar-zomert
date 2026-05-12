@@ -32,6 +32,8 @@ export const viewport: Viewport = {
   themeColor: "#de350b",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
 };
 
 export function generateStaticParams() {

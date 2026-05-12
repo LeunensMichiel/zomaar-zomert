@@ -43,6 +43,11 @@
   "i18n": {
     "select": "Taalvoorkeur selecteren"
   },
+  "aria": {
+    "menu": "Menu",
+    "close": "Sluiten",
+    "language": "Taal"
+  },
   "notFound": {
     "title": "Festival niet gevonden",
     "code": "404",

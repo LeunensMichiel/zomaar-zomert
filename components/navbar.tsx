@@ -1,6 +1,9 @@
 "use client";
 
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
+import { Facebook } from "@components/icons/facebook";
+import { Instagram } from "@components/icons/instagram";
+import { Youtube } from "@components/icons/youtube";
 import { LocaleSwitcher } from "@components/locale-switcher";
 import { MenuBackground } from "@components/menu-background";
 import { MenuToggle } from "@components/menu-toggle";
@@ -25,11 +28,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useTranslations } from "next-intl";
-import { useEffect, useId, useState } from "react";
-
-import { Facebook } from "@/components/icons/Facebook";
-import { Instagram } from "@/components/icons/Instagram";
-import { Youtube } from "@/components/icons/Youtube";
+import { type ReactNode, useEffect, useId, useState } from "react";
 
 type NavLinkData = {
   key: string;
@@ -199,7 +198,9 @@ function formatDateStamp() {
   return `${day(ZZ_DATE_FRIDAY)} · ${day(ZZ_DATE_SATURDAY)} · ${day(ZZ_DATE_SUNDAY)} JULI '${String(ZZ_YEAR).slice(-2)}`;
 }
 
-export function Navbar() {
+type NavbarProps = { starBurst?: ReactNode };
+
+export function Navbar({ starBurst }: NavbarProps = {}) {
   const t = useTranslations("common");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -213,11 +214,8 @@ export function Navbar() {
     setScrolled(v > 24);
   });
 
-  // `openMv` mirrors `open` as a motion value (0 = closed, 1 = open) so
-  // the logo's scroll-driven scale + opacity can be lerp'd back to
-  // "fully visible" whenever the menu opens, regardless of scroll
-  // position. Without this we'd have to choose between scroll-driven
-  // animation and an open-state override.
+  // Mirror `open` as a motion value so the logo's scroll-driven
+  // scale/opacity can be lerp'd back to visible when the menu opens.
   const openMv = useMotionValue(0);
   useEffect(() => {
     const controls = motionAnimate(openMv, open ? 1 : 0, {
@@ -229,8 +227,6 @@ export function Navbar() {
     };
   }, [open, openMv]);
 
-  // Logo scales 1 → 0.4 and fades 1 → 0 over the first 120px of scroll,
-  // then is forced back to (1, 1) when the menu opens.
   const logoScale = useTransform(() => {
     const sy = scrollY.get();
     const o = openMv.get();
@@ -250,10 +246,12 @@ export function Navbar() {
 
   return (
     <BaseDialog.Root open={open} onOpenChange={setOpen}>
-      <header className="fixed inset-x-0 top-0 z-50 text-white">
+      <header
+        className="fixed inset-x-0 top-0 z-50 text-white"
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
+      >
         <div className="container-wide px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-5">
           <div className="relative flex items-center justify-between">
-            {/* Logo — scroll-fades out, menu-open forces back. */}
             <motion.div
               style={{
                 scale: logoScale,
@@ -265,12 +263,6 @@ export function Navbar() {
               <Logo className="h-9 w-auto md:h-11 lg:h-12" />
             </motion.div>
 
-            {/* Hamburger — wrapped in a tight frosted-glass circle
-                that only appears once the user has scrolled. Same
-                recipe as the menu's backdrop (dark tint + colour glow
-                + risograph grain) but scaled down to chip size. Hidden
-                at the top of the page (clean floating icon) and when
-                the menu opens (the menu owns its own gradient). */}
             <div className="relative">
               <motion.div
                 aria-hidden="true"
@@ -307,7 +299,7 @@ export function Navbar() {
                 </svg>
               </motion.div>
               <BaseDialog.Trigger
-                render={<MenuToggle open={open} aria-label="Menu" />}
+                render={<MenuToggle open={open} aria-label={t("aria.menu")} />}
               />
             </div>
           </div>
@@ -317,7 +309,9 @@ export function Navbar() {
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="fixed inset-0 z-40 bg-black/0" />
         <BaseDialog.Popup className="fixed inset-0 z-40 outline-none data-closed:pointer-events-none data-closed:animate-[dialog-stay-mounted_600ms]">
-          <BaseDialog.Title className="sr-only">Menu</BaseDialog.Title>
+          <BaseDialog.Title className="sr-only">
+            {t("aria.menu")}
+          </BaseDialog.Title>
 
           <AnimatePresence>
             {open && (
@@ -330,10 +324,18 @@ export function Navbar() {
                 className="absolute inset-0 overflow-hidden"
               >
                 {/* Background layers — each fades in/out via parent variants. */}
-                <MenuBackground />
+                <MenuBackground starBurst={starBurst} />
 
                 {/* Content */}
-                <div className="container-wide relative z-10 flex h-full flex-col overflow-y-auto pt-24 pb-6 sm:pt-28 md:pt-32 md:pb-10">
+                <div
+                  className="container-wide relative z-10 flex h-full flex-col overflow-y-auto pt-24 pb-6 sm:pt-28 md:pt-32 md:pb-10"
+                  style={{
+                    paddingTop:
+                      "max(6rem, calc(6rem + env(safe-area-inset-top)))",
+                    paddingBottom:
+                      "max(1.5rem, calc(1.5rem + env(safe-area-inset-bottom)))",
+                  }}
+                >
                   {/* Primary nav — fade-in stagger, slide-up + fade on exit. */}
                   <ul
                     className="flex flex-col items-start gap-0 sm:gap-1 md:gap-0.5"

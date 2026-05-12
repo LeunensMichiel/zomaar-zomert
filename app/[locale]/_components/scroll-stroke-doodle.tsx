@@ -31,7 +31,7 @@ const SEGMENTS = POINTS.slice(1).map((p, i) => {
   const [x1, y1] = p;
   return {
     d: `M${String(x0)} ${String(y0)}L${String(x1)} ${String(y1)}`,
-    length: Math.hypot(x1 - x0, y1 - y0),
+    length: Math.round(Math.hypot(x1 - x0, y1 - y0) * 100) / 100,
   };
 });
 

@@ -13,6 +13,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
+export const revalidate = 3600;
+
 const LEAD_TILT = [-1.5, 1.2, -0.8, 1.5, -1.2, 0.9, -1.6, 1.3] as const;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

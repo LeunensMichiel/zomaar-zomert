@@ -9,6 +9,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
+export const revalidate = 3600;
+
 const EMAIL = "info@zomaarzomert.be";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -98,6 +98,14 @@ export type Artist = {
   link?: string;
 };
 
+export const isArtistVisible = (
+  artist: Pick<APIArtist | Artist, "showFrom">,
+  now: number = Date.now(),
+) => {
+  const showFrom = new Date(artist.showFrom);
+  return showFrom.getTime() <= now && showFrom.getFullYear() >= ZZ_YEAR;
+};
+
 export enum MenuType {
   DRINKS = "Drinks",
   FOOD = "Food",

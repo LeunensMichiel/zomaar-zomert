@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "@lib/i18n/navigation";
 import { type Locale, routing } from "@lib/i18n/routing";
 import { cn } from "@lib/utils";
 import { motion } from "motion/react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
 
 const LANG_CODES: Record<Locale, string> = {
@@ -32,6 +32,7 @@ export function LocaleSwitcher({ className }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("common");
 
   const handleSelect = (next: Locale) => {
     if (next === lang || isPending) return;
@@ -43,7 +44,7 @@ export function LocaleSwitcher({ className }: Props) {
   return (
     <div
       role="group"
-      aria-label="Language"
+      aria-label={t("aria.language")}
       className={cn(
         "font-display inline-flex items-center gap-1 text-xs leading-none font-bold tracking-wider uppercase",
         className,

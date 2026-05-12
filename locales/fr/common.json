@@ -43,6 +43,11 @@
   "i18n": {
     "select": "Choisir la langue préférée"
   },
+  "aria": {
+    "menu": "Menu",
+    "close": "Fermer",
+    "language": "Langue"
+  },
   "notFound": {
     "title": "Festival introuvable",
     "code": "404",

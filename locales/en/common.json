@@ -43,6 +43,11 @@
   "i18n": {
     "select": "Select preferred language"
   },
+  "aria": {
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language"
+  },
   "notFound": {
     "title": "Festival not found",
     "code": "404",

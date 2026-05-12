@@ -1,13 +1,14 @@
 import { PaperTear } from "@components/paper-tear";
-import artistsData from "@lib/data/artists.json";
+import { loadArtists } from "@lib/data/artists";
 import { type Locale } from "@lib/i18n/routing";
-import { type APIArtist, type Artist } from "@lib/models";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { LineUpClient } from "./_components/line-up-client";
 
 type Props = { params: Promise<{ locale: Locale }> };
+
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -21,12 +22,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-
-const loadArtists = (locale: Locale): Artist[] =>
-  (artistsData as APIArtist[]).map(({ description, ...artist }) => ({
-    ...artist,
-    description: description[locale],
-  }));
 
 export default async function LineUpPage({ params }: Props) {
   const { locale } = await params;

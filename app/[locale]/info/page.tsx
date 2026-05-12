@@ -13,6 +13,8 @@ import { type ReactNode } from "react";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
+export const revalidate = 3600;
+
 const richBr = { br: () => <br /> };
 const richStrongBr = {
   strong: (chunks: ReactNode) => <strong>{chunks}</strong>,

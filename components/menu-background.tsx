@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useId } from "react";
+import { type ReactNode } from "react";
 
 /**
  * Noisy gradient backdrop for the kinetic menu. Four blurred colour
@@ -35,11 +35,17 @@ const layerVariants = {
   }),
 };
 
-export function MenuBackground() {
-  const noiseId = useId();
+// `transform: translateZ(0)` on each blob forces a compositor layer up
+// front so the GPU doesn't have to allocate them mid-animation —
+// keeps mobile Chrome from dropping frames on menu enter/exit.
+const PROMOTE = { transform: "translateZ(0)" } as const;
 
+export function MenuBackground({ starBurst }: { starBurst?: ReactNode }) {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      style={{ willChange: "opacity" }}
+    >
       <motion.div
         variants={layerVariants}
         custom={0}
@@ -49,44 +55,54 @@ export function MenuBackground() {
       <motion.div
         variants={layerVariants}
         custom={1}
+        style={PROMOTE}
         className="animate-menu-blob-a absolute -top-32 -left-32 h-[70vh] w-[70vh] rounded-full bg-pink-400 mix-blend-screen blur-3xl"
       />
       <motion.div
         variants={layerVariants}
         custom={2}
-        className="animate-menu-blob-b absolute -top-40 -right-32 h-[55vh] w-[55vh] rounded-full bg-blue-900 mix-blend-multiply blur-3xl"
+        style={PROMOTE}
+        className="animate-menu-blob-b absolute -top-40 -right-32 h-[55vh] w-[55vh] rounded-full bg-blue-900 mix-blend-multiply blur-2xl"
       />
       <motion.div
         variants={layerVariants}
         custom={3}
+        style={PROMOTE}
         className="animate-menu-blob-c absolute -right-40 -bottom-40 h-[75vh] w-[75vh] rounded-full bg-yellow-400 mix-blend-screen blur-3xl"
       />
       <motion.div
         variants={layerVariants}
         custom={4}
-        className="bg-brand-700 animate-menu-blob-d absolute -bottom-32 -left-40 h-[60vh] w-[60vh] rounded-full blur-3xl"
+        style={PROMOTE}
+        className="bg-brand-700 animate-menu-blob-d absolute -bottom-32 -left-40 h-[60vh] w-[60vh] rounded-full blur-2xl"
       />
 
-      <motion.svg
+      {starBurst && (
+        <motion.div
+          variants={layerVariants}
+          custom={4}
+          className="absolute top-1/2 left-1/2 h-[80vmin] w-[80vmin] -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="animate-doodle-spin-slow h-full w-full opacity-50 mix-blend-soft-light blur-sm">
+            {starBurst}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Pre-rasterised noise tile — browser caches once after first
+          paint. Replaces an inline feTurbulence filter that re-ran per
+          frame on mobile compositors. */}
+      <motion.div
         variants={layerVariants}
         custom={5}
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full mix-blend-overlay"
-      >
-        <filter id={noiseId}>
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.65"
-            numOctaves="3"
-            stitchTiles="stitch"
-          />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0"
-          />
-        </filter>
-        <rect width="100%" height="100%" filter={`url(#${noiseId})`} />
-      </motion.svg>
+        className="absolute inset-0 mix-blend-overlay"
+        style={{
+          backgroundImage: "url(/assets/menu-noise.svg)",
+          backgroundRepeat: "repeat",
+          backgroundSize: "256px 256px",
+        }}
+      />
     </div>
   );
 }

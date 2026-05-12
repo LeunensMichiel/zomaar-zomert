@@ -5,11 +5,11 @@ import { usePathname, useRouter } from "@lib/i18n/navigation";
 import {
   type Artist,
   getDateByDayString,
+  isArtistVisible,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
   ZZ_DATES,
-  ZZ_YEAR,
 } from "@lib/models";
 import { cn } from "@lib/utils";
 import { motion, useReducedMotion } from "motion/react";
@@ -52,19 +52,10 @@ export function LineUpClient({ artists, children }: Props) {
   const currentDate = searchParams.get("date");
   const showAll = !currentDate;
 
-  // Filter to confirmed-and-current artists, grouped by day. Each day
-  // pads to a min of 3 with TBA placeholders so the grid never feels
-  // half-empty pre-announcement. `showFrom` gates per-artist reveals,
-  // and `ZZ_YEAR` filters out previous editions still in the JSON.
   // eslint-disable-next-line react-hooks/purity
   const today = Date.now();
   const visibleArtists = useMemo(
-    () =>
-      artists.filter(
-        (a) =>
-          new Date(a.showFrom).getTime() <= today &&
-          new Date(a.showFrom).getFullYear() >= ZZ_YEAR,
-      ),
+    () => artists.filter((a) => isArtistVisible(a, today)),
     [artists, today],
   );
 
@@ -74,9 +65,7 @@ export function LineUpClient({ artists, children }: Props) {
       const list = visibleArtists
         .filter((a) => getDateByDayString(a.day) === date)
         .sort((a, b) => a.hour.localeCompare(b.hour));
-      // Pad each day to a minimum of 4 cards. Real days will always
-      // have at least four artists/activities, so this matches the
-      // expected count instead of leaving an awkward gap.
+      // Pad each day to 4 cards — real days will always have ≥4 acts.
       while (list.length < 4) {
         list.push({
           name: "TBA",

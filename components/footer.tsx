@@ -1,18 +1,21 @@
 import { FitText } from "@components/fit-text";
+import { Facebook } from "@components/icons/facebook";
+import { Instagram } from "@components/icons/instagram";
+import { Youtube } from "@components/icons/youtube";
 import { LocaleSwitcher } from "@components/locale-switcher";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { GradientDots } from "@components/ui/gradient-dots";
-import partners from "@lib/data/partners.json";
+import {
+  loadLeadPartners,
+  loadSupportPartners,
+  type Partner,
+} from "@lib/data/partners";
 import { Link } from "@lib/i18n/navigation";
 import { ZZ_DATES } from "@lib/models";
 import { cn } from "@lib/utils";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
-
-import { Facebook } from "@/components/icons/Facebook";
-import { Instagram } from "@/components/icons/Instagram";
-import { Youtube } from "@/components/icons/Youtube";
 
 const SOCIAL_LINKS = [
   {
@@ -110,8 +113,6 @@ const partnerLogoSize = (
   }
 };
 
-type Partner = (typeof partners)[number];
-
 function PartnerLogo({
   partner,
   tier,
@@ -167,13 +168,8 @@ export async function Footer() {
   const t = await getTranslations({ locale: lang, namespace: "common" });
   const year = new Date().getFullYear();
 
-  const visiblePartners = partners.filter((p) => !p.disabled);
-  const leadPartners = visiblePartners
-    .filter((p) => p.formula === 1)
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const supportPartners = visiblePartners
-    .filter((p) => p.formula !== 1)
-    .sort((a, b) => a.formula - b.formula || a.name.localeCompare(b.name));
+  const leadPartners = loadLeadPartners();
+  const supportPartners = loadSupportPartners();
 
   return (
     <>
@@ -222,14 +218,9 @@ export async function Footer() {
               ))}
             </ul>
           </div>
-          {/* All three tears use `edge="bottom"` (no scaleY flip) and are
-              absolutely positioned over the photo strip, so the SVG
-              orientation reads consistently regardless of which side of
-              the strip they sit on. The semantic `edge` prop is meant
-              for in-flow placement; section dividers across the site use it that way.
-              Here we're stamping these on top of an image, so we pick
-              the orientation that paints in the right direction and
-              ignore the in-flow semantics. */}
+          {/* All three tears use edge="bottom" + absolute positioning so
+              the SVG paints in the right direction regardless of which
+              side of the photo strip they sit on. */}
           <PaperTear
             edge="bottom"
             tear={3}
@@ -277,7 +268,7 @@ export async function Footer() {
               </address>
             </div>
 
-            <nav aria-label="Line-up" className="flex flex-col">
+            <nav aria-label={t("links.line-up")} className="flex flex-col">
               <ColumnHeading rotate={2} color="brand">
                 {t("footer.line-up.title")}
               </ColumnHeading>
