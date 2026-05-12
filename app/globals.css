@@ -402,11 +402,87 @@
   animation: menu-blob-d 16s ease-in-out infinite;
 }
 
+/* Hero corner-blob drifts — viewport-relative translations and strong
+   scale variance so the giant 90–100 vh blobs read as "alive" instead
+   of static glows. Three different paths with coprime durations so the
+   blobs never fall into sync. */
+@keyframes hero-blob-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(14vw, -8vh, 0) scale(1.22);
+  }
+  66% {
+    transform: translate3d(-10vw, 10vh, 0) scale(0.78);
+  }
+}
+@keyframes hero-blob-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  40% {
+    transform: translate3d(-12vw, 9vh, 0) scale(1.25);
+  }
+  70% {
+    transform: translate3d(11vw, -7vh, 0) scale(0.78);
+  }
+}
+@keyframes hero-blob-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  25% {
+    transform: translate3d(-9vw, -10vh, 0) scale(1.2);
+  }
+  60% {
+    transform: translate3d(12vw, 8vh, 0) scale(0.8);
+  }
+}
+@utility animate-hero-blob-a {
+  animation: hero-blob-a 10s ease-in-out infinite;
+}
+@utility animate-hero-blob-b {
+  animation: hero-blob-b 13s ease-in-out infinite;
+}
+@utility animate-hero-blob-c {
+  animation: hero-blob-c 11s ease-in-out infinite;
+}
+
+/* Hero star drift — small wander around centre that runs alongside
+   the slow spin. Path is biased upward so the star spends more of the
+   cycle above its rest position than below. */
+@keyframes hero-star-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(3vw, -4.5vh, 0);
+  }
+  50% {
+    transform: translate3d(-2vw, 1.5vh, 0);
+  }
+  75% {
+    transform: translate3d(-3vw, -3vh, 0);
+  }
+}
+@utility animate-hero-star-drift {
+  animation: hero-star-drift 22s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-doodle-spin-slow,
   .animate-doodle-paint-stroke svg path,
   .animate-doodle-paint-stroke-loop svg path,
-  .animate-menu-blob-d {
+  .animate-menu-blob-d,
+  .animate-hero-blob-a,
+  .animate-hero-blob-b,
+  .animate-hero-blob-c,
+  .animate-hero-star-drift {
     animation: none !important;
   }
 }

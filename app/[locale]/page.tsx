@@ -1,4 +1,6 @@
 import { Doodle } from "@components/doodle";
+import { GrainOverlay } from "@components/grain-overlay";
+import { HotGradient } from "@components/hot-gradient";
 import { Triangle } from "@components/icons/triangle";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
@@ -29,7 +31,6 @@ import { FloatingPolaroid } from "./_components/floating-polaroid";
 import { HeadlinerCard } from "./_components/headliner-card";
 import { PhotoMarquees } from "./_components/photo-marquees";
 import { RevealCard } from "./_components/reveal-card";
-import { ScrollStrokeDoodle } from "./_components/scroll-stroke-doodle";
 import { TickerStrip } from "./_components/ticker-strip";
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -120,19 +121,30 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        <div className="animate-doodle-spin-slow pointer-events-none absolute -top-40 -left-40 z-0 aspect-square h-80 will-change-transform md:-top-100 md:-left-100 md:h-200 lg:-top-125 lg:-left-125 lg:h-250">
-          <Doodle
-            shape="sun-rays"
-            color="royal-yellow"
-            accent="summer-red"
-            rotate={-14}
-            className="h-full w-full"
-          />
+        {/* Atmosphere overlay — same recipe as MenuBackground but with
+            a trio of drifting brand blobs and a drifting/spinning
+            star-burst layered between the hot gradient and the grain. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+        >
+          <HotGradient className="opacity-50" />
+          <div className="bg-brand-500 animate-hero-blob-a absolute -bottom-1/4 -left-1/5 h-[75vh] w-[75vh] rounded-full mix-blend-screen blur-2xl md:h-[100vh] md:w-[100vh] md:blur-3xl" />
+          <div className="animate-hero-blob-b absolute -top-1/4 -right-1/5 h-[60vh] w-[60vh] rounded-full bg-pink-400 mix-blend-screen blur-2xl md:h-[85vh] md:w-[85vh] md:blur-3xl" />
+          <div className="animate-hero-blob-c absolute -right-1/4 -bottom-1/5 h-[50vh] w-[50vh] rounded-full bg-yellow-400 mix-blend-screen blur-2xl md:top-1/4 md:right-auto md:bottom-auto md:-left-1/5 md:h-[70vh] md:w-[70vh] md:blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 h-[80vmin] w-[80vmin] -translate-x-1/2 -translate-y-1/2">
+            <div className="animate-hero-star-drift h-full w-full">
+              <div className="animate-doodle-spin-slow h-full w-full opacity-50 mix-blend-overlay blur-lg md:blur-xl">
+                <Doodle
+                  shape="star-burst"
+                  color="dimmed-led"
+                  className="h-full w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <GrainOverlay />
         </div>
-        <ScrollStrokeDoodle
-          rotate={12}
-          className="pointer-events-none absolute -right-35 -bottom-20 z-0 aspect-435/319 h-60 md:-right-45 md:-bottom-30 md:h-120"
-        />
 
         {/* Logo + date — vertically centered. The marquee sits flush at
             the bottom (no extra reserved padding needed). */}

@@ -1,4 +1,9 @@
+import { Doodle } from "@components/doodle";
 import { FitText } from "@components/fit-text";
+import { FooterPhotoParallax } from "@components/footer-photo-parallax";
+import { FooterStarSpin } from "@components/footer-star-spin";
+import { GrainOverlay } from "@components/grain-overlay";
+import { HotGradient } from "@components/hot-gradient";
 import { Facebook } from "@components/icons/facebook";
 import { Instagram } from "@components/icons/instagram";
 import { Youtube } from "@components/icons/youtube";
@@ -173,7 +178,33 @@ export async function Footer() {
   return (
     <>
       <div className="relative isolate flex items-center justify-center overflow-hidden">
-        <div className='relative z-[1] w-full bg-[url("/assets/footer.webp")] bg-cover bg-[50%_70%] px-6 py-32 before:absolute before:inset-0 before:-z-[1] before:bg-black/55 before:content-[""] xl:py-60'>
+        <div className="relative z-[1] w-full overflow-hidden px-6 py-32 xl:py-60">
+          <FooterPhotoParallax />
+          {/* Atmosphere — light red wash + slow-spin star-burst + paper
+              grain. Skips the blurred drifting blob from the hero so
+              the footer doesn't pay for an animated compositor layer
+              that's rarely on-screen. */}
+          {/* Atmosphere overlay — light hot-gradient wash, slow-spin
+              star-burst (scroll-velocity boost via FooterStarSpin),
+              paper-grain. Skips the hero's drifting blobs so the
+              footer doesn't pay for animated compositor layers that
+              are rarely on-screen. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 overflow-hidden"
+          >
+            <HotGradient className="opacity-25" />
+            <div className="absolute top-1/2 left-1/2 h-[80vmin] w-[80vmin] -translate-x-1/2 -translate-y-1/2">
+              <FooterStarSpin>
+                <Doodle
+                  shape="star-burst"
+                  color="royal-yellow"
+                  className="h-full w-full"
+                />
+              </FooterStarSpin>
+            </div>
+            <GrainOverlay />
+          </div>
           <div className="relative z-10 mx-auto flex max-w-md flex-col items-center gap-6">
             <Sticker color="yellow" size="md" rotate={-4}>
               {t("footer.social.eyebrow")}
