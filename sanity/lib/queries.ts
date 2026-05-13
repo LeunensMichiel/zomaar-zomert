@@ -18,6 +18,30 @@ const partnerProjection = /* groq */ `
   }
 `;
 
+const artistProjection = /* groq */ `
+  _id,
+  name,
+  day,
+  hour,
+  showFrom,
+  link,
+  "imgSrc": coalesce(image.asset->url, ""),
+  "description": coalesce(
+    description[language == $locale][0].value,
+    description[language == "en"][0].value,
+    description[language == "nl"][0].value,
+    ""
+  )
+`;
+
+const headlinerProjection = /* groq */ `
+  _id,
+  name,
+  day,
+  hour,
+  "imgSrc": coalesce(image.asset->url, "")
+`;
+
 export const PARTNERS_QUERY = defineQuery(/* groq */ `
   *[_type == "partner" && active == true] | order(tier asc, name asc) {
     ${partnerProjection}
@@ -31,9 +55,27 @@ export const FEATURED_PARTNERS_QUERY = defineQuery(/* groq */ `
   }
 `);
 
+export const ARTISTS_QUERY = defineQuery(/* groq */ `
+  *[_type == "artist"
+    && showFrom <= now()
+    && showFrom >= $yearStart
+  ] | order(showFrom asc) {
+    ${artistProjection}
+  }
+`);
+
+export const HEADLINER_ARTISTS_QUERY = defineQuery(/* groq */ `
+  *[_type == "artist"
+    && showFrom <= now()
+    && showFrom >= $yearStart
+  ] | order(showFrom asc) [0...3] {
+    ${headlinerProjection}
+  }
+`);
+
 export type PartnerLogoSize = "sm" | "md" | "lg" | "xl";
 
-export type PartnerSanityImage = {
+export type SanityImage = {
   asset: {
     _id: string;
     url: string;
@@ -53,5 +95,26 @@ export type Partner = {
   tier: 1 | 2 | 3 | 4;
   logoSize: PartnerLogoSize | null;
   website: string | null;
-  logo: PartnerSanityImage | null;
+  logo: SanityImage | null;
+};
+
+export type FestivalDay = "friday" | "saturday" | "sunday";
+
+export type Artist = {
+  _id?: string;
+  name: string;
+  day: FestivalDay;
+  hour: string;
+  imgSrc: string;
+  showFrom: string;
+  description: string;
+  link?: string | null;
+};
+
+export type Headliner = {
+  _id?: string;
+  name: string;
+  day: FestivalDay;
+  hour: string;
+  imgSrc: string;
 };

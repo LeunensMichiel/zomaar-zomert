@@ -1,8 +1,11 @@
 import { PaperTear } from "@components/paper-tear";
-import { loadArtists } from "@lib/data/artists";
 import { type Locale } from "@lib/i18n/routing";
+import { ZZ_YEAR } from "@lib/models";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { client } from "@/sanity/lib/client";
+import { type Artist, ARTISTS_QUERY } from "@/sanity/lib/queries";
 
 import { LineUpClient } from "./_components/line-up-client";
 
@@ -26,7 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LineUpPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const artists = loadArtists(locale);
+  const artists = await client.fetch<Artist[]>(ARTISTS_QUERY, {
+    locale,
+    yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
+  });
   return (
     <LineUpClient artists={artists}>
       {/* Bottom paper-tear bridges the dark blue section into the

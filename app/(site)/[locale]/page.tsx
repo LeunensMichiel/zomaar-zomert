@@ -6,7 +6,6 @@ import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Logo } from "@components/ui/logo";
-import { loadVisibleArtists } from "@lib/data/artists";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
@@ -26,6 +25,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/lib/client";
 import {
   FEATURED_PARTNERS_QUERY,
+  type Headliner,
+  HEADLINER_ARTISTS_QUERY,
   type Partner,
 } from "@/sanity/lib/queries";
 
@@ -40,13 +41,6 @@ import { TickerStrip } from "./_components/ticker-strip";
 type Props = { params: Promise<{ locale: Locale }> };
 
 export const revalidate = 3600;
-
-type Headliner = {
-  name: string;
-  hour: string;
-  day: "friday" | "saturday" | "sunday";
-  imgSrc: string;
-};
 
 const days: Array<{ date: string; image: string }> = [
   { date: ZZ_DATE_FRIDAY, image: "/assets/days/friday.webp" },
@@ -80,14 +74,13 @@ export default async function Home({ params }: Props) {
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const signupDisabled = !isSignupOpen();
 
-  const visibleHeadliners: Headliner[] = loadVisibleArtists(locale)
-    .slice(0, 3)
-    .map((a) => ({
-      name: a.name,
-      hour: a.hour,
-      day: a.day,
-      imgSrc: a.imgSrc,
-    }));
+  const visibleHeadliners = await client.fetch<Headliner[]>(
+    HEADLINER_ARTISTS_QUERY,
+    {
+      locale,
+      yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
+    },
+  );
   const headliners: Headliner[] = [
     ...visibleHeadliners,
     ...Array.from(
@@ -101,9 +94,7 @@ export default async function Home({ params }: Props) {
     ),
   ];
 
-  const partnerSamples = await client.fetch<Partner[]>(
-    FEATURED_PARTNERS_QUERY,
-  );
+  const partnerSamples = await client.fetch<Partner[]>(FEATURED_PARTNERS_QUERY);
 
   return (
     <>

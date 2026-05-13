@@ -78,34 +78,6 @@ export const isSignupOpen = (now: Date = new Date()) =>
 
 type TranslationString = Record<Locale, string>;
 
-export type APIArtist = {
-  name: string;
-  description: TranslationString;
-  day: FestivalDay;
-  hour: string;
-  imgSrc: string;
-  showFrom: string;
-  link?: string;
-};
-
-export type Artist = {
-  name: string;
-  description: string;
-  day: FestivalDay;
-  hour: string;
-  imgSrc: string;
-  showFrom: string;
-  link?: string;
-};
-
-export const isArtistVisible = (
-  artist: Pick<APIArtist | Artist, "showFrom">,
-  now: number = Date.now(),
-) => {
-  const showFrom = new Date(artist.showFrom);
-  return showFrom.getTime() <= now && showFrom.getFullYear() >= ZZ_YEAR;
-};
-
 export enum MenuType {
   DRINKS = "Drinks",
   FOOD = "Food",

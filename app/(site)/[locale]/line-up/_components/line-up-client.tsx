@@ -3,9 +3,7 @@
 import { Sticker } from "@components/sticker";
 import { usePathname, useRouter } from "@lib/i18n/navigation";
 import {
-  type Artist,
   getDateByDayString,
-  isArtistVisible,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
@@ -16,6 +14,8 @@ import { motion, useReducedMotion } from "motion/react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { type ReactNode, useCallback, useMemo } from "react";
+
+import { type Artist } from "@/sanity/lib/queries";
 
 import { LineUpArtistCard } from "./line-up-card";
 
@@ -55,17 +55,10 @@ export function LineUpClient({ artists, children }: Props) {
   const currentDate = searchParams.get("date");
   const showAll = !currentDate;
 
-  // eslint-disable-next-line react-hooks/purity
-  const today = Date.now();
-  const visibleArtists = useMemo(
-    () => artists.filter((a) => isArtistVisible(a, today)),
-    [artists, today],
-  );
-
   const byDay = useMemo(() => {
     const result: Record<string, Artist[]> = {};
     for (const date of ZZ_DATES) {
-      const list = visibleArtists
+      const list = artists
         .filter((a) => getDateByDayString(a.day) === date)
         .sort((a, b) => a.hour.localeCompare(b.hour));
       // Pad each day to 4 cards — real days will always have ≥4 acts.
@@ -82,7 +75,7 @@ export function LineUpClient({ artists, children }: Props) {
       result[date] = list;
     }
     return result;
-  }, [visibleArtists]);
+  }, [artists]);
 
   const handleDaySelect = useCallback(
     (date: string | null) => {

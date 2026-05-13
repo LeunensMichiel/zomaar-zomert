@@ -4500,6 +4500,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/language-filter@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@sanity/language-filter@npm:5.0.1"
+  dependencies:
+    "@sanity/icons": "npm:^3.7.4"
+    "@sanity/ui": "npm:^3.1.14"
+    react-rx: "npm:^4.2.2"
+    rxjs: "npm:^7.8.2"
+  peerDependencies:
+    react: ^19.2
+    react-dom: ^19.2
+    sanity: ^5
+  checksum: 10c0/6b24626b4543fad7de03bb40e6211c2e20e7ab7c8957775dd057fd5d63f21cdcef60de8d2d10a7bb0fbe8742fe7eeca1ed6bea837a48d2beaee994f483635897
+  languageName: node
+  linkType: hard
+
 "@sanity/lezer-groq@npm:^1.0.3":
   version: 1.0.3
   resolution: "@sanity/lezer-groq@npm:1.0.3"
@@ -4786,7 +4802,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/util@npm:5.25.0, @sanity/util@npm:^5.23.0":
+"@sanity/util@npm:5.25.0, @sanity/util@npm:^5.21.0, @sanity/util@npm:^5.23.0":
   version: 5.25.0
   resolution: "@sanity/util@npm:5.25.0"
   dependencies:
@@ -11958,6 +11974,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sanity-plugin-internationalized-array@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "sanity-plugin-internationalized-array@npm:5.1.1"
+  dependencies:
+    "@sanity/icons": "npm:^3.7.4"
+    "@sanity/ui": "npm:^3.1.14"
+    "@sanity/util": "npm:^5.21.0"
+    lodash-es: "npm:^4.17.23"
+  peerDependencies:
+    "@sanity/assist": ^6.0.2
+    "@sanity/language-filter": ^5.0.0
+    react: ^19.2
+    react-dom: ^19.2
+    sanity: ^5
+  peerDependenciesMeta:
+    "@sanity/assist":
+      optional: true
+  checksum: 10c0/6a92bdba14310ef46796cbb50be0a94abc8035949d7dc71cd8883df4d7359dd20b4117f6e1e3c91c7592d1cccca1cc4e4a52595ec60e9e2a5a6f3aa5a0defcc6
+  languageName: node
+  linkType: hard
+
 "sanity@npm:5":
   version: 5.25.0
   resolution: "sanity@npm:5.25.0"
@@ -14034,6 +14071,7 @@ __metadata:
     "@next/eslint-plugin-next": "npm:^16.2.4"
     "@next/third-parties": "npm:^16.2.4"
     "@sanity/image-url": "npm:2"
+    "@sanity/language-filter": "npm:^5.0.1"
     "@sanity/vision": "npm:5"
     "@tailwindcss/postcss": "npm:^4.2.4"
     "@types/node": "npm:^24.12.2"
@@ -14063,6 +14101,7 @@ __metadata:
     react-map-gl: "npm:^8.1.1"
     react-player: "npm:^3.4.0"
     sanity: "npm:5"
+    sanity-plugin-internationalized-array: "npm:^5.1.1"
     sharp: "npm:^0.34.5"
     styled-components: "npm:6"
     tailwind-merge: "npm:^3.5.0"

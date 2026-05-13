@@ -3,11 +3,12 @@
 import { ArtistModalContent } from "@components/artist-modal";
 import { Sticker } from "@components/sticker";
 import { Dialog, DialogContent } from "@components/ui/dialog";
-import { type Artist } from "@lib/models";
 import { cn } from "@lib/utils";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useState } from "react";
+
+import { type Artist } from "@/sanity/lib/queries";
 
 import { TBACard } from "../../_components/tba-card";
 
@@ -115,7 +116,7 @@ export function LineUpArtistCard({
               subtitle: artist.hour,
               date,
               description: artist.description,
-              link: artist.link,
+              link: artist.link ?? undefined,
             }}
           />
         </DialogContent>

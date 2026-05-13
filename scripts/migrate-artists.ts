@@ -1,17 +1,18 @@
 /**
- * One-shot migration: lib/data/partners.json → Sanity `partner` documents.
+ * One-shot migration: lib/data/artists.json → Sanity `artist` documents.
  *
  * Usage:
- *   node --env-file=.env.local scripts/migrate-partners.ts
+ *   node --env-file=.env.local scripts/migrate-artists.ts
  *
  * Requires SANITY_API_WRITE_TOKEN in .env.local (Editor-level token from
  * https://www.sanity.io/manage → Project → API → Tokens).
  *
  * Re-runs are idempotent: documents use deterministic IDs derived from the
- * partner name slug. If a partner already has a logo asset attached, the SVG
- * is not re-uploaded — useful to resume after a partial run.
+ * artist name slug + showFrom date. If a doc already has an image asset
+ * attached, the photo is not re-uploaded.
  */
 
+import { randomBytes } from "node:crypto";
 import { createReadStream, existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -36,20 +37,21 @@ const client = createClient({
 });
 
 const REPO_ROOT = resolve(import.meta.dirname, "..");
-const PARTNERS_JSON = resolve(REPO_ROOT, "lib/data/partners.json");
+const ARTISTS_JSON = resolve(REPO_ROOT, "lib/data/artists.json");
 const PUBLIC_DIR = resolve(REPO_ROOT, "public");
 const MAX_ATTEMPTS = 4;
 
-type SourcePartner = {
+type SourceArtist = {
   name: string;
-  formula: 1 | 2 | 3 | 4;
-  logoWhite?: string;
-  logoSize?: "sm" | "md" | "lg" | "xl";
-  site?: string;
-  disabled?: boolean;
+  day: "friday" | "saturday" | "sunday";
+  hour: string;
+  showFrom: string;
+  description: { nl: string; fr: string; en: string };
+  imgSrc?: string;
+  link?: string;
 };
 
-type ExistingPartner = { _id: string; logo?: { asset?: { _ref?: string } } };
+type ExistingArtist = { _id: string; image?: { asset?: { _ref?: string } } };
 
 const slugify = (input: string) =>
   input
@@ -59,7 +61,8 @@ const slugify = (input: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const partnerIdFor = (name: string) => `partner.${slugify(name)}`;
+const artistIdFor = (name: string, showFrom: string) =>
+  `artist.${slugify(name)}.${showFrom.slice(0, 10)}`;
 
 const isTransient = (err: unknown) => {
   const e = err as { statusCode?: number; code?: string };
@@ -85,65 +88,71 @@ async function withRetry<T>(label: string, fn: () => Promise<T>): Promise<T> {
   throw new Error("unreachable");
 }
 
-async function uploadLogo(logoPath: string) {
-  const absPath = resolve(PUBLIC_DIR, logoPath.replace(/^\//, ""));
+async function uploadImage(imgPath: string) {
+  const absPath = resolve(PUBLIC_DIR, imgPath.replace(/^\//, ""));
   if (!existsSync(absPath)) {
-    console.warn(`  ⚠ logo missing on disk: ${logoPath}`);
+    console.warn(`  ⚠ image missing on disk: ${imgPath}`);
     return null;
   }
-  const filename = absPath.split("/").pop() ?? "logo.svg";
+  const filename = absPath.split("/").pop() ?? "photo.webp";
   const asset = await withRetry(`upload ${filename}`, () =>
     client.assets.upload("image", createReadStream(absPath), {
       filename,
-      contentType: "image/svg+xml",
+      contentType: "image/webp",
     }),
   );
   return asset._id;
 }
 
 async function migrate() {
-  const raw = await readFile(PARTNERS_JSON, "utf-8");
+  const raw = await readFile(ARTISTS_JSON, "utf-8");
   const parsed: unknown = JSON.parse(raw);
-  const partners = parsed as SourcePartner[];
+  const artists = parsed as SourceArtist[];
 
-  const ids = partners.map((p) => partnerIdFor(p.name));
-  const existing = await client.fetch<ExistingPartner[]>(
-    `*[_id in $ids]{ _id, logo { asset } }`,
+  const ids = artists.map((a) => artistIdFor(a.name, a.showFrom));
+  const existing = await client.fetch<ExistingArtist[]>(
+    `*[_id in $ids]{ _id, image { asset } }`,
     { ids },
   );
   const existingById = new Map(existing.map((d) => [d._id, d]));
 
-  console.log(`Migrating ${String(partners.length)} partners…`);
+  console.log(`Migrating ${String(artists.length)} artists…`);
   const failures: { name: string; error: string }[] = [];
 
-  for (const p of partners) {
-    const _id = partnerIdFor(p.name);
-    console.log(`• ${p.name} (${_id})`);
+  for (const a of artists) {
+    const _id = artistIdFor(a.name, a.showFrom);
+    console.log(`• ${a.name} (${_id})`);
 
     try {
-      let logoAssetId: string | null = null;
-      const existingLogoRef = existingById.get(_id)?.logo?.asset?._ref;
+      let imageAssetId: string | null = null;
+      const existingRef = existingById.get(_id)?.image?.asset?._ref;
 
-      if (existingLogoRef) {
-        logoAssetId = existingLogoRef;
-        console.log(`  ↺ reusing existing logo`);
-      } else if (p.logoWhite) {
-        logoAssetId = await uploadLogo(p.logoWhite);
+      if (existingRef) {
+        imageAssetId = existingRef;
+        console.log(`  ↺ reusing existing image`);
+      } else if (a.imgSrc) {
+        imageAssetId = await uploadImage(a.imgSrc);
       }
 
       const doc = {
         _id,
-        _type: "partner",
-        name: p.name,
-        tier: p.formula,
-        logoSize: p.logoSize ?? "md",
-        website: p.site ?? null,
-        active: !p.disabled,
-        ...(logoAssetId && {
-          logo: {
+        _type: "artist",
+        name: a.name,
+        day: a.day,
+        hour: a.hour,
+        showFrom: a.showFrom,
+        link: a.link ?? null,
+        description: (["nl", "fr", "en"] as const).map((locale) => ({
+          _key: randomBytes(6).toString("hex"),
+          _type: "internationalizedArrayTextValue",
+          language: locale,
+          value: a.description[locale],
+        })),
+        ...(imageAssetId && {
+          image: {
             _type: "image",
-            asset: { _type: "reference", _ref: logoAssetId },
-            alt: p.name,
+            asset: { _type: "reference", _ref: imageAssetId },
+            alt: a.name,
           },
         }),
       };
@@ -154,15 +163,15 @@ async function migrate() {
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       console.error(`  ✗ failed: ${message}`);
-      failures.push({ name: p.name, error: message });
+      failures.push({ name: a.name, error: message });
     }
 
     await sleep(75);
   }
 
-  const done = partners.length - failures.length;
+  const done = artists.length - failures.length;
   console.log(
-    `\n✓ ${String(done)}/${String(partners.length)} partners migrated.`,
+    `\n✓ ${String(done)}/${String(artists.length)} artists migrated.`,
   );
   if (failures.length) {
     console.log(`\nFailures (${String(failures.length)}):`);

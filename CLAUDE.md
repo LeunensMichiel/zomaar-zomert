@@ -44,10 +44,10 @@ All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/lay
 
 Festival content is split across two systems:
 
-- **Static JSON** in [lib/data/](lib/data/) — [artists.json](lib/data/artists.json) and [menu.json](lib/data/menu.json). Each record stores translated strings as `{ nl, fr, en }` (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages flatten these to the active locale via `loadXxx(locale)` helpers — see [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) (`APIArtist → Artist`) for the canonical pattern. New JSON-backed collections should mirror this `API*` → flat-shape transform so page components stay locale-agnostic.
-- **Sanity** for partners — schema at [sanity/schemaTypes/partner.ts](sanity/schemaTypes/partner.ts), GROQ in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via the typed `client.fetch<Partner[]>(PARTNERS_QUERY)` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`.
+- **Static JSON** in [lib/data/](lib/data/) — only [menu.json](lib/data/menu.json) remains. Each record stores translated strings as `{ nl, fr, en }` (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages flatten these to the active locale via `loadXxx(locale)` helpers — see [lib/data/menu.ts](lib/data/menu.ts) for the canonical `API*` → flat-shape transform that keeps page components locale-agnostic.
+- **Sanity** for partners and artists — schemas in [sanity/schemaTypes/](sanity/schemaTypes/), GROQ in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via typed `client.fetch<T[]>` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`.
 
-Artists are filtered at render time by `showFrom` (date string) and `ZZ_YEAR`; TBA placeholders pad each day to a minimum count.
+Artist visibility is enforced **server-side** in the GROQ query (`showFrom <= now() && showFrom >= $yearStart`) so unannounced acts never leave Sanity — pass `yearStart = \`${ZZ_YEAR}-01-01T00:00:00Z\`` and `locale` to the query. TBA placeholders are still constructed client-side in [line-up-client.tsx](app/%5Bsite%5D/%5Blocale%5D/line-up/_components/line-up-client.tsx) to pad each day to a minimum count.
 
 ### Festival dates and feature gates
 
