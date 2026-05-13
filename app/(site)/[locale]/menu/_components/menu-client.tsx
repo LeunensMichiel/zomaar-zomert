@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { type ReactNode, useMemo, useState } from "react";
 
+import { sanityImageLoader } from "@/sanity/lib/image-loader";
 import { type MenuItem, MenuType } from "@/sanity/lib/queries";
 
 // Per-filter background palettes — five close stops form a gentle
@@ -227,6 +228,7 @@ function MenuItemCard({
           alt={item.name}
           fill
           sizes="80px"
+          loader={sanityImageLoader}
           className="object-contain"
         />
         <div
