@@ -29,10 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LineUpPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const artists = await client.fetch<Artist[]>(ARTISTS_QUERY, {
-    locale,
-    yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
-  });
+  const artists = await client.fetch<Artist[]>(
+    ARTISTS_QUERY,
+    {
+      locale,
+      yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
+    },
+    { next: { tags: ["artist"] } },
+  );
   return (
     <LineUpClient artists={artists}>
       {/* Bottom paper-tear bridges the dark blue section into the

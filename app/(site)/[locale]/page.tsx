@@ -80,6 +80,7 @@ export default async function Home({ params }: Props) {
       locale,
       yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
     },
+    { next: { tags: ["artist"] } },
   );
   const headliners: Headliner[] = [
     ...visibleHeadliners,
@@ -94,7 +95,11 @@ export default async function Home({ params }: Props) {
     ),
   ];
 
-  const partnerSamples = await client.fetch<Partner[]>(FEATURED_PARTNERS_QUERY);
+  const partnerSamples = await client.fetch<Partner[]>(
+    FEATURED_PARTNERS_QUERY,
+    {},
+    { next: { tags: ["partner"] } },
+  );
 
   return (
     <>

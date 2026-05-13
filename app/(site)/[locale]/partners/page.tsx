@@ -39,7 +39,11 @@ export default async function PartnersPage({ params }: Props) {
 
   const contactHref = getPathname({ locale, href: "/contact" });
 
-  const partners = await client.fetch<Partner[]>(PARTNERS_QUERY);
+  const partners = await client.fetch<Partner[]>(
+    PARTNERS_QUERY,
+    {},
+    { next: { tags: ["partner"] } },
+  );
 
   const lead = partners.filter((p) => p.tier === 1);
   const support = partners.filter((p) => p.tier !== 1);

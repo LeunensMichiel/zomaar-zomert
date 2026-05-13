@@ -170,7 +170,11 @@ export async function Footer() {
   const t = await getTranslations({ locale: lang, namespace: "common" });
   const year = new Date().getFullYear();
 
-  const partners = await client.fetch<Partner[]>(PARTNERS_QUERY);
+  const partners = await client.fetch<Partner[]>(
+    PARTNERS_QUERY,
+    {},
+    { next: { tags: ["partner"] } },
+  );
   const leadPartners = partners.filter((p) => p.tier === 1);
   const supportPartners = partners.filter((p) => p.tier !== 1);
 

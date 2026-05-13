@@ -28,7 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function MenuPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const menu = await client.fetch<MenuItem[]>(MENU_QUERY, { locale });
+  const menu = await client.fetch<MenuItem[]>(
+    MENU_QUERY,
+    { locale },
+    { next: { tags: ["menuItem"] } },
+  );
 
   return (
     <>
