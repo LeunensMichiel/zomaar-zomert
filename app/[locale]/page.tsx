@@ -486,17 +486,24 @@ export default async function Home({ params }: Props) {
         />
         <Doodle
           shape="cross"
-          color="tardis-blue"
+          color="pink"
+          accent="summer-red"
+          rotate={50}
+          className="absolute -top-12 right-0 h-12 md:-top-20 md:right-20 md:h-20"
+        />
+        <Doodle
+          shape="cross"
+          color="pink"
           accent="summer-red"
           rotate={6}
-          className="absolute top-12 right-6 h-12 md:top-20 md:right-12 md:h-16"
+          className="absolute top-12 -right-20 h-40 lg:top-0 lg:right-40 lg:h-80"
         />
         <div className="container-wide section-y relative z-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Sticker color="brand" size="sm" rotate={-3}>
               {tHome("partners.eyebrow")}
             </Sticker>
-            <h2 className="text-brand-500 mt-4 text-7xl leading-[0.85] md:mt-6 md:text-9xl xl:text-[12rem]">
+            <h2 className="text-brand-500 mt-4 text-7xl leading-[0.85] md:mt-6 md:text-9xl">
               {tHome("partners.heading")}
             </h2>
             <p className="mt-6 max-w-md text-base text-gray-700 md:text-lg">

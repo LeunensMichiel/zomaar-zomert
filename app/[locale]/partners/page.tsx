@@ -102,7 +102,7 @@ export default async function PartnersPage({ params }: Props) {
       <section className="relative bg-pink-50">
         <Doodle
           shape="cross"
-          color="linear-red"
+          color="royal-yellow"
           rotate={-8}
           className="pointer-events-none absolute -bottom-8 -left-6 hidden h-40 md:-bottom-12 md:-left-10 md:block md:h-64 lg:h-80"
         />
