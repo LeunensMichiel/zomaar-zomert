@@ -25,34 +25,8 @@ export default async function PrivacyPage({ params }: Props) {
   return (
     <>
       <section className="relative bg-gray-900">
-        <Doodle
-          shape="asterisk"
-          color="summer-red"
-          rotate={-14}
-          className="pointer-events-none absolute -right-12 -bottom-16 hidden h-48 md:-right-16 md:-bottom-20 md:block md:h-80 lg:h-112"
-        />
-        <Doodle
-          shape="plus"
-          color="dimmed-led"
-          rotate={18}
-          className="pointer-events-none absolute top-32 left-6 hidden h-10 md:left-12 md:block md:h-12"
-        />
-        <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex flex-col items-center gap-6 text-center md:gap-8">
-            <h1 className="font-display shadow-sticker-lg inline-block rotate-3 bg-pink-300 px-5 py-2 text-5xl leading-[0.9] font-bold text-gray-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
-              {t("hero.title")}
-            </h1>
-            <p className="mt-2 max-w-2xl text-base text-pink-50 md:mt-4 md:text-lg">
-              {t("hero.intro")}
-            </p>
-          </div>
-        </div>
-        <PaperTear
-          edge="top"
-          tear={3}
-          color="pink-50"
-          className="translate-y-px"
-        />
+        <div className="h-16 md:h-20 lg:h-24" />
+        <PaperTear edge="bottom" tear={1} color="pink-50" />
       </section>
 
       <section className="relative bg-pink-50">
@@ -69,11 +43,19 @@ export default async function PrivacyPage({ params }: Props) {
           rotate={12}
           className="pointer-events-none absolute -bottom-4 left-6 hidden h-10 md:left-12 md:block md:h-12"
         />
-        <div className="container-wide relative z-20 pt-12 pb-20 md:pt-16 md:pb-28">
+        <div className="container-wide relative z-20 pt-8 pb-20 md:pt-10 md:pb-28">
           <div className="mx-auto max-w-3xl">
-            <Sticker color="ink" size="sm" rotate={-2}>
-              {t("eyebrow")}
-            </Sticker>
+            <h1 className="font-display shadow-sticker-lg inline-block rotate-3 bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+              {t("hero.title")}
+            </h1>
+            <p className="mt-6 text-base text-gray-900 md:mt-8 md:text-lg">
+              {t("hero.intro")}
+            </p>
+            <div className="mt-10 md:mt-12">
+              <Sticker color="ink" size="sm" rotate={-2}>
+                {t("eyebrow")}
+              </Sticker>
+            </div>
             <div className="mt-8 space-y-6 text-base leading-relaxed text-gray-900 md:mt-10 md:space-y-8 md:text-lg">
               {blocks.map((key) => (
                 <p key={key}>{t(key)}</p>

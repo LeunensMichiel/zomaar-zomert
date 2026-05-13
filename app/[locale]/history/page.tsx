@@ -45,32 +45,18 @@ export default async function HistoryPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-blue-900">
-        <Doodle
-          shape="coil"
-          className="animate-doodle-spin-slow pointer-events-none absolute -bottom-12 -left-12 hidden h-40 md:-bottom-16 md:-left-20 md:block md:h-72 lg:h-96"
-        />
-        <Doodle
-          shape="zzz"
-          color="linear-sunset"
-          rotate={-8}
-          className="pointer-events-none absolute -top-6 -right-10 z-10 h-28 md:-top-8 md:-right-14 md:h-40 lg:h-48"
-        />
-        <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex flex-col items-start">
-            <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 bg-pink-300 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
-              {t("hero.title")}
-            </h1>
-          </div>
-          <p className="mt-6 max-w-2xl text-base text-pink-50 md:mt-10 md:text-lg">
-            {t("hero.intro")}
-          </p>
-        </div>
+      <section className="relative bg-blue-900">
+        <div className="h-16" />
       </section>
-
       <ScrollBg colors={HISTORY_BG_COLORS}>
         <PaperTear edge="top" tear={2} color="blue-900" />
-        <div className="container-wide relative z-20 pt-12 pb-20 md:pt-16 md:pb-28">
+        <div className="container-wide relative z-20 pt-8 pb-20 md:pt-10 md:pb-28">
+          <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+            {t("hero.title")}
+          </h1>
+          <p className="mt-6 max-w-2xl text-base text-gray-900 md:mt-8 md:text-lg">
+            {t("hero.intro")}
+          </p>
           <Timeline
             data={[
               {

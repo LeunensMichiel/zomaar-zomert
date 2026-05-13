@@ -338,7 +338,7 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
                 }}
               >
                 <ul
-                  className="flex flex-col items-start gap-0 sm:gap-1 md:gap-0.5"
+                  className="flex flex-col items-start gap-0 sm:gap-1 lg:pt-10"
                   role="menu"
                 >
                   {PRIMARY_LINKS.map((l, i) => (

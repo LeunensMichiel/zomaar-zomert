@@ -78,8 +78,11 @@ export function MenuClient({ menu, topTear, bottomTear }: Props) {
   return (
     <ScrollBg colors={colors}>
       {topTear}
-      <div className="container-wide relative z-20 pt-10 pb-16 md:pt-12 md:pb-20">
-        <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+      <div className="container-wide relative z-20 pt-8 pb-16 md:pt-10 md:pb-20">
+        <h1 className="font-display shadow-sticker-lg inline-block rotate-2 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+          {t("hero.title")}
+        </h1>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2 md:mt-12 md:gap-3">
           {filters.map(({ value, label }) => {
             const isActive = menuType === value;
             return (

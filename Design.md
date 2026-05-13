@@ -351,11 +351,15 @@ Each page's header should look distinctly different so the site doesn't feel tem
 
 Worked examples:
 
-- [/info](app/%5Blocale%5D/info/page.tsx) — chunky block (`bg-gray-900` + `text-pink-300`, `-rotate-2`) on the **left**, `<Doodle shape="zzz">` on the **right**. Tight `pt-6 md:pt-8` so the bento sits above the fold.
-- [/contact](app/%5Blocale%5D/contact/page.tsx) — chunky block (`bg-gray-900` + `text-yellow-400`, `rotate-2`) on the **right**, `<Doodle shape="lips">` on the **left**. Mirrors `/info` to keep the two pages visually distinct.
-- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered**, with `/assets/star-tear.svg` rotating behind it as a backdrop. Section is `bg-blue-900` so the always-transparent navbar floats white over the dark hero. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
-- [/history](app/%5Blocale%5D/history/page.tsx) — chunky block (`bg-blue-900` + `text-yellow-400`, `-rotate-1`) on the **left**, `<Doodle shape="banner">` on the **right**. Same position as `/info` but a fresh bg colour + lighter tilt + different doodle so the four chunky pages all read distinctly.
-- [/](app/%5Blocale%5D/page.tsx) (home) — `min-h-svh` video hero with logo + date stickers, no chunky block at all. Different paradigm because the home is the brand moment. (`svh` rather than `dvh` so the mobile URL-bar collapse doesn't reflow the hero mid-scroll.)
+**Header-below-tear** is the shared shape for most interior pages: a thin colored strip (`h-16 md:h-20 lg:h-24`) sized to sit behind the fixed navbar, capped by `<PaperTear tear={1}>` flowing into the next section. The chunky-block headline lives **inside that next section** at the top of its container — never inside the colored strip. No paired doodle or sticker eyebrow in the strip. `/line-up` and `/` (home) are deliberate exceptions because they need a full visual hero.
+
+- [/info](app/%5Blocale%5D/info/page.tsx) — `bg-brand-500` strip → pink-50 bento. Chunky block (`bg-gray-900` + `text-pink-300`, `-rotate-2`) at the top of the bento container.
+- [/contact](app/%5Blocale%5D/contact/page.tsx) — `bg-brand-500` strip → pink-50 form section. Chunky block (`bg-gray-900` + `text-pink-300`, `rotate-2`) carries the friendly greeting (`Hallo.` / `Coucou.` / `Hi there.`). Email lives as a smaller link above the form, not as the headline. Opposite tilt to `/info` so the two cream pages don't read identical.
+- [/menu](app/%5Blocale%5D/menu/page.tsx) — `bg-blue-500` strip → pink-50 ScrollBg inside `<MenuClient>`. Chunky block (`bg-brand-500` + `text-yellow-400`, `rotate-2`) is rendered inside `MenuClient` (it owns the container) above the filter buttons. The page's `topTear` prop is dropped — the strip's bottom tear is the only transition.
+- [/history](app/%5Blocale%5D/history/page.tsx) — `bg-blue-900` strip → pink-50 ScrollBg. Chunky block (`bg-blue-900` + `text-yellow-400`, `-rotate-1`) at the top of the timeline container, followed by the intro paragraph, then the Timeline.
+- [/partners](app/%5Blocale%5D/partners/page.tsx) — `bg-brand-900` strip → `bg-brand-500` partners section. Chunky block (`bg-yellow-400` + `text-blue-900`, `-rotate-2`) at the top of the brand-500 section, followed by the intro paragraph and the lead-partner grid. Only page where the strip and body are both saturated brand colours.
+- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — **exception.** Chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered** inside a full `bg-blue-900` hero, with `/assets/star-tear.svg` rotating behind it as a backdrop. The dense day-by-day grid below earns the loud hero moment. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
+- [/](app/%5Blocale%5D/page.tsx) (home) — **exception.** `min-h-svh` video hero with logo + date stickers, no chunky block at all. Different paradigm because the home is the brand moment. (`svh` rather than `dvh` so the mobile URL-bar collapse doesn't reflow the hero mid-scroll.)
 
 ## Motion
 

@@ -47,43 +47,30 @@ export default async function PartnersPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-brand-900 relative overflow-hidden">
-        <Doodle
-          shape="sun-rays"
-          color="royal-yellow"
-          accent="summer-red"
-          className="animate-doodle-spin-slow pointer-events-none absolute -top-32 -left-32 aspect-square h-80 sm:-top-40 sm:-left-40 sm:h-110 md:-top-48 md:-left-48 md:h-140 lg:-top-56 lg:-left-56 lg:h-180"
-        />
-        <Doodle
-          shape="plus"
-          color="dimmed-led"
-          rotate={20}
-          className="pointer-events-none absolute top-32 right-6 hidden h-10 md:right-12 md:block md:h-12"
-        />
-        <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div className="flex justify-end">
-            <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-yellow-400 px-5 py-2 text-5xl leading-[0.9] font-bold text-blue-900 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
-              {t("hero.title")}
-            </h1>
-          </div>
-          <p className="mt-6 max-w-2xl text-base text-pink-50 md:mt-10 md:text-lg">
-            {t("hero.intro")}
-          </p>
-        </div>
+      <section className="bg-80s-gum relative">
+        <div className="h-16" />
+        <PaperTear edge="bottom" tear={2} color="blue-500" />
       </section>
 
-      <section className="bg-brand-500 relative text-pink-50">
-        <PaperTear edge="top" tear={6} color="brand-900" />
+      <section className="relative bg-blue-500 text-pink-50">
         <Doodle
           shape="cocktail"
           color="linear-sunset"
           rotate={20}
           className="pointer-events-none absolute -right-12 -bottom-16 hidden h-56 md:-right-20 md:-bottom-20 md:block md:h-80 lg:h-96"
         />
-        <div className="container-wide relative z-20 pt-16 pb-16 md:pt-20 md:pb-20">
-          <Sticker color="brand" size="lg" rotate={-3}>
-            {t("lead.eyebrow")}
-          </Sticker>
+        <div className="container-wide relative z-20 pt-8 pb-16 md:pt-10 md:pb-20">
+          <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+            {t("hero.title")}
+          </h1>
+          <p className="mt-6 max-w-2xl text-base text-pink-50 md:mt-8 md:text-lg">
+            {t("hero.intro")}
+          </p>
+          <div className="mt-10 md:mt-14">
+            <Sticker color="brand" size="lg" rotate={-3}>
+              {t("lead.eyebrow")}
+            </Sticker>
+          </div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {lead.map((p, i) => (
               <LeadPartnerCard
