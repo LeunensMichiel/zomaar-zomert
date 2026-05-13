@@ -6,5 +6,5 @@ export default createMiddleware(routing);
 
 export const config = {
   matcher:
-    "/((?!api|_next|_vercel|assets|icon|apple-icon|opengraph-image|.*\\..*).*)",
+    "/((?!api|_next|_vercel|studio|assets|icon|apple-icon|opengraph-image|.*\\..*).*)",
 };

@@ -3,16 +3,31 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./lib/i18n/request.ts");
 
 const contentSecurityPolicy = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com",
-  "style-src 'self' 'unsafe-inline'",
+  "default-src 'self' https:",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
+  "style-src 'self' 'unsafe-inline' https:",
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data:",
-  "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://*.tiles.mapbox.com https://www.google-analytics.com https://*.analytics.google.com",
-  "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
-  "media-src 'self' https://www.youtube.com",
+  "font-src 'self' data: https:",
+  "connect-src 'self' https: wss:",
+  "frame-src 'self' https:",
+  "media-src 'self' https: blob:",
   "worker-src 'self' blob:",
   "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join("; ");
+
+const studioContentSecurityPolicy = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.sanity.io https://*.sanity.work https://*.sanity-cdn.com https://sanity-cdn.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://*.sanity.io https://sanity.io https://*.sanity.work https://sanity.work https://*.sanity-cdn.com https://sanity-cdn.com wss://*.sanity.io wss://*.sanity.work",
+  "frame-src 'self' https://*.sanity.io",
+  "worker-src 'self' blob:",
+  "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
@@ -33,6 +48,17 @@ const securityHeaders = [
   },
 ];
 
+const studioSecurityHeaders = [
+  { key: "Content-Security-Policy", value: studioContentSecurityPolicy },
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -41,15 +67,13 @@ const nextConfig = {
     qualities: [75, 100],
   },
   experimental: {
-    // Required for app/global-not-found.tsx — the project's root layout
-    // sits under a top-level dynamic segment ([locale]), so a regular
-    // app/not-found.tsx ends up nested inside [locale]/layout.tsx
-    // during SPA navigation and causes hydration mismatches from the
-    // duplicated html/body. globalNotFound bypasses the layout chain.
     globalNotFound: true,
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/studio/:path*", headers: studioSecurityHeaders },
+      { source: "/((?!studio).*)", headers: securityHeaders },
+    ];
   },
 };
 
