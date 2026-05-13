@@ -5,8 +5,6 @@ import { formatArtistName } from "@lib/utils/string-utils";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
-import { sanityImageLoader } from "@/sanity/lib/image-loader";
-
 type Props = { data: IImageCard };
 
 export function ArtistModalContent({ data }: Props) {
@@ -23,7 +21,6 @@ export function ArtistModalContent({ data }: Props) {
           fill
           quality={100}
           sizes="(max-width: 1024px) 100vw, 50vw"
-          loader={sanityImageLoader}
         />
         <picture>
           <source

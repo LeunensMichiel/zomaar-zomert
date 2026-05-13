@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useState } from "react";
 
-import { sanityImageLoader } from "@/sanity/lib/image-loader";
 import { type Artist } from "@/sanity/lib/queries";
 
 import { TBACard } from "../../_components/tba-card";
@@ -75,7 +74,6 @@ export function LineUpArtistCard({
             alt={artist.name}
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            loader={sanityImageLoader}
             className="object-cover object-center transition-transform group-hover:scale-105"
           />
           <div className="absolute top-2 left-2 z-20 md:top-3 md:left-3">

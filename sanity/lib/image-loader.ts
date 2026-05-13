@@ -1,20 +1,20 @@
-import { type ImageLoaderProps } from "next/image";
-
 /**
- * Next.js Image loader that builds Sanity CDN URLs with on-the-fly
- * resize + auto format. Apply via the `loader` prop on `<Image>` so
- * the browser hits `cdn.sanity.io` directly instead of routing image
- * bytes through `/_next/image` (which counts against Netlify bandwidth).
+ * Global Next.js Image loader, wired in next.config.js via
+ * `images.loader: 'custom'` + `images.loaderFile`. Next.js imports
+ * this directly — passing it as a prop would fail across the
+ * server/client boundary.
  *
- * Skips non-Sanity sources (e.g. local /public assets) by returning
- * the original URL untouched — those still go through Next's default
- * pipeline because `loader` is set per-image, not globally.
+ * - Sanity URLs get on-the-fly resize + auto format so browsers fetch
+ *   from cdn.sanity.io and skip the /_next/image Netlify hop.
+ * - Anything else (local /public assets) passes through untouched.
  */
-export const sanityImageLoader = ({
+type LoaderArgs = { src: string; width: number; quality?: number };
+
+export default function sanityImageLoader({
   src,
   width,
   quality,
-}: ImageLoaderProps) => {
+}: LoaderArgs): string {
   if (!src.startsWith("https://cdn.sanity.io/")) return src;
   const url = new URL(src);
   url.searchParams.set("w", String(width));
@@ -22,4 +22,4 @@ export const sanityImageLoader = ({
   url.searchParams.set("fit", "max");
   url.searchParams.set("auto", "format");
   return url.toString();
-};
+}

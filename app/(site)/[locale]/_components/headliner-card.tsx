@@ -4,8 +4,6 @@ import { type Locale } from "@lib/i18n/routing";
 import { cn } from "@lib/utils";
 import Image from "next/image";
 
-import { sanityImageLoader } from "@/sanity/lib/image-loader";
-
 import { TBACard } from "./tba-card";
 
 type Props = {
@@ -68,7 +66,6 @@ export function HeadlinerCard({
           alt={name}
           fill
           sizes="(max-width: 768px) 90vw, 33vw"
-          loader={sanityImageLoader}
           className="object-cover object-center transition-transform group-hover:scale-105"
         />
         <div className="absolute top-3 left-3 z-20">
