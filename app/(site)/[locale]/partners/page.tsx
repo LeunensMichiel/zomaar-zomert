@@ -3,13 +3,15 @@ import { FitText } from "@components/fit-text";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
-import partnersData from "@lib/data/partners.json";
 import { getPathname } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { client } from "@/sanity/lib/client";
+import { type Partner, PARTNERS_QUERY } from "@/sanity/lib/queries";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -37,13 +39,10 @@ export default async function PartnersPage({ params }: Props) {
 
   const contactHref = getPathname({ locale, href: "/contact" });
 
-  const visible = partnersData.filter((p) => !p.disabled);
-  const lead = visible
-    .filter((p) => p.formula === 1)
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const support = visible
-    .filter((p) => p.formula !== 1)
-    .sort((a, b) => a.formula - b.formula || a.name.localeCompare(b.name));
+  const partners = await client.fetch<Partner[]>(PARTNERS_QUERY);
+
+  const lead = partners.filter((p) => p.tier === 1);
+  const support = partners.filter((p) => p.tier !== 1);
 
   return (
     <>
@@ -74,7 +73,7 @@ export default async function PartnersPage({ params }: Props) {
           <div className="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {lead.map((p, i) => (
               <LeadPartnerCard
-                key={p.name}
+                key={p._id}
                 partner={p}
                 tilt={LEAD_TILT[i % LEAD_TILT.length]}
               />
@@ -91,7 +90,7 @@ export default async function PartnersPage({ params }: Props) {
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 md:gap-6 lg:grid-cols-5 xl:grid-cols-6">
               {support.map((p) => (
-                <SupportPartnerLogo key={p.name} partner={p} />
+                <SupportPartnerLogo key={p._id} partner={p} />
               ))}
             </div>
           </div>
@@ -158,7 +157,24 @@ export default async function PartnersPage({ params }: Props) {
   );
 }
 
-type Partner = (typeof partnersData)[number];
+type LogoProps = { partner: Partner; width: number; height: number };
+
+function PartnerLogo({ partner, width, height }: LogoProps) {
+  const url = partner.logo?.asset?.url;
+  const dims = partner.logo?.asset?.metadata.dimensions;
+  if (!url || !dims) return null;
+  return (
+    <Image
+      src={url}
+      alt={partner.logo?.alt ?? partner.name}
+      width={dims.width}
+      height={dims.height}
+      style={{ width, height }}
+      unoptimized
+      className="h-full w-full object-contain"
+    />
+  );
+}
 
 function LeadPartnerCard({
   partner,
@@ -167,11 +183,11 @@ function LeadPartnerCard({
   partner: Partner;
   tilt: number;
 }) {
-  const Wrapper = partner.site ? "a" : "div";
+  const Wrapper = partner.website ? "a" : "div";
   return (
     <Wrapper
-      {...(partner.site && {
-        href: partner.site,
+      {...(partner.website && {
+        href: partner.website,
         target: "_blank",
         rel: "noreferrer noopener",
       })}
@@ -182,15 +198,8 @@ function LeadPartnerCard({
         aria-hidden="true"
         className="halftone pointer-events-none absolute inset-0 opacity-20 mix-blend-screen"
       />
-      {partner.logoWhite ? (
-        <Image
-          src={partner.logoWhite}
-          alt={partner.name}
-          width={400}
-          height={300}
-          quality={100}
-          className="relative h-full w-full object-contain"
-        />
+      {partner.logo ? (
+        <PartnerLogo partner={partner} width={400} height={300} />
       ) : (
         <FitText
           text={partner.name}
@@ -202,25 +211,18 @@ function LeadPartnerCard({
 }
 
 function SupportPartnerLogo({ partner }: { partner: Partner }) {
-  const Wrapper = partner.site ? "a" : "div";
+  const Wrapper = partner.website ? "a" : "div";
   return (
     <Wrapper
-      {...(partner.site && {
-        href: partner.site,
+      {...(partner.website && {
+        href: partner.website,
         target: "_blank",
         rel: "noreferrer noopener",
       })}
       className="flex aspect-4/3 items-center justify-center p-3 opacity-70 transition-opacity hover:opacity-100"
     >
-      {partner.logoWhite ? (
-        <Image
-          src={partner.logoWhite}
-          alt={partner.name}
-          width={240}
-          height={120}
-          quality={100}
-          className="h-full w-full object-contain"
-        />
+      {partner.logo ? (
+        <PartnerLogo partner={partner} width={240} height={120} />
       ) : (
         <FitText
           text={partner.name}

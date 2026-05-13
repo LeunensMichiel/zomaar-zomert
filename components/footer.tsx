@@ -10,16 +10,14 @@ import { Youtube } from "@components/icons/youtube";
 import { LocaleSwitcher } from "@components/locale-switcher";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
-import {
-  loadLeadPartners,
-  loadSupportPartners,
-  type Partner,
-} from "@lib/data/partners";
 import { Link } from "@lib/i18n/navigation";
 import { ZZ_DATES } from "@lib/models";
 import { cn } from "@lib/utils";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
+
+import { client } from "@/sanity/lib/client";
+import { type Partner, PARTNERS_QUERY } from "@/sanity/lib/queries";
 
 const SOCIAL_LINKS = [
   {
@@ -90,7 +88,7 @@ function FooterLink({
 }
 
 const partnerLogoSize = (
-  size: "sm" | "md" | "lg" | "xl" | undefined,
+  size: Partner["logoSize"],
   tier: "lead" | "support",
 ) => {
   if (tier === "lead") {
@@ -124,10 +122,7 @@ function PartnerLogo({
   partner: Partner;
   tier: "lead" | "support";
 }) {
-  const sizeClass = partnerLogoSize(
-    partner.logoSize as "sm" | "md" | "lg" | "xl" | undefined,
-    tier,
-  );
+  const sizeClass = partnerLogoSize(partner.logoSize, tier);
   const className = cn(
     "inline-flex items-center justify-center transition-opacity",
     tier === "lead"
@@ -135,27 +130,30 @@ function PartnerLogo({
       : "max-w-32 opacity-60 hover:opacity-100",
     sizeClass,
   );
-  const content = partner.logoWhite ? (
-    <Image
-      src={partner.logoWhite}
-      alt={partner.name}
-      width={240}
-      height={120}
-      quality={100}
-      className="h-full w-full object-contain"
-    />
-  ) : (
-    <FitText
-      text={partner.name}
-      className={cn(
-        "font-display leading-none text-white",
-        tier === "lead" ? "text-xl lg:text-2xl" : "text-sm lg:text-base",
-      )}
-    />
-  );
-  return partner.site ? (
+  const logoUrl = partner.logo?.asset?.url;
+  const logoDims = partner.logo?.asset?.metadata.dimensions;
+  const content =
+    logoUrl && logoDims ? (
+      <Image
+        src={logoUrl}
+        alt={partner.logo?.alt ?? partner.name}
+        width={logoDims.width}
+        height={logoDims.height}
+        unoptimized
+        className="h-full w-full object-contain"
+      />
+    ) : (
+      <FitText
+        text={partner.name}
+        className={cn(
+          "font-display leading-none text-white",
+          tier === "lead" ? "text-xl lg:text-2xl" : "text-sm lg:text-base",
+        )}
+      />
+    );
+  return partner.website ? (
     <a
-      href={partner.site}
+      href={partner.website}
       target="_blank"
       rel="noreferrer noopener"
       className={className}
@@ -172,8 +170,9 @@ export async function Footer() {
   const t = await getTranslations({ locale: lang, namespace: "common" });
   const year = new Date().getFullYear();
 
-  const leadPartners = loadLeadPartners();
-  const supportPartners = loadSupportPartners();
+  const partners = await client.fetch<Partner[]>(PARTNERS_QUERY);
+  const leadPartners = partners.filter((p) => p.tier === 1);
+  const supportPartners = partners.filter((p) => p.tier !== 1);
 
   return (
     <>
@@ -345,7 +344,7 @@ export async function Footer() {
 
             <div className="mt-10 grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-10 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-16 lg:gap-y-14">
               {leadPartners.map((p) => (
-                <PartnerLogo key={p.name} partner={p} tier="lead" />
+                <PartnerLogo key={p._id} partner={p} tier="lead" />
               ))}
             </div>
 
@@ -367,7 +366,7 @@ export async function Footer() {
 
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 lg:gap-x-14">
                   {supportPartners.map((p) => (
-                    <PartnerLogo key={p.name} partner={p} tier="support" />
+                    <PartnerLogo key={p._id} partner={p} tier="support" />
                   ))}
                 </div>
               </>

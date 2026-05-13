@@ -7,7 +7,6 @@ import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Logo } from "@components/ui/logo";
 import { loadVisibleArtists } from "@lib/data/artists";
-import { loadFeaturedPartnerLogos } from "@lib/data/partners";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
@@ -23,6 +22,12 @@ import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { client } from "@/sanity/lib/client";
+import {
+  FEATURED_PARTNERS_QUERY,
+  type Partner,
+} from "@/sanity/lib/queries";
 
 import { ConsentVideo } from "./_components/consent-video";
 import { CountdownHero } from "./_components/countdown-hero";
@@ -96,7 +101,9 @@ export default async function Home({ params }: Props) {
     ),
   ];
 
-  const partnerSamples = loadFeaturedPartnerLogos();
+  const partnerSamples = await client.fetch<Partner[]>(
+    FEATURED_PARTNERS_QUERY,
+  );
 
   return (
     <>
@@ -543,19 +550,23 @@ export default async function Home({ params }: Props) {
                 const tileStyle = {
                   transform: `rotate(${String(((i % 4) - 1.5) * 1.5)}deg)`,
                 };
-                const logo = p.logoWhite ? (
-                  <Image
-                    src={p.logoWhite}
-                    alt={p.name}
-                    width={160}
-                    height={120}
-                    className="max-h-12 w-auto object-contain opacity-90 transition-opacity group-hover:opacity-100 md:max-h-16"
-                  />
-                ) : null;
-                return p.site ? (
+                const logoUrl = p.logo?.asset?.url;
+                const logoDims = p.logo?.asset?.metadata.dimensions;
+                const logo =
+                  logoUrl && logoDims ? (
+                    <Image
+                      src={logoUrl}
+                      alt={p.logo?.alt ?? p.name}
+                      width={logoDims.width}
+                      height={logoDims.height}
+                      unoptimized
+                      className="max-h-12 w-auto object-contain opacity-90 transition-opacity group-hover:opacity-100 md:max-h-16"
+                    />
+                  ) : null;
+                return p.website ? (
                   <a
-                    key={p.name}
-                    href={p.site}
+                    key={p._id}
+                    href={p.website}
                     target="_blank"
                     rel="noreferrer noopener"
                     className={`${tileClass} transition-transform hover:-translate-y-1`}
@@ -566,7 +577,7 @@ export default async function Home({ params }: Props) {
                   </a>
                 ) : (
                   <span
-                    key={p.name}
+                    key={p._id}
                     className={tileClass}
                     style={tileStyle}
                     aria-label={p.name}

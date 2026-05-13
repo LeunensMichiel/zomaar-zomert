@@ -285,9 +285,9 @@ Two-part global footer used on every page. Loud photo strip up top, calm editori
   - **1/4 — Line-Up**: brand-colored sticker eyebrow + uppercase per-day links.
   - **1/4 — More info**: pink sticker eyebrow + uppercase nav links (history, partners, menu, privacy).
   - All column headings are `<Sticker>` instances (sm size, ±2–3° rotation) — never plain underlined h3s. Links use `font-display uppercase tracking-wide` and yellow on hover.
-- **Partner hierarchy** — two distinct tiers driven by `formula` in [partners.json](lib/data/partners.json):
-  - **Lead partners (formula 1)** — eyebrow stack: small yellow "Mogelijk gemaakt door" + medium brand "Hoofdpartners" stickers, then a `grid-cols-2 md:grid-cols-3 lg:grid-cols-4` of larger logos (`h-12 md:h-14 lg:h-20`) at full opacity.
-  - **Support partners (formula 2+)** — separated by an ink sticker tag "Met de steun van" between two thin `bg-white/15` rules, then a `flex-wrap` of smaller logos (`h-7 md:h-9 lg:h-11`) at `opacity-60`. The opacity + size jump is the hierarchy signal — don't equalize them.
+- **Partner hierarchy** — two distinct tiers driven by `tier` on each Sanity `partner` document (schema in [sanity/schemaTypes/partner.ts](sanity/schemaTypes/partner.ts)):
+  - **Lead partners (tier 1)** — eyebrow stack: small yellow "Mogelijk gemaakt door" + medium brand "Hoofdpartners" stickers, then a `grid-cols-2 md:grid-cols-3 lg:grid-cols-4` of larger logos (`h-12 md:h-14 lg:h-20`) at full opacity.
+  - **Support partners (tier 2+)** — separated by an ink sticker tag "Met de steun van" between two thin `bg-white/15` rules, then a `flex-wrap` of smaller logos (`h-7 md:h-9 lg:h-11`) at `opacity-60`. The opacity + size jump is the hierarchy signal — don't equalize them.
 - **Bottom bar** — `<LocaleSwitcher>` (matches the navbar's locale pattern) on the left, single-line copyright on the right, separated from partners by a `border-white/10` rule. Credits are minimal — webdesign credit only.
 
 Don't add a newsletter, "stay in the loop" CTA, or any copy that pretends the festival has a continuous funnel. The footer is signage, not lead-gen.

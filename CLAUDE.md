@@ -40,13 +40,12 @@ All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/lay
 
 `<Doodle>` and `<PaperTear>` are **server-only** (declare `import "server-only"`) — the inlined SVG path data would bloat the client bundle. To use them inside a client tree, render them in the parent `page.tsx` and pass through as `children` or a ReactNode prop. See [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) for the bottom paper-tear pattern.
 
-### Content as static JSON
+### Content sources
 
-Festival content lives as JSON in [lib/data/](lib/data/), not a CMS:
+Festival content is split across two systems:
 
-- [lib/data/artists.json](lib/data/artists.json), [lib/data/menu.json](lib/data/menu.json), [lib/data/partners.json](lib/data/partners.json)
-
-Each record stores translated strings as `{ nl, fr, en }` (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages flatten these to the active locale via `loadXxx(locale)` helpers — see [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) (`APIArtist → Artist`) for the canonical pattern. New content collections should mirror this `API*` → flat-shape transform so page components stay locale-agnostic.
+- **Static JSON** in [lib/data/](lib/data/) — [artists.json](lib/data/artists.json) and [menu.json](lib/data/menu.json). Each record stores translated strings as `{ nl, fr, en }` (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages flatten these to the active locale via `loadXxx(locale)` helpers — see [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) (`APIArtist → Artist`) for the canonical pattern. New JSON-backed collections should mirror this `API*` → flat-shape transform so page components stay locale-agnostic.
+- **Sanity** for partners — schema at [sanity/schemaTypes/partner.ts](sanity/schemaTypes/partner.ts), GROQ in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via the typed `client.fetch<Partner[]>(PARTNERS_QUERY)` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`.
 
 Artists are filtered at render time by `showFrom` (date string) and `ZZ_YEAR`; TBA placeholders pad each day to a minimum count.
 
