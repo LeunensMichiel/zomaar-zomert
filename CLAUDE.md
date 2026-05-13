@@ -48,8 +48,6 @@ All festival content lives in **Sanity** — partners, artists, and menu items. 
 
 **Artist visibility** is enforced **server-side** in the GROQ query (`showFrom <= now() && showFrom >= $yearStart`) so unannounced acts never leave Sanity — pass `yearStart = \`${ZZ_YEAR}-01-01T00:00:00Z\`` and `locale` to the query. TBA placeholders are still constructed client-side in [line-up-client.tsx](app/%5Bsite%5D/%5Blocale%5D/line-up/_components/line-up-client.tsx) to pad each day to a minimum count.
 
-**Migration scripts** in [scripts/](scripts/) are one-shot — partners and artists/menu have already been migrated from the old JSON. Kept for reference; would need `lib/data/*.json` restored from git history to re-run.
-
 ### Festival dates and feature gates
 
 Constants in [lib/models.ts](lib/models.ts): `ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY/MONDAY`, `ZZ_YEAR`, signup form URLs, `ENABLE_LINKS_DATE`. `isSignupOpen()` gates petanque/paella signup buttons. When rolling to a new edition, this file is the single source of truth.
