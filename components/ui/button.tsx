@@ -35,7 +35,7 @@ export const buttonVariants = tv({
       sm: "text-sm px-4 py-2",
       md: "text-base px-4 py-3 md:text-2xl lg:text-3xl xxl:text-4xl border-0",
       lg: "text-lg px-5 py-3 [&_svg]:h-6 [&_svg]:w-6",
-      xl: "text-lg px-5 py-4 md:text-3xl md:py-5 lg:text-2xl xxl:text-4xl [&_svg]:h-6 [&_svg]:w-6",
+      xl: "min-w-60 text-lg px-5 py-4 md:text-3xl md:py-5 lg:text-2xl xxl:text-4xl [&_svg]:h-6 [&_svg]:w-6",
       "2xl":
         "text-2xl px-6 py-4 md:text-4xl lg:text-5xl [&_svg]:h-7 [&_svg]:w-7 md:[&_svg]:h-9 md:[&_svg]:w-9",
     },
@@ -65,6 +65,7 @@ export const buttonVariants = tv({
 type ButtonOwnProps = {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
+  fullWidth?: boolean;
   loading?: boolean;
   circular?: boolean;
   squared?: boolean;
@@ -93,6 +94,7 @@ export function Button<C extends ElementType = "button">({
   className,
   children,
   disabled,
+  fullWidth = false,
   ...rest
 }: ButtonProps<C>) {
   const Component: ElementType = as ?? "button";
@@ -122,6 +124,7 @@ export function Button<C extends ElementType = "button">({
           sticker,
           loading,
         }),
+        fullWidth && "w-full",
         className,
       )}
       aria-disabled={disabled}
@@ -136,7 +139,12 @@ export function Button<C extends ElementType = "button">({
       )}
       {children}
       {iconRight && (
-        <span className="inline-flex items-center justify-center">
+        <span
+          className={cn(
+            "inline-flex items-center justify-center",
+            fullWidth && "ml-auto",
+          )}
+        >
           {iconRight}
         </span>
       )}

@@ -45,7 +45,11 @@ export function Logo({ className, variant = "icon", ...props }: LogoProps) {
   }
 
   return (
-    <Link href="/" aria-label="Home">
+    <Link
+      href="/"
+      aria-label="Home"
+      className="text-current hover:text-current"
+    >
       <svg
         tabIndex={0}
         className={sharedClass}

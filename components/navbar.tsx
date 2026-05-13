@@ -19,16 +19,14 @@ import {
 } from "@lib/models";
 import { cn } from "@lib/utils";
 import {
-  animate as motionAnimate,
   AnimatePresence,
   motion,
-  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTransform,
 } from "motion/react";
 import { useTranslations } from "next-intl";
-import { type ReactNode, useEffect, useId, useState } from "react";
+import { type ReactNode, useId, useState } from "react";
 
 type NavLinkData = {
   key: string;
@@ -200,33 +198,13 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
     setScrolled(v > 24);
   });
 
-  // Mirror `open` as a motion value so the logo's scroll-driven
-  // scale/opacity can be lerp'd back to visible when the menu opens.
-  const openMv = useMotionValue(0);
-  useEffect(() => {
-    const controls = motionAnimate(openMv, open ? 1 : 0, {
-      duration: 0.3,
-      ease,
-    });
-    return () => {
-      controls.stop();
-    };
-  }, [open, openMv]);
-
-  const logoScale = useTransform(() => {
-    const sy = scrollY.get();
-    const o = openMv.get();
-    const scrollScale = 1 - Math.min(sy / 120, 1) * 0.6;
-    return scrollScale + (1 - scrollScale) * o;
-  });
-  const logoOpacity = useTransform(() => {
-    const sy = scrollY.get();
-    const o = openMv.get();
-    const scrollOpacity = 1 - Math.min(sy / 120, 1);
-    return scrollOpacity + (1 - scrollOpacity) * o;
-  });
-  // Don't intercept clicks once the logo has faded out.
-  const logoPointerEvents = useTransform(logoOpacity, (o) =>
+  // Scroll-driven fade for the small icon. Lives on the icon only —
+  // the open-state wordmark manages its own opacity so it stays visible
+  // even when the user opened the menu after scrolling.
+  const iconScrollOpacity = useTransform(scrollY, (sy) =>
+    Math.max(0, 1 - sy / 120),
+  );
+  const iconPointerEvents = useTransform(iconScrollOpacity, (o) =>
     o > 0.05 ? "auto" : "none",
   );
 
@@ -238,16 +216,42 @@ export function Navbar({ starBurst }: NavbarProps = {}) {
       >
         <div className="container-wide px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-5">
           <div className="relative flex items-center justify-between">
-            <motion.div
-              style={{
-                scale: logoScale,
-                opacity: logoOpacity,
-                pointerEvents: logoPointerEvents,
-              }}
-              className="origin-left"
-            >
-              <Logo className="h-9 w-auto md:h-11 lg:h-12" />
-            </motion.div>
+            <div>
+              <AnimatePresence mode="wait" initial={false}>
+                {open ? (
+                  <motion.div
+                    key="full"
+                    initial={{ opacity: 0, clipPath: "inset(0 80% 0 0)" }}
+                    animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+                    exit={{ opacity: 0, clipPath: "inset(0 80% 0 0)" }}
+                    transition={{ duration: 0.45, ease }}
+                    onClick={close}
+                  >
+                    <Logo
+                      variant="full"
+                      className="h-12 w-auto md:h-14 lg:h-16"
+                    />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="icon"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, ease }}
+                  >
+                    <motion.div
+                      style={{
+                        opacity: iconScrollOpacity,
+                        pointerEvents: iconPointerEvents,
+                      }}
+                    >
+                      <Logo className="h-9 w-auto md:h-11 lg:h-12" />
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <div className="relative isolate">
               <motion.div

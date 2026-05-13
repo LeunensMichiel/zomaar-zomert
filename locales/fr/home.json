@@ -13,6 +13,7 @@
   "minutes": "mn.",
   "seconds": "s.",
   "festivalHasStarted": "Le festival a commencé !",
+  "seeYouNextYear": "À l'année prochaine !",
   "paella": "S'inscrire — Paella",
   "petanque": "S'inscrire — Petanque",
   "paellaSoon": "Bientôt — Paella",
@@ -36,11 +37,12 @@
     "body": "Le dernier week-end de juillet, l'église Sainte-Anne d'Itterbeek prend trois jours de congé. Musique live, bière fraîche, paella, pétanque et des milliers d'amis encore à rencontrer. Pas de billets, pas de bracelets — entrez, c'est l'été."
   },
   "countdown": {
-    "daysAway": "avant le festival",
+    "daysAway": "presque là",
     "dayWord": "JOUR.",
     "daysWord": "JOURS."
   },
   "lineup": {
+    "heading": "Line-up",
     "all": "Programmation complète",
     "seeDay": "Voir le jour",
     "tba": "Bientôt"
@@ -49,6 +51,7 @@
     "eyebrow": "Programme"
   },
   "activities": {
+    "heading": "Participez.",
     "paella": {
       "title": "Paella du dimanche",
       "body": "Longues tablées, une poêle géante et vos voisins en compagnie. Inscription obligatoire — chaque année à guichets fermés."
@@ -69,6 +72,7 @@
     "visitors": "Visiteurs"
   },
   "partners": {
+    "heading": "100% Gratuit.",
     "eyebrow": "Rendu possible par",
     "body": "Zomaar Zomert est gratuit parce qu'une bande d'entrepreneurs locaux, bénévoles et sponsors y mettent du leur. Envie de soutenir la prochaine édition?",
     "all": "Tous les partenaires",

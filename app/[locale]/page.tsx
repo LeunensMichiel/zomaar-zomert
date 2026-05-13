@@ -26,8 +26,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ConsentVideo } from "./_components/consent-video";
 import { CountdownHero } from "./_components/countdown-hero";
-import { DayCard } from "./_components/day-card";
-import { FloatingPolaroid } from "./_components/floating-polaroid";
+import { DayMiniCard } from "./_components/day-mini-card";
 import { HeadlinerCard } from "./_components/headliner-card";
 import { PhotoMarquees } from "./_components/photo-marquees";
 import { RevealCard } from "./_components/reveal-card";
@@ -68,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function RedesignHome({ params }: Props) {
+export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
@@ -101,14 +100,6 @@ export default async function RedesignHome({ params }: Props) {
 
   return (
     <>
-      {/* ─────────────────────────────────────────────────────────────
-          HERO — full-bleed video, halftone overlay, logo + date stamp,
-          scatter doodles, and an in-hero marquee so motion is already
-          visible above the fold. Height is intentionally short enough
-          that the yellow ticker (next section) peeks at the bottom of
-          the viewport on first load. The transparent navbar sits on top
-          (handled in components/layout.tsx via `transparentRoutes`).
-          ─────────────────────────────────────────────────────────────*/}
       <section className="relative isolate flex min-h-svh w-full flex-col overflow-hidden bg-blue-900 text-white">
         <video
           playsInline
@@ -121,9 +112,6 @@ export default async function RedesignHome({ params }: Props) {
         >
           <source src="/assets/landing.mp4" type="video/mp4" />
         </video>
-        {/* Atmosphere overlay — same recipe as MenuBackground but with
-            a trio of drifting brand blobs and a drifting/spinning
-            star-burst layered between the hot gradient and the grain. */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -146,8 +134,6 @@ export default async function RedesignHome({ params }: Props) {
           <GrainOverlay />
         </div>
 
-        {/* Logo + date — vertically centered. The marquee sits flush at
-            the bottom (no extra reserved padding needed). */}
         <div className="container-wide relative flex flex-1 flex-col items-center justify-center pt-24 pb-12 md:pt-28 md:pb-16">
           <div className="relative z-30 flex flex-col items-center text-center">
             <Logo
@@ -155,7 +141,6 @@ export default async function RedesignHome({ params }: Props) {
               className="w-full max-w-72 text-white md:max-w-160 xl:max-w-200"
             />
 
-            {/* Sticker-style date stamp instead of an inline triangle row. */}
             <div className="mt-6 inline-flex items-center gap-3 md:mt-8">
               <Sticker color="brand" size="lg" rotate={-3}>
                 <span className="inline-flex items-center gap-2">
@@ -193,126 +178,24 @@ export default async function RedesignHome({ params }: Props) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-pink-50">
-        <PaperTear edge="top" tear={4} bgColor="pink-50" color="yellow-400" />
-        <Doodle
-          shape="cross"
-          color="dimmed-led"
-          accent="summer-red"
-          rotate={8}
-          className="absolute top-10 right-6 z-0 h-10 md:top-16 md:right-12 md:h-14"
-        />
-
-        <div className="container-wide relative z-20 py-10 md:py-12 lg:py-14">
-          <CountdownHero />
-
-          <div className="mt-8 grid items-center gap-6 md:mt-10 md:gap-8 lg:grid-cols-12 lg:gap-12">
-            <FloatingPolaroid
-              src="/assets/slides/slide14.webp"
-              alt=""
-              caption={
-                <Sticker color="brand" size="sm" rotate={4}>
-                  Zin in.
-                </Sticker>
-              }
-              tilt={-2}
-              float={false}
-              className="mx-auto w-full max-w-44 md:max-w-48 lg:col-span-3 lg:mx-0"
-            />
-
-            <p className="text-center text-base text-gray-700 md:text-lg lg:col-span-5 lg:text-left">
-              {tHome("intro.body")}
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 lg:col-span-4 lg:justify-end">
-              <Link href="/line-up">
-                <Button
-                  as="span"
-                  variant="brand"
-                  size="lg"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {tCommon("links.line-up")}
-                </Button>
-              </Link>
-              <Link href="/info">
-                <Button
-                  as="span"
-                  variant="ink"
-                  size="lg"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {tCommon("links.info")}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          DAYS — three hand-cut cards with sticker numbers
-          ─────────────────────────────────────────────────────────────*/}
-      <section className="relative bg-pink-300">
-        <PaperTear edge="top" tear={2} color="pink-50" />
-        {/* Big anchor in the right bleed + one tiny accent. The `eye` is
-            the lone inline doodle we kept from the original set. */}
-        <Doodle
-          shape="eye"
-          color="summer-red"
-          accent="blue-cola"
-          rotate={8}
-          className="absolute -top-12 -left-12 h-56 w-56 md:-top-20 md:-right-24 md:left-auto md:h-80 md:w-80 lg:h-96 lg:w-96"
-        />
-        <Doodle
-          shape="coil"
-          color="blue-cola"
-          rotate={-12}
-          className="absolute bottom-20 left-6 hidden h-40 md:left-12 md:block md:h-40"
-        />
-        <div className="container-wide section-y relative z-20">
-          {/* Just an eyebrow — the day cards do the talking. */}
-          <div className="mb-10 flex justify-end md:mb-14 md:justify-start">
-            <Sticker color="ink" size="sm" rotate={-3}>
-              {tHome("programme.eyebrow")}
-            </Sticker>
-          </div>
-
-          <div className="grid gap-12 md:grid-cols-3 md:gap-8">
-            {days.map((day, i) => (
-              <RevealCard key={day.date} index={i}>
-                <DayCard
-                  date={day.date}
-                  image={day.image}
-                  index={i}
-                  locale={locale}
-                  ctaLabel={tHome("lineup.seeDay")}
-                />
-              </RevealCard>
-            ))}
-          </div>
-        </div>
-        <PaperTear edge="bottom" tear={3} color="pink-300" bgColor="blue-500" />
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          HEADLINERS — featured artists w/ overlay sticker
-          ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-blue-500 text-white">
-        {/* Big asterisk bleeding off the right + one small accent. */}
+        <PaperTear edge="top" tear={4} color="yellow-400" bgColor="blue-500" />
         <Doodle
           shape="asterisk"
           color="linear-sunset"
           rotate={20}
-          className="absolute -top-12 -right-16 h-56 md:-top-20 md:-right-24 md:h-96 lg:h-112"
+          className="absolute -top-4 -right-40 h-80 md:-top-12 md:-right-24 md:h-96 lg:h-112"
+        />
+        <Doodle
+          shape="coil"
+          color="royal-yellow"
+          rotate={-12}
+          className="absolute bottom-32 left-6 hidden h-32 md:left-12 md:block md:h-40"
         />
         <div className="container-wide section-y relative z-20">
-          {/* Single oversized poster word — context speaks for itself. */}
           <div className="mb-10 flex flex-col items-start gap-6 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-10">
             <h2 className="text-7xl leading-[0.85] text-yellow-400 md:text-[10rem] xl:text-[14rem]">
-              Line-up
+              {tHome("lineup.heading")}
             </h2>
             <Link href="/line-up">
               <Button
@@ -344,21 +227,36 @@ export default async function RedesignHome({ params }: Props) {
               </RevealCard>
             ))}
           </div>
+
+          <div className="mt-14 flex items-center gap-4 md:mt-20 md:gap-6">
+            <Sticker color="ink" size="sm" rotate={-3}>
+              {tHome("programme.eyebrow")}
+            </Sticker>
+            <span aria-hidden="true" className="bg-linear-sunset h-px flex-1" />
+          </div>
+          <div className="mt-6 grid gap-5 md:mt-8 md:grid-cols-3 md:gap-6">
+            {days.map((day, i) => (
+              <RevealCard key={day.date} index={i}>
+                <DayMiniCard
+                  date={day.date}
+                  image={day.image}
+                  index={i}
+                  locale={locale}
+                />
+              </RevealCard>
+            ))}
+          </div>
         </div>
         <PaperTear edge="bottom" tear={4} color="pink-50" />
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          ACTIVITIES — bento layout: paella + petanque + food + crew
-          ─────────────────────────────────────────────────────────────*/}
-      <section className="relative bg-pink-50">
-        {/* Big horns anchor in the right bleed + one small play accent. */}
+      <section className="relative overflow-hidden bg-pink-50">
         <Doodle
           shape="horns"
           color="royal-yellow"
           accent="summer-red"
-          rotate={-8}
-          className="absolute -top-12 -right-16 h-40 md:-top-20 md:-right-20 md:h-80 lg:h-96"
+          rotate={-12}
+          className="hidden"
         />
         <Doodle
           shape="radial"
@@ -366,15 +264,26 @@ export default async function RedesignHome({ params }: Props) {
           rotate={-15}
           className="absolute right-1/3 bottom-20 hidden h-15 md:block md:h-16"
         />
-        <div className="container-wide section-y relative z-20">
-          {/* Single oversized poster word, no sentence-y subtitle. */}
-          <h2 className="text-brand-500 mb-10 text-7xl leading-[0.85] md:mb-14 md:text-9xl xl:text-[14rem]">
-            Doe mee.
-          </h2>
+        <div className="container-wide section-y relative z-20 pt-3 md:pt-12">
+          <CountdownHero />
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t-2 border-gray-900/10 pt-8 md:mt-14 md:flex-row md:gap-10 md:pt-10 lg:grid-cols-12 lg:gap-12">
+            <p className="text-base text-gray-700 md:text-lg lg:col-span-7 lg:max-w-2xl">
+              {tHome("intro.body")}
+            </p>
+            <Link href="/info" className="w-full md:w-auto">
+              <Button
+                variant="brand"
+                size="xl"
+                fullWidth
+                sticker
+                iconRight={<ChevronRight />}
+              >
+                {tCommon("links.info")}
+              </Button>
+            </Link>
+          </div>
 
-          {/* Bento */}
-          <div className="grid gap-6 md:gap-8 lg:grid-cols-12">
-            {/* Paella — large hero tile */}
+          <div className="mt-12 grid gap-6 md:mt-16 md:gap-8 lg:grid-cols-12">
             <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-yellow-400 lg:col-span-7 lg:row-span-2">
               <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
                 <Image
@@ -417,7 +326,6 @@ export default async function RedesignHome({ params }: Props) {
               </div>
             </article>
 
-            {/* Pétanque */}
             <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-blue-500 text-white lg:col-span-5">
               <div className="relative aspect-5/4 overflow-hidden border-b-2 border-gray-900">
                 <Image
@@ -454,7 +362,6 @@ export default async function RedesignHome({ params }: Props) {
               </div>
             </article>
 
-            {/* Crew tile */}
             <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-pink-300 lg:col-span-5">
               <div className="grid grid-cols-5 items-stretch">
                 <div className="relative col-span-2 min-h-40 border-r-2 border-gray-900 md:min-h-50">
@@ -484,9 +391,6 @@ export default async function RedesignHome({ params }: Props) {
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          GALLERY — keep marquees, frame them like a polaroid wall
-          ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-yellow-400">
         <div className="relative isolate">
           <PaperTear
@@ -505,10 +409,6 @@ export default async function RedesignHome({ params }: Props) {
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          AFTERMOVIE — untitled; the Vibes section above already sets
-          the visual mood, so the video gets to speak for itself.
-          ─────────────────────────────────────────────────────────────*/}
       <section className="bg-brand-500 relative text-pink-50">
         <Doodle
           shape="star"
@@ -519,11 +419,7 @@ export default async function RedesignHome({ params }: Props) {
         <ConsentVideo />
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          NUMBERS — chunky stat stickers on a brand-orange field
-          ─────────────────────────────────────────────────────────────*/}
       <section className="bg-brand-500 relative text-pink-50">
-        {/* Big star anchor + one stripes accent. */}
         <Doodle
           shape="star"
           color="pink"
@@ -537,7 +433,6 @@ export default async function RedesignHome({ params }: Props) {
           className="absolute right-1/4 bottom-12 hidden h-10 md:block md:h-14"
         />
         <div className="container-wide section-y relative z-20">
-          {/* No header — the stat stickers are the design. */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {[
               {
@@ -583,10 +478,6 @@ export default async function RedesignHome({ params }: Props) {
         <PaperTear edge="bottom" tear={1} color="pink-50" />
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          PARTNERS TEASER — small partner cluster + CTA. Full list
-          remains in the global footer.
-          ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-pink-50">
         <Doodle
           shape="lips"
@@ -606,7 +497,7 @@ export default async function RedesignHome({ params }: Props) {
               {tHome("partners.eyebrow")}
             </Sticker>
             <h2 className="text-brand-500 mt-4 text-7xl leading-[0.85] md:mt-6 md:text-9xl xl:text-[12rem]">
-              100% Gratis.
+              {tHome("partners.heading")}
             </h2>
             <p className="mt-6 max-w-md text-base text-gray-700 md:text-lg">
               {tHome("partners.body")}

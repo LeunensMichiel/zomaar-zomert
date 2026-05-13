@@ -1,7 +1,8 @@
 "use client";
 
-import { ZZ_DATE_FRIDAY, ZZ_DATE_MONDAY } from "@lib/models";
+import { ZZ_DATE_FRIDAY, ZZ_DATE_MONDAY, ZZ_YEAR } from "@lib/models";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -20,12 +21,6 @@ function compute(diff: number): [number, number, number, number] {
 
 const DIGIT_TRANSITION = { duration: 0.35, ease: [0.4, 0, 0.2, 1] as const };
 
-/**
- * Single LED-style digit cell. Vertically rolls in the new digit when
- * its key changes — old digit slides up out of view, new one slides
- * in from below. Honours reduced motion by replacing the animation
- * with a plain static digit.
- */
 function DigitCell({
   digit,
   reducedMotion,
@@ -47,10 +42,6 @@ function DigitCell({
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
             transition={DIGIT_TRANSITION}
-            // `inset-0` makes the span the same size as the cell so
-            // y: ±100% translates by the full cell height — without it
-            // the span only matches the text glyph height and the
-            // outgoing digit briefly flickers at the top edge.
             className="absolute inset-0 grid place-items-center text-3xl font-bold tabular-nums md:text-5xl xl:text-6xl"
           >
             {digit}
@@ -61,7 +52,6 @@ function DigitCell({
   );
 }
 
-/** Pair of digit cells fed by a 0–99 value, plus a small unit label. */
 function DigitPair({
   value,
   label,
@@ -85,16 +75,15 @@ function DigitPair({
   );
 }
 
-/** Pulsing red colon that ticks once per second. */
 function Colon({ reducedMotion }: { reducedMotion: boolean | null }) {
   return (
     <motion.span
       aria-hidden
       className="font-display text-brand-500 flex h-14 items-center text-3xl font-bold md:h-20 md:text-5xl xl:h-24 xl:text-6xl"
-      animate={reducedMotion ? undefined : { opacity: [1, 0.25, 1] }}
+      animate={reducedMotion ? undefined : { opacity: [1, 0.5, 1] }}
       transition={{
         duration: 1,
-        ease: "linear",
+        ease: "backOut",
         repeat: Number.POSITIVE_INFINITY,
       }}
     >
@@ -103,18 +92,175 @@ function Colon({ reducedMotion }: { reducedMotion: boolean | null }) {
   );
 }
 
-/**
- * Days-as-headline countdown. The day count is the giant poster word
- * (replacing the previous static "ZOMAAR." stamp), paired with a
- * chunky-block "DAGEN." stamp at opposite tilt. Below sits a live
- * HH:MM:SS clock where each digit rolls in on change.
- */
+const STROKE_PATH =
+  "M63.2093 43.0917L137.51 40.5994L52.1302 111.359L232.573 41.2719L46.9445 163.596L220.386 74.8238L23.2239 225.272L425.018 16.0246L10.2916 303.448L325.238 140.553L157.491 258.867L269.449 247.26";
+
+function StrokeDoodle({ gradientId }: { gradientId: string }) {
+  return (
+    <svg
+      viewBox="0 0 435.309 319.496"
+      fill="none"
+      aria-hidden
+      overflow="visible"
+      preserveAspectRatio="xMidYMid meet"
+      className="h-full w-full"
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="333.494"
+          y1="292.474"
+          x2="298.472"
+          y2="52.2879"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#FFB600" />
+          <stop offset="1" stopColor="#FF7BAC" />
+        </linearGradient>
+      </defs>
+      <path
+        d={STROKE_PATH}
+        stroke={`url(#${gradientId})`}
+        strokeWidth="36.1349"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function EndedState({ pastFestival }: { pastFestival: boolean }) {
+  const t = useTranslations("home");
+  const reducedMotion = useReducedMotion();
+
+  const headline = pastFestival ? t("seeYouNextYear") : t("festivalHasStarted");
+  const editionYear = pastFestival ? ZZ_YEAR + 1 : ZZ_YEAR;
+  const yearShort = String(editionYear).slice(-2);
+
+  const blockText = pastFestival ? "text-yellow-400" : "text-pink-300";
+
+  return (
+    <motion.div
+      initial={reducedMotion ? false : "hidden"}
+      animate="show"
+      variants={{
+        hidden: {},
+        show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+      }}
+      className="relative isolate mx-auto flex w-full max-w-3xl flex-col items-center px-6 py-24 text-center md:px-10 md:pt-12 md:pb-28"
+    >
+      <motion.div
+        aria-hidden
+        variants={{
+          hidden: { scale: 0.85, opacity: 0 },
+          show: {
+            scale: 1,
+            opacity: 1,
+            transition: { type: "spring", damping: 18, stiffness: 90 },
+          },
+        }}
+        className="pointer-events-none absolute inset-0 -z-10 grid place-items-center"
+      >
+        <div className="animate-doodle-paint-stroke-loop aspect-[1.36/1] w-full max-w-md translate-x-[12%] translate-y-[8%] opacity-90 md:max-w-2xl md:translate-x-[13%] md:translate-y-[-8%]">
+          <StrokeDoodle gradientId="ended-stroke-gradient" />
+        </div>
+      </motion.div>
+
+      <motion.div
+        aria-hidden
+        variants={{
+          hidden: { scale: 0, rotate: -30, opacity: 0 },
+          show: {
+            scale: 1,
+            rotate: -8,
+            opacity: 1,
+            transition: { type: "spring", damping: 11, stiffness: 180 },
+          },
+        }}
+        className="absolute top-2 left-2 h-10 w-10 md:top-4 md:left-6 md:h-14 md:w-14"
+      >
+        <Image
+          src={
+            pastFestival
+              ? "/assets/doodles/star.svg"
+              : "/assets/doodles/flame.svg"
+          }
+          alt=""
+          fill
+          sizes="56px"
+          className="object-contain"
+        />
+      </motion.div>
+
+      <motion.div
+        aria-hidden
+        variants={{
+          hidden: { scale: 0, rotate: -25, opacity: 0 },
+          show: {
+            scale: 1,
+            rotate: -14,
+            opacity: 1,
+            transition: { type: "spring", damping: 13, stiffness: 160 },
+          },
+        }}
+        className="absolute right-3 bottom-3 h-9 w-9 md:right-8 md:bottom-6 md:h-12 md:w-12"
+      >
+        <Image
+          src="/assets/doodles/cross.svg"
+          alt=""
+          fill
+          sizes="48px"
+          className="object-contain"
+        />
+      </motion.div>
+
+      <motion.span
+        variants={{
+          hidden: { y: 12, opacity: 0 },
+          show: { y: 0, opacity: 1 },
+        }}
+        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-700 uppercase md:text-sm"
+      >
+        {t("month")} &rsquo;{yearShort}
+      </motion.span>
+
+      <motion.div
+        variants={{
+          hidden: { scale: 0.7, rotate: -10, opacity: 0 },
+          show: {
+            scale: 1,
+            rotate: -2,
+            opacity: 1,
+            transition: { type: "spring", damping: 12, stiffness: 130 },
+          },
+        }}
+        className="relative mt-6 md:mt-8"
+      >
+        <span
+          aria-hidden
+          className="tape-strip absolute -top-3 left-6 z-30 h-5 w-20 -rotate-12 md:-top-4 md:left-14 md:h-6 md:w-28"
+        />
+        <motion.h2
+          animate={reducedMotion ? undefined : { rotate: [-2, -0.8, -2.4, -2] }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className={`font-display shadow-sticker-lg inline-block border-2 border-gray-900 bg-gray-900 px-6 py-4 text-4xl leading-[0.92] font-bold uppercase md:px-10 md:py-6 md:text-6xl xl:text-7xl ${blockText}`}
+          style={{ textWrap: "balance" }}
+        >
+          {headline}
+        </motion.h2>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export function CountdownHero() {
   const t = useTranslations("home");
   const reducedMotion = useReducedMotion();
   const [diff, setDiff] = useState<number | null>(null);
-  // Captured once at mount — avoids an impure read inside the
-  // "see you next year" branch.
   const [mountedAt] = useState(() => Date.now());
 
   useEffect(() => {
@@ -131,15 +277,7 @@ export function CountdownHero() {
   const ended = diff !== null && diff <= 0;
 
   if (ended) {
-    return (
-      <div className="flex flex-col items-center gap-5 text-center md:gap-7">
-        <p className="font-display text-brand-500 text-6xl leading-[0.85] font-bold uppercase md:text-8xl xl:text-9xl">
-          {mountedAt >= LAST_DAY
-            ? "See you next year!"
-            : t("festivalHasStarted")}
-        </p>
-      </div>
-    );
+    return <EndedState pastFestival={mountedAt >= LAST_DAY} />;
   }
 
   const [d, h, m, s] = compute(diff ?? 0);
@@ -192,7 +330,7 @@ export function CountdownHero() {
                   : { y: "-40%", opacity: 0, rotate: 5 }
               }
               transition={{ type: "spring", damping: 16, stiffness: 140 }}
-              className="font-display text-brand-500 inline-block text-[clamp(8rem,30vw,22rem)] leading-[0.78] font-bold uppercase tabular-nums"
+              className="font-display text-brand-500 inline-block text-[clamp(8rem,12vw,15rem)] leading-[0.78] font-bold uppercase tabular-nums"
             >
               {d}
             </motion.span>
@@ -209,7 +347,7 @@ export function CountdownHero() {
               transition: { type: "spring", damping: 12, stiffness: 160 },
             },
           }}
-          className="font-display shadow-sticker-lg inline-block bg-gray-900 px-5 py-1.5 text-5xl leading-[0.9] font-bold text-yellow-400 uppercase md:px-7 md:py-2 md:text-7xl xl:text-8xl"
+          className="font-display shadow-sticker-lg inline-block bg-gray-900 px-5 py-1.5 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-2 md:text-6xl xl:text-6xl"
         >
           {dayWord}
         </motion.h2>

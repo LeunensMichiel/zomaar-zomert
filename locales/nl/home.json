@@ -13,6 +13,7 @@
   "minutes": "min.",
   "seconds": "sec.",
   "festivalHasStarted": "Het festival is gestart!",
+  "seeYouNextYear": "Tot volgend jaar!",
   "paella": "Inschrijven — Paella",
   "petanque": "Inschrijven — Petanque",
   "paellaSoon": "Binnenkort — Paella",
@@ -36,11 +37,12 @@
     "body": "Het laatste weekend van juli neemt de Sint-Anna-Pedekerk in Itterbeek drie dagen lang vrij. Live muziek, koud bier, paella, petanque en duizenden vrienden die nog komen. Geen tickets, geen polsbandjes — gewoon binnenstappen en zomeren tot de zon onder gaat."
   },
   "countdown": {
-    "daysAway": "tot we doorgaan",
+    "daysAway": "nog efkes aftellen",
     "dayWord": "DAG.",
     "daysWord": "DAGEN."
   },
   "lineup": {
+    "heading": "Line-up",
     "all": "Volledige line-up",
     "seeDay": "Bekijk dag",
     "tba": "Binnenkort"
@@ -49,6 +51,7 @@
     "eyebrow": "Programma"
   },
   "activities": {
+    "heading": "Doe mee.",
     "paella": {
       "title": "Paella op zondag",
       "body": "Lange tafels, één gigantische pan en je buren als gezelschap. Inschrijven verplicht — en het loopt elk jaar volzee."
@@ -69,6 +72,7 @@
     "visitors": "Bezoekers"
   },
   "partners": {
+    "heading": "100% Gratis.",
     "eyebrow": "Mogelijk gemaakt door",
     "body": "Zomaar Zomert is gratis omdat een hele bende lokale ondernemers, vrijwilligers en sponsors er hun schouders onder zet. Wil je mee zorgen voor de volgende editie?",
     "all": "Alle partners",
