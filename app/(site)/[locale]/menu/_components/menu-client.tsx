@@ -2,7 +2,6 @@
 
 import { ScrollBg } from "@components/scroll-bg";
 import { Sticker } from "@components/sticker";
-import { type MenuItem, MenuType } from "@lib/models";
 import { cn } from "@lib/utils";
 import { groupBy } from "@lib/utils/group-by";
 import { Ticket } from "lucide-react";
@@ -10,6 +9,8 @@ import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { type ReactNode, useMemo, useState } from "react";
+
+import { type MenuItem, MenuType } from "@/sanity/lib/queries";
 
 // Per-filter background palettes — five close stops form a gentle
 // wave. Both bookend at pink-50 so the hero's transition reads

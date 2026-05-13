@@ -73,6 +73,27 @@ export const HEADLINER_ARTISTS_QUERY = defineQuery(/* groq */ `
   }
 `);
 
+const localizedFlat = (field: string) => /* groq */ `
+  coalesce(
+    ${field}[language == $locale][0].value,
+    ${field}[language == "en"][0].value,
+    ${field}[language == "nl"][0].value,
+    ""
+  )
+`;
+
+export const MENU_QUERY = defineQuery(/* groq */ `
+  *[_type == "menuItem"] | order(category asc, order asc, price asc) {
+    _id,
+    category,
+    price,
+    "img": coalesce(image.asset->url, ""),
+    "name": ${localizedFlat("name")},
+    "description": ${localizedFlat("description")},
+    "subCategory": ${localizedFlat("subCategory")}
+  }
+`);
+
 export type PartnerLogoSize = "sm" | "md" | "lg" | "xl";
 
 export type SanityImage = {
@@ -117,4 +138,20 @@ export type Headliner = {
   day: FestivalDay;
   hour: string;
   imgSrc: string;
+};
+
+export const MenuType = {
+  DRINKS: "Drinks",
+  FOOD: "Food",
+} as const;
+export type MenuType = (typeof MenuType)[keyof typeof MenuType];
+
+export type MenuItem = {
+  _id: string;
+  category: MenuType;
+  price: number;
+  img: string;
+  name: string;
+  description: string;
+  subCategory: string;
 };

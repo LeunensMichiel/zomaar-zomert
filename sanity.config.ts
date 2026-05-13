@@ -29,7 +29,7 @@ export default defineConfig({
         { id: "en", title: "English" },
       ],
       defaultLanguages: ["nl"],
-      fieldTypes: ["text"],
+      fieldTypes: ["string", "text"],
     }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin

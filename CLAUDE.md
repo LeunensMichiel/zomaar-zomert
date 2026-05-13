@@ -42,12 +42,13 @@ All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/lay
 
 ### Content sources
 
-Festival content is split across two systems:
+All festival content lives in **Sanity** — partners, artists, and menu items. Schemas in [sanity/schemaTypes/](sanity/schemaTypes/), GROQ + types in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via typed `client.fetch<T[]>` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`.
 
-- **Static JSON** in [lib/data/](lib/data/) — only [menu.json](lib/data/menu.json) remains. Each record stores translated strings as `{ nl, fr, en }` (`TranslationString` in [lib/models.ts](lib/models.ts)). Server pages flatten these to the active locale via `loadXxx(locale)` helpers — see [lib/data/menu.ts](lib/data/menu.ts) for the canonical `API*` → flat-shape transform that keeps page components locale-agnostic.
-- **Sanity** for partners and artists — schemas in [sanity/schemaTypes/](sanity/schemaTypes/), GROQ in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via typed `client.fetch<T[]>` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`.
+**Localized fields** use the [sanity-plugin-internationalized-array](https://github.com/sanity-io/plugins/tree/main/plugins/sanity-plugin-internationalized-array) plugin (v5 shape — `language` field, not `_key`). The plugin is configured in [sanity.config.ts](sanity.config.ts) with `nl/fr/en` and `fieldTypes: ["string", "text"]`. GROQ flattens to the active locale at query time via the `localizedFlat` fragment in [sanity/lib/queries.ts](sanity/lib/queries.ts) — page components receive flat strings, never the locale array.
 
-Artist visibility is enforced **server-side** in the GROQ query (`showFrom <= now() && showFrom >= $yearStart`) so unannounced acts never leave Sanity — pass `yearStart = \`${ZZ_YEAR}-01-01T00:00:00Z\`` and `locale` to the query. TBA placeholders are still constructed client-side in [line-up-client.tsx](app/%5Bsite%5D/%5Blocale%5D/line-up/_components/line-up-client.tsx) to pad each day to a minimum count.
+**Artist visibility** is enforced **server-side** in the GROQ query (`showFrom <= now() && showFrom >= $yearStart`) so unannounced acts never leave Sanity — pass `yearStart = \`${ZZ_YEAR}-01-01T00:00:00Z\`` and `locale` to the query. TBA placeholders are still constructed client-side in [line-up-client.tsx](app/%5Bsite%5D/%5Blocale%5D/line-up/_components/line-up-client.tsx) to pad each day to a minimum count.
+
+**Migration scripts** in [scripts/](scripts/) are one-shot — partners and artists/menu have already been migrated from the old JSON. Kept for reference; would need `lib/data/*.json` restored from git history to re-run.
 
 ### Festival dates and feature gates
 

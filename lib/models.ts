@@ -1,5 +1,3 @@
-import { type Locale } from "@lib/i18n/routing";
-
 // Override the auto-computed festival year by setting NEXT_PUBLIC_ZZ_FESTIVAL_YEAR
 // in your env (e.g. to preview the next edition early). Leave unset to derive
 // from today — rolls to the next year the day after the last Sunday of July.
@@ -75,28 +73,3 @@ export const getDateByDayString = (day: FestivalDay) => DAY_TO_DATE[day];
 
 export const isSignupOpen = (now: Date = new Date()) =>
   now >= new Date(ENABLE_LINKS_DATE) && now <= new Date(ZZ_DATE_SUNDAY);
-
-type TranslationString = Record<Locale, string>;
-
-export enum MenuType {
-  DRINKS = "Drinks",
-  FOOD = "Food",
-}
-
-export type APIMenuItem = {
-  name: TranslationString;
-  description: TranslationString;
-  price: number;
-  img: string;
-  category: MenuType;
-  subCategory: TranslationString;
-};
-
-export type MenuItem = {
-  name: string;
-  description: string;
-  price: number;
-  img: string;
-  category: MenuType;
-  subCategory: string;
-};

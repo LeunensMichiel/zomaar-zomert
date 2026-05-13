@@ -1,9 +1,10 @@
 import { PaperTear } from "@components/paper-tear";
-import menuData from "@lib/data/menu.json";
 import { type Locale } from "@lib/i18n/routing";
-import { type APIMenuItem, type MenuItem } from "@lib/models";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { client } from "@/sanity/lib/client";
+import { MENU_QUERY, type MenuItem } from "@/sanity/lib/queries";
 
 import { MenuClient } from "./_components/menu-client";
 
@@ -24,20 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const loadMenu = (locale: Locale): MenuItem[] =>
-  (menuData as APIMenuItem[]).map(
-    ({ name, description, subCategory, ...menuitem }) => ({
-      ...menuitem,
-      name: name[locale],
-      description: description[locale],
-      subCategory: subCategory[locale],
-    }),
-  );
-
 export default async function MenuPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const menu = loadMenu(locale);
+  const menu = await client.fetch<MenuItem[]>(MENU_QUERY, { locale });
 
   return (
     <>
