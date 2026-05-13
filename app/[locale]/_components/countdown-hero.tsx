@@ -1,10 +1,15 @@
 "use client";
 
 import { ZZ_DATE_FRIDAY, ZZ_DATE_MONDAY, ZZ_YEAR } from "@lib/models";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+} from "motion/react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const TARGET = new Date(`${ZZ_DATE_FRIDAY} 16:00:00`).getTime();
 const LAST_DAY = new Date(ZZ_DATE_MONDAY).getTime();
@@ -104,13 +109,18 @@ function StrokeBackdrop({
   size?: "md" | "lg";
 }) {
   const reducedMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const sizing =
     size === "lg"
       ? "max-w-md scale-170 md:max-w-2xl md:scale-100"
       : "max-w-md md:max-w-2xl";
 
+  const targetOffset = reducedMotion || inView ? 0 : STROKE_PAINT_LENGTH;
+
   return (
     <div
+      ref={ref}
       aria-hidden
       className="pointer-events-none absolute inset-0 -z-10 grid place-items-center"
     >
@@ -121,8 +131,8 @@ function StrokeBackdrop({
           viewBox="0 0 435.309 319.496"
           fill="none"
           aria-hidden
-          overflow="visible"
           preserveAspectRatio="xMidYMid meet"
+          style={{ overflow: "visible" }}
           className="h-full w-full"
         >
           <defs>
@@ -148,8 +158,7 @@ function StrokeBackdrop({
             initial={{
               strokeDashoffset: reducedMotion ? 0 : STROKE_PAINT_LENGTH,
             }}
-            whileInView={reducedMotion ? undefined : { strokeDashoffset: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            animate={{ strokeDashoffset: targetOffset }}
             transition={{
               type: "spring",
               damping: 18,
