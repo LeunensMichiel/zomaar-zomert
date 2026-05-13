@@ -68,7 +68,7 @@ function DigitPair({
         <DigitCell digit={tens} reducedMotion={reducedMotion} />
         <DigitCell digit={ones} reducedMotion={reducedMotion} />
       </div>
-      <span className="font-display text-[10px] font-bold tracking-[0.3em] text-gray-700 uppercase md:text-xs">
+      <span className="font-display text-[10px] font-bold tracking-[0.3em] text-gray-950 uppercase md:text-xs">
         {label}
       </span>
     </div>
@@ -94,38 +94,72 @@ function Colon({ reducedMotion }: { reducedMotion: boolean | null }) {
 
 const STROKE_PATH =
   "M63.2093 43.0917L137.51 40.5994L52.1302 111.359L232.573 41.2719L46.9445 163.596L220.386 74.8238L23.2239 225.272L425.018 16.0246L10.2916 303.448L325.238 140.553L157.491 258.867L269.449 247.26";
+const STROKE_PAINT_LENGTH = 4000;
 
-function StrokeDoodle({ gradientId }: { gradientId: string }) {
+function StrokeBackdrop({
+  gradientId,
+  size = "md",
+}: {
+  gradientId: string;
+  size?: "md" | "lg";
+}) {
+  const reducedMotion = useReducedMotion();
+  const sizing =
+    size === "lg"
+      ? "max-w-md scale-170 md:max-w-2xl md:scale-100"
+      : "max-w-md md:max-w-2xl";
+
   return (
-    <svg
-      viewBox="0 0 435.309 319.496"
-      fill="none"
+    <div
       aria-hidden
-      overflow="visible"
-      preserveAspectRatio="xMidYMid meet"
-      className="h-full w-full"
+      className="pointer-events-none absolute inset-0 -z-10 grid place-items-center"
     >
-      <defs>
-        <linearGradient
-          id={gradientId}
-          x1="333.494"
-          y1="292.474"
-          x2="298.472"
-          y2="52.2879"
-          gradientUnits="userSpaceOnUse"
+      <div
+        className={`aspect-[1.36/1] w-full translate-x-[12%] translate-y-[8%] opacity-90 md:translate-x-[13%] md:translate-y-[-8%] ${sizing}`}
+      >
+        <svg
+          viewBox="0 0 435.309 319.496"
+          fill="none"
+          aria-hidden
+          overflow="visible"
+          preserveAspectRatio="xMidYMid meet"
+          className="h-full w-full"
         >
-          <stop stopColor="#FFB600" />
-          <stop offset="1" stopColor="#FF7BAC" />
-        </linearGradient>
-      </defs>
-      <path
-        d={STROKE_PATH}
-        stroke={`url(#${gradientId})`}
-        strokeWidth="36.1349"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+          <defs>
+            <linearGradient
+              id={gradientId}
+              x1="333.494"
+              y1="292.474"
+              x2="298.472"
+              y2="52.2879"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#FFB600" />
+              <stop offset="1" stopColor="#FF7BAC" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d={STROKE_PATH}
+            stroke={`url(#${gradientId})`}
+            strokeWidth="36.1349"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeDasharray={STROKE_PAINT_LENGTH}
+            initial={{
+              strokeDashoffset: reducedMotion ? 0 : STROKE_PAINT_LENGTH,
+            }}
+            whileInView={reducedMotion ? undefined : { strokeDashoffset: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              type: "spring",
+              damping: 18,
+              stiffness: 45,
+              mass: 1.1,
+            }}
+          />
+        </svg>
+      </div>
+    </div>
   );
 }
 
@@ -149,22 +183,7 @@ function EndedState({ pastFestival }: { pastFestival: boolean }) {
       }}
       className="relative isolate mx-auto flex w-full max-w-3xl flex-col items-center px-6 py-24 text-center md:px-10 md:pt-12 md:pb-28"
     >
-      <motion.div
-        aria-hidden
-        variants={{
-          hidden: { scale: 0.85, opacity: 0 },
-          show: {
-            scale: 1,
-            opacity: 1,
-            transition: { type: "spring", damping: 18, stiffness: 90 },
-          },
-        }}
-        className="pointer-events-none absolute inset-0 -z-10 grid place-items-center"
-      >
-        <div className="animate-doodle-paint-stroke-loop aspect-[1.36/1] w-full max-w-md translate-x-[12%] translate-y-[8%] opacity-90 md:max-w-2xl md:translate-x-[13%] md:translate-y-[-8%]">
-          <StrokeDoodle gradientId="ended-stroke-gradient" />
-        </div>
-      </motion.div>
+      <StrokeBackdrop gradientId="ended-stroke-gradient" />
 
       <motion.div
         aria-hidden
@@ -219,7 +238,7 @@ function EndedState({ pastFestival }: { pastFestival: boolean }) {
           hidden: { y: 12, opacity: 0 },
           show: { y: 0, opacity: 1 },
         }}
-        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-700 uppercase md:text-sm"
+        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-950 uppercase md:text-sm"
       >
         {t("month")} &rsquo;{yearShort}
       </motion.span>
@@ -291,14 +310,15 @@ export function CountdownHero() {
         hidden: {},
         show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
       }}
-      className="flex flex-col items-center gap-4 text-center md:gap-5"
+      className="relative isolate mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-6 py-10 text-center md:gap-5 md:px-10 md:py-14"
     >
+      <StrokeBackdrop gradientId="countdown-stroke-gradient" size="lg" />
       <motion.span
         variants={{
           hidden: { y: 12, opacity: 0 },
           show: { y: 0, opacity: 1 },
         }}
-        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-700 uppercase md:text-sm"
+        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-950 uppercase md:text-sm"
       >
         {t("countdown.daysAway")}
       </motion.span>
@@ -330,7 +350,7 @@ export function CountdownHero() {
                   : { y: "-40%", opacity: 0, rotate: 5 }
               }
               transition={{ type: "spring", damping: 16, stiffness: 140 }}
-              className="font-display text-brand-500 inline-block text-[clamp(8rem,12vw,15rem)] leading-[0.78] font-bold uppercase tabular-nums"
+              className="font-display inline-block text-[clamp(8rem,12vw,15rem)] leading-[0.78] font-bold text-white uppercase tabular-nums"
             >
               {d}
             </motion.span>
