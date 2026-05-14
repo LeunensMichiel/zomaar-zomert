@@ -24,10 +24,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { client } from "@/sanity/lib/client";
 import {
+  ASSETS_BY_TAGS_QUERY,
   FEATURED_PARTNERS_QUERY,
   type Headliner,
   HEADLINER_ARTISTS_QUERY,
   type Partner,
+  type TaggedAsset,
 } from "@/sanity/lib/queries";
 
 import { ConsentVideo } from "./_components/consent-video";
@@ -41,12 +43,6 @@ import { TickerStrip } from "./_components/ticker-strip";
 type Props = { params: Promise<{ locale: Locale }> };
 
 export const revalidate = 3600;
-
-const days: Array<{ date: string; image: string }> = [
-  { date: ZZ_DATE_FRIDAY, image: "/assets/days/friday.webp" },
-  { date: ZZ_DATE_SATURDAY, image: "/assets/days/saturday.webp" },
-  { date: ZZ_DATE_SUNDAY, image: "/assets/days/sunday.jpg" },
-];
 
 const dayDates: Record<"friday" | "saturday" | "sunday", string> = {
   friday: ZZ_DATE_FRIDAY,
@@ -100,6 +96,41 @@ export default async function Home({ params }: Props) {
     {},
     { next: { tags: ["partner"] } },
   );
+
+  const photoTags = [
+    "slideshow",
+    "food",
+    "petanque",
+    "crew",
+    "friday",
+    "saturday",
+    "sunday",
+  ];
+  const photos = await client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, {
+    tags: photoTags,
+  });
+  const photoByTag = (tag: string) => photos.find((p) => p.tags.includes(tag));
+  const slideshowAssets = photos.filter((p) => p.tags.includes("slideshow"));
+  const foodPhoto = photoByTag("food");
+  const petanquePhoto = photoByTag("petanque");
+  const crewPhoto = photoByTag("crew");
+  const days: Array<{ date: string; image: string; alt: string }> = [
+    {
+      date: ZZ_DATE_FRIDAY,
+      image: photoByTag("friday")?.url ?? "",
+      alt: photoByTag("friday")?.alt ?? "",
+    },
+    {
+      date: ZZ_DATE_SATURDAY,
+      image: photoByTag("saturday")?.url ?? "",
+      alt: photoByTag("saturday")?.alt ?? "",
+    },
+    {
+      date: ZZ_DATE_SUNDAY,
+      image: photoByTag("sunday")?.url ?? "",
+      alt: photoByTag("sunday")?.alt ?? "",
+    },
+  ];
 
   return (
     <>
@@ -290,8 +321,8 @@ export default async function Home({ params }: Props) {
             <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-yellow-400 lg:col-span-7 lg:row-span-2">
               <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
                 <Image
-                  src="/assets/random/food.jpg"
-                  alt=""
+                  src={foodPhoto?.url ?? ""}
+                  alt={foodPhoto?.alt ?? ""}
                   fill
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover object-center"
@@ -332,8 +363,8 @@ export default async function Home({ params }: Props) {
             <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-blue-500 text-white lg:col-span-5">
               <div className="relative aspect-5/4 overflow-hidden border-b-2 border-gray-900">
                 <Image
-                  src="/assets/random/petanque.jpg"
-                  alt=""
+                  src={petanquePhoto?.url ?? ""}
+                  alt={petanquePhoto?.alt ?? ""}
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover object-center"
@@ -369,8 +400,8 @@ export default async function Home({ params }: Props) {
               <div className="grid grid-cols-5 items-stretch">
                 <div className="relative col-span-2 min-h-40 border-r-2 border-gray-900 md:min-h-50">
                   <Image
-                    src="/assets/random/crew26.webp"
-                    alt=""
+                    src={crewPhoto?.url ?? ""}
+                    alt={crewPhoto?.alt ?? ""}
                     fill
                     sizes="(max-width: 1024px) 50vw, 20vw"
                     className="object-cover object-center"
@@ -402,7 +433,9 @@ export default async function Home({ params }: Props) {
             tear={5}
             color="pink-50"
           />
-          <PhotoMarquees />
+          <PhotoMarquees
+            slides={slideshowAssets.map((a) => ({ url: a.url, alt: a.alt }))}
+          />
           <PaperTear
             className="absolute bottom-0 z-40 translate-y-[30%]"
             edge="top"

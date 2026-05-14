@@ -38,6 +38,7 @@
     "react-player": "^3.4.0",
     "sanity": "5",
     "sanity-plugin-internationalized-array": "^5.1.1",
+    "sanity-plugin-media": "^4.3.0",
     "sharp": "^0.34.5",
     "styled-components": "6",
     "tailwind-merge": "^3.5.0",

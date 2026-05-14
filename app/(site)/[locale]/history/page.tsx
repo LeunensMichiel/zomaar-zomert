@@ -9,6 +9,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { client } from "@/sanity/lib/client";
+import { ASSETS_BY_TAGS_QUERY, type TaggedAsset } from "@/sanity/lib/queries";
+
 // Warm wave through the milestones:
 // cream → soft yellow → hot pink → soft yellow → cream.
 const HISTORY_BG_COLORS = [
@@ -43,6 +46,14 @@ export default async function HistoryPage({ params }: Props) {
 
   const yearStamp = `'${String(ZZ_YEAR).slice(-2)}`;
 
+  const photos = await client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, {
+    tags: ["crew", "first-edition"],
+  });
+  const crewPhoto = photos.find((p) => p.tags.includes("crew"));
+  const firstEditionAffiche = photos.find((p) =>
+    p.tags.includes("first-edition"),
+  );
+
   return (
     <>
       <section className="relative bg-blue-900">
@@ -69,8 +80,11 @@ export default async function HistoryPage({ params }: Props) {
                     body={t("origin.body")}
                     extra={
                       <PosterCard
-                        src="/assets/affiches/first_edition.webp"
-                        alt="Zomaar Zomert eerste editie poster"
+                        src={firstEditionAffiche?.url ?? ""}
+                        alt={
+                          firstEditionAffiche?.alt ??
+                          "Zomaar Zomert eerste editie poster"
+                        }
                         eyebrow={t("posters.firstEdition")}
                         year="'98"
                         tilt={-2}
@@ -175,7 +189,7 @@ export default async function HistoryPage({ params }: Props) {
             <div className="shadow-sticker-lg relative -rotate-1 overflow-hidden border-2 border-gray-900">
               <div className="relative aspect-3/2">
                 <Image
-                  src="/assets/random/crew26.webp"
+                  src={crewPhoto?.url ?? ""}
                   alt={t("crew.caption")}
                   fill
                   sizes="(max-width: 1024px) 100vw, 1024px"

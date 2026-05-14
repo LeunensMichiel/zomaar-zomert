@@ -11,6 +11,9 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { type ReactNode } from "react";
 
+import { client } from "@/sanity/lib/client";
+import { ASSETS_BY_TAGS_QUERY, type TaggedAsset } from "@/sanity/lib/queries";
+
 type Props = { params: Promise<{ locale: Locale }> };
 
 export const revalidate = 3600;
@@ -39,6 +42,12 @@ export default async function InfoPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "info" });
   const signupDisabled = !isSignupOpen();
+
+  const photos = await client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, {
+    tags: ["terras", "petanque"],
+  });
+  const terrasPhoto = photos.find((p) => p.tags.includes("terras"));
+  const petanquePhoto = photos.find((p) => p.tags.includes("petanque"));
 
   return (
     <>
@@ -146,8 +155,8 @@ export default async function InfoPage({ params }: Props) {
               <article className="shadow-sticker-lg relative -rotate-2 border-2 border-gray-900 bg-white p-3 pb-10 md:p-4 md:pb-14">
                 <div className="relative h-64 overflow-hidden border-2 border-gray-900 md:h-72 lg:h-80">
                   <Image
-                    src="/assets/random/terras.jpg"
-                    alt=""
+                    src={terrasPhoto?.url ?? ""}
+                    alt={terrasPhoto?.alt ?? ""}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
                     className="object-cover object-center"
@@ -248,8 +257,8 @@ export default async function InfoPage({ params }: Props) {
             <article className="shadow-sticker-lg relative rotate-2 border-2 border-gray-900 bg-pink-50 p-3 pb-10 md:p-4 md:pb-14">
               <div className="relative aspect-4/5 overflow-hidden border-2 border-gray-900">
                 <Image
-                  src="/assets/random/petanque.jpg"
-                  alt=""
+                  src={petanquePhoto?.url ?? ""}
+                  alt={petanquePhoto?.alt ?? ""}
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover object-center"

@@ -94,6 +94,18 @@ export const MENU_QUERY = defineQuery(/* groq */ `
   }
 `);
 
+export const ASSETS_BY_TAGS_QUERY = defineQuery(/* groq */ `
+  *[_type == "sanity.imageAsset"
+    && references(*[_type == "media.tag" && name.current in $tags]._id)
+  ] | order(_createdAt asc) {
+    _id,
+    "url": url,
+    "alt": coalesce(altText, ""),
+    "dims": metadata.dimensions { width, height },
+    "tags": opt.media.tags[]->name.current
+  }
+`);
+
 export type PartnerLogoSize = "sm" | "md" | "lg" | "xl";
 
 export type SanityImage = {
@@ -154,4 +166,12 @@ export type MenuItem = {
   name: string;
   description: string;
   subCategory: string;
+};
+
+export type TaggedAsset = {
+  _id: string;
+  url: string;
+  alt: string;
+  dims: { width: number; height: number } | null;
+  tags: string[];
 };

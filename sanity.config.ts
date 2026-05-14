@@ -8,6 +8,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { internationalizedArray } from "sanity-plugin-internationalized-array";
+import { media } from "sanity-plugin-media";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
@@ -22,6 +23,7 @@ export default defineConfig({
   schema,
   plugins: [
     structureTool({ structure }),
+    media(),
     internationalizedArray({
       languages: [
         { id: "nl", title: "Nederlands" },
