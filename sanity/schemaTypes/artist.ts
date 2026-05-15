@@ -1,12 +1,12 @@
-import { UserIcon } from "@sanity/icons";
+import { UsersIcon } from "@sanity/icons";
 import { type ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
 export const artist = defineType({
   name: "artist",
-  title: "Artist",
+  title: "Artists",
   type: "document",
-  icon: UserIcon,
+  icon: UsersIcon,
   fields: [
     defineField({
       name: "name",

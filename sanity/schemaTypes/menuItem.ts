@@ -1,10 +1,13 @@
+import { IceCreamIcon } from "@sanity/icons";
 import { type ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
 export const menuItem = defineType({
   name: "menuItem",
-  title: "Menu item",
+  title: "Food & Drinks",
   type: "document",
+  icon: IceCreamIcon,
+
   fields: [
     defineField({
       name: "name",

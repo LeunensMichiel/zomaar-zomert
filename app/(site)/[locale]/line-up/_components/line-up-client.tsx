@@ -146,7 +146,7 @@ export function LineUpClient({ artists, children }: Props) {
             ? { duration: 0 }
             : { type: "spring", duration: 1.2, bounce: 0.2 }
         }
-        className="pointer-events-none absolute -top-12 left-1/2 z-0 h-72 -translate-x-1/2 opacity-40 md:-top-16 md:h-96 lg:h-112"
+        className="pointer-events-none absolute -top-6 left-1/2 z-0 h-72 -translate-x-1/2 opacity-40 md:-top-12 md:h-96 lg:h-112"
       />
 
       <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
