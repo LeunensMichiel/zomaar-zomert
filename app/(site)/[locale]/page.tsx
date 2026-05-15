@@ -302,7 +302,7 @@ export default async function Home({ params }: Props) {
           shape="radial"
           color="royal-yellow"
           rotate={-15}
-          className="absolute right-1/3 bottom-20 hidden h-15 md:block md:h-16"
+          className="absolute -bottom-10 left-1/6 hidden h-100 md:block"
         />
         <div className="container-wide section-y relative z-20 pt-3 md:pt-12">
           <CountdownHero />

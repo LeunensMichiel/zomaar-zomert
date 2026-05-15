@@ -161,9 +161,7 @@ export default async function PartnersPage({ params }: Props) {
   );
 }
 
-type LogoProps = { partner: Partner; width: number; height: number };
-
-function PartnerLogo({ partner, width, height }: LogoProps) {
+function PartnerLogo({ partner }: { partner: Partner }) {
   const url = partner.logo?.asset?.url;
   const dims = partner.logo?.asset?.metadata.dimensions;
   if (!url || !dims) return null;
@@ -173,7 +171,6 @@ function PartnerLogo({ partner, width, height }: LogoProps) {
       alt={partner.logo?.alt ?? partner.name}
       width={dims.width}
       height={dims.height}
-      style={{ width, height }}
       unoptimized
       className="h-full w-full object-contain"
     />
@@ -195,7 +192,7 @@ function LeadPartnerCard({
         target: "_blank",
         rel: "noreferrer noopener",
       })}
-      className="shadow-sticker-lg relative flex aspect-4/3 items-center justify-center border-2 border-gray-900 bg-gray-900 p-8 transition-transform hover:-translate-y-1 hover:rotate-0 md:p-10"
+      className="shadow-sticker-lg bg-linear-sunset relative flex aspect-4/3 items-center justify-center border-2 border-gray-900 p-8 transition-transform hover:-translate-y-1 hover:rotate-0 md:p-10"
       style={{ transform: `rotate(${String(tilt)}deg)` }}
     >
       <div
@@ -203,7 +200,7 @@ function LeadPartnerCard({
         className="halftone pointer-events-none absolute inset-0 opacity-20 mix-blend-screen"
       />
       {partner.logo ? (
-        <PartnerLogo partner={partner} width={400} height={300} />
+        <PartnerLogo partner={partner} />
       ) : (
         <FitText
           text={partner.name}
@@ -226,7 +223,7 @@ function SupportPartnerLogo({ partner }: { partner: Partner }) {
       className="flex aspect-4/3 items-center justify-center p-3 opacity-70 transition-opacity hover:opacity-100"
     >
       {partner.logo ? (
-        <PartnerLogo partner={partner} width={240} height={120} />
+        <PartnerLogo partner={partner} />
       ) : (
         <FitText
           text={partner.name}
