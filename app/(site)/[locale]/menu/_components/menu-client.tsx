@@ -124,6 +124,7 @@ export function MenuClient({ menu, topTear, bottomTear }: Props) {
             <SubCategoryGroup
               key={subCategory}
               subCategory={subCategory}
+              label={t(`subCategories.${subCategory}`)}
               items={items}
               stickerColor={STICKER_CYCLE[gi % STICKER_CYCLE.length]}
               stickerTilt={STICKER_TILT[gi % STICKER_TILT.length]}
@@ -139,6 +140,7 @@ export function MenuClient({ menu, topTear, bottomTear }: Props) {
 
 type SubCategoryGroupProps = {
   subCategory: string;
+  label: string;
   items: MenuItem[];
   stickerColor: (typeof STICKER_CYCLE)[number];
   stickerTilt: number;
@@ -146,7 +148,7 @@ type SubCategoryGroupProps = {
 };
 
 function SubCategoryGroup({
-  subCategory,
+  label,
   items,
   stickerColor,
   stickerTilt,
@@ -155,7 +157,7 @@ function SubCategoryGroup({
   return (
     <div>
       <Sticker color={stickerColor} size="md" rotate={stickerTilt}>
-        {subCategory}
+        {label}
       </Sticker>
       <div className="mt-5 grid gap-3 sm:grid-cols-2 md:mt-6 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {items.map((item, i) => (

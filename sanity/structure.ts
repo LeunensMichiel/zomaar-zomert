@@ -1,10 +1,14 @@
-import { CogIcon } from "@sanity/icons";
+import { CogIcon, IceCreamIcon } from "@sanity/icons";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import type { StructureResolver } from "sanity/structure";
 
 const SINGLETONS = ["siteSettings"];
+// Document types that are surfaced via custom list items above and should
+// not appear again in the generic auto-generated list.
+const HIDDEN_FROM_DEFAULT_LIST = [...SINGLETONS, "menuItem"];
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = (S, context) =>
   S.list()
     .title("Content")
     .items([
@@ -18,7 +22,24 @@ export const structure: StructureResolver = (S) =>
             .title("Site settings"),
         ),
       S.divider(),
+      orderableDocumentListDeskItem({
+        type: "menuItem",
+        title: "Food & Drinks — Drinks",
+        icon: IceCreamIcon,
+        filter: `category == "Drinks"`,
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: "menuItem",
+        title: "Food & Drinks — Food",
+        icon: IceCreamIcon,
+        filter: `category == "Food"`,
+        S,
+        context,
+      }),
+      S.divider(),
       ...S.documentTypeListItems().filter(
-        (item) => !SINGLETONS.includes(item.getId() ?? ""),
+        (item) => !HIDDEN_FROM_DEFAULT_LIST.includes(item.getId() ?? ""),
       ),
     ]);

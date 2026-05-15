@@ -11,5 +11,14 @@
     "title": "Menu."
   },
   "Food": "Food",
-  "Drinks": "Drinks"
+  "Drinks": "Drinks",
+  "subCategories": {
+    "water": "Water",
+    "soft-drinks": "Soft drinks",
+    "beers": "Beers",
+    "wines": "Wines",
+    "cocktails-spirits": "Cocktails & strong alcohol",
+    "meals": "Meals",
+    "snacks": "Snacks"
+  }
 }

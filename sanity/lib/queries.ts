@@ -92,14 +92,15 @@ const localizedFlatArray = (field: string) => /* groq */ `
 `;
 
 export const MENU_QUERY = defineQuery(/* groq */ `
-  *[_type == "menuItem"] | order(category asc, order asc, price asc) {
+  *[_type == "menuItem" && enabled != false]
+    | order(category asc, orderRank asc) {
     _id,
     category,
+    subCategory,
     price,
     "img": coalesce(image.asset->url, ""),
     "name": ${localizedFlat("name")},
-    "description": ${localizedFlat("description")},
-    "subCategory": ${localizedFlat("subCategory")}
+    "description": ${localizedFlat("description")}
   }
 `);
 
@@ -208,14 +209,23 @@ export const MenuType = {
 } as const;
 export type MenuType = (typeof MenuType)[keyof typeof MenuType];
 
+export type MenuSubCategory =
+  | "water"
+  | "soft-drinks"
+  | "beers"
+  | "wines"
+  | "cocktails-spirits"
+  | "meals"
+  | "snacks";
+
 export type MenuItem = {
   _id: string;
   category: MenuType;
+  subCategory: MenuSubCategory;
   price: number;
   img: string;
   name: string;
   description: string;
-  subCategory: string;
 };
 
 export type TaggedAsset = {

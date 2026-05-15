@@ -11,5 +11,14 @@
     "title": "La Carte."
   },
   "Food": "Alimentation",
-  "Drinks": "Boissons"
+  "Drinks": "Boissons",
+  "subCategories": {
+    "water": "Eau",
+    "soft-drinks": "Boissons non alcoolisées",
+    "beers": "Bières",
+    "wines": "Vins",
+    "cocktails-spirits": "Cocktails & alcools forts",
+    "meals": "Charcuterie",
+    "snacks": "Collations"
+  }
 }

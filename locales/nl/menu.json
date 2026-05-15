@@ -11,5 +11,14 @@
     "title": "Menu."
   },
   "Food": "Voedsel",
-  "Drinks": "Drank"
+  "Drinks": "Drank",
+  "subCategories": {
+    "water": "Water",
+    "soft-drinks": "Frisdranken",
+    "beers": "Bieren",
+    "wines": "Wijnen",
+    "cocktails-spirits": "Cocktails & sterke dranken",
+    "meals": "Hapjes",
+    "snacks": "Versnaperingen"
+  }
 }
