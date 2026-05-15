@@ -24,6 +24,7 @@ export const structure: StructureResolver = (S, context) =>
       S.divider(),
       orderableDocumentListDeskItem({
         type: "menuItem",
+        id: "orderable-menuItem-drinks",
         title: "Food & Drinks — Drinks",
         icon: IceCreamIcon,
         filter: `category == "Drinks"`,
@@ -32,6 +33,7 @@ export const structure: StructureResolver = (S, context) =>
       }),
       orderableDocumentListDeskItem({
         type: "menuItem",
+        id: "orderable-menuItem-food",
         title: "Food & Drinks — Food",
         icon: IceCreamIcon,
         filter: `category == "Food"`,
