@@ -5,6 +5,7 @@ import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { getPathname } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
+import { cn } from "@lib/utils";
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -18,6 +19,34 @@ type Props = { params: Promise<{ locale: Locale }> };
 export const revalidate = 3600;
 
 const LEAD_TILT = [-1.5, 1.2, -0.8, 1.5, -1.2, 0.9, -1.6, 1.3] as const;
+
+const PERK_KINDS = ["terrain", "online", "extras"] as const;
+type PerkKind = (typeof PERK_KINDS)[number];
+
+const PERK_VARIANTS: Record<
+  PerkKind,
+  {
+    card: string;
+    stickerColor: "brand" | "yellow" | "ink";
+    tilt: number;
+  }
+> = {
+  terrain: {
+    card: "bg-yellow-400 text-gray-900",
+    stickerColor: "brand",
+    tilt: -1.5,
+  },
+  online: {
+    card: "bg-blue-500 text-pink-50",
+    stickerColor: "yellow",
+    tilt: 1.2,
+  },
+  extras: {
+    card: "bg-pink-300 text-gray-900",
+    stickerColor: "ink",
+    tilt: -0.8,
+  },
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -109,51 +138,51 @@ export default async function PartnersPage({ params }: Props) {
           rotate={-8}
           className="pointer-events-none absolute -bottom-8 -left-6 hidden h-40 md:-bottom-12 md:-left-10 md:block md:h-64 lg:h-80"
         />
+        <Doodle
+          shape="plus"
+          color="summer-red"
+          rotate={20}
+          className="pointer-events-none absolute top-10 right-4 z-10 h-9 md:top-16 md:right-12 md:h-14"
+        />
         <div className="container-wide relative z-20 pt-12 pb-16 md:pt-16 md:pb-20">
-          <div className="grid gap-10 md:gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <Sticker color="ink" size="sm" rotate={-3}>
-                {t("become.eyebrow")}
-              </Sticker>
-              <h2 className="text-brand-500 mt-6 text-7xl leading-[0.85] md:mt-8 md:text-9xl xl:text-[12rem]">
-                {t("become.title")}
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-900 md:text-lg">
-                {t("become.body")}
-              </p>
-              <div className="mt-8 md:mt-10">
-                <Button
-                  as="a"
-                  href={contactHref}
-                  variant="brand"
-                  size="lg"
-                  sticker
-                  iconRight={<ChevronRight />}
-                >
-                  {t("become.cta")}
-                </Button>
-              </div>
+          <div className="max-w-4xl">
+            <Sticker color="ink" size="sm" rotate={-3}>
+              {t("become.eyebrow")}
+            </Sticker>
+            <h2 className="text-brand-500 mt-6 text-7xl leading-[0.85] md:mt-8 md:text-9xl xl:text-[12rem]">
+              {t("become.title")}
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-900 md:text-lg">
+              {t("become.body")}
+            </p>
+            <div className="mt-8 md:mt-10">
+              <Button
+                as="a"
+                href={contactHref}
+                variant="brand"
+                size="lg"
+                sticker
+                iconRight={<ChevronRight />}
+              >
+                {t("become.cta")}
+              </Button>
             </div>
-
-            <ul className="grid content-start gap-4 md:gap-5 lg:col-span-5">
-              {(["1", "2", "3"] as const).map((key, i) => (
-                <li
-                  key={key}
-                  className="shadow-sticker-lg relative flex items-start gap-4 border-2 border-gray-900 bg-yellow-400 p-5 md:gap-5 md:p-6"
-                  style={{
-                    transform: `rotate(${String(i % 2 === 0 ? -1 : 1)}deg)`,
-                  }}
-                >
-                  <span className="font-display shadow-sticker-sm flex h-10 w-10 shrink-0 items-center justify-center border-2 border-gray-900 bg-gray-900 text-base font-bold text-yellow-300 md:h-12 md:w-12 md:text-lg">
-                    {key}
-                  </span>
-                  <p className="font-display text-base leading-tight font-bold text-gray-900 uppercase md:text-lg">
-                    {t(`become.perks.${key}`)}
-                  </p>
-                </li>
-              ))}
-            </ul>
           </div>
+
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 md:mt-20 md:gap-10 lg:grid-cols-3">
+            {PERK_KINDS.map((kind) => (
+              <PerkCard
+                key={kind}
+                kind={kind}
+                label={t(`become.perks.${kind}.label`)}
+                items={t.raw(`become.perks.${kind}.items`) as string[]}
+              />
+            ))}
+          </div>
+
+          <p className="mt-12 max-w-2xl text-base leading-relaxed text-gray-900 md:mt-16 md:text-lg">
+            {t("become.closing")}
+          </p>
         </div>
         <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
@@ -208,6 +237,72 @@ function LeadPartnerCard({
         />
       )}
     </Wrapper>
+  );
+}
+
+function PerkCard({
+  kind,
+  label,
+  items,
+}: {
+  kind: PerkKind;
+  label: string;
+  items: string[];
+}) {
+  const v = PERK_VARIANTS[kind];
+  return (
+    <article
+      className={cn(
+        "shadow-sticker-lg relative flex flex-col border-2 border-gray-900 p-6 md:p-7",
+        v.card,
+      )}
+      style={{ transform: `rotate(${String(v.tilt)}deg)` }}
+    >
+      {kind === "terrain" && (
+        <Doodle
+          shape="sun-rays"
+          color="summer-red"
+          accent="ink"
+          rotate={-12}
+          className="pointer-events-none absolute -top-7 -right-6 h-14 md:-top-9 md:-right-8 md:h-20"
+        />
+      )}
+      {kind === "online" && (
+        <Doodle
+          shape="zz"
+          color="royal-yellow"
+          rotate={-6}
+          className="pointer-events-none absolute -top-6 -right-5 h-12 md:-top-8 md:-right-7 md:h-16"
+        />
+      )}
+      {kind === "extras" && (
+        <Doodle
+          shape="cocktail"
+          color="summer-red"
+          rotate={10}
+          className="pointer-events-none absolute -top-7 -right-5 h-14 md:-top-9 md:-right-7 md:h-20"
+        />
+      )}
+      <Sticker
+        color={v.stickerColor}
+        size="md"
+        rotate={-2}
+        className="self-start"
+      >
+        {label}
+      </Sticker>
+      <ul className="mt-6 space-y-3 md:mt-8 md:space-y-4">
+        {items.map((item, i) => (
+          <li key={i} className="flex items-start gap-3">
+            <span
+              aria-hidden="true"
+              className="mt-2 h-2.5 w-2.5 shrink-0 rotate-45 bg-current md:mt-2.5"
+            />
+            <span className="text-base leading-snug md:text-lg">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 

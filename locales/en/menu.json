@@ -1,10 +1,10 @@
 {
   "SEO": {
-    "title": "Menu",
-    "description": "The full selection of drinks and food at Zomaar Zomert. Enjoy freshly tapped beers, Belgian classics and delicious street food.",
+    "title": "Food & drinks · Zomaar Zomert",
+    "description": "The full selection of drinks and food at Zomaar Zomert. Fresh beers, Belgian classics, cocktails, wines and snacks for on the go.",
     "openGraph": {
-      "title": "Menu | Zomaar Zomert",
-      "description": "The full selection of drinks and food at Zomaar Zomert."
+      "title": "Food & drinks · Zomaar Zomert",
+      "description": "What we pour, what we serve. The full menu."
     }
   },
   "hero": {
@@ -17,8 +17,8 @@
     "soft-drinks": "Soft drinks",
     "beers": "Beers",
     "wines": "Wines",
-    "cocktails-spirits": "Cocktails & strong alcohol",
-    "meals": "Meals",
-    "snacks": "Snacks"
+    "cocktails-spirits": "Cocktails & spirits",
+    "meals": "Snacks",
+    "snacks": "Bites"
   }
 }

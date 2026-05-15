@@ -8,6 +8,7 @@ import { TBACard } from "./tba-card";
 
 type Props = {
   name: string;
+  slug?: string | null;
   hour: string;
   day: "friday" | "saturday" | "sunday";
   imgSrc: string;
@@ -33,6 +34,7 @@ const cardFrame =
 
 export function HeadlinerCard({
   name,
+  slug,
   hour,
   day,
   imgSrc,
@@ -50,9 +52,14 @@ export function HeadlinerCard({
   }
 
   const dayLabel = new Date(date).toLocaleString(locale, { weekday: "long" });
+  // Linked artists go to their detail page. Older entries without a
+  // slug fall back to the line-up day filter so the card stays useful.
+  const href = slug
+    ? ({ pathname: "/line-up/[slug]", params: { slug } } as const)
+    : ({ pathname: "/line-up", query: { date } } as const);
   return (
     <Link
-      href={{ pathname: "/line-up", query: { date } }}
+      href={href}
       className={cn(
         cardFrame,
         "transition-transform hover:-translate-y-1",

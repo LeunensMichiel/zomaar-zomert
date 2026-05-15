@@ -1,23 +1,23 @@
 {
   "SEO": {
-    "title": "Menu",
-    "description": "Het volledige aanbod aan dranken en gerechten op Zomaar Zomert. Geniet van versgetapte pintjes, Belgische klassiekers en heerlijke streetfood.",
+    "title": "Eten & drank · Zomaar Zomert",
+    "description": "Het volledige aanbod aan dranken en gerechten op Zomaar Zomert. Versgetapte pintjes, Belgische klassiekers, cocktails, wijnen en hapjes voor onderweg.",
     "openGraph": {
-      "title": "Menu | Zomaar Zomert",
-      "description": "Het volledige aanbod aan dranken en gerechten op Zomaar Zomert."
+      "title": "Eten & drank · Zomaar Zomert",
+      "description": "Wat schenken we, wat staat er op het bord. Het volledige menu."
     }
   },
   "hero": {
     "title": "Menu."
   },
-  "Food": "Voedsel",
+  "Food": "Eten",
   "Drinks": "Drank",
   "subCategories": {
     "water": "Water",
-    "soft-drinks": "Frisdranken",
+    "soft-drinks": "Frisdrank",
     "beers": "Bieren",
     "wines": "Wijnen",
-    "cocktails-spirits": "Cocktails & sterke dranken",
+    "cocktails-spirits": "Cocktails & sterke",
     "meals": "Hapjes",
     "snacks": "Versnaperingen"
   }

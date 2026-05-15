@@ -1,4 +1,5 @@
-import { ComposeIcon } from "@sanity/icons";
+import { InfoOutlineIcon } from "@sanity/icons";
+import { orderRankField } from "@sanity/orderable-document-list";
 import { type ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
@@ -27,14 +28,8 @@ export const infoBlock = defineType({
   name: "infoBlock",
   title: "Info blocks",
   type: "document",
-  icon: ComposeIcon,
+  icon: InfoOutlineIcon,
   fields: [
-    defineField({
-      name: "order",
-      description: "Lower numbers render earlier in the info page bento.",
-      type: "number",
-      validation: (rule) => rule.required().integer(),
-    }),
     defineField({
       name: "layout",
       description: "Visual treatment for this block.",
@@ -110,10 +105,10 @@ export const infoBlock = defineType({
       hidden: ({ parent }: { parent?: { layout?: string } }) =>
         parent?.layout !== "polaroid",
     }),
+    orderRankField({ type: "infoBlock" }),
   ],
   preview: {
     select: {
-      order: "order",
       layout: "layout",
       title: "title",
       display: "display",
@@ -121,7 +116,6 @@ export const infoBlock = defineType({
       media: "photo",
     },
     prepare(selection: {
-      order?: number;
       layout?: string;
       title?: { language?: string; value?: string }[];
       display?: { language?: string; value?: string }[];
@@ -137,24 +131,11 @@ export const infoBlock = defineType({
         nl(selection.title) ??
         nl(selection.photoCaption) ??
         "(untitled)";
-      const orderLabel =
-        typeof selection.order === "number"
-          ? `#${String(selection.order)}`
-          : "";
       return {
         title,
-        subtitle:
-          [orderLabel, selection.layout].filter(Boolean).join(" · ") ||
-          undefined,
+        subtitle: selection.layout,
         media: selection.media as ReactNode,
       };
     },
   },
-  orderings: [
-    {
-      title: "Bento order",
-      name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }],
-    },
-  ],
 });

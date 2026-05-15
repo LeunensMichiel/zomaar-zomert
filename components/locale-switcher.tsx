@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "@lib/i18n/navigation";
 import { type Locale, routing } from "@lib/i18n/routing";
 import { cn } from "@lib/utils";
 import { motion } from "motion/react";
+import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useId, useTransition } from "react";
 
@@ -31,6 +32,7 @@ export function LocaleSwitcher({ className }: Props) {
   const lang = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("common");
   // Per-instance scope so the navbar + footer switchers don't share
@@ -41,7 +43,15 @@ export function LocaleSwitcher({ className }: Props) {
   const handleSelect = (next: Locale) => {
     if (next === lang || isPending) return;
     startTransition(() => {
-      router.replace(pathname, { locale: next });
+      if (pathname === "/line-up/[slug]") {
+        const slug = typeof params.slug === "string" ? params.slug : "";
+        router.replace(
+          { pathname: "/line-up/[slug]", params: { slug } },
+          { locale: next },
+        );
+      } else {
+        router.replace(pathname, { locale: next });
+      }
     });
   };
 

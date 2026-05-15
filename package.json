@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-rc.0",
+    "@bprogress/next": "^3.2.12",
     "@next/third-parties": "^16.2.4",
     "@sanity/image-url": "2",
     "@sanity/language-filter": "^5.0.1",

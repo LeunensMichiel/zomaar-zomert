@@ -1,29 +1,29 @@
 {
   "SEO": {
-    "title": "Contact",
-    "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook.",
+    "title": "Contact · Zomaar Zomert",
+    "description": "Contacte l'équipe Zomaar Zomert. Questions, propositions, partenariats, bénévolat: écris-nous ou utilise le formulaire. Aussi joignables via Instagram et Facebook.",
     "openGraph": {
-      "title": "Contact",
-      "description": "Contactez l'équipe de Zomaar Zomert. Nous sommes également joignables sur nos canaux sociaux tels qu'Instagram et Facebook."
+      "title": "Contact · Zomaar Zomert",
+      "description": "Une question, une idée ou l'envie de nous rejoindre? Écris-nous."
     }
   },
   "hero": {
     "title": "Coucou.",
-    "body": "Une question, une idée ou envie de nous rejoindre ? Écris-nous ou remplis le formulaire."
+    "body": "Une question, une idée ou l'envie de nous rejoindre? Écris-nous ou laisse un message. On lit tout."
   },
   "mapCard": {
-    "venue": "Sint-Anna-Pedekerk"
+    "venue": "Le pré"
   },
   "form": {
     "name": {
       "label": "Nom*",
       "placeholder": "Louis Quatorze",
-      "error": "Veuillez entrer votre nom complet."
+      "error": "Indique ton nom."
     },
     "email": {
       "label": "Email*",
-      "placeholder": "louis.xiv@gmail.com",
-      "error": "Veuillez entrer votre email complet."
+      "placeholder": "louis@example.com",
+      "error": "Indique un email valide."
     },
     "phone": {
       "label": "Téléphone",
@@ -31,15 +31,15 @@
     },
     "subject": {
       "label": "Sujet*",
-      "placeholder": "Question concernant...",
-      "error": "Veuillez entrer un sujet complet."
+      "placeholder": "De quoi s'agit-il?",
+      "error": "Indique un sujet."
     },
     "message": {
       "label": "Message*",
-      "placeholder": "Que voulez-vous nous dire ?",
-      "error": "Veuillez entrer votre message."
+      "placeholder": "Raconte.",
+      "error": "Écris un message."
     },
     "button": "Envoyer",
-    "success": "Message envoyé ! Nous vous contacterons dès que possible."
+    "success": "Message envoyé. On revient vers toi dès que possible."
   }
 }

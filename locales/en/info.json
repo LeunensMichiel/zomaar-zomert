@@ -1,29 +1,29 @@
 {
   "SEO": {
-    "title": "Info",
-    "description": "Practical info regarding accessibility, parking, partners, directions, and other frequently asked questions.",
+    "title": "Info · Zomaar Zomert",
+    "description": "Practical info on Zomaar Zomert: location, parking, accessibility, activities, paella and pétanque. Everything you need to know before the last weekend of July.",
     "openGraph": {
-      "title": "Info",
-      "description": "Practical info regarding accessibility, parking, partners, directions, and other frequently asked questions."
+      "title": "Info · Zomaar Zomert",
+      "description": "Location, parking, accessibility and activities. Everything you need to know before you head to the field."
     }
   },
   "hero": {
     "title": "Info."
   },
   "activities": {
-    "eyebrow": "Do something",
-    "title": "Join.",
-    "petanqueCaption": "Petanque."
+    "eyebrow": "Activities",
+    "title": "Join in.",
+    "petanqueCaption": "Pétanque."
   },
   "faq": {
     "8": {
       "title": "Activities",
-      "content": "Each year, we organize tons of activities, like ZomaarBike, ZomaarRun, kids animation, a quiz and petanque game. On Sunday you will also find a paella stand.<br></br><br></br>All of our activities require a registration fee: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Registration</strong> for the petanque game or the paella stand is <strong>required.</strong> You can register here: <br></br>",
-      "tba": "(Registration to be announced at a later date)",
-      "petanque": "Sign up — Petanque",
-      "paella": "Sign up — Paella",
-      "petanqueSoon": "Soon — Petanque",
-      "paellaSoon": "Soon — Paella"
+      "content": "Alongside the music, a whole week runs around Zomaar Zomert: the ZomaarBike, ZomaarRun, kids' animations, a quiz, a pétanque tournament and Sunday's paella.<br></br><br></br>Entry fees: ZomaarBike (€5/€7), ZomaarRun (€5), Pétanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Sign-up</strong> for the pétanque and paella is <strong>required.</strong> Register here:<br></br>",
+      "tba": "(Registration opens soon.)",
+      "petanque": "Sign up for the pétanque",
+      "paella": "Sign up for the paella",
+      "petanqueSoon": "Pétanque, soon",
+      "paellaSoon": "Paella, soon"
     }
   }
 }

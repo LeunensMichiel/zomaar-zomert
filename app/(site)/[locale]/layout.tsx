@@ -1,5 +1,6 @@
 import "../../globals.css";
 
+import { BProgressProvider } from "@components/bprogress-provider";
 import { Footer } from "@components/footer";
 import { Layout } from "@components/layout";
 import { routing } from "@lib/i18n/routing";
@@ -86,7 +87,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} className={`${oswald.variable} ${openSans.variable}`}>
       <body>
         <NextIntlClientProvider>
-          <Layout footer={<Footer />}>{children}</Layout>
+          <BProgressProvider>
+            <Layout footer={<Footer />}>{children}</Layout>
+          </BProgressProvider>
         </NextIntlClientProvider>
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>

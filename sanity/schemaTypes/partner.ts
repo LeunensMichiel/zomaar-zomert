@@ -1,4 +1,4 @@
-import { TagIcon } from "@sanity/icons";
+import { DiamondIcon } from "@sanity/icons";
 import { type ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
@@ -6,7 +6,7 @@ export const partner = defineType({
   name: "partner",
   title: "Partners",
   type: "document",
-  icon: TagIcon,
+  icon: DiamondIcon,
   fields: [
     defineField({
       name: "name",

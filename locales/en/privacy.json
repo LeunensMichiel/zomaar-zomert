@@ -1,13 +1,13 @@
 {
-  "title": "Privacy Policy",
+  "title": "Privacy Policy · Zomaar Zomert",
   "hero": {
     "title": "Privacy.",
-    "intro": "The boring but important part. How Zomaar Zomert handles your data — short, clear, and in line with the GDPR."
+    "intro": "The boring but important part. How Zomaar Zomert handles your data, short and clear, in line with the GDPR."
   },
   "eyebrow": "Privacy Policy",
-  "block1": "Zomaar Zomert respects the privacy of every visitor to this website and in doing so, always acts in accordance with the GDPR and any other laws or decisions arising from the GDPR.",
-  "block2": "Zomaar Zomert makes every effort to ensure the reliability, security and integrity of the data collected. This means that any personal data you enter on the website or otherwise provide to us will be kept strictly confidential and will only be collected and processed to communicate with or contact you.",
-  "block3": "While surfing on our website, certain information may be collected passively, in other words without this information being actively provided by yourself, through various tools such as IP addresses, cookies, ... This information is only used to support technical decisions and statistical processing, but never to identify individuals. We only use minimal data: namely, to see how many visitors our website amounts to and from where they come, as well as to play our aftermovie on the main page.",
-  "block4": "Your personal data will only be passed on to third parties if this is necessary for the performance of an agreement entered into with you or to comply with a legal obligation. Your personal data will not be used for direct marketing purposes. If there is any deviation from this, Zomaar Zomert undertakes to always explicitly mention this and to ask for explicit permission to do so. Zomaar Zomert undertakes to keep the data up to date and to remove or adapt erroneous or incomplete data. Access to this data is limited to those persons who need this data for the performance of their duties.",
-  "block5": "At any time, you have the right to request your personal data to be corrected, completed, modified or deleted. You can contact us via e- mail: info@zomaarzomert.be"
+  "block1": "Zomaar Zomert respects the privacy of every visitor to this website and always acts in accordance with the GDPR and any other laws or decisions arising from it.",
+  "block2": "We make every effort to ensure the reliability, security and integrity of the data we collect. Any personal data you enter on the website, or otherwise provide to us, is kept strictly confidential and only used to communicate with you or contact you.",
+  "block3": "While browsing our site, some information may be collected passively, meaning without you actively providing it, through tools such as IP addresses and cookies. We use this data minimally: to see how many visitors our site has and where they come from, and to play our aftermovie on the home page. Never to identify individual people.",
+  "block4": "Your personal data is only passed on to third parties if it's necessary to fulfil an agreement with you or to comply with a legal obligation. We don't use your data for direct marketing. If that ever changes, we'll explicitly ask for your consent. Zomaar Zomert keeps the data up to date and removes or corrects any erroneous or incomplete data. Access is limited to the people who need it for their tasks.",
+  "block5": "You have the right at any time to request, correct, complete, modify or delete your personal data. Email us at info@zomaarzomert.be."
 }

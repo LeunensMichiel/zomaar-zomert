@@ -24,8 +24,13 @@ export const simpleBlockContent = defineType({
                 name: "href",
                 type: "url",
                 title: "URL",
+                description:
+                  "External URL (https://...) or internal path starting with /.",
                 validation: (rule) =>
-                  rule.required().uri({ scheme: ["http", "https", "mailto"] }),
+                  rule.required().uri({
+                    allowRelative: true,
+                    scheme: ["http", "https", "mailto"],
+                  }),
               },
             ],
           },

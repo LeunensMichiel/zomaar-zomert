@@ -1,24 +1,20 @@
 {
   "SEO": {
-    "title": "Historie",
-    "description": "Ontdek hoe Zomaar Zomert het eerste levenslicht zag. Enkel voor de echte geïnteresseerden!",
+    "title": "Ons verhaal · Zomaar Zomert",
+    "description": "Wie wij zijn, hoe Zomaar Zomert begon en waarom we al bijna dertig jaar elk laatste weekend van juli de wei in Itterbeek vullen met muziek en goed volk.",
     "openGraph": {
-      "title": "Historie",
-      "description": "Ontdek hoe Zomaar Zomert het eerste levenslicht zag. Enkel voor de echte geïnteresseerden!"
+      "title": "Ons verhaal · Zomaar Zomert",
+      "description": "Bijna dertig jaar Zomaar Zomert. Een korte geëngageerde reis door wie we zijn en hoe we hier kwamen."
     }
   },
   "hero": {
-    "title": "Historie.",
-    "intro": "Hoe Zomaar Zomert ontstond, groeide en vandaag is wat het is. Een kort verhaal van bijna dertig jaar feesten in Sint-Anna-Pede."
+    "title": "Ons verhaal.",
+    "intro": "Wij zijn Zomaar Zomert. Een kleine bende uit Itterbeek die al bijna dertig jaar elk laatste weekend van juli de wei volzet met muziek, pintjes en goed volk. Hier kort hoe het zo kwam."
   },
   "crew": {
     "caption": "De crew."
   },
-  "terras": {
-    "caption": "Op de wei."
-  },
   "posters": {
-    "firstEdition": "Eerste editie",
-    "venue": "Sint-Anna-Pede"
+    "firstEdition": "Eerste editie"
   }
 }

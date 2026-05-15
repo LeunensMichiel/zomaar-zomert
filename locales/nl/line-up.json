@@ -1,18 +1,27 @@
 {
   "SEO": {
-    "title": "Line-Up",
-    "description": "Zomaar Zomert speelt zich af in het laatste weekend van juli. Van vrijdag tot zondag voorziet het festival tal van optredes, randactiviteiten en muziek om er een memorabel weekend van te maken.",
+    "title": "Line-up · Zomaar Zomert",
+    "description": "De volledige line-up van Zomaar Zomert. Vrijdag en zaterdag bands op de wei in Itterbeek, zondag een familiedag met paella en petanque. Laatste weekend van juli.",
     "openGraph": {
-      "title": "Line-Up",
-      "description": "Zomaar Zomert speelt zich af in het laatste weekend van juli. Van vrijdag tot zondag voorziet het festival tal van optredes, randactiviteiten en muziek om er een memorabel weekend van te maken."
+      "title": "Line-up · Zomaar Zomert",
+      "description": "Wie staat er dit jaar op het podium? Bekijk de volledige line-up van Zomaar Zomert."
     }
   },
-  "title": "Line-Up",
   "hero": {
     "title": "Line-up"
   },
   "filter": {
     "all": "Alle"
   },
-  "tba": "Binnenkort"
+  "tba": "Naam volgt",
+  "detail": {
+    "back": "Terug naar line-up",
+    "backAria": "Terug naar de line-up",
+    "socials": "Volgen op",
+    "bioFallback": "Bio volgt.",
+    "SEO": {
+      "title": "{name} · Zomaar Zomert",
+      "description": "{name} speelt {day} op Zomaar Zomert in Itterbeek. Bekijk de volledige line-up van het festival."
+    }
+  }
 }

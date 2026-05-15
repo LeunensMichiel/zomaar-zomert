@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 import FastMarquee from "react-fast-marquee";
 
 type MarqueeProps = {
-  slides: Array<{ url: string; alt?: string }>;
+  slides: Array<{ url: string; alt?: string; lqip?: string | null }>;
   speed: number;
   direction: "left" | "right";
 };
@@ -42,10 +42,12 @@ export function Marquee({ slides, speed, direction }: MarqueeProps) {
             src={slide.url}
             key={slide.url}
             alt={slide.alt ?? ""}
-            width={0}
-            height={0}
-            sizes="50vw"
-            quality={100}
+            width={480}
+            height={320}
+            quality={40}
+            sizes="(max-width: 768px) 30vw, 18vw"
+            placeholder={slide.lqip ? "blur" : "empty"}
+            blurDataURL={slide.lqip ?? undefined}
             className="h-[25vh] w-auto object-cover object-center md:h-[40vh]"
             loading="lazy"
           />

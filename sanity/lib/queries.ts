@@ -21,22 +21,24 @@ const partnerProjection = /* groq */ `
 const artistProjection = /* groq */ `
   _id,
   name,
+  "slug": slug.current,
   day,
   hour,
   showFrom,
-  link,
+  socials[]{ network, url },
   "imgSrc": coalesce(image.asset->url, ""),
-  "description": coalesce(
-    description[language == $locale][0].value,
-    description[language == "en"][0].value,
-    description[language == "nl"][0].value,
-    ""
+  "bio": coalesce(
+    bio[language == $locale][0].value,
+    bio[language == "en"][0].value,
+    bio[language == "nl"][0].value,
+    []
   )
 `;
 
 const headlinerProjection = /* groq */ `
   _id,
   name,
+  "slug": slug.current,
   day,
   hour,
   "imgSrc": coalesce(image.asset->url, "")
@@ -71,6 +73,24 @@ export const HEADLINER_ARTISTS_QUERY = defineQuery(/* groq */ `
   ] | order(showFrom asc) [0...3] {
     ${headlinerProjection}
   }
+`);
+
+export const ARTIST_BY_SLUG_QUERY = defineQuery(/* groq */ `
+  *[_type == "artist"
+    && slug.current == $slug
+    && showFrom <= now()
+    && showFrom >= $yearStart
+  ][0] {
+    ${artistProjection}
+  }
+`);
+
+export const ARTIST_SLUGS_QUERY = defineQuery(/* groq */ `
+  *[_type == "artist"
+    && defined(slug.current)
+    && showFrom <= now()
+    && showFrom >= $yearStart
+  ]{ "slug": slug.current }
 `);
 
 const localizedFlat = (field: string) => /* groq */ `
@@ -112,6 +132,7 @@ export const ASSETS_BY_TAGS_QUERY = defineQuery(/* groq */ `
     "url": url,
     "alt": coalesce(altText, ""),
     "dims": metadata.dimensions { width, height },
+    "lqip": metadata.lqip,
     "tags": opt.media.tags[]->name.current
   }
 `);
@@ -149,9 +170,8 @@ export const HISTORY_ENTRIES_QUERY = defineQuery(/* groq */ `
 `);
 
 export const INFO_BLOCKS_QUERY = defineQuery(/* groq */ `
-  *[_type == "infoBlock"] | order(order asc) {
+  *[_type == "infoBlock"] | order(orderRank asc) {
     _id,
-    order,
     layout,
     palette,
     width,
@@ -191,20 +211,29 @@ export type Partner = {
 
 export type FestivalDay = "friday" | "saturday" | "sunday";
 
+export type ArtistSocialNetwork = "spotify" | "instagram" | "facebook";
+
+export type ArtistSocial = {
+  network: ArtistSocialNetwork;
+  url: string;
+};
+
 export type Artist = {
   _id?: string;
   name: string;
+  slug?: string | null;
   day: FestivalDay;
   hour: string;
   imgSrc: string;
   showFrom: string;
-  description: string;
-  link?: string | null;
+  bio: PortableTextBlock[];
+  socials?: ArtistSocial[] | null;
 };
 
 export type Headliner = {
   _id?: string;
   name: string;
+  slug?: string | null;
   day: FestivalDay;
   hour: string;
   imgSrc: string;
@@ -240,6 +269,7 @@ export type TaggedAsset = {
   url: string;
   alt: string;
   dims: { width: number; height: number } | null;
+  lqip: string | null;
   tags: string[];
 };
 
@@ -301,7 +331,6 @@ export type PortableTextBlock = {
 
 export type InfoBlock = {
   _id: string;
-  order: number;
   layout: InfoBlockLayout;
   palette: InfoBlockPalette;
   width: InfoBlockWidth;

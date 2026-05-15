@@ -1,29 +1,29 @@
 {
   "SEO": {
-    "title": "Info",
-    "description": "Praktische info betreffende FAQ, toegankelijkheid, parking, partners en wegaanduiding. Vind hier info op al jouw vragen.",
+    "title": "Info · Zomaar Zomert",
+    "description": "Praktische info over Zomaar Zomert: locatie, parking, toegankelijkheid, randactiviteiten, paella en petanque. Alles wat je moet weten voor het laatste weekend van juli.",
     "openGraph": {
-      "title": "Info",
-      "description": "Praktische info betreffende FAQ, toegankelijkheid, parking, partners en wegaanduiding. Vind hier info op al jouw vragen."
+      "title": "Info · Zomaar Zomert",
+      "description": "Locatie, parking, toegankelijkheid en randactiviteiten. Alles wat je moet weten voor je naar de wei komt."
     }
   },
   "hero": {
     "title": "Info."
   },
   "activities": {
-    "eyebrow": "Doe iets",
-    "title": "Mee.",
+    "eyebrow": "Randactiviteiten",
+    "title": "Doe mee.",
     "petanqueCaption": "Petanque."
   },
   "faq": {
     "8": {
       "title": "Randactiviteiten",
-      "content": "Elk jaar organiseren we tal van randactiviteiten zoals de ZomaarBike, ZomaarRun, kinderanimatie, een quiz en een petanque wedstrijd. Op zondag vind je ook een paella stand.<br></br><br></br>Al onze activiteiten zijn betalend: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Registratie</strong> voor de petanque en paella is <strong>verplicht.</strong> Schrijf je hier in:<br></br>",
-      "tba": "(Inschrijvingen gaan binnenkort van start!)",
-      "petanque": "Inschrijven — Petanque",
-      "paella": "Inschrijven — Paella",
-      "petanqueSoon": "Binnenkort — Petanque",
-      "paellaSoon": "Binnenkort — Paella"
+      "content": "Naast de muziek loopt er een hele week rond Zomaar Zomert: de ZomaarBike, ZomaarRun, kinderanimatie, een quiz, een petanquetornooi en op zondag de paella.<br></br><br></br>Deelname aan de activiteiten: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Inschrijven</strong> voor de petanque en paella is <strong>verplicht.</strong> Schrijf je hier in:<br></br>",
+      "tba": "(Inschrijvingen openen binnenkort.)",
+      "petanque": "Schrijf je in voor de petanque",
+      "paella": "Schrijf je in voor de paella",
+      "petanqueSoon": "Petanque, binnenkort",
+      "paellaSoon": "Paella, binnenkort"
     }
   }
 }

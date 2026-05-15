@@ -1,31 +1,51 @@
 {
   "SEO": {
-    "title": "Partenaires",
-    "description": "Découvrez les personnes qui rendent Zomaar Zomert possible.",
+    "title": "Partenaires · Zomaar Zomert",
+    "description": "Zomaar Zomert est gratuit grâce à nos partenaires. Découvre les entrepreneurs locaux, sponsors et amis qui rendent le festival possible année après année.",
     "openGraph": {
-      "title": "Partenaires",
-      "description": "Découvrez les personnes qui rendent Zomaar Zomert possible."
+      "title": "Partenaires · Zomaar Zomert",
+      "description": "Rendu possible par une belle bande d'entrepreneurs locaux, sponsors et amis."
     }
   },
   "hero": {
     "title": "Partenaires.",
-    "intro": "Zomaar Zomert est gratuit pour tous — et cela n'est possible que grâce aux entreprises, commerçants locaux et amis qui nous soutiennent année après année."
+    "intro": "Zomaar Zomert est gratuit pour tous, et ça le reste grâce aux entreprises, commerçants locaux et amis qui mettent la main à la pâte année après année."
   },
   "lead": {
-    "eyebrow": "Partenaires Principaux"
+    "eyebrow": "Partenaires principaux"
   },
   "support": {
     "eyebrow": "Avec le soutien de"
   },
   "become": {
-    "eyebrow": "Rejoignez-nous",
-    "title": "Devenez partenaire.",
-    "body": "Touchez des milliers de festivaliers, soutenez la communauté locale et rejoignez une belle équipe. Choisissez une formule, ou contactez-nous pour du sur-mesure.",
+    "eyebrow": "Rejoins-nous",
+    "title": "Deviens partenaire.",
+    "body": "Touche une belle bande de festivaliers, soutiens un festival de village gratuit et rejoins une chouette équipe.",
+    "cta": "Contacte-nous",
     "perks": {
-      "1": "Logo sur scène, T-shirts et site web",
-      "2": "Mention sur les réseaux sociaux & affiches",
-      "3": "Goodies, invitations et visibilité au festival"
+      "terrain": {
+        "label": "Sur le site",
+        "items": [
+          "Logo sur le grand écran LED, tout le week-end",
+          "Bannières aux entrées et sur le terrain",
+          "Affiches dans les cafés, maisons de jeunes et commerces de la région"
+        ]
+      },
+      "online": {
+        "label": "En ligne",
+        "items": [
+          "Place fixe sur le site et la page partenaires",
+          "Post dédié sur Facebook et Instagram, calibré pour notre public"
+        ]
+      },
+      "extras": {
+        "label": "Entre nous",
+        "items": [
+          "Moment sponsors avec boissons et amuse-bouches pendant le week-end",
+          "Deux semaines à l'avance sur l'écran LED le long de la Ninoofsesteenweg"
+        ]
+      }
     },
-    "cta": "Contactez-nous"
+    "closing": "Une autre idée en tête ? Aucun souci. Passe-nous un coup de fil et on regarde ensemble ce qui colle."
   }
 }

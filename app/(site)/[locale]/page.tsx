@@ -105,7 +105,7 @@ export default async function Home({ params }: Props) {
 
   const photoTags = [
     "slideshow",
-    "food",
+    "paella",
     "petanque",
     "crew",
     "friday",
@@ -116,8 +116,13 @@ export default async function Home({ params }: Props) {
     tags: photoTags,
   });
   const photoByTag = (tag: string) => photos.find((p) => p.tags.includes(tag));
-  const slideshowAssets = photos.filter((p) => p.tags.includes("slideshow"));
-  const foodPhoto = photoByTag("food");
+  // Marquee renders two strips of six photos with a client-side shuffle.
+  // Limit the pool to keep the JSON payload light — 24 is more than
+  // enough variety for the slice(0,6) / slice(-6) picks.
+  const slideshowAssets = photos
+    .filter((p) => p.tags.includes("slideshow"))
+    .slice(0, 24);
+  const foodPhoto = photoByTag("paella");
   const petanquePhoto = photoByTag("petanque");
   const crewPhoto = photoByTag("crew");
   const days: Array<{ date: string; image: string; alt: string }> = [
@@ -255,6 +260,7 @@ export default async function Home({ params }: Props) {
               <RevealCard key={`${h.name}_${i}`} index={i}>
                 <HeadlinerCard
                   name={h.name}
+                  slug={h.slug}
                   hour={h.hour}
                   day={h.day}
                   imgSrc={h.imgSrc}
@@ -442,7 +448,11 @@ export default async function Home({ params }: Props) {
             color="pink-50"
           />
           <PhotoMarquees
-            slides={slideshowAssets.map((a) => ({ url: a.url, alt: a.alt }))}
+            slides={slideshowAssets.map((a) => ({
+              url: a.url,
+              alt: a.alt,
+              lqip: a.lqip,
+            }))}
           />
           <PaperTear
             className="absolute bottom-0 z-40 translate-y-[30%]"

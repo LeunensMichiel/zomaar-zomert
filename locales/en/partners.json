@@ -1,31 +1,51 @@
 {
   "SEO": {
-    "title": "Partners",
-    "description": "Learn more about the people who make this festival possible.",
+    "title": "Partners · Zomaar Zomert",
+    "description": "Zomaar Zomert stays free thanks to our partners. Meet the local businesses, sponsors and supporters who make the festival possible year after year.",
     "openGraph": {
-      "title": "Partners",
-      "description": "Learn more about the people who make this festival possible."
+      "title": "Partners · Zomaar Zomert",
+      "description": "Made possible by a whole crew of local businesses, sponsors and supporters."
     }
   },
   "hero": {
     "title": "Partners.",
-    "intro": "Zomaar Zomert is free for everyone — made possible by the companies, local shops and supporters who back us year after year."
+    "intro": "Zomaar Zomert is free for everyone, and it stays that way thanks to the companies, local businesses and supporters who put their shoulders to the wheel year after year."
   },
   "lead": {
-    "eyebrow": "Lead Partners"
+    "eyebrow": "Lead partners"
   },
   "support": {
-    "eyebrow": "With the support of"
+    "eyebrow": "With support from"
   },
   "become": {
     "eyebrow": "Join in",
     "title": "Become a partner.",
-    "body": "Reach thousands of festival-goers, support the local community, and end up in great company. Pick a formula, or call us for something tailor-made.",
+    "body": "Reach a whole crew of festival-goers, back a free village festival and land in great company.",
+    "cta": "Get in touch",
     "perks": {
-      "1": "Logo on stage, T-shirts and website",
-      "2": "Mention on socials & posters",
-      "3": "Goodies, invitations and on-site visibility"
+      "terrain": {
+        "label": "On the field",
+        "items": [
+          "Your logo on the big LED screen, all weekend long",
+          "Banners at the entrances and across the field",
+          "Posters in cafés, youth hubs and shops across the region"
+        ]
+      },
+      "online": {
+        "label": "Online",
+        "items": [
+          "A fixed spot on the site and the partners page",
+          "A dedicated Facebook and Instagram post, tuned to our crowd"
+        ]
+      },
+      "extras": {
+        "label": "Between us",
+        "items": [
+          "Sponsor get-together with drinks and small bites during the weekend",
+          "Two weeks of pre-festival airtime on the LED screen along the Ninoofsesteenweg"
+        ]
+      }
     },
-    "cta": "Get in touch"
+    "closing": "Something else in mind? No worries. Give us a ring and we'll find a setup that fits."
   }
 }

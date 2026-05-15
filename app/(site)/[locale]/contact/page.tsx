@@ -4,6 +4,8 @@ import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Map } from "@components/ui/map";
 import { type Locale } from "@lib/i18n/routing";
+import { ZZ_MAPS_URL } from "@lib/models";
+import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -31,12 +33,17 @@ export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "contact" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
   const settings = await client.fetch<SiteSettings | null>(
     SITE_SETTINGS_QUERY,
     { locale },
     { next: { tags: ["siteSettings"] } },
   );
   const email = settings?.contactEmail;
+  const address = settings?.contactAddress;
+  const addressMapsUrl = address
+    ? `https://www.google.com/maps?q=${encodeURIComponent(address.replace(/\n+/g, ", "))}`
+    : null;
 
   return (
     <>
@@ -69,6 +76,24 @@ export default async function ContactPage({ params }: Props) {
                 </a>
               )}
 
+              {address && addressMapsUrl && (
+                <a
+                  href={addressMapsUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:text-brand-500 focus-visible:text-brand-500 group mt-4 flex items-start gap-2 text-base text-gray-700 transition-colors md:text-lg"
+                >
+                  <address className="whitespace-pre-line not-italic underline decoration-2 underline-offset-4 group-hover:decoration-4">
+                    {address}
+                  </address>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="mt-1 h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                  <span className="sr-only">{tCommon("openInMaps")}</span>
+                </a>
+              )}
+
               <div className="shadow-sticker-lg mt-8 border-2 border-gray-900 bg-yellow-400 p-6 md:mt-10 md:p-8">
                 <Form />
               </div>
@@ -82,11 +107,21 @@ export default async function ContactPage({ params }: Props) {
               <div className="shadow-sticker-lg h-72 overflow-hidden border-2 border-gray-900 md:h-96 lg:h-full lg:min-h-112">
                 <Map height="100%" />
               </div>
-              <div className="absolute -top-4 -right-4 z-10">
+              <a
+                href={ZZ_MAPS_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={`${t("mapCard.venue")} — ${tCommon("openInMaps")}`}
+                className="absolute -top-4 -right-4 z-10 inline-block transition-transform hover:-translate-y-1"
+              >
                 <Sticker color="ink" size="md" rotate={-6}>
-                  {t("mapCard.venue")}
+                  <span>{t("mapCard.venue")}</span>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="ml-2 h-4 w-4 md:h-5 md:w-5"
+                  />
                 </Sticker>
-              </div>
+              </a>
             </div>
           </div>
         </div>

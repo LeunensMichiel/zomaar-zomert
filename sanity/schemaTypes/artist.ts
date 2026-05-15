@@ -1,6 +1,6 @@
 import { UsersIcon } from "@sanity/icons";
 import { type ReactNode } from "react";
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const artist = defineType({
   name: "artist",
@@ -11,6 +11,14 @@ export const artist = defineType({
     defineField({
       name: "name",
       type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "slug",
+      type: "slug",
+      description:
+        "URL segment for the artist detail page (e.g. /line-up/charlotte-de-witte).",
+      options: { source: "name", maxLength: 96 },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -55,16 +63,54 @@ export const artist = defineType({
       ],
     }),
     defineField({
-      name: "link",
-      title: "External link",
-      type: "url",
-      description: "Spotify, YouTube, website, etc.",
-      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+      name: "socials",
+      title: "Social links",
+      description:
+        "One per network. Only the networks you fill in are shown on the artist page.",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "social",
+          fields: [
+            defineField({
+              name: "network",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Spotify", value: "spotify" },
+                  { title: "Instagram", value: "instagram" },
+                  { title: "Facebook", value: "facebook" },
+                ],
+                layout: "radio",
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              type: "url",
+              validation: (rule) =>
+                rule.required().uri({ scheme: ["http", "https"] }),
+            }),
+          ],
+          preview: {
+            select: { network: "network", url: "url" },
+            prepare(selection: { network?: string; url?: string }) {
+              return {
+                title: selection.network ?? "Social",
+                subtitle: selection.url ?? "",
+              };
+            },
+          },
+        }),
+      ],
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "internationalizedArrayText",
+      name: "bio",
+      title: "Biography",
+      description:
+        "Rich-text bio. Drop in YouTube links via the embed block to play videos inline.",
+      type: "internationalizedArrayArtistBlockContent",
     }),
   ],
   preview: {

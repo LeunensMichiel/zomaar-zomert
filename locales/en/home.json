@@ -1,25 +1,24 @@
 {
   "SEO": {
-    "title": "Zomaar Zomert — Festival in Itterbeek",
-    "description": "Zomaar Zomert is a free summer festival in the heart of Itterbeek. The last weekend of July, enjoy live music, activities and atmosphere at the Sint-Anna church.",
+    "title": "Zomaar Zomert · Free summer festival in Itterbeek",
+    "description": "Three days of free summer festival on the field in Itterbeek. Friday and Saturday the line-up, Sunday paella and petanque. Last weekend of July.",
     "openGraph": {
-      "title": "Zomaar Zomert — Festival in Itterbeek",
-      "description": "A free summer festival in the heart of Itterbeek. Live music, activities and atmosphere at the Sint-Anna church."
+      "title": "Zomaar Zomert · Free summer festival in Itterbeek",
+      "description": "Three days, one tent, no tickets. Friday and Saturday live music, Sunday paella and pétanque. Last weekend of July, on the field in Itterbeek."
     }
   },
   "month": "JULY",
-  "days": "days",
   "hours": "hr",
   "minutes": "min",
   "seconds": "sec",
-  "festivalHasStarted": "The festival has started!",
-  "seeYouNextYear": "See you next year!",
-  "paella": "Sign up — Paella",
-  "petanque": "Sign up — Petanque",
-  "paellaSoon": "Soon — Paella",
-  "petanqueSoon": "Soon — Petanque",
+  "festivalHasStarted": "We're off.",
+  "seeYouNextYear": "See you next summer.",
+  "paella": "Sign up for the paella",
+  "petanque": "Sign up for the pétanque",
+  "paellaSoon": "Paella, soon",
+  "petanqueSoon": "Pétanque, soon",
   "intro": {
-    "body": "On the last weekend of July, the Sint-Anna church in Itterbeek calls in sick for three days. Live music, cold beer, paella, pétanque and a few thousand friends you haven't met yet. No tickets, no wristbands — just walk in and stretch summer until sundown."
+    "body": "Three days of summer festival on the field in Itterbeek, the last weekend of July. Live music, cold beer and the whole neighbourhood under one tent. Free for everyone, no tickets or wristbands."
   },
   "countdown": {
     "daysAway": "almost there",
@@ -28,9 +27,8 @@
   },
   "lineup": {
     "heading": "Line-up",
-    "all": "Full line-up",
-    "seeDay": "See day",
-    "tba": "Soon"
+    "all": "See the full line-up",
+    "tba": "Name to follow"
   },
   "programme": {
     "eyebrow": "Programme"
@@ -39,14 +37,14 @@
     "heading": "Join in.",
     "paella": {
       "title": "Sunday paella",
-      "body": "Long tables, one giant pan, your neighbours for company. Sign-up required — sells out every year."
+      "body": "Long tables, one giant pan, the neighbours as company. Sign-up required, spots fill fast every year."
     },
     "petanque": {
       "title": "Pétanque tournament",
-      "body": "Three balls, one sandpit, and your street's honour on the line. Beginners welcome, champions too."
+      "body": "The yearly pétanque tournament, Sunday afternoon, on the field next to the tent. Free to enter, open to all."
     },
     "crew": {
-      "body": "Join us as a volunteer or partner."
+      "body": "Become a volunteer or partner."
     },
     "contact": "Contact"
   },
@@ -59,7 +57,7 @@
   "partners": {
     "heading": "100% Free.",
     "eyebrow": "Made possible by",
-    "body": "Zomaar Zomert is free because a whole crew of local businesses, volunteers and sponsors keep it that way. Want to help shape the next edition?",
+    "body": "Zomaar Zomert stays free thanks to a whole crew of local businesses, volunteers and sponsors who keep it that way. Want to help out next summer?",
     "all": "All partners",
     "become": "Become a partner"
   }

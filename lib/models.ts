@@ -49,15 +49,6 @@ export const ZZ_DATE_FRIDAY_NEXT_YEAR = toIsoDate(
   addDays(lastSundayOfJuly(ZZ_YEAR + 1), -2),
 );
 
-export type IImageCard = {
-  title: string;
-  subtitle: string;
-  imgSrc: string;
-  description?: string;
-  date?: string;
-  link?: string;
-};
-
 type FestivalDay = "friday" | "saturday" | "sunday";
 
 const DAY_TO_DATE: Record<FestivalDay, string> = {
@@ -70,3 +61,7 @@ export const getDateByDayString = (day: FestivalDay) => DAY_TO_DATE[day];
 
 export const isSignupOpen = (now: Date = new Date()) =>
   now >= new Date(ENABLE_LINKS_DATE) && now <= new Date(ZZ_DATE_SUNDAY);
+
+export const ZZ_LATITUDE = 50.831583;
+export const ZZ_LONGITUDE = 4.234742;
+export const ZZ_MAPS_URL = `https://www.google.com/maps?q=${String(ZZ_LATITUDE)},${String(ZZ_LONGITUDE)}`;

@@ -1,6 +1,8 @@
 import { Sticker } from "@components/sticker";
 import { Map } from "@components/ui/map";
+import { ZZ_MAPS_URL } from "@lib/models";
 import { cn } from "@lib/utils";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { PortableText, type PortableTextComponents } from "next-sanity";
 
@@ -68,16 +70,23 @@ function ptComponents(strongClass: string): PortableTextComponents {
         <strong className={cn("font-bold", strongClass)}>{children}</strong>
       ),
       em: ({ children }) => <em>{children}</em>,
-      link: ({ value, children }) => (
-        <a
-          href={(value as { href?: string } | undefined)?.href}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="underline decoration-2 underline-offset-2 hover:decoration-4"
-        >
-          {children}
-        </a>
-      ),
+      link: ({ value, children }) => {
+        const href = (value as { href?: string } | undefined)?.href ?? "";
+        const external =
+          /^https?:\/\//.test(href) || href.startsWith("mailto:");
+        return (
+          <a
+            href={href}
+            {...(external && {
+              target: "_blank",
+              rel: "noreferrer noopener",
+            })}
+            className="underline decoration-2 underline-offset-2 hover:decoration-4"
+          >
+            {children}
+          </a>
+        );
+      },
     },
   };
 }
@@ -85,9 +94,11 @@ function ptComponents(strongClass: string): PortableTextComponents {
 export function InfoBlock({
   block,
   index,
+  mapsLabel,
 }: {
   block: InfoBlockData;
   index: number;
+  mapsLabel?: string;
 }) {
   const tilt = tiltFor(block.layout, index);
   const widthClass = WIDTH_SPAN[block.width];
@@ -95,21 +106,32 @@ export function InfoBlock({
   const tiltStyle = tilt ? { transform: `rotate(${String(tilt)}deg)` } : {};
 
   if (block.layout === "map") {
+    const stickerEl = block.title ? (
+      <Sticker color={STICKER_PALETTE[block.palette]} size="md" rotate={-6}>
+        <span>{block.title}</span>
+        <ArrowUpRight
+          aria-hidden="true"
+          className="ml-2 h-4 w-4 md:h-5 md:w-5"
+        />
+      </Sticker>
+    ) : null;
     return (
       <div className={cn("relative", widthClass)}>
         <div className="shadow-sticker-lg h-72 overflow-hidden border-2 border-gray-900 md:h-80 lg:h-full lg:min-h-96">
           <Map height="100%" />
         </div>
-        {block.title && (
-          <div className="absolute -top-4 -right-4 z-10">
-            <Sticker
-              color={STICKER_PALETTE[block.palette]}
-              size="md"
-              rotate={-6}
-            >
-              {block.title}
-            </Sticker>
-          </div>
+        {stickerEl && (
+          <a
+            href={ZZ_MAPS_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={
+              mapsLabel ? `${block.title} — ${mapsLabel}` : block.title
+            }
+            className="absolute -top-4 -right-4 z-10 inline-block transition-transform hover:-translate-y-1"
+          >
+            {stickerEl}
+          </a>
         )}
       </div>
     );

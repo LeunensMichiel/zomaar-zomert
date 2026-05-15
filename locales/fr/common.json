@@ -1,22 +1,22 @@
 {
   "seo": {
-    "description": "Zomaar Zomert est un festival gratuit au cœur d'Itterbeek, à l'église Sainte-Anne. Le dernier week-end de juillet, profitez de boissons fraîches, de nombreux concerts et activités. Un week-end d'été inoubliable garanti. ☀🚀"
+    "description": "Festival d'été gratuit à Itterbeek. Trois jours de musique, de bière fraîche et de bonne compagnie dans le pré à côté de l'église Sainte-Anne. Dernier week-end de juillet."
   },
   "links": {
     "home": "Accueil",
-    "line-up": "Line-Up",
+    "line-up": "Line-up",
     "contact": "Contact",
     "info": "Infos",
-    "history": "Historique",
+    "history": "Notre histoire",
     "news": "Actualités",
     "menu": "Bouffe & boissons",
-    "partners": "Nos partenaires",
-    "legal": "Politique de confidentialité"
+    "partners": "Partenaires",
+    "legal": "Confidentialité"
   },
-  "register": "Inscrivez-vous ici",
+  "register": "Inscris-toi",
   "footer": {
     "line-up": {
-      "title": "Line-Up"
+      "title": "Line-up"
     },
     "info": {
       "title": "Plus d'infos?"
@@ -29,35 +29,35 @@
     },
     "partners": {
       "eyebrow": "Rendu possible par",
-      "lead": "Partenaires principaux",
       "support": "Avec le soutien de"
     },
-    "copy": "Zomaar Zomert - Webdesign par <michiel>Michiel Leunens</michiel>"
+    "copy": "Zomaar Zomert · Webdesign par <michiel>Michiel Leunens</michiel>"
   },
   "cookies": {
-    "title": "Zomaar Zomert utilise des cookies",
-    "text": "Nous utilisons des cookies à des fins fonctionnelles et analytiques uniquement et ne stockons <strong>aucune</strong> donnée personnelle. En utilisant le site, vous acceptez cela.<br></br>Plus d'informations dans notre <policy>politique de confidentialité</policy>.",
-    "deny": "Refuser",
-    "consent": "D'accord!"
+    "title": "Cookies, on garde ça simple",
+    "text": "On utilise des cookies uniquement à des fins fonctionnelles et analytiques. <strong>Aucune</strong> donnée personnelle, aucune pub.<br></br>Plus dans notre <policy>politique de confidentialité</policy>.",
+    "deny": "Non merci",
+    "consent": "D'accord"
   },
   "i18n": {
-    "select": "Choisir la langue préférée"
+    "select": "Choisir la langue"
   },
+  "openInMaps": "Ouvrir dans Maps",
   "aria": {
     "menu": "Menu",
     "close": "Fermer",
     "language": "Langue"
   },
   "notFound": {
-    "title": "Festival introuvable",
+    "title": "Rien à voir par ici",
     "code": "404",
-    "message": "Il semble que vous soyez arrivé sur une page qui n'existe pas. N'hésitez pas à nous contacter si ce n'était pas le cas.",
+    "message": "Cette page n'existe pas, ou plus. Reviens à l'accueil, ou dis-nous ce que tu cherchais.",
     "button": "Retour à l'accueil"
   },
   "error": {
-    "eyebrow": "Oups, panne technique",
+    "eyebrow": "Aïe",
     "title": "Quelque chose a déraillé",
-    "message": "Nos serveurs ont fait un court-circuit. Réessayez ou retournez à l'accueil — si le problème persiste, n'hésitez pas à nous le signaler.",
+    "message": "Nos serveurs toussent un peu. Réessaie ou retourne à l'accueil. Si le problème persiste, fais-nous signe.",
     "button": "Réessayer",
     "home": "Vers l'accueil"
   }

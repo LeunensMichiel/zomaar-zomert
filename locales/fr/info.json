@@ -1,29 +1,29 @@
 {
   "SEO": {
-    "title": "Infos",
-    "description": "Informations pratiques sur l'accessibilité, le stationnement, les partenaires, la signalisation routière et d'autres questions fréquemment posées. Vous trouverez ici toutes les réponses à vos questions.",
+    "title": "Infos · Zomaar Zomert",
+    "description": "Infos pratiques sur Zomaar Zomert: lieu, parking, accessibilité, activités, paella et pétanque. Tout ce qu'il faut savoir pour le dernier week-end de juillet.",
     "openGraph": {
-      "title": "Infos",
-      "description": "Informations pratiques sur l'accessibilité, le stationnement, les partenaires, la signalisation routière et d'autres questions fréquemment posées. Vous trouverez ici toutes les réponses à vos questions."
+      "title": "Infos · Zomaar Zomert",
+      "description": "Lieu, parking, accessibilité et activités. Tout ce qu'il faut savoir avant de venir dans le pré."
     }
   },
   "hero": {
     "title": "Infos."
   },
   "activities": {
-    "eyebrow": "Bouge un peu",
-    "title": "Partant.",
+    "eyebrow": "Activités",
+    "title": "Participe.",
     "petanqueCaption": "Pétanque."
   },
   "faq": {
     "8": {
-      "title": "Activités périphériques",
-      "content": "Chaque année, nous organisons de nombreuses activités périphériques telles que le ZomaarBike, le ZomaarRun, des animations pour les enfants, un quiz et un concours de pétanque. Le dimanche, vous trouverez également un stand de paella.<br></br><br></br>Toutes nos activités sont payants: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>L'inscription</strong> pour la pétanque et la paella est <strong>obligatoire.</strong> Inscrivez-vous ici:<br></br>",
-      "tba": "(Les inscriptions commenceront bientôt !)",
-      "petanque": "S'inscrire — Petanque",
-      "paella": "S'inscrire — Paella",
-      "petanqueSoon": "Bientôt — Petanque",
-      "paellaSoon": "Bientôt — Paella"
+      "title": "Activités",
+      "content": "À côté de la musique, il y a toute une semaine autour de Zomaar Zomert: le ZomaarBike, le ZomaarRun, des animations pour enfants, un quiz, un tournoi de pétanque et le dimanche la paella.<br></br><br></br>Participation: ZomaarBike (€5/€7), ZomaarRun (€5), Pétanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>L'inscription</strong> pour la pétanque et la paella est <strong>obligatoire.</strong> Inscris-toi ici:<br></br>",
+      "tba": "(Les inscriptions ouvrent bientôt.)",
+      "petanque": "Inscris-toi pour la pétanque",
+      "paella": "Inscris-toi pour la paella",
+      "petanqueSoon": "Pétanque, bientôt",
+      "paellaSoon": "Paella, bientôt"
     }
   }
 }

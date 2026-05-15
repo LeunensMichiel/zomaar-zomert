@@ -1,22 +1,22 @@
 {
   "seo": {
-    "description": "Zomaar Zomert is a free festival in the heart of Itterbeek, at the Sint-Anna church. The whole last weekend of July you can enjoy fresh drinks, numerous performances & activities. You're sure to have an extraordinary summer weekend. ☀🚀"
+    "description": "Free summer festival in Itterbeek. Three days of music, cold beer and good company on the field next to the Sint-Anna-Pedekerk. Last weekend of July."
   },
   "links": {
     "home": "Home",
-    "line-up": "Line-Up",
+    "line-up": "Line-up",
     "contact": "Contact",
     "info": "Info",
-    "history": "History",
+    "history": "Our story",
     "news": "News",
     "menu": "Food & drinks",
-    "partners": "Our partners",
-    "legal": "Privacy policy"
+    "partners": "Partners",
+    "legal": "Privacy"
   },
-  "register": "Register here",
+  "register": "Sign up",
   "footer": {
     "line-up": {
-      "title": "Line-Up"
+      "title": "Line-up"
     },
     "info": {
       "title": "Want to know more?"
@@ -29,35 +29,35 @@
     },
     "partners": {
       "eyebrow": "Made possible by",
-      "lead": "Lead partners",
       "support": "With support from"
     },
-    "copy": "Zomaar Zomert - Webdesign by <michiel>Michiel Leunens</michiel>"
+    "copy": "Zomaar Zomert · Webdesign by <michiel>Michiel Leunens</michiel>"
   },
   "cookies": {
-    "title": "Zomaar Zomert makes use of cookies",
-    "text": "We use cookies for functional & analytical purposes only and do <strong>not</strong> store any personal data. By using the site, you agree to our policy.<br></br>More info in our <policy>privacy policy</policy>.",
-    "deny": "Deny",
-    "consent": "Okay for me!"
+    "title": "Cookies, keeping it simple",
+    "text": "We use cookies for functional and analytical purposes only. <strong>No</strong> personal data, no ads.<br></br>More in our <policy>privacy policy</policy>.",
+    "deny": "No thanks",
+    "consent": "All good"
   },
   "i18n": {
-    "select": "Select preferred language"
+    "select": "Choose language"
   },
+  "openInMaps": "Open in Maps",
   "aria": {
     "menu": "Menu",
     "close": "Close",
     "language": "Language"
   },
   "notFound": {
-    "title": "Festival not found",
+    "title": "Nothing to see here",
     "code": "404",
-    "message": "Looks like you ended up on a page that doesn't exist. Please contact us if this should not be the case.",
-    "button": "Return to homepage"
+    "message": "This page doesn't exist, or doesn't anymore. Head back to home, or tell us what you were looking for.",
+    "button": "Back to home"
   },
   "error": {
-    "eyebrow": "Oops, technical glitch",
+    "eyebrow": "Yikes",
     "title": "Something went sideways",
-    "message": "Our servers had a brief short-circuit. Try again or head back to the homepage — if it keeps happening, let us know.",
+    "message": "Our servers are coughing a bit. Try again or head back to the homepage. If it keeps happening, drop us a line.",
     "button": "Try again",
     "home": "Back to home"
   }

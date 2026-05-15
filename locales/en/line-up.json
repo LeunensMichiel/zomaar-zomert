@@ -1,18 +1,27 @@
 {
   "SEO": {
-    "title": "Line-Up",
-    "description": "Zomaar Zomert takes place on the last weekend of July. From Friday to Sunday, the festival provides numerous performances, activities, music and ambiance to make it a memorable weekend.",
+    "title": "Line-up · Zomaar Zomert",
+    "description": "The full Zomaar Zomert line-up. Friday and Saturday bands on the field in Itterbeek, Sunday a family day with paella and pétanque. Last weekend of July.",
     "openGraph": {
-      "title": "Line-Up",
-      "description": "Zomaar Zomert takes place on the last weekend of July. From Friday to Sunday, the festival provides numerous performances, activities, music and ambiance to make it a memorable weekend."
+      "title": "Line-up · Zomaar Zomert",
+      "description": "Who's playing this year? The full Zomaar Zomert line-up."
     }
   },
-  "title": "Line-Up",
   "hero": {
     "title": "Line-up"
   },
   "filter": {
     "all": "All"
   },
-  "tba": "Soon"
+  "tba": "Name to follow",
+  "detail": {
+    "back": "Back to line-up",
+    "backAria": "Back to the line-up",
+    "socials": "Follow on",
+    "bioFallback": "Bio to follow.",
+    "SEO": {
+      "title": "{name} · Zomaar Zomert",
+      "description": "{name} plays {day} at Zomaar Zomert in Itterbeek. See the full festival line-up."
+    }
+  }
 }

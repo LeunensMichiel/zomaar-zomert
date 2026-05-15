@@ -1,15 +1,15 @@
 {
   "SEO": {
-    "title": "Partners",
-    "description": "Kom meer te weten over de mensen die zomaar zomert mogelijk maken.",
+    "title": "Partners · Zomaar Zomert",
+    "description": "Zomaar Zomert is gratis dankzij onze partners. Ontdek de lokale ondernemers, sponsors en sympathisanten die het festival jaar na jaar mee mogelijk maken.",
     "openGraph": {
-      "title": "Partners",
-      "description": "Kom meer te weten over de mensen die zomaar zomert mogelijk maken."
+      "title": "Partners · Zomaar Zomert",
+      "description": "Mogelijk gemaakt door een hele bende lokale ondernemers, sponsors en sympathisanten."
     }
   },
   "hero": {
     "title": "Partners.",
-    "intro": "Zomaar Zomert is gratis voor iedereen — en dat is alleen mogelijk dankzij de bedrijven, lokale ondernemers en sympathisanten die ons jaar na jaar steunen."
+    "intro": "Zomaar Zomert is gratis voor iedereen, en dat blijft zo dankzij de bedrijven, lokale ondernemers en sympathisanten die jaar na jaar mee de schouders eronder zetten."
   },
   "lead": {
     "eyebrow": "Hoofdpartners"
@@ -20,12 +20,32 @@
   "become": {
     "eyebrow": "Doe mee",
     "title": "Word partner.",
-    "body": "Bereik duizenden festivalgangers, steun de lokale gemeenschap en kom in goed gezelschap. Kies een formule, of bel ons voor iets op maat.",
+    "body": "Bereik een hele bende festivalgangers, steun een gratis dorpsfestival en kom in goed gezelschap.",
+    "cta": "Neem contact op",
     "perks": {
-      "1": "Logo op podium, T-shirts en website",
-      "2": "Vermelding op socials & affiches",
-      "3": "Goodies, uitnodigingen en zichtbaarheid op het festival"
+      "terrain": {
+        "label": "Op 't terrein",
+        "items": [
+          "Logo op het grote LED-scherm, gans het weekend",
+          "Banners aan de doorgangen en op het terrein",
+          "Affiches in cafés, jeugdhuizen en handelszaken in de regio"
+        ]
+      },
+      "online": {
+        "label": "Online",
+        "items": [
+          "Vaste plek op de site en op de partnerpagina",
+          "Eigen post op Facebook en Instagram, afgestemd op ons publiek"
+        ]
+      },
+      "extras": {
+        "label": "Tussen ons",
+        "items": [
+          "Sponsormoment met drankjes en hapjes tijdens het weekend",
+          "Twee weken vooraf in de spotlight op het LED-scherm langs de Ninoofsesteenweg"
+        ]
+      }
     },
-    "cta": "Neem contact op"
+    "closing": "Iets anders in gedachten? Da's ook in orde. Bel even en we kijken samen wat past."
   }
 }

@@ -1,24 +1,20 @@
 {
   "SEO": {
-    "title": "History",
-    "description": "Find out how Zomaar Zomert first saw the light of day. Only for the really interested!",
+    "title": "Our story · Zomaar Zomert",
+    "description": "Who we are, how Zomaar Zomert started, and why for almost thirty years we've been filling the field in Itterbeek with music and good company on the last weekend of July.",
     "openGraph": {
-      "title": "History",
-      "description": "Find out how Zomaar Zomert first saw the light of day. Only for the really interested!"
+      "title": "Our story · Zomaar Zomert",
+      "description": "Almost thirty years of Zomaar Zomert. A short trip through who we are and how we got here."
     }
   },
   "hero": {
-    "title": "History.",
-    "intro": "How Zomaar Zomert started, grew, and ended up where it is today. A short story of almost thirty years of partying in Sint-Anna-Pede."
+    "title": "Our story.",
+    "intro": "We're Zomaar Zomert. A small crew from Itterbeek that's been filling the field with music, beers and good company every last weekend of July for almost thirty years. Here's how it all started."
   },
   "crew": {
     "caption": "The crew."
   },
-  "terras": {
-    "caption": "On the field."
-  },
   "posters": {
-    "firstEdition": "First edition",
-    "venue": "Sint-Anna-Pede"
+    "firstEdition": "First edition"
   }
 }

@@ -1,29 +1,29 @@
 {
   "SEO": {
-    "title": "Contact",
-    "description": "Contacteer de Zomaar Zomert crew. We zijn ook bereikbaar via onze sociale kanalen zoals Instagram en Facebook.",
+    "title": "Contact · Zomaar Zomert",
+    "description": "Contacteer de Zomaar Zomert crew. Vragen, voorstellen, partnerschappen of een vrijwilligersopdracht: mail of vul het formulier in. Ook bereikbaar via Instagram en Facebook.",
     "openGraph": {
-      "title": "Contact",
-      "description": "Contacteer de Zomaar Zomert crew. We zijn ook bereikbaar via onze sociale kanalen zoals Instagram en Facebook."
+      "title": "Contact · Zomaar Zomert",
+      "description": "Vraag, voorstel of zin om mee te bouwen? Mail rechtstreeks of vul het formulier in."
     }
   },
   "hero": {
     "title": "Hallo.",
-    "body": "Vraag, voorstel of zin om mee te bouwen? Mail rechtstreeks of vul het formulier in."
+    "body": "Vraag, voorstel of zin om mee te bouwen? Mail rechtstreeks of laat een berichtje achter. We lezen alles."
   },
   "mapCard": {
-    "venue": "Sint-Anna-Pedekerk"
+    "venue": "De wei"
   },
   "form": {
     "name": {
       "label": "Naam*",
       "placeholder": "Jan Janssens",
-      "error": "Gelieve uw volledige naam in te vullen."
+      "error": "Vul je naam in."
     },
     "email": {
       "label": "Email*",
-      "placeholder": "jan.janssens@gmail.com",
-      "error": "Gelieve uw email-adres in te vullen."
+      "placeholder": "jan@example.com",
+      "error": "Vul een geldig email-adres in."
     },
     "phone": {
       "label": "Telefoon",
@@ -31,15 +31,15 @@
     },
     "subject": {
       "label": "Onderwerp*",
-      "placeholder": "Vraag betreffende...",
-      "error": "Gelieve een onderwerp in te vullen."
+      "placeholder": "Waar gaat het over?",
+      "error": "Vul een onderwerp in."
     },
     "message": {
       "label": "Bericht*",
-      "placeholder": "Wat wil je ons vertellen?",
-      "error": "Gelieve een bericht in te vullen."
+      "placeholder": "Vertel maar.",
+      "error": "Schrijf een bericht."
     },
-    "button": "Bericht versturen",
-    "success": "Bericht verstuurd! We nemen zo snel mogelijk contact met je op."
+    "button": "Versturen",
+    "success": "Bericht verstuurd. We komen zo snel mogelijk bij je terug."
   }
 }

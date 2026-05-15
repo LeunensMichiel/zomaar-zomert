@@ -10,7 +10,7 @@ import { MenuToggle } from "@components/menu-toggle";
 import { Sticker } from "@components/sticker";
 import { Logo } from "@components/ui/logo";
 import { Link, usePathname } from "@lib/i18n/navigation";
-import { type AppPathname } from "@lib/i18n/routing";
+import { type StaticAppPathname } from "@lib/i18n/routing";
 import {
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
@@ -30,7 +30,7 @@ import { type ReactNode, useId, useState } from "react";
 
 type NavLinkData = {
   key: string;
-  href: AppPathname;
+  href: StaticAppPathname;
 };
 
 const PRIMARY_LINKS: NavLinkData[] = [
@@ -129,7 +129,7 @@ function NavLink({
   label,
   onNavigate,
 }: {
-  href: AppPathname;
+  href: StaticAppPathname;
   label: string;
   onNavigate: () => void;
 }) {

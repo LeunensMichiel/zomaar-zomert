@@ -49,7 +49,9 @@ export function LineUpClient({ artists, children }: Props) {
   const t = useTranslations("line-up");
   const lang = useLocale();
   const router = useRouter();
-  const pathname = usePathname();
+  // This client only renders inside /line-up, so the pathname union
+  // collapses to the static route.
+  const pathname = usePathname() as "/line-up";
   const searchParams = useSearchParams();
   const reducedMotion = useReducedMotion();
   const currentDate = searchParams.get("date");
@@ -69,7 +71,7 @@ export function LineUpClient({ artists, children }: Props) {
           hour: "",
           imgSrc: "",
           showFrom: `tba-${date}-${String(list.length)}`,
-          description: "",
+          bio: [],
         });
       }
       result[date] = list;

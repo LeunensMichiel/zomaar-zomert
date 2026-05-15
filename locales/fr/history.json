@@ -1,24 +1,20 @@
 {
   "SEO": {
-    "title": "Historique",
-    "description": "Découvrez comment Zomaar Zomert a vu le jour. Uniquement pour les personnes vraiment intéressées !",
+    "title": "Notre histoire · Zomaar Zomert",
+    "description": "Qui on est, comment Zomaar Zomert a commencé et pourquoi depuis presque trente ans on remplit chaque dernier week-end de juillet le pré à Itterbeek de musique et de bonne compagnie.",
     "openGraph": {
-      "title": "Historique",
-      "description": "Découvrez comment Zomaar Zomert a vu le jour. Uniquement pour les personnes vraiment intéressées !"
+      "title": "Notre histoire · Zomaar Zomert",
+      "description": "Près de trente ans de Zomaar Zomert. Un court voyage à travers qui on est et comment on en est arrivés là."
     }
   },
   "hero": {
-    "title": "Histoire.",
-    "intro": "Comment Zomaar Zomert est né, a grandi et est devenu ce qu'il est aujourd'hui. Une courte histoire de presque trente ans de fête à Sint-Anna-Pede."
+    "title": "Notre histoire.",
+    "intro": "Nous sommes Zomaar Zomert. Une petite bande d'Itterbeek qui remplit, depuis presque trente ans, le pré chaque dernier week-end de juillet avec de la musique, des bières et de la bonne compagnie. Voici comment ça a commencé."
   },
   "crew": {
     "caption": "L'équipe."
   },
-  "terras": {
-    "caption": "Sur le pré."
-  },
   "posters": {
-    "firstEdition": "Première édition",
-    "venue": "Sint-Anna-Pede"
+    "firstEdition": "Première édition"
   }
 }

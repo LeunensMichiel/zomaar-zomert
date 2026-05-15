@@ -3,7 +3,7 @@
 import { Marquee } from "@components/marquee";
 import { useEffect, useState } from "react";
 
-type Slide = { alt: string; url: string };
+type Slide = { alt: string; url: string; lqip?: string | null };
 
 type Props = { slides: Slide[] };
 

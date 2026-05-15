@@ -1,24 +1,24 @@
 {
   "SEO": {
-    "title": "La Carte",
-    "description": "L'offre complète de boissons et de plats à Zomaar Zomert. Profitez de bières fraîches, de classiques belges et de délicieux street food.",
+    "title": "Bouffe & boissons · Zomaar Zomert",
+    "description": "L'offre complète de boissons et de plats à Zomaar Zomert. Bières fraîches, classiques belges, cocktails, vins et snacks à emporter.",
     "openGraph": {
-      "title": "La Carte | Zomaar Zomert",
-      "description": "L'offre complète de boissons et de plats à Zomaar Zomert."
+      "title": "Bouffe & boissons · Zomaar Zomert",
+      "description": "Ce qu'on sert, ce qu'on mange. La carte complète."
     }
   },
   "hero": {
-    "title": "La Carte."
+    "title": "La carte."
   },
-  "Food": "Alimentation",
+  "Food": "Bouffe",
   "Drinks": "Boissons",
   "subCategories": {
     "water": "Eau",
-    "soft-drinks": "Boissons non alcoolisées",
+    "soft-drinks": "Softs",
     "beers": "Bières",
     "wines": "Vins",
-    "cocktails-spirits": "Cocktails & alcools forts",
-    "meals": "Charcuterie",
-    "snacks": "Collations"
+    "cocktails-spirits": "Cocktails & spiritueux",
+    "meals": "Snacks",
+    "snacks": "À grignoter"
   }
 }

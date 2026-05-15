@@ -64,7 +64,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    qualities: [75, 100],
+    qualities: [40, 75, 100],
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
     loader: "custom",
     loaderFile: "./sanity/lib/image-loader.ts",

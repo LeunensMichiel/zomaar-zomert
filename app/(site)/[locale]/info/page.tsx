@@ -47,6 +47,7 @@ export default async function InfoPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "info" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
   const signupDisabled = !isSignupOpen();
 
   const [photos, settings, blocks] = await Promise.all([
@@ -84,7 +85,12 @@ export default async function InfoPage({ params }: Props) {
           </h1>
           <div className="mt-8 grid grid-flow-dense gap-4 md:mt-10 md:grid-cols-2 md:gap-6 lg:grid-cols-12">
             {blocks.map((block, index) => (
-              <InfoBlock key={block._id} block={block} index={index} />
+              <InfoBlock
+                key={block._id}
+                block={block}
+                index={index}
+                mapsLabel={tCommon("openInMaps")}
+              />
             ))}
           </div>
         </div>

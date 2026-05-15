@@ -492,3 +492,15 @@
     animation: none !important;
   }
 }
+
+/* BProgress — page-transition bar painted with the Linear Sunset gradient
+   (matches `bg-linear-sunset` and the StrokeLoader). The package's `color`
+   prop only accepts one value, so override the bar background directly. */
+#bprogress .bar {
+  background: linear-gradient(90deg, #ffb600 0%, #ff7bac 100%) !important;
+}
+#bprogress .peg {
+  box-shadow:
+    0 0 10px #ff7bac,
+    0 0 5px #ff7bac !important;
+}

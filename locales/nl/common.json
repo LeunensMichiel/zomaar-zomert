@@ -1,22 +1,22 @@
 {
   "seo": {
-    "description": "Zomaar Zomert is een gratis festival in het hart van Itterbeek, aan de Sint-Anna-Pedekerk. Het laatste weekend van juli geniet je van frisse pintjes, talrijke optredens & activiteiten. Een onvergetelijk zomerweekend gegarandeerd. ☀🚀"
+    "description": "Gratis zomerfestival in Itterbeek. Drie dagen muziek, koud bier en goed volk op de wei naast de Sint-Anna-Pedekerk. Laatste weekend van juli."
   },
   "links": {
     "home": "Home",
-    "line-up": "Line-Up",
+    "line-up": "Line-up",
     "contact": "Contact",
     "info": "Info",
-    "history": "Historie",
+    "history": "Ons verhaal",
     "news": "Nieuws",
     "menu": "Eten & drank",
-    "partners": "Onze partners",
-    "legal": "Privacybeleid"
+    "partners": "Partners",
+    "legal": "Privacy"
   },
-  "register": "Schrijf je hier in",
+  "register": "Schrijf je in",
   "footer": {
     "line-up": {
-      "title": "Line-Up"
+      "title": "Line-up"
     },
     "info": {
       "title": "Meer weten?"
@@ -29,35 +29,35 @@
     },
     "partners": {
       "eyebrow": "Mogelijk gemaakt door",
-      "lead": "Hoofdpartners",
       "support": "Met de steun van"
     },
-    "copy": "Zomaar Zomert - Webdesign door <michiel>Michiel Leunens</michiel>"
+    "copy": "Zomaar Zomert · Webdesign door <michiel>Michiel Leunens</michiel>"
   },
   "cookies": {
-    "title": "Zomaar Zomert maakt gebruik van cookies",
-    "text": "We gebruiken cookies enkel voor functionele & analytische doeleinden en slaan <strong>geen</strong> persoonlijke gegevens op. Door het gebruiken van de site ga je hiermee akkoord.<br></br>Meer info in ons <policy>privacybeleid</policy>.",
-    "deny": "Weigeren",
-    "consent": "Da's in orde!"
+    "title": "Cookies, da's mee de gewoonte",
+    "text": "We gebruiken cookies enkel voor functionele en analytische doeleinden. <strong>Geen</strong> persoonlijke data, geen advertenties.<br></br>Meer in ons <policy>privacybeleid</policy>.",
+    "deny": "Liever niet",
+    "consent": "Da's in orde"
   },
   "i18n": {
-    "select": "Taalvoorkeur selecteren"
+    "select": "Taal kiezen"
   },
+  "openInMaps": "Open in Maps",
   "aria": {
     "menu": "Menu",
     "close": "Sluiten",
     "language": "Taal"
   },
   "notFound": {
-    "title": "Festival niet gevonden",
+    "title": "Hier valt niks te beleven",
     "code": "404",
-    "message": "Het lijkt erop dat je op een pagina bent beland die niet bestaat. Neem gerust contact met ons op als dit niet de bedoeling was.",
+    "message": "Deze pagina bestaat niet, of niet meer. Stap terug naar de home, of laat ons weten waar je naar zocht.",
     "button": "Terug naar home"
   },
   "error": {
-    "eyebrow": "Oeps, technische storing",
-    "title": "Er ging iets de mist in",
-    "message": "Onze servers hadden even een kortsluiting. Probeer het opnieuw of keer terug naar de homepage — als het probleem aanhoudt, laat het ons gerust weten.",
+    "eyebrow": "Amaï",
+    "title": "Iets ging hier mis",
+    "message": "Onze servers haperen efkes. Probeer opnieuw, of ga terug naar de homepage. Blijft het stuk, geef ons een seintje.",
     "button": "Probeer opnieuw",
     "home": "Naar home"
   }
