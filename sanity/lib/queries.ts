@@ -82,6 +82,15 @@ const localizedFlat = (field: string) => /* groq */ `
   )
 `;
 
+const localizedFlatArray = (field: string) => /* groq */ `
+  coalesce(
+    ${field}[language == $locale][0].value,
+    ${field}[language == "en"][0].value,
+    ${field}[language == "nl"][0].value,
+    []
+  )
+`;
+
 export const MENU_QUERY = defineQuery(/* groq */ `
   *[_type == "menuItem"] | order(category asc, order asc, price asc) {
     _id,
@@ -128,6 +137,22 @@ export const HISTORY_ENTRIES_QUERY = defineQuery(/* groq */ `
     "body": ${localizedFlat("body")},
     "posterUrl": poster.asset->url,
     "posterAlt": coalesce(poster.alt, "")
+  }
+`);
+
+export const INFO_BLOCKS_QUERY = defineQuery(/* groq */ `
+  *[_type == "infoBlock"] | order(order asc) {
+    _id,
+    order,
+    layout,
+    palette,
+    width,
+    "title": ${localizedFlat("title")},
+    "display": ${localizedFlat("display")},
+    "content": ${localizedFlatArray("content")},
+    "photoUrl": photo.asset->url,
+    "photoAlt": coalesce(photo.alt, ""),
+    "photoCaption": ${localizedFlat("photoCaption")}
   }
 `);
 
@@ -225,4 +250,37 @@ export type HistoryEntry = {
   body: string;
   posterUrl: string | null;
   posterAlt: string;
+};
+
+export type InfoBlockPalette =
+  | "royal-yellow"
+  | "blue-cola"
+  | "summer-red"
+  | "bubblegum"
+  | "milkshake";
+
+export type InfoBlockLayout = "body" | "poster" | "polaroid" | "map";
+
+export type InfoBlockWidth = "narrow" | "wide" | "full";
+
+export type PortableTextBlock = {
+  _key: string;
+  _type: string;
+  children?: { _key: string; _type: string; text?: string; marks?: string[] }[];
+  markDefs?: { _key: string; _type: string; href?: string }[];
+  style?: string;
+};
+
+export type InfoBlock = {
+  _id: string;
+  order: number;
+  layout: InfoBlockLayout;
+  palette: InfoBlockPalette;
+  width: InfoBlockWidth;
+  title: string;
+  display: string;
+  content: PortableTextBlock[];
+  photoUrl: string | null;
+  photoAlt: string;
+  photoCaption: string;
 };

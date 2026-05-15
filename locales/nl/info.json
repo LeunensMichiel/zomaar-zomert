@@ -10,45 +10,12 @@
   "hero": {
     "title": "Info."
   },
-  "mapVenue": "Sint-Anna-Pedekerk",
-  "bento": {
-    "terrasCaption": "De wei."
-  },
   "activities": {
     "eyebrow": "Doe iets",
     "title": "Mee.",
     "petanqueCaption": "Petanque."
   },
   "faq": {
-    "1": {
-      "title": "Hoe, wat, waar",
-      "content": "Zomaar zomert bevindt zich in het hart van Sint-Anna-Pede te Itterbeek.<br></br><br></br>Onze tent staat ten oosten van de bekende Sint-Anna kerk en tegenover restaurant De Noa."
-    },
-    "2": {
-      "title": "Waar te parkeren",
-      "content": "Heel het centrum van Sint-Anna-Pede is afgesloten. Je kan gemakkelijk parkeren aan de uiteinden van de Herdebeek-en Rollestraat en 5 tot 10 minuten wandelen tot het festival. Andere mogelijkse oplossingen zijn de Lossebaan, Plankenstraat en de Oude Geraardsbergsebaan.<br></br><br></br>Parkeren is gratis."
-    },
-    "3": {
-      "title": "Openbaar vervoer",
-      "content": "Met bus <strong>118</strong> geraak je het makkelijkst tot aan Zomaar Zomert. Deze stopt aan de Rollestraat en je moet maar een korte afstand wandelen.<br></br><br></br>Je kan ook bus <strong>141/142</strong> nemen als je van het zuiden komt (Vlezenbeek, Herdebeekstraat), en bus <strong>117/810/127/128</strong> als je van het noorden komt (Ninoofsesteenweg).<br></br><br></br>Kom je via de trein? Dan geraak je er het makkelijkst via bus 117 of 810, maar via bus 127/128 geraak je er ook.<br></br><br></br><strong>Let op, er rijden geen nachtbussen.</strong>"
-    },
-    "4": {
-      "title": "Ecologie",
-      "content": "Elk jaar proberen we ons steentje bij te dragen aan een groenere planeet.<br></br><br></br>We serveren overdag enkel uit glazen en in de avond uit herbruikbare bekers. We beperken ons watergebruik tot een minimum en willen we iedereen aanmoedigen om te voet, met de fiets, openbaar vervoer te komen of te carpoolen. Op het einde van het festival wordt al het afval gerecycleerd en wordt de wei naar zijn originele staat hersteld."
-    },
-    "5": {
-      "title": "Tickets",
-      "poster": "Gratis!",
-      "content": "Het festival is gratis! Het enige wat we van je vragen is om je rot te amuseren! 🚀"
-    },
-    "6": {
-      "title": "Kermis",
-      "content": "Zomaar Zomert en de kermis van Itterbeek zijn één gebeuren. Dubbel plezier!"
-    },
-    "7": {
-      "title": "Voedsel & Drankbonnen",
-      "content": "Je kan drank-en eetbonnen kopen op de wei. We accepteren volgende betaalmethodes: <strong>Payconic</strong>, <strong>Bancontact</strong> en cash.<br></br><br></br>Voor veiligheidsredenen bevelen we je ten strengste aan om je cash thuis te laten en gebruik te maken van de andere betaalmethodes. Indien je toch cash wil afhalen, kan je dat doen aan de Argenta Prinsen in Itterbeek."
-    },
     "8": {
       "title": "Randactiviteiten",
       "content": "Elk jaar organiseren we tal van randactiviteiten zoals de ZomaarBike, ZomaarRun, kinderanimatie, een quiz en een petanque wedstrijd. Op zondag vind je ook een paella stand.<br></br><br></br>Al onze activiteiten zijn betalend: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Registratie</strong> voor de petanque en paella is <strong>verplicht.</strong> Schrijf je hier in:<br></br>",
