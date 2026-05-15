@@ -42,7 +42,7 @@ All routes live under [app/[locale]/](app/[locale]/). The root [app/[locale]/lay
 
 ### Content sources
 
-All festival content lives in **Sanity** — partners, artists, and menu items. Schemas in [sanity/schemaTypes/](sanity/schemaTypes/), GROQ + types in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via typed `client.fetch<T[]>` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`.
+All festival content lives in **Sanity** — partners, artists, menu items, history entries, and a `siteSettings` singleton (footer contact info, social links, signup form URLs). Schemas in [sanity/schemaTypes/](sanity/schemaTypes/), GROQ + types in [sanity/lib/queries.ts](sanity/lib/queries.ts), reads via typed `client.fetch<T[]>` from [sanity/lib/client.ts](sanity/lib/client.ts) (private dataset, `SANITY_API_READ_TOKEN`-gated). Studio is embedded at `/studio`; structure resolver in [sanity/structure.ts](sanity/structure.ts) pins `siteSettings` as a singleton at the top of the navigation.
 
 **Localized fields** use the [sanity-plugin-internationalized-array](https://github.com/sanity-io/plugins/tree/main/plugins/sanity-plugin-internationalized-array) plugin (v5 shape — `language` field, not `_key`). The plugin is configured in [sanity.config.ts](sanity.config.ts) with `nl/fr/en` and `fieldTypes: ["string", "text"]`. GROQ flattens to the active locale at query time via the `localizedFlat` fragment in [sanity/lib/queries.ts](sanity/lib/queries.ts) — page components receive flat strings, never the locale array.
 
@@ -50,7 +50,7 @@ All festival content lives in **Sanity** — partners, artists, and menu items. 
 
 ### Festival dates and feature gates
 
-Constants in [lib/models.ts](lib/models.ts): `ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY/MONDAY`, `ZZ_YEAR`, signup form URLs, `ENABLE_LINKS_DATE`. `isSignupOpen()` gates petanque/paella signup buttons. When rolling to a new edition, this file is the single source of truth.
+Constants in [lib/models.ts](lib/models.ts): `ZZ_DATES`, `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY/MONDAY`, `ZZ_YEAR`, `ENABLE_LINKS_DATE`. `isSignupOpen()` gates the petanque/paella signup buttons (the actual form URLs live on the `siteSettings` singleton in Sanity). When rolling to a new edition, this file is the single source of truth for dates.
 
 ### Internationalization (next-intl)
 

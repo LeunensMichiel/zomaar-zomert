@@ -1,4 +1,3 @@
-import { Doodle } from "@components/doodle";
 import { PaperTear } from "@components/paper-tear";
 import { ScrollBg } from "@components/scroll-bg";
 import { Sticker } from "@components/sticker";
@@ -10,7 +9,12 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { client } from "@/sanity/lib/client";
-import { ASSETS_BY_TAGS_QUERY, type TaggedAsset } from "@/sanity/lib/queries";
+import {
+  ASSETS_BY_TAGS_QUERY,
+  HISTORY_ENTRIES_QUERY,
+  type HistoryEntry,
+  type TaggedAsset,
+} from "@/sanity/lib/queries";
 
 // Warm wave through the milestones:
 // cream → soft yellow → hot pink → soft yellow → cream.
@@ -21,6 +25,10 @@ const HISTORY_BG_COLORS = [
   "#fee198", // yellow-100 (covid pause)
   "#fff1f7", // pink-50    (current)
 ];
+
+type StickerColor = "ink" | "brand" | "yellow";
+const STICKER_COLORS: StickerColor[] = ["ink", "yellow", "brand"];
+const STICKER_ROTATIONS = [-3, 2, 3, -2, -3];
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -46,13 +54,15 @@ export default async function HistoryPage({ params }: Props) {
 
   const yearStamp = `'${String(ZZ_YEAR).slice(-2)}`;
 
-  const photos = await client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, {
-    tags: ["crew", "first-edition"],
-  });
+  const [photos, entries] = await Promise.all([
+    client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, { tags: ["crew"] }),
+    client.fetch<HistoryEntry[]>(
+      HISTORY_ENTRIES_QUERY,
+      { locale },
+      { next: { tags: ["historyEntry"] } },
+    ),
+  ]);
   const crewPhoto = photos.find((p) => p.tags.includes("crew"));
-  const firstEditionAffiche = photos.find((p) =>
-    p.tags.includes("first-edition"),
-  );
 
   return (
     <>
@@ -69,114 +79,40 @@ export default async function HistoryPage({ params }: Props) {
             {t("hero.intro")}
           </p>
           <Timeline
-            data={[
-              {
-                title: "1998",
+            data={entries.map((entry, index) => {
+              const stickerColor =
+                STICKER_COLORS[index % STICKER_COLORS.length];
+              const stickerRotate =
+                STICKER_ROTATIONS[index % STICKER_ROTATIONS.length];
+              return {
+                title: entry.year,
                 content: (
                   <MilestoneContent
-                    label={t("origin.label")}
-                    stickerColor="ink"
-                    stickerRotate={-3}
-                    body={t("origin.body")}
+                    label={entry.label}
+                    stickerColor={stickerColor}
+                    stickerRotate={stickerRotate}
+                    body={entry.body}
                     extra={
-                      <PosterCard
-                        src={firstEditionAffiche?.url ?? ""}
-                        alt={
-                          firstEditionAffiche?.alt ??
-                          "Zomaar Zomert eerste editie poster"
-                        }
-                        eyebrow={t("posters.firstEdition")}
-                        year="'98"
-                        tilt={-2}
-                      />
-                    }
-                  />
-                ),
-              },
-              {
-                title: "2003",
-                content: (
-                  <MilestoneContent
-                    label={t("earlyYears.label")}
-                    stickerColor="yellow"
-                    stickerRotate={2}
-                    body={t("earlyYears.body")}
-                    extra={
-                      <PhotoPair
-                        photos={[
-                          { src: "/assets/slides/slide1.webp", tilt: -2 },
-                          { src: "/assets/slides/slide5.webp", tilt: 2 },
-                        ]}
-                      />
-                    }
-                  />
-                ),
-              },
-              {
-                title: "2012",
-                content: (
-                  <MilestoneContent
-                    label={t("growth.label")}
-                    stickerColor="brand"
-                    stickerRotate={3}
-                    body={t("growth.body")}
-                    extra={
-                      <PhotoPair
-                        photos={[
-                          { src: "/assets/slides/slide10.webp", tilt: 2 },
-                          { src: "/assets/slides/slide15.webp", tilt: -2 },
-                        ]}
-                      />
-                    }
-                  />
-                ),
-              },
-              {
-                title: "2020",
-                content: (
-                  <MilestoneContent
-                    label={t("covid.label")}
-                    stickerColor="ink"
-                    stickerRotate={-2}
-                    body={t("covid.body")}
-                  />
-                ),
-              },
-              {
-                title: String(ZZ_YEAR),
-                content: (
-                  <MilestoneContent
-                    label={t("now.label")}
-                    stickerColor="brand"
-                    stickerRotate={-3}
-                    body={t("now.body")}
-                    extra={
-                      <>
-                        <PhotoPair
-                          photos={[
-                            { src: "/assets/slides/slide25.webp", tilt: -2 },
-                            { src: "/assets/slides/slide28.webp", tilt: 2 },
-                          ]}
+                      entry.posterUrl ? (
+                        <PosterCard
+                          src={entry.posterUrl}
+                          alt={entry.posterAlt || entry.label || entry.year}
+                          eyebrow={t("posters.firstEdition")}
+                          year={`'${entry.year.slice(-2)}`}
+                          tilt={-2}
                         />
-                        <Doodle
-                          shape="cross"
-                          color="royal-yellow"
-                          accent="summer-red"
-                          rotate={8}
-                          className="pointer-events-none absolute top-32 right-6 hidden h-12 md:right-12 md:block md:h-24"
-                        />
-                      </>
+                      ) : undefined
                     }
                   />
                 ),
-              },
-            ]}
+              };
+            })}
           />
 
-          {/* Closing crew portrait — pulled out of the 2012 entry so
-            it can read as a centerpiece. Wide bordered card with
-            tape strips on the corners + a brand-coloured caption
-            sticker, slight tilt to keep it scrapbook-y. */}
+          {/* Closing crew portrait — pulled out of the timeline entries so
+            it can read as a centerpiece. Wide bordered card with tape
+            strips on the corners + a brand-coloured caption sticker,
+            slight tilt to keep it scrapbook-y. */}
           <div className="relative mx-auto mt-20 max-w-5xl md:mt-32">
             <span
               aria-hidden="true"
@@ -214,8 +150,6 @@ export default async function HistoryPage({ params }: Props) {
   );
 }
 
-type StickerColor = "ink" | "brand" | "yellow";
-
 function MilestoneContent({
   label,
   stickerColor,
@@ -244,13 +178,6 @@ function MilestoneContent({
   );
 }
 
-/**
- * Vertical poster card used for 1998's `first_edition.webp`. 3:4
- * aspect (matches the source image), bordered + halftoned, slight
- * tilt + tape strip top, with a `Eerste editie '98` sticker stamp at
- * the corner. Drop in another `<PosterCard>` per future scanned
- * affiche.
- */
 function PosterCard({
   src,
   alt,
@@ -291,41 +218,6 @@ function PosterCard({
           {eyebrow} {year}
         </Sticker>
       </div>
-    </div>
-  );
-}
-
-/**
- * Two small festival photos arranged as a tilted pair. Each photo is
- * a bordered + halftoned card; alternating tilts make the pair read
- * as a couple of snapshots tossed onto a scrapbook page rather than
- * a tidy gallery row. Stacks vertically on mobile, side-by-side on
- * sm+.
- */
-function PhotoPair({ photos }: { photos: { src: string; tilt: number }[] }) {
-  return (
-    <div className="mt-2 grid gap-4 sm:grid-cols-2 md:gap-5">
-      {photos.map((photo) => (
-        <div
-          key={photo.src}
-          className="relative max-w-xs"
-          style={{ transform: `rotate(${String(photo.tilt)}deg)` }}
-        >
-          <div className="shadow-sticker-lg relative aspect-3/2 overflow-hidden border-2 border-gray-900">
-            <Image
-              src={photo.src}
-              alt=""
-              fill
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 280px"
-              className="object-cover object-center"
-            />
-            <div
-              aria-hidden="true"
-              className="halftone pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"
-            />
-          </div>
-        </div>
-      ))}
     </div>
   );
 }

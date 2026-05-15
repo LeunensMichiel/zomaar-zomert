@@ -116,6 +116,18 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
   }
 `);
 
+export const HISTORY_ENTRIES_QUERY = defineQuery(/* groq */ `
+  *[_type == "historyEntry"] | order(order asc) {
+    _id,
+    year,
+    order,
+    "label": ${localizedFlat("label")},
+    "body": ${localizedFlat("body")},
+    "posterUrl": poster.asset->url,
+    "posterAlt": coalesce(poster.alt, "")
+  }
+`);
+
 export type PartnerLogoSize = "sm" | "md" | "lg" | "xl";
 
 export type SanityImage = {
@@ -199,4 +211,14 @@ export type SiteSettings = {
   socials: { network: SocialNetwork; url: string }[] | null;
   paellaSignupUrl: string | null;
   petanqueSignupUrl: string | null;
+};
+
+export type HistoryEntry = {
+  _id: string;
+  year: string;
+  order: number;
+  label: string;
+  body: string;
+  posterUrl: string | null;
+  posterAlt: string;
 };
