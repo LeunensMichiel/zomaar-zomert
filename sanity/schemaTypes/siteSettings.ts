@@ -55,6 +55,37 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: "marqueeItems",
+      title: "Hero marquee items",
+      description:
+        "Rotating ribbon of short phrases shown at the top of the home page. Drag-reorder to change ribbon order. Each item is one phrase with NL/FR/EN tabs.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "marqueeItem",
+          fields: [
+            defineField({
+              name: "text",
+              type: "internationalizedArrayString",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { text: "text" },
+            prepare: (sel: {
+              text?: { language?: string; value?: string }[];
+            }) => ({
+              title:
+                sel.text?.find((v) => v.language === "nl")?.value ??
+                sel.text?.[0]?.value ??
+                "(empty)",
+            }),
+          },
+        },
+      ],
+    }),
+    defineField({
       name: "paellaSignupUrl",
       title: "Paella signup form URL",
       type: "url",

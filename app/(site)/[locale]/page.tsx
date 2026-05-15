@@ -211,7 +211,7 @@ export default async function Home({ params }: Props) {
             className="translate-y-px"
           />
           <TickerStrip
-            items={tHome.raw("ticker") as string[]}
+            items={settings?.marqueeItems?.map((i) => i.value) ?? []}
             speed={50}
             className="bg-yellow-400 text-gray-900"
           />

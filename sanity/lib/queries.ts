@@ -111,6 +111,9 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
     contactEmail,
     "contactAddress": ${localizedFlat("contactAddress")},
     socials[] { network, url },
+    "marqueeItems": marqueeItems[] {
+      "value": ${localizedFlat("text")}
+    },
     paellaSignupUrl,
     petanqueSignupUrl
   }
@@ -209,6 +212,7 @@ export type SiteSettings = {
   contactEmail: string;
   contactAddress: string;
   socials: { network: SocialNetwork; url: string }[] | null;
+  marqueeItems: { value: string }[] | null;
   paellaSignupUrl: string | null;
   petanqueSignupUrl: string | null;
 };
