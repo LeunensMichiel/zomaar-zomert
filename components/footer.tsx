@@ -17,37 +17,34 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { client } from "@/sanity/lib/client";
-import { type Partner, PARTNERS_QUERY } from "@/sanity/lib/queries";
+import {
+  type Partner,
+  PARTNERS_QUERY,
+  SITE_SETTINGS_QUERY,
+  type SiteSettings,
+  type SocialNetwork,
+} from "@/sanity/lib/queries";
 
-const SOCIAL_LINKS = [
-  {
-    href: "https://www.instagram.com/zomaarzomert/",
-    label: "Instagram",
-    Icon: Instagram,
-    color: "pink" as const,
-    rotate: -4,
-  },
-  {
-    href: "https://facebook.com/zomaarzomert",
-    label: "Facebook",
-    Icon: Facebook,
-    color: "brand" as const,
-    rotate: 3,
-  },
-  {
-    href: "https://open.spotify.com/playlist/1ZBMaGt1qcli9ejTu3spov?si=5d39aa4a607e4eb9",
-    label: "Spotify",
-    Icon: Youtube,
-    color: "blue" as const,
-    rotate: -2,
-  },
-];
+const socialIconMap: Record<
+  SocialNetwork,
+  { Icon: React.ComponentType<{ className?: string }>; label: string }
+> = {
+  instagram: { Icon: Instagram, label: "Instagram" },
+  facebook: { Icon: Facebook, label: "Facebook" },
+  spotify: { Icon: Youtube, label: "Spotify" },
+  youtube: { Icon: Youtube, label: "YouTube" },
+  tiktok: { Icon: Youtube, label: "TikTok" },
+};
 
-const SOCIAL_TILE = {
-  pink: "bg-pink-400 text-gray-950",
-  brand: "bg-brand-500 text-white",
-  blue: "bg-blue-500 text-white",
-} as const;
+const socialTileMap: Record<SocialNetwork, string> = {
+  instagram: "bg-pink-400 text-gray-950",
+  facebook: "bg-brand-500 text-white",
+  spotify: "bg-blue-500 text-white",
+  youtube: "bg-blue-500 text-white",
+  tiktok: "bg-gray-950 text-white",
+};
+
+const SOCIAL_ROTATIONS = [-4, 3, -2, 4, -3];
 
 function ColumnHeading({
   children,
@@ -170,13 +167,21 @@ export async function Footer() {
   const t = await getTranslations({ locale: lang, namespace: "common" });
   const year = new Date().getFullYear();
 
-  const partners = await client.fetch<Partner[]>(
-    PARTNERS_QUERY,
-    {},
-    { next: { tags: ["partner"] } },
-  );
+  const [partners, settings] = await Promise.all([
+    client.fetch<Partner[]>(
+      PARTNERS_QUERY,
+      {},
+      { next: { tags: ["partner"] } },
+    ),
+    client.fetch<SiteSettings | null>(
+      SITE_SETTINGS_QUERY,
+      { locale: lang },
+      { next: { tags: ["siteSettings"] } },
+    ),
+  ]);
   const leadPartners = partners.filter((p) => p.tier === 1);
   const supportPartners = partners.filter((p) => p.tier !== 1);
+  const socials = settings?.socials ?? [];
 
   return (
     <>
@@ -212,37 +217,44 @@ export async function Footer() {
             <Sticker color="yellow" size="md" rotate={-4}>
               {t("footer.social.eyebrow")}
             </Sticker>
-            <ul className="flex items-center justify-center gap-4 md:gap-6">
-              {SOCIAL_LINKS.map(({ href, label, Icon, color, rotate }) => (
-                <li key={href}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label={label}
-                    className="group grid h-20 w-20 place-items-center focus-visible:outline-none md:h-24 md:w-24"
-                  >
-                    <span
-                      style={
-                        {
-                          "--rotate": `${String(rotate)}deg`,
-                        } as React.CSSProperties
-                      }
-                      className={cn(
-                        "shadow-sticker md:shadow-sticker-lg flex h-16 w-16 items-center justify-center border-2 border-gray-900 md:h-20 md:w-20",
-                        "transform-[rotate(var(--rotate))] transition-transform duration-300 ease-out motion-reduce:transition-none",
-                        "group-hover:transform-[rotate(0deg)_translateY(-6px)]",
-                        "group-focus-visible:transform-[rotate(0deg)_translateY(-6px)]",
-                        "group-active:transform-[rotate(var(--rotate))_translateY(2px)]",
-                        SOCIAL_TILE[color],
-                      )}
-                    >
-                      <Icon className="h-8 w-8 md:h-10 md:w-10" />
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {socials.length > 0 && (
+              <ul className="flex items-center justify-center gap-4 md:gap-6">
+                {socials.map(({ network, url }, index) => {
+                  const { Icon, label } = socialIconMap[network];
+                  const rotate =
+                    SOCIAL_ROTATIONS[index % SOCIAL_ROTATIONS.length];
+                  return (
+                    <li key={`${network}-${url}`}>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label={label}
+                        className="group grid h-20 w-20 place-items-center focus-visible:outline-none md:h-24 md:w-24"
+                      >
+                        <span
+                          style={
+                            {
+                              "--rotate": `${String(rotate)}deg`,
+                            } as React.CSSProperties
+                          }
+                          className={cn(
+                            "shadow-sticker md:shadow-sticker-lg flex h-16 w-16 items-center justify-center border-2 border-gray-900 md:h-20 md:w-20",
+                            "transform-[rotate(var(--rotate))] transition-transform duration-300 ease-out motion-reduce:transition-none",
+                            "group-hover:transform-[rotate(0deg)_translateY(-6px)]",
+                            "group-focus-visible:transform-[rotate(0deg)_translateY(-6px)]",
+                            "group-active:transform-[rotate(var(--rotate))_translateY(2px)]",
+                            socialTileMap[network],
+                          )}
+                        >
+                          <Icon className="h-8 w-8 md:h-10 md:w-10" />
+                        </span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
           {/* All three tears use edge="bottom" + absolute positioning so
               the SVG paints in the right direction regardless of which
@@ -283,15 +295,19 @@ export async function Footer() {
               <Sticker color="yellow" size="sm" rotate={-3}>
                 {t("footer.contact.title")}
               </Sticker>
-              <a
-                href="mailto:info@zomaarzomert.be"
-                className="font-display mt-6 block text-3xl leading-[0.92] tracking-tight break-all text-white uppercase transition-colors hover:text-yellow-300 focus-visible:text-yellow-300 md:text-4xl"
-              >
-                info@zomaarzomert.be
-              </a>
-              <address className="mt-5 text-sm leading-relaxed text-white/70 not-italic md:text-base">
-                Plankenstraat 23 · 1701 Itterbeek · BE
-              </address>
+              {settings?.contactEmail && (
+                <a
+                  href={`mailto:${settings.contactEmail}`}
+                  className="font-display mt-6 block text-3xl leading-[0.92] tracking-tight break-all text-white uppercase transition-colors hover:text-yellow-300 focus-visible:text-yellow-300 md:text-4xl"
+                >
+                  {settings.contactEmail}
+                </a>
+              )}
+              {settings?.contactAddress && (
+                <address className="mt-5 text-sm leading-relaxed whitespace-pre-line text-white/70 not-italic md:text-base">
+                  {settings.contactAddress}
+                </address>
+              )}
             </div>
 
             <nav aria-label={t("links.line-up")} className="flex flex-col">

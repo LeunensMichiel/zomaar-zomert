@@ -106,6 +106,16 @@ export const ASSETS_BY_TAGS_QUERY = defineQuery(/* groq */ `
   }
 `);
 
+export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
+  *[_id == "siteSettings"][0] {
+    contactEmail,
+    "contactAddress": ${localizedFlat("contactAddress")},
+    socials[] { network, url },
+    paellaSignupUrl,
+    petanqueSignupUrl
+  }
+`);
+
 export type PartnerLogoSize = "sm" | "md" | "lg" | "xl";
 
 export type SanityImage = {
@@ -174,4 +184,19 @@ export type TaggedAsset = {
   alt: string;
   dims: { width: number; height: number } | null;
   tags: string[];
+};
+
+export type SocialNetwork =
+  | "instagram"
+  | "facebook"
+  | "spotify"
+  | "youtube"
+  | "tiktok";
+
+export type SiteSettings = {
+  contactEmail: string;
+  contactAddress: string;
+  socials: { network: SocialNetwork; url: string }[] | null;
+  paellaSignupUrl: string | null;
+  petanqueSignupUrl: string | null;
 };

@@ -10,8 +10,6 @@ import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
   isSignupOpen,
-  PAELLA_LINK,
-  PETANQUE_LINK,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
@@ -29,6 +27,8 @@ import {
   type Headliner,
   HEADLINER_ARTISTS_QUERY,
   type Partner,
+  SITE_SETTINGS_QUERY,
+  type SiteSettings,
   type TaggedAsset,
 } from "@/sanity/lib/queries";
 
@@ -95,6 +95,12 @@ export default async function Home({ params }: Props) {
     FEATURED_PARTNERS_QUERY,
     {},
     { next: { tags: ["partner"] } },
+  );
+
+  const settings = await client.fetch<SiteSettings | null>(
+    SITE_SETTINGS_QUERY,
+    { locale },
+    { next: { tags: ["siteSettings"] } },
   );
 
   const photoTags = [
@@ -343,12 +349,13 @@ export default async function Home({ params }: Props) {
                 </p>
                 <Button
                   as="a"
-                  {...(!signupDisabled && {
-                    href: PAELLA_LINK,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                  })}
-                  disabled={signupDisabled}
+                  {...(!signupDisabled &&
+                    settings?.paellaSignupUrl && {
+                      href: settings.paellaSignupUrl,
+                      target: "_blank",
+                      rel: "noreferrer noopener",
+                    })}
+                  disabled={signupDisabled || !settings?.paellaSignupUrl}
                   className="mt-auto"
                   variant="brand"
                   size="xl"
@@ -380,12 +387,13 @@ export default async function Home({ params }: Props) {
                 </p>
                 <Button
                   as="a"
-                  {...(!signupDisabled && {
-                    href: PETANQUE_LINK,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                  })}
-                  disabled={signupDisabled}
+                  {...(!signupDisabled &&
+                    settings?.petanqueSignupUrl && {
+                      href: settings.petanqueSignupUrl,
+                      target: "_blank",
+                      rel: "noreferrer noopener",
+                    })}
+                  disabled={signupDisabled || !settings?.petanqueSignupUrl}
                   variant="accent"
                   size="lg"
                   sticker

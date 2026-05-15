@@ -7,11 +7,12 @@ import { type Locale } from "@lib/i18n/routing";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { client } from "@/sanity/lib/client";
+import { SITE_SETTINGS_QUERY, type SiteSettings } from "@/sanity/lib/queries";
+
 type Props = { params: Promise<{ locale: Locale }> };
 
 export const revalidate = 3600;
-
-const EMAIL = "info@zomaarzomert.be";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -30,6 +31,12 @@ export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "contact" });
+  const settings = await client.fetch<SiteSettings | null>(
+    SITE_SETTINGS_QUERY,
+    { locale },
+    { next: { tags: ["siteSettings"] } },
+  );
+  const email = settings?.contactEmail;
 
   return (
     <>
@@ -53,12 +60,14 @@ export default async function ContactPage({ params }: Props) {
               <p className="max-w-xl text-base text-gray-700 md:text-lg">
                 {t("hero.body")}
               </p>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="font-display hover:text-brand-500 focus-visible:text-brand-500 mt-4 inline-block text-xl font-bold tracking-tight text-gray-900 underline decoration-2 underline-offset-[6px] transition-colors md:text-2xl"
-              >
-                {EMAIL}
-              </a>
+              {email && (
+                <a
+                  href={`mailto:${email}`}
+                  className="font-display hover:text-brand-500 focus-visible:text-brand-500 mt-4 inline-block text-xl font-bold tracking-tight text-gray-900 underline decoration-2 underline-offset-[6px] transition-colors md:text-2xl"
+                >
+                  {email}
+                </a>
+              )}
 
               <div className="shadow-sticker-lg mt-8 border-2 border-gray-900 bg-yellow-400 p-6 md:mt-10 md:p-8">
                 <Form />

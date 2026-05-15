@@ -4,7 +4,7 @@ import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Map } from "@components/ui/map";
 import { type Locale } from "@lib/i18n/routing";
-import { isSignupOpen, PAELLA_LINK, PETANQUE_LINK } from "@lib/models";
+import { isSignupOpen } from "@lib/models";
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -12,7 +12,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { type ReactNode } from "react";
 
 import { client } from "@/sanity/lib/client";
-import { ASSETS_BY_TAGS_QUERY, type TaggedAsset } from "@/sanity/lib/queries";
+import {
+  ASSETS_BY_TAGS_QUERY,
+  SITE_SETTINGS_QUERY,
+  type SiteSettings,
+  type TaggedAsset,
+} from "@/sanity/lib/queries";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -48,6 +53,12 @@ export default async function InfoPage({ params }: Props) {
   });
   const terrasPhoto = photos.find((p) => p.tags.includes("terras"));
   const petanquePhoto = photos.find((p) => p.tags.includes("petanque"));
+
+  const settings = await client.fetch<SiteSettings | null>(
+    SITE_SETTINGS_QUERY,
+    { locale },
+    { next: { tags: ["siteSettings"] } },
+  );
 
   return (
     <>
@@ -218,12 +229,13 @@ export default async function InfoPage({ params }: Props) {
             <div className="mt-8 flex flex-wrap gap-4">
               <Button
                 as="a"
-                {...(!signupDisabled && {
-                  href: PETANQUE_LINK,
-                  target: "_blank",
-                  rel: "noreferrer noopener",
-                })}
-                disabled={signupDisabled}
+                {...(!signupDisabled &&
+                  settings?.petanqueSignupUrl && {
+                    href: settings.petanqueSignupUrl,
+                    target: "_blank",
+                    rel: "noreferrer noopener",
+                  })}
+                disabled={signupDisabled || !settings?.petanqueSignupUrl}
                 variant="accent"
                 size="lg"
                 sticker
@@ -233,12 +245,13 @@ export default async function InfoPage({ params }: Props) {
               </Button>
               <Button
                 as="a"
-                {...(!signupDisabled && {
-                  href: PAELLA_LINK,
-                  target: "_blank",
-                  rel: "noreferrer noopener",
-                })}
-                disabled={signupDisabled}
+                {...(!signupDisabled &&
+                  settings?.paellaSignupUrl && {
+                    href: settings.paellaSignupUrl,
+                    target: "_blank",
+                    rel: "noreferrer noopener",
+                  })}
+                disabled={signupDisabled || !settings?.paellaSignupUrl}
                 variant="brand"
                 size="lg"
                 sticker
