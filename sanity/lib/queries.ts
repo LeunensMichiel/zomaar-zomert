@@ -130,14 +130,21 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
 `);
 
 export const HISTORY_ENTRIES_QUERY = defineQuery(/* groq */ `
-  *[_type == "historyEntry"] | order(order asc) {
+  *[_type == "historyEntry"] | order(orderRank asc) {
     _id,
     year,
-    order,
     "label": ${localizedFlat("label")},
     "body": ${localizedFlat("body")},
-    "posterUrl": poster.asset->url,
-    "posterAlt": coalesce(poster.alt, "")
+    "images": images[] {
+      "key": _key,
+      "url": photo.asset->url,
+      "alt": coalesce(photo.alt, ""),
+      "width": photo.asset->metadata.dimensions.width,
+      "height": photo.asset->metadata.dimensions.height,
+      kind,
+      "tag": ${localizedFlat("tag")},
+      "caption": ${localizedFlat("caption")}
+    }
   }
 `);
 
@@ -252,14 +259,25 @@ export type SiteSettings = {
   petanqueSignupUrl: string | null;
 };
 
+export type HistoryImageKind = "polaroid" | "affiche" | "normal";
+
+export type HistoryImage = {
+  key: string;
+  url: string;
+  alt: string;
+  width: number | null;
+  height: number | null;
+  kind: HistoryImageKind;
+  tag: string;
+  caption: string;
+};
+
 export type HistoryEntry = {
   _id: string;
   year: string;
-  order: number;
   label: string;
   body: string;
-  posterUrl: string | null;
-  posterAlt: string;
+  images: HistoryImage[] | null;
 };
 
 export type InfoBlockPalette =

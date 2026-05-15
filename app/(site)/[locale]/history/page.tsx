@@ -1,3 +1,4 @@
+import { HistoryImage } from "@components/history-image";
 import { PaperTear } from "@components/paper-tear";
 import { ScrollBg } from "@components/scroll-bg";
 import { Sticker } from "@components/sticker";
@@ -7,6 +8,7 @@ import { ZZ_YEAR } from "@lib/models";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { type ReactNode } from "react";
 
 import { client } from "@/sanity/lib/client";
 import {
@@ -29,6 +31,17 @@ const HISTORY_BG_COLORS = [
 type StickerColor = "ink" | "brand" | "yellow";
 const STICKER_COLORS: StickerColor[] = ["ink", "yellow", "brand"];
 const STICKER_ROTATIONS = [-3, 2, 3, -2, -3];
+
+// Keyed by historyEntry._id. Each entry here gets rendered alongside the
+// Sanity-managed images for that entry. Use for one-off React content
+// that doesn't fit the polaroid/affiche/normal mould — illustrated
+// doodles, embedded videos, special call-outs.
+//
+// Example:
+//   "historyEntry.2026": (
+//     <Doodle shape="cross" color="royal-yellow" rotate={8} className="h-12" />
+//   ),
+const HISTORY_ENTRY_EXTRAS: Record<string, ReactNode> = {};
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -92,17 +105,8 @@ export default async function HistoryPage({ params }: Props) {
                     stickerColor={stickerColor}
                     stickerRotate={stickerRotate}
                     body={entry.body}
-                    extra={
-                      entry.posterUrl ? (
-                        <PosterCard
-                          src={entry.posterUrl}
-                          alt={entry.posterAlt || entry.label || entry.year}
-                          eyebrow={t("posters.firstEdition")}
-                          year={`'${entry.year.slice(-2)}`}
-                          tilt={-2}
-                        />
-                      ) : undefined
-                    }
+                    images={entry.images ?? []}
+                    extra={HISTORY_ENTRY_EXTRAS[entry._id]}
                   />
                 ),
               };
@@ -155,13 +159,15 @@ function MilestoneContent({
   stickerColor,
   stickerRotate,
   body,
+  images,
   extra,
 }: {
   label: string;
   stickerColor: StickerColor;
   stickerRotate: number;
   body: string;
-  extra?: React.ReactNode;
+  images: HistoryEntry["images"] extends infer T ? NonNullable<T> : never;
+  extra?: ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-5 md:gap-6">
@@ -173,51 +179,14 @@ function MilestoneContent({
       <p className="max-w-2xl text-base leading-relaxed text-gray-900 md:text-lg">
         {body}
       </p>
+      {images.length > 0 && (
+        <div className="grid gap-4 sm:grid-cols-2 md:gap-5">
+          {images.map((image, i) => (
+            <HistoryImage key={image.key} image={image} index={i} />
+          ))}
+        </div>
+      )}
       {extra}
-    </div>
-  );
-}
-
-function PosterCard({
-  src,
-  alt,
-  eyebrow,
-  year,
-  tilt = 0,
-}: {
-  src: string;
-  alt: string;
-  eyebrow: string;
-  year: string;
-  tilt?: number;
-}) {
-  return (
-    <div className="relative mt-2 max-w-65">
-      <span
-        aria-hidden="true"
-        className="tape-strip absolute -top-3 left-12 z-30 h-5 w-20 -rotate-6"
-      />
-      <article
-        className="shadow-sticker-lg relative aspect-3/4 overflow-hidden border-2 border-gray-900"
-        style={{ transform: `rotate(${String(tilt)}deg)` }}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 1024px) 60vw, 260px"
-          className="object-cover object-center"
-        />
-        <div
-          aria-hidden="true"
-          className="halftone pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply"
-        />
-      </article>
-      <div className="absolute -top-3 -right-3 z-20">
-        <Sticker color="brand" size="sm" rotate={-6}>
-          {eyebrow} {year}
-        </Sticker>
-      </div>
     </div>
   );
 }
