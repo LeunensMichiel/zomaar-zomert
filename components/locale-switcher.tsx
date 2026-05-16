@@ -52,6 +52,11 @@ export function LocaleSwitcher({ className }: Props) {
       } else {
         router.replace(pathname, { locale: next });
       }
+      // Invalidate the Router Cache — otherwise prefetched RSC payloads for
+      // other routes still hold the previous locale's content, and the next
+      // navigation snaps the user back to it. Also covers shared pathnames
+      // (e.g. /menu) where `replace` to the same URL is a no-op on its own.
+      router.refresh();
     });
   };
 
