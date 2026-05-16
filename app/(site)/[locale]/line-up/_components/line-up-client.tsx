@@ -162,8 +162,12 @@ export function LineUpClient({ artists, children }: Props) {
         </div>
 
         {/* Filter chips — `layoutId="filter-pill"` slides the active
-            yellow indicator between chips on click. Pukkelpop-style. */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 md:mt-10 md:gap-3">
+            yellow indicator between chips on click. Pukkelpop-style.
+            `relative z-10` keeps the row's hit area above the rotated
+            h1 sibling — without it the h1's rotated bounding box
+            can clip the top edge of the leftmost chip and swallow taps
+            on Android Chrome. */}
+        <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-2 md:mt-10 md:gap-3">
           {filters.map(({ value, label, short }) => {
             const isActive =
               (value === null && showAll) || value === currentDate;
