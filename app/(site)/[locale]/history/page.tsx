@@ -128,13 +128,17 @@ export default async function HistoryPage({ params }: Props) {
             />
             <div className="shadow-sticker-lg relative -rotate-1 overflow-hidden border-2 border-gray-900">
               <div className="relative aspect-3/2">
-                <Image
-                  src={crewPhoto?.url ?? ""}
-                  alt={t("crew.caption")}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  className="object-cover object-center"
-                />
+                {crewPhoto && (
+                  <Image
+                    src={crewPhoto.url}
+                    alt={t("crew.caption")}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    placeholder={crewPhoto.lqip ? "blur" : "empty"}
+                    blurDataURL={crewPhoto.lqip ?? undefined}
+                    className="object-cover object-center"
+                  />
+                )}
                 <div
                   aria-hidden="true"
                   className="halftone pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"

@@ -1,10 +1,10 @@
 {
   "SEO": {
     "title": "Zomaar Zomert · Festival d'été gratuit à Itterbeek",
-    "description": "Trois jours de festival d'été gratuit dans le pré à Itterbeek. Vendredi et samedi la programmation musicale, dimanche paella et pétanque. Dernier week-end de juillet.",
+    "description": "Trois jours de festival d'été gratuit dans le pré à Itterbeek. Vendredi et samedi la programmation musicale, samedi pétanque, dimanche paella. Dernier week-end de juillet.",
     "openGraph": {
       "title": "Zomaar Zomert · Festival d'été gratuit à Itterbeek",
-      "description": "Trois jours, un chapiteau, pas de billets. Vendredi et samedi des concerts, dimanche paella et pétanque. Dernier week-end de juillet, dans le pré à Itterbeek."
+      "description": "Trois jours, un chapiteau, pas de billets. Vendredi et samedi des concerts, samedi pétanque, dimanche paella. Dernier week-end de juillet, dans le pré à Itterbeek."
     }
   },
   "month": "JUILLET",
@@ -41,7 +41,7 @@
     },
     "petanque": {
       "title": "Tournoi de pétanque",
-      "body": "Le tournoi de pétanque annuel, dimanche après-midi, dans le pré à côté du chapiteau. Inscription gratuite, ouvert à tous."
+      "body": "Le tournoi de pétanque annuel, samedi après-midi, dans le pré à côté du chapiteau. Inscription gratuite, ouvert à tous."
     },
     "crew": {
       "body": "Deviens bénévole ou partenaire."

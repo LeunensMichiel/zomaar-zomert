@@ -43,19 +43,20 @@ export function HistoryImage({ image, index }: Props) {
         )}
       </DialogTrigger>
       <DialogContent
-        className="!bg-pink-50 p-6 md:p-10"
+        className="inset-0! mx-0! max-w-none! overflow-hidden p-4 md:p-8"
         closeClassName="text-gray-900"
       >
-        <div className="flex flex-1 flex-col items-center justify-center gap-4">
-          <div className="relative flex max-h-[80vh] w-full flex-1 items-center justify-center">
+        <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+          <div className="relative min-h-0 w-full flex-1">
             <Image
               src={image.url}
               alt={alt}
-              width={image.width ?? 1600}
-              height={image.height ?? 1200}
-              sizes="(max-width: 768px) 90vw, 80vw"
-              className="h-auto max-h-[80vh] w-auto max-w-full object-contain"
-              priority
+              fill
+              sizes="100vw"
+              quality={90}
+              placeholder={image.lqip ? "blur" : "empty"}
+              blurDataURL={image.lqip ?? undefined}
+              className="object-contain"
             />
           </div>
           {(image.tag || image.caption) && (
@@ -93,6 +94,9 @@ function AfficheCard({
           alt={alt}
           fill
           sizes="(max-width: 1024px) 60vw, 260px"
+          quality={40}
+          placeholder={image.lqip ? "blur" : "empty"}
+          blurDataURL={image.lqip ?? undefined}
           className="object-cover object-center"
         />
         <div
@@ -138,6 +142,9 @@ function PolaroidCard({
             alt={alt}
             fill
             sizes="(max-width: 1024px) 50vw, 280px"
+            quality={40}
+            placeholder={image.lqip ? "blur" : "empty"}
+            blurDataURL={image.lqip ?? undefined}
             className="object-cover object-center"
           />
           <div
@@ -177,6 +184,9 @@ function NormalCard({
           alt={alt}
           fill
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 280px"
+          quality={40}
+          placeholder={image.lqip ? "blur" : "empty"}
+          blurDataURL={image.lqip ?? undefined}
           className="object-cover object-center"
         />
         <div

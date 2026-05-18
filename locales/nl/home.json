@@ -1,10 +1,10 @@
 {
   "SEO": {
     "title": "Zomaar Zomert · Gratis zomerfestival in Itterbeek",
-    "description": "Drie dagen gratis zomerfestival op de wei in Itterbeek. Vrijdag en zaterdag de line-up, zondag paella en petanque. Laatste weekend van juli.",
+    "description": "Drie dagen gratis zomerfestival op de wei in Itterbeek. Vrijdag en zaterdag de line-up, zaterdag petanque, zondag paella. Laatste weekend van juli.",
     "openGraph": {
       "title": "Zomaar Zomert · Gratis zomerfestival in Itterbeek",
-      "description": "Drie dagen, één tent, geen tickets. Vrijdag en zaterdag live muziek, zondag paella en petanque. Laatste weekend van juli, op de wei in Itterbeek."
+      "description": "Drie dagen, één tent, geen tickets. Vrijdag en zaterdag live muziek, zaterdag petanque, zondag paella. Laatste weekend van juli, op de wei in Itterbeek."
     }
   },
   "month": "JULI",
@@ -41,7 +41,7 @@
     },
     "petanque": {
       "title": "Petanquetornooi",
-      "body": "Het jaarlijkse petanquetornooi op zondagmiddag, op de wei naast de tent. Inschrijven is gratis, iedereen mag meedoen."
+      "body": "Het jaarlijkse petanquetornooi op zaterdagmiddag, op de wei naast de tent. Inschrijven is gratis, iedereen mag meedoen."
     },
     "crew": {
       "body": "Word vrijwilliger of partner."

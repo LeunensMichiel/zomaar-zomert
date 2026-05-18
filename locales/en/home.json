@@ -1,10 +1,10 @@
 {
   "SEO": {
     "title": "Zomaar Zomert · Free summer festival in Itterbeek",
-    "description": "Three days of free summer festival on the field in Itterbeek. Friday and Saturday the line-up, Sunday paella and petanque. Last weekend of July.",
+    "description": "Three days of free summer festival on the field in Itterbeek. Friday and Saturday the line-up, Saturday pétanque, Sunday paella. Last weekend of July.",
     "openGraph": {
       "title": "Zomaar Zomert · Free summer festival in Itterbeek",
-      "description": "Three days, one tent, no tickets. Friday and Saturday live music, Sunday paella and pétanque. Last weekend of July, on the field in Itterbeek."
+      "description": "Three days, one tent, no tickets. Friday and Saturday live music, Saturday pétanque, Sunday paella. Last weekend of July, on the field in Itterbeek."
     }
   },
   "month": "JULY",
@@ -41,7 +41,7 @@
     },
     "petanque": {
       "title": "Pétanque tournament",
-      "body": "The yearly pétanque tournament, Sunday afternoon, on the field next to the tent. Free to enter, open to all."
+      "body": "The yearly pétanque tournament, Saturday afternoon, on the field next to the tent. Free to enter, open to all."
     },
     "crew": {
       "body": "Become a volunteer or partner."

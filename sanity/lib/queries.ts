@@ -162,6 +162,7 @@ export const HISTORY_ENTRIES_QUERY = defineQuery(/* groq */ `
       "alt": coalesce(photo.alt, ""),
       "width": photo.asset->metadata.dimensions.width,
       "height": photo.asset->metadata.dimensions.height,
+      "lqip": photo.asset->metadata.lqip,
       kind,
       "tag": ${localizedFlat("tag")},
       "caption": ${localizedFlat("caption")}
@@ -297,6 +298,7 @@ export type HistoryImage = {
   alt: string;
   width: number | null;
   height: number | null;
+  lqip: string | null;
   kind: HistoryImageKind;
   tag: string;
   caption: string;
