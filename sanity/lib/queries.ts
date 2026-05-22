@@ -212,7 +212,12 @@ export type Partner = {
 
 export type FestivalDay = "friday" | "saturday" | "sunday";
 
-export type ArtistSocialNetwork = "spotify" | "instagram" | "facebook";
+export type ArtistSocialNetwork =
+  | "spotify"
+  | "instagram"
+  | "facebook"
+  | "tiktok"
+  | "website";
 
 export type ArtistSocial = {
   network: ArtistSocialNetwork;

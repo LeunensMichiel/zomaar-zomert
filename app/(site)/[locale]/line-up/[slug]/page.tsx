@@ -19,6 +19,7 @@ import {
 
 import { ArtistBio } from "./_components/artist-bio";
 import { ArtistSocials } from "./_components/artist-socials";
+import { Reveal } from "./_components/reveal";
 import { ScrollSpin } from "./_components/scroll-spin";
 
 type Props = { params: Promise<{ locale: Locale; slug: string }> };
@@ -89,12 +90,12 @@ export default async function ArtistDetailPage({ params }: Props) {
   return (
     <>
       <div className="overflow-x-clip">
-        <section className="relative bg-blue-500">
-          <div className="h-16 md:h-20 lg:h-24" />
-          <PaperTear edge="bottom" tear={6} color="blue-900" />
+        <section className="bg-linear-sunset relative">
+          <div className="h-12 md:h-16 lg:h-20" />
+          <PaperTear edge="bottom" tear={6} color="blue-500" />
         </section>
 
-        <div className="relative bg-blue-900 text-pink-50">
+        <div className="relative bg-blue-500 text-pink-50">
           <div className="container-wide relative z-10 py-12 md:py-16 lg:grid lg:min-h-[calc(100svh-9rem)] lg:grid-cols-[5fr_6fr] lg:gap-10 lg:py-16 xl:gap-14">
             {/* LEFT: back-link + info card. Sticky on lg+. DOM-first so
                 mobile reads card → image → text. */}
@@ -113,7 +114,7 @@ export default async function ArtistDetailPage({ params }: Props) {
                   </Sticker>
                 </Link>
 
-                <div className="relative">
+                <Reveal variant="card" className="relative">
                   <ScrollSpin className="pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-square h-128 -translate-x-1/2 -translate-y-1/2 md:h-192 lg:h-160 xl:h-180">
                     <Doodle
                       shape="star-burst"
@@ -145,12 +146,15 @@ export default async function ArtistDetailPage({ params }: Props) {
                       />
                     )}
                   </article>
-                </div>
+                </Reveal>
               </div>
             </aside>
 
             {/* PHOTO — column 2 row 1 on lg+. */}
-            <div className="relative z-10 mt-10 lg:col-start-2 lg:row-start-1 lg:mt-0">
+            <Reveal
+              variant="photo"
+              className="relative z-10 mt-10 lg:col-start-2 lg:row-start-1 lg:mt-0"
+            >
               <div
                 className="shadow-sticker-lg relative mx-auto aspect-square w-full max-w-lg overflow-hidden border-2 border-gray-900 bg-blue-800 lg:max-w-none"
                 style={{ transform: "rotate(1.5deg)" }}
@@ -167,30 +171,35 @@ export default async function ArtistDetailPage({ params }: Props) {
                   />
                 )}
               </div>
-            </div>
+            </Reveal>
 
             {/* BIO — column 2 row 2 on lg+. */}
             <main className="relative z-10 mt-12 lg:col-start-2 lg:row-start-2 lg:mt-12">
-              <ArtistBio bio={artist.bio} fallback={t("detail.bioFallback")} />
+              <Reveal variant="bio">
+                <ArtistBio
+                  bio={artist.bio}
+                  fallback={t("detail.bioFallback")}
+                />
 
-              <div className="mt-14 md:mt-20">
-                <Link
-                  href={{ pathname: "/line-up" }}
-                  aria-label={t("detail.backAria")}
-                  className="inline-block transition-transform hover:-translate-y-1 focus-visible:-translate-y-1 focus-visible:outline-none"
-                >
-                  <Sticker color="brand" size="md" rotate={-2}>
-                    <span aria-hidden="true" className="mr-1">
-                      ←
-                    </span>
-                    {t("detail.back")}
-                  </Sticker>
-                </Link>
-              </div>
+                <div className="mt-14 md:mt-20">
+                  <Link
+                    href={{ pathname: "/line-up" }}
+                    aria-label={t("detail.backAria")}
+                    className="inline-block transition-transform hover:-translate-y-1 focus-visible:-translate-y-1 focus-visible:outline-none"
+                  >
+                    <Sticker color="brand" size="md" rotate={-2}>
+                      <span aria-hidden="true" className="mr-1">
+                        ←
+                      </span>
+                      {t("detail.back")}
+                    </Sticker>
+                  </Link>
+                </div>
+              </Reveal>
             </main>
           </div>
         </div>
-        <PaperTear edge="top" tear={2} color="blue-900" />
+        <PaperTear edge="top" tear={2} color="blue-500" />
       </div>
     </>
   );

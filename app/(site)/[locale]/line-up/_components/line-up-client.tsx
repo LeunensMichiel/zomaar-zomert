@@ -130,7 +130,7 @@ export function LineUpClient({ artists, children }: Props) {
   ];
 
   return (
-    <section className="relative isolate overflow-hidden bg-blue-900 text-pink-50">
+    <section className="bg-80s-gum relative isolate overflow-hidden text-pink-50">
       <div
         aria-hidden="true"
         className="halftone pointer-events-none absolute inset-0 z-0 opacity-25"

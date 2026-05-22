@@ -79,8 +79,8 @@ export default async function PartnersPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-80s-gum relative">
-        <div className="h-16" />
+      <section className="relative bg-blue-900">
+        <div className="h-12" />
         <PaperTear edge="bottom" tear={2} color="blue-500" />
       </section>
 
@@ -92,10 +92,16 @@ export default async function PartnersPage({ params }: Props) {
           className="pointer-events-none absolute -right-12 -bottom-16 hidden h-56 md:-right-20 md:-bottom-20 md:block md:h-80 lg:h-96"
         />
         <div className="container-wide relative z-20 pt-8 pb-16 md:pt-10 md:pb-20">
-          <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
+          <Doodle
+            shape="star"
+            color="linear-sunset"
+            rotate={20}
+            className="pointer-events-none absolute -top-12 -left-40 z-0 h-56 md:-top-30 md:-left-20 md:h-80 lg:h-96"
+          />
+          <h1 className="font-display shadow-sticker-lg relative z-1 inline-block -rotate-2 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
             {t("hero.title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-pink-50 md:mt-8 md:text-lg">
+          <p className="relative z-1 mt-6 max-w-2xl text-base text-pink-50 md:mt-8 md:text-lg">
             {t("hero.intro")}
           </p>
           <div className="mt-10 md:mt-14">
@@ -221,7 +227,7 @@ function LeadPartnerCard({
         target: "_blank",
         rel: "noreferrer noopener",
       })}
-      className="shadow-sticker-lg bg-linear-sunset relative flex aspect-4/3 items-center justify-center border-2 border-gray-900 p-8 transition-transform hover:-translate-y-1 hover:rotate-0 md:p-10"
+      className="shadow-sticker-lg relative flex aspect-4/3 items-center justify-center border-2 border-gray-900 bg-pink-500 p-8 transition-transform hover:-translate-y-1 hover:rotate-0 md:p-10"
       style={{ transform: `rotate(${String(tilt)}deg)` }}
     >
       <div
