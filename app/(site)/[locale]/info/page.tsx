@@ -68,7 +68,7 @@ export default async function InfoPage({ params }: Props) {
   return (
     <>
       <section className="bg-brand-500 relative">
-        <div className="h-16 md:h-20 lg:h-24" />
+        <div className="h-12 md:h-16 lg:h-20" />
         <PaperTear edge="bottom" tear={1} color="pink-50" />
       </section>
 
@@ -79,7 +79,7 @@ export default async function InfoPage({ params }: Props) {
           rotate={12}
           className="absolute right-2 -bottom-20 h-40 md:right-12 md:-bottom-100 md:h-240"
         />
-        <div className="container-wide relative z-20 pt-8 pb-12 md:pt-10 md:pb-16">
+        <div className="container-wide relative z-20 pt-2 pb-12 md:pb-16">
           <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
             {t("hero.title")}
           </h1>
