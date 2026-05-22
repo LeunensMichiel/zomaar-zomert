@@ -104,7 +104,7 @@ export default async function ArtistDetailPage({ params }: Props) {
                 <Link
                   href={{ pathname: "/line-up" }}
                   aria-label={t("detail.backAria")}
-                  className="mb-5 inline-block transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:outline-none md:mb-6"
+                  className="relative z-20 mb-5 inline-block transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:outline-none md:mb-6"
                 >
                   <Sticker color="brand" size="sm" rotate={-3}>
                     <span aria-hidden="true" className="mr-1">
@@ -115,7 +115,10 @@ export default async function ArtistDetailPage({ params }: Props) {
                 </Link>
 
                 <Reveal variant="card" className="relative">
-                  <ScrollSpin className="pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-square h-128 -translate-x-1/2 -translate-y-1/2 md:h-192 lg:h-160 xl:h-180">
+                  <ScrollSpin
+                    prespin
+                    className="pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-square h-128 -translate-x-1/2 -translate-y-1/2 md:h-192 lg:h-160 xl:h-180"
+                  >
                     <Doodle
                       shape="star-burst"
                       color="royal-yellow"
