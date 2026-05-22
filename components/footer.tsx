@@ -16,6 +16,8 @@ import { cn } from "@lib/utils";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 
+import { Spotify } from "@/components/icons/spotify";
+import { Tiktok } from "@/components/icons/tiktok";
 import { client } from "@/sanity/lib/client";
 import {
   type Partner,
@@ -31,9 +33,9 @@ const socialIconMap: Record<
 > = {
   instagram: { Icon: Instagram, label: "Instagram" },
   facebook: { Icon: Facebook, label: "Facebook" },
-  spotify: { Icon: Youtube, label: "Spotify" },
+  spotify: { Icon: Spotify, label: "Spotify" },
   youtube: { Icon: Youtube, label: "YouTube" },
-  tiktok: { Icon: Youtube, label: "TikTok" },
+  tiktok: { Icon: Tiktok, label: "TikTok" },
 };
 
 const socialTileMap: Record<SocialNetwork, string> = {

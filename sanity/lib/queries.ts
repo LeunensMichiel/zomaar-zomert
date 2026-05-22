@@ -219,6 +219,8 @@ export type ArtistSocialNetwork =
   | "instagram"
   | "facebook"
   | "tiktok"
+  | "youtube"
+  | "soundcloud"
   | "website";
 
 export type ArtistSocial = {

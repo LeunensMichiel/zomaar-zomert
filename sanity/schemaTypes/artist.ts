@@ -82,6 +82,8 @@ export const artist = defineType({
                   { title: "Instagram", value: "instagram" },
                   { title: "Facebook", value: "facebook" },
                   { title: "TikTok", value: "tiktok" },
+                  { title: "YouTube", value: "youtube" },
+                  { title: "SoundCloud", value: "soundcloud" },
                   { title: "Website", value: "website" },
                 ],
                 layout: "radio",

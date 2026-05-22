@@ -1,7 +1,9 @@
 import { Facebook } from "@components/icons/facebook";
 import { Instagram } from "@components/icons/instagram";
+import { Soundcloud } from "@components/icons/soundcloud";
 import { Spotify } from "@components/icons/spotify";
 import { Tiktok } from "@components/icons/tiktok";
+import { Youtube } from "@components/icons/youtube";
 import { cn } from "@lib/utils";
 import { Globe } from "lucide-react";
 import { type ComponentType, type SVGProps } from "react";
@@ -32,6 +34,16 @@ const networkMeta: Record<
     Icon: Tiktok,
     label: "TikTok",
     tile: "bg-gray-900 text-white",
+  },
+  youtube: {
+    Icon: Youtube,
+    label: "YouTube",
+    tile: "bg-red-500 text-white",
+  },
+  soundcloud: {
+    Icon: Soundcloud,
+    label: "SoundCloud",
+    tile: "bg-orange-400 text-gray-900",
   },
   website: {
     Icon: Globe,
