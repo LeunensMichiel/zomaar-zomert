@@ -40,8 +40,8 @@ const socialIconMap: Record<
 
 const socialTileMap: Record<SocialNetwork, string> = {
   instagram: "bg-pink-400 text-gray-950",
-  facebook: "bg-brand-500 text-white",
-  spotify: "bg-blue-500 text-white",
+  facebook: "bg-blue-500 text-white",
+  spotify: "bg-brand-500 text-white",
   youtube: "bg-blue-500 text-white",
   tiktok: "bg-gray-950 text-white",
 };

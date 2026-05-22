@@ -19,31 +19,35 @@ const networkMeta: Record<
   ArtistSocialNetwork,
   { Icon: IconComp; label: string; tile: string }
 > = {
-  spotify: { Icon: Spotify, label: "Spotify", tile: "bg-blue-500 text-white" },
+  spotify: {
+    Icon: Spotify,
+    label: "Spotify",
+    tile: "bg-[#1DB954] text-white",
+  },
   instagram: {
     Icon: Instagram,
     label: "Instagram",
-    tile: "bg-pink-400 text-gray-900",
+    tile: "bg-gradient-to-tr from-[#FED373] via-[#F15245] via-[#D92E7F] via-[#9B36B7] to-[#515ECF] text-white",
   },
   facebook: {
     Icon: Facebook,
     label: "Facebook",
-    tile: "bg-brand-500 text-white",
+    tile: "bg-[#1877F2] text-white",
   },
   tiktok: {
     Icon: Tiktok,
     label: "TikTok",
-    tile: "bg-gray-900 text-white",
+    tile: "bg-black text-white",
   },
   youtube: {
     Icon: Youtube,
     label: "YouTube",
-    tile: "bg-red-500 text-white",
+    tile: "bg-[#FF0000] text-white",
   },
   soundcloud: {
     Icon: Soundcloud,
     label: "SoundCloud",
-    tile: "bg-orange-400 text-gray-900",
+    tile: "bg-[#FF5500] text-white",
   },
   website: {
     Icon: Globe,
