@@ -264,6 +264,7 @@ export default async function Home({ params }: Props) {
                   hour={h.hour}
                   day={h.day}
                   imgSrc={h.imgSrc}
+                  imgLqip={h.imgLqip}
                   date={dayDates[h.day]}
                   locale={locale}
                   tilt={headlinerTilts[i % headlinerTilts.length]}

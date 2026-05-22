@@ -27,6 +27,7 @@ const artistProjection = /* groq */ `
   showFrom,
   socials[]{ network, url },
   "imgSrc": coalesce(image.asset->url, ""),
+  "imgLqip": image.asset->metadata.lqip,
   "bio": coalesce(
     bio[language == $locale][0].value,
     bio[language == "en"][0].value,
@@ -41,7 +42,8 @@ const headlinerProjection = /* groq */ `
   "slug": slug.current,
   day,
   hour,
-  "imgSrc": coalesce(image.asset->url, "")
+  "imgSrc": coalesce(image.asset->url, ""),
+  "imgLqip": image.asset->metadata.lqip
 `;
 
 export const PARTNERS_QUERY = defineQuery(/* groq */ `
@@ -231,6 +233,7 @@ export type Artist = {
   day: FestivalDay;
   hour: string;
   imgSrc: string;
+  imgLqip?: string | null;
   showFrom: string;
   bio: PortableTextBlock[];
   socials?: ArtistSocial[] | null;
@@ -243,6 +246,7 @@ export type Headliner = {
   day: FestivalDay;
   hour: string;
   imgSrc: string;
+  imgLqip?: string | null;
 };
 
 export const MenuType = {

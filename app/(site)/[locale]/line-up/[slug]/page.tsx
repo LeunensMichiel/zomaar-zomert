@@ -96,7 +96,7 @@ export default async function ArtistDetailPage({ params }: Props) {
         </section>
 
         <div className="relative bg-blue-500 text-pink-50">
-          <div className="container-wide relative z-10 py-12 md:py-16 lg:grid lg:min-h-[calc(100svh-9rem)] lg:grid-cols-[5fr_6fr] lg:gap-10 lg:py-16 xl:gap-14">
+          <div className="container-wide relative z-10 py-12 md:py-16 lg:grid lg:min-h-[calc(100svh-9rem)] lg:grid-cols-[5fr_6fr] lg:gap-16 lg:py-16 xl:gap-24">
             {/* LEFT: back-link + info card. Sticky on lg+. DOM-first so
                 mobile reads card → image → text. */}
             <aside className="relative z-10 lg:col-start-1 lg:row-span-2 lg:row-start-1">
@@ -170,7 +170,9 @@ export default async function ArtistDetailPage({ params }: Props) {
                     priority
                     sizes="(max-width: 1024px) 90vw, 45vw"
                     className="object-cover object-center"
-                    quality={90}
+                    quality={75}
+                    placeholder={artist.imgLqip ? "blur" : "empty"}
+                    blurDataURL={artist.imgLqip ?? undefined}
                   />
                 )}
               </div>

@@ -71,6 +71,8 @@ export function LineUpArtistCard({
           fill
           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover object-center transition-transform group-hover:scale-105"
+          placeholder={artist.imgLqip ? "blur" : "empty"}
+          blurDataURL={artist.imgLqip ?? undefined}
         />
         <div className="absolute top-2 left-2 z-20 md:top-3 md:left-3">
           {/* Smaller padding + text on mobile so the sticker covers

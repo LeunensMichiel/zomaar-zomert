@@ -12,6 +12,7 @@ type Props = {
   hour: string;
   day: "friday" | "saturday" | "sunday";
   imgSrc: string;
+  imgLqip?: string | null;
   date: string;
   locale: Locale;
   /** Decorative tilt in degrees. */
@@ -38,6 +39,7 @@ export function HeadlinerCard({
   hour,
   day,
   imgSrc,
+  imgLqip,
   date,
   locale,
   tilt = 0,
@@ -74,6 +76,8 @@ export function HeadlinerCard({
           fill
           sizes="(max-width: 768px) 90vw, 33vw"
           className="object-cover object-center transition-transform group-hover:scale-105"
+          placeholder={imgLqip ? "blur" : "empty"}
+          blurDataURL={imgLqip ?? undefined}
         />
         <div className="absolute top-3 left-3 z-20">
           <Sticker color="ink" size="sm" rotate={-6}>
