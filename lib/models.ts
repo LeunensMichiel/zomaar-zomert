@@ -62,6 +62,16 @@ export const getDateByDayString = (day: FestivalDay) => DAY_TO_DATE[day];
 export const isSignupOpen = (now: Date = new Date()) =>
   now >= new Date(ENABLE_LINKS_DATE) && now <= new Date(ZZ_DATE_SUNDAY);
 
+// Per-event signup gate: open from a Sanity-configured `enabledFrom` moment
+// through the end of the festival. Missing date keeps the button disabled.
+export const isSignupEnabled = (
+  enabledFrom?: string | null,
+  now: Date = new Date(),
+) =>
+  !!enabledFrom &&
+  now >= new Date(enabledFrom) &&
+  now <= new Date(ZZ_DATE_SUNDAY);
+
 export const ZZ_LATITUDE = 50.831583;
 export const ZZ_LONGITUDE = 4.234742;
 export const ZZ_MAPS_URL = `https://www.google.com/maps?q=${String(ZZ_LATITUDE)},${String(ZZ_LONGITUDE)}`;

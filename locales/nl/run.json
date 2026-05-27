@@ -1,0 +1,21 @@
+{
+  "SEO": {
+    "title": "Zomaar Run · Zomaar Zomert",
+    "description": "De Zomaar Run op zondag. 7 of 14 km met officiële tijdsregistratie, start aan de tent in Itterbeek. Schrijf je in en loop mee.",
+    "openGraph": {
+      "title": "Zomaar Run · Zomaar Zomert",
+      "description": "Loopwedstrijd op zondag. Kies 7 of 14 km over de Keperenberg, met tijdsregistratie en een podium achteraf."
+    }
+  },
+  "labels": {
+    "factsEyebrow": "In een oogopslag",
+    "tracks": "Afstanden",
+    "practical": "Praktisch",
+    "gallery": "Sfeerbeeld",
+    "signupTitle": "Klaar om te lopen?",
+    "signupBody": "Schrijf je in en zet je tijd neer.",
+    "signup": "Schrijf je in",
+    "signupSoon": "Binnenkort",
+    "backToInfo": "Alle randactiviteiten"
+  }
+}

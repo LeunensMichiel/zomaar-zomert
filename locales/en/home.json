@@ -35,6 +35,17 @@
   },
   "activities": {
     "heading": "Join in.",
+    "discover": "Discover more",
+    "bike": {
+      "day": "Friday",
+      "title": "Zomaar Bike",
+      "body": "Mountain bike or gravel through the green western edge of Brussels. Waymarked route, food stops along the way and a terrace afterwards."
+    },
+    "run": {
+      "day": "Sunday",
+      "title": "Zomaar Run",
+      "body": "Running race over the Keperenberg. 7 or 14 km with official chip timing, starting at the tent."
+    },
     "paella": {
       "title": "Sunday paella",
       "body": "Long tables, one giant pan, the neighbours as company. Sign-up required, spots fill fast every year."

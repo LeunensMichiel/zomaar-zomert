@@ -92,10 +92,24 @@ export const siteSettings = defineType({
       validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
     }),
     defineField({
+      name: "paellaSignupEnabledFrom",
+      title: "Paella signup opens from",
+      description:
+        "The paella button shows “Binnenkort” until this moment, then links to the form.",
+      type: "datetime",
+    }),
+    defineField({
       name: "petanqueSignupUrl",
       title: "Pétanque signup form URL",
       type: "url",
       validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+    }),
+    defineField({
+      name: "petanqueSignupEnabledFrom",
+      title: "Pétanque signup opens from",
+      description:
+        "The pétanque button shows “Binnenkort” until this moment, then links to the form.",
+      type: "datetime",
     }),
   ],
   preview: {

@@ -1,0 +1,21 @@
+{
+  "SEO": {
+    "title": "Zomaar Run · Zomaar Zomert",
+    "description": "La Zomaar Run du dimanche. 7 ou 14 km avec chronométrage officiel, départ à la tente à Itterbeek. Inscris-toi et cours avec nous.",
+    "openGraph": {
+      "title": "Zomaar Run · Zomaar Zomert",
+      "description": "Course du dimanche. 7 ou 14 km sur le Keperenberg, chronométrage et podium à l'arrivée."
+    }
+  },
+  "labels": {
+    "factsEyebrow": "En un coup d'œil",
+    "tracks": "Distances",
+    "practical": "Pratique",
+    "gallery": "Ambiance",
+    "signupTitle": "Prêt à courir?",
+    "signupBody": "Inscris-toi et fais ton temps.",
+    "signup": "Inscris-toi",
+    "signupSoon": "Bientôt",
+    "backToInfo": "Toutes les activités"
+  }
+}

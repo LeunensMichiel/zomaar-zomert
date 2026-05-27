@@ -35,6 +35,17 @@
   },
   "activities": {
     "heading": "Participez.",
+    "discover": "En savoir plus",
+    "bike": {
+      "day": "Vendredi",
+      "title": "Zomaar Bike",
+      "body": "VTT ou gravel à travers la ceinture verte de l'ouest de Bruxelles. Parcours fléché, ravitaillements en route et une terrasse à l'arrivée."
+    },
+    "run": {
+      "day": "Dimanche",
+      "title": "Zomaar Run",
+      "body": "Course sur le Keperenberg. 7 ou 14 km avec chronométrage officiel, départ à la tente."
+    },
     "paella": {
       "title": "Paella du dimanche",
       "body": "Longues tablées, une poêle géante et les voisins en compagnie. Inscription obligatoire. Les places partent vite chaque année."

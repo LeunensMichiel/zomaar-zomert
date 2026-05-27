@@ -4,6 +4,7 @@ import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
 const NAMESPACES = [
+  "bike",
   "common",
   "contact",
   "history",
@@ -13,6 +14,7 @@ const NAMESPACES = [
   "menu",
   "partners",
   "privacy",
+  "run",
 ] as const;
 
 type Namespace = Record<string, unknown>;

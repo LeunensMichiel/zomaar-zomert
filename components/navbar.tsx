@@ -43,6 +43,8 @@ const PRIMARY_LINKS: NavLinkData[] = [
 
 const SECONDARY_LINKS: NavLinkData[] = [
   { key: "menu", href: "/menu" },
+  { key: "bike", href: "/bike" },
+  { key: "run", href: "/run" },
   { key: "legal", href: "/privacy-policy" },
 ];
 

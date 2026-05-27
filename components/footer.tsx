@@ -335,6 +335,12 @@ export async function Footer() {
               </ColumnHeading>
               <ul>
                 <li>
+                  <FooterLink href="/bike">{t("links.bike")}</FooterLink>
+                </li>
+                <li>
+                  <FooterLink href="/run">{t("links.run")}</FooterLink>
+                </li>
+                <li>
                   <FooterLink href="/history">{t("links.history")}</FooterLink>
                 </li>
                 <li>

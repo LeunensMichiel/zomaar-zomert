@@ -9,7 +9,7 @@ import { Logo } from "@components/ui/logo";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
-  isSignupOpen,
+  isSignupEnabled,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
@@ -68,7 +68,6 @@ export default async function Home({ params }: Props) {
 
   const tHome = await getTranslations({ locale, namespace: "home" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
-  const signupDisabled = !isSignupOpen();
 
   const visibleHeadliners = await client.fetch<Headliner[]>(
     HEADLINER_ARTISTS_QUERY,
@@ -111,6 +110,8 @@ export default async function Home({ params }: Props) {
     "friday",
     "saturday",
     "sunday",
+    "run",
+    "bike",
   ];
   const photos = await client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, {
     tags: photoTags,
@@ -125,6 +126,14 @@ export default async function Home({ params }: Props) {
   const foodPhoto = photoByTag("paella");
   const petanquePhoto = photoByTag("petanque");
   const crewPhoto = photoByTag("crew");
+  const bikePhoto = photoByTag("bike");
+  const runPhoto = photoByTag("run");
+  const paellaDisabled =
+    !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
+    !settings?.paellaSignupUrl;
+  const petanqueDisabled =
+    !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
+    !settings?.petanqueSignupUrl;
   const days: Array<{ date: string; image: string; alt: string }> = [
     {
       date: ZZ_DATE_FRIDAY,
@@ -330,95 +339,171 @@ export default async function Home({ params }: Props) {
             </Link>
           </div>
 
-          <div className="mt-12 grid gap-6 md:mt-16 md:gap-8 lg:grid-cols-12">
-            <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-yellow-400 lg:col-span-7 lg:row-span-2">
+          {/* Bike + Run are the festival's biggest side-events, so they
+              lead the grid as two large cards that link through to their
+              own pages. Paella, petanque and crew follow in a lighter
+              three-up row. */}
+          <div className="mt-12 grid gap-6 md:mt-16 md:gap-8 lg:grid-cols-2">
+            <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-blue-900 text-white">
               <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
                 <Image
-                  src={foodPhoto?.url ?? ""}
-                  alt={foodPhoto?.alt ?? ""}
+                  src={bikePhoto?.url ?? ""}
+                  alt={bikePhoto?.alt ?? ""}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
+                <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
+                <div className="absolute top-4 left-4">
+                  <Sticker color="yellow" size="md" rotate={-6}>
+                    {tHome("activities.bike.day")}
+                  </Sticker>
+                </div>
+              </div>
+              <div className="flex grow flex-col gap-4 p-6 md:p-8">
+                <h3 className="text-3xl leading-[0.95] text-yellow-400 md:text-5xl">
+                  {tHome("activities.bike.title")}
+                </h3>
+                <p className="flex-1 text-base text-blue-50 md:text-lg">
+                  {tHome("activities.bike.body")}
+                </p>
+                <Link href="/bike" className="mt-auto w-full md:w-auto">
+                  <Button
+                    variant="accent"
+                    size="xl"
+                    fullWidth
+                    sticker
+                    iconRight={<ChevronRight />}
+                  >
+                    {tHome("activities.discover")}
+                  </Button>
+                </Link>
+              </div>
+            </article>
+
+            <article className="shadow-sticker-lg bg-brand-500 relative flex flex-col overflow-hidden border-2 border-gray-900 text-white">
+              <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
+                <Image
+                  src={runPhoto?.url ?? ""}
+                  alt={runPhoto?.alt ?? ""}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center"
                 />
                 <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
                 <div className="absolute top-4 left-4">
                   <Sticker color="ink" size="md" rotate={-6}>
-                    {tHome("activities.paella.title")}
+                    {tHome("activities.run.day")}
                   </Sticker>
                 </div>
               </div>
               <div className="flex grow flex-col gap-4 p-6 md:p-8">
-                <h3 className="text-3xl leading-[0.95] md:text-5xl">
+                <h3 className="text-3xl leading-[0.95] text-yellow-400 md:text-5xl">
+                  {tHome("activities.run.title")}
+                </h3>
+                <p className="flex-1 text-base text-pink-50 md:text-lg">
+                  {tHome("activities.run.body")}
+                </p>
+                <Link href="/run" className="mt-auto w-full md:w-auto">
+                  <Button
+                    variant="ink"
+                    size="xl"
+                    fullWidth
+                    sticker
+                    iconRight={<ChevronRight />}
+                  >
+                    {tHome("activities.discover")}
+                  </Button>
+                </Link>
+              </div>
+            </article>
+          </div>
+
+          <div className="mt-6 grid gap-6 md:mt-8 md:gap-8 lg:grid-cols-3">
+            <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-yellow-400">
+              <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
+                <Image
+                  src={foodPhoto?.url ?? ""}
+                  alt={foodPhoto?.alt ?? ""}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover object-center"
+                />
+                <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
+              </div>
+              <div className="flex grow flex-col gap-3 p-5 md:p-6">
+                <h3 className="text-2xl leading-[0.95] md:text-3xl">
                   {tHome("activities.paella.title")}
                 </h3>
-                <p className="max-w-md flex-1 text-base md:text-lg">
+                <p className="flex-1 text-sm md:text-base">
                   {tHome("activities.paella.body")}
                 </p>
                 <Button
                   as="a"
-                  {...(!signupDisabled &&
-                    settings?.paellaSignupUrl && {
+                  {...(!paellaDisabled &&
+                    settings.paellaSignupUrl && {
                       href: settings.paellaSignupUrl,
                       target: "_blank",
                       rel: "noreferrer noopener",
                     })}
-                  disabled={signupDisabled || !settings?.paellaSignupUrl}
+                  disabled={paellaDisabled}
                   className="mt-auto"
                   variant="brand"
-                  size="xl"
+                  size="lg"
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {tHome(signupDisabled ? "paellaSoon" : "paella")}
+                  {tHome(paellaDisabled ? "paellaSoon" : "paella")}
                 </Button>
               </div>
             </article>
 
-            <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-blue-500 text-white lg:col-span-5">
-              <div className="relative aspect-5/4 overflow-hidden border-b-2 border-gray-900">
+            <article className="shadow-sticker-lg relative flex flex-col overflow-hidden border-2 border-gray-900 bg-blue-500 text-white">
+              <div className="relative aspect-16/10 overflow-hidden border-b-2 border-gray-900">
                 <Image
                   src={petanquePhoto?.url ?? ""}
                   alt={petanquePhoto?.alt ?? ""}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                   className="object-cover object-center"
                 />
                 <div className='halftone absolute inset-0 opacity-40 mix-blend-multiply content-[""]' />
               </div>
-              <div className="flex flex-col gap-3 p-5 md:p-6">
-                <h3 className="text-2xl leading-[0.95] md:text-4xl">
+              <div className="flex grow flex-col gap-3 p-5 md:p-6">
+                <h3 className="text-2xl leading-[0.95] md:text-3xl">
                   {tHome("activities.petanque.title")}
                 </h3>
-                <p className="text-sm md:text-base">
+                <p className="flex-1 text-sm md:text-base">
                   {tHome("activities.petanque.body")}
                 </p>
                 <Button
                   as="a"
-                  {...(!signupDisabled &&
-                    settings?.petanqueSignupUrl && {
+                  {...(!petanqueDisabled &&
+                    settings.petanqueSignupUrl && {
                       href: settings.petanqueSignupUrl,
                       target: "_blank",
                       rel: "noreferrer noopener",
                     })}
-                  disabled={signupDisabled || !settings?.petanqueSignupUrl}
+                  disabled={petanqueDisabled}
+                  className="mt-auto"
                   variant="accent"
                   size="lg"
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {tHome(signupDisabled ? "petanqueSoon" : "petanque")}
+                  {tHome(petanqueDisabled ? "petanqueSoon" : "petanque")}
                 </Button>
               </div>
             </article>
 
-            <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-pink-300 lg:col-span-5">
-              <div className="grid grid-cols-5 items-stretch">
-                <div className="relative col-span-2 min-h-40 border-r-2 border-gray-900 md:min-h-50">
+            <article className="shadow-sticker-lg relative overflow-hidden border-2 border-gray-900 bg-pink-300">
+              <div className="grid h-full grid-cols-5 items-stretch">
+                <div className="relative col-span-2 min-h-40 border-r-2 border-gray-900">
                   <Image
                     src={crewPhoto?.url ?? ""}
                     alt={crewPhoto?.alt ?? ""}
                     fill
-                    sizes="(max-width: 1024px) 50vw, 20vw"
+                    sizes="(max-width: 1024px) 40vw, 14vw"
                     className="object-cover object-center"
                   />
                   <div className='halftone absolute inset-0 opacity-40 mix-blend-multiply content-[""]' />

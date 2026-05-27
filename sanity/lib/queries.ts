@@ -148,7 +148,46 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
       "value": ${localizedFlat("text")}
     },
     paellaSignupUrl,
-    petanqueSignupUrl
+    paellaSignupEnabledFrom,
+    petanqueSignupUrl,
+    petanqueSignupEnabledFrom
+  }
+`);
+
+const sideEventImage = (field: string) => /* groq */ `
+  ${field} {
+    "url": asset->url,
+    "alt": coalesce(alt, ""),
+    "lqip": asset->metadata.lqip,
+    "width": asset->metadata.dimensions.width,
+    "height": asset->metadata.dimensions.height
+  }
+`;
+
+export const SIDE_EVENT_QUERY = defineQuery(/* groq */ `
+  *[_id == $id][0] {
+    "heroEyebrow": ${localizedFlat("heroEyebrow")},
+    "heroTitle": ${localizedFlat("heroTitle")},
+    "intro": ${localizedFlat("intro")},
+    "heroImage": ${sideEventImage("heroImage")},
+    "facts": facts[] {
+      icon,
+      "label": ${localizedFlat("label")},
+      "value": ${localizedFlat("value")}
+    },
+    "tracks": tracks[] {
+      "name": ${localizedFlat("name")},
+      "distance": ${localizedFlat("distance")},
+      "body": ${localizedFlat("body")}
+    },
+    "sections": sections[] {
+      "title": ${localizedFlat("title")},
+      "body": ${localizedFlat("body")}
+    },
+    "practicalNote": ${localizedFlat("practicalNote")},
+    signupUrl,
+    signupEnabledFrom,
+    "gallery": gallery[] ${sideEventImage("")}
   }
 `);
 
@@ -298,7 +337,55 @@ export type SiteSettings = {
   socials: { network: SocialNetwork; url: string }[] | null;
   marqueeItems: { value: string }[] | null;
   paellaSignupUrl: string | null;
+  paellaSignupEnabledFrom: string | null;
   petanqueSignupUrl: string | null;
+  petanqueSignupEnabledFrom: string | null;
+};
+
+export type SideEventImage = {
+  url: string | null;
+  alt: string;
+  lqip: string | null;
+  width: number | null;
+  height: number | null;
+};
+
+export type SideEventFactIcon =
+  | "distance"
+  | "clock"
+  | "location"
+  | "euro"
+  | "info";
+
+export type SideEventFact = {
+  icon: SideEventFactIcon;
+  label: string;
+  value: string;
+};
+
+export type SideEventTrack = {
+  name: string;
+  distance: string;
+  body: string;
+};
+
+export type SideEventSection = {
+  title: string;
+  body: string;
+};
+
+export type SideEvent = {
+  heroEyebrow: string;
+  heroTitle: string;
+  intro: string;
+  heroImage: SideEventImage | null;
+  facts: SideEventFact[] | null;
+  tracks: SideEventTrack[] | null;
+  sections: SideEventSection[] | null;
+  practicalNote: string;
+  signupUrl: string | null;
+  signupEnabledFrom: string | null;
+  gallery: SideEventImage[] | null;
 };
 
 export type HistoryImageKind = "polaroid" | "affiche" | "normal";

@@ -1,4 +1,6 @@
 import {
+  BoltIcon,
+  CalendarIcon,
   ClockIcon,
   CogIcon,
   IceCreamIcon,
@@ -16,6 +18,7 @@ const HIDDEN_FROM_DEFAULT_LIST = [
   "menuItem",
   "historyEntry",
   "infoBlock",
+  "sideEvent",
 ];
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -31,6 +34,25 @@ export const structure: StructureResolver = (S, context) =>
             .schemaType("siteSettings")
             .documentId("siteSettings")
             .title("Site settings"),
+        ),
+      S.divider(),
+      S.listItem()
+        .title("Zomaar Bike")
+        .icon(BoltIcon)
+        .child(
+          S.document()
+            .schemaType("sideEvent")
+            .documentId("zomaarBike")
+            .title("Zomaar Bike"),
+        ),
+      S.listItem()
+        .title("Zomaar Run")
+        .icon(CalendarIcon)
+        .child(
+          S.document()
+            .schemaType("sideEvent")
+            .documentId("zomaarRun")
+            .title("Zomaar Run"),
         ),
       S.divider(),
       orderableDocumentListDeskItem({

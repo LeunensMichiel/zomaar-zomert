@@ -3,32 +3,24 @@ import { InfoBlock } from "@components/info-block";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
+import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
-import { isSignupOpen } from "@lib/models";
+import { isSignupEnabled } from "@lib/models";
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { type ReactNode } from "react";
 
 import { client } from "@/sanity/lib/client";
 import {
-  ASSETS_BY_TAGS_QUERY,
   INFO_BLOCKS_QUERY,
   type InfoBlock as InfoBlockData,
   SITE_SETTINGS_QUERY,
   type SiteSettings,
-  type TaggedAsset,
 } from "@/sanity/lib/queries";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
 export const revalidate = 3600;
-
-const richStrongBr = {
-  strong: (chunks: ReactNode) => <strong>{chunks}</strong>,
-  br: () => <br />,
-};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -48,10 +40,8 @@ export default async function InfoPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "info" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
-  const signupDisabled = !isSignupOpen();
 
-  const [photos, settings, blocks] = await Promise.all([
-    client.fetch<TaggedAsset[]>(ASSETS_BY_TAGS_QUERY, { tags: ["petanque"] }),
+  const [settings, blocks] = await Promise.all([
     client.fetch<SiteSettings | null>(
       SITE_SETTINGS_QUERY,
       { locale },
@@ -63,7 +53,12 @@ export default async function InfoPage({ params }: Props) {
       { next: { tags: ["infoBlock"] } },
     ),
   ]);
-  const petanquePhoto = photos.find((p) => p.tags.includes("petanque"));
+  const paellaDisabled =
+    !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
+    !settings?.paellaSignupUrl;
+  const petanqueDisabled =
+    !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
+    !settings?.petanqueSignupUrl;
 
   return (
     <>
@@ -98,10 +93,10 @@ export default async function InfoPage({ params }: Props) {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          ACTIVITIES — pulled out of the bento as the page's call to
-          action. Big poster word, full activities content, two
-          sticker buttons (petanque + paella) and a polaroid of
-          actual pétanque on the right.
+          ACTIVITIES — the page's call to action. Big poster word, a
+          short intro, then a card per side-event. Zomaar Bike + Zomaar
+          Run lead with a link to their own pages; paella, petanque and
+          quiz stay brief.
           ─────────────────────────────────────────────────────────────*/}
       <section className="relative bg-blue-500 text-white">
         <Doodle
@@ -110,79 +105,126 @@ export default async function InfoPage({ params }: Props) {
           rotate={20}
           className="absolute -right-12 -bottom-16 h-56 md:-right-20 md:-bottom-24 md:h-96 lg:h-112"
         />
-        <div className="container-wide section-y relative z-20 grid gap-10 md:gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-7">
+        <div className="container-wide section-y relative z-20">
+          <div className="max-w-2xl">
             <Sticker color="ink" size="sm" rotate={-3}>
               {t("activities.eyebrow")}
             </Sticker>
-            <h2 className="mt-6 text-7xl leading-[0.85] text-yellow-400 md:mt-8 md:text-9xl xl:text-[14rem]">
+            <h2 className="mt-6 text-6xl leading-[0.85] text-yellow-400 md:mt-8 md:text-8xl xl:text-9xl">
               {t("activities.title")}
             </h2>
-            <div className="mt-6 max-w-xl text-base leading-relaxed text-pink-50 md:text-lg [&_strong]:text-yellow-300">
-              {t.rich("faq.8.content", richStrongBr)}
-            </div>
-            {signupDisabled && (
-              <p className="mt-4 text-sm text-pink-50/80 italic md:text-base">
-                {t("faq.8.tba")}
-              </p>
-            )}
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button
-                as="a"
-                {...(!signupDisabled &&
-                  settings?.petanqueSignupUrl && {
-                    href: settings.petanqueSignupUrl,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                  })}
-                disabled={signupDisabled || !settings?.petanqueSignupUrl}
-                variant="accent"
-                size="lg"
-                sticker
-                iconRight={<ChevronRight />}
+            <p className="mt-6 text-base leading-relaxed text-pink-50 md:text-lg">
+              {t("activities.intro")}
+            </p>
+          </div>
+
+          {/* Bike + Run — the two events with their own pages. */}
+          <div className="mt-10 grid gap-4 md:mt-12 md:gap-6 lg:grid-cols-2">
+            {(["bike", "run"] as const).map((key) => (
+              <article
+                key={key}
+                className="shadow-sticker flex h-full flex-col border-2 border-gray-900 bg-pink-50 p-6 text-gray-900 md:p-8"
               >
-                {t(signupDisabled ? "faq.8.petanqueSoon" : "faq.8.petanque")}
-              </Button>
+                <span className="font-display text-xs font-bold tracking-wider text-blue-700 uppercase md:text-sm">
+                  {t(`activities.cards.${key}.day`)}
+                </span>
+                <h3 className="font-display mt-2 text-3xl leading-[0.95] font-bold uppercase md:text-4xl">
+                  {t(`activities.cards.${key}.title`)}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed md:text-base">
+                  {t(`activities.cards.${key}.body`)}
+                </p>
+                <Link href={key === "bike" ? "/bike" : "/run"} className="mt-6">
+                  <Button
+                    variant="sky"
+                    size="lg"
+                    sticker
+                    iconRight={<ChevronRight />}
+                  >
+                    {t("activities.cards.readMore")}
+                  </Button>
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          {/* Paella, petanque, quiz — brief, no separate pages. */}
+          <div className="mt-6 grid gap-4 md:mt-6 md:gap-6 lg:grid-cols-3">
+            <article className="shadow-sticker flex h-full flex-col border-2 border-gray-900 bg-pink-50 p-5 text-gray-900 md:p-6">
+              <span className="font-display text-xs font-bold tracking-wider text-blue-700 uppercase md:text-sm">
+                {t("activities.cards.paella.day")}
+              </span>
+              <h3 className="font-display mt-2 text-2xl leading-[0.95] font-bold uppercase md:text-3xl">
+                {t("activities.cards.paella.title")}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
+                {t("activities.cards.paella.body")}
+              </p>
               <Button
                 as="a"
-                {...(!signupDisabled &&
-                  settings?.paellaSignupUrl && {
+                {...(!paellaDisabled &&
+                  settings.paellaSignupUrl && {
                     href: settings.paellaSignupUrl,
                     target: "_blank",
                     rel: "noreferrer noopener",
                   })}
-                disabled={signupDisabled || !settings?.paellaSignupUrl}
+                disabled={paellaDisabled}
+                className="mt-5"
                 variant="brand"
-                size="lg"
+                size="sm"
                 sticker
                 iconRight={<ChevronRight />}
               >
-                {t(signupDisabled ? "faq.8.paellaSoon" : "faq.8.paella")}
+                {t(
+                  paellaDisabled
+                    ? "activities.cards.paella.soon"
+                    : "activities.cards.paella.cta",
+                )}
               </Button>
-            </div>
-          </div>
+            </article>
 
-          <div className="relative lg:col-span-5">
-            <span
-              aria-hidden="true"
-              className="tape-strip absolute -top-3 left-10 z-30 h-5 w-24 -rotate-12 md:left-16"
-            />
-            <article className="shadow-sticker-lg relative rotate-2 border-2 border-gray-900 bg-pink-50 p-3 pb-10 md:p-4 md:pb-14">
-              <div className="relative aspect-4/5 overflow-hidden border-2 border-gray-900">
-                <Image
-                  src={petanquePhoto?.url ?? ""}
-                  alt={petanquePhoto?.alt ?? ""}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-center"
-                />
-                <div
-                  aria-hidden="true"
-                  className="halftone pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
-                />
-              </div>
-              <p className="font-display mt-4 text-center text-base font-bold tracking-wide text-gray-900 uppercase md:mt-6 md:text-lg">
-                {t("activities.petanqueCaption")}
+            <article className="shadow-sticker flex h-full flex-col border-2 border-gray-900 bg-pink-50 p-5 text-gray-900 md:p-6">
+              <span className="font-display text-xs font-bold tracking-wider text-blue-700 uppercase md:text-sm">
+                {t("activities.cards.petanque.day")}
+              </span>
+              <h3 className="font-display mt-2 text-2xl leading-[0.95] font-bold uppercase md:text-3xl">
+                {t("activities.cards.petanque.title")}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
+                {t("activities.cards.petanque.body")}
+              </p>
+              <Button
+                as="a"
+                {...(!petanqueDisabled &&
+                  settings.petanqueSignupUrl && {
+                    href: settings.petanqueSignupUrl,
+                    target: "_blank",
+                    rel: "noreferrer noopener",
+                  })}
+                disabled={petanqueDisabled}
+                className="mt-5"
+                variant="brand"
+                size="sm"
+                sticker
+                iconRight={<ChevronRight />}
+              >
+                {t(
+                  petanqueDisabled
+                    ? "activities.cards.petanque.soon"
+                    : "activities.cards.petanque.cta",
+                )}
+              </Button>
+            </article>
+
+            <article className="shadow-sticker flex h-full flex-col border-2 border-gray-900 bg-pink-50 p-5 text-gray-900 md:p-6">
+              <span className="font-display text-xs font-bold tracking-wider text-blue-700 uppercase md:text-sm">
+                {t("activities.cards.quiz.day")}
+              </span>
+              <h3 className="font-display mt-2 text-2xl leading-[0.95] font-bold uppercase md:text-3xl">
+                {t("activities.cards.quiz.title")}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
+                {t("activities.cards.quiz.body")}
               </p>
             </article>
           </div>

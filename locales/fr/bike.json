@@ -1,0 +1,21 @@
+{
+  "SEO": {
+    "title": "Zomaar Bike · Zomaar Zomert",
+    "description": "La Zomaar Bike du vendredi. VTT et gravel à travers la ceinture verte de l'ouest de Bruxelles. Parcours fléché, ravitaillements en route, terrasse à l'arrivée.",
+    "openGraph": {
+      "title": "Zomaar Bike · Zomaar Zomert",
+      "description": "VTT et gravel le vendredi. Montées corsées, descentes rapides et ravitaillements en route. Ensuite, on papote en terrasse."
+    }
+  },
+  "labels": {
+    "factsEyebrow": "En un coup d'œil",
+    "tracks": "Parcours",
+    "practical": "Pratique",
+    "gallery": "Ambiance",
+    "signupTitle": "Prêt à pédaler?",
+    "signupBody": "Inscris-toi à l'avance ou sur place.",
+    "signup": "Inscris-toi",
+    "signupSoon": "Bientôt",
+    "backToInfo": "Toutes les activités"
+  }
+}

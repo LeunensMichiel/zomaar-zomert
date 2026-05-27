@@ -13,17 +13,38 @@
   "activities": {
     "eyebrow": "Randactiviteiten",
     "title": "Doe mee.",
-    "petanqueCaption": "Petanque."
-  },
-  "faq": {
-    "8": {
-      "title": "Randactiviteiten",
-      "content": "Naast de muziek loopt er een hele week rond Zomaar Zomert: de ZomaarBike, ZomaarRun, kinderanimatie, een quiz, een petanquetornooi en op zondag de paella.<br></br><br></br>Deelname aan de activiteiten: ZomaarBike (€5/€7), ZomaarRun (€5), Petanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Inschrijven</strong> voor de petanque en paella is <strong>verplicht.</strong> Schrijf je hier in:<br></br>",
-      "tba": "(Inschrijvingen openen binnenkort.)",
-      "petanque": "Schrijf je in voor de petanque",
-      "paella": "Schrijf je in voor de paella",
-      "petanqueSoon": "Petanque, binnenkort",
-      "paellaSoon": "Paella, binnenkort"
+    "intro": "Rond Zomaar Zomert is er meer dan muziek. Twee grote: de Zomaar Bike op vrijdag en de Zomaar Run op zondag. Daarnaast paella, petanque en een quiz.",
+    "cards": {
+      "readMore": "Lees meer",
+      "bike": {
+        "day": "Vrijdag",
+        "title": "Zomaar Bike",
+        "body": "Mountainbike en gravel door de groene westrand van Brussel. Bewegwijzerd parcours met bevoorrading onderweg."
+      },
+      "run": {
+        "day": "Zondag",
+        "title": "Zomaar Run",
+        "body": "Loopwedstrijd over de Keperenberg. 7 of 14 km met officiële tijdsregistratie."
+      },
+      "paella": {
+        "day": "Zondag",
+        "title": "Paella",
+        "body": "Lange tafels, één grote pan en de buren als tafelgenoten. Inschrijven verplicht.",
+        "cta": "Schrijf je in",
+        "soon": "Binnenkort"
+      },
+      "petanque": {
+        "day": "Zaterdag",
+        "title": "Petanque",
+        "body": "Het jaarlijkse tornooi op de wei naast de tent. Inschrijven verplicht.",
+        "cta": "Schrijf je in",
+        "soon": "Binnenkort"
+      },
+      "quiz": {
+        "day": "In de week",
+        "title": "Quiz",
+        "body": "De Zomaar Quiz in aanloop naar het festival. Stel een ploeg samen en kom je hersenen kraken."
+      }
     }
   }
 }

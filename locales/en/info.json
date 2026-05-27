@@ -13,17 +13,38 @@
   "activities": {
     "eyebrow": "Activities",
     "title": "Join in.",
-    "petanqueCaption": "Pétanque."
-  },
-  "faq": {
-    "8": {
-      "title": "Activities",
-      "content": "Alongside the music, a whole week runs around Zomaar Zomert: the ZomaarBike, ZomaarRun, kids' animations, a quiz, a pétanque tournament and Sunday's paella.<br></br><br></br>Entry fees: ZomaarBike (€5/€7), ZomaarRun (€5), Pétanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>Sign-up</strong> for the pétanque and paella is <strong>required.</strong> Register here:<br></br>",
-      "tba": "(Registration opens soon.)",
-      "petanque": "Sign up for the pétanque",
-      "paella": "Sign up for the paella",
-      "petanqueSoon": "Pétanque, soon",
-      "paellaSoon": "Paella, soon"
+    "intro": "There's more than music around Zomaar Zomert. Two big ones: the Zomaar Bike on Friday and the Zomaar Run on Sunday. Plus paella, pétanque and a quiz.",
+    "cards": {
+      "readMore": "Read more",
+      "bike": {
+        "day": "Friday",
+        "title": "Zomaar Bike",
+        "body": "Mountain bike and gravel through the green western edge of Brussels. Waymarked route with food stops along the way."
+      },
+      "run": {
+        "day": "Sunday",
+        "title": "Zomaar Run",
+        "body": "Running race over the Keperenberg. 7 or 14 km with official chip timing."
+      },
+      "paella": {
+        "day": "Sunday",
+        "title": "Paella",
+        "body": "Long tables, one big pan and the neighbours as company. Sign-up required.",
+        "cta": "Sign up",
+        "soon": "Soon"
+      },
+      "petanque": {
+        "day": "Saturday",
+        "title": "Pétanque",
+        "body": "The yearly tournament on the field next to the tent. Sign-up required.",
+        "cta": "Sign up",
+        "soon": "Soon"
+      },
+      "quiz": {
+        "day": "Midweek",
+        "title": "Quiz",
+        "body": "The Zomaar Quiz in the run-up to the festival. Put together a team and come rack your brains."
+      }
     }
   }
 }

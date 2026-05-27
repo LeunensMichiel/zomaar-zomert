@@ -1,0 +1,21 @@
+{
+  "SEO": {
+    "title": "Zomaar Bike · Zomaar Zomert",
+    "description": "De Zomaar Bike op vrijdag. Mountainbike en gravel door de groene westrand van Brussel. Bewegwijzerd parcours, bevoorrading onderweg, terras achteraf.",
+    "openGraph": {
+      "title": "Zomaar Bike · Zomaar Zomert",
+      "description": "MTB en gravel op vrijdag. Pittige hellingen, snelle afdalingen en bevoorrading onderweg. Daarna napraten op het terras."
+    }
+  },
+  "labels": {
+    "factsEyebrow": "In een oogopslag",
+    "tracks": "Parcours",
+    "practical": "Praktisch",
+    "gallery": "Sfeerbeeld",
+    "signupTitle": "Klaar om te trappen?",
+    "signupBody": "Schrijf je vooraf in of registreer ter plaatse.",
+    "signup": "Schrijf je in",
+    "signupSoon": "Binnenkort",
+    "backToInfo": "Alle randactiviteiten"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "SEO": {
+    "title": "Zomaar Run · Zomaar Zomert",
+    "description": "The Zomaar Run on Sunday. 7 or 14 km with official chip timing, starting at the tent in Itterbeek. Sign up and run with us.",
+    "openGraph": {
+      "title": "Zomaar Run · Zomaar Zomert",
+      "description": "Sunday running race. Pick 7 or 14 km over the Keperenberg, with chip timing and a podium afterwards."
+    }
+  },
+  "labels": {
+    "factsEyebrow": "At a glance",
+    "tracks": "Distances",
+    "practical": "Practical",
+    "gallery": "Atmosphere",
+    "signupTitle": "Ready to run?",
+    "signupBody": "Sign up and set your time.",
+    "signup": "Sign up",
+    "signupSoon": "Soon",
+    "backToInfo": "All activities"
+  }
+}

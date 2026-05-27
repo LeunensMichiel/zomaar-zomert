@@ -35,6 +35,17 @@
   },
   "activities": {
     "heading": "Doe mee.",
+    "discover": "Ontdek meer",
+    "bike": {
+      "day": "Vrijdag",
+      "title": "Zomaar Bike",
+      "body": "Mountainbike of gravel door de groene westrand van Brussel. Bewegwijzerd parcours, bevoorrading onderweg en een terras achteraf."
+    },
+    "run": {
+      "day": "Zondag",
+      "title": "Zomaar Run",
+      "body": "Loopwedstrijd over de Keperenberg. 7 of 14 km met officiële tijdsregistratie, start aan de tent."
+    },
     "paella": {
       "title": "Paella op zondag",
       "body": "Lange tafels, één gigantische pan en de buren als tafelgenoten. Inschrijven verplicht, de plaatsen lopen elk jaar snel vol."

@@ -1,0 +1,21 @@
+{
+  "SEO": {
+    "title": "Zomaar Bike · Zomaar Zomert",
+    "description": "The Zomaar Bike on Friday. Mountain bike and gravel through the green western edge of Brussels. Waymarked route, food stops along the way, terrace afterwards.",
+    "openGraph": {
+      "title": "Zomaar Bike · Zomaar Zomert",
+      "description": "MTB and gravel on Friday. Punchy climbs, fast descents and food stops along the way. Wind down on the terrace after."
+    }
+  },
+  "labels": {
+    "factsEyebrow": "At a glance",
+    "tracks": "Routes",
+    "practical": "Practical",
+    "gallery": "Atmosphere",
+    "signupTitle": "Ready to ride?",
+    "signupBody": "Sign up in advance or register on site.",
+    "signup": "Sign up",
+    "signupSoon": "Soon",
+    "backToInfo": "All activities"
+  }
+}

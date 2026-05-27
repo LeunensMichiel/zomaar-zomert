@@ -26,6 +26,8 @@ export const routing = defineRouting({
       en: "/info",
     },
     "/menu": "/menu",
+    "/run": "/run",
+    "/bike": "/bike",
     "/contact": "/contact",
     "/history": {
       nl: "/ons-verhaal",

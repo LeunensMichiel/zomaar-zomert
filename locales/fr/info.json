@@ -13,17 +13,38 @@
   "activities": {
     "eyebrow": "Activités",
     "title": "Participe.",
-    "petanqueCaption": "Pétanque."
-  },
-  "faq": {
-    "8": {
-      "title": "Activités",
-      "content": "À côté de la musique, il y a toute une semaine autour de Zomaar Zomert: le ZomaarBike, le ZomaarRun, des animations pour enfants, un quiz, un tournoi de pétanque et le dimanche la paella.<br></br><br></br>Participation: ZomaarBike (€5/€7), ZomaarRun (€5), Pétanque (€5), ZomaarQuiz (€10).<br></br><br></br><strong>L'inscription</strong> pour la pétanque et la paella est <strong>obligatoire.</strong> Inscris-toi ici:<br></br>",
-      "tba": "(Les inscriptions ouvrent bientôt.)",
-      "petanque": "Inscris-toi pour la pétanque",
-      "paella": "Inscris-toi pour la paella",
-      "petanqueSoon": "Pétanque, bientôt",
-      "paellaSoon": "Paella, bientôt"
+    "intro": "Autour de Zomaar Zomert, il y a plus que la musique. Deux grands rendez-vous: la Zomaar Bike le vendredi et la Zomaar Run le dimanche. Et aussi la paella, la pétanque et un quiz.",
+    "cards": {
+      "readMore": "En savoir plus",
+      "bike": {
+        "day": "Vendredi",
+        "title": "Zomaar Bike",
+        "body": "VTT et gravel à travers la ceinture verte de l'ouest de Bruxelles. Parcours fléché avec ravitaillements en route."
+      },
+      "run": {
+        "day": "Dimanche",
+        "title": "Zomaar Run",
+        "body": "Course sur le Keperenberg. 7 ou 14 km avec chronométrage officiel."
+      },
+      "paella": {
+        "day": "Dimanche",
+        "title": "Paella",
+        "body": "Longues tablées, une grande poêle et les voisins en compagnie. Inscription obligatoire.",
+        "cta": "Inscris-toi",
+        "soon": "Bientôt"
+      },
+      "petanque": {
+        "day": "Samedi",
+        "title": "Pétanque",
+        "body": "Le tournoi annuel dans le pré à côté du chapiteau. Inscription obligatoire.",
+        "cta": "Inscris-toi",
+        "soon": "Bientôt"
+      },
+      "quiz": {
+        "day": "En semaine",
+        "title": "Quiz",
+        "body": "Le Zomaar Quiz en amont du festival. Forme une équipe et viens te creuser les méninges."
+      }
     }
   }
 }
