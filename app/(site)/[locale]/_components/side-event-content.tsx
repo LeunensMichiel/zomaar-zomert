@@ -330,7 +330,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
               <Sticker color="blue" size="sm" rotate={-2}>
                 {labels.gallery}
               </Sticker>
-              <div className="mt-8 grid grid-cols-2 gap-4 md:mt-10 md:grid-cols-3 md:gap-6">
+              <div className="mt-8 grid grid-cols-1 gap-4 md:mt-10 md:grid-cols-3 md:gap-6">
                 {gallery.map((img, i) => (
                   <RevealCard key={`${img.url ?? "img"}-${i}`} index={i}>
                     <figure

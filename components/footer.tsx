@@ -370,9 +370,14 @@ export async function Footer() {
               </Sticker>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-10 md:grid-cols-3 md:gap-x-12 lg:grid-cols-4 lg:gap-x-16 lg:gap-y-14">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-10 md:gap-x-12 lg:gap-x-16 lg:gap-y-14">
               {leadPartners.map((p) => (
-                <PartnerLogo key={p._id} partner={p} tier="lead" />
+                <div
+                  key={p._id}
+                  className="flex basis-[calc(50%-1rem)] items-center justify-center md:basis-[calc(33.333%-2rem)] lg:basis-[calc(25%-3rem)]"
+                >
+                  <PartnerLogo partner={p} tier="lead" />
+                </div>
               ))}
             </div>
 
