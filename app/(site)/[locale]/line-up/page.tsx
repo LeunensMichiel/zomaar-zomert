@@ -5,7 +5,12 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { client } from "@/sanity/lib/client";
-import { type Artist, ARTISTS_QUERY } from "@/sanity/lib/queries";
+import {
+  ACTIVITIES_QUERY,
+  type Activity,
+  type Artist,
+  ARTISTS_QUERY,
+} from "@/sanity/lib/queries";
 
 import { LineUpClient } from "./_components/line-up-client";
 
@@ -29,16 +34,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LineUpPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const artists = await client.fetch<Artist[]>(
-    ARTISTS_QUERY,
-    {
-      locale,
-      yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
-    },
-    { next: { tags: ["artist"] } },
-  );
+  const [artists, activities] = await Promise.all([
+    client.fetch<Artist[]>(
+      ARTISTS_QUERY,
+      {
+        locale,
+        yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z`,
+      },
+      { next: { tags: ["artist"] } },
+    ),
+    client.fetch<Activity[]>(
+      ACTIVITIES_QUERY,
+      { locale },
+      { next: { tags: ["activity"] } },
+    ),
+  ]);
   return (
-    <LineUpClient artists={artists}>
+    <LineUpClient artists={artists} activities={activities}>
       {/* Bottom paper-tear bridges the dark blue section into the
           footer's photo strip. Server-rendered (PaperTear is
           server-only) and passed through as children so the client

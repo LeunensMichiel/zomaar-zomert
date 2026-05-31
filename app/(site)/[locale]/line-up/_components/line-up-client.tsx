@@ -15,9 +15,22 @@ import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { type ReactNode, useCallback, useMemo } from "react";
 
-import { type Artist } from "@/sanity/lib/queries";
+import { type Activity, type Artist } from "@/sanity/lib/queries";
 
+import { LineUpActivityCard } from "./line-up-activity-card";
 import { LineUpArtistCard } from "./line-up-card";
+
+// A line-up grid slot is either an act or a side activity. Activities
+// render a doodle-backed card that links out to its own page rather
+// than the artist detail template.
+type LineUpItem =
+  | { kind: "artist"; artist: Artist }
+  | { kind: "activity"; activity: Activity };
+
+const itemKey = (item: LineUpItem) =>
+  item.kind === "artist"
+    ? `artist-${item.artist.name}-${item.artist.showFrom}`
+    : `activity-${item.activity._id}`;
 
 type Tone = "blue" | "brand" | "pink";
 const toneCycle: Tone[] = ["blue", "brand", "pink", "brand", "pink", "blue"];
@@ -43,9 +56,13 @@ const dayFromDate = (date: string): "friday" | "saturday" | "sunday" => {
   return "friday";
 };
 
-type Props = { artists: Artist[]; children?: ReactNode };
+type Props = {
+  artists: Artist[];
+  activities: Activity[];
+  children?: ReactNode;
+};
 
-export function LineUpClient({ artists, children }: Props) {
+export function LineUpClient({ artists, activities, children }: Props) {
   const t = useTranslations("line-up");
   const lang = useLocale();
   const router = useRouter();
@@ -58,26 +75,36 @@ export function LineUpClient({ artists, children }: Props) {
   const showAll = !currentDate;
 
   const byDay = useMemo(() => {
-    const result: Record<string, Artist[]> = {};
+    const result: Record<string, LineUpItem[]> = {};
     for (const date of ZZ_DATES) {
-      const list = artists
+      const list: LineUpItem[] = artists
         .filter((a) => getDateByDayString(a.day) === date)
-        .sort((a, b) => a.hour.localeCompare(b.hour));
-      // Pad each day to 4 cards — real days will always have ≥4 acts.
+        .sort((a, b) => a.hour.localeCompare(b.hour))
+        .map((artist) => ({ kind: "artist", artist }));
+      // Side activities follow the acts as the day's "extras".
+      for (const activity of activities.filter(
+        (a) => getDateByDayString(a.day) === date,
+      )) {
+        list.push({ kind: "activity", activity });
+      }
+      // Pad each day to 4 cards — real days will always have ≥4 slots.
       while (list.length < 4) {
         list.push({
-          name: "TBA",
-          day: dayFromDate(date),
-          hour: "",
-          imgSrc: "",
-          showFrom: `tba-${date}-${String(list.length)}`,
-          bio: [],
+          kind: "artist",
+          artist: {
+            name: "TBA",
+            day: dayFromDate(date),
+            hour: "",
+            imgSrc: "",
+            showFrom: `tba-${date}-${String(list.length)}`,
+            bio: [],
+          },
         });
       }
       result[date] = list;
     }
     return result;
-  }, [artists]);
+  }, [artists, activities]);
 
   const handleDaySelect = useCallback(
     (date: string | null) => {
@@ -207,10 +234,11 @@ export function LineUpClient({ artists, children }: Props) {
             <DaySection
               key={`${currentDate ?? "all"}-${date}`}
               date={date}
-              artists={byDay[date]}
+              items={byDay[date]}
               showHeading={showAll}
               lang={lang}
               tbaLabel={t("tba")}
+              activityEyebrow={t("activityEyebrow")}
               reducedMotion={reducedMotion ?? false}
               animationType={showAll ? "deal" : "flip"}
               dayIndex={dayIndex}
@@ -225,10 +253,11 @@ export function LineUpClient({ artists, children }: Props) {
 
 type DaySectionProps = {
   date: string;
-  artists: Artist[];
+  items: LineUpItem[];
   showHeading: boolean;
   lang: string;
   tbaLabel: string;
+  activityEyebrow: string;
   reducedMotion: boolean;
   animationType: "deal" | "flip";
   dayIndex: number;
@@ -236,10 +265,11 @@ type DaySectionProps = {
 
 function DaySection({
   date,
-  artists,
+  items,
   showHeading,
   lang,
   tbaLabel,
+  activityEyebrow,
   reducedMotion,
   animationType,
   dayIndex,
@@ -260,7 +290,7 @@ function DaySection({
   // in render is impure; the useMemo + identity deps keep it stable
   // between switches.
   const shuffleOrder = useMemo(() => {
-    const order = artists.map((_, i) => i);
+    const order = items.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) {
       // eslint-disable-next-line react-hooks/purity
       const j = Math.floor(Math.random() * (i + 1));
@@ -268,7 +298,7 @@ function DaySection({
     }
     return order;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [artists.length]);
+  }, [items.length]);
 
   const containerVariants = reducedMotion
     ? undefined
@@ -359,19 +389,25 @@ function DaySection({
         style={gridStyle}
         className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8"
       >
-        {artists.map((artist, i) => (
-          <motion.div
-            key={`${artist.name}-${artist.showFrom}`}
-            custom={i}
-            variants={itemVariants}
-          >
-            <LineUpArtistCard
-              artist={artist}
-              date={date}
-              tone={toneCycle[i % toneCycle.length]}
-              tilt={tiltCycle[i % tiltCycle.length]}
-              tbaLabel={tbaLabel}
-            />
+        {items.map((item, i) => (
+          <motion.div key={itemKey(item)} custom={i} variants={itemVariants}>
+            {item.kind === "artist" ? (
+              <LineUpArtistCard
+                artist={item.artist}
+                date={date}
+                tone={toneCycle[i % toneCycle.length]}
+                tilt={tiltCycle[i % tiltCycle.length]}
+                tbaLabel={tbaLabel}
+              />
+            ) : (
+              <LineUpActivityCard
+                activity={item.activity}
+                date={date}
+                tone={toneCycle[i % toneCycle.length]}
+                tilt={tiltCycle[i % tiltCycle.length]}
+                eyebrow={activityEyebrow}
+              />
+            )}
           </motion.div>
         ))}
       </motion.div>

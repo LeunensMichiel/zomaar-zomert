@@ -6,6 +6,7 @@ import {
   IceCreamIcon,
   InfoOutlineIcon,
   LemonIcon,
+  StarIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import type { StructureResolver } from "sanity/structure";
@@ -15,6 +16,7 @@ const SINGLETONS = ["siteSettings"];
 // not appear again in the generic auto-generated list.
 const HIDDEN_FROM_DEFAULT_LIST = [
   ...SINGLETONS,
+  "activity",
   "menuItem",
   "historyEntry",
   "infoBlock",
@@ -55,6 +57,14 @@ export const structure: StructureResolver = (S, context) =>
             .title("Zomaar Run"),
         ),
       S.divider(),
+      orderableDocumentListDeskItem({
+        type: "activity",
+        id: "orderable-activity",
+        title: "Line-up activities",
+        icon: StarIcon,
+        S,
+        context,
+      }),
       orderableDocumentListDeskItem({
         type: "menuItem",
         id: "orderable-menuItem-drinks",

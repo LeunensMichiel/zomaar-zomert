@@ -1,5 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 
+import { activity } from "./activity";
 import { artist } from "./artist";
 import { artistBlockContent } from "./artistBlockContent";
 import { historyEntry } from "./historyEntry";
@@ -12,6 +13,7 @@ import { siteSettings } from "./siteSettings";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    activity,
     artist,
     artistBlockContent,
     historyEntry,

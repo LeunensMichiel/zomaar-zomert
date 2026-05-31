@@ -113,6 +113,24 @@ const localizedFlatArray = (field: string) => /* groq */ `
   )
 `;
 
+export const ACTIVITIES_QUERY = defineQuery(/* groq */ `
+  *[_type == "activity"] | order(orderRank asc) {
+    _id,
+    day,
+    doodle,
+    linkTarget,
+    "name": ${localizedFlat("name")},
+    "timeLabel": ${localizedFlat("timeLabel")},
+    "image": *[
+      _type == "sanity.imageAsset"
+      && ^.imageTag in opt.media.tags[]->name.current
+    ] | order(_createdAt asc)[0] {
+      "url": url,
+      "lqip": metadata.lqip
+    }
+  }
+`);
+
 export const MENU_QUERY = defineQuery(/* groq */ `
   *[_type == "menuItem" && enabled != false]
     | order(category asc, orderRank asc) {
@@ -278,6 +296,18 @@ export type Artist = {
   showFrom: string;
   bio: PortableTextBlock[];
   socials?: ArtistSocial[] | null;
+};
+
+export type ActivityLinkTarget = "bike" | "run" | "info";
+
+export type Activity = {
+  _id: string;
+  day: FestivalDay;
+  doodle: string;
+  linkTarget: ActivityLinkTarget;
+  name: string;
+  timeLabel: string;
+  image: { url: string | null; lqip: string | null } | null;
 };
 
 export type Headliner = {
