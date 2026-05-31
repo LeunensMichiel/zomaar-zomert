@@ -19,7 +19,6 @@ import { type ComponentType } from "react";
 
 import { type SideEvent, type SideEventFactIcon } from "@/sanity/lib/queries";
 
-import { FloatingPolaroid } from "./floating-polaroid";
 import { RevealCard } from "./reveal-card";
 
 export type SideEventVariant = "run" | "bike";
@@ -133,7 +132,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
           </Link>
 
           <div className="mt-8 grid items-center gap-10 md:mt-10 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-6">
               <div className="flex flex-col items-start gap-0">
                 {data.heroEyebrow && (
                   <Sticker color={v.eyebrow} size="sm" rotate={-3}>
@@ -162,12 +161,28 @@ export function SideEventContent({ data, variant, labels }: Props) {
             </div>
 
             {data.heroImage?.url && (
-              <div className="mx-auto w-full max-w-sm lg:col-span-5">
-                <FloatingPolaroid
-                  src={data.heroImage.url}
-                  alt={data.heroImage.alt}
-                  tilt={variant === "bike" ? 2 : -2}
-                />
+              <div className="mx-auto w-full max-w-xl lg:col-span-6 lg:max-w-none">
+                <div
+                  className="shadow-sticker-lg relative aspect-4/3 overflow-hidden border-2 border-gray-900"
+                  style={{
+                    transform: `rotate(${variant === "bike" ? "2" : "-2"}deg)`,
+                  }}
+                >
+                  <Image
+                    src={data.heroImage.url}
+                    alt={data.heroImage.alt}
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 720px"
+                    priority
+                    placeholder={data.heroImage.lqip ? "blur" : undefined}
+                    blurDataURL={data.heroImage.lqip ?? undefined}
+                    className="object-cover object-center"
+                  />
+                  <div
+                    aria-hidden
+                    className="halftone pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
+                  />
+                </div>
               </div>
             )}
           </div>
