@@ -92,3 +92,8 @@ ESLint flat config, type-checked. Notable enforced rules:
 - `simple-import-sort/imports` and `/exports` — imports are auto-sorted; don't hand-order.
 - `reportUnusedDisableDirectives: error` — stale `eslint-disable` comments fail the build.
 - `react-hooks/recommended-latest` (incl. `set-state-in-effect`). The `eslint-disable react-hooks/purity` lines you'll see are for legitimate hydration-only patches (random shuffles, `Date.now()` in server-component render, `localStorage` reads). Don't reach for `setState` inside `useEffect` for ordinary state syncing — derive from props/URL instead.
+
+### Comments
+
+- Add comments only when they add value (e.g. the code isn't self-explanatory or the WHY is non-obvious). Don't narrate Tailwind, hooks, animations, or section layout.
+- Keep comments concise.

@@ -22,24 +22,49 @@ export const artist = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "day",
-      title: "Festival day",
-      type: "string",
-      options: {
-        list: [
-          { title: "Friday", value: "friday" },
-          { title: "Saturday", value: "saturday" },
-          { title: "Sunday", value: "sunday" },
-        ],
-        layout: "radio",
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "hour",
-      title: "Set time",
-      type: "string",
-      description: 'Format: "21:30 - 23:00".',
+      name: "sets",
+      title: "Sets",
+      description:
+        "When the artist plays. One entry per day — an act that plays both Friday and Saturday gets two.",
+      type: "array",
+      validation: (rule) => rule.required().min(1),
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "set",
+          fields: [
+            defineField({
+              name: "day",
+              title: "Festival day",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Friday", value: "friday" },
+                  { title: "Saturday", value: "saturday" },
+                  { title: "Sunday", value: "sunday" },
+                ],
+                layout: "radio",
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "hour",
+              title: "Set time",
+              type: "string",
+              description: 'Format: "21:30 - 23:00".',
+            }),
+          ],
+          preview: {
+            select: { day: "day", hour: "hour" },
+            prepare(selection: { day?: string; hour?: string }) {
+              return {
+                title: selection.day ?? "Set",
+                subtitle: selection.hour ?? "",
+              };
+            },
+          },
+        }),
+      ],
     }),
     defineField({
       name: "showFrom",
@@ -121,26 +146,26 @@ export const artist = defineType({
     select: {
       title: "name",
       media: "image",
-      day: "day",
-      hour: "hour",
+      sets: "sets",
       showFrom: "showFrom",
     },
     prepare(selection: {
       title?: string;
       media?: unknown;
-      day?: string;
-      hour?: string;
+      sets?: { day?: string; hour?: string }[];
       showFrom?: string;
     }) {
-      const subtitleParts: string[] = [];
-      if (selection.day) subtitleParts.push(selection.day);
-      if (selection.hour) subtitleParts.push(selection.hour);
-      if (selection.showFrom && new Date(selection.showFrom) > new Date()) {
-        subtitleParts.push("hidden");
-      }
+      const days = (selection.sets ?? [])
+        .map((set) => [set.day, set.hour].filter(Boolean).join(" "))
+        .filter(Boolean)
+        .join(" · ");
+      const hidden =
+        selection.showFrom && new Date(selection.showFrom) > new Date()
+          ? "hidden"
+          : "";
       return {
         title: selection.title,
-        subtitle: subtitleParts.join(" · "),
+        subtitle: [days, hidden].filter(Boolean).join(" — "),
         media: selection.media as ReactNode,
       };
     },
@@ -152,12 +177,9 @@ export const artist = defineType({
       by: [{ field: "showFrom", direction: "asc" }],
     },
     {
-      title: "Day, then set time",
-      name: "dayHour",
-      by: [
-        { field: "day", direction: "asc" },
-        { field: "hour", direction: "asc" },
-      ],
+      title: "Name",
+      name: "nameAsc",
+      by: [{ field: "name", direction: "asc" }],
     },
   ],
 });

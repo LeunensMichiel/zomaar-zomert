@@ -62,5 +62,30 @@ export const artistBlockContent = defineType({
         },
       },
     }),
+    defineArrayMember({
+      type: "object",
+      name: "soundcloud",
+      title: "SoundCloud embed",
+      fields: [
+        defineField({
+          name: "url",
+          type: "url",
+          title: "SoundCloud URL",
+          description:
+            "Paste a SoundCloud track, set, or profile URL. The player plays inline inside the bio.",
+          validation: (rule) =>
+            rule.required().uri({ scheme: ["http", "https"] }),
+        }),
+      ],
+      preview: {
+        select: { url: "url" },
+        prepare(selection: { url?: string }) {
+          return {
+            title: "SoundCloud",
+            subtitle: selection.url ?? "",
+          };
+        },
+      },
+    }),
   ],
 });

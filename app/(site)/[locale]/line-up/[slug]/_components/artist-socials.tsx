@@ -27,7 +27,8 @@ const networkMeta: Record<
   instagram: {
     Icon: Instagram,
     label: "Instagram",
-    tile: "bg-gradient-to-tr from-[#FED373] via-[#F15245] via-[#D92E7F] via-[#9B36B7] to-[#515ECF] text-white",
+    tile:
+      "bg-[linear-gradient(45deg,#f09433,#e66833,#dc2743,#cc2366,#bc1888)] text-white",
   },
   facebook: {
     Icon: Facebook,

@@ -51,14 +51,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!artist) return {};
 
   const t = await getTranslations({ locale, namespace: "line-up" });
-  const dayName = new Date(getDateByDayString(artist.day)).toLocaleString(
-    locale,
-    { weekday: "long" },
-  );
+  const dayNames = [
+    ...new Set(
+      artist.sets.map((set) =>
+        new Date(getDateByDayString(set.day)).toLocaleString(locale, {
+          weekday: "long",
+        }),
+      ),
+    ),
+  ].join(" & ");
   const title = t("detail.SEO.title", { name: artist.name });
   const description = t("detail.SEO.description", {
     name: artist.name,
-    day: dayName,
+    day: dayNames,
   });
   return {
     title,
@@ -79,13 +84,23 @@ export default async function ArtistDetailPage({ params }: Props) {
   if (!artist) notFound();
 
   const t = await getTranslations({ locale, namespace: "line-up" });
-  const date = getDateByDayString(artist.day);
-  const dayName = new Date(date).toLocaleString(locale, { weekday: "long" });
-  const dateLong = new Date(date).toLocaleString(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const setLabels = artist.sets.map((set) => ({
+    day: new Date(getDateByDayString(set.day)).toLocaleString(locale, {
+      weekday: "long",
+    }),
+    hour: set.hour,
+  }));
+  const dateLong = [
+    ...new Set(artist.sets.map((set) => getDateByDayString(set.day))),
+  ]
+    .map((date) =>
+      new Date(date).toLocaleString(locale, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+    )
+    .join(" · ");
 
   return (
     <>
@@ -129,10 +144,19 @@ export default async function ArtistDetailPage({ params }: Props) {
                     className="shadow-sticker-lg relative z-10 border-2 border-gray-900 bg-yellow-400 p-6 md:p-8 lg:p-7 xl:p-9"
                     style={{ transform: "rotate(-1deg)" }}
                   >
-                    <Sticker color="ink" size="md" rotate={-2} className="mb-5">
-                      {dayName}
-                      {artist.hour ? ` · ${artist.hour}` : ""}
-                    </Sticker>
+                    <div className="mb-5 flex flex-wrap gap-2">
+                      {setLabels.map((set, i) => (
+                        <Sticker
+                          key={`${set.day}-${set.hour}`}
+                          color="ink"
+                          size="md"
+                          rotate={i % 2 === 0 ? -2 : 1.5}
+                        >
+                          {set.day}
+                          {set.hour ? ` · ${set.hour}` : ""}
+                        </Sticker>
+                      ))}
+                    </div>
 
                     <h1 className="font-display text-5xl leading-[0.88] font-bold wrap-break-word text-gray-900 uppercase md:text-6xl lg:text-5xl xl:text-6xl">
                       {formatArtistName(artist.name)}

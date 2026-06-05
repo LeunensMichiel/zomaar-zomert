@@ -14,10 +14,12 @@ type Tone = "blue" | "brand" | "pink";
 
 type Props = {
   artist: Artist;
+  hour: string;
   date: string;
   tone: Tone;
   tilt?: number;
   tbaLabel: string;
+  eyebrow: string;
 };
 
 const toneClass: Record<Tone, string> = {
@@ -27,14 +29,16 @@ const toneClass: Record<Tone, string> = {
 };
 
 const cardFrame =
-  "group relative block w-full border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg text-left";
+  "group relative flex h-full w-full flex-col border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg text-left";
 
 export function LineUpArtistCard({
   artist,
+  hour,
   date,
   tone,
   tilt = 0,
   tbaLabel,
+  eyebrow,
 }: Props) {
   const lang = useLocale();
   const isTBA = artist.name === "TBA";
@@ -85,24 +89,29 @@ export function LineUpArtistCard({
             className="px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-base"
           >
             <span className="md:hidden">
-              {shortDayLabel} · {artist.hour}
+              {shortDayLabel} · {hour}
             </span>
             <span className="hidden md:inline">
-              {dayLabel} · {artist.hour}
+              {dayLabel} · {hour}
             </span>
           </Sticker>
         </div>
       </div>
-      <div className="flex items-baseline justify-between gap-2 px-4 py-3 md:px-5 md:py-4">
-        <span className="font-display block text-xl leading-[0.9] font-bold wrap-break-word uppercase md:text-2xl xl:text-3xl">
-          {artist.name}
+      <div className="flex flex-1 flex-col justify-end px-4 py-3 md:px-5 md:py-4">
+        <span className="font-display block text-[0.625rem] leading-none font-bold tracking-[0.18em] uppercase opacity-70 md:text-xs">
+          {eyebrow}
         </span>
-        <span
-          aria-hidden="true"
-          className="font-display text-2xl leading-none md:text-3xl"
-        >
-          →
-        </span>
+        <div className="mt-1.5 flex items-baseline justify-between gap-2">
+          <span className="font-display block text-xl leading-[0.9] font-bold wrap-break-word uppercase md:text-2xl xl:text-3xl">
+            {artist.name}
+          </span>
+          <span
+            aria-hidden="true"
+            className="font-display text-2xl leading-none md:text-3xl"
+          >
+            →
+          </span>
+        </div>
       </div>
     </Link>
   );

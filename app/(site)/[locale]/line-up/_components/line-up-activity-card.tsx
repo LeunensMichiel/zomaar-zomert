@@ -31,7 +31,7 @@ const linkHref: Record<Activity["linkTarget"], "/bike" | "/run" | "/info"> = {
 };
 
 const cardFrame =
-  "group relative block w-full border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg text-left";
+  "group relative flex h-full w-full flex-col border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg text-left";
 
 export function LineUpActivityCard({
   activity,
@@ -107,7 +107,7 @@ export function LineUpActivityCard({
           </Sticker>
         </div>
       </div>
-      <div className="px-4 py-3 md:px-5 md:py-4">
+      <div className="flex flex-1 flex-col justify-end px-4 py-3 md:px-5 md:py-4">
         <span className="font-display block text-[0.625rem] leading-none font-bold tracking-[0.18em] uppercase opacity-70 md:text-xs">
           {eyebrow}
         </span>

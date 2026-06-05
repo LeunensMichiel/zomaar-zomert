@@ -48,6 +48,25 @@ const components: PortableTextComponents = {
     },
   },
   types: {
+    soundcloud: ({ value }) => {
+      const url = (value as { url?: string } | undefined)?.url ?? "";
+      if (!/^https?:\/\/(www\.)?soundcloud\.com\//.test(url)) return null;
+      const src = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
+        url,
+      )}&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
+      return (
+        <figure className="my-10 md:my-12">
+          <div className="shadow-sticker-lg relative -rotate-1 border-2 border-gray-900 bg-gray-900 md:rotate-1">
+            <iframe
+              src={src}
+              title="SoundCloud player"
+              allow="autoplay"
+              className="block h-41.5 w-full"
+            />
+          </div>
+        </figure>
+      );
+    },
     youtube: ({ value }) => {
       const url = (value as { url?: string } | undefined)?.url ?? "";
       const id = youtubeId(url);

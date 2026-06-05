@@ -86,7 +86,7 @@ export function TBACard({ tone, tilt = 0, tbaLabel, size = "md" }: Props) {
       <CardBack label={tbaLabel} scrollRotate={scrollRotate} />
       <div
         className={cn(
-          "flex flex-1 items-center justify-between gap-2",
+          "flex flex-1 items-end justify-between gap-2",
           labelPadClass[size],
         )}
       >

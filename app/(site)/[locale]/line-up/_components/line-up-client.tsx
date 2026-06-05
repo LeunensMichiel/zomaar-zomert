@@ -23,13 +23,15 @@ import { LineUpArtistCard } from "./line-up-card";
 // A line-up grid slot is either an act or a side activity. Activities
 // render a doodle-backed card that links out to its own page rather
 // than the artist detail template.
+// An artist plays one card per set, so the same act can surface on
+// multiple days; `hour` is that card's set time.
 type LineUpItem =
-  | { kind: "artist"; artist: Artist }
+  | { kind: "artist"; artist: Artist; hour: string }
   | { kind: "activity"; activity: Activity };
 
 const itemKey = (item: LineUpItem) =>
   item.kind === "artist"
-    ? `artist-${item.artist.name}-${item.artist.showFrom}`
+    ? `artist-${item.artist.name}-${item.artist.showFrom}-${item.hour}`
     : `activity-${item.activity._id}`;
 
 type Tone = "blue" | "brand" | "pink";
@@ -49,6 +51,14 @@ const DEAL_ORIGINS = [
   { x: 160, y: 120 },
   { x: -160, y: -130 },
 ] as const;
+
+// Sets before 06:00 are after-midnight closers, sorted to the night's end.
+const nightSortKey = (hour: string): number => {
+  const match = /^(\d{1,2}):(\d{2})/.exec(hour);
+  if (!match) return Number.POSITIVE_INFINITY;
+  const h = Number(match[1]);
+  return (h < 6 ? h + 24 : h) * 60 + Number(match[2]);
+};
 
 const dayFromDate = (date: string): "friday" | "saturday" | "sunday" => {
   if (date === ZZ_DATE_SATURDAY) return "saturday";
@@ -78,9 +88,13 @@ export function LineUpClient({ artists, activities, children }: Props) {
     const result: Record<string, LineUpItem[]> = {};
     for (const date of ZZ_DATES) {
       const list: LineUpItem[] = artists
-        .filter((a) => getDateByDayString(a.day) === date)
-        .sort((a, b) => a.hour.localeCompare(b.hour))
-        .map((artist) => ({ kind: "artist", artist }));
+        .flatMap((artist) =>
+          artist.sets
+            .filter((set) => getDateByDayString(set.day) === date)
+            .map((set) => ({ artist, hour: set.hour })),
+        )
+        .sort((a, b) => nightSortKey(a.hour) - nightSortKey(b.hour))
+        .map(({ artist, hour }) => ({ kind: "artist", artist, hour }));
       // Side activities follow the acts as the day's "extras".
       for (const activity of activities.filter(
         (a) => getDateByDayString(a.day) === date,
@@ -91,10 +105,10 @@ export function LineUpClient({ artists, activities, children }: Props) {
       while (list.length < 4) {
         list.push({
           kind: "artist",
+          hour: "",
           artist: {
             name: "TBA",
-            day: dayFromDate(date),
-            hour: "",
+            sets: [{ day: dayFromDate(date), hour: "" }],
             imgSrc: "",
             showFrom: `tba-${date}-${String(list.length)}`,
             bio: [],
@@ -238,6 +252,7 @@ export function LineUpClient({ artists, activities, children }: Props) {
               showHeading={showAll}
               lang={lang}
               tbaLabel={t("tba")}
+              artistEyebrow={t("artistEyebrow")}
               activityEyebrow={t("activityEyebrow")}
               reducedMotion={reducedMotion ?? false}
               animationType={showAll ? "deal" : "flip"}
@@ -257,6 +272,7 @@ type DaySectionProps = {
   showHeading: boolean;
   lang: string;
   tbaLabel: string;
+  artistEyebrow: string;
   activityEyebrow: string;
   reducedMotion: boolean;
   animationType: "deal" | "flip";
@@ -269,6 +285,7 @@ function DaySection({
   showHeading,
   lang,
   tbaLabel,
+  artistEyebrow,
   activityEyebrow,
   reducedMotion,
   animationType,
@@ -394,10 +411,12 @@ function DaySection({
             {item.kind === "artist" ? (
               <LineUpArtistCard
                 artist={item.artist}
+                hour={item.hour}
                 date={date}
                 tone={toneCycle[i % toneCycle.length]}
                 tilt={tiltCycle[i % tiltCycle.length]}
                 tbaLabel={tbaLabel}
+                eyebrow={artistEyebrow}
               />
             ) : (
               <LineUpActivityCard

@@ -22,8 +22,7 @@ const artistProjection = /* groq */ `
   _id,
   name,
   "slug": slug.current,
-  day,
-  hour,
+  sets[]{ day, hour },
   showFrom,
   socials[]{ network, url },
   "imgSrc": coalesce(image.asset->url, ""),
@@ -40,8 +39,8 @@ const headlinerProjection = /* groq */ `
   _id,
   name,
   "slug": slug.current,
-  day,
-  hour,
+  "day": sets[0].day,
+  "hour": sets[0].hour,
   "imgSrc": coalesce(image.asset->url, ""),
   "imgLqip": image.asset->metadata.lqip
 `;
@@ -285,12 +284,16 @@ export type ArtistSocial = {
   url: string;
 };
 
+export type ArtistSet = {
+  day: FestivalDay;
+  hour: string;
+};
+
 export type Artist = {
   _id?: string;
   name: string;
   slug?: string | null;
-  day: FestivalDay;
-  hour: string;
+  sets: ArtistSet[];
   imgSrc: string;
   imgLqip?: string | null;
   showFrom: string;
