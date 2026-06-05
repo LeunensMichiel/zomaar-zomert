@@ -2,7 +2,7 @@
 
 import { Sticker } from "@components/sticker";
 import { Link } from "@lib/i18n/navigation";
-import { cn } from "@lib/utils";
+import { cn, hotspotPosition } from "@lib/utils";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 
@@ -75,6 +75,7 @@ export function LineUpArtistCard({
           fill
           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover object-center transition-transform group-hover:scale-105"
+          style={{ objectPosition: hotspotPosition(artist.imgHotspot) }}
           placeholder={artist.imgLqip ? "blur" : "empty"}
           blurDataURL={artist.imgLqip ?? undefined}
         />

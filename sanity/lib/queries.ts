@@ -27,6 +27,7 @@ const artistProjection = /* groq */ `
   socials[]{ network, url },
   "imgSrc": coalesce(image.asset->url, ""),
   "imgLqip": image.asset->metadata.lqip,
+  "imgHotspot": image.hotspot { x, y },
   "bio": coalesce(
     bio[language == $locale][0].value,
     bio[language == "en"][0].value,
@@ -42,7 +43,8 @@ const headlinerProjection = /* groq */ `
   "day": sets[0].day,
   "hour": sets[0].hour,
   "imgSrc": coalesce(image.asset->url, ""),
-  "imgLqip": image.asset->metadata.lqip
+  "imgLqip": image.asset->metadata.lqip,
+  "imgHotspot": image.hotspot { x, y }
 `;
 
 export const PARTNERS_QUERY = defineQuery(/* groq */ `
@@ -289,6 +291,10 @@ export type ArtistSet = {
   hour: string;
 };
 
+// Sanity hotspot focal point (0–1 fractions) — drives object-position
+// so cropped artist photos stay centered on the subject.
+export type ImageHotspot = { x: number; y: number };
+
 export type Artist = {
   _id?: string;
   name: string;
@@ -296,6 +302,7 @@ export type Artist = {
   sets: ArtistSet[];
   imgSrc: string;
   imgLqip?: string | null;
+  imgHotspot?: ImageHotspot | null;
   showFrom: string;
   bio: PortableTextBlock[];
   socials?: ArtistSocial[] | null;
@@ -321,6 +328,7 @@ export type Headliner = {
   hour: string;
   imgSrc: string;
   imgLqip?: string | null;
+  imgHotspot?: ImageHotspot | null;
 };
 
 export const MenuType = {

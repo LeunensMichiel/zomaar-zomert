@@ -1,8 +1,10 @@
 import { Sticker } from "@components/sticker";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
-import { cn } from "@lib/utils";
+import { cn, hotspotPosition } from "@lib/utils";
 import Image from "next/image";
+
+import { type ImageHotspot } from "@/sanity/lib/queries";
 
 import { TBACard } from "./tba-card";
 
@@ -13,6 +15,7 @@ type Props = {
   day: "friday" | "saturday" | "sunday";
   imgSrc: string;
   imgLqip?: string | null;
+  imgHotspot?: ImageHotspot | null;
   date: string;
   locale: Locale;
   /** Decorative tilt in degrees. */
@@ -40,6 +43,7 @@ export function HeadlinerCard({
   day,
   imgSrc,
   imgLqip,
+  imgHotspot,
   date,
   locale,
   tilt = 0,
@@ -76,6 +80,7 @@ export function HeadlinerCard({
           fill
           sizes="(max-width: 768px) 90vw, 33vw"
           className="object-cover object-center transition-transform group-hover:scale-105"
+          style={{ objectPosition: hotspotPosition(imgHotspot) }}
           placeholder={imgLqip ? "blur" : "empty"}
           blurDataURL={imgLqip ?? undefined}
         />

@@ -4,6 +4,7 @@ import { Sticker } from "@components/sticker";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale, routing } from "@lib/i18n/routing";
 import { getDateByDayString, ZZ_YEAR } from "@lib/models";
+import { hotspotPosition } from "@lib/utils";
 import { formatArtistName } from "@lib/utils/string-utils";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -194,6 +195,9 @@ export default async function ArtistDetailPage({ params }: Props) {
                     priority
                     sizes="(max-width: 1024px) 90vw, 45vw"
                     className="object-cover object-center"
+                    style={{
+                      objectPosition: hotspotPosition(artist.imgHotspot),
+                    }}
                     quality={75}
                     placeholder={artist.imgLqip ? "blur" : "empty"}
                     blurDataURL={artist.imgLqip ?? undefined}
