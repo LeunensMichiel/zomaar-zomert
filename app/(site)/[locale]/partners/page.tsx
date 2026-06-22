@@ -328,7 +328,7 @@ function SupportPartnerLogo({ partner }: { partner: Partner }) {
       ) : (
         <FitText
           text={partner.name}
-          className="font-display text-sm leading-none text-white"
+          className="font-display text-xl leading-none text-white xl:text-2xl"
         />
       )}
     </Wrapper>
