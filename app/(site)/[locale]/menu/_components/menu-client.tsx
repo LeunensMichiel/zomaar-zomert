@@ -220,9 +220,6 @@ function MenuItemCard({
         tone,
       )}
     >
-      {/* Image tile — square, halftoned, bordered. Compact size
-          (~64-72px) so the card reads as a quick-scan menu line, not
-          a product card. */}
       <div className="relative aspect-square overflow-hidden border-2 border-gray-900 bg-pink-50">
         <Image
           src={item.img}
@@ -236,11 +233,7 @@ function MenuItemCard({
           className="halftone pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
         />
       </div>
-
-      {/* Text + voucher price. Tag-shape sticker has the angled left
-          cut that mimics a real voucher stub — keeps the Ticket icon
-          + price reading as a single physical object. */}
-      <div className="flex min-w-0 items-start justify-between gap-2">
+      <div className="flex min-w-0 items-start justify-between gap-1">
         <div className="min-w-0 flex-1">
           <h3 className="font-display truncate text-base leading-none font-bold text-gray-900 uppercase md:text-lg">
             {item.name}
@@ -249,7 +242,7 @@ function MenuItemCard({
             {item.description}
           </p>
         </div>
-        <span className="font-display shadow-sticker-sm shrink-0 -rotate-3 self-start border-2 border-gray-900 bg-gray-900 py-1 pr-2.5 pl-5 text-sm leading-none font-bold whitespace-nowrap text-yellow-300 uppercase [clip-path:polygon(8px_0%,100%_0%,100%_100%,8px_100%,0%_50%)] md:text-base">
+        <span className="font-display shadow-sticker-sm shrink-0 -rotate-3 self-start border-2 border-gray-900 bg-gray-900 py-[1.5px] pr-1 pl-2.5 text-sm leading-none font-bold whitespace-nowrap text-yellow-300 uppercase [clip-path:polygon(8px_0%,100%_0%,100%_100%,8px_100%,0%_50%)] md:text-base">
           <Ticket className="-mt-0.5 mr-1 inline-block h-4 w-4" />
           {item.price}
         </span>
