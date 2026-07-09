@@ -188,7 +188,12 @@ export async function Footer() {
   return (
     <>
       <div className="relative isolate flex items-center justify-center overflow-hidden">
-        <div className="relative z-[1] w-full overflow-hidden px-6 py-32 xl:py-60">
+        {/* Tears scale with viewport width (preserveAspectRatio="none"),
+            so on ultra-wide screens they'd grow past a fixed py and cover
+            the icons. Track the width with vw past 2xl — floored at the
+            xl spacing — and give the bottom more room since tear-1 is the
+            tallest silhouette. */}
+        <div className="relative z-[1] w-full overflow-hidden px-6 py-32 xl:py-60 2xl:pt-[max(15rem,10vw)] 2xl:pb-[max(15rem,15vw)]">
           <FooterPhotoParallax />
           {/* Atmosphere — light red wash + slow-spin star-burst + paper
               grain. Skips the blurred drifting blob from the hero so

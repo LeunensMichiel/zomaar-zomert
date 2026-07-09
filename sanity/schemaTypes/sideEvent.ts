@@ -136,6 +136,13 @@ export const sideEvent = defineType({
               type: "internationalizedArrayString",
             }),
             defineField({
+              name: "wayfinding",
+              title: "Wayfinding",
+              description:
+                'Optional navigation badge on the card (e.g. "Volg de pijlen", "GPX-tocht").',
+              type: "internationalizedArrayString",
+            }),
+            defineField({
               name: "body",
               title: "Description",
               type: "internationalizedArrayText",

@@ -56,7 +56,9 @@ export default async function InfoPage({ params }: Props) {
   const paellaDisabled =
     !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
     !settings?.paellaSignupUrl;
+  const petanqueFull = settings?.petanqueFull ?? false;
   const petanqueDisabled =
+    petanqueFull ||
     !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
     !settings?.petanqueSignupUrl;
 
@@ -98,7 +100,10 @@ export default async function InfoPage({ params }: Props) {
           Run lead with a link to their own pages; paella, petanque and
           quiz stay brief.
           ─────────────────────────────────────────────────────────────*/}
-      <section className="relative bg-blue-500 text-white">
+      <section
+        id="activiteiten"
+        className="relative scroll-mt-24 bg-blue-500 text-white md:scroll-mt-28"
+      >
         <Doodle
           shape="star-burst"
           color="royal-yellow"
@@ -209,9 +214,11 @@ export default async function InfoPage({ params }: Props) {
                 iconRight={<ChevronRight />}
               >
                 {t(
-                  petanqueDisabled
-                    ? "activities.cards.petanque.soon"
-                    : "activities.cards.petanque.cta",
+                  petanqueFull
+                    ? "activities.cards.petanque.full"
+                    : petanqueDisabled
+                      ? "activities.cards.petanque.soon"
+                      : "activities.cards.petanque.cta",
                 )}
               </Button>
             </article>

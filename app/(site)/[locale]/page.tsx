@@ -131,7 +131,9 @@ export default async function Home({ params }: Props) {
   const paellaDisabled =
     !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
     !settings?.paellaSignupUrl;
+  const petanqueFull = settings?.petanqueFull ?? false;
   const petanqueDisabled =
+    petanqueFull ||
     !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
     !settings?.petanqueSignupUrl;
   const days: Array<{ date: string; image: string; alt: string }> = [
@@ -492,7 +494,13 @@ export default async function Home({ params }: Props) {
                   sticker
                   iconRight={<ChevronRight />}
                 >
-                  {tHome(petanqueDisabled ? "petanqueSoon" : "petanque")}
+                  {tHome(
+                    petanqueFull
+                      ? "petanqueFull"
+                      : petanqueDisabled
+                        ? "petanqueSoon"
+                        : "petanque",
+                  )}
                 </Button>
               </div>
             </article>

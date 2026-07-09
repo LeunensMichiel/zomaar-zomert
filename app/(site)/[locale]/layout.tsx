@@ -13,7 +13,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 const SITE_URL = process.env.SITE_URL ?? "https://zomaarzomert.be";
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const oswald = Oswald({
   subsets: ["latin"],

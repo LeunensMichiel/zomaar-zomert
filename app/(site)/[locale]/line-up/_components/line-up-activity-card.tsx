@@ -24,10 +24,15 @@ const toneClass: Record<Tone, string> = {
   pink: "bg-pink-300 text-gray-900",
 };
 
-const linkHref: Record<Activity["linkTarget"], "/bike" | "/run" | "/info"> = {
+// Info activities deep-link to the randactiviteiten section so the list
+// scrolls into view rather than landing at the top of the info page.
+const linkHref: Record<
+  Activity["linkTarget"],
+  "/bike" | "/run" | { pathname: "/info"; hash: string }
+> = {
   bike: "/bike",
   run: "/run",
-  info: "/info",
+  info: { pathname: "/info", hash: "activiteiten" },
 };
 
 const cardFrame =

@@ -12,6 +12,7 @@ import {
   Euro,
   Info,
   MapPin,
+  Navigation,
   Route,
 } from "lucide-react";
 import Image from "next/image";
@@ -124,7 +125,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
         />
         <div className="container-wide relative z-10 pt-28 pb-16 md:pt-32 md:pb-24">
           <Link
-            href="/info"
+            href={{ pathname: "/info", hash: "activiteiten" }}
             className="font-display inline-flex items-center gap-2 text-xs font-bold tracking-wider text-white/70 uppercase transition-colors hover:text-white md:text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -246,10 +247,20 @@ export function SideEventContent({ data, variant, labels }: Props) {
                         TRACK_TONES[i % TRACK_TONES.length],
                       )}
                     >
-                      {track.distance && (
-                        <span className="font-display shadow-sticker-sm inline-block -rotate-2 self-start border-2 border-gray-900 bg-pink-50 px-3 py-1 text-sm font-bold tracking-wide text-gray-900 uppercase md:text-base">
-                          {track.distance}
-                        </span>
+                      {(track.distance || track.wayfinding) && (
+                        <div className="flex flex-wrap items-center gap-2 self-start">
+                          {track.distance && (
+                            <span className="font-display shadow-sticker-sm inline-block -rotate-2 border-2 border-gray-900 bg-pink-50 px-3 py-1 text-sm font-bold tracking-wide text-gray-900 uppercase md:text-base">
+                              {track.distance}
+                            </span>
+                          )}
+                          {track.wayfinding && (
+                            <span className="font-display shadow-sticker-sm inline-flex rotate-2 items-center gap-1.5 border-2 border-gray-900 bg-gray-900 px-3 py-1 text-sm font-bold tracking-wide text-white uppercase md:text-base">
+                              <Navigation className="h-3.5 w-3.5" />
+                              {track.wayfinding}
+                            </span>
+                          )}
+                        </div>
                       )}
                       <h3 className="font-display mt-5 text-3xl leading-[0.95] font-bold uppercase md:text-5xl">
                         {track.name}

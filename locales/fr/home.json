@@ -17,6 +17,7 @@
   "petanque": "Inscris-toi pour la pétanque",
   "paellaSoon": "Paella, bientôt",
   "petanqueSoon": "Pétanque, bientôt",
+  "petanqueFull": "Complet",
   "intro": {
     "body": "Trois jours de festival d'été dans le pré à Itterbeek, le dernier week-end de juillet. Musique live, bière fraîche et tout le quartier sous un même chapiteau. Gratuit pour tous, sans billets ni bracelets."
   },
@@ -48,11 +49,11 @@
     },
     "paella": {
       "title": "Paella du dimanche",
-      "body": "Longues tablées, une poêle géante et les voisins en compagnie. Inscription obligatoire. Les places partent vite chaque année."
+      "body": "Longues tablées, une poêle géante et les voisins en compagnie. L'inscription à l'avance est obligatoire, ainsi nous estimons mieux les portions et évitons le gaspillage."
     },
     "petanque": {
       "title": "Tournoi de pétanque",
-      "body": "Le tournoi de pétanque annuel, samedi après-midi, dans le pré à côté du chapiteau. Inscription gratuite, ouvert à tous."
+      "body": "Le tournoi annuel, samedi après-midi, dans le pré à côté du chapiteau. L'inscription à l'avance est obligatoire, le nombre d'équipes est limité."
     },
     "crew": {
       "body": "Deviens bénévole ou partenaire."

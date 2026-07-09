@@ -19,31 +19,32 @@
       "bike": {
         "day": "Friday",
         "title": "Zomaar Bike",
-        "body": "Mountain bike and gravel through the green western edge of Brussels. Waymarked route with food stops along the way."
+        "body": "Mountain bike and gravel through the green western edge of Brussels. Sign up in advance or on site, in advance is the smart move."
       },
       "run": {
         "day": "Sunday",
         "title": "Zomaar Run",
-        "body": "Running race over the Keperenberg. 7 or 14 km with official chip timing."
+        "body": "Running race over the Keperenberg, 7 or 14 km with chip timing. Sign up in advance or on site, in advance is the smart move."
       },
       "paella": {
         "day": "Sunday",
         "title": "Paella",
-        "body": "Long tables, one big pan and the neighbours as company. Sign-up required.",
+        "body": "Sunday from 12:00 to 15:00, at long tables with the neighbours as company. Ludo happily dishes his freshly made paella onto your plate. For the impatient little ones there's plenty of side entertainment. Signing up in advance is required, so we can estimate portions better and cut down on waste. You pay on site, and a sangria is on us.",
         "cta": "Sign up",
         "soon": "Soon"
       },
       "petanque": {
         "day": "Saturday",
         "title": "Pétanque",
-        "body": "The yearly tournament on the field next to the tent. Sign-up required.",
+        "body": "Saturday at 12:30, around four hours of boules on the field next to the tent. An afternoon somewhere between relaxed and competitive, a cold beer within reach. Signing up in advance is required, team spots are limited. On site it's €10 per person, bring your own pétanque set. Once it's full it's full, so don't wait too long.",
         "cta": "Sign up",
-        "soon": "Soon"
+        "soon": "Soon",
+        "full": "Full"
       },
       "quiz": {
         "day": "Sunday",
         "title": "Quiz",
-        "body": "The Zomaar Quiz in the run-up to the festival. Put together a team and come rack your brains."
+        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, €10 per team. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name and come rack your brains."
       }
     }
   }

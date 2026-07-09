@@ -14,10 +14,14 @@ export const updateGoogleConsent = (newConsent: "granted" | "denied") => {
   if (typeof window === "undefined") return;
   const w = window as DataLayerWindow;
   w.dataLayer = w.dataLayer ?? [];
-  w.dataLayer.push("consent", "update", {
-    ad_storage: newConsent,
-    analytics_storage: newConsent,
-  });
+  w.dataLayer.push([
+    "consent",
+    "update",
+    {
+      ad_storage: newConsent,
+      analytics_storage: newConsent,
+    },
+  ]);
 };
 
 export function CookieBanner() {

@@ -19,31 +19,32 @@
       "bike": {
         "day": "Vrijdag",
         "title": "Zomaar Bike",
-        "body": "Mountainbike en gravel door de groene westrand van Brussel. Bewegwijzerd parcours met bevoorrading onderweg."
+        "body": "Mountainbike en gravel door de groene westrand van Brussel. Vooraf inschrijven of ter plaatse, vooraf is de aanrader."
       },
       "run": {
         "day": "Zondag",
         "title": "Zomaar Run",
-        "body": "Loopwedstrijd over de Keperenberg. 7 of 14 km met officiële tijdsregistratie."
+        "body": "Loopwedstrijd over de Keperenberg, 7 of 14 km met tijdsregistratie. Vooraf inschrijven of ter plaatse, vooraf is de aanrader."
       },
       "paella": {
         "day": "Zondag",
         "title": "Paella",
-        "body": "Lange tafels, één grote pan en de buren als tafelgenoten. Inschrijven verplicht.",
+        "body": "Zondag van 12:00 tot 15:00, aan lange tafels met de buren als tafelgenoten. Ludo schept zijn versgemaakte paella graag op je bord. Voor de ongeduldige kleintjes is er tal van randanimatie voorzien. Vooraf inschrijven is verplicht, zo kunnen wij onze porties beter inschatten om verkwisting tegen te gaan. Betalen doe je ter plaatse, met een gratis sangria erbij.",
         "cta": "Schrijf je in",
         "soon": "Binnenkort"
       },
       "petanque": {
         "day": "Zaterdag",
         "title": "Petanque",
-        "body": "Het jaarlijkse tornooi op de wei naast de tent. Inschrijven verplicht.",
+        "body": "Zaterdag om 12:30, zo'n vier uur ballen op de wei naast de tent. Een namiddag tussen ontspannen en fanatiek, met koud bier binnen handbereik. Vooraf inschrijven is verplicht, er is een beperkt aantal teams. Ter plaatse betaal je €10 per persoon, breng je eigen petanqueset mee. Vol is vol, dus wees er op tijd bij.",
         "cta": "Schrijf je in",
-        "soon": "Binnenkort"
+        "soon": "Binnenkort",
+        "full": "Volzet"
       },
       "quiz": {
         "day": "Zondag",
         "title": "Quiz",
-        "body": "De Zomaar Quiz in aanloop naar het festival. Stel een ploeg samen en kom je hersenen kraken."
+        "body": "Zondagavond, de rustige afsluiter van het weekend. Inschrijven kan vanaf 19:30, de quiz zelf loopt van 20:00 tot 23:00. Inschrijven kan enkel ter plaatse en kost €10 per ploeg. Verwacht een avond vol vragen, af en toe een instinker en mooie prijzen voor de slimste tafels. Zoek een leuke ploegnaam en kom je hersenen kraken."
       }
     }
   }

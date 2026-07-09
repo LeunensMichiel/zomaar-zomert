@@ -17,6 +17,7 @@
   "petanque": "Schrijf je in voor de petanque",
   "paellaSoon": "Paella, binnenkort",
   "petanqueSoon": "Petanque, binnenkort",
+  "petanqueFull": "Volzet",
   "intro": {
     "body": "Drie dagen zomerfestival op de wei in Itterbeek, het laatste weekend van juli. Live muziek, koud bier en de ganse buurt onder één tent. Gratis voor iedereen, zonder tickets of polsbandjes."
   },
@@ -48,11 +49,11 @@
     },
     "paella": {
       "title": "Paella op zondag",
-      "body": "Lange tafels, één gigantische pan en de buren als tafelgenoten. Inschrijven verplicht, de plaatsen lopen elk jaar snel vol."
+      "body": "Lange tafels, één gigantische pan en de buren als tafelgenoten. Vooraf inschrijven is verplicht, zo kunnen wij onze porties beter inschatten om verkwisting tegen te gaan."
     },
     "petanque": {
       "title": "Petanquetornooi",
-      "body": "Het jaarlijkse petanquetornooi op zaterdagmiddag, op de wei naast de tent. Inschrijven is gratis, iedereen mag meedoen."
+      "body": "Het jaarlijkse tornooi op zaterdagmiddag, op de wei naast de tent. Vooraf inschrijven is verplicht, het aantal teams is beperkt."
     },
     "crew": {
       "body": "Word vrijwilliger of partner."

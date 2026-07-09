@@ -17,6 +17,7 @@
   "petanque": "Sign up for the pétanque",
   "paellaSoon": "Paella, soon",
   "petanqueSoon": "Pétanque, soon",
+  "petanqueFull": "Full",
   "intro": {
     "body": "Three days of summer festival on the field in Itterbeek, the last weekend of July. Live music, cold beer and the whole neighbourhood under one tent. Free for everyone, no tickets or wristbands."
   },
@@ -48,11 +49,11 @@
     },
     "paella": {
       "title": "Sunday paella",
-      "body": "Long tables, one giant pan, the neighbours as company. Sign-up required, spots fill fast every year."
+      "body": "Long tables, one giant pan, the neighbours as company. Signing up in advance is required, so we can estimate portions better and cut down on waste."
     },
     "petanque": {
       "title": "Pétanque tournament",
-      "body": "The yearly pétanque tournament, Saturday afternoon, on the field next to the tent. Free to enter, open to all."
+      "body": "The yearly tournament, Saturday afternoon, on the field next to the tent. Signing up in advance is required, team spots are limited."
     },
     "crew": {
       "body": "Become a volunteer or partner."

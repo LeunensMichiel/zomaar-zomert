@@ -169,7 +169,8 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
     paellaSignupUrl,
     paellaSignupEnabledFrom,
     petanqueSignupUrl,
-    petanqueSignupEnabledFrom
+    petanqueSignupEnabledFrom,
+    petanqueFull
   }
 `);
 
@@ -197,6 +198,7 @@ export const SIDE_EVENT_QUERY = defineQuery(/* groq */ `
     "tracks": tracks[] {
       "name": ${localizedFlat("name")},
       "distance": ${localizedFlat("distance")},
+      "wayfinding": ${localizedFlat("wayfinding")},
       "body": ${localizedFlat("body")}
     },
     "sections": sections[] {
@@ -381,6 +383,7 @@ export type SiteSettings = {
   paellaSignupEnabledFrom: string | null;
   petanqueSignupUrl: string | null;
   petanqueSignupEnabledFrom: string | null;
+  petanqueFull: boolean | null;
 };
 
 export type SideEventImage = {
@@ -407,6 +410,7 @@ export type SideEventFact = {
 export type SideEventTrack = {
   name: string;
   distance: string;
+  wayfinding: string;
   body: string;
 };
 

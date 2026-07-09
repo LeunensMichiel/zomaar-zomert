@@ -111,6 +111,14 @@ export const siteSettings = defineType({
         "The pétanque button shows “Binnenkort” until this moment, then links to the form.",
       type: "datetime",
     }),
+    defineField({
+      name: "petanqueFull",
+      title: "Pétanque volzet",
+      description:
+        "Zet aan wanneer het tornooi vol is. De knop toont dan “Volzet” en linkt niet meer naar het formulier.",
+      type: "boolean",
+      initialValue: false,
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Site settings" }),
