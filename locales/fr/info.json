@@ -36,7 +36,7 @@
       "petanque": {
         "day": "Samedi",
         "title": "Pétanque",
-        "body": "Samedi à 12h30, environ quatre heures de boules dans le pré à côté du chapiteau. Une après-midi entre détente et esprit de compétition, une bière fraîche à portée de main. L'inscription à l'avance est obligatoire, le nombre d'équipes est limité. Sur place, c'est €10 par personne, apporte ton propre jeu de pétanque. Une fois complet, c'est complet, alors ne tarde pas.",
+        "body": "Samedi à 12h30, environ quatre heures de boules dans le pré à côté du chapiteau. Une après-midi entre détente et esprit de compétition, une bière fraîche à portée de main. L'inscription à l'avance est obligatoire, le nombre d'équipes est limité. Sur place, c'est {price}, apporte ton propre jeu de pétanque. Une fois complet, c'est complet, alors ne tarde pas.",
         "cta": "Inscris-toi",
         "soon": "Bientôt",
         "full": "Complet"
@@ -44,7 +44,7 @@
       "quiz": {
         "day": "Dimanche",
         "title": "Quiz",
-        "body": "Dimanche soir, la clôture tranquille du week-end. Inscriptions dès 19h30, le quiz de 20h à 23h. L'inscription se fait uniquement sur place et coûte €10 par équipe. Attends-toi à une soirée de questions, quelques pièges et de beaux prix pour les tables les plus futées. Trouve un nom d'équipe rigolo et viens te creuser les méninges."
+        "body": "Dimanche soir, la clôture tranquille du week-end. Inscriptions dès 19h30, le quiz de 20h à 23h. L'inscription se fait uniquement sur place et coûte {price}. Attends-toi à une soirée de questions, quelques pièges et de beaux prix pour les tables les plus futées. Trouve un nom d'équipe rigolo et viens te creuser les méninges."
       }
     }
   }

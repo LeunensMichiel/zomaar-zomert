@@ -61,6 +61,8 @@ export default async function InfoPage({ params }: Props) {
     petanqueFull ||
     !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
     !settings?.petanqueSignupUrl;
+  const petanquePrice = settings?.petanquePrice || "€10";
+  const quizPrice = settings?.quizPrice || "€20";
 
   return (
     <>
@@ -196,7 +198,7 @@ export default async function InfoPage({ params }: Props) {
                 {t("activities.cards.petanque.title")}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
-                {t("activities.cards.petanque.body")}
+                {t("activities.cards.petanque.body", { price: petanquePrice })}
               </p>
               <Button
                 as="a"
@@ -231,7 +233,7 @@ export default async function InfoPage({ params }: Props) {
                 {t("activities.cards.quiz.title")}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
-                {t("activities.cards.quiz.body")}
+                {t("activities.cards.quiz.body", { price: quizPrice })}
               </p>
             </article>
           </div>

@@ -36,7 +36,7 @@
       "petanque": {
         "day": "Zaterdag",
         "title": "Petanque",
-        "body": "Zaterdag om 12:30, zo'n vier uur ballen op de wei naast de tent. Een namiddag tussen ontspannen en fanatiek, met koud bier binnen handbereik. Vooraf inschrijven is verplicht, er is een beperkt aantal teams. Ter plaatse betaal je €10 per persoon, breng je eigen petanqueset mee. Vol is vol, dus wees er op tijd bij.",
+        "body": "Zaterdag om 12:30, zo'n vier uur ballen op de wei naast de tent. Een namiddag tussen ontspannen en fanatiek, met koud bier binnen handbereik. Vooraf inschrijven is verplicht, er is een beperkt aantal teams. Ter plaatse betaal je {price}, breng je eigen petanqueset mee. Vol is vol, dus wees er op tijd bij.",
         "cta": "Schrijf je in",
         "soon": "Binnenkort",
         "full": "Volzet"
@@ -44,7 +44,7 @@
       "quiz": {
         "day": "Zondag",
         "title": "Quiz",
-        "body": "Zondagavond, de rustige afsluiter van het weekend. Inschrijven kan vanaf 19:30, de quiz zelf loopt van 20:00 tot 23:00. Inschrijven kan enkel ter plaatse en kost €10 per ploeg. Verwacht een avond vol vragen, af en toe een instinker en mooie prijzen voor de slimste tafels. Zoek een leuke ploegnaam en kom je hersenen kraken."
+        "body": "Zondagavond, de rustige afsluiter van het weekend. Inschrijven kan vanaf 19:30, de quiz zelf loopt van 20:00 tot 23:00. Inschrijven kan enkel ter plaatse en kost {price}. Verwacht een avond vol vragen, af en toe een instinker en mooie prijzen voor de slimste tafels. Zoek een leuke ploegnaam en kom je hersenen kraken."
       }
     }
   }

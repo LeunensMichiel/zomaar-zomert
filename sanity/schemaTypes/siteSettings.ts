@@ -119,6 +119,20 @@ export const siteSettings = defineType({
       type: "boolean",
       initialValue: false,
     }),
+    defineField({
+      name: "petanquePrice",
+      title: "Pétanque prijs",
+      description:
+        'Volledige prijs zoals getoond op de info-kaart, bv. "€10 per ploeg". Localize per NL/FR/EN.',
+      type: "internationalizedArrayString",
+    }),
+    defineField({
+      name: "quizPrice",
+      title: "Quiz prijs",
+      description:
+        'Volledige prijs zoals getoond op de info-kaart, bv. "€20 per ploeg". Localize per NL/FR/EN.',
+      type: "internationalizedArrayString",
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Site settings" }),

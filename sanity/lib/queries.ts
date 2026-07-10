@@ -170,7 +170,9 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
     paellaSignupEnabledFrom,
     petanqueSignupUrl,
     petanqueSignupEnabledFrom,
-    petanqueFull
+    petanqueFull,
+    "petanquePrice": ${localizedFlat("petanquePrice")},
+    "quizPrice": ${localizedFlat("quizPrice")}
   }
 `);
 
@@ -384,6 +386,8 @@ export type SiteSettings = {
   petanqueSignupUrl: string | null;
   petanqueSignupEnabledFrom: string | null;
   petanqueFull: boolean | null;
+  petanquePrice: string;
+  quizPrice: string;
 };
 
 export type SideEventImage = {

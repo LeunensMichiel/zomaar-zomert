@@ -36,7 +36,7 @@
       "petanque": {
         "day": "Saturday",
         "title": "Pétanque",
-        "body": "Saturday at 12:30, around four hours of boules on the field next to the tent. An afternoon somewhere between relaxed and competitive, a cold beer within reach. Signing up in advance is required, team spots are limited. On site it's €10 per person, bring your own pétanque set. Once it's full it's full, so don't wait too long.",
+        "body": "Saturday at 12:30, around four hours of boules on the field next to the tent. An afternoon somewhere between relaxed and competitive, a cold beer within reach. Signing up in advance is required, team spots are limited. On site it's {price}, bring your own pétanque set. Once it's full it's full, so don't wait too long.",
         "cta": "Sign up",
         "soon": "Soon",
         "full": "Full"
@@ -44,7 +44,7 @@
       "quiz": {
         "day": "Sunday",
         "title": "Quiz",
-        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, €10 per team. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name and come rack your brains."
+        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, {price}. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name and come rack your brains."
       }
     }
   }
