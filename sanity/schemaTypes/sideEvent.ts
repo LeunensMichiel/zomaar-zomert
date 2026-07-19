@@ -26,6 +26,7 @@ export const sideEvent = defineType({
   groups: [
     { name: "content", title: "Content", default: true },
     { name: "signup", title: "Signup" },
+    { name: "downloads", title: "Route downloads" },
     { name: "media", title: "Media" },
   ],
   fields: [
@@ -215,6 +216,112 @@ export const sideEvent = defineType({
         "The signup button shows “Binnenkort” until this moment, then links to the form.",
       type: "datetime",
       group: "signup",
+    }),
+    defineField({
+      name: "gpxVisibleFrom",
+      title: "Downloads open from",
+      description:
+        "The GPX download section stays hidden until this moment (e.g. Friday 15:00 for the bike, Sunday 09:00 for the run). Leave empty to keep it hidden.",
+      type: "datetime",
+      group: "downloads",
+    }),
+    defineField({
+      name: "gpxVisibleUntil",
+      title: "Downloads hidden after",
+      description:
+        "The section disappears again after this moment (e.g. end of the ride day). Leave empty to keep it available.",
+      type: "datetime",
+      group: "downloads",
+      validation: (rule) =>
+        rule.custom((until, context) => {
+          const from = (
+            context.document as { gpxVisibleFrom?: string } | undefined
+          )?.gpxVisibleFrom;
+          if (until && from && new Date(until) <= new Date(from)) {
+            return "Must be later than “Downloads open from”.";
+          }
+          return true;
+        }),
+    }),
+    defineField({
+      name: "gpxRoutes",
+      title: "Route downloads & links",
+      description:
+        "One card per route. Attach a .gpx file, a Strava route link, or both. Add none to hide the whole section. Drag to reorder.",
+      type: "array",
+      group: "downloads",
+      validation: (rule) =>
+        rule
+          .custom((routes, context) => {
+            const hasRoutes = Array.isArray(routes) && routes.length > 0;
+            const from = (
+              context.document as { gpxVisibleFrom?: string } | undefined
+            )?.gpxVisibleFrom;
+            if (hasRoutes && !from) {
+              return "Set “Downloads open from” or the section stays hidden.";
+            }
+            return true;
+          })
+          .warning(),
+      of: [
+        {
+          type: "object",
+          name: "gpxRoute",
+          validation: (rule) =>
+            rule.custom((route) => {
+              const r = route as
+                | { file?: { asset?: { _ref?: string } }; stravaUrl?: string }
+                | undefined;
+              const hasFile = !!r?.file?.asset?._ref;
+              const hasStrava = !!r?.stravaUrl;
+              if (!hasFile && !hasStrava) {
+                return "Add a GPX file, a Strava route link, or both.";
+              }
+              return true;
+            }),
+          fields: [
+            defineField({
+              name: "title",
+              title: "Route name",
+              description:
+                'Shown on the card (e.g. "Mountainbike · 50 km", "Parcours · 7 km").',
+              type: "internationalizedArrayString",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "file",
+              title: "GPX file",
+              description: "Optional if a Strava link is provided.",
+              type: "file",
+              options: { accept: ".gpx,application/gpx+xml" },
+            }),
+            defineField({
+              name: "stravaUrl",
+              title: "Strava route link",
+              description:
+                "Optional. Full Strava route URL (e.g. https://www.strava.com/routes/1234). Opens in a new tab.",
+              type: "url",
+              validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+            }),
+          ],
+          preview: {
+            select: {
+              title: "title",
+              filename: "file.asset.originalFilename",
+              stravaUrl: "stravaUrl",
+            },
+            prepare: (sel: {
+              title?: { language?: string; value?: string }[];
+              filename?: string;
+              stravaUrl?: string;
+            }) => ({
+              title: nlValue(sel.title) ?? "Route",
+              subtitle:
+                sel.filename ?? (sel.stravaUrl ? "Strava route" : undefined),
+            }),
+          },
+        },
+      ],
     }),
     defineField({
       name: "gallery",

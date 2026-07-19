@@ -17,5 +17,16 @@
     "signup": "Sign up",
     "signupSoon": "Soon",
     "backToInfo": "All activities"
+  },
+  "downloads": {
+    "eyebrow": "GPX routes",
+    "heading": "Download the route",
+    "hint": "Load the track into your bike computer or GPS app and just follow along.",
+    "download": "Download",
+    "downloading": "Working…",
+    "retry": "Retry",
+    "done": "Saved",
+    "error": "Download failed. Please try again.",
+    "openStrava": "View on Strava"
   }
 }

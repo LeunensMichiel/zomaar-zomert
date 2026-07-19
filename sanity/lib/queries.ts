@@ -210,7 +210,27 @@ export const SIDE_EVENT_QUERY = defineQuery(/* groq */ `
     "practicalNote": ${localizedFlat("practicalNote")},
     signupUrl,
     signupEnabledFrom,
+    gpxVisibleFrom,
+    gpxVisibleUntil,
+    "gpxRoutes": gpxRoutes[defined(file.asset) || defined(stravaUrl)] {
+      "title": ${localizedFlat("title")},
+      "filename": file.asset->originalFilename,
+      "size": file.asset->size,
+      "hasFile": defined(file.asset),
+      stravaUrl
+    },
     "gallery": gallery[] ${sideEventImage("")}
+  }
+`);
+
+export const GPX_DOWNLOAD_QUERY = defineQuery(/* groq */ `
+  *[_id == $id][0] {
+    gpxVisibleFrom,
+    gpxVisibleUntil,
+    "routes": gpxRoutes[defined(file.asset) || defined(stravaUrl)] {
+      "url": file.asset->url,
+      "filename": file.asset->originalFilename
+    }
   }
 `);
 
@@ -423,6 +443,14 @@ export type SideEventSection = {
   body: string;
 };
 
+export type SideEventGpxRoute = {
+  title: string;
+  filename: string | null;
+  size: number | null;
+  hasFile: boolean;
+  stravaUrl: string | null;
+};
+
 export type SideEvent = {
   heroEyebrow: string;
   heroTitle: string;
@@ -434,6 +462,9 @@ export type SideEvent = {
   practicalNote: string;
   signupUrl: string | null;
   signupEnabledFrom: string | null;
+  gpxVisibleFrom: string | null;
+  gpxVisibleUntil: string | null;
+  gpxRoutes: SideEventGpxRoute[] | null;
   gallery: SideEventImage[] | null;
 };
 

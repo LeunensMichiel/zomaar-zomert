@@ -72,6 +72,15 @@ export const isSignupEnabled = (
   now >= new Date(enabledFrom) &&
   now <= new Date(ZZ_DATE_SUNDAY);
 
+export const isGpxDownloadOpen = (
+  visibleFrom?: string | null,
+  visibleUntil?: string | null,
+  now: Date = new Date(),
+) =>
+  !!visibleFrom &&
+  now >= new Date(visibleFrom) &&
+  (!visibleUntil || now <= new Date(visibleUntil));
+
 export const ZZ_LATITUDE = 50.831583;
 export const ZZ_LONGITUDE = 4.234742;
 export const ZZ_MAPS_URL = `https://www.google.com/maps?q=${String(ZZ_LATITUDE)},${String(ZZ_LONGITUDE)}`;

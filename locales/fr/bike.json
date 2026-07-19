@@ -17,5 +17,16 @@
     "signup": "Inscris-toi",
     "signupSoon": "Bientôt",
     "backToInfo": "Toutes les activités"
+  },
+  "downloads": {
+    "eyebrow": "Parcours GPX",
+    "heading": "Téléchargez le parcours",
+    "hint": "Chargez la trace dans votre compteur ou appli GPS et roulez sans détour.",
+    "download": "Télécharger",
+    "downloading": "En cours…",
+    "retry": "Réessayer",
+    "done": "Enregistré",
+    "error": "Le téléchargement a échoué. Réessayez.",
+    "openStrava": "Voir sur Strava"
   }
 }

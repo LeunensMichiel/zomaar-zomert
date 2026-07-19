@@ -51,6 +51,17 @@ export default async function RunPage({ params }: Props) {
         signup: t("labels.signup"),
         signupSoon: t("labels.signupSoon"),
         backToInfo: t("labels.backToInfo"),
+        gpx: {
+          eyebrow: t("downloads.eyebrow"),
+          heading: t("downloads.heading"),
+          hint: t("downloads.hint"),
+          download: t("downloads.download"),
+          downloading: t("downloads.downloading"),
+          retry: t("downloads.retry"),
+          done: t("downloads.done"),
+          error: t("downloads.error"),
+          openStrava: t("downloads.openStrava"),
+        },
       }}
     />
   );

@@ -17,5 +17,16 @@
     "signup": "Inscris-toi",
     "signupSoon": "Bientôt",
     "backToInfo": "Toutes les activités"
+  },
+  "downloads": {
+    "eyebrow": "Parcours",
+    "heading": "Découvre le parcours",
+    "hint": "Ouvre le parcours dans Strava et envoie-le vers ta montre.",
+    "download": "Télécharger",
+    "downloading": "En cours…",
+    "retry": "Réessayer",
+    "done": "Enregistré",
+    "error": "Le téléchargement a échoué. Réessayez.",
+    "openStrava": "Voir sur Strava"
   }
 }

@@ -3,7 +3,7 @@ import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Link } from "@lib/i18n/navigation";
-import { isSignupEnabled } from "@lib/models";
+import { isGpxDownloadOpen, isSignupEnabled } from "@lib/models";
 import { cn } from "@lib/utils";
 import {
   ArrowLeft,
@@ -20,9 +20,22 @@ import { type ComponentType } from "react";
 
 import { type SideEvent, type SideEventFactIcon } from "@/sanity/lib/queries";
 
+import { GpxDownloads, type GpxEventId } from "./gpx-downloads";
 import { RevealCard } from "./reveal-card";
 
 export type SideEventVariant = "run" | "bike";
+
+type GpxLabels = {
+  eyebrow: string;
+  heading: string;
+  hint: string;
+  download: string;
+  downloading: string;
+  retry: string;
+  done: string;
+  error: string;
+  openStrava: string;
+};
 
 type Labels = {
   factsEyebrow: string;
@@ -34,6 +47,7 @@ type Labels = {
   signup: string;
   signupSoon: string;
   backToInfo: string;
+  gpx: GpxLabels;
 };
 
 type VariantStyle = {
@@ -42,6 +56,8 @@ type VariantStyle = {
   block: string;
   eyebrow: "yellow" | "ink" | "pink" | "blue";
   ctaBanner: string;
+  gpxEventId: GpxEventId;
+  gpxButton: "sky" | "brand";
   heroDoodle: { shape: DoodleShape; color: DoodleColor; accent?: DoodleColor };
   scatterDoodle: { shape: DoodleShape; color: DoodleColor };
 };
@@ -53,6 +69,8 @@ const VARIANTS: Record<SideEventVariant, VariantStyle> = {
     block: "rotate-1 bg-yellow-400 text-gray-900",
     eyebrow: "yellow",
     ctaBanner: "bg-brand-500",
+    gpxEventId: "zomaarBike",
+    gpxButton: "sky",
     heroDoodle: { shape: "coil", color: "royal-yellow" },
     scatterDoodle: { shape: "flame", color: "linear-sunset" },
   },
@@ -62,6 +80,8 @@ const VARIANTS: Record<SideEventVariant, VariantStyle> = {
     block: "-rotate-2 bg-gray-900 text-yellow-400",
     eyebrow: "ink",
     ctaBanner: "bg-blue-500",
+    gpxEventId: "zomaarRun",
+    gpxButton: "brand",
     heroDoodle: { shape: "sun-rays", color: "royal-yellow" },
     scatterDoodle: { shape: "flame", color: "linear-sunset" },
   },
@@ -102,6 +122,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
   const tracks = data.tracks ?? [];
   const sections = data.sections ?? [];
   const gallery = (data.gallery ?? []).filter((g) => g.url);
+  const gpxRoutes = data.gpxRoutes ?? [];
 
   const signupReady = isSignupEnabled(data.signupEnabledFrom);
   const signupDisabled = !signupReady || !data.signupUrl;
@@ -275,6 +296,22 @@ export function SideEventContent({ data, variant, labels }: Props) {
                 ))}
               </div>
             </div>
+          )}
+
+          {/* GPX DOWNLOADS — event-time only, gated by the visibility window */}
+          {gpxRoutes.length > 0 && (
+            <GpxDownloads
+              event={v.gpxEventId}
+              routes={gpxRoutes}
+              visibleFrom={data.gpxVisibleFrom}
+              visibleUntil={data.gpxVisibleUntil}
+              initialVisible={isGpxDownloadOpen(
+                data.gpxVisibleFrom,
+                data.gpxVisibleUntil,
+              )}
+              buttonVariant={v.gpxButton}
+              labels={labels.gpx}
+            />
           )}
 
           {/* TEXT SECTIONS + PRACTICAL */}
