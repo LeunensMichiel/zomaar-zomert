@@ -3,8 +3,8 @@
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { Textarea } from "@components/ui/textarea";
-import { Toast } from "@components/ui/toast";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MailCheck } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -29,6 +29,7 @@ function encodeForm(values: FormValues) {
 
 export function Form() {
   const t = useTranslations("contact");
+  const reduceMotion = useReducedMotion();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -56,6 +57,41 @@ export function Form() {
       setIsSubmitting(false);
     }
   }, []);
+
+  if (isSubmitted) {
+    return (
+      <motion.div
+        role="status"
+        aria-live="polite"
+        initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 22 }}
+        className="shadow-sticker flex flex-col items-center gap-5 border-2 border-gray-900 bg-pink-50 px-6 py-12 text-center"
+      >
+        <motion.span
+          initial={reduceMotion ? false : { rotate: -8, scale: 0.6 }}
+          animate={{ rotate: -4, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 16,
+            delay: 0.1,
+          }}
+          className="shadow-sticker-sm flex size-16 items-center justify-center border-2 border-gray-900 bg-gray-900 text-white md:size-20"
+        >
+          <MailCheck className="size-8 md:size-10" strokeWidth={2.25} />
+        </motion.span>
+        <div>
+          <p className="font-display text-2xl font-bold tracking-tight text-gray-900 md:text-3xl">
+            {t("form.successTitle")}
+          </p>
+          <p className="mx-auto mt-2 max-w-xs text-base text-gray-700">
+            {t("form.success")}
+          </p>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <form
@@ -115,9 +151,6 @@ export function Form() {
       >
         {t("form.button")}
       </Button>
-      <Toast duration={5000} isShown={isSubmitted}>
-        {t("form.success")}
-      </Toast>
     </form>
   );
 }

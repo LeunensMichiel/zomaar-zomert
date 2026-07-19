@@ -40,6 +40,7 @@
       "error": "Write a message."
     },
     "button": "Send",
-    "success": "Message sent. We'll get back to you as soon as we can."
+    "successTitle": "Message sent.",
+    "success": "We'll get back to you as soon as we can."
   }
 }
