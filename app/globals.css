@@ -258,14 +258,16 @@
   width: 100%;
   max-width: var(--container-page);
   margin-inline: auto;
-  padding-inline: max(1.5rem, env(safe-area-inset-left)) max(1.5rem, env(safe-area-inset-right));
+  padding-inline: max(1.5rem, env(safe-area-inset-left))
+    max(1.5rem, env(safe-area-inset-right));
 }
 
 @utility container-wide {
   width: 100%;
   max-width: var(--container-wide);
   margin-inline: auto;
-  padding-inline: max(1.5rem, env(safe-area-inset-left)) max(1.5rem, env(safe-area-inset-right));
+  padding-inline: max(1.5rem, env(safe-area-inset-left))
+    max(1.5rem, env(safe-area-inset-right));
 }
 
 @utility section-y {

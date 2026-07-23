@@ -24,7 +24,8 @@
   "countdown": {
     "daysAway": "encore un peu de patience",
     "dayWord": "JOUR.",
-    "daysWord": "JOURS."
+    "daysWord": "JOURS.",
+    "tomorrow": "DEMAIN !"
   },
   "lineup": {
     "heading": "Line-up",

@@ -24,7 +24,8 @@
   "countdown": {
     "daysAway": "nog efkes aftellen",
     "dayWord": "DAG.",
-    "daysWord": "DAGEN."
+    "daysWord": "DAGEN.",
+    "tomorrow": "MORGEN!"
   },
   "lineup": {
     "heading": "Line-up",

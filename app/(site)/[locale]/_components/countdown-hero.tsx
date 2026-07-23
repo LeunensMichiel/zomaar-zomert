@@ -309,6 +309,7 @@ export function CountdownHero() {
   }
 
   const [d, h, m, s] = compute(diff ?? 0);
+  const isTomorrow = d === 0;
   const dayWord = d === 1 ? t("countdown.dayWord") : t("countdown.daysWord");
 
   return (
@@ -333,53 +334,72 @@ export function CountdownHero() {
       </motion.span>
 
       <div className="flex flex-col items-center gap-1 md:gap-2">
-        <motion.div
-          variants={{
-            hidden: { y: 32, opacity: 0, rotate: -6, scale: 0.9 },
-            show: {
-              y: 0,
-              opacity: 1,
-              rotate: -2,
-              scale: 1,
-              transition: { type: "spring", damping: 14, stiffness: 130 },
-            },
-          }}
-          className="relative"
-        >
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.span
-              key={d}
-              initial={
-                reducedMotion ? false : { y: "20%", opacity: 0, rotate: -8 }
-              }
-              animate={{ y: 0, opacity: 1, rotate: 0 }}
-              exit={
-                reducedMotion
-                  ? { opacity: 0 }
-                  : { y: "-40%", opacity: 0, rotate: 5 }
-              }
-              transition={{ type: "spring", damping: 16, stiffness: 140 }}
-              className="font-display inline-block text-[clamp(8rem,12vw,15rem)] leading-[0.78] font-bold text-white uppercase tabular-nums"
+        {isTomorrow ? (
+          <motion.h2
+            variants={{
+              hidden: { scale: 0.7, rotate: -8, opacity: 0 },
+              show: {
+                scale: 1,
+                rotate: -2,
+                opacity: 1,
+                transition: { type: "spring", damping: 12, stiffness: 150 },
+              },
+            }}
+            className="font-display shadow-sticker-lg inline-block bg-gray-900 px-6 py-3 text-6xl leading-[0.9] font-bold text-pink-400 uppercase md:px-9 md:py-4 md:text-7xl xl:text-8xl"
+          >
+            {t("countdown.tomorrow")}
+          </motion.h2>
+        ) : (
+          <>
+            <motion.div
+              variants={{
+                hidden: { y: 32, opacity: 0, rotate: -6, scale: 0.9 },
+                show: {
+                  y: 0,
+                  opacity: 1,
+                  rotate: -2,
+                  scale: 1,
+                  transition: { type: "spring", damping: 14, stiffness: 130 },
+                },
+              }}
+              className="relative"
             >
-              {d}
-            </motion.span>
-          </AnimatePresence>
-        </motion.div>
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.span
+                  key={d}
+                  initial={
+                    reducedMotion ? false : { y: "20%", opacity: 0, rotate: -8 }
+                  }
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={
+                    reducedMotion
+                      ? { opacity: 0 }
+                      : { y: "-40%", opacity: 0, rotate: 5 }
+                  }
+                  transition={{ type: "spring", damping: 16, stiffness: 140 }}
+                  className="font-display inline-block text-[clamp(8rem,12vw,15rem)] leading-[0.78] font-bold text-white uppercase tabular-nums"
+                >
+                  {d}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
 
-        <motion.h2
-          variants={{
-            hidden: { scale: 0.7, rotate: -8, opacity: 0 },
-            show: {
-              scale: 1,
-              rotate: 2,
-              opacity: 1,
-              transition: { type: "spring", damping: 12, stiffness: 160 },
-            },
-          }}
-          className="font-display shadow-sticker-lg inline-block bg-gray-900 px-5 py-1.5 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-2 md:text-6xl xl:text-6xl"
-        >
-          {dayWord}
-        </motion.h2>
+            <motion.h2
+              variants={{
+                hidden: { scale: 0.7, rotate: -8, opacity: 0 },
+                show: {
+                  scale: 1,
+                  rotate: 2,
+                  opacity: 1,
+                  transition: { type: "spring", damping: 12, stiffness: 160 },
+                },
+              }}
+              className="font-display shadow-sticker-lg inline-block bg-gray-900 px-5 py-1.5 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-2 md:text-6xl xl:text-6xl"
+            >
+              {dayWord}
+            </motion.h2>
+          </>
+        )}
       </div>
 
       <motion.div
