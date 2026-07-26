@@ -44,7 +44,7 @@
       "quiz": {
         "day": "Sunday",
         "title": "Quiz",
-        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, {price}. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name and come rack your brains."
+        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, {price}. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name (max 6 persons/team) and come rack your brains."
       }
     }
   }

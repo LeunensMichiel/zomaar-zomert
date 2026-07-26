@@ -44,7 +44,7 @@
       "quiz": {
         "day": "Dimanche",
         "title": "Quiz",
-        "body": "Dimanche soir, la clôture tranquille du week-end. Inscriptions dès 19h30, le quiz de 20h à 23h. L'inscription se fait uniquement sur place et coûte {price}. Attends-toi à une soirée de questions, quelques pièges et de beaux prix pour les tables les plus futées. Trouve un nom d'équipe rigolo et viens te creuser les méninges."
+        "body": "Dimanche soir, la clôture tranquille du week-end. Inscriptions dès 19h30, le quiz de 20h à 23h. L'inscription se fait uniquement sur place et coûte {price}. Attends-toi à une soirée de questions, quelques pièges et de beaux prix pour les tables les plus futées. Trouve un nom d'équipe rigolo (max 6 personnes/equippe) et viens te creuser les méninges."
       }
     }
   }
