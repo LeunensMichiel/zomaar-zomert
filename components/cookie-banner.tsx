@@ -3,26 +3,13 @@
 import { Button } from "@components/ui/button";
 import { Link } from "@lib/i18n/navigation";
 import { getLocalStorage, setLocalStorage } from "@lib/utils/storage";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 
 export type CONSENT = "granted" | "denied" | "pending";
 
-type DataLayerWindow = Window & { dataLayer?: unknown[] };
-
-export const updateGoogleConsent = (newConsent: "granted" | "denied") => {
-  if (typeof window === "undefined") return;
-  const w = window as DataLayerWindow;
-  w.dataLayer = w.dataLayer ?? [];
-  w.dataLayer.push([
-    "consent",
-    "update",
-    {
-      ad_storage: newConsent,
-      analytics_storage: newConsent,
-    },
-  ]);
-};
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export function CookieBanner() {
   const t = useTranslations("common");
@@ -30,7 +17,6 @@ export function CookieBanner() {
 
   const handleConsent = useCallback((next: CONSENT) => {
     if (next === "pending") return;
-    updateGoogleConsent(next);
     setConsent(next);
     setLocalStorage("cookie_consent", next);
   }, []);
@@ -40,6 +26,9 @@ export function CookieBanner() {
     setConsent(getLocalStorage<CONSENT>("cookie_consent", "pending"));
   }, []);
 
+  if (consent === "granted") {
+    return GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null;
+  }
   if (consent !== "pending") return null;
 
   return (

@@ -4,7 +4,6 @@ import { BProgressProvider } from "@components/bprogress-provider";
 import { Footer } from "@components/footer";
 import { Layout } from "@components/layout";
 import { routing } from "@lib/i18n/routing";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Open_Sans, Oswald } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -13,7 +12,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 const SITE_URL = process.env.SITE_URL ?? "https://zomaarzomert.be";
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -91,7 +89,6 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Layout footer={<Footer />}>{children}</Layout>
           </BProgressProvider>
         </NextIntlClientProvider>
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
   );
