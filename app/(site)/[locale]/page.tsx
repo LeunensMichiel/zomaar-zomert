@@ -10,10 +10,12 @@ import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
   isDetailsVisible,
+  isRecapWindow,
   isSignupEnabled,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
   ZZ_DATE_SUNDAY,
+  ZZ_RECAP_YEAR,
   ZZ_YEAR,
 } from "@lib/models";
 import { ChevronRight } from "lucide-react";
@@ -28,6 +30,8 @@ import {
   type Headliner,
   HEADLINER_ARTISTS_QUERY,
   type Partner,
+  type Recap,
+  RECAP_QUERY,
   SIDE_EVENT_DETAILS_QUERY,
   type SideEventDetails,
   SITE_SETTINGS_QUERY,
@@ -40,6 +44,7 @@ import { CountdownHero } from "./_components/countdown-hero";
 import { DayMiniCard } from "./_components/day-mini-card";
 import { HeadlinerCard } from "./_components/headliner-card";
 import { PhotoMarquees } from "./_components/photo-marquees";
+import { RecapGallery } from "./_components/recap-gallery";
 import { RevealCard } from "./_components/reveal-card";
 import { TickerStrip } from "./_components/ticker-strip";
 
@@ -104,6 +109,18 @@ export default async function Home({ params }: Props) {
     { locale },
     { next: { tags: ["siteSettings"] } },
   );
+
+  // Only hit Sanity while the recap can actually show; outside the window
+  // the hourly revalidation drops the query entirely.
+  const recap = isRecapWindow()
+    ? await client.fetch<Recap | null>(
+        RECAP_QUERY,
+        {},
+        { next: { tags: ["siteSettings"] } },
+      )
+    : null;
+  const recapPhotos = recap?.photos ?? [];
+  const showRecap = !!recap?.albumUrl && recapPhotos.length > 0;
 
   const sideEventDetails = await client.fetch<SideEventDetails[]>(
     SIDE_EVENT_DETAILS_QUERY,
@@ -254,8 +271,40 @@ export default async function Home({ params }: Props) {
         </div>
       </section>
 
+      {showRecap && recap.albumUrl && (
+        <section className="relative isolate overflow-hidden bg-white text-gray-900">
+          <PaperTear edge="top" tear={4} color="yellow-400" bgColor="white" />
+          <Doodle
+            shape="sun-rays"
+            color="linear-sunset"
+            rotate={-15}
+            className="absolute -top-16 -right-32 h-72 md:-top-24 md:-right-24 md:h-112 lg:h-128"
+          />
+          <Doodle
+            shape="zz"
+            color="pink"
+            rotate={12}
+            className="absolute bottom-24 -left-6 hidden h-24 md:block md:h-32"
+          />
+          <div className="container-wide section-y relative z-20">
+            <RecapGallery
+              photos={recapPhotos}
+              albumUrl={recap.albumUrl}
+              heading={tHome("recap.heading")}
+              edition={tHome("recap.edition", { year: ZZ_RECAP_YEAR })}
+              cta={tHome("recap.album")}
+            />
+          </div>
+        </section>
+      )}
+
       <section className="relative bg-blue-500 text-white">
-        <PaperTear edge="top" tear={4} color="yellow-400" bgColor="blue-500" />
+        <PaperTear
+          edge="top"
+          tear={4}
+          color={showRecap ? "white" : "yellow-400"}
+          bgColor="blue-500"
+        />
         <Doodle
           shape="asterisk"
           color="linear-sunset"

@@ -27,6 +27,11 @@
     "daysWord": "DAGEN.",
     "tomorrow": "MORGEN!"
   },
+  "recap": {
+    "heading": "Dit was",
+    "edition": "Zomaar Zomert {year}",
+    "album": "Bekijk alle foto's"
+  },
   "lineup": {
     "heading": "Line-up",
     "all": "Bekijk de volledige line-up",

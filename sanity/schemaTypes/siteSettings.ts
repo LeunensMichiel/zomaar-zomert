@@ -6,7 +6,46 @@ export const siteSettings = defineType({
   title: "Site settings",
   type: "document",
   icon: CogIcon,
+  fieldsets: [
+    {
+      name: "recap",
+      title: "Off-season recap",
+      description:
+        "Home page “Dit was Zomaar Zomert” block, shown from the day after the festival until 1 March. Only appears when both the album link and at least one photo are set.",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
+    defineField({
+      name: "recapAlbumUrl",
+      title: "Photo album link",
+      description: "Link to the full album (Google Photos, Flickr, Facebook…).",
+      type: "url",
+      fieldset: "recap",
+      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+    }),
+    defineField({
+      name: "recapPhotos",
+      title: "Recap photos",
+      description:
+        "Up to 12 photos for the home page gallery. Drag to reorder. Set the hotspot so the crop stays on the subject.",
+      type: "array",
+      fieldset: "recap",
+      validation: (rule) => rule.max(12),
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Alternative text",
+              type: "string",
+            }),
+          ],
+        },
+      ],
+    }),
     defineField({
       name: "contactEmail",
       title: "Contact email",

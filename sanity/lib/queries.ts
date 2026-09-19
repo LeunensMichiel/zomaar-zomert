@@ -182,6 +182,19 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
   }
 `);
 
+export const RECAP_QUERY = defineQuery(/* groq */ `
+  *[_id == "siteSettings"][0] {
+    "albumUrl": recapAlbumUrl,
+    "photos": recapPhotos[defined(asset)] {
+      "key": _key,
+      "url": asset->url,
+      "alt": coalesce(alt, ""),
+      "lqip": asset->metadata.lqip,
+      "hotspot": hotspot { x, y }
+    }
+  }
+`);
+
 export const SIDE_EVENT_DETAILS_QUERY = defineQuery(/* groq */ `
   *[_id in ["zomaarBike", "zomaarRun"]] { _id, detailsVisibleFrom }
 `);
@@ -422,6 +435,19 @@ export type SiteSettings = {
   petanqueFull: boolean | null;
   petanquePrice: string;
   quizPrice: string;
+};
+
+export type RecapPhoto = {
+  key: string;
+  url: string;
+  alt: string;
+  lqip: string | null;
+  hotspot: ImageHotspot | null;
+};
+
+export type Recap = {
+  albumUrl: string | null;
+  photos: RecapPhoto[] | null;
 };
 
 export type SideEventImage = {

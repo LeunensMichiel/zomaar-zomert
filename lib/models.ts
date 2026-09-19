@@ -82,6 +82,13 @@ export const isDetailsVisible = (
   now: Date = new Date(),
 ) => isReachedThisEdition(visibleFrom, now);
 
+// Off-season recap window: from the day after the previous edition until
+// 1 March. Gate the Sanity fetch on this so the query stops running once the window closes.
+export const ZZ_RECAP_YEAR = ZZ_YEAR - 1;
+export const isRecapWindow = (now: Date = new Date()) =>
+  now >= addDays(lastSundayOfJuly(ZZ_RECAP_YEAR), 1) &&
+  now < new Date(ZZ_YEAR, 2, 1);
+
 export const isGpxDownloadOpen = (
   visibleFrom?: string | null,
   visibleUntil?: string | null,

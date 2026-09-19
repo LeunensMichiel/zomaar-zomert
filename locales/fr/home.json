@@ -27,6 +27,11 @@
     "daysWord": "JOURS.",
     "tomorrow": "DEMAIN !"
   },
+  "recap": {
+    "heading": "C'était",
+    "edition": "Zomaar Zomert {year}",
+    "album": "Voir toutes les photos"
+  },
   "lineup": {
     "heading": "Line-up",
     "all": "Voir toute la programmation",
