@@ -159,10 +159,8 @@ export function Doodle({
     .filter(Boolean)
     .join("");
   const inner = defs ? `<defs>${defs}</defs>${asset.inner}` : asset.inner;
-  // Safari collapses the SVG to 0 width when the parent is absolutely
-  // positioned with only height set and the SVG has no intrinsic
-  // dimensions. Emitting width/height attrs from the viewBox gives it
-  // an explicit aspect ratio so `h-full w-full` resolves correctly.
+  // Safari collapses the SVG to 0 width without explicit intrinsic
+  // dimensions, so derive width/height attrs from the viewBox.
   const [, , vbW, vbH] = asset.viewBox.split(/\s+/).map(Number);
 
   return (

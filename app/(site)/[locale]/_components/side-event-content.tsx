@@ -3,7 +3,11 @@ import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Link } from "@lib/i18n/navigation";
-import { isGpxDownloadOpen, isSignupEnabled } from "@lib/models";
+import {
+  isDetailsVisible,
+  isGpxDownloadOpen,
+  isSignupEnabled,
+} from "@lib/models";
 import { cn } from "@lib/utils";
 import {
   ArrowLeft,
@@ -47,6 +51,9 @@ type Labels = {
   signup: string;
   signupSoon: string;
   backToInfo: string;
+  tbaEyebrow: string;
+  tbaTitle: string;
+  tbaBody: string;
   gpx: GpxLabels;
 };
 
@@ -98,8 +105,6 @@ const FACT_ICON: Record<
   info: Info,
 };
 
-// Colored sticker tiles cycle through this palette so the facts strip
-// reads as a paper-cut sticker pack rather than a uniform grid.
 const FACT_TONES = [
   "bg-blue-500 text-white",
   "bg-yellow-400 text-gray-900",
@@ -124,12 +129,12 @@ export function SideEventContent({ data, variant, labels }: Props) {
   const gallery = (data.gallery ?? []).filter((g) => g.url);
   const gpxRoutes = data.gpxRoutes ?? [];
 
-  const signupReady = isSignupEnabled(data.signupEnabledFrom);
+  const detailsVisible = isDetailsVisible(data.detailsVisibleFrom);
+  const signupReady = detailsVisible && isSignupEnabled(data.signupEnabledFrom);
   const signupDisabled = !signupReady || !data.signupUrl;
 
   return (
     <>
-      {/* ── HERO ───────────────────────────────────────────────── */}
       <section
         className={cn(
           "relative isolate overflow-hidden",
@@ -170,7 +175,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
                   {data.heroTitle}
                 </h1>
               </div>
-              {data.intro && (
+              {detailsVisible && data.intro && (
                 <p
                   className={cn(
                     "mt-12 max-w-xl text-base leading-relaxed whitespace-pre-line md:text-lg",
@@ -212,7 +217,6 @@ export function SideEventContent({ data, variant, labels }: Props) {
         <PaperTear edge="bottom" tear={2} color="pink-50" />
       </section>
 
-      {/* ── CONTENT (paper) ────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-pink-50">
         <Doodle
           shape={v.scatterDoodle.shape}
@@ -221,8 +225,21 @@ export function SideEventContent({ data, variant, labels }: Props) {
           className="pointer-events-none absolute top-160 -right-16 hidden h-72 opacity-90 md:block lg:h-96"
         />
         <div className="container-wide section-y relative z-10 pt-4">
-          {/* QUICK FACTS */}
-          {facts.length > 0 && (
+          {!detailsVisible && (
+            <div className="shadow-sticker-lg max-w-3xl -rotate-1 border-2 border-gray-900 bg-white p-6 md:p-10">
+              <Sticker color="yellow" size="sm" rotate={-3}>
+                {labels.tbaEyebrow}
+              </Sticker>
+              <h2 className="font-display mt-6 text-3xl leading-[0.95] font-bold text-gray-900 uppercase md:text-5xl">
+                {labels.tbaTitle}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-gray-700 md:text-lg">
+                {labels.tbaBody}
+              </p>
+            </div>
+          )}
+
+          {detailsVisible && facts.length > 0 && (
             <div>
               <Sticker color="ink" size="sm" rotate={-3}>
                 {labels.factsEyebrow}
@@ -253,8 +270,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
             </div>
           )}
 
-          {/* DISTANCES / PARCOURS */}
-          {tracks.length > 0 && (
+          {detailsVisible && tracks.length > 0 && (
             <div className="mt-16 md:mt-24">
               <Sticker color="brand" size="sm" rotate={2}>
                 {labels.tracks}
@@ -298,8 +314,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
             </div>
           )}
 
-          {/* GPX DOWNLOADS — event-time only, gated by the visibility window */}
-          {gpxRoutes.length > 0 && (
+          {detailsVisible && gpxRoutes.length > 0 && (
             <GpxDownloads
               event={v.gpxEventId}
               routes={gpxRoutes}
@@ -314,8 +329,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
             />
           )}
 
-          {/* TEXT SECTIONS + PRACTICAL */}
-          {(sections.length > 0 || data.practicalNote) && (
+          {detailsVisible && (sections.length > 0 || data.practicalNote) && (
             <div className="mt-16 grid gap-10 md:mt-24 md:grid-cols-2 md:gap-12">
               {sections.map((section, i) => (
                 <div key={`${section.title}-${i}`} className="max-w-prose">
@@ -342,8 +356,6 @@ export function SideEventContent({ data, variant, labels }: Props) {
             </div>
           )}
 
-          {/* SIGNUP CTA — anchored banner so the call to action doesn't
-              float in the whitespace below the text columns. */}
           <div className="mt-16 md:mt-24">
             <div
               className={cn(
@@ -387,7 +399,6 @@ export function SideEventContent({ data, variant, labels }: Props) {
             </div>
           </div>
 
-          {/* GALLERY */}
           {gallery.length > 0 && (
             <div className="mt-16 md:mt-24">
               <Sticker color="blue" size="sm" rotate={-2}>

@@ -70,9 +70,7 @@ export function DayCard({ date, image, index, locale, ctaLabel }: Props) {
         <span className="font-display text-4xl leading-[0.9] font-bold uppercase lg:text-5xl xl:text-6xl">
           {weekday}
         </span>
-        {/* Hidden at md (the iPad 3-col size where each card is too
-            narrow to fit the weekday + CTA on one line). Mobile and
-            lg+ both have room for it. */}
+        {/* Hidden at md — the iPad 3-col card is too narrow for weekday + CTA. */}
         <span className="font-display inline-flex items-center gap-1 pb-1 text-sm font-bold uppercase md:hidden lg:inline-flex lg:text-base">
           {ctaLabel} <span aria-hidden="true">→</span>
         </span>

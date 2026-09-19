@@ -10,11 +10,7 @@ import { type ReactNode } from "react";
 
 type Props = { children: ReactNode; className?: string; prespin?: boolean };
 
-// Slowly spins its child as the user scrolls the page. One full
-// revolution every ~2400 viewport pixels — enough that the motion reads
-// as a gentle, ambient turn rather than a flashy spinner. Honors
-// `prefers-reduced-motion`. With `prespin`, the inner layer also does a
-// one-shot wind-up rotation on mount.
+// One revolution per ~2400px scroll; honors prefers-reduced-motion.
 export function ScrollSpin({ children, className, prespin = false }: Props) {
   const { scrollY } = useScroll();
   const rotate = useTransform(scrollY, [0, 2400], [0, 360]);

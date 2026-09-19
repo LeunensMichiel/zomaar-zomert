@@ -23,14 +23,9 @@ export const metadata: Metadata = {
   description: "Deze pagina is even van de kaart gevallen.",
 };
 
-// Catches URLs that don't match any route at all. The project's root
-// layout sits under a [locale] dynamic segment, so a regular
-// app/not-found.tsx would be nested inside [locale]/layout.tsx during
-// SPA navigation and produce duplicate html/body + hydration errors.
-// global-not-found bypasses the layout chain — must declare its own
-// html/body and load globals.css + fonts. No next-intl context here,
-// so copy is in NL (default locale). Enabled via
-// experimental.globalNotFound in next.config.js.
+// A regular app/not-found.tsx would nest inside [locale]/layout.tsx and
+// produce duplicate html/body + hydration errors, so this bypasses the
+// layout chain and declares its own. No next-intl here, so copy is NL.
 export default function GlobalNotFound() {
   return (
     <html lang="nl" className={`${oswald.variable} ${openSans.variable}`}>

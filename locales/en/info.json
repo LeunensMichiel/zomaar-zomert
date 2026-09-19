@@ -19,17 +19,20 @@
       "bike": {
         "day": "Friday",
         "title": "Zomaar Bike",
-        "body": "Mountain bike and gravel through the green western edge of Brussels. Sign up in advance or on site, in advance is the smart move."
+        "body": "Mountain bike and gravel through the green western edge of Brussels. Sign up in advance or on site, in advance is the smart move.",
+        "bodyTba": "Mountain bike and gravel through the green western edge of Brussels. Routes, times and prices for {year} to follow."
       },
       "run": {
         "day": "Sunday",
         "title": "Zomaar Run",
-        "body": "Running race over the Keperenberg, 7 or 14 km with chip timing. Sign up in advance or on site, in advance is the smart move."
+        "body": "Running race over the Keperenberg, 7 or 14 km with chip timing. Sign up in advance or on site, in advance is the smart move.",
+        "bodyTba": "Running race over the Keperenberg, starting at the tent. Distances, start time and prices for {year} to follow."
       },
       "paella": {
         "day": "Sunday",
         "title": "Paella",
         "body": "Sunday from 12:00 to 15:00, at long tables with the neighbours as company. Ludo happily dishes his freshly made paella onto your plate. For the impatient little ones there's plenty of side entertainment. Signing up in advance is required, so we can estimate portions better and cut down on waste. You pay on site, and a sangria is on us.",
+        "bodyTba": "Long tables, one giant pan, the neighbours as company. Times and signup for {year} to follow.",
         "cta": "Sign up",
         "soon": "Soon"
       },
@@ -37,6 +40,7 @@
         "day": "Saturday",
         "title": "Pétanque",
         "body": "Saturday at 12:30, around four hours of boules on the field next to the tent. An afternoon somewhere between relaxed and competitive, a cold beer within reach. Signing up in advance is required, team spots are limited. On site it's {price}, bring your own pétanque set. Once it's full it's full, so don't wait too long.",
+        "bodyTba": "An afternoon of boules on the field next to the tent, somewhere between relaxed and fanatical. Time, price and signup for {year} to follow.",
         "cta": "Sign up",
         "soon": "Soon",
         "full": "Full"
@@ -44,7 +48,8 @@
       "quiz": {
         "day": "Sunday",
         "title": "Quiz",
-        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, {price}. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name (max 6 persons/team) and come rack your brains."
+        "body": "Sunday evening, the quiet close of the weekend. Registration from 19:30, the quiz itself runs 20:00 to 23:00. You can only sign up on site, {price}. Expect an evening of questions, the odd trick one and prizes for the sharpest tables. Pick a fun team name (max 6 persons/team) and come rack your brains.",
+        "bodyTba": "The laid-back closer of the weekend, with questions, the odd trick and prizes for the sharpest tables. Times and price for {year} to follow."
       }
     }
   }

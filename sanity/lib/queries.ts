@@ -115,7 +115,10 @@ const localizedFlatArray = (field: string) => /* groq */ `
 `;
 
 export const ACTIVITIES_QUERY = defineQuery(/* groq */ `
-  *[_type == "activity"] | order(orderRank asc) {
+  *[_type == "activity"
+    && showFrom <= now()
+    && showFrom >= $yearStart
+  ] | order(orderRank asc) {
     _id,
     day,
     doodle,
@@ -166,6 +169,9 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
     "marqueeItems": marqueeItems[] {
       "value": ${localizedFlat("text")}
     },
+    paellaDetailsVisibleFrom,
+    petanqueDetailsVisibleFrom,
+    quizDetailsVisibleFrom,
     paellaSignupUrl,
     paellaSignupEnabledFrom,
     petanqueSignupUrl,
@@ -174,6 +180,10 @@ export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
     "petanquePrice": ${localizedFlat("petanquePrice")},
     "quizPrice": ${localizedFlat("quizPrice")}
   }
+`);
+
+export const SIDE_EVENT_DETAILS_QUERY = defineQuery(/* groq */ `
+  *[_id in ["zomaarBike", "zomaarRun"]] { _id, detailsVisibleFrom }
 `);
 
 const sideEventImage = (field: string) => /* groq */ `
@@ -208,6 +218,7 @@ export const SIDE_EVENT_QUERY = defineQuery(/* groq */ `
       "body": ${localizedFlat("body")}
     },
     "practicalNote": ${localizedFlat("practicalNote")},
+    detailsVisibleFrom,
     signupUrl,
     signupEnabledFrom,
     gpxVisibleFrom,
@@ -401,6 +412,9 @@ export type SiteSettings = {
   contactAddress: string;
   socials: { network: SocialNetwork; url: string }[] | null;
   marqueeItems: { value: string }[] | null;
+  paellaDetailsVisibleFrom: string | null;
+  petanqueDetailsVisibleFrom: string | null;
+  quizDetailsVisibleFrom: string | null;
   paellaSignupUrl: string | null;
   paellaSignupEnabledFrom: string | null;
   petanqueSignupUrl: string | null;
@@ -451,6 +465,11 @@ export type SideEventGpxRoute = {
   stravaUrl: string | null;
 };
 
+export type SideEventDetails = {
+  _id: "zomaarBike" | "zomaarRun";
+  detailsVisibleFrom: string | null;
+};
+
 export type SideEvent = {
   heroEyebrow: string;
   heroTitle: string;
@@ -460,6 +479,7 @@ export type SideEvent = {
   tracks: SideEventTrack[] | null;
   sections: SideEventSection[] | null;
   practicalNote: string;
+  detailsVisibleFrom: string | null;
   signupUrl: string | null;
   signupEnabledFrom: string | null;
   gpxVisibleFrom: string | null;

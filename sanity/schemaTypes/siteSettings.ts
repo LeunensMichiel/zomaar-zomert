@@ -86,6 +86,13 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: "paellaDetailsVisibleFrom",
+      title: "Paella details visible from",
+      description:
+        "Until this moment the paella card shows “info volgt” instead of last year's times and prices. A date from a past edition counts as not set.",
+      type: "datetime",
+    }),
+    defineField({
       name: "paellaSignupUrl",
       title: "Paella signup form URL",
       type: "url",
@@ -96,6 +103,13 @@ export const siteSettings = defineType({
       title: "Paella signup opens from",
       description:
         "The paella button shows “Binnenkort” until this moment, then links to the form.",
+      type: "datetime",
+    }),
+    defineField({
+      name: "petanqueDetailsVisibleFrom",
+      title: "Pétanque details visible from",
+      description:
+        "Until this moment the pétanque card shows “info volgt” instead of last year's times and prices. A date from a past edition counts as not set.",
       type: "datetime",
     }),
     defineField({
@@ -125,6 +139,13 @@ export const siteSettings = defineType({
       description:
         'Volledige prijs zoals getoond op de info-kaart, bv. "€10 per ploeg". Localize per NL/FR/EN.',
       type: "internationalizedArrayString",
+    }),
+    defineField({
+      name: "quizDetailsVisibleFrom",
+      title: "Quiz details visible from",
+      description:
+        "Until this moment the quiz card shows “info volgt” instead of last year's times and prices. A date from a past edition counts as not set.",
+      type: "datetime",
     }),
     defineField({
       name: "quizPrice",

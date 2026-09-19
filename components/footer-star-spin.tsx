@@ -11,16 +11,11 @@ import {
 } from "motion/react";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
-// Idle baseline — one full rotation per `BASE_ROTATION_MS`. The old
-// `animate-doodle-spin-slow` ran at 100 s; this is intentionally slower
-// so the spin barely registers when the user isn't scrolling.
+// Idle baseline: one full rotation per 240s, barely perceptible.
 const BASE_ROTATION_MS = 240_000;
 const BASE_DEG_PER_MS = 360 / BASE_ROTATION_MS;
 
-// How aggressively scroll velocity (px/s) accelerates the spin. Tuned
-// so a casual scroll (~600 px/s) adds a barely-perceptible nudge and a
-// fast wheel-flick (~3000 px/s) reads as a gentle kick rather than a
-// blur.
+// Tuned so a fast wheel-flick (~3000 px/s) still reads as a subtle boost.
 const SCROLL_BOOST = 0.000015;
 
 /**

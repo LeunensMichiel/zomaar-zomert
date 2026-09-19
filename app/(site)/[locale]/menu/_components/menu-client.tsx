@@ -12,11 +12,7 @@ import { type ReactNode, useMemo, useState } from "react";
 
 import { type MenuItem, MenuType } from "@/sanity/lib/queries";
 
-// Per-filter background palettes — five close stops form a gentle
-// wave. Both bookend at pink-50 so the hero's transition reads
-// consistently regardless of which filter is active. The middle peak
-// carries the filter's flavour: warm yellow for drinks, soft pink
-// for food.
+// Both bookend at pink-50 for consistent hero transition.
 const COLORS_DRINKS = [
   "#fff1f7", // pink-50
   "#fff8e0", // yellow-50
@@ -32,8 +28,6 @@ const COLORS_FOOD = [
   "#fff1f7", // pink-50
 ];
 
-// Subtle card tones — the page bg animates through warm stops, so
-// cards stay quiet so the wave can shine through.
 const TONE_CYCLE = ["bg-white", "bg-yellow-50", "bg-pink-50"] as const;
 
 const TILT_CYCLE = [-1, 0.8, -0.6, 1, -0.8, 0.6] as const;
@@ -190,9 +184,8 @@ function MenuItemCard({
   index,
   reducedMotion,
 }: MenuItemCardProps) {
-  // Motion drives both the entry slide-in and the resting tilt — a
-  // static class-based rotation would be overwritten by motion's
-  // transform animation.
+  // Motion (not a CSS class) drives the resting tilt too, since it also
+  // animates the entry slide-in and would otherwise overwrite a class rotation.
   const initial = reducedMotion
     ? false
     : { opacity: 0, y: 16, rotate: 0, scale: 0.98 };

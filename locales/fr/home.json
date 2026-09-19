@@ -38,6 +38,7 @@
   "activities": {
     "heading": "Participez.",
     "discover": "En savoir plus",
+    "tba": "Infos {year} à venir",
     "bike": {
       "day": "Vendredi",
       "title": "Zomaar Bike",
@@ -46,7 +47,8 @@
     "run": {
       "day": "Dimanche",
       "title": "Zomaar Run",
-      "body": "Course sur le Keperenberg. 7 ou 14 km avec chronométrage officiel, départ à la tente."
+      "body": "Course sur le Keperenberg. 7 ou 14 km avec chronométrage officiel, départ à la tente.",
+      "bodyTba": "Course sur le Keperenberg, départ au chapiteau."
     },
     "paella": {
       "title": "Paella du dimanche",

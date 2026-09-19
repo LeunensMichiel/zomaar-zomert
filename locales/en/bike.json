@@ -16,7 +16,10 @@
     "signupBody": "Sign up in advance or on site. In advance is smoother.",
     "signup": "Sign up",
     "signupSoon": "Soon",
-    "backToInfo": "All activities"
+    "backToInfo": "All activities",
+    "tbaEyebrow": "Info coming",
+    "tbaTitle": "{year} edition in the works",
+    "tbaBody": "Routes, start times and prices for {year} land here once they're confirmed. Check back soon."
   },
   "downloads": {
     "eyebrow": "GPX routes",

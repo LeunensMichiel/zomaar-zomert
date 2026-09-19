@@ -99,10 +99,6 @@ export default async function ContactPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Map fills the right column. On lg the map stretches to
-              match the left column's height (grid items-stretch); on
-              smaller screens it's a fixed-height card below the form.
-              Single venue sticker overlay reads as a postmark. */}
             <div className="relative lg:col-span-5">
               <div className="shadow-sticker-lg h-72 overflow-hidden border-2 border-gray-900 md:h-96 lg:h-full lg:min-h-112">
                 <Map height="100%" />

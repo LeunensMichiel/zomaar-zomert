@@ -43,6 +43,13 @@ export const activity = defineType({
       type: "internationalizedArrayString",
     }),
     defineField({
+      name: "showFrom",
+      title: "Public reveal",
+      type: "datetime",
+      description:
+        "Activity stays hidden from the line-up until this moment. A date from a past edition counts as not set.",
+    }),
+    defineField({
       name: "doodle",
       title: "Doodle",
       description:

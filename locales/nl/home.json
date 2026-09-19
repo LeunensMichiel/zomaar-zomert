@@ -38,6 +38,7 @@
   "activities": {
     "heading": "Doe mee.",
     "discover": "Ontdek meer",
+    "tba": "Info {year} volgt",
     "bike": {
       "day": "Vrijdag",
       "title": "Zomaar Bike",
@@ -46,7 +47,8 @@
     "run": {
       "day": "Zondag",
       "title": "Zomaar Run",
-      "body": "Loopwedstrijd over de Keperenberg. 7 of 14 km met officiële tijdsregistratie, start aan de tent."
+      "body": "Loopwedstrijd over de Keperenberg. 7 of 14 km met officiële tijdsregistratie, start aan de tent.",
+      "bodyTba": "Loopwedstrijd over de Keperenberg, start aan de tent."
     },
     "paella": {
       "title": "Paella op zondag",

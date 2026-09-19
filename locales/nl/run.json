@@ -16,7 +16,10 @@
     "signupBody": "Schrijf je vooraf in of ter plaatse. Vooraf gaat het vlotst.",
     "signup": "Schrijf je in",
     "signupSoon": "Binnenkort",
-    "backToInfo": "Alle randactiviteiten"
+    "backToInfo": "Alle randactiviteiten",
+    "tbaEyebrow": "Info volgt",
+    "tbaTitle": "Editie {year} in de maak",
+    "tbaBody": "Afstanden, startuur en prijzen voor {year} zetten we hier zodra ze vastliggen. Kom binnenkort nog eens kijken."
   },
   "downloads": {
     "eyebrow": "Loopparcours",

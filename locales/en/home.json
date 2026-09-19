@@ -38,6 +38,7 @@
   "activities": {
     "heading": "Join in.",
     "discover": "Discover more",
+    "tba": "{year} info coming",
     "bike": {
       "day": "Friday",
       "title": "Zomaar Bike",
@@ -46,7 +47,8 @@
     "run": {
       "day": "Sunday",
       "title": "Zomaar Run",
-      "body": "Running race over the Keperenberg. 7 or 14 km with official chip timing, starting at the tent."
+      "body": "Running race over the Keperenberg. 7 or 14 km with official chip timing, starting at the tent.",
+      "bodyTba": "Running race over the Keperenberg, starting at the tent."
     },
     "paella": {
       "title": "Sunday paella",

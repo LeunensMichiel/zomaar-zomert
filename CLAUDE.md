@@ -96,4 +96,6 @@ ESLint flat config, type-checked. Notable enforced rules:
 ### Comments
 
 - Add comments only when they add value (e.g. the code isn't self-explanatory or the WHY is non-obvious). Don't narrate Tailwind, hooks, animations, or section layout.
-- Keep comments concise.
+- Keep comments concise: 1–2 lines, almost never more. If a comment needs a paragraph, the WHY belongs in the PR description or commit message, not the source — the code will outlive the rationale essay.
+- Don't write comments that restate the code in prose (e.g. describing an animation's visual effect, a color palette's mood, or a section's purpose when the JSX/class names already say it). If you'd delete the comment and nothing about reading the code gets harder, it shouldn't have been added.
+- This applies to `{/* JSX */}` comments and section-divider banners too, not just `//` and `/** */`.

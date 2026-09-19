@@ -69,9 +69,6 @@ const SOCIAL_LINKS = [
 const ease = [0.22, 0.61, 0.36, 1] as const;
 const exitEase = [0.4, 0, 1, 1] as const;
 
-// Primary link — fade in, then slide-up + fade on exit. Entry kicks
-// off almost immediately (no gating delay) so the text doesn't lag
-// behind the background fade-in.
 const primaryItemVariants = {
   hidden: { opacity: 0, y: 0 },
   visible: (i: number) => ({
@@ -178,8 +175,7 @@ function NavLink({
 }
 
 function formatDateStamp() {
-  // ZZ_DATE_* are ISO strings like "2026-07-24" — slice the day directly
-  // to dodge any timezone shift from `new Date(iso).getDate()`.
+  // Slice the day directly to dodge timezone shift from `new Date(iso).getDate()`.
   const day = (iso: string) => iso.slice(8, 10).replace(/^0/, "");
   return `${day(ZZ_DATE_FRIDAY)} · ${day(ZZ_DATE_SATURDAY)} · ${day(ZZ_DATE_SUNDAY)} JULI '${String(ZZ_YEAR).slice(-2)}`;
 }

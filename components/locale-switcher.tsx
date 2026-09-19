@@ -35,9 +35,7 @@ export function LocaleSwitcher({ className }: Props) {
   const params = useParams();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations("common");
-  // Per-instance scope so the navbar + footer switchers don't share
-  // the same shared-layout bar (which would otherwise fly between
-  // their two positions on mount).
+  // Per-instance scope so navbar + footer switchers don't share a layout bar.
   const barId = useId();
 
   const handleSelect = (next: Locale) => {
@@ -52,10 +50,8 @@ export function LocaleSwitcher({ className }: Props) {
       } else {
         router.replace(pathname, { locale: next });
       }
-      // Invalidate the Router Cache — otherwise prefetched RSC payloads for
-      // other routes still hold the previous locale's content, and the next
-      // navigation snaps the user back to it. Also covers shared pathnames
-      // (e.g. /menu) where `replace` to the same URL is a no-op on its own.
+      // Invalidates the Router Cache so prefetched RSC payloads for other
+      // routes don't snap the next navigation back to the old locale.
       router.refresh();
     });
   };

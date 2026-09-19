@@ -36,8 +36,7 @@ const toneClass: Record<Tone, string> = {
 
 const labelTextClass: Record<NonNullable<Props["size"]>, string> = {
   md: "text-2xl md:text-3xl xl:text-4xl",
-  // `lg` mirrors HeadlinerCard's name scale — no md jump so the TBA
-  // card doesn't overshoot the artist cards in the 3-col iPad layout.
+  // `lg` mirrors HeadlinerCard's scale so it doesn't overshoot at 3-col iPad.
   lg: "text-3xl lg:text-5xl xl:text-6xl",
 };
 

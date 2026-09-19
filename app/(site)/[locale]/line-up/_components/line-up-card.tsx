@@ -49,8 +49,7 @@ export function LineUpArtistCard({
   }
 
   const dayLabel = new Date(date).toLocaleString(lang, { weekday: "long" });
-  // Short weekday for mobile so the day/hour sticker fits on one line
-  // inside the narrow card. Strips the trailing period nl/fr add.
+  // Strips the trailing period nl/fr add (e.g. "vr.").
   const shortDayLabel = new Date(date)
     .toLocaleString(lang, { weekday: "short" })
     .replace(/\.$/, "");

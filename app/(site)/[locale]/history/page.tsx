@@ -18,8 +18,6 @@ import {
   type TaggedAsset,
 } from "@/sanity/lib/queries";
 
-// Warm wave through the milestones:
-// cream → soft yellow → hot pink → soft yellow → cream.
 const HISTORY_BG_COLORS = [
   "#fff1f7", // pink-50    (cream — 1998)
   "#fee198", // yellow-100 (dimmed-led — early years)
@@ -113,10 +111,6 @@ export default async function HistoryPage({ params }: Props) {
             })}
           />
 
-          {/* Closing crew portrait — pulled out of the timeline entries so
-            it can read as a centerpiece. Wide bordered card with tape
-            strips on the corners + a brand-coloured caption sticker,
-            slight tilt to keep it scrapbook-y. */}
           <div className="relative mx-auto mt-20 max-w-5xl md:mt-32">
             <span
               aria-hidden="true"

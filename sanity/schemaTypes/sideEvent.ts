@@ -31,6 +31,14 @@ export const sideEvent = defineType({
   ],
   fields: [
     defineField({
+      name: "detailsVisibleFrom",
+      title: "Details visible from",
+      description:
+        "Until this moment the page shows an “info volgt” block instead of the facts, tracks and practical info. Set a date in the current festival year once the details are confirmed; a date from a past edition counts as not set.",
+      type: "datetime",
+      group: "content",
+    }),
+    defineField({
       name: "heroEyebrow",
       title: "Hero eyebrow",
       description: 'Small sticker label above the title (e.g. "Vrijdag").',

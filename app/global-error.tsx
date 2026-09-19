@@ -25,11 +25,8 @@ type Props = {
   unstable_retry: () => void;
 };
 
-// Replaces the root layout when an error escapes the locale segment's
-// error.tsx — typically a crash inside [locale]/layout.tsx itself.
-// Must declare its own html/body and load globals.css since it's the
-// outermost element when active. No next-intl available here, so copy
-// is hardcoded English.
+// Replaces the root layout when an error escapes [locale]/layout.tsx itself,
+// so it must declare its own html/body + globals.css. No next-intl here.
 export default function GlobalError({ error, unstable_retry }: Props) {
   useEffect(() => {
     console.error(error);

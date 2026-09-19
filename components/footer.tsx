@@ -188,22 +188,10 @@ export async function Footer() {
   return (
     <>
       <div className="relative isolate flex items-center justify-center overflow-hidden">
-        {/* Tears scale with viewport width (preserveAspectRatio="none"),
-            so on ultra-wide screens they'd grow past a fixed py and cover
-            the icons. Track the width with vw past 2xl — floored at the
-            xl spacing — and give the bottom more room since tear-1 is the
-            tallest silhouette. */}
+        {/* Tears scale with viewport width (preserveAspectRatio="none"), so
+            track the width with vw past 2xl to keep them from covering the icons. */}
         <div className="relative z-[1] w-full overflow-hidden px-6 py-32 xl:py-60 2xl:pt-[max(15rem,10vw)] 2xl:pb-[max(15rem,15vw)]">
           <FooterPhotoParallax />
-          {/* Atmosphere — light red wash + slow-spin star-burst + paper
-              grain. Skips the blurred drifting blob from the hero so
-              the footer doesn't pay for an animated compositor layer
-              that's rarely on-screen. */}
-          {/* Atmosphere overlay — light hot-gradient wash, slow-spin
-              star-burst (scroll-velocity boost via FooterStarSpin),
-              paper-grain. Skips the hero's drifting blobs so the
-              footer doesn't pay for animated compositor layers that
-              are rarely on-screen. */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -263,9 +251,6 @@ export async function Footer() {
               </ul>
             )}
           </div>
-          {/* All three tears use edge="bottom" + absolute positioning so
-              the SVG paints in the right direction regardless of which
-              side of the photo strip they sit on. */}
           <PaperTear
             edge="bottom"
             tear={3}
@@ -289,16 +274,8 @@ export async function Footer() {
 
       <footer className="mt-auto w-full bg-gray-900 text-white">
         <div className="container-wide section-y-sm">
-          {/* 4-column grid at lg+ to mirror the partners grid below.
-              Contact spans 2 of the 4 columns; each nav takes one. */}
           <div className="grid gap-12 md:gap-16 lg:grid-cols-4">
             <div className="lg:col-span-2">
-              {/* Contact column — pared back to a sticker eyebrow, the
-                  chunky-block email as the focal point, and a compact
-                  single-line address. The loud sticker stuff is doing
-                  its work in the photo strip above; this block stays
-                  editorial so the close-out reads as a breath, not
-                  another shout. */}
               <Sticker color="yellow" size="sm" rotate={-3}>
                 {t("footer.contact.title")}
               </Sticker>

@@ -5,7 +5,7 @@ import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
-import { isSignupEnabled } from "@lib/models";
+import { isDetailsVisible, isSignupEnabled, ZZ_YEAR } from "@lib/models";
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -14,6 +14,8 @@ import { client } from "@/sanity/lib/client";
 import {
   INFO_BLOCKS_QUERY,
   type InfoBlock as InfoBlockData,
+  SIDE_EVENT_DETAILS_QUERY,
+  type SideEventDetails,
   SITE_SETTINGS_QUERY,
   type SiteSettings,
 } from "@/sanity/lib/queries";
@@ -41,7 +43,7 @@ export default async function InfoPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "info" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
 
-  const [settings, blocks] = await Promise.all([
+  const [settings, blocks, sideEventDetails] = await Promise.all([
     client.fetch<SiteSettings | null>(
       SITE_SETTINGS_QUERY,
       { locale },
@@ -52,11 +54,29 @@ export default async function InfoPage({ params }: Props) {
       { locale },
       { next: { tags: ["infoBlock"] } },
     ),
+    client.fetch<SideEventDetails[]>(
+      SIDE_EVENT_DETAILS_QUERY,
+      {},
+      { next: { tags: ["sideEvent"] } },
+    ),
   ]);
+  const visible = {
+    bike: isDetailsVisible(
+      sideEventDetails.find((e) => e._id === "zomaarBike")?.detailsVisibleFrom,
+    ),
+    run: isDetailsVisible(
+      sideEventDetails.find((e) => e._id === "zomaarRun")?.detailsVisibleFrom,
+    ),
+    paella: isDetailsVisible(settings?.paellaDetailsVisibleFrom),
+    petanque: isDetailsVisible(settings?.petanqueDetailsVisibleFrom),
+    quiz: isDetailsVisible(settings?.quizDetailsVisibleFrom),
+  };
   const paellaDisabled =
+    !visible.paella ||
     !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
     !settings?.paellaSignupUrl;
   const petanqueOpen =
+    visible.petanque &&
     isSignupEnabled(settings?.petanqueSignupEnabledFrom) &&
     !!settings?.petanqueSignupUrl;
   const petanqueFull = petanqueOpen && (settings.petanqueFull ?? false);
@@ -96,12 +116,6 @@ export default async function InfoPage({ params }: Props) {
         <PaperTear edge="bottom" tear={2} bgColor="pink-50" color="blue-500" />
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          ACTIVITIES — the page's call to action. Big poster word, a
-          short intro, then a card per side-event. Zomaar Bike + Zomaar
-          Run lead with a link to their own pages; paella, petanque and
-          quiz stay brief.
-          ─────────────────────────────────────────────────────────────*/}
       <section
         id="activiteiten"
         className="relative scroll-mt-24 bg-blue-500 text-white md:scroll-mt-28"
@@ -139,7 +153,9 @@ export default async function InfoPage({ params }: Props) {
                   {t(`activities.cards.${key}.title`)}
                 </h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed md:text-base">
-                  {t(`activities.cards.${key}.body`)}
+                  {visible[key]
+                    ? t(`activities.cards.${key}.body`)
+                    : t(`activities.cards.${key}.bodyTba`, { year: ZZ_YEAR })}
                 </p>
                 <Link href={key === "bike" ? "/bike" : "/run"} className="mt-6">
                   <Button
@@ -165,7 +181,9 @@ export default async function InfoPage({ params }: Props) {
                 {t("activities.cards.paella.title")}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
-                {t("activities.cards.paella.body")}
+                {visible.paella
+                  ? t("activities.cards.paella.body")
+                  : t("activities.cards.paella.bodyTba", { year: ZZ_YEAR })}
               </p>
               <Button
                 as="a"
@@ -198,7 +216,11 @@ export default async function InfoPage({ params }: Props) {
                 {t("activities.cards.petanque.title")}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
-                {t("activities.cards.petanque.body", { price: petanquePrice })}
+                {visible.petanque
+                  ? t("activities.cards.petanque.body", {
+                      price: petanquePrice,
+                    })
+                  : t("activities.cards.petanque.bodyTba", { year: ZZ_YEAR })}
               </p>
               <Button
                 as="a"
@@ -233,7 +255,9 @@ export default async function InfoPage({ params }: Props) {
                 {t("activities.cards.quiz.title")}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed md:text-base">
-                {t("activities.cards.quiz.body", { price: quizPrice })}
+                {visible.quiz
+                  ? t("activities.cards.quiz.body", { price: quizPrice })
+                  : t("activities.cards.quiz.bodyTba", { year: ZZ_YEAR })}
               </p>
             </article>
           </div>

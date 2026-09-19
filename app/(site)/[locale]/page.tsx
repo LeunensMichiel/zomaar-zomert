@@ -9,6 +9,7 @@ import { Logo } from "@components/ui/logo";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
 import {
+  isDetailsVisible,
   isSignupEnabled,
   ZZ_DATE_FRIDAY,
   ZZ_DATE_SATURDAY,
@@ -27,6 +28,8 @@ import {
   type Headliner,
   HEADLINER_ARTISTS_QUERY,
   type Partner,
+  SIDE_EVENT_DETAILS_QUERY,
+  type SideEventDetails,
   SITE_SETTINGS_QUERY,
   type SiteSettings,
   type TaggedAsset,
@@ -102,6 +105,23 @@ export default async function Home({ params }: Props) {
     { next: { tags: ["siteSettings"] } },
   );
 
+  const sideEventDetails = await client.fetch<SideEventDetails[]>(
+    SIDE_EVENT_DETAILS_QUERY,
+    {},
+    { next: { tags: ["sideEvent"] } },
+  );
+  const sideEventVisible = (id: SideEventDetails["_id"]) =>
+    isDetailsVisible(
+      sideEventDetails.find((e) => e._id === id)?.detailsVisibleFrom,
+    );
+  const bikeVisible = sideEventVisible("zomaarBike");
+  const runVisible = sideEventVisible("zomaarRun");
+  const paellaVisible = isDetailsVisible(settings?.paellaDetailsVisibleFrom);
+  const petanqueVisible = isDetailsVisible(
+    settings?.petanqueDetailsVisibleFrom,
+  );
+  const tbaSticker = tHome("activities.tba", { year: ZZ_YEAR });
+
   const photoTags = [
     "slideshow",
     "paella",
@@ -117,9 +137,7 @@ export default async function Home({ params }: Props) {
     tags: photoTags,
   });
   const photoByTag = (tag: string) => photos.find((p) => p.tags.includes(tag));
-  // Marquee renders two strips of six photos with a client-side shuffle.
-  // Limit the pool to keep the JSON payload light — 24 is more than
-  // enough variety for the slice(0,6) / slice(-6) picks.
+  // Limit pool to 24 for payload size.
   const slideshowAssets = photos
     .filter((p) => p.tags.includes("slideshow"))
     .slice(0, 24);
@@ -129,9 +147,11 @@ export default async function Home({ params }: Props) {
   const bikePhoto = photoByTag("bike");
   const runPhoto = photoByTag("run");
   const paellaDisabled =
+    !paellaVisible ||
     !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
     !settings?.paellaSignupUrl;
   const petanqueOpen =
+    petanqueVisible &&
     isSignupEnabled(settings?.petanqueSignupEnabledFrom) &&
     !!settings?.petanqueSignupUrl;
   const petanqueFull = petanqueOpen && (settings.petanqueFull ?? false);
@@ -359,7 +379,7 @@ export default async function Home({ params }: Props) {
                 <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
                 <div className="absolute top-4 left-4">
                   <Sticker color="yellow" size="md" rotate={-6}>
-                    {tHome("activities.bike.day")}
+                    {bikeVisible ? tHome("activities.bike.day") : tbaSticker}
                   </Sticker>
                 </div>
               </div>
@@ -396,7 +416,7 @@ export default async function Home({ params }: Props) {
                 <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
                 <div className="absolute top-4 left-4">
                   <Sticker color="ink" size="md" rotate={-6}>
-                    {tHome("activities.run.day")}
+                    {runVisible ? tHome("activities.run.day") : tbaSticker}
                   </Sticker>
                 </div>
               </div>
@@ -405,7 +425,11 @@ export default async function Home({ params }: Props) {
                   {tHome("activities.run.title")}
                 </h3>
                 <p className="flex-1 text-base text-pink-50 md:text-lg">
-                  {tHome("activities.run.body")}
+                  {tHome(
+                    runVisible
+                      ? "activities.run.body"
+                      : "activities.run.bodyTba",
+                  )}
                 </p>
                 <Link href="/run" className="mt-auto w-full md:w-auto">
                   <Button
@@ -433,6 +457,13 @@ export default async function Home({ params }: Props) {
                   className="object-cover object-center"
                 />
                 <div className='halftone absolute inset-0 opacity-30 mix-blend-multiply content-[""]' />
+                {!paellaVisible && (
+                  <div className="absolute top-4 left-4">
+                    <Sticker color="ink" size="sm" rotate={-6}>
+                      {tbaSticker}
+                    </Sticker>
+                  </div>
+                )}
               </div>
               <div className="flex grow flex-col gap-3 p-5 md:p-6">
                 <h3 className="text-2xl leading-[0.95] md:text-3xl">
@@ -471,6 +502,13 @@ export default async function Home({ params }: Props) {
                   className="object-cover object-center"
                 />
                 <div className='halftone absolute inset-0 opacity-40 mix-blend-multiply content-[""]' />
+                {!petanqueVisible && (
+                  <div className="absolute top-4 left-4">
+                    <Sticker color="yellow" size="sm" rotate={-6}>
+                      {tbaSticker}
+                    </Sticker>
+                  </div>
+                )}
               </div>
               <div className="flex grow flex-col gap-3 p-5 md:p-6">
                 <h3 className="text-2xl leading-[0.95] md:text-3xl">

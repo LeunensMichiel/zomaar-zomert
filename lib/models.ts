@@ -1,6 +1,5 @@
-// Override the auto-computed festival year by setting NEXT_PUBLIC_ZZ_FESTIVAL_YEAR
-// in your env (e.g. to preview the next edition early). Leave unset to derive
-// from today — rolls to the next year the day after the last Sunday of July.
+// Override the auto-computed festival year via NEXT_PUBLIC_ZZ_FESTIVAL_YEAR.
+// Leave unset to derive from today — rolls over the day after the last Sunday of July.
 const overrideYearEnv = process.env.NEXT_PUBLIC_ZZ_FESTIVAL_YEAR;
 const OVERRIDE_FESTIVAL_YEAR = overrideYearEnv ? Number(overrideYearEnv) : null;
 
@@ -62,17 +61,26 @@ export const getDateByDayString = (day: FestivalDay) => DAY_TO_DATE[day];
 export const isSignupOpen = (now: Date = new Date()) =>
   now >= new Date(ENABLE_LINKS_DATE) && now <= new Date(ZZ_DATE_SUNDAY);
 
+// A Sanity-configured moment that has passed and belongs to the current
+// edition. Dates left over from a past edition count as not set.
+const isReachedThisEdition = (from?: string | null, now: Date = new Date()) =>
+  !!from &&
+  new Date(from) >= new Date(`${String(ZZ_YEAR)}-01-01T00:00:00Z`) &&
+  now >= new Date(from);
+
 // Per-event signup gate: open from a Sanity-configured `enabledFrom` moment
-// through the end of the festival. Missing date keeps the button disabled, and
-// a date from a past edition stays closed until it's updated for ZZ_YEAR.
+// through the end of the festival.
 export const isSignupEnabled = (
   enabledFrom?: string | null,
   now: Date = new Date(),
-) =>
-  !!enabledFrom &&
-  new Date(enabledFrom) >= new Date(`${String(ZZ_YEAR)}-01-01T00:00:00Z`) &&
-  now >= new Date(enabledFrom) &&
-  now <= new Date(ZZ_DATE_SUNDAY);
+) => isReachedThisEdition(enabledFrom, now) && now <= new Date(ZZ_DATE_SUNDAY);
+
+// Per-event details gate: until `visibleFrom` is set for this edition, the
+// activity shows a TBA state instead of last year's times and prices.
+export const isDetailsVisible = (
+  visibleFrom?: string | null,
+  now: Date = new Date(),
+) => isReachedThisEdition(visibleFrom, now);
 
 export const isGpxDownloadOpen = (
   visibleFrom?: string | null,

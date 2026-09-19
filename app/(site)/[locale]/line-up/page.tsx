@@ -45,7 +45,7 @@ export default async function LineUpPage({ params }: Props) {
     ),
     client.fetch<Activity[]>(
       ACTIVITIES_QUERY,
-      { locale },
+      { locale, yearStart: `${String(ZZ_YEAR)}-01-01T00:00:00Z` },
       { next: { tags: ["activity"] } },
     ),
   ]);

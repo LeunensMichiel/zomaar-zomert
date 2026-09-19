@@ -16,7 +16,10 @@
     "signupBody": "Inscris-toi à l'avance ou sur place. À l'avance, c'est plus simple.",
     "signup": "Inscris-toi",
     "signupSoon": "Bientôt",
-    "backToInfo": "Toutes les activités"
+    "backToInfo": "Toutes les activités",
+    "tbaEyebrow": "Infos à venir",
+    "tbaTitle": "Édition {year} en préparation",
+    "tbaBody": "Distances, heure de départ et prix pour {year} arrivent ici dès qu'ils sont confirmés. Repasse bientôt."
   },
   "downloads": {
     "eyebrow": "Parcours",

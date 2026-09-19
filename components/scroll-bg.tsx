@@ -24,11 +24,9 @@ type Props = {
  */
 export function ScrollBg({ children, className, colors }: Props) {
   const ref = useRef<HTMLElement>(null);
-  // ["start end", "end start"] spans `section_height + viewport_height`
-  // — always positive even for sections shorter than the viewport.
-  // The previous ["start start", "end end"] offset produces a negative
-  // scroll range when the section fits in one viewport, causing
-  // scrollYProgress to flash between 0 and 1 over a few pixels.
+  // ["start start", "end end"] produces a negative scroll range (and a
+  // flashing 0/1 progress) for sections shorter than the viewport; this
+  // offset stays positive.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],

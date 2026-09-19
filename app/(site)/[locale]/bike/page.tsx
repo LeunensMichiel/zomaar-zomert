@@ -1,4 +1,5 @@
 import { type Locale } from "@lib/i18n/routing";
+import { ZZ_YEAR } from "@lib/models";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -51,6 +52,9 @@ export default async function BikePage({ params }: Props) {
         signup: t("labels.signup"),
         signupSoon: t("labels.signupSoon"),
         backToInfo: t("labels.backToInfo"),
+        tbaEyebrow: t("labels.tbaEyebrow"),
+        tbaTitle: t("labels.tbaTitle", { year: ZZ_YEAR }),
+        tbaBody: t("labels.tbaBody", { year: ZZ_YEAR }),
         gpx: {
           eyebrow: t("downloads.eyebrow"),
           heading: t("downloads.heading"),

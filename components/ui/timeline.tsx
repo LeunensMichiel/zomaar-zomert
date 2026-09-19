@@ -53,8 +53,6 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
             key={index}
             className="flex justify-start pt-20 md:gap-10 md:pt-48"
           >
-            {/* Sticky year marker — chunky square sticker dot + the
-                year title in poster-scale Oswald. */}
             <div className="sticky top-32 z-30 flex max-w-xs flex-col items-center self-start md:w-full md:max-w-sm md:flex-row">
               <div
                 aria-hidden="true"
@@ -74,10 +72,6 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
           </div>
         ))}
 
-        {/* Vertical track + scroll-driven trailing fill. The track
-            sits at low opacity in ink; the active fill is a warm
-            brand-red → yellow gradient that grows as the user
-            scrolls through the section. */}
         <div
           style={{ height: `${String(height)}px` }}
           className="absolute top-0 left-8 w-0.5 overflow-hidden bg-gray-900/15 mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8"
