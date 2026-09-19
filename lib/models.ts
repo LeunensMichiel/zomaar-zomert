@@ -63,12 +63,14 @@ export const isSignupOpen = (now: Date = new Date()) =>
   now >= new Date(ENABLE_LINKS_DATE) && now <= new Date(ZZ_DATE_SUNDAY);
 
 // Per-event signup gate: open from a Sanity-configured `enabledFrom` moment
-// through the end of the festival. Missing date keeps the button disabled.
+// through the end of the festival. Missing date keeps the button disabled, and
+// a date from a past edition stays closed until it's updated for ZZ_YEAR.
 export const isSignupEnabled = (
   enabledFrom?: string | null,
   now: Date = new Date(),
 ) =>
   !!enabledFrom &&
+  new Date(enabledFrom) >= new Date(`${String(ZZ_YEAR)}-01-01T00:00:00Z`) &&
   now >= new Date(enabledFrom) &&
   now <= new Date(ZZ_DATE_SUNDAY);
 

@@ -131,11 +131,11 @@ export default async function Home({ params }: Props) {
   const paellaDisabled =
     !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
     !settings?.paellaSignupUrl;
-  const petanqueFull = settings?.petanqueFull ?? false;
-  const petanqueDisabled =
-    petanqueFull ||
-    !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
-    !settings?.petanqueSignupUrl;
+  const petanqueOpen =
+    isSignupEnabled(settings?.petanqueSignupEnabledFrom) &&
+    !!settings?.petanqueSignupUrl;
+  const petanqueFull = petanqueOpen && (settings.petanqueFull ?? false);
+  const petanqueDisabled = !petanqueOpen || petanqueFull;
   const days: Array<{ date: string; image: string; alt: string }> = [
     {
       date: ZZ_DATE_FRIDAY,

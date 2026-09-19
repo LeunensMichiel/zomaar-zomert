@@ -56,11 +56,11 @@ export default async function InfoPage({ params }: Props) {
   const paellaDisabled =
     !isSignupEnabled(settings?.paellaSignupEnabledFrom) ||
     !settings?.paellaSignupUrl;
-  const petanqueFull = settings?.petanqueFull ?? false;
-  const petanqueDisabled =
-    petanqueFull ||
-    !isSignupEnabled(settings?.petanqueSignupEnabledFrom) ||
-    !settings?.petanqueSignupUrl;
+  const petanqueOpen =
+    isSignupEnabled(settings?.petanqueSignupEnabledFrom) &&
+    !!settings?.petanqueSignupUrl;
+  const petanqueFull = petanqueOpen && (settings.petanqueFull ?? false);
+  const petanqueDisabled = !petanqueOpen || petanqueFull;
   const petanquePrice = settings?.petanquePrice || "€10";
   const quizPrice = settings?.quizPrice || "€20";
 
