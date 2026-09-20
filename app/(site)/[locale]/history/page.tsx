@@ -82,7 +82,7 @@ export default async function HistoryPage({ params }: Props) {
       </section>
       <ScrollBg colors={HISTORY_BG_COLORS}>
         <PaperTear edge="top" tear={2} color="blue-500" />
-        <div className="container-wide relative z-20 pb-20 md:pb-28">
+        <div className="container-wide relative z-20 pt-[12vw] pb-20 md:pb-28">
           <h1 className="font-display shadow-sticker-lg inline-block -rotate-1 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
             {t("hero.title")}
           </h1>

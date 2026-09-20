@@ -81,7 +81,7 @@ export default async function PartnersPage({ params }: Props) {
     <>
       <section className="relative bg-blue-900">
         <div className="h-12" />
-        <PaperTear edge="bottom" tear={2} color="blue-500" />
+        <PaperTear edge="bottom" tear={2} color="blue-500" inFlow />
       </section>
 
       <section className="relative bg-blue-500 text-pink-50">
@@ -91,7 +91,7 @@ export default async function PartnersPage({ params }: Props) {
           rotate={20}
           className="pointer-events-none absolute -right-12 -bottom-16 hidden h-56 md:-right-20 md:-bottom-20 md:block md:h-80 lg:h-96"
         />
-        <div className="container-wide relative z-20 pt-8 pb-16 md:pt-10 md:pb-20">
+        <div className="container-wide relative z-20 pt-8 pb-[max(5rem,8vw)] md:pt-10">
           <Doodle
             shape="star"
             color="linear-sunset"
@@ -190,7 +190,6 @@ export default async function PartnersPage({ params }: Props) {
             {t("become.closing")}
           </p>
         </div>
-        <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
     </>
   );

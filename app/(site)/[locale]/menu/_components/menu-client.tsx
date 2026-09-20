@@ -73,7 +73,7 @@ export function MenuClient({ menu, topTear, bottomTear }: Props) {
   return (
     <ScrollBg colors={colors}>
       {topTear}
-      <div className="container-wide relative z-20 pt-8 pb-16 md:pt-10 md:pb-20">
+      <div className="container-wide relative z-20 pt-[12vw] pb-[max(5rem,8vw)]">
         <h1 className="font-display shadow-sticker-lg inline-block rotate-2 bg-gray-950 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-400 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
           {t("hero.title")}
         </h1>

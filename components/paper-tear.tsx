@@ -7,7 +7,7 @@ import { TEAR_PATHS } from "./tear-paths";
 
 export { type TearColor };
 
-const colorHex: Record<TearColor, string> = {
+export const colorHex: Record<TearColor, string> = {
   "pink-50": "#fff1f7",
   "pink-300": "#ff9bb6",
   "brand-500": "#de350b",
@@ -46,22 +46,25 @@ type Props = {
   edge: "top" | "bottom";
   tear?: Tear;
   /**
-   * Color of the painted silhouette (the "ink" side of the tear).
-   * For `edge="bottom"` pass the next section's color; for `edge="top"`
-   * the previous section's color.
+   * Colour of the painted silhouette (the "ink" side of the tear).
+   * For `edge="bottom"` pass the next section's colour; for `edge="top"`
+   * the previous section's colour. Everything outside the silhouette is
+   * transparent so the parent shows through.
    */
   color: TearColor;
   /**
-   * Optional second color filling the area *outside* the silhouette.
-   * When set, the tear becomes a fully opaque two-tone block — useful
-   * when the parent's background isn't the color you want on the other
-   * side of the wave, or when you want to swap which side reads as
-   * primary by flipping the two values.
-   *
-   * Leave undefined for the previous behavior (transparent outside the
-   * silhouette so the parent shows through).
+   * By default the tear is an absolute overlay pinned to `edge` of its
+   * `relative` parent, so section content scrolls underneath the ink.
+   * Set this for spacer strips with nothing to overlap; the tear then
+   * takes up its own height in flow.
    */
-  bgColor?: TearColor;
+  inFlow?: boolean;
+  /**
+   * CSS custom property that overrides the ink colour when set (e.g. the
+   * footer tear, which takes the last section's colour from the page).
+   * `color` stays as the fallback.
+   */
+  fillVar?: string;
   className?: string;
 };
 
@@ -69,13 +72,15 @@ export function PaperTear({
   edge,
   tear = 1,
   color,
-  bgColor,
+  inFlow = false,
+  fillVar,
   className,
 }: Props) {
   const vb = TEAR_VIEWBOX[tear];
   const paths = TEAR_PATHS[tear];
-  const fill = colorHex[color];
-  const bg = bgColor ? colorHex[bgColor] : undefined;
+  const fill = fillVar
+    ? `var(${fillVar}, ${colorHex[color]})`
+    : colorHex[color];
 
   return (
     <svg
@@ -83,13 +88,18 @@ export function PaperTear({
       preserveAspectRatio="none"
       viewBox={`${String(vb.x)} ${String(vb.y)} ${String(vb.w)} ${String(vb.h)}`}
       className={cn(
-        "pointer-events-none relative z-0 block h-auto w-full",
+        "pointer-events-none block h-auto w-full",
+        inFlow
+          ? "relative z-0"
+          : cn(
+              "absolute inset-x-0 z-30",
+              edge === "top" ? "top-0" : "bottom-0",
+            ),
         edge === "top" ? "-translate-y-px" : "translate-y-px",
         className,
       )}
       style={edge === "top" ? { transform: "scaleY(-1)" } : undefined}
     >
-      {bg && <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill={bg} />}
       {paths.map((d, i) => (
         <path key={i} d={d} fill={fill} />
       ))}

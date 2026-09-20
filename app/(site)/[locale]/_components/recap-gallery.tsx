@@ -1,17 +1,18 @@
 "use client";
 
 import { Button } from "@components/ui/button";
-import { cn, hotspotPosition } from "@lib/utils";
+import { cn } from "@lib/utils";
 import { ExternalLink } from "lucide-react";
 import {
-  animate,
   motion,
-  useInView,
-  useMotionValue,
+  type MotionValue,
+  useMotionTemplate,
   useReducedMotion,
+  useScroll,
+  useTransform,
 } from "motion/react";
 import Image from "next/image";
-import { type RefObject, useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 
 import { type RecapPhoto } from "@/sanity/lib/queries";
 
@@ -23,122 +24,107 @@ type Props = {
   cta: string;
 };
 
-const EASE = [0.22, 0.61, 0.36, 1] as const;
+const COLUMNS = 5;
+const PER_COLUMN = 6;
+// Travel per column in vh over the full track; different speeds give the depth.
+const TRAVEL = [70, 45, 90, 55, 65];
 
-// Deterministic per-tile jitter so SSR and client agree on tilt + timing.
-const seed = (index: number, salt: number) => {
-  const x = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453;
-  return x - Math.floor(x);
-};
+const GROW = 1.25;
+const SPRING = {
+  type: "spring",
+  stiffness: 260,
+  damping: 26,
+  mass: 0.8,
+} as const;
 
-type TileProps = {
-  photo: RecapPhoto;
-  index: number;
+type Hover = { col: number; row: number; dx: number; dy: number };
+
+type ColumnProps = {
+  col: number;
+  photos: RecapPhoto[];
   albumUrl: string;
-  gridRef: RefObject<HTMLDivElement | null>;
-  revealed: boolean;
-  reducedMotion: boolean | null;
+  progress: MotionValue<number>;
+  travel: number;
+  hover: Hover | null;
+  onHover: (hover: Hover | null) => void;
 };
 
-function Tile({
-  photo,
-  index,
+function Column({
+  col,
+  photos,
   albumUrl,
-  gridRef,
-  revealed,
-  reducedMotion,
-}: TileProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const tilt = (seed(index, 1) - 0.5) * 5;
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const scale = useMotionValue(1);
-  const rotate = useMotionValue(tilt);
-  const opacity = useMotionValue(0);
-
-  useEffect(() => {
-    if (reducedMotion) {
-      opacity.set(1);
-      return;
-    }
-    if (!revealed) return;
-    const el = ref.current;
-    const grid = gridRef.current;
-    if (!el || !grid) return;
-
-    // Gather every tile on the point of the grid that's currently in view,
-    // then fan them out to their slots.
-    const a = el.getBoundingClientRect();
-    const g = grid.getBoundingClientRect();
-    const originX = g.left + g.width / 2;
-    const originY = Math.min(Math.max(window.innerHeight / 2, g.top), g.bottom);
-    x.set(originX - (a.left + a.width / 2));
-    y.set(originY - (a.top + a.height / 2));
-    scale.set(0.55 + seed(index, 2) * 0.3);
-    rotate.set((seed(index, 3) - 0.5) * 30);
-    opacity.set(1);
-
-    const transition = {
-      duration: 0.8 + seed(index, 4) * 0.5,
-      delay: 0.15 + seed(index, 5) * 0.35,
-      ease: EASE,
-    };
-    const controls = [
-      animate(x, 0, transition),
-      animate(y, 0, transition),
-      animate(scale, 1, transition),
-      animate(rotate, tilt, transition),
-    ];
-    return () => {
-      controls.forEach((c) => {
-        c.stop();
-      });
-    };
-  }, [
-    revealed,
-    reducedMotion,
-    gridRef,
-    index,
-    tilt,
-    x,
-    y,
-    scale,
-    rotate,
-    opacity,
-  ]);
+  progress,
+  travel,
+  hover,
+  onHover,
+}: ColumnProps) {
+  const shift = useTransform(progress, [0, 1], [travel, -travel]);
+  const y = useMotionTemplate`calc(-50% + ${shift}vh)`;
+  const push =
+    hover && hover.col !== col ? (col < hover.col ? -hover.dx : hover.dx) : 0;
 
   return (
     <motion.div
-      ref={ref}
-      style={{
-        x,
-        y,
-        scale,
-        rotate,
-        opacity,
-        zIndex: Math.floor(seed(index, 6) * 12) + 1,
-      }}
-      className={cn("relative", index % 2 === 1 && "md:mt-12")}
+      style={{ y }}
+      animate={{ x: push }}
+      transition={SPRING}
+      className="absolute inset-x-0 top-1/2 flex flex-col gap-[7vw] md:gap-[5vw]"
     >
-      <a
-        href={albumUrl}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="group shadow-sticker-sm md:shadow-sticker block border-2 border-gray-900 bg-pink-50 p-2 pb-6 transition-transform hover:-translate-y-1 md:p-3 md:pb-8"
-      >
-        <div className="relative aspect-4/5 overflow-hidden bg-gray-900">
-          <Image
-            src={photo.url}
-            alt={photo.alt}
-            fill
-            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            placeholder={photo.lqip ? "blur" : "empty"}
-            blurDataURL={photo.lqip ?? undefined}
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            style={{ objectPosition: hotspotPosition(photo.hotspot) }}
-          />
-        </div>
-      </a>
+      {photos.map((photo, row) => {
+        const active = hover?.col === col;
+        const isHovered = active && hover.row === row;
+        const nudge =
+          active && !isHovered ? (row < hover.row ? -hover.dy : hover.dy) : 0;
+        return (
+          <motion.a
+            key={`${photo.key}-${String(row)}`}
+            href={albumUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            animate={{ y: nudge }}
+            transition={SPRING}
+            // Portrait photos get the column width as their height instead,
+            // so every photo's longest side is the same length.
+            style={{
+              width:
+                photo.height > photo.width
+                  ? `${String((photo.width / photo.height) * 100)}%`
+                  : "100%",
+            }}
+            className={cn("relative mx-auto block", isHovered && "z-10")}
+            onPointerEnter={(e) => {
+              const { width, height } = e.currentTarget.getBoundingClientRect();
+              // Half the growth on each side, plus a little breathing room.
+              onHover({
+                col,
+                row,
+                dx: (width * (GROW - 1)) / 2 + 16,
+                dy: (height * (GROW - 1)) / 2 + 16,
+              });
+            }}
+            onPointerLeave={() => {
+              onHover(null);
+            }}
+          >
+            <motion.div
+              animate={{ scale: isHovered ? GROW : 1 }}
+              transition={SPRING}
+              className="pointer-events-none bg-gray-100"
+            >
+              <Image
+                src={photo.url}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                sizes="(max-width: 768px) 32vw, 14vw"
+                placeholder={photo.lqip ? "blur" : "empty"}
+                blurDataURL={photo.lqip ?? undefined}
+                className="h-auto w-full"
+              />
+            </motion.div>
+          </motion.a>
+        );
+      })}
     </motion.div>
   );
 }
@@ -151,52 +137,58 @@ export function RecapGallery({
   cta,
 }: Props) {
   const reducedMotion = useReducedMotion();
-  const gridRef = useRef<HTMLDivElement>(null);
-  const revealed = useInView(gridRef, { once: true, amount: 0.2 });
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [hover, setHover] = useState<Hover | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Cycle through the photos so every column stays filled during its travel.
+  const columns = Array.from({ length: COLUMNS }, (_, c) =>
+    Array.from(
+      { length: PER_COLUMN },
+      (_, r) => photos[(c + r * COLUMNS) % photos.length],
+    ),
+  );
 
   return (
-    <div>
-      <motion.div
-        initial={reducedMotion ? false : "hidden"}
-        whileInView="show"
-        viewport={{ once: true, amount: 0.4 }}
-        variants={{
-          hidden: {},
-          show: { transition: { staggerChildren: 0.1 } },
-        }}
-        className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-10"
-      >
-        <h2 className="flex flex-col items-start gap-3 md:gap-4">
-          <motion.span
-            variants={{
-              hidden: { y: 24, opacity: 0 },
-              show: { y: 0, opacity: 1, transition: { ease: EASE } },
-            }}
-            className="block text-6xl leading-[0.85] text-gray-900 md:text-8xl xl:text-9xl"
-          >
-            {heading}
-          </motion.span>
-          <motion.span
-            variants={{
-              hidden: { scale: 0.7, rotate: -8, opacity: 0 },
-              show: {
-                scale: 1,
-                rotate: -2,
-                opacity: 1,
-                transition: { type: "spring", damping: 12, stiffness: 150 },
-              },
-            }}
-            className="font-display shadow-sticker-lg inline-block origin-left bg-gray-900 px-4 py-2 text-3xl leading-[0.9] font-bold text-yellow-400 uppercase md:px-6 md:py-3 md:text-5xl xl:text-6xl"
-          >
+    <div
+      ref={trackRef}
+      className={cn("relative", reducedMotion ? "h-screen" : "h-[300vh]")}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="absolute inset-0 z-0 flex flex-col items-center justify-center gap-2 text-center">
+          <span className="text-xl text-gray-900 md:text-3xl">{heading}</span>
+          <span className="font-display text-[clamp(2.25rem,7.5vw,9rem)] leading-none font-bold whitespace-nowrap text-gray-900 uppercase">
             {edition}
-          </motion.span>
-        </h2>
-        <motion.div
-          variants={{
-            hidden: { y: 16, opacity: 0 },
-            show: { y: 0, opacity: 1 },
-          }}
-        >
+          </span>
+        </div>
+
+        <div className="relative z-10 -mx-[5vw] grid h-full grid-cols-3 gap-x-[10vw] md:grid-cols-5">
+          {columns.map((col, c) => (
+            <div
+              key={c}
+              className={cn(
+                "relative",
+                hover?.col === c && "z-20",
+                c >= 3 && "hidden md:block",
+              )}
+            >
+              <Column
+                col={c}
+                photos={col}
+                albumUrl={albumUrl}
+                progress={scrollYProgress}
+                travel={reducedMotion ? 0 : TRAVEL[c]}
+                hover={hover}
+                onHover={reducedMotion ? () => undefined : setHover}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="absolute inset-x-0 bottom-[max(2rem,6vw)] z-20 flex justify-center md:bottom-[max(3rem,7vw)]">
           <Button
             as="a"
             href={albumUrl}
@@ -209,24 +201,7 @@ export function RecapGallery({
           >
             {cta}
           </Button>
-        </motion.div>
-      </motion.div>
-
-      <div
-        ref={gridRef}
-        className="mt-12 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-3 md:gap-6 lg:grid-cols-4"
-      >
-        {photos.map((photo, i) => (
-          <Tile
-            key={photo.key}
-            photo={photo}
-            index={i}
-            albumUrl={albumUrl}
-            gridRef={gridRef}
-            revealed={revealed}
-            reducedMotion={reducedMotion}
-          />
-        ))}
+        </div>
       </div>
     </div>
   );

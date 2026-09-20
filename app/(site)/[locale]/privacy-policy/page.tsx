@@ -26,7 +26,7 @@ export default async function PrivacyPage({ params }: Props) {
     <>
       <section className="relative bg-gray-900">
         <div className="h-16 md:h-20 lg:h-24" />
-        <PaperTear edge="bottom" tear={1} color="pink-50" />
+        <PaperTear edge="bottom" tear={1} color="pink-50" inFlow />
       </section>
 
       <section className="relative bg-pink-50">
@@ -63,7 +63,6 @@ export default async function PrivacyPage({ params }: Props) {
             </div>
           </div>
         </div>
-        <PaperTear edge="bottom" tear={6} color="pink-50" />
       </section>
     </>
   );

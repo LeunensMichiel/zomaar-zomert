@@ -1,4 +1,5 @@
 import { Doodle } from "@components/doodle";
+import { FooterTearColor } from "@components/footer-tear-color";
 import { InfoBlock } from "@components/info-block";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
@@ -88,7 +89,7 @@ export default async function InfoPage({ params }: Props) {
     <>
       <section className="bg-brand-500 relative">
         <div className="h-12 md:h-16 lg:h-20" />
-        <PaperTear edge="bottom" tear={1} color="pink-50" />
+        <PaperTear edge="bottom" tear={1} color="pink-50" inFlow />
       </section>
 
       <section className="relative bg-pink-50">
@@ -98,7 +99,7 @@ export default async function InfoPage({ params }: Props) {
           rotate={12}
           className="absolute right-2 -bottom-20 h-40 md:right-12 md:-bottom-100 md:h-240"
         />
-        <div className="container-wide relative z-20 pt-2 pb-12 md:pb-16">
+        <div className="container-wide relative z-20 pt-2 pb-[max(4rem,12vw)]">
           <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
             {t("hero.title")}
           </h1>
@@ -113,7 +114,7 @@ export default async function InfoPage({ params }: Props) {
             ))}
           </div>
         </div>
-        <PaperTear edge="bottom" tear={2} bgColor="pink-50" color="blue-500" />
+        <PaperTear edge="bottom" tear={2} color="blue-500" />
       </section>
 
       <section
@@ -262,8 +263,8 @@ export default async function InfoPage({ params }: Props) {
             </article>
           </div>
         </div>
-        <PaperTear edge="bottom" tear={3} bgColor="pink-50" color="blue-500" />
       </section>
+      <FooterTearColor color="blue-500" />
     </>
   );
 }

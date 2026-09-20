@@ -261,7 +261,7 @@ export default async function Home({ params }: Props) {
             edge="top"
             tear={5}
             color="yellow-400"
-            className="translate-y-px"
+            className="top-auto bottom-full translate-y-px"
           />
           <TickerStrip
             items={settings?.marqueeItems?.map((i) => i.value) ?? []}
@@ -272,39 +272,21 @@ export default async function Home({ params }: Props) {
       </section>
 
       {showRecap && recap.albumUrl && (
-        <section className="relative isolate overflow-hidden bg-white text-gray-900">
-          <PaperTear edge="top" tear={4} color="yellow-400" bgColor="white" />
-          <Doodle
-            shape="sun-rays"
-            color="linear-sunset"
-            rotate={-15}
-            className="absolute -top-16 -right-32 h-72 md:-top-24 md:-right-24 md:h-112 lg:h-128"
+        <section className="relative isolate bg-white text-gray-900">
+          <PaperTear edge="top" tear={4} color="yellow-400" />
+          <RecapGallery
+            photos={recapPhotos}
+            albumUrl={recap.albumUrl}
+            heading={tHome("recap.heading")}
+            edition={tHome("recap.edition", { year: ZZ_RECAP_YEAR })}
+            cta={tHome("recap.album")}
           />
-          <Doodle
-            shape="zz"
-            color="pink"
-            rotate={12}
-            className="absolute bottom-24 -left-6 hidden h-24 md:block md:h-32"
-          />
-          <div className="container-wide section-y relative z-20">
-            <RecapGallery
-              photos={recapPhotos}
-              albumUrl={recap.albumUrl}
-              heading={tHome("recap.heading")}
-              edition={tHome("recap.edition", { year: ZZ_RECAP_YEAR })}
-              cta={tHome("recap.album")}
-            />
-          </div>
+          <PaperTear edge="bottom" tear={4} color="blue-500" />
         </section>
       )}
 
       <section className="relative bg-blue-500 text-white">
-        <PaperTear
-          edge="top"
-          tear={4}
-          color={showRecap ? "white" : "yellow-400"}
-          bgColor="blue-500"
-        />
+        {!showRecap && <PaperTear edge="top" tear={4} color="yellow-400" />}
         <Doodle
           shape="asterisk"
           color="linear-sunset"
@@ -624,7 +606,7 @@ export default async function Home({ params }: Props) {
       <section className="relative bg-yellow-400">
         <div className="relative isolate">
           <PaperTear
-            className="absolute top-0 z-40 translate-y-[-20%]"
+            className="top-0 bottom-auto z-40 translate-y-[-20%]"
             edge="bottom"
             tear={5}
             color="pink-50"
@@ -637,7 +619,7 @@ export default async function Home({ params }: Props) {
             }))}
           />
           <PaperTear
-            className="absolute bottom-0 z-40 translate-y-[30%]"
+            className="top-auto bottom-0 z-40 translate-y-[30%]"
             edge="top"
             tear={5}
             color="brand-500"
@@ -668,7 +650,7 @@ export default async function Home({ params }: Props) {
           rotate={-8}
           className="absolute right-1/4 bottom-12 hidden h-10 md:block md:h-14"
         />
-        <div className="container-wide section-y relative z-20">
+        <div className="container-wide relative z-20 pt-12 pb-[max(6rem,13vw)] md:pt-24">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {[
               {

@@ -29,7 +29,7 @@
   },
   "recap": {
     "heading": "Dit was",
-    "edition": "Zomaar Zomert {year}",
+    "edition": "#ZZ{year}",
     "album": "Bekijk alle foto's"
   },
   "lineup": {

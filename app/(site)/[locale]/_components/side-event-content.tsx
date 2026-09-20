@@ -149,7 +149,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
           rotate={-12}
           className="pointer-events-none absolute -top-10 -right-12 h-56 opacity-80 md:-right-16 md:h-96 lg:h-112"
         />
-        <div className="container-wide relative z-10 pt-28 pb-16 md:pt-32 md:pb-24">
+        <div className="container-wide relative z-10 pt-28 pb-[max(6rem,12vw)] md:pt-32">
           <Link
             href={{ pathname: "/info", hash: "activiteiten" }}
             className="font-display inline-flex items-center gap-2 text-xs font-bold tracking-wider text-white/70 uppercase transition-colors hover:text-white md:text-sm"

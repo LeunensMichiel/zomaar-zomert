@@ -190,7 +190,8 @@ export const RECAP_QUERY = defineQuery(/* groq */ `
       "url": asset->url,
       "alt": coalesce(alt, ""),
       "lqip": asset->metadata.lqip,
-      "hotspot": hotspot { x, y }
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height
     }
   }
 `);
@@ -442,7 +443,8 @@ export type RecapPhoto = {
   url: string;
   alt: string;
   lqip: string | null;
-  hotspot: ImageHotspot | null;
+  width: number;
+  height: number;
 };
 
 export type Recap = {

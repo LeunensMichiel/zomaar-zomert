@@ -49,7 +49,7 @@ export default async function ContactPage({ params }: Props) {
     <>
       <section className="bg-brand-500 relative">
         <div className="h-16 md:h-20 lg:h-24" />
-        <PaperTear edge="bottom" tear={4} color="pink-50" />
+        <PaperTear edge="bottom" tear={4} color="pink-50" inFlow />
       </section>
       <section className="relative">
         <Doodle

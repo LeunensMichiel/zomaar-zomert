@@ -192,7 +192,7 @@ export function LineUpClient({ artists, activities, children }: Props) {
         className="pointer-events-none absolute -top-6 left-1/2 z-0 h-72 -translate-x-1/2 opacity-40 md:-top-12 md:h-96 lg:h-112"
       />
 
-      <div className="container-wide relative z-20 pt-24 pb-16 md:pt-32 md:pb-20">
+      <div className="container-wide relative z-20 pt-24 pb-[max(5rem,8vw)] md:pt-32">
         {/* Centered chunky-block headline — third position variation
             after /info (left) and /contact (right). Yellow block + red
             text breaks the gray-900 trend used on the other two. */}

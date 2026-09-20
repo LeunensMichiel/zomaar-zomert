@@ -1,4 +1,5 @@
 import { Doodle } from "@components/doodle";
+import { FooterTearColor } from "@components/footer-tear-color";
 import { PaperTear } from "@components/paper-tear";
 import { Sticker } from "@components/sticker";
 import { Link } from "@lib/i18n/navigation";
@@ -108,7 +109,7 @@ export default async function ArtistDetailPage({ params }: Props) {
       <div className="overflow-x-clip">
         <section className="bg-linear-sunset relative">
           <div className="h-12 md:h-16 lg:h-20" />
-          <PaperTear edge="bottom" tear={6} color="blue-500" />
+          <PaperTear edge="bottom" tear={6} color="blue-500" inFlow />
         </section>
 
         <div className="relative bg-blue-500 text-pink-50">
@@ -232,8 +233,8 @@ export default async function ArtistDetailPage({ params }: Props) {
             </main>
           </div>
         </div>
-        <PaperTear edge="top" tear={2} color="blue-500" />
       </div>
+      <FooterTearColor color="blue-500" />
     </>
   );
 }

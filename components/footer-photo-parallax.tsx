@@ -9,16 +9,6 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 
-/**
- * Parallax background for the footer photo strip. The inner image is
- * 124% tall and offset `-top-[12%]` so there's 12% slack at each end;
- * `useScroll` tracks the wrapper through the viewport and slides the
- * image between `-12%` and `+12%` so it scrolls *slower* than the page.
- * `useSpring` smooths the raw scroll progress so the image glides
- * with inertia instead of snapping pixel-for-pixel with the wheel.
- * Pure transform animation — GPU-cheap, and the outer wrapper clips
- * the slack so nothing bleeds outside the strip.
- */
 export function FooterPhotoParallax() {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();

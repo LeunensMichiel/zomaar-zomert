@@ -135,7 +135,7 @@ export function Doodle({
         width="100"
         height="100"
         preserveAspectRatio="xMidYMid meet"
-        className={cn("pointer-events-none z-10 block select-none", className)}
+        className={cn("pointer-events-none z-40 block select-none", className)}
         style={{ transform, ...style }}
       >
         {eyeDefs && <defs dangerouslySetInnerHTML={{ __html: eyeDefs }} />}
@@ -170,7 +170,7 @@ export function Doodle({
       width={vbW}
       height={vbH}
       preserveAspectRatio="xMidYMid meet"
-      className={cn("pointer-events-none z-10 block select-none", className)}
+      className={cn("pointer-events-none z-40 block select-none", className)}
       style={
         {
           "--fill-0": fillVar,

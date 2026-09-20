@@ -2,6 +2,7 @@ import { Doodle } from "@components/doodle";
 import { FitText } from "@components/fit-text";
 import { FooterPhotoParallax } from "@components/footer-photo-parallax";
 import { FooterStarSpin } from "@components/footer-star-spin";
+import { FOOTER_TEAR_VAR } from "@components/footer-tear-color";
 import { GrainOverlay } from "@components/grain-overlay";
 import { HotGradient } from "@components/hot-gradient";
 import { Facebook } from "@components/icons/facebook";
@@ -188,9 +189,7 @@ export async function Footer() {
   return (
     <>
       <div className="relative isolate flex items-center justify-center overflow-hidden">
-        {/* Tears scale with viewport width (preserveAspectRatio="none"), so
-            track the width with vw past 2xl to keep them from covering the icons. */}
-        <div className="relative z-[1] w-full overflow-hidden px-6 py-32 xl:py-60 2xl:pt-[max(15rem,10vw)] 2xl:pb-[max(15rem,15vw)]">
+        <div className="relative z-[0] w-full overflow-hidden px-6 py-32 xl:py-60 2xl:pt-[max(15rem,10vw)] 2xl:pb-[max(15rem,15vw)]">
           <FooterPhotoParallax />
           <div
             aria-hidden
@@ -255,20 +254,16 @@ export async function Footer() {
             edge="bottom"
             tear={3}
             color="pink-50"
-            className="absolute inset-x-0 -top-[10px] z-10"
+            fillVar={FOOTER_TEAR_VAR}
+            className="-top-[10px] bottom-auto z-10"
           />
           <PaperTear
             edge="bottom"
             tear={1}
             color="pink-50"
-            className="absolute inset-x-0 -bottom-[10px] z-10"
+            className="-bottom-[10px] z-10"
           />
-          <PaperTear
-            edge="bottom"
-            tear={6}
-            color="gray-900"
-            className="absolute inset-x-0 bottom-0 z-10"
-          />
+          <PaperTear edge="bottom" tear={6} color="gray-900" className="z-10" />
         </div>
       </div>
 

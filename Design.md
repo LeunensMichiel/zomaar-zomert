@@ -116,7 +116,7 @@ Decorative SVG shapes from the Figma Doodles frame, inlined from [doodle-svgs.ts
 
 ### `<PaperTear>`
 
-Inlines the torn-paper paths from [tear-paths.ts](components/tear-paths.ts) so `fill` is controllable. **Server-only.** Renders in-flow at `relative z-0` with a 1px bleed into the neighbouring section. Drop it as the first or last child of a section.
+Inlines the torn-paper paths from [tear-paths.ts](components/tear-paths.ts) so `fill` is controllable. **Server-only.** Renders as an absolute overlay (`absolute inset-x-0 z-30`, pinned to `edge`) with a transparent background and a 1px bleed into the neighbouring section, so section content scrolls underneath the ink. Drop it as the first or last child of a `relative` section and give the content enough padding on that side (`pb-[max(6rem,13vw)]` for tear 1, `12vw` for tear 2, `8vw` for tear 6). Pass `inFlow` for header strips and spacers with nothing to overlap; it then takes its own height in flow.
 
 | tear | aspect  | use                                      |
 | ---- | ------- | ---------------------------------------- |
@@ -125,7 +125,7 @@ Inlines the torn-paper paths from [tear-paths.ts](components/tear-paths.ts) so `
 | 6    | ~18:1   | medium-compact                           |
 | 4, 5 | ~22:1   | most compact, over short marquees etc.   |
 
-Pass the **adjacent** section's colour: `edge="bottom"` takes the colour of the section below, `edge="top"` the colour of the section above. Optional `bgColor` makes the tear a self-contained two-tone block.
+Pass the **adjacent** section's colour: `edge="bottom"` takes the colour of the section below, `edge="top"` the colour of the section above. Override the anchor through `className` when the tear must hang outside its parent (`top-auto bottom-full`, or `bottom-auto` with a custom `top`).
 
 ### Server-only primitives in client trees
 
@@ -159,16 +159,16 @@ Variants `brand` (red), `accent` (yellow), `sky` (blue), `ink` (black / yellow t
 
 ### Footer and navbar
 
-- **Footer**: photo strip (parallax `footer.webp`, hot gradient wash, spinning star-burst, grain, three tears at the edges, sticker social buttons) over a `bg-gray-900` info section on a `lg:grid-cols-4` grid: contact (2 cols), line-up links, more-info links, all headed by `<Sticker>`s. Partners are tiered from the Sanity `tier` field: lead partners in a large-logo grid at full opacity, support partners as a smaller `opacity-60` flex-wrap. Bottom bar holds the locale switcher and copyright. No newsletter or funnel CTAs; the footer is signage.
+- **Footer**: photo strip (parallax `footer.webp`, hot gradient wash, spinning star-burst, grain, three tears at the edges, sticker social buttons). The top tear's ink defaults to pink-50; a page whose last section is another colour renders `<FooterTearColor color="blue-500" />` so the tear takes that colour instead over a `bg-gray-900` info section on a `lg:grid-cols-4` grid: contact (2 cols), line-up links, more-info links, all headed by `<Sticker>`s. Partners are tiered from the Sanity `tier` field: lead partners in a large-logo grid at full opacity, support partners as a smaller `opacity-60` flex-wrap. Bottom bar holds the locale switcher and copyright. No newsletter or funnel CTAs; the footer is signage.
 - **Navbar**: fixed, always white text, no bar. The logo scales and fades out over the first 120px of scroll and comes back when the menu opens. A frosted circle appears behind the hamburger once scrolled. The menu is a Base UI `Dialog` over `<MenuBackground>` with two tiers: five primary poster links (`text-4xl` → `xl:text-7xl`, star bullet, CSS kinetic text-swap on hover) and a bottom band with secondary links, socials, locale switcher, and a tilted date sticker driven by `ZZ_DATE_*`. Open is a single panel fade with staggered links; close is faster with links exiting upward first. Primary nav is budgeted for five items on a 320×568 viewport.
 
 ## Section template and z-layering
 
 Each section is `relative bg-X`. **Don't add `isolate` or `overflow-x-clip` to a section**: both stop gutter doodles from bleeding across section boundaries (horizontal clipping is handled once on `html`). Layers inside a section:
 
-- `<PaperTear>` at `z-0`
-- `<Doodle>` at `z-10` (add `absolute …` yourself)
 - content wrapper at `relative z-20`
+- `<PaperTear>` at `z-30`, overlaying content
+- `<Doodle>` at `z-40` by default (add `absolute …` yourself), always on top of tears and content; pass a lower `z-*` when a doodle should sit behind a block
 
 Without the explicit `z-20`, in-flow content paints below absolutely positioned doodles. If an inner block needs high z-indexes (e.g. marquee tears at `z-40`), wrap that subtree, not the section, in `relative isolate`.
 
