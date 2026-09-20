@@ -1,76 +1,68 @@
-# Design.md — Zomaar Zomert
+# Design.md
 
-Living reference for the visual language, design tokens, and reusable primitives used across the site. The [home page](app/%5Blocale%5D/page.tsx) is the canonical reference implementation — when porting another page to this design language, copy its patterns.
+Visual language, tokens, and primitives for the Zomaar Zomert site. The [home page](<app/(site)/[locale]/page.tsx>) is the reference implementation; mirror an existing page when adding a new one.
 
-## Aesthetic direction
+## Direction
 
-**Hybrid maximalism + collage.** Think summer-festival zine, skate-shop sticker pack, paper-cut postcard. We want the site to feel young, loud, hand-made — never SaaS, never corporate. Reference points: Pukkelpop, Rock Werchter, but with our own torn-paper / risograph DNA.
+Summer-festival zine, skate-shop sticker pack, paper-cut postcard. Young, loud, hand-made. Never SaaS, never corporate. Reference points: Pukkelpop, Rock Werchter, with our own torn-paper / collage / bold DNA.
 
-Keywords: _summer, vibes, young, fun, stickers, skateboard._
+Recurring moves:
 
-Five recurring moves:
-
-1. **Halftone dots** layered over photography (mix-blend-multiply).
-2. **Paper tears** between sections — the existing white SVGs in [public/assets/](public/assets/) (`tear-1` … `tear-7`).
-3. **Stickers** — chunky uppercase badges on a colored fill, 2px black border, hard offset shadow, slight rotation.
-4. **Big Oswald headlines** that fill the screen (clamp into the 4xl–9xl range).
-5. **Rotated / overlapping cards** — never a perfectly aligned grid. 1°–2° tilt is plenty.
+1. **Halftone dots** over photography (`mix-blend-multiply`).
+2. **Paper tears** between sections.
+3. **Stickers**: chunky uppercase badges, 2px black border, hard offset shadow, slight rotation.
+4. **Big Oswald headlines** that fill the screen.
+5. **Tilted, overlapping cards**. Never a perfectly aligned grid; 1–2° is plenty.
 
 ## Tokens
 
-All tokens live in [app/globals.css](app/globals.css) inside the `@theme` block; consume via Tailwind utilities (`bg-brand-500`, `font-display`).
+All tokens live in the `@theme` block of [app/globals.css](app/globals.css).
 
-### Color roles
+### Colour
 
-The palette is anchored on the **Zomaar Zomert** colour set defined in the ZZ 2026 Figma file. Each named anchor sits at a fixed slot in its scale so tints/shades stay in lockstep, and an alias token (`--color-summer-red`, etc.) points to the slot.
+| Name (Figma) | Hex       | Scale slot   | Alias          | Usage                                   |
+| ------------ | --------- | ------------ | -------------- | --------------------------------------- |
+| Summer Red   | `#de350b` | `brand-500`  | `summer-red`   | CTAs, hot fills                         |
+| Royal Yellow | `#ffb600` | `yellow-400` | `royal-yellow` | Stickers, highlights                    |
+| Dimmed Led   | `#fee198` | `yellow-100` | `dimmed-led`   | Cream highlights, soft sticker fills    |
+| Blue Cola    | `#3b84db` | `blue-500`   | `blue-cola`    | Secondary tiles, headliner cards        |
+| Tardis Blue  | `#193d6b` | `blue-900`   | `tardis-blue`  | Deep "summer night" backgrounds         |
+| Black        | `#000000` |              |                | Offset shadows and sticker borders only |
 
-| Name (Figma) | Hex       | Scale slot           | Alias token            | Usage                                               |
-| ------------ | --------- | -------------------- | ---------------------- | --------------------------------------------------- |
-| Summer Red   | `#de350b` | `--color-brand-500`  | `--color-summer-red`   | Big CTAs, hot fills, brand accents                  |
-| Royal Yellow | `#ffb600` | `--color-yellow-400` | `--color-royal-yellow` | Stickers, highlights, "free entry" stamps           |
-| Dimmed Led   | `#fee198` | `--color-yellow-100` | `--color-dimmed-led`   | Cream highlights, soft sticker fills                |
-| Blue Cola    | `#3b84db` | `--color-blue-500`   | `--color-blue-cola`    | Secondary tiles, headliner cards                    |
-| Tardis Blue  | `#193d6b` | `--color-blue-900`   | `--color-tardis-blue`  | Deep "summer night" backgrounds (hero, closing CTA) |
-| Black        | `#000000` | n/a                  | n/a                    | Reserved for offset shadow / sticker borders only   |
-
-**Adjacent helpers.** Pink (`--color-pink-400` `#ff8faa`) is the hot pink used in the gradient stops — keep the existing pink scale for soft backgrounds (`pink-50`, `pink-300`). Ink lives at `--color-gray-900` (`#1a1a1a`) — body text and the offset shadow.
-
-Don't introduce greys outside the existing scale. The named ZZ palette is the source of truth — when in doubt, reach for an alias.
+Pink `pink-400` (`#ff8faa`) is the hot pink in gradient stops; `pink-50` / `pink-300` are soft backgrounds. Ink is `gray-900` (`#1a1a1a`) for body text. Don't introduce greys outside the existing scale.
 
 ### Gradients
 
-Four named gradient styles ride alongside the solid palette (Figma styles `Linear Red`, `Linear Sunset`, `Radial Red`, `80s Gum`). Exposed as Tailwind `bg-*` utilities in [app/globals.css](app/globals.css), and accepted as `color`/`accent` values on `<Doodle>` (e.g. `<Doodle shape="lips" color="linear-sunset" />`):
+Exposed as `bg-*` utilities and accepted as `color` / `accent` on `<Doodle>`.
 
-| Utility            | Style         | Stops                                  | Where it earns its place                                |
-| ------------------ | ------------- | -------------------------------------- | ------------------------------------------------------- |
-| `bg-linear-red`    | Linear Red    | `#ff1d25` 0% → `#961702` 100%          | Countdown panel, "linear-red" doodle fill (anchors)     |
-| `bg-linear-sunset` | Linear Sunset | `#ffb600` 0% → `#ff7bac` 100%          | Star-bursts, sun-rays — yellow→pink hero/closing pieces |
-| `bg-radial-red`    | Radial Red    | `#ff7bac` 0% → `#de350b` 100% (radial) | One-off accents (e.g. lips on the yellow gallery)       |
-| `bg-80s-gum`       | 80s Gum       | `#3b84db` 3% → `#ff8faa` 61%           | Cool-to-hot accent for blue-leaning sections            |
+| Utility            | Stops                          | Use                                  |
+| ------------------ | ------------------------------ | ------------------------------------ |
+| `bg-linear-red`    | `#ff1d25` → `#961702`          | Countdown panel, anchor doodle fills |
+| `bg-linear-sunset` | `#ffb600` → `#ff7bac`          | Star-bursts, sun-rays                |
+| `bg-radial-red`    | `#ff7bac` → `#de350b` (radial) | One-off accents                      |
+| `bg-80s-gum`       | `#3b84db` → `#ff8faa`          | Cool-to-hot accent for blue sections |
 
-Use gradients _sparingly_ — too many on one page reads as Web 2.0 sheen. **At most one gradient per section**, applied either to the anchor doodle or to a single panel (e.g. the countdown).
+At most one gradient per section.
 
 ### Type
 
-- **Display**: `Oswald 700` (`font-display`). All headings, sticker labels, button labels, sectional eyebrows. UPPERCASE, line-height ≤ 1.05.
-- **Body**: `Open Sans` (`font-sans`), 400 default, 700 for `<strong>`. Line-height 1.5.
+- **Display**: Oswald 700 (`font-display`). Headings, sticker labels, buttons, eyebrows. Uppercase, line-height ≤ 1.05.
+- **Body**: Open Sans (`font-sans`), 400, 700 for `<strong>`. Line-height 1.5.
 
-Headline scale is set in [app/globals.css](app/globals.css#L137-L178). For loud hero moments, use `text-4xl md:text-6xl xl:text-7xl` (or `clamp(...)` when you need a continuous ramp). For the home hero, **stacked logo + date stamps + location strip** is the visual anchor — not a single `<h1>`.
+### Radius, shadow, spacing
 
-#### Section titles: short, big, or absent
+- `--radius: 0`. Square corners everywhere; pills only on deliberate sticker shapes.
+- No drop shadows. Use `shadow-sticker[-sm|-lg]` (hard black offset; tune via `--sticker-x`, `--sticker-y`, `--sticker-color`).
+- Cards: 2px black border + sticker shadow.
+- Width: `container-wide` (1640px). `container-page` is legacy.
+- Vertical rhythm: `section-y` (3 / 6 / 9 rem) or `section-y-sm` (3 / 5 rem). Don't hand-roll section padding.
+- Mobile is the primary canvas (80% of traffic). Stacks collapse to one column; tilt stays visible at every breakpoint.
 
-This is **not** a SaaS site. Section eyebrows + sentence-y subtitles read like product copy and dilute the festival voice. Apply this rule for new sections:
+## Headlines
 
-- **Prefer no title at all** when context (sticker eyebrow + cards/visuals) already says what the section is. The Days, Numbers, and Activities cards make their meaning obvious; a sentence on top is noise.
-- **If you do keep a title, use one or two words and make it huge** — poster-grade, not header-grade. The standard scale is `text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]` for these single-word "stamps" (e.g. `Line-up.`, `Doe mee.`, `Aftermovie.`, `100% Gratis.`). Pick a scale, commit to it, and let the type itself be the visual.
-- **Drop redundant lede paragraphs.** A short body line under the big stamp is fine; a marketing summary is not.
-- **Sticker eyebrows are still allowed** when they add useful context the headline doesn't ("Mogelijk gemaakt door" before "100% Gratis."), but most sections don't need one.
+**Section titles are short, big, or absent.** Sticker eyebrow + visuals usually say enough; skip the title. If you keep one, make it one or two words at poster scale (`text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]`), e.g. `Line-up.`, `Doe mee.`, `100% Gratis.`. No sentence-y subtitles or marketing ledes.
 
-Examples that earn their words: `100% Gratis.`, `Line-up.`. Examples that don't: ~~"De namen die het dak eraf gooien."~~, ~~"Foto's zeggen meer dan een bandenbericht."~~ — context already communicates these; the title is overhead.
-
-#### Chunky block headlines
-
-For pages where the body is the main event (info pages, contact pages, anywhere the bento/form does the heavy lifting), the poster word can feel too loud. The alternative is a **chunky bordered block** — the headline word sits inside a `bg-gray-900` block with high-contrast text (`text-pink-300`, `text-yellow-400`), `inline-block`, `shadow-sticker-lg`, and a small tilt (`-rotate-2` / `rotate-2`). Reads like a rubber stamp pressed onto the page. Mid-scale (`text-5xl md:text-7xl xl:text-8xl`) — smaller than the poster word, larger than a body header.
+**Chunky block** is the interior-page alternative when the body is the main event: the headline word sits in a tilted bordered block with sticker shadow at mid scale.
 
 ```tsx
 <h1 className="font-display shadow-sticker-lg inline-block -rotate-2 bg-gray-900 px-5 py-2 text-5xl leading-[0.9] font-bold text-pink-300 uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl">
@@ -78,335 +70,124 @@ For pages where the body is the main event (info pages, contact pages, anywhere 
 </h1>
 ```
 
-### Radius / shadow
-
-- `--radius: 0` — corners are square by default. Pills only on conscious sticker shapes.
-- No drop shadows. Replace with **hard offset block shadow** (`shadow-sticker*` utilities).
-
-## Reusable primitives
-
-### `shadow-sticker[-sm|-lg]` (CSS utility)
-
-Defined in [app/globals.css](app/globals.css). Produces a flat black offset block shadow. Override the offset / color via the `--sticker-x`, `--sticker-y`, `--sticker-color` custom properties.
-
-### `halftone[-soft|-dense]` (CSS utility)
-
-Two-layer radial gradient that mimics a halftone print. Use with `mix-blend-multiply` on top of imagery, or `mix-blend-screen` on solid color blocks.
-
-### `tape-strip` (CSS utility)
-
-Striped washi-tape look for collage corners.
-
-### `<Sticker>` — [components/sticker.tsx](components/sticker.tsx)
-
-Rotated badge with bordered fill and offset shadow. Anywhere a sticker eyebrow makes sense, this is the primitive — used by the global `<Footer>` as well as the page bodies.
-Props: `color` (`yellow|brand|blue|pink|ink|paper`), `size` (`xs|sm|md|lg|xl`), `shape` (`rect|pill|tag`), `rotate` (number, deg).
-Use for eyebrows, "FREE ENTRY", date pills, "DOE MEE" callouts, footer column headings.
-
-### `<Doodle>` — [components/doodle.tsx](components/doodle.tsx)
-
-Decorative shapes — the building block for the maximalist, sticker-pack feel. SVG illustrations exported from the **Doodles** frame in the ZZ 2026 Figma file (sources in [public/assets/doodles/](public/assets/doodles/), pre-extracted into [doodle-svgs.ts](components/doodle-svgs.ts)) are inlined so each layer's fill/stroke can be themed independently — `mask-image` would collapse every layer to a single colour. Two inline shapes (`eye`, `plus`) are drawn as plain JSX paths.
-
-**Shapes:**
-
-- _Inline_: `eye`, `plus`.
-- _Asset-backed_: `zz`, `play`, `cross`, `banner`, `sun-rays`, `star-burst`, `zzz`, `stroke`, `horns`, `coil`, `radial`, `lips`, `stripes`, `asterisk`, `flame`, `cocktail`, `star`.
-
-**Theming**:
-
-- `color` — primary paint. Maps to the SVG's `var(--fill-0)` slot, the inline shapes' outline + pupil, and (for gradient-baked shapes) overrides the baked gradient. Default `ink`.
-- `accent` — secondary detail. Maps to `var(--stroke-0)` on duo-layer shapes (the back/outline) and to the pupil on `eye`. Optional.
-
-Both `color` and `accent` accept solid palette tokens (`summer-red`, `royal-yellow`, `dimmed-led`, `blue-cola`, `tardis-blue`, `pink`, `ink`, `paper`, `white`) **or** one of the four named gradients: `linear-red`, `linear-sunset`, `radial-red`, `80s-gum`. Gradients are minted at render time as inline `<linearGradient>` / `<radialGradient>` defs with unique ids; the prop value resolves to a `url(#…)` paint server.
-
-Doodles fall into three theming buckets:
-
-1. **Single-layer.** One paint reference — pass `color`. `accent` is ignored. Includes `asterisk`, `banner`, `cocktail`, `lips`, `play`, `radial`, `star`, `stripes`, `zz`, plus the inline `plus`.
-2. **Duo-layer.** Two distinct paints — pass both `color` (front) and `accent` (back/outline). When `accent` is omitted, the SVG falls back to its baked-in Figma detail colour. Includes `cross` (cream front + red shadow), `sun-rays` (yellow front + red shadow), `horns` (yellow hand + red outline), and the inline `eye` (outline + iris coloured by `accent`, with a small black pupil dot centered inside; the white-of-eye is hardcoded `pink-50`).
-3. **Gradient-baked.** Ship with a Figma gradient embedded in the SVG defs (`Linear Red`, `Linear Sunset`, `Radial Red`). The path's paint is wrapped as `var(--fill-0, url(#paint…))` so passing `color` overrides the gradient with whatever you pass — including another gradient — and omitting `color` keeps the original baked look. Includes `coil` (Linear Red stroke), `stroke` (Linear Sunset stroke — used by the loading spinner), `star-burst` (yellow), `zzz` (Linear Sunset × 4), `flame` (Radial Red fill + themable red stroke via `accent`).
-
-Stroke-only single-layer shapes (`asterisk`, `cocktail`, `lips`, `radial`, `star`, `stripes`) use `fill="none"` so the path doesn't render a black silhouette behind the stroke — the SVG default of `fill: black` would otherwise leak through.
-
-The asset-backed shapes have varying intrinsic aspect ratios (e.g. `lips` ≈ 1.76:1, `play` ≈ 0.72:1, `stripes` ≈ 3.5:1). Size them with a height utility (`h-44`, `lg:h-96`, …) and let the SVG's viewBox handle width — `<Doodle shape="lips" color="summer-red" className="h-44" />`. Don't force a square `w-* h-*` pair on a non-square shape.
-
-**Always pass an explicit `color`.** Without one, single-layer shapes fall back to the dull Figma export colour and gradient-baked shapes fall back to their built-in gradient — both options should be a deliberate choice, not an oversight. Avoid `color="ink"` (black) and `color="white"` for decorative gutter doodles; reach for the bright tokens or a gradient.
-
-If you re-export an SVG from Figma, regenerate `doodle-svgs.ts` (small Node script lives in the commit history under "extract doodle svgs"). Watch out for hardcoded hex colours in the export — convert them to `var(--fill-0, …)` for the primary paint and `var(--stroke-0, …)` for any duo-layer detail.
-
-**Doodle is server-only** — the module declares `import "server-only"` so a stray client import fails the build. `doodle-svgs.ts` is large enough to bloat the client bundle if it ever crossed a `'use client'` boundary; same goes for `<PaperTear>`.
-
-**Using server-only primitives inside a client tree.** Both `<Doodle>` and `<PaperTear>` can only be imported from server files. When a client component needs one, render it in the parent `page.tsx` (or any server component) and pass it through as `children` or a ReactNode prop — the client component just slots the pre-rendered React tree into its layout. See [/line-up/page.tsx](app/%5Blocale%5D/line-up/page.tsx) for the bottom `<PaperTear>` that bridges the dark hero into the footer's photo strip without breaking the client boundary. If neither option fits (e.g. a small star-burst inside a TBA card back), use `<Image src="/assets/doodles/{shape}.svg">` against the asset directly — accepting that you lose per-layer theming.
-
-#### Scatter rule: fewer, bigger, with extreme size variation
-
-Drop doodles into section gutters with absolute positioning — never on top of body copy or inside cards. They are `pointer-events-none` and `aria-hidden`. Apply this rule when placing them:
-
-- **Two or three per section, max** — four+ at similar sizes reads as decoration noise, not character. Resist the urge to fill every corner.
-- **One "anchor" doodle that is intentionally _huge_** (`h-48` and up; on `lg` go up to `h-96`/`h-112`/`lg:h-128`/`lg:w-lg`). Position it bleeding off the section edge with negative offsets like `-top-12 -right-16` so it reads as a stamp slammed onto the page, not a centered ornament.
-- **One or two _small_ accents** (`h-10` to `h-16`) elsewhere in the gutter, in a contrasting shape and color.
-- **Never two doodles at the same size** in one section — the size jump is the whole point.
-
-#### Shape-picking rules
-
-- **Small doodles look good in this set:** `plus`, `cross`, `play`, `sun-rays`, `star-burst`, `zz`, `radial`, `asterisk`, `cocktail`, `star`. The other shapes (`banner`, `lips`, `stripes`, `flame`, `horns`, `zzz`, `coil`, `stroke`, `eye`) are designed for big anchors — they don't read at small sizes. Header-pair doodles (the `h-20`–`h-36` partner next to a chunky-block headline) count as small for this purpose.
-- **Repeating a small shape is fine.** Three little `cross`es clustered with slight rotation/size variation reads as deliberate dynamism, not laziness.
-- **A big anchor shape can't appear twice on the same page** — unless it's the same shape at a different scale (one big + one or more small variants is fine). Pick a different shape for each section's anchor.
-- **Distribute big anchors across pages.** Don't show the same big shape on multiple pages above the fold; the festival should feel like every page has its own poster, not a single repeated motif. Two pages sharing one big shape is borderline OK; three or more is too many.
-
-Examples that earn their place: a 96–128 unit `lips` bleeding off the right edge of the gallery section + a 14-unit `cross` near the title; a 80-unit `flame` in the activities corner + a 12-unit `plus` accent. Avoid: four 20-unit shapes evenly distributed around a section, or `lips` big on three different pages.
-
-### `<PaperTear>` — [components/paper-tear.tsx](components/paper-tear.tsx)
-
-Re-renders each `<path d="…">` from the festival's torn-paper SVGs inline so we control `fill` directly — no `mask-image` recolor trickery. Path strings are pre-extracted into [tear-paths.ts](components/tear-paths.ts) (regenerate when the source SVGs change) so PaperTear has no `fs` / runtime file IO. **Server-only** (declares `import "server-only"`) — its 270KB of path data must never end up in the client bundle. Renders as an in-flow `block` with `relative z-0` (lowest layer in the section's z-stack) and a 1px translate (`-translate-y-px` for `edge="top"`, `translate-y-px` for `edge="bottom"`) that bleeds the tear into the adjacent section to hide sub-pixel hairlines. Tailwind v4 emits `translate-y-*` via the standalone `translate` CSS property, so it stacks cleanly with the inline `transform: scaleY(-1)` that flips top-edge tears. Drop it as the first or last child of a section and it sits flush at that section's edge.
-
-Each `tear-N.svg` ships with `viewBox="0 0 11339 1418"` but the painted ink only occupies a slice of that — anywhere from ~520 (tear-4, tear-5) to ~1300 units tall (tear-1). The component stores a per-tear cropped viewBox in `TEAR_VIEWBOX` so the rendered SVG's intrinsic aspect matches the visible ink. Result: the box on screen is exactly the size of the tear, no phantom empty area.
-
-Pick the tear by feel — natural aspects after cropping:
-
-| tear | aspect       | use                                             |
-| ---- | ------------ | ----------------------------------------------- |
-| 1, 2 | ~9:1 / ~10:1 | full-body dividers between tall sections        |
-| 3, 7 | ~14:1        | medium dividers                                 |
-| 6    | ~18:1        | medium-compact                                  |
-| 4, 5 | ~22:1        | the most compact — use over short marquees etc. |
-
-Pass the **adjacent section's color** as `color` so the divider visually flows:
-
-- `edge="bottom"` → tear sits at the bottom of section A; pass section B's color (the section _below_).
-- `edge="top"` → tear sits at the top of section B; pass section A's color (the section _above_).
-
-Optional `bgColor` makes the tear a self-contained two-tone block — `color` paints the painted silhouette, `bgColor` paints everything outside it. Swap the two values to flip which side reads as primary without touching the parent's background.
-
-Example: hero (`bg-blue-900`) ending in a yellow ticker → `<PaperTear edge="top" tear={5} color="yellow-400" />` rendered above the ticker so the wave looks "torn" up into the dark hero.
-
-### `<HotGradient>` — [components/hot-gradient.tsx](components/hot-gradient.tsx)
-
-The "hot-sunset" brand gradient as a one-liner: `from-brand-900 via-brand-500 to-pink-400`, positioned `absolute inset-0`. Used as a saturated base by the navbar menu, and tinted via `className` (e.g. `opacity-50`, `opacity-25`) under the hero and footer atmosphere stacks. Server-safe — no hooks, no client boundary.
-
-### `<GrainOverlay>` — [components/grain-overlay.tsx](components/grain-overlay.tsx)
-
-Paper-grain noise tile. Renders an `absolute inset-0` div with `mix-blend-overlay` and a `menu-noise.svg` background, repeated at 256 px. The SVG is pre-rasterised (vs. an inline `feTurbulence` filter) so the browser caches it once and never re-runs the noise function per frame. Drops on top of any saturated atmosphere (gradient + blobs) to add risograph print texture. Paired with `<HotGradient>` in the menu / hero / footer; `className` accepts the usual overrides (opacity, blend swap, …). Server-safe.
-
-### `<TickerStrip>` — [app/[locale]/\_components/ticker-strip.tsx](app/%5Blocale%5D/_components/ticker-strip.tsx)
-
-Pukkelpop-style rolling marquee of all-caps strings, separator between items. Wraps `react-fast-marquee` (already a dep). Set `direction` to `right` for the second strip in a paired layout.
-
-### `<DayCard>` / `<HeadlinerCard>` — [day-card.tsx](app/%5Blocale%5D/_components/day-card.tsx), [headliner-card.tsx](app/%5Blocale%5D/_components/headliner-card.tsx)
-
-Tilted, halftoned image cards used in the line-up sections. Each has a slight per-card tilt (set in the page) so the row feels hand-arranged. Both collapse to one column on mobile and switch to `md:grid-cols-3` (iPad+) so the trio reads side-by-side on tablets without forcing huge cards on phones. Cards stretch to row height via `h-full flex flex-col` on the frame and `flex-1 items-center` on the text band — so a row containing a 2-line name and a 1-line name (or a TBA card) all share one card height, with the shorter labels centred in the stretched band. `<HeadlinerCard>` takes a `tbaLabel` prop for the wax-seal sticker on TBA placeholders so the parent owns the translation. When `name === "TBA"` the card delegates the visual to `<TBACard>` (below).
-
-### `<TBACard>` — [app/[locale]/\_components/tba-card.tsx](app/%5Blocale%5D/_components/tba-card.tsx)
-
-Shared TBA placeholder used by both the home page (`<HeadlinerCard>`'s TBA branch) and the line-up grid (`<LineUpArtistCard>`'s TBA branch). Static visual: tone-coloured background with halftone, oversized star-burst doodle centred, four small plus accents at the corners, "Soon" sticker as the wax seal. Gentle hover (card scales 1 → 1.015 + 1° rotation nudge, star-burst inside swings -12° → 8° via `group-hover:`) — distinct from the artist cards' lift, signals "stirs but not clickable". `size: "md" | "lg"` lets the line-up's denser 4-col grid use a smaller "TBA / ✦" footer than the home's 3-col headliner row.
-
-### `<FloatingPolaroid>` — [app/[locale]/\_components/floating-polaroid.tsx](app/%5Blocale%5D/_components/floating-polaroid.tsx)
-
-Componentised version of the polaroid recipe (below) with a gentle floating animation — `y: 0 → -8 → 0` + `±0.8°` rotation, looping over 6s. Used wherever the page wants a single image card with character. Props: `src`, `alt`, `caption` (pre-rendered ReactNode so callers can pass a server-resolved `<Sticker>`), `tilt` (base rotation), `float` (defaults to `true`; pass `false` to keep the static tilt but disable the breathing animation — used on the home countdown section's supporting row), `className`. Honours `useReducedMotion()`.
-
-### Polaroid pattern
-
-A standard treatment for festival photos — used on [/info](app/%5Blocale%5D/info/page.tsx) (terras tile in the bento, pétanque tile in the activities section), [/history](app/%5Blocale%5D/history/page.tsx) (per-milestone snapshots + a closing wide crew portrait), and inside the home intro/countdown section. Recipe rather than a component (use `<FloatingPolaroid>` when you want the breathing animation; this raw recipe is for static placements):
-
-- White card (`bg-white`), 2px black border, `shadow-sticker-lg`, slight tilt (±2°).
-- Inner photo wrapped in a second 2px black border, with a `halftone` overlay at `opacity-30 mix-blend-multiply`.
-- Oversized bottom margin (`pb-10 md:pb-14`) so the white frame mimics a real polaroid's wider bottom strip.
-- Centered handwritten-style caption underneath in `font-display uppercase`.
-- Optional `tape-strip` absolutely positioned at a top corner — needs a `relative` wrapper above the polaroid card so the tape pins on top without inheriting the card's tilt.
-
-```tsx
-<div className="relative">
-  <span
-    aria-hidden
-    className="tape-strip absolute -top-3 left-10 z-30 h-5 w-24 -rotate-12"
-  />
-  <article className="shadow-sticker-lg relative -rotate-2 border-2 border-gray-900 bg-white p-3 pb-10 md:p-4 md:pb-14">
-    <div className="relative h-72 overflow-hidden border-2 border-gray-900">
-      <Image src="..." alt="" fill className="object-cover" />
-      <div
-        aria-hidden
-        className="halftone absolute inset-0 opacity-30 mix-blend-multiply"
-      />
-    </div>
-    <p className="font-display mt-4 text-center text-base font-bold uppercase">
-      {caption}
-    </p>
-  </article>
-</div>
-```
-
-### `<PhotoMarquees>` — [app/[locale]/\_components/photo-marquees.tsx](app/%5Blocale%5D/_components/photo-marquees.tsx)
-
-Twin marquees of festival photos with a randomized client-side shuffle. Use over colored sections — the legacy `<HomeMarquees>` bakes in white tear SVGs that clash with non-white backgrounds.
-
-### `<Countdown>` — [app/[locale]/\_components/countdown.tsx](app/%5Blocale%5D/_components/countdown.tsx)
-
-Festival countdown clock — four segments (days / hours / minutes / seconds), forced `grid-cols-4` so cells never wrap, tabular-nums for stable digit width. Inherits text colour from its parent so any panel can re-skin it.
-
-### `<Timeline>` — [components/ui/timeline.tsx](components/ui/timeline.tsx)
-
-Vertical scroll-driven timeline with sticky year markers on the left and an animated trailing line that fills as the user scrolls. Adapted from a shadcn/Aceternity component and re-skinned: square yellow sticker dots (not round circles), Oswald-poster year titles in `text-brand-500`, brand-red → royal-yellow gradient on the active line. Renders only the timeline body — pages provide their own hero/heading above. Each entry takes `{ title, content }`; each `content` is free-form, so milestones can mix sticker eyebrows, body copy, polaroids, poster cards, etc. Used on `/history`.
-
-### `<RevealCard>` — [app/[locale]/\_components/reveal-card.tsx](app/%5Blocale%5D/_components/reveal-card.tsx)
-
-Wraps a card with the same `rotateY: -90 → 0` flip + scale + opacity entry animation as the line-up grid, but triggered by viewport intersection (`whileInView`) rather than filter state. Each card animates once when it scrolls into view; an `index` prop adds a small per-card delay so a row of cards appears to flip in sequence rather than all at once. `useReducedMotion` short-circuits to plain children. Used on the home page around `<DayCard>` and `<HeadlinerCard>` rows.
-
-### `<StrokeLoader>` — [app/[locale]/\_components/stroke-loader.tsx](app/%5Blocale%5D/_components/stroke-loader.tsx)
-
-Loading state — the `stroke` doodle drawn by hand, looping. Single `<path>` rendered with `stroke-dasharray` + the shared `doodle-paint-stroke` keyframes from [app/globals.css](app/globals.css) via the `animate-doodle-paint-stroke-loop` utility: 1.2 s, `ease-in-out`, `infinite alternate`. Each iteration walks the path's `stroke-dashoffset` start → end, then end → start on the reverse, so the stroke continuously paints in and erases out without a snap cut. Original Linear Sunset gradient (yellow → pink) preserved. Pure CSS — no `motion` import — and reduced-motion users have the animation paused via the global `@media (prefers-reduced-motion: reduce)` block. Replaces the legacy spinner in [loading.tsx](app/%5Blocale%5D/loading.tsx).
-
-### `<ScrollBg>` — [app/[locale]/history/\_components/scroll-bg.tsx](app/%5Blocale%5D/history/_components/scroll-bg.tsx)
-
-Page-scoped section wrapper whose `backgroundColor` interpolates as the user scrolls. Uses `useScroll({ offset: ["start start", "end end"] })` mapped to five colour stops, e.g. on `/history`: `pink-50 → yellow-100 → pink-300 → yellow-100 → pink-50` — a warm wave through the milestones. Currently `/history`-only (the colour stops are hard-coded in the file); generalise via props if another page needs it.
-
-### `<LocaleSwitcher>` — [locale-switcher.tsx](components/locale-switcher.tsx)
-
-Compact two-letter language picker (`NL FR EN`). Inactive codes sit at `opacity-50`; the active one carries a yellow underline that slides between codes via `motion`'s `layoutId`. Keep it subtle — only show it when there's a clear context for switching (e.g. inside the open menu, or in the footer bottom bar).
-
-### `<Button>` — [button.tsx](components/ui/button.tsx)
-
-The shared button. Variants used in the new design language:
-
-- `variant="brand"` — orange fill, black border, white text.
-- `variant="accent"` — yellow fill, black border, dark text.
-- `variant="sky"` — blue fill, black border, white text.
-- `variant="ink"` — black fill, black border, yellow-300 text.
-- `size="2xl"` — extra-large CTA scale.
-- `sticker` (boolean) — adds the offset shadow + lift-on-hover behavior.
-
-Polymorphic via `as`. `disabled` only emits the HTML attribute when `as` resolves to `"button"`; on `<a>`/`<span>` it sets `aria-disabled` and `tabIndex=-1` instead.
-
-### Footer — [components/footer.tsx](components/footer.tsx)
-
-Two-part global footer used on every page. Loud photo strip up top, calm editorial sign-off below.
-
-- **Photo strip** — full-bleed `footer.webp` rendered via `<FooterPhotoParallax>` (a client component that wraps the bg image in a `motion.div` and slides it `±7%` against `useScroll` smoothed through a stiff spring — gliding parallax, GPU transform only). On top: `<HotGradient className="opacity-25" />` for a warm wash, a centred `<FooterStarSpin>` around a yellow `<Doodle shape="star-burst">` (slow rotation with a scroll-velocity boost, gated by IntersectionObserver), and `<GrainOverlay>` for paper grain. Three paper tears (`tear-3`, `tear-1`, `tear-6`) absolutely positioned across the strip's edges so the silhouette reads as torn into the surrounding sections. Centred sticker eyebrow ("Volg ons") + three rotated **sticker** social buttons (Instagram / Facebook / YouTube in `yellow / brand / blue`) — each 64–80 px square, 2 px black border, sticker shadow, with a pure-CSS `transform` transition that straightens the rotation and lifts `-y: 6px` on hover.
-- **Dark info section** (`bg-gray-900`) — `lg:grid-cols-4` mirroring the partners grid below, so the contact/nav row and partner row share one visual rhythm:
-  - **2/4 — Contact**: yellow sticker eyebrow + chunky-block `info@zomaarzomert.be` mailto (Oswald, `text-3xl md:text-4xl`) + single-line address (`Plankenstraat 23 · 1701 Itterbeek · BE`) in low-opacity body type. No card frame, no postcard collage, no CTAs — the email itself is the call to action and the partners section below carries the eye onward.
-  - **1/4 — Line-Up**: brand-colored sticker eyebrow + uppercase per-day links.
-  - **1/4 — More info**: pink sticker eyebrow + uppercase nav links (history, partners, menu, privacy).
-  - All column headings are `<Sticker>` instances (sm size, ±2–3° rotation) — never plain underlined h3s. Links use `font-display uppercase tracking-wide` and yellow on hover.
-- **Partner hierarchy** — two distinct tiers driven by `tier` on each Sanity `partner` document (schema in [sanity/schemaTypes/partner.ts](sanity/schemaTypes/partner.ts)):
-  - **Lead partners (tier 1)** — eyebrow stack: small yellow "Mogelijk gemaakt door" + medium brand "Hoofdpartners" stickers, then a `grid-cols-2 md:grid-cols-3 lg:grid-cols-4` of larger logos (`h-12 md:h-14 lg:h-20`) at full opacity.
-  - **Support partners (tier 2+)** — separated by an ink sticker tag "Met de steun van" between two thin `bg-white/15` rules, then a `flex-wrap` of smaller logos (`h-7 md:h-9 lg:h-11`) at `opacity-60`. The opacity + size jump is the hierarchy signal — don't equalize them.
-- **Bottom bar** — `<LocaleSwitcher>` (matches the navbar's locale pattern) on the left, single-line copyright on the right, separated from partners by a `border-white/10` rule. Credits are minimal — webdesign credit only.
-
-Don't add a newsletter, "stay in the loop" CTA, or any copy that pretends the festival has a continuous funnel. The footer is signage, not lead-gen.
-
-### Navigation — kinetic full-screen menu — [components/navbar.tsx](components/navbar.tsx)
-
-The menu is a Base UI `Dialog` that takes over the viewport when triggered, anchored on a hot-sunset noisy-gradient background ([components/menu-background.tsx](components/menu-background.tsx)) with a two-tier link hierarchy borrowed from festival posters. Notes:
-
-- **Header** — permanently `position: fixed`. No outer pill or bar — the header is just a flex row with the logo on the left and the menu trigger on the right, padded with `px-3 pt-3 sm:px-4 sm:pt-4 md:px-6 md:pt-5`. Foreground is **always** `text-white` (the dark frosted circle around the menu trigger plus the logo's scroll-fade keep things legible), so the old `isTransparent` prop is gone. The header inherits `currentColor` down into `<Logo>` and `<MenuToggle>`; `<Logo>`'s `<Link>` carries an explicit `text-current hover:text-current` so the global `a { color: brand-500 }` rule from [globals.css](app/globals.css) doesn't paint the SVG red on its way through.
-- **Scroll-fading logo** — sized `h-9 md:h-11 lg:h-12`. As the user scrolls the first 120px the logo scales `1 → 0.4` and fades `opacity 1 → 0`. When the menu opens, both values lerp back to 1 so the user keeps brand context inside the menu, regardless of scroll position. This dual-input is built on a derived `useTransform(() => …)` that reads two motion values (`scrollY` + an animated `openMv` mirror of the open state) — `motionAnimate(openMv, open ? 1 : 0, …)` keeps `openMv` smooth, and the transform lerps `scrollScale + (1 − scrollScale) × open`. A derived `pointerEvents` motion value flips to `"none"` once `opacity < 0.05` so the invisible logo can't intercept clicks.
-- **Menu-trigger circle** — the frosted glass now lives in a single circle tucked behind the hamburger only (no full-width bar). `<MenuToggle>` itself is `rounded-full` with `p-1.5 sm:p-2` to give the SVG breathing room; an `absolute inset-0 -z-10` sibling carries the backdrop. Same recipe as the open-menu backdrop, scaled down: `bg-gray-900/20 backdrop-blur-md`, a `bg-linear-to-br from-brand-900/20 via-transparent to-blue-900/25` gradient glow, an inline `feTurbulence fractalNoise` SVG filter at `opacity-55 mix-blend-overlay` for risograph grain, hairline `border-white/15`. The circle fades + scales in from 0 once `scrollY > 24` and fades out again when the menu opens (the menu owns its own gradient backdrop), so at the top of any page the hamburger floats as a plain icon — only once you start reading does the chrome assert itself.
-- **Backdrop** — `<MenuBackground>` composes a `<HotGradient>` base, a single drifting `bg-brand-700` blob (`animate-menu-blob-d`, 16 s loop), an optional spinning `<Doodle shape="star-burst">` halo when a `starBurst` prop is passed in, and a `<GrainOverlay>` (a pre-rasterised `menu-noise.svg` tile repeated at 256 px, `mix-blend-overlay`). The whole panel — Backdrop + content — fades together as one `motion.div` opacity transition driven by the popup, not per-layer; only the link list and bottom band stagger inside.
-- **Link hierarchy** — two tiers:
-  - **Primary** (5 links: line-up, info, contact, history, partners) — big kinetic poster links with a yellow-300 4-point star bullet that scales + rotates 90° on hover. Sized `text-4xl sm:text-5xl md:text-6xl xl:text-7xl`. Home is dropped from the list — the logo clicking serves it.
-  - **Secondary** (food & drinks, privacy-policy) — small uppercase white/70 text with a hairline that extends from `w-5` to `w-9` on hover. Lives in the bottom band, paired with the right cluster (socials + locale).
-- **Bottom band** — `mt-auto` so it floats at the popup's bottom regardless of viewport height. Hairline top border (`border-white/25`), then a `flex-col sm:flex-row` row: secondary links on the left, socials + `<LocaleSwitcher>` on the right. Below it, a tilted "27 · 28 · 29 JULI 'YY" `<Sticker color="ink" size="sm" rotate={-2}>` postmarks the corner; date numerals come from `ZZ_DATE_FRIDAY/SATURDAY/SUNDAY` so the stamp updates each edition without touching the navbar.
-- **Socials** — 36–40px square hollow tiles (`border-white/40 bg-white/5`) that invert to a yellow chip on hover (`hover:bg-yellow-300 hover:text-gray-900`) with a `-translate-y-0.5 rotate-3` lift. Icons inherit `currentColor` so the hover flip is a single class change. Instagram / Facebook / Spotify-via-Youtube-icon mirror the global footer's social list.
-- **Open animation — pure fade.** No gate-slide. The whole panel (popup + `<MenuBackground>` + content) fades up as one `opacity 0 → 1` (0.35 s, `[0.22, 0.61, 0.36, 1]`) inside `<AnimatePresence>`. Inside the panel, the link list and bottom band stagger:
-  - **Primary nav**: five links cascade tightly at 0.04s apart, starting at 0.04s. Span: `0.04 → 0.2s`. Entry is `opacity 0 → 1` (no slide).
-  - **Secondary band** (`SECONDARY_VISIBLE` in [navbar.tsx](components/navbar.tsx)): paired secondary links land together at 0.22s → three socials follow at 0.28–0.32s → locale + date stamp share the closing beat at 0.36s.
-- **Close animation — inverse text-reveal first, rest follows in one tight wave.** ~⅓ faster than the open. Primary links exit on the front foot (`opacity 1 → 0, y: 0 → -30`, the inverse of the text-reveal direction), index-staggered at 0.03s and each one 0.22s. Secondary leaves all fall in `0.12–0.18s` after the close starts, and background layers `0.18–0.22s`, so the rest of the panel collapses as one quick wave rather than a long stagger tail. The `data-closed:animate-[dialog-stay-mounted_550ms]` on `BaseDialog.Popup` keeps the popup mounted long enough for the longest exit branch to finish.
-- **Kinetic link hover** — each `<NavLink>` wraps two stacked copies of the label in a CSS grid cell with `overflow-hidden` + `leading-none` on the wrapper (so the row is exactly one glyph tall and `translate-y-full` is a clean 100% shift). On `:hover` / `:focus-visible` both copies translate up — original slides out the top, the yellow duplicate slides in from below. Pure CSS, unrelated to the open/close motion above.
-- **Mobile scaling** — primary links sized to fit five rows on a 320px-wide / 568px-tall phone with room left for the bottom band. `text-4xl` base bumps to `text-5xl` at `sm` (≥640px). Container is `overflow-y-auto` as a safety net. Bottom band collapses `sm:flex-row → flex-col` so socials stack under secondary links on phones. Date stamp centres on mobile (`justify-center sm:justify-end`).
-- **Blob drift + reduced motion** — the single `animate-menu-blob-d` utility runs a 16 s ease-in-out loop, paused under `prefers-reduced-motion` alongside the doodle stroke / spin animations. The hero atmosphere uses its own `animate-hero-blob-{a,b,c}` and `animate-hero-star-drift` keyframes (see _Motion_ below); they're also gated by reduced-motion.
-- **Base UI integration** — `BaseDialog.Portal keepMounted` keeps the popup in the DOM so the AnimatePresence-driven exit plays out. `data-closed:pointer-events-none` so the popup doesn't intercept clicks while invisible.
-
-When adding new primary items, keep the `<StarBullet>` + `<span className="grid overflow-hidden leading-none">` kinetic wrapper so the swap stays in sync, give the new `motion.li` its `custom={index}` so it slots into the stagger, and budget the bottom band's vertical space against a 320×568 viewport — primary nav exceeding 5 items will start to crowd the date stamp.
-
-## Layout & spacing
-
-- Use `container-wide` (`1640px` max width) — more breathing room than `container-page`. `container-page` is reserved for legacy pages.
-- Vertical rhythm via `section-y` (3rem mobile / 6rem md / 9rem xl) and `section-y-sm` (3rem / 5rem). Stick to these — don't hand-roll padding values.
-- Cards: 2px solid black border + `shadow-sticker[-lg]`. No drop shadows, no rounded corners.
-- Mobile is the primary canvas — 80% of traffic. Card stacks should collapse to a single column comfortably; tilt remains visible at any breakpoint.
-
-### Section template & z-layering
-
-Each section is `relative bg-X` — **don't add `isolate`** to the section wrapper. A doodle bleeding off section A (e.g. `-bottom-12 -left-12`) paints during A's stacking context; if A is isolated, B's background paints over the bleeding doodle when B renders next. Without `isolate`, the doodle's `z-10` lives in the page-level stacking context and paints _above_ B's bg but _below_ B's `z-20` content — exactly what the layered design wants.
-
-**Don't** add `overflow-x-clip` to a section either: per the CSS Overflow spec, mixing `overflow-x: clip` with `overflow-y: visible` forces the visible axis to compute as `auto`, which clips negative-offset doodles vertically. Horizontal clipping is handled once at the page level via `overflow-x: clip` on `html` ([app/globals.css](app/globals.css)), so individual sections can keep `overflow: visible` and let bleeding doodles cross section boundaries.
-
-Inside, the layers are explicit:
-
-- `<PaperTear>` ships `relative z-0` — lowest.
-- `<Doodle>` ships `z-10` (effective when the consumer adds `absolute …`) — middle.
-- Each content wrapper gets `relative z-20` — top.
-
-Without the explicit `z-20` on the content wrapper, non-positioned content paints at CSS step 3 (in-flow) which sits _below_ `absolute z-auto` doodles — leading to doodles overlapping headlines.
-
-**Inner isolation for high-z subtrees.** If a section has an inner block that uses high z-indexes (e.g. the gallery's `<PhotoMarquees>` wrapper, where the marquee tears sit at `z-40` to ride over the photos), wrap that subtree — not the whole section — in `relative isolate`. That contains the high-z values inside the subtree without preventing gutter doodles from bleeding past the section.
-
 ### Per-page header variation
 
-Each page's header should look distinctly different so the site doesn't feel templated. Vary at least two of these axes between pages:
+Every page opens with a dark band so the always-transparent navbar reads in white. Vary at least two axes between pages so the site doesn't feel templated: position (left / right / centre), pairing element (doodle, polaroid, ticker, photo), colour combo, tilt direction, treatment (chunky block / poster word / stacked words).
 
-- **Position** — headline left / right / center
-- **Pairing element** — doodle, polaroid, starburst, ticker, photo
-- **Color combo** — pink-on-black, yellow-on-black, red on cream, etc.
-- **Tilt direction** — positive / negative
-- **Treatment** — chunky block / poster word / stacked words
+The shared interior shape is **header-below-tear**: a thin coloured strip (`h-16 md:h-20 lg:h-24`) behind the fixed navbar, capped by `<PaperTear tear={1}>` into the content section. The chunky block lives at the top of that next section, not in the strip. Current combos:
 
-Worked examples:
+| Page        | Strip       | Block                              |
+| ----------- | ----------- | ---------------------------------- |
+| `/info`     | `brand-500` | gray-900 / pink-300, `-rotate-2`   |
+| `/contact`  | `brand-500` | gray-900 / pink-300, `rotate-2`    |
+| `/menu`     | `blue-500`  | brand-500 / yellow-400, `rotate-2` |
+| `/history`  | `blue-900`  | blue-900 / yellow-400, `-rotate-1` |
+| `/partners` | `brand-900` | yellow-400 / blue-900, `-rotate-2` |
 
-**Header-below-tear** is the shared shape for most interior pages: a thin colored strip (`h-16 md:h-20 lg:h-24`) sized to sit behind the fixed navbar, capped by `<PaperTear tear={1}>` flowing into the next section. The chunky-block headline lives **inside that next section** at the top of its container — never inside the colored strip. No paired doodle or sticker eyebrow in the strip. `/line-up` and `/` (home) are deliberate exceptions because they need a full visual hero.
+Exceptions: `/line-up` has a full `blue-900` hero with a centred yellow block over a rotating star tear; `/` has a `min-h-svh` video hero with the logo and date stickers and no block at all.
 
-- [/info](app/%5Blocale%5D/info/page.tsx) — `bg-brand-500` strip → pink-50 bento. Chunky block (`bg-gray-900` + `text-pink-300`, `-rotate-2`) at the top of the bento container.
-- [/contact](app/%5Blocale%5D/contact/page.tsx) — `bg-brand-500` strip → pink-50 form section. Chunky block (`bg-gray-900` + `text-pink-300`, `rotate-2`) carries the friendly greeting (`Hallo.` / `Coucou.` / `Hi there.`). Email lives as a smaller link above the form, not as the headline. Opposite tilt to `/info` so the two cream pages don't read identical.
-- [/menu](app/%5Blocale%5D/menu/page.tsx) — `bg-blue-500` strip → pink-50 ScrollBg inside `<MenuClient>`. Chunky block (`bg-brand-500` + `text-yellow-400`, `rotate-2`) is rendered inside `MenuClient` (it owns the container) above the filter buttons. The page's `topTear` prop is dropped — the strip's bottom tear is the only transition.
-- [/history](app/%5Blocale%5D/history/page.tsx) — `bg-blue-900` strip → pink-50 ScrollBg. Chunky block (`bg-blue-900` + `text-yellow-400`, `-rotate-1`) at the top of the timeline container, followed by the intro paragraph, then the Timeline.
-- [/partners](app/%5Blocale%5D/partners/page.tsx) — `bg-brand-900` strip → `bg-brand-500` partners section. Chunky block (`bg-yellow-400` + `text-blue-900`, `-rotate-2`) at the top of the brand-500 section, followed by the intro paragraph and the lead-partner grid. Only page where the strip and body are both saturated brand colours.
-- [/line-up](app/%5Blocale%5D/line-up/page.tsx) — **exception.** Chunky block (`bg-yellow-400` + `text-brand-500`, `rotate-1`) **centered** inside a full `bg-blue-900` hero, with `/assets/star-tear.svg` rotating behind it as a backdrop. The dense day-by-day grid below earns the loud hero moment. Star asset (~370 KB) is referenced via `<motion.img>`, not inlined into `doodle-svgs.ts`.
-- [/](app/%5Blocale%5D/page.tsx) (home) — **exception.** `min-h-svh` video hero with logo + date stickers, no chunky block at all. Different paradigm because the home is the brand moment. (`svh` rather than `dvh` so the mobile URL-bar collapse doesn't reflow the hero mid-scroll.)
+## Primitives
+
+Site-wide primitives live in [components/](components/); home-only pieces in [app/(site)/[locale]/\_components/](<app/(site)/[locale]/_components/>).
+
+### `<Sticker>`
+
+Rotated badge with bordered fill and offset shadow. Props: `color` (`yellow|brand|blue|pink|ink|paper`), `size` (`xs`–`xl`), `shape` (`rect|pill|tag`), `rotate` (deg). Use for eyebrows, date pills, callouts, footer column headings.
+
+### `<Doodle>`
+
+Decorative SVG shapes from the Figma Doodles frame, inlined from [doodle-svgs.ts](components/doodle-svgs.ts) so each layer can be themed. **Server-only.**
+
+- Shapes: `eye`, `plus` (inline JSX) and `zz`, `play`, `cross`, `banner`, `sun-rays`, `star-burst`, `zzz`, `stroke`, `horns`, `coil`, `radial`, `lips`, `stripes`, `asterisk`, `flame`, `cocktail`, `star`.
+- `color` is the primary paint, `accent` the secondary (back layer / outline / pupil). Both accept palette tokens (`summer-red`, `royal-yellow`, `dimmed-led`, `blue-cola`, `tardis-blue`, `pink`, `ink`, `paper`, `white`) or a gradient name (`linear-red`, `linear-sunset`, `radial-red`, `80s-gum`).
+- Single-layer shapes ignore `accent`: `asterisk`, `banner`, `cocktail`, `lips`, `play`, `radial`, `star`, `stripes`, `zz`, `plus`. Duo-layer: `cross`, `sun-rays`, `horns`, `eye`. Gradient-baked (keep their Figma gradient unless you pass `color`): `coil`, `stroke`, `star-burst`, `zzz`, `flame`.
+- **Always pass `color`.** Avoid `ink` and `white` for gutter doodles; use bright tokens or a gradient.
+- Size with a height utility only (`h-44`, `lg:h-96`); the viewBox sets the width. Shapes aren't square.
+- Re-exporting from Figma: regenerate `doodle-svgs.ts` and replace hardcoded hexes with `var(--fill-0, …)` / `var(--stroke-0, …)`.
+
+**Scatter rule.** Doodles go in section gutters, absolutely positioned, `pointer-events-none aria-hidden`, never over copy or inside cards.
+
+- Two or three per section, max.
+- One huge anchor (`h-48` and up, `lg:h-96`+) bleeding off the section edge with negative offsets.
+- One or two small accents (`h-10`–`h-16`) in a contrasting shape and colour.
+- Never two doodles at the same size in one section.
+- Small shapes that read well: `plus`, `cross`, `play`, `sun-rays`, `star-burst`, `zz`, `radial`, `asterisk`, `cocktail`, `star`. The rest are anchors only. Repeating a small shape is fine.
+- A big anchor shape appears once per page, and don't reuse the same big shape above the fold on more than two pages.
+
+### `<PaperTear>`
+
+Inlines the torn-paper paths from [tear-paths.ts](components/tear-paths.ts) so `fill` is controllable. **Server-only.** Renders in-flow at `relative z-0` with a 1px bleed into the neighbouring section. Drop it as the first or last child of a section.
+
+| tear | aspect  | use                                      |
+| ---- | ------- | ---------------------------------------- |
+| 1, 2 | ~9–10:1 | full-body dividers between tall sections |
+| 3, 7 | ~14:1   | medium dividers                          |
+| 6    | ~18:1   | medium-compact                           |
+| 4, 5 | ~22:1   | most compact, over short marquees etc.   |
+
+Pass the **adjacent** section's colour: `edge="bottom"` takes the colour of the section below, `edge="top"` the colour of the section above. Optional `bgColor` makes the tear a self-contained two-tone block.
+
+### Server-only primitives in client trees
+
+`<Doodle>` and `<PaperTear>` can't be imported from `'use client'` files. Render them in `page.tsx` and pass them through as `children` or a named ReactNode prop (`topTear`, `bottomTear`, …). See [/line-up/page.tsx](<app/(site)/[locale]/line-up/page.tsx>). Last resort: `<Image src="/assets/doodles/{shape}.svg">`, losing per-layer theming.
+
+### Atmosphere
+
+- `<HotGradient>`: `from-brand-900 via-brand-500 to-pink-400`, `absolute inset-0`. Tint via `className` (`opacity-25`, `opacity-50`).
+- `<GrainOverlay>`: pre-rasterised `menu-noise.svg` tile at `mix-blend-overlay` for risograph texture.
+- `<MenuBackground>`: gradient + drifting blob + optional star-burst halo + grain. Used by the menu; the hero and footer compose the same layers.
+- CSS utilities: `halftone[-soft|-dense]`, `tape-strip`.
+
+### Cards and content pieces
+
+- `<DayCard>` / `<HeadlinerCard>`: tilted halftone image cards, `md:grid-cols-3`, `h-full flex flex-col` so mixed-length rows share a height. `<HeadlinerCard>` takes `tbaLabel` and delegates to `<TBACard>` when the name is `TBA`.
+- `<TBACard>`: shared TBA placeholder (home + line-up), `size: "md" | "lg"`.
+- `<FloatingPolaroid>`: polaroid with a 6s bob; `float={false}` for a static tilt. `caption` is a ReactNode so callers can pass a server-rendered `<Sticker>`.
+- **Polaroid recipe** for static placements: white card, 2px black border, `shadow-sticker-lg`, ±2° tilt, inner 2px-bordered photo with `halftone opacity-30 mix-blend-multiply`, oversized bottom padding, uppercase display caption, optional `tape-strip` at a corner (needs a `relative` wrapper so the tape doesn't inherit the tilt).
+- `<PhotoMarquees>`: twin shuffled photo marquees for coloured sections.
+- `<TickerStrip>`: all-caps rolling marquee (`react-fast-marquee`); set `direction="right"` for the second strip of a pair.
+- `<Countdown>` / `<CountdownHero>`: countdown clock; inherits `currentColor`.
+- `<RevealCard>`: flip-in on viewport entry with per-`index` delay.
+- `<Timeline>`: scroll-driven vertical timeline with sticky year markers (used on `/history`).
+- `<ScrollBg>`: section wrapper whose background interpolates through a `colors` array as you scroll (used on `/history` and `/menu`).
+- `<StrokeLoader>`: the `stroke` doodle painting itself in a loop, used by `loading.tsx`. Pure CSS.
+- `<LocaleSwitcher>`: `NL FR EN` with a sliding yellow underline (`layoutId`). Only inside the menu and footer.
+
+### `<Button>`
+
+Variants `brand` (red), `accent` (yellow), `sky` (blue), `ink` (black / yellow text); `size="2xl"` for hero CTAs; `sticker` adds the offset shadow and lift on hover. Polymorphic via `as`; `disabled` becomes `aria-disabled` on non-button elements.
+
+### Footer and navbar
+
+- **Footer**: photo strip (parallax `footer.webp`, hot gradient wash, spinning star-burst, grain, three tears at the edges, sticker social buttons) over a `bg-gray-900` info section on a `lg:grid-cols-4` grid: contact (2 cols), line-up links, more-info links, all headed by `<Sticker>`s. Partners are tiered from the Sanity `tier` field: lead partners in a large-logo grid at full opacity, support partners as a smaller `opacity-60` flex-wrap. Bottom bar holds the locale switcher and copyright. No newsletter or funnel CTAs; the footer is signage.
+- **Navbar**: fixed, always white text, no bar. The logo scales and fades out over the first 120px of scroll and comes back when the menu opens. A frosted circle appears behind the hamburger once scrolled. The menu is a Base UI `Dialog` over `<MenuBackground>` with two tiers: five primary poster links (`text-4xl` → `xl:text-7xl`, star bullet, CSS kinetic text-swap on hover) and a bottom band with secondary links, socials, locale switcher, and a tilted date sticker driven by `ZZ_DATE_*`. Open is a single panel fade with staggered links; close is faster with links exiting upward first. Primary nav is budgeted for five items on a 320×568 viewport.
+
+## Section template and z-layering
+
+Each section is `relative bg-X`. **Don't add `isolate` or `overflow-x-clip` to a section**: both stop gutter doodles from bleeding across section boundaries (horizontal clipping is handled once on `html`). Layers inside a section:
+
+- `<PaperTear>` at `z-0`
+- `<Doodle>` at `z-10` (add `absolute …` yourself)
+- content wrapper at `relative z-20`
+
+Without the explicit `z-20`, in-flow content paints below absolutely positioned doodles. If an inner block needs high z-indexes (e.g. marquee tears at `z-40`), wrap that subtree, not the section, in `relative isolate`.
 
 ## Motion
 
-Use `motion/react` (the rebranded `framer-motion`, already a dep). **Never gsap** — applies to the public site and any internal tools. Honor `useReducedMotion()` for any new effect.
+`motion/react` only; never gsap. Honour `useReducedMotion()`. Prefer CSS transitions where they suffice; reach for `motion` for orchestration (stagger, layout, scroll-driven values). All CSS keyframe utilities (`animate-doodle-*`, `animate-hero-*`, `animate-menu-blob-d`) are paused under `prefers-reduced-motion` in `globals.css`.
 
-Current motion moments:
+Existing moments, for consistency when adding new ones:
 
-- **Hero** — `<video>` background loop with `<TickerStrip>` CSS marquee flush at the bottom. Above the video, the atmosphere stack: `<HotGradient className="opacity-50" />` warm wash → three drifting blurred blobs (`animate-hero-blob-{a,b,c}`, viewport-relative translates on coprime 10 / 13 / 11 s loops so they never sync) → a `<Doodle shape="star-burst">` halo composed by nesting `animate-hero-star-drift` (slow upward-biased wander around centre) inside `animate-doodle-spin-slow` (CSS can't stack two `transform` animations on one element, so they live on adjacent wrappers) → `<GrainOverlay>`. Mobile drops blob sizes and blur strength via responsive utilities so the GPU pass stays cheap and the motion still reads.
-- **Header** — permanently `position: fixed`. `motion`'s `useScroll` + `useTransform` shrink padding and logo over the first 120px of scroll.
-- **Menu open** — backdrop slides down from `translate-y: -100%` to `0` (the "gate" drop, easing `[0.22, 0.61, 0.36, 1]`); link list runs parent/child variants with `staggerChildren: 0.05` + `delayChildren: 0.35`, each link `opacity 0 → 1` + `y: 30 → 0`. Reverse stagger on close. `BaseDialog.Portal keepMounted` so exits play out.
-- **Kinetic link hover** — pure CSS text-swap (no JS).
-- **Locale switcher** — `motion.span` with `layoutId="locale-bar"` slides the yellow underline between codes when the active locale changes.
-- **Sticker / card hover** — `hover:-translate-y-1` micro-translations.
-- **Line-up filter pill** — `motion.span` with `layoutId="filter-pill"` slides the active yellow chip between day filters (Pukkelpop-style).
-- **Line-up grid entry** — two modes, swapped per filter state. `flip` (per-day view) — each card rotates from `rotateY: -90°` to `0`, in a Fisher-Yates shuffled order so cards reveal randomly. `deal` ("All" view) — cards thrown from one of four corners (`DEAL_ORIGINS` cycles bottom-left → top-right → bottom-right → top-left) with springy bounce; days deal sequentially via `delayChildren: 0.1 + dayIndex * 0.35`. DaySection re-mounts on filter change via composite key (`${currentDate ?? "all"}-${date}`) so the animation always replays.
-- **TBA card hover** — distinct from the artist card lift: card scales 1 → 1.015 + 1° rotation nudge, while the inner star-burst doodle swings `-12° → 8°` via `group-hover:` CSS. Subtle "stirs but not clickable" cue. Lives in the shared `<TBACard>`.
-- **Home cards reveal-on-scroll** — `<RevealCard>` wraps the home's `<DayCard>` and `<HeadlinerCard>` rows. Same flip variant as the line-up grid, triggered by `whileInView` (`once: true, amount: 0.3`) with per-index delay so each row staggers in as it enters the viewport. RevealCard's wrapper + motion.div both carry `h-full` so grid stretching propagates to the cards inside, keeping a row of mixed-content cards visually equal-height.
-- **Off-season recap gallery** — `<RecapGallery>` (home, between hero and line-up, only while `isRecapWindow()` and Sanity has an album link + photos). White section, stacked poster word + ink/yellow edition stamp. On first viewport entry every polaroid tile is gathered on the grid's visible centre (random scale/rotation, shuffled z-index) and fans out to its grid slot with per-tile random duration + delay, cubic ease. Offsets are measured at reveal time via `getBoundingClientRect` and driven through `useMotionValue` + `animate()`, so no `setState` in effects. Reduced motion renders the static grid. Modelled on gregorcollienne.com's overview grid.
-- **Countdown digit roll** — inside `<CountdownHero>`, each HH/MM/SS digit slides into its slot via `AnimatePresence mode="popLayout"` keyed on the digit value (`y: 100% → 0% → -100%`), so digits roll like a flip-clock. The day count itself also gets a spring entry + roll-on-change. Colon characters pulse opacity once per second.
-- **Floating polaroid** — `<FloatingPolaroid>` gently bobs `y: 0 → -8 → 0` + `±0.8°` over 6 s. Disable with `float={false}` (used in the home countdown supporting row to keep that section calm).
-- **Brush-stroke doodle reveals** — two utilities in `globals.css` share the same `@keyframes doodle-paint-stroke` (animates `stroke-dashoffset` from `var(--paint-length, 4000)` → `0`):
-  - `animate-doodle-paint-stroke` — one-shot 0.9 s reveal, `cubic-bezier(0.85, 0, 0.2, 1)`. For any decorative `<path>` that should paint itself in on mount.
-  - `animate-doodle-paint-stroke-loop` — 1.2 s, `ease-in-out`, `infinite alternate`. Used by `<StrokeLoader>` for the continuous draw-in/erase-out loading rhythm.
-  - Both selectors target `& svg path` and are paused under `prefers-reduced-motion`.
-- **History scroll-driven background** — `<ScrollBg>` interpolates the section's `backgroundColor` through five colour stops mapped to `scrollYProgress`. Reads as a warm wave (cream → soft yellow → hot pink → soft yellow → cream) through the timeline. Honour `prefers-reduced-motion` if you generalise it — currently the value still animates because motion's interpolation isn't gated, but the visual change is subtle enough that no one's flagged it.
-- **Loading state — `<StrokeLoader>`** — see `animate-doodle-paint-stroke-loop` above. Pure CSS, no `motion` import.
-
-For new effects, prefer CSS transitions where they suffice; reach for `motion` when you need orchestration (stagger, layout animations, scroll-driven values).
-
-## Reference implementation: home
-
-The home page at [app/[locale]/page.tsx](app/%5Blocale%5D/page.tsx) is the canonical worked example. Home-internal components live in [app/[locale]/\_components/](app/%5Blocale%5D/_components/) (`<DayCard>`, `<HeadlinerCard>`, `<TBACard>`, `<CountdownHero>`, `<FloatingPolaroid>`, `<PhotoMarquees>`, `<RevealCard>`, `<TickerStrip>`); site-wide primitives (`<Doodle>`, `<PaperTear>`, `<Sticker>`, `<HotGradient>`, `<GrainOverlay>`) live in [components/](components/). Copy lives in the standard next-intl JSON namespaces in [locales/{nl,fr,en}/home.json](locales/) and is read via `getTranslations({ namespace: "home" })` (the ticker uses `tHome.raw("ticker") as string[]` for the array). The navbar is always transparent (set in [components/layout.tsx](components/layout.tsx)), so the home's dark video hero lets the white logo float on top.
-
-When porting another page to this language, mirror the pattern: a server `page.tsx` does data + translations and renders a stack of `relative isolate bg-X` sections separated by `<PaperTear>`s, with `<Doodle>` scatter in the gutters and any interactivity inside `'use client'` subcomponents.
-
-### Reference sections, top to bottom
-
-`min-h-svh` hero, then eight alternating-color sections, ending with the partners teaser before the global footer (no closing CTA — the partners + footer photo strip carry the page out).
-
-1. **Hero** (`bg-blue-900` — Tardis Blue, our deep summer-night anchor — over the looping video) — same atmosphere recipe as the navbar menu (see _Hero_ in **Motion**): `<HotGradient>` wash, drifting brand/pink/yellow blobs, drifting/spinning star-burst halo, `<GrainOverlay>`. Centred logo + tilted date sticker stamps + small location strip on top; in-hero yellow `<TickerStrip>` flush at the bottom with a `<PaperTear edge="top" tear={5} color="yellow-400">` over it so the marquee reads as "torn".
-2. **Countdown** (`bg-pink-50`) — countdown is the focus: centred kerning-spaced eyebrow ("tot we doorgaan"), giant day number (`clamp(8rem, 30vw, 22rem)`) stacked above a chunky `DAGEN.` stamp, live HH:MM:SS digital clock below. Supporting row underneath holds a `<FloatingPolaroid float={false}>` (static, smaller), the festival intro paragraph, and two CTAs (line-up + info) at lg size. Section is intentionally compact (`py-10 md:py-12 lg:py-14`) so the countdown lands well within one viewport.
-3. **Days** (`bg-pink-300`) — small "Programma" sticker eyebrow only; three tilted halftone `<DayCard>`s do the talking. Grid is `md:grid-cols-3` so iPad shows the trio side-by-side.
-4. **Headliners** (`bg-blue-500`) — `Line-up.` poster headline + "Volledige line-up" button; three `<HeadlinerCard>`s, same `md:grid-cols-3` rhythm as Days.
-5. **Activities (bento)** (`bg-pink-50`) — `Doe mee.` poster headline; paella (large), pétanque, and crew/volunteer tiles.
-6. **Aftermovie** (`bg-brand-500`) — `Aftermovie.` headline + `<ConsentVideo>`.
-7. **Gallery** (`bg-yellow-400`) — `<PhotoMarquees>` only (no headline — the photos do the talking). Single subtle paper-tear at the bottom transitions into the next section's brand-red.
-8. **Numbers** (`bg-brand-500`) — no headline; four tilted stat stickers do it.
-9. **Partners teaser** (`bg-pink-50`) — "Mogelijk gemaakt door" sticker eyebrow + `100% Gratis.` headline + sticker grid of 8 partner logos + "Alle partners" / "Word partner" CTAs (the full list still lives in the global `<Footer>`).
-
-Section dividers all use `<PaperTear>` with the adjacent section's color so transitions flow.
+- **Hero atmosphere**: hot gradient wash, three blurred blobs on coprime 10 / 13 / 11 s loops, star-burst halo drifting inside a slow spin (two wrappers, since one element can't stack two transform animations), grain on top.
+- **Header**: logo scroll-fade; frosted trigger circle fades in past 24px.
+- **Menu**: panel opacity fade (0.35s, `[0.22, 0.61, 0.36, 1]`), primary links stagger 0.04s apart, secondary band lands 0.22–0.36s. Close is about a third faster.
+- **Hover**: stickers and cards `hover:-translate-y-1`; menu links CSS text-swap; socials lift and rotate.
+- **Layout ids**: `locale-bar` (locale switcher), `filter-pill` (line-up day filter).
+- **Line-up grid**: `flip` (per-day, `rotateY -90 → 0` in shuffled order) or `deal` (all days, cards thrown from rotating corners with a spring). Day sections re-mount on filter change so it replays.
+- **Home cards**: `<RevealCard>` flip on `whileInView` (`once`, `amount: 0.3`).
+- **TBA card hover**: slight scale + rotation, inner star-burst swings.
+- **Recap gallery**: tiles gather at the grid centre and fan out to their slots with random per-tile timing; measured via `getBoundingClientRect` and driven with motion values, no `setState` in effects.
+- **Countdown**: digits roll like a flip-clock via `AnimatePresence mode="popLayout"`; colons pulse.
+- **Floating polaroid**: 6s bob.
+- **Brush-stroke reveal**: `animate-doodle-paint-stroke` (one-shot) and `-loop` (used by `<StrokeLoader>`) animate `stroke-dashoffset` on `svg path`.
+- **History / menu background**: `<ScrollBg>` colour interpolation.
