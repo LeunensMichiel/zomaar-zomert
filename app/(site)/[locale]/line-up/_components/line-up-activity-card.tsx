@@ -15,7 +15,6 @@ type Props = {
   date: string;
   tone: Tone;
   tilt?: number;
-  eyebrow: string;
 };
 
 const toneClass: Record<Tone, string> = {
@@ -38,13 +37,7 @@ const linkHref: Record<
 const cardFrame =
   "group relative flex h-full w-full flex-col border-2 border-gray-900 shadow-sticker md:shadow-sticker-lg text-left";
 
-export function LineUpActivityCard({
-  activity,
-  date,
-  tone,
-  tilt = 0,
-  eyebrow,
-}: Props) {
+export function LineUpActivityCard({ activity, date, tone, tilt = 0 }: Props) {
   const lang = useLocale();
   const style = { transform: `rotate(${String(tilt)}deg)` };
 
@@ -113,10 +106,7 @@ export function LineUpActivityCard({
         </div>
       </div>
       <div className="flex flex-1 flex-col justify-end px-4 py-3 md:px-5 md:py-4">
-        <span className="font-display block text-[0.625rem] leading-none font-bold tracking-[0.18em] uppercase opacity-70 md:text-xs">
-          {eyebrow}
-        </span>
-        <div className="mt-1.5 flex items-baseline justify-between gap-2">
+        <div className="flex items-baseline justify-between gap-2">
           <span className="font-display block text-xl leading-[0.9] font-bold wrap-break-word uppercase md:text-2xl xl:text-3xl">
             {activity.name}
           </span>

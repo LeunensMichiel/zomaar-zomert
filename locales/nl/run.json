@@ -8,7 +8,6 @@
     }
   },
   "labels": {
-    "factsEyebrow": "In een oogopslag",
     "tracks": "Afstanden",
     "practical": "Praktisch",
     "gallery": "Sfeerbeeld",
@@ -17,12 +16,10 @@
     "signup": "Schrijf je in",
     "signupSoon": "Binnenkort",
     "backToInfo": "Alle randactiviteiten",
-    "tbaEyebrow": "Info volgt",
     "tbaTitle": "Editie {year} in de maak",
     "tbaBody": "Afstanden, startuur en prijzen voor {year} zetten we hier zodra ze vastliggen. Kom binnenkort nog eens kijken."
   },
   "downloads": {
-    "eyebrow": "Loopparcours",
     "heading": "Bekijk het parcours",
     "hint": "Open de route in Strava en stuur ze naar je sporthorloge.",
     "download": "Download",

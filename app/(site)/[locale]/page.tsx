@@ -249,10 +249,8 @@ export default async function Home({ params }: Props) {
               </Sticker>
             </div>
 
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black tracking-[0.3em] uppercase md:text-base">
-              <span aria-hidden="true">●</span>
-              <span>Itterbeek · Dilbeek · BE</span>
-              <span aria-hidden="true">●</span>
+            <span className="font-display mt-5 text-base font-bold tracking-wider uppercase md:text-lg">
+              Itterbeek · Dilbeek
             </span>
           </div>
         </div>
@@ -348,13 +346,7 @@ export default async function Home({ params }: Props) {
             ))}
           </div>
 
-          <div className="mt-14 flex items-center gap-4 md:mt-20 md:gap-6">
-            <Sticker color="ink" size="sm" rotate={-3}>
-              {tHome("programme.eyebrow")}
-            </Sticker>
-            <span aria-hidden="true" className="bg-linear-sunset h-px flex-1" />
-          </div>
-          <div className="mt-6 grid gap-5 md:mt-8 md:grid-cols-3 md:gap-6">
+          <div className="mt-14 grid gap-5 md:mt-20 md:grid-cols-3 md:gap-6">
             {days.map((day, i) => (
               <RevealCard key={day.date} index={i}>
                 <DayMiniCard
@@ -371,13 +363,6 @@ export default async function Home({ params }: Props) {
       </section>
 
       <section className="relative overflow-hidden bg-pink-50">
-        <Doodle
-          shape="horns"
-          color="royal-yellow"
-          accent="summer-red"
-          rotate={-12}
-          className="hidden"
-        />
         <Doodle
           shape="radial"
           color="royal-yellow"
@@ -728,10 +713,7 @@ export default async function Home({ params }: Props) {
         />
         <div className="container-wide section-y relative z-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <Sticker color="brand" size="sm" rotate={-3}>
-              {tHome("partners.eyebrow")}
-            </Sticker>
-            <h2 className="text-brand-500 mt-4 text-7xl leading-[0.85] md:mt-6 md:text-9xl">
+            <h2 className="text-brand-500 text-7xl leading-[0.85] md:text-9xl">
               {tHome("partners.heading")}
             </h2>
             <p className="mt-6 max-w-md text-base text-gray-700 md:text-lg">

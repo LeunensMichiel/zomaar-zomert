@@ -7,6 +7,7 @@ import { type Locale, routing } from "@lib/i18n/routing";
 import { getDateByDayString, ZZ_YEAR } from "@lib/models";
 import { hotspotPosition } from "@lib/utils";
 import { formatArtistName } from "@lib/utils/string-utils";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -124,9 +125,10 @@ export default async function ArtistDetailPage({ params }: Props) {
                   className="relative z-20 mb-5 inline-block transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:outline-none md:mb-6"
                 >
                   <Sticker color="brand" size="sm" rotate={-3}>
-                    <span aria-hidden="true" className="mr-1">
-                      ←
-                    </span>
+                    <ArrowLeft
+                      aria-hidden="true"
+                      className="mr-1.5 h-4 w-4 md:h-5 md:w-5"
+                    />
                     {t("detail.back")}
                   </Sticker>
                 </Link>
@@ -164,7 +166,7 @@ export default async function ArtistDetailPage({ params }: Props) {
                       {formatArtistName(artist.name)}
                     </h1>
 
-                    <p className="font-display mt-4 text-sm font-bold tracking-[0.15em] text-gray-900/70 uppercase md:text-base lg:text-sm">
+                    <p className="font-display mt-4 text-sm font-bold tracking-wider text-gray-900/70 uppercase md:text-base lg:text-sm">
                       {dateLong}
                     </p>
 
@@ -222,9 +224,10 @@ export default async function ArtistDetailPage({ params }: Props) {
                     className="inline-block transition-transform hover:-translate-y-1 focus-visible:-translate-y-1 focus-visible:outline-none"
                   >
                     <Sticker color="brand" size="md" rotate={-2}>
-                      <span aria-hidden="true" className="mr-1">
-                        ←
-                      </span>
+                      <ArrowLeft
+                        aria-hidden="true"
+                        className="mr-1.5 h-4 w-4 md:h-5 md:w-5"
+                      />
                       {t("detail.back")}
                     </Sticker>
                   </Link>

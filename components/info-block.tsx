@@ -187,7 +187,7 @@ export function InfoBlock({
         style={tiltStyle}
       >
         {block.title && (
-          <span className="font-display text-xs font-bold tracking-[0.2em] uppercase opacity-80 md:text-sm">
+          <span className="font-display text-xs font-bold tracking-wider uppercase opacity-80 md:text-sm">
             {block.title}
           </span>
         )}

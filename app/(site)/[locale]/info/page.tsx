@@ -2,7 +2,6 @@ import { Doodle } from "@components/doodle";
 import { FooterTearColor } from "@components/footer-tear-color";
 import { InfoBlock } from "@components/info-block";
 import { PaperTear } from "@components/paper-tear";
-import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { Link } from "@lib/i18n/navigation";
 import { type Locale } from "@lib/i18n/routing";
@@ -129,10 +128,7 @@ export default async function InfoPage({ params }: Props) {
         />
         <div className="container-wide section-y relative z-20">
           <div className="max-w-2xl">
-            <Sticker color="ink" size="sm" rotate={-3}>
-              {t("activities.eyebrow")}
-            </Sticker>
-            <h2 className="mt-6 text-6xl leading-[0.85] text-yellow-400 md:mt-8 md:text-8xl xl:text-9xl">
+            <h2 className="text-6xl leading-[0.85] text-yellow-400 md:text-8xl xl:text-9xl">
               {t("activities.title")}
             </h2>
             <p className="mt-6 text-base leading-relaxed text-pink-50 md:text-lg">

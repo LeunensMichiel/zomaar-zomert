@@ -8,7 +8,6 @@
     }
   },
   "labels": {
-    "factsEyebrow": "In een oogopslag",
     "tracks": "Parcours",
     "practical": "Praktisch",
     "gallery": "Sfeerbeeld",
@@ -17,12 +16,10 @@
     "signup": "Schrijf je in",
     "signupSoon": "Binnenkort",
     "backToInfo": "Alle randactiviteiten",
-    "tbaEyebrow": "Info volgt",
     "tbaTitle": "Editie {year} in de maak",
     "tbaBody": "Parcours, starturen en prijzen voor {year} zetten we hier zodra ze vastliggen. Kom binnenkort nog eens kijken."
   },
   "downloads": {
-    "eyebrow": "GPX-parcours",
     "heading": "Download het parcours",
     "hint": "Laad de route in je fietscomputer of gps-app en volg ze zonder gedoe.",
     "download": "Download",

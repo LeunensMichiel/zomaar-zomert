@@ -8,7 +8,6 @@
     }
   },
   "labels": {
-    "factsEyebrow": "At a glance",
     "tracks": "Routes",
     "practical": "Practical",
     "gallery": "Atmosphere",
@@ -17,12 +16,10 @@
     "signup": "Sign up",
     "signupSoon": "Soon",
     "backToInfo": "All activities",
-    "tbaEyebrow": "Info coming",
     "tbaTitle": "{year} edition in the works",
     "tbaBody": "Routes, start times and prices for {year} land here once they're confirmed. Check back soon."
   },
   "downloads": {
-    "eyebrow": "GPX routes",
     "heading": "Download the route",
     "hint": "Load the track into your bike computer or GPS app and just follow along.",
     "download": "Download",

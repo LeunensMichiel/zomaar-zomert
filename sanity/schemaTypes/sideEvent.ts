@@ -41,7 +41,8 @@ export const sideEvent = defineType({
     defineField({
       name: "heroEyebrow",
       title: "Hero eyebrow",
-      description: 'Small sticker label above the title (e.g. "Vrijdag").',
+      description:
+        'Day sticker on the hero photo (e.g. "Vrijdag"). Falls back to above the title when there is no photo.',
       type: "internationalizedArrayString",
       group: "content",
     }),

@@ -252,8 +252,6 @@ export function LineUpClient({ artists, activities, children }: Props) {
               showHeading={showAll}
               lang={lang}
               tbaLabel={t("tba")}
-              artistEyebrow={t("artistEyebrow")}
-              activityEyebrow={t("activityEyebrow")}
               reducedMotion={reducedMotion ?? false}
               animationType={showAll ? "deal" : "flip"}
               dayIndex={dayIndex}
@@ -272,8 +270,6 @@ type DaySectionProps = {
   showHeading: boolean;
   lang: string;
   tbaLabel: string;
-  artistEyebrow: string;
-  activityEyebrow: string;
   reducedMotion: boolean;
   animationType: "deal" | "flip";
   dayIndex: number;
@@ -285,8 +281,6 @@ function DaySection({
   showHeading,
   lang,
   tbaLabel,
-  artistEyebrow,
-  activityEyebrow,
   reducedMotion,
   animationType,
   dayIndex,
@@ -416,7 +410,6 @@ function DaySection({
                 tone={toneCycle[i % toneCycle.length]}
                 tilt={tiltCycle[i % tiltCycle.length]}
                 tbaLabel={tbaLabel}
-                eyebrow={artistEyebrow}
               />
             ) : (
               <LineUpActivityCard
@@ -424,7 +417,6 @@ function DaySection({
                 date={date}
                 tone={toneCycle[i % toneCycle.length]}
                 tilt={tiltCycle[i % tiltCycle.length]}
-                eyebrow={activityEyebrow}
               />
             )}
           </motion.div>

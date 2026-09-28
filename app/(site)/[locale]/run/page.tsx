@@ -43,7 +43,6 @@ export default async function RunPage({ params }: Props) {
       data={data}
       variant="run"
       labels={{
-        factsEyebrow: t("labels.factsEyebrow"),
         tracks: t("labels.tracks"),
         practical: t("labels.practical"),
         gallery: t("labels.gallery"),
@@ -52,11 +51,9 @@ export default async function RunPage({ params }: Props) {
         signup: t("labels.signup"),
         signupSoon: t("labels.signupSoon"),
         backToInfo: t("labels.backToInfo"),
-        tbaEyebrow: t("labels.tbaEyebrow"),
         tbaTitle: t("labels.tbaTitle", { year: ZZ_YEAR }),
         tbaBody: t("labels.tbaBody", { year: ZZ_YEAR }),
         gpx: {
-          eyebrow: t("downloads.eyebrow"),
           heading: t("downloads.heading"),
           hint: t("downloads.hint"),
           download: t("downloads.download"),

@@ -19,7 +19,6 @@ type Props = {
   tone: Tone;
   tilt?: number;
   tbaLabel: string;
-  eyebrow: string;
 };
 
 const toneClass: Record<Tone, string> = {
@@ -38,7 +37,6 @@ export function LineUpArtistCard({
   tone,
   tilt = 0,
   tbaLabel,
-  eyebrow,
 }: Props) {
   const lang = useLocale();
   const isTBA = artist.name === "TBA";
@@ -98,10 +96,7 @@ export function LineUpArtistCard({
         </div>
       </div>
       <div className="flex flex-1 flex-col justify-end px-4 py-3 md:px-5 md:py-4">
-        <span className="font-display block text-[0.625rem] leading-none font-bold tracking-[0.18em] uppercase opacity-70 md:text-xs">
-          {eyebrow}
-        </span>
-        <div className="mt-1.5 flex items-baseline justify-between gap-2">
+        <div className="flex items-baseline justify-between gap-2">
           <span className="font-display block text-xl leading-[0.9] font-bold wrap-break-word uppercase md:text-2xl xl:text-3xl">
             {artist.name}
           </span>

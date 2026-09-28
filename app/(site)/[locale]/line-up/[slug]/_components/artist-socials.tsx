@@ -67,7 +67,7 @@ export function ArtistSocials({ socials, heading }: Props) {
   if (socials.length === 0) return null;
   return (
     <div className="mt-8 md:mt-10">
-      <span className="font-display block text-xs font-bold tracking-[0.2em] text-gray-900/70 uppercase md:text-sm">
+      <span className="font-display block text-xs font-bold tracking-wider text-gray-900/70 uppercase md:text-sm">
         {heading}
       </span>
       <ul className="mt-3 flex flex-wrap gap-3 md:gap-4">

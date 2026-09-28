@@ -46,7 +46,7 @@ At most one gradient per section.
 
 ### Type
 
-- **Display**: Oswald 700 (`font-display`). Headings, sticker labels, buttons, eyebrows. Uppercase, line-height ≤ 1.05.
+- **Display**: Oswald 700 (`font-display`). Headings, sticker labels, buttons. Uppercase, line-height ≤ 1.05. Small uppercase labels top out at `tracking-widest`; no `tracking-[0.2em]`+ letter-spaced captions.
 - **Body**: Open Sans (`font-sans`), 400, 700 for `<strong>`. Line-height 1.5.
 
 ### Radius, shadow, spacing
@@ -60,7 +60,7 @@ At most one gradient per section.
 
 ## Headlines
 
-**Section titles are short, big, or absent.** Sticker eyebrow + visuals usually say enough; skip the title. If you keep one, make it one or two words at poster scale (`text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]`), e.g. `Line-up.`, `Doe mee.`, `100% Gratis.`. No sentence-y subtitles or marketing ledes.
+**Section titles are short, big, or absent.** Never stack a sticker label on top of a heading: either a poster-scale heading carries the section, or a lone sticker labels it (the partner tiers on `/partners`, `Parcours` on `/bike`). If you keep one, make it one or two words at poster scale (`text-7xl leading-[0.85] md:text-9xl xl:text-[14rem]`), e.g. `Line-up.`, `Doe mee.`, `100% Gratis.`. No sentence-y subtitles or marketing ledes.
 
 **Chunky block** is the interior-page alternative when the body is the main event: the headline word sits in a tilted bordered block with sticker shadow at mid scale.
 
@@ -92,7 +92,7 @@ Site-wide primitives live in [components/](components/); home-only pieces in [ap
 
 ### `<Sticker>`
 
-Rotated badge with bordered fill and offset shadow. Props: `color` (`yellow|brand|blue|pink|ink|paper`), `size` (`xs`–`xl`), `shape` (`rect|pill|tag`), `rotate` (deg). Use for eyebrows, date pills, callouts, footer column headings.
+Rotated badge with bordered fill and offset shadow. Props: `color` (`yellow|brand|blue|pink|ink|paper`), `size` (`xs`–`xl`), `shape` (`rect|pill|tag`), `rotate` (deg). Use for date pills, photo tags, callouts, standalone section labels, footer column headings. Never as an eyebrow above a heading.
 
 ### `<Doodle>`
 
@@ -116,7 +116,7 @@ Decorative SVG shapes from the Figma Doodles frame, inlined from [doodle-svgs.ts
 
 ### `<PaperTear>`
 
-Inlines the torn-paper paths from [tear-paths.ts](components/tear-paths.ts) so `fill` is controllable. **Server-only.** Renders as an absolute overlay (`absolute inset-x-0 z-30`, pinned to `edge`) with a transparent background and a 1px bleed into the neighbouring section, so section content scrolls underneath the ink. Drop it as the first or last child of a `relative` section and give the content enough padding on that side (`pb-[max(6rem,13vw)]` for tear 1, `12vw` for tear 2, `8vw` for tear 6). Pass `inFlow` for header strips and spacers with nothing to overlap; it then takes its own height in flow.
+Inlines the torn-paper paths from [tear-paths.ts](components/tear-paths.ts) so `fill` is controllable. **Server-only.** Renders as an absolute overlay (`absolute inset-x-0 z-1`, pinned to `edge`) with a transparent background and a 1px bleed into the neighbouring section. It sits under doodles and content, so the padding below is what keeps content off the ink. Drop it as the first or last child of a `relative` section and give the content enough padding on that side (`pb-[max(6rem,13vw)]` for tear 1, `12vw` for tear 2, `8vw` for tear 6). Pass `inFlow` for header strips and spacers with nothing to overlap; it then takes its own height in flow.
 
 | tear | aspect  | use                                      |
 | ---- | ------- | ---------------------------------------- |
@@ -166,11 +166,11 @@ Variants `brand` (red), `accent` (yellow), `sky` (blue), `ink` (black / yellow t
 
 Each section is `relative bg-X`. **Don't add `isolate` or `overflow-x-clip` to a section**: both stop gutter doodles from bleeding across section boundaries (horizontal clipping is handled once on `html`). Layers inside a section:
 
-- content wrapper at `relative z-20`
-- `<PaperTear>` at `z-30`, overlaying content
-- `<Doodle>` at `z-40` by default (add `absolute …` yourself), always on top of tears and content; pass a lower `z-*` when a doodle should sit behind a block
+- `<PaperTear>` at `z-1`
+- `<Doodle>` at `z-5` by default (add `absolute …` yourself): above every tear, including a neighbouring section's, and below all content
+- content wrapper at `relative z-20` (at least `z-10`)
 
-Without the explicit `z-20`, in-flow content paints below absolutely positioned doodles. If an inner block needs high z-indexes (e.g. marquee tears at `z-40`), wrap that subtree, not the section, in `relative isolate`.
+Without the explicit `z-*` on the content wrapper, in-flow content paints below absolutely positioned doodles. If an inner block needs high z-indexes (e.g. marquee tears at `z-40`), wrap that subtree, not the section, in `relative isolate`.
 
 ## Motion
 

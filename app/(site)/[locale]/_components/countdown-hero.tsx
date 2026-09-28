@@ -73,7 +73,7 @@ function DigitPair({
         <DigitCell digit={tens} reducedMotion={reducedMotion} />
         <DigitCell digit={ones} reducedMotion={reducedMotion} />
       </div>
-      <span className="font-display text-[10px] font-bold tracking-[0.3em] text-gray-950 uppercase md:text-xs">
+      <span className="font-display text-[10px] font-bold tracking-widest text-gray-950 uppercase md:text-xs">
         {label}
       </span>
     </div>
@@ -247,7 +247,7 @@ function EndedState({ pastFestival }: { pastFestival: boolean }) {
           hidden: { y: 12, opacity: 0 },
           show: { y: 0, opacity: 1 },
         }}
-        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-950 uppercase md:text-sm"
+        className="font-display text-[0.7rem] font-bold tracking-[0.2em] text-gray-950 uppercase md:text-sm"
       >
         {t("month")} &rsquo;{yearShort}
       </motion.span>
@@ -328,7 +328,7 @@ export function CountdownHero() {
           hidden: { y: 12, opacity: 0 },
           show: { y: 0, opacity: 1 },
         }}
-        className="font-display text-[0.7rem] font-bold tracking-[0.45em] text-gray-950 uppercase md:text-sm"
+        className="font-display text-[0.7rem] font-bold tracking-[0.2em] text-gray-950 uppercase md:text-sm"
       >
         {t("countdown.daysAway")}
       </motion.span>

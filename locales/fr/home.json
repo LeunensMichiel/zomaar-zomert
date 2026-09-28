@@ -37,9 +37,6 @@
     "all": "Voir toute la programmation",
     "tba": "Nom à venir"
   },
-  "programme": {
-    "eyebrow": "Programme"
-  },
   "activities": {
     "heading": "Participez.",
     "discover": "En savoir plus",
@@ -76,7 +73,6 @@
   },
   "partners": {
     "heading": "100% Gratuit.",
-    "eyebrow": "Rendu possible par",
     "body": "Zomaar Zomert reste gratuit grâce à une belle bande d'entrepreneurs locaux, de bénévoles et de sponsors qui mettent la main à la pâte. Envie de soutenir l'été prochain?",
     "all": "Tous les partenaires",
     "become": "Deviens partenaire"

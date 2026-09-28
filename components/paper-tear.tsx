@@ -91,10 +91,7 @@ export function PaperTear({
         "pointer-events-none block h-auto w-full",
         inFlow
           ? "relative z-0"
-          : cn(
-              "absolute inset-x-0 z-30",
-              edge === "top" ? "top-0" : "bottom-0",
-            ),
+          : cn("absolute inset-x-0 z-1", edge === "top" ? "top-0" : "bottom-0"),
         edge === "top" ? "-translate-y-px" : "translate-y-px",
         className,
       )}

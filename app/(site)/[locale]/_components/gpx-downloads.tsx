@@ -1,6 +1,5 @@
 "use client";
 
-import { Sticker } from "@components/sticker";
 import { Button } from "@components/ui/button";
 import { isGpxDownloadOpen } from "@lib/models";
 import { Check, Download, ExternalLink, TriangleAlert } from "lucide-react";
@@ -17,7 +16,6 @@ type GpxRouteView = {
 };
 
 type GpxLabels = {
-  eyebrow: string;
   heading: string;
   hint: string;
   download: string;
@@ -83,10 +81,7 @@ export function GpxDownloads({
 
   return (
     <section aria-labelledby="gpx-heading" className="mt-16 md:mt-24">
-      <Sticker color="yellow" size="sm" rotate={-2}>
-        {labels.eyebrow}
-      </Sticker>
-      <div className="mt-8 max-w-prose md:mt-10">
+      <div className="max-w-prose">
         <h2
           id="gpx-heading"
           className="font-display text-2xl leading-[0.95] font-bold text-gray-900 uppercase md:text-3xl"

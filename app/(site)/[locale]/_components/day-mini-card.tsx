@@ -42,16 +42,13 @@ export function DayMiniCard({ date, image, index, locale }: Props) {
           className="object-cover object-center transition-transform group-hover:scale-[1.06]"
         />
         <div className='halftone absolute inset-0 opacity-25 mix-blend-multiply content-[""]' />
-        <span className="font-display absolute right-1 bottom-1 z-10 inline-flex bg-gray-900 px-1.5 py-0.5 text-[10px] leading-none font-bold tracking-[0.15em] text-yellow-400 uppercase md:text-[11px]">
-          0{index + 1}
-        </span>
       </div>
       <div className="flex flex-1 items-center justify-between gap-3 px-3 py-3 md:px-4">
         <div className="flex flex-col">
           <span className="font-display text-xl leading-[0.95] font-bold uppercase md:text-2xl">
             {weekday}
           </span>
-          <span className="font-display mt-1 text-xs leading-none font-bold tracking-[0.18em] uppercase opacity-75 md:text-sm">
+          <span className="font-display mt-1 text-xs leading-none font-bold tracking-wider uppercase opacity-75 md:text-sm">
             {day} {month}
           </span>
         </div>

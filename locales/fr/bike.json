@@ -8,7 +8,6 @@
     }
   },
   "labels": {
-    "factsEyebrow": "En un coup d'œil",
     "tracks": "Parcours",
     "practical": "Pratique",
     "gallery": "Ambiance",
@@ -17,12 +16,10 @@
     "signup": "Inscris-toi",
     "signupSoon": "Bientôt",
     "backToInfo": "Toutes les activités",
-    "tbaEyebrow": "Infos à venir",
     "tbaTitle": "Édition {year} en préparation",
     "tbaBody": "Parcours, horaires et prix pour {year} arrivent ici dès qu'ils sont confirmés. Repasse bientôt."
   },
   "downloads": {
-    "eyebrow": "Parcours GPX",
     "heading": "Téléchargez le parcours",
     "hint": "Chargez la trace dans votre compteur ou appli GPS et roulez sans détour.",
     "download": "Télécharger",

@@ -104,11 +104,11 @@ export default async function PartnersPage({ params }: Props) {
           <p className="relative z-1 mt-6 max-w-2xl text-base text-pink-50 md:mt-8 md:text-lg">
             {t("hero.intro")}
           </p>
-          <div className="mt-10 md:mt-14">
+          <h2 className="mt-10 md:mt-14">
             <Sticker color="brand" size="lg" rotate={-3}>
               {t("lead.eyebrow")}
             </Sticker>
-          </div>
+          </h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {lead.map((p, i) => (
               <LeadPartnerCard
@@ -122,9 +122,11 @@ export default async function PartnersPage({ params }: Props) {
           <div className="mt-16 md:mt-20">
             <div className="mb-6 flex items-center gap-4 md:mb-8">
               <span className="h-px flex-1 bg-white/15" aria-hidden="true" />
-              <Sticker color="ink" size="sm" shape="tag" rotate={-2}>
-                {t("support.eyebrow")}
-              </Sticker>
+              <h2>
+                <Sticker color="ink" size="sm" shape="tag" rotate={-2}>
+                  {t("support.eyebrow")}
+                </Sticker>
+              </h2>
               <span className="h-px flex-1 bg-white/15" aria-hidden="true" />
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 md:gap-6 lg:grid-cols-5 xl:grid-cols-6">
@@ -148,14 +150,11 @@ export default async function PartnersPage({ params }: Props) {
           shape="plus"
           color="summer-red"
           rotate={20}
-          className="pointer-events-none absolute top-10 right-4 z-10 h-9 md:top-16 md:right-12 md:h-14"
+          className="pointer-events-none absolute top-10 right-4 h-9 md:top-16 md:right-12 md:h-14"
         />
         <div className="container-wide relative z-20 pt-12 pb-16 md:pt-16 md:pb-20">
           <div className="max-w-4xl">
-            <Sticker color="ink" size="sm" rotate={-3}>
-              {t("become.eyebrow")}
-            </Sticker>
-            <h2 className="text-brand-500 mt-6 text-7xl leading-[0.85] md:mt-8 md:text-9xl xl:text-[12rem]">
+            <h2 className="text-brand-500 text-7xl leading-[0.85] md:text-9xl xl:text-[12rem]">
               {t("become.title")}
             </h2>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-900 md:text-lg">

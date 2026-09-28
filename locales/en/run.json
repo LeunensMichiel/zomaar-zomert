@@ -8,7 +8,6 @@
     }
   },
   "labels": {
-    "factsEyebrow": "At a glance",
     "tracks": "Distances",
     "practical": "Practical",
     "gallery": "Atmosphere",
@@ -17,12 +16,10 @@
     "signup": "Sign up",
     "signupSoon": "Soon",
     "backToInfo": "All activities",
-    "tbaEyebrow": "Info coming",
     "tbaTitle": "{year} edition in the works",
     "tbaBody": "Distances, start time and prices for {year} land here once they're confirmed. Check back soon."
   },
   "downloads": {
-    "eyebrow": "Running route",
     "heading": "Check out the route",
     "hint": "Open the route in Strava and send it to your sports watch.",
     "download": "Download",

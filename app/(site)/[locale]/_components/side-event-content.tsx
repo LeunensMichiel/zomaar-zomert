@@ -30,7 +30,6 @@ import { RevealCard } from "./reveal-card";
 export type SideEventVariant = "run" | "bike";
 
 type GpxLabels = {
-  eyebrow: string;
   heading: string;
   hint: string;
   download: string;
@@ -42,7 +41,6 @@ type GpxLabels = {
 };
 
 type Labels = {
-  factsEyebrow: string;
   tracks: string;
   practical: string;
   gallery: string;
@@ -51,7 +49,6 @@ type Labels = {
   signup: string;
   signupSoon: string;
   backToInfo: string;
-  tbaEyebrow: string;
   tbaTitle: string;
   tbaBody: string;
   gpx: GpxLabels;
@@ -161,14 +158,15 @@ export function SideEventContent({ data, variant, labels }: Props) {
           <div className="mt-8 grid items-center gap-10 md:mt-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-6">
               <div className="flex flex-col items-start gap-0">
-                {data.heroEyebrow && (
+                {data.heroEyebrow && !data.heroImage?.url && (
                   <Sticker color={v.eyebrow} size="sm" rotate={-3}>
                     {data.heroEyebrow}
                   </Sticker>
                 )}
                 <h1
                   className={cn(
-                    "font-display shadow-sticker-lg mt-6 inline-block px-5 py-2 text-5xl leading-[0.9] font-bold uppercase md:mt-8 md:px-7 md:py-3 md:text-7xl xl:text-8xl",
+                    "font-display shadow-sticker-lg inline-block px-5 py-2 text-5xl leading-[0.9] font-bold uppercase md:px-7 md:py-3 md:text-7xl xl:text-8xl",
+                    data.heroEyebrow && !data.heroImage?.url && "mt-6 md:mt-8",
                     v.block,
                   )}
                 >
@@ -209,6 +207,13 @@ export function SideEventContent({ data, variant, labels }: Props) {
                     aria-hidden
                     className="halftone pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
                   />
+                  {data.heroEyebrow && (
+                    <div className="absolute top-4 left-4">
+                      <Sticker color={v.eyebrow} size="md" rotate={-6}>
+                        {data.heroEyebrow}
+                      </Sticker>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -227,10 +232,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
         <div className="container-wide section-y relative z-10 pt-4">
           {!detailsVisible && (
             <div className="shadow-sticker-lg max-w-3xl -rotate-1 border-2 border-gray-900 bg-white p-6 md:p-10">
-              <Sticker color="yellow" size="sm" rotate={-3}>
-                {labels.tbaEyebrow}
-              </Sticker>
-              <h2 className="font-display mt-6 text-3xl leading-[0.95] font-bold text-gray-900 uppercase md:text-5xl">
+              <h2 className="font-display text-3xl leading-[0.95] font-bold text-gray-900 uppercase md:text-5xl">
                 {labels.tbaTitle}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-gray-700 md:text-lg">
@@ -241,10 +243,7 @@ export function SideEventContent({ data, variant, labels }: Props) {
 
           {detailsVisible && facts.length > 0 && (
             <div>
-              <Sticker color="ink" size="sm" rotate={-3}>
-                {labels.factsEyebrow}
-              </Sticker>
-              <div className="mt-8 grid grid-cols-2 gap-4 md:mt-10 md:grid-cols-4 md:gap-6">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
                 {facts.map((fact, i) => {
                   const Icon = FACT_ICON[fact.icon];
                   return (

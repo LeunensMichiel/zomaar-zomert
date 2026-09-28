@@ -1,6 +1,5 @@
 import { Doodle } from "@components/doodle";
 import { PaperTear } from "@components/paper-tear";
-import { Sticker } from "@components/sticker";
 import { type Locale } from "@lib/i18n/routing";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -51,12 +50,7 @@ export default async function PrivacyPage({ params }: Props) {
             <p className="mt-6 text-base text-gray-900 md:mt-8 md:text-lg">
               {t("hero.intro")}
             </p>
-            <div className="mt-10 md:mt-12">
-              <Sticker color="ink" size="sm" rotate={-2}>
-                {t("eyebrow")}
-              </Sticker>
-            </div>
-            <div className="mt-8 space-y-6 text-base leading-relaxed text-gray-900 md:mt-10 md:space-y-8 md:text-lg">
+            <div className="mt-10 space-y-6 text-base leading-relaxed text-gray-900 md:mt-10 md:space-y-8 md:text-lg">
               {blocks.map((key) => (
                 <p key={key}>{t(key)}</p>
               ))}

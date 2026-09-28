@@ -17,7 +17,7 @@ export function ConsentVideo() {
 
   return (
     <section className="section-y-sm bg-brand-500 w-full pt-10!">
-      <div className="container-wide">
+      <div className="container-wide relative z-10">
         <div className="relative h-0 overflow-hidden pb-[56.25%]">
           <div className="absolute inset-0 z-[1] h-full w-full">
             {consent && consent !== "denied" && (

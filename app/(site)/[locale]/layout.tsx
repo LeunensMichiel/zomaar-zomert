@@ -53,7 +53,7 @@ export async function generateMetadata({
     metadataBase: new URL(SITE_URL),
     title: {
       default: title,
-      template: "%s | Zomaar Zomert",
+      template: "%s",
     },
     description,
     openGraph: {
