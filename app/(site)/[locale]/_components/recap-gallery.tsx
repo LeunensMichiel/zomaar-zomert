@@ -12,7 +12,7 @@ import {
   useTransform,
 } from "motion/react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { type RecapPhoto } from "@/sanity/lib/queries";
 
@@ -25,9 +25,11 @@ type Props = {
 };
 
 const COLUMNS = 5;
-const PER_COLUMN = 6;
+// Enough rows that a column still covers the frame at its furthest travel,
+// even on tall phone and tablet screens.
+const PER_COLUMN = 20;
 // Travel per column in vh over the full track; different speeds give the depth.
-const TRAVEL = [70, 45, 90, 55, 65];
+const TRAVEL = [40, 25, 50, 30, 35];
 
 const GROW = 1.25;
 const SPRING = {
@@ -37,94 +39,68 @@ const SPRING = {
   mass: 0.8,
 } as const;
 
-type Hover = { col: number; row: number; dx: number; dy: number };
-
 type ColumnProps = {
-  col: number;
   photos: RecapPhoto[];
   albumUrl: string;
   progress: MotionValue<number>;
   travel: number;
-  hover: Hover | null;
-  onHover: (hover: Hover | null) => void;
+  hoverable: boolean;
 };
 
 function Column({
-  col,
   photos,
   albumUrl,
   progress,
   travel,
-  hover,
-  onHover,
+  hoverable,
 }: ColumnProps) {
   const shift = useTransform(progress, [0, 1], [travel, -travel]);
   const y = useMotionTemplate`calc(-50% + ${shift}vh)`;
-  const push =
-    hover && hover.col !== col ? (col < hover.col ? -hover.dx : hover.dx) : 0;
 
   return (
     <motion.div
       style={{ y }}
-      animate={{ x: push }}
-      transition={SPRING}
       className="absolute inset-x-0 top-1/2 flex flex-col gap-[7vw] md:gap-[5vw]"
     >
-      {photos.map((photo, row) => {
-        const active = hover?.col === col;
-        const isHovered = active && hover.row === row;
-        const nudge =
-          active && !isHovered ? (row < hover.row ? -hover.dy : hover.dy) : 0;
-        return (
-          <motion.a
-            key={`${photo.key}-${String(row)}`}
-            href={albumUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            animate={{ y: nudge }}
+      {photos.map((photo, row) => (
+        <motion.a
+          key={`${photo.key}-${String(row)}`}
+          href={albumUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+          initial="rest"
+          animate="rest"
+          whileHover={hoverable ? "hover" : undefined}
+          // Portrait photos get the column width as their height instead,
+          // so every photo's longest side is the same length.
+          style={{
+            width:
+              photo.height > photo.width
+                ? `${String((photo.width / photo.height) * 100)}%`
+                : "100%",
+          }}
+          className="relative mx-auto block hover:z-10"
+        >
+          {/* Only the unscaled link takes the pointer, so the hover ends as
+              soon as the cursor leaves the photo's original bounds. */}
+          <motion.div
+            variants={{ rest: { scale: 1 }, hover: { scale: GROW } }}
             transition={SPRING}
-            // Portrait photos get the column width as their height instead,
-            // so every photo's longest side is the same length.
-            style={{
-              width:
-                photo.height > photo.width
-                  ? `${String((photo.width / photo.height) * 100)}%`
-                  : "100%",
-            }}
-            className={cn("relative mx-auto block", isHovered && "z-10")}
-            onPointerEnter={(e) => {
-              const { width, height } = e.currentTarget.getBoundingClientRect();
-              // Half the growth on each side, plus a little breathing room.
-              onHover({
-                col,
-                row,
-                dx: (width * (GROW - 1)) / 2 + 16,
-                dy: (height * (GROW - 1)) / 2 + 16,
-              });
-            }}
-            onPointerLeave={() => {
-              onHover(null);
-            }}
+            className="pointer-events-none bg-gray-100"
           >
-            <motion.div
-              animate={{ scale: isHovered ? GROW : 1 }}
-              transition={SPRING}
-              className="pointer-events-none bg-gray-100"
-            >
-              <Image
-                src={photo.url}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                sizes="(max-width: 768px) 32vw, 14vw"
-                placeholder={photo.lqip ? "blur" : "empty"}
-                blurDataURL={photo.lqip ?? undefined}
-                className="h-auto w-full"
-              />
-            </motion.div>
-          </motion.a>
-        );
-      })}
+            <Image
+              src={photo.url}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              sizes="(max-width: 768px) 32vw, 14vw"
+              placeholder={photo.lqip ? "blur" : "empty"}
+              blurDataURL={photo.lqip ?? undefined}
+              className="h-auto w-full"
+            />
+          </motion.div>
+        </motion.a>
+      ))}
     </motion.div>
   );
 }
@@ -138,17 +114,17 @@ export function RecapGallery({
 }: Props) {
   const reducedMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
-  const [hover, setHover] = useState<Hover | null>(null);
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start end", "end start"],
   });
 
-  // Cycle through the photos so every column stays filled during its travel.
+  // Steps of 7 and 11 spread repeats apart, so the same photo rarely shows
+  // twice in one column or side by side.
   const columns = Array.from({ length: COLUMNS }, (_, c) =>
     Array.from(
       { length: PER_COLUMN },
-      (_, r) => photos[(c + r * COLUMNS) % photos.length],
+      (_, r) => photos[(c * 11 + r * 7) % photos.length],
     ),
   );
 
@@ -170,19 +146,16 @@ export function RecapGallery({
             <div
               key={c}
               className={cn(
-                "relative",
-                hover?.col === c && "z-20",
+                "relative has-[a:hover]:z-10",
                 c >= 3 && "hidden md:block",
               )}
             >
               <Column
-                col={c}
                 photos={col}
                 albumUrl={albumUrl}
                 progress={scrollYProgress}
                 travel={reducedMotion ? 0 : TRAVEL[c]}
-                hover={hover}
-                onHover={reducedMotion ? () => undefined : setHover}
+                hoverable={!reducedMotion}
               />
             </div>
           ))}

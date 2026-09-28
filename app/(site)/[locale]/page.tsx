@@ -273,7 +273,12 @@ export default async function Home({ params }: Props) {
 
       {showRecap && recap.albumUrl && (
         <section className="relative isolate bg-white text-gray-900">
-          <PaperTear edge="top" tear={4} color="yellow-400" />
+          <PaperTear
+            edge="top"
+            tear={4}
+            color="yellow-400"
+            className="absolute inset-x-0 top-0 z-30"
+          />
           <RecapGallery
             photos={recapPhotos}
             albumUrl={recap.albumUrl}
@@ -281,7 +286,12 @@ export default async function Home({ params }: Props) {
             edition={tHome("recap.edition", { year: ZZ_RECAP_YEAR })}
             cta={tHome("recap.album")}
           />
-          <PaperTear edge="bottom" tear={4} color="blue-500" />
+          <PaperTear
+            edge="bottom"
+            tear={4}
+            color="blue-500"
+            className="absolute inset-x-0 bottom-0 z-30"
+          />
         </section>
       )}
 
