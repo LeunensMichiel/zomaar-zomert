@@ -388,9 +388,9 @@ export async function Footer() {
             <span className="text-center text-xs leading-snug opacity-70 lg:text-right">
               ©{year}{" "}
               {t.rich("footer.copy", {
-                michiel: (chunks) => (
+                studio: (chunks) => (
                   <a
-                    href="https://www.instagram.com/michielleunens/"
+                    href="https://leunes.studio"
                     target="_blank"
                     rel="noreferrer noopener"
                     className="font-black underline-offset-2 hover:underline"
